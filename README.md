@@ -1,5 +1,10 @@
-<img align="left" width="150" src="https://github.com/rl-institut-private/digipipe/blob/main/docs/img/digiplan-logo.png">
-<img align="right" width="150" src="https://github.com/rl-institut-private/digipipe/blob/main/docs/img/rli_logo.png">
+<p align="left">
+    <img alt="Digiplan logo" align="left" height="150" src="docs/img/digiplan-logo.png">
+    <img alt="RLI logo" align="right" height="140" src="docs/img/rli_logo.png">
+</p>
+<br/><br/><br/><br/><br/><br/><br/>
+
+----------
 
 # Digipipe
 

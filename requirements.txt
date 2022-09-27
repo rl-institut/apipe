@@ -1,0 +1,15 @@
+pandas
+geopandas
+shapely
+snakemake
+matplotlib
+pyyaml
+descartes
+fiona
+rtree
+plotly
+rasterstats
+networkx
+pygraphviz
+pygments
+rasterio

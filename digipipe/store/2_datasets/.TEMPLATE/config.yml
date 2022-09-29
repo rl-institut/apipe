@@ -1,0 +1,16 @@
+"""
+Config file for dataset
+
+This file holds configuration parameters for the creation of this dataset.
+"""
+
+# Name of the dataset
+title: ".TEMPLATE"
+
+# Input files
+store:
+  preprocessed:
+    [
+      "some_preprocessed_geodata.gpkg",
+      "bla.csv"
+    ]

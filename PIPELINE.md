@@ -1,1 +1,105 @@
 # Pipeline docs
+
+## Structure of this repo
+
+**TODO: REVISE**
+
+## Data pipeline
+
+This section describes the workflow of the data pipeline.
+
+(RAW) -> (PREPROCESSED) -> (DATASETS) -> (APPDATA)
+
+Overview:
+
+| **Step** | **Directory**         | **Description**                          | **Rule(s) for this target** | **Cfg section** |
+|:--------:|-----------------------|------------------------------------------|-----------------------------|-----------------|
+|    0     | store/0_raw/          | Raw data as downloaded                   |                             |                 |
+|    1     | store/1_preprocessed/ | Preprocessed data ()                     |                             |                 |
+|    2     | store/2_datasets/     | Datasets, created from preprocessed data |                             |                 |
+|    3     | store/3_appdata/      | Data ready to be used in the app         |                             |                 |
+
+In the following each step is shortly described along a common example use
+case. 
+
+### (0) Raw
+
+Immutable raw data as downloaded with description and metadata.
+
+Template with further details:
+[digipipe/store/0_raw/.TEMPLATE/.dataset.md](digipipe/store/0_raw/.TEMPLATE/.dataset.md)
+
+> **Example:**
+> 1. ERA5 weather dataset for Germany
+> 2. MaStR dataset on renewable generators
+> 3. Shapefile of region of interest
+
+### (1) Preprocessed
+
+Data that has undergone some preprocesing such as:
+ - Archive extracted
+ - CRS transformed (see below for CRS conventions)
+ - Fields filtered
+ - **But NO merging/combining/clipping of multiple (raw) datasets! This can be 
+   done in (2)**
+
+Note: Name MUST be the same as in `0_raw`.
+
+Template with further details:
+[digipipe/store/1_preprocessed/.TEMPLATE/.dataset.md](digipipe/store/1_preprocessed/.TEMPLATE/.dataset.md)
+
+> **Example:**
+> 1. Extracted ERA5 weather dataset for Germany
+> 2. Wind energy turbines extracted from MaStR dataset, filter for columns
+>    power and geometry
+> 3. Region of interest converted to Geopackage file, CRS transformed
+
+### (2) Datasets
+
+Datasets, created from preprocessed datasets. Here you are free to do what you
+want.
+
+Template with further details:
+[digipipe/store/2_datasets/.TEMPLATE/.dataset.md](digipipe/store/2_datasets/.TEMPLATE/.dataset.md)
+
+> **Example:**
+> 
+> Using the preprocessed datssets from above:
+> 1. Wind energy turbines in the region of interest (datasets 2-3)
+> 2. Normalized wind energy feedin timeseries for the region (datasets 1-3)
+> 3. Mean wind speed in the region (datasets 1 and 3)
+
+### (3) App data
+
+**TODO: REVISE**
+
+Data ready to be used in the app / as expected by the app.
+
+### Temporary files
+
+**TODO: REVISE**
+
+Temporary files are stored in `store/temp/` by default and, depending on your
+configuration, can get quite large.  You can change the directory in
+`config.yml` -> `path` -> `temp`.
+
+## Further notes
+
+### Coordinate reference system
+
+Please use LAEA Europe (EPSG:3035) as default CRS when writing geodata.
+
+**TODO: REVISE**
+
+- The files in `store/converted/` can have an arbitrary CRS.
+- In the preprocessing (Step 3) it is converted to the CRS specified in the global `config.yml` -> `preprocessing` -> 
+  `crs`. It is important to use a equal-area CRS to make sure operations such as buffering work properly. By default,
+  it is set to LAEA Europe (EPSG:3035).
+- The final output is written in CRS specified in the global `config.yml` -> `output` -> `crs`. By default, it is set
+  to WGS84 (EPSG:4326) used by the app.
+
+## HowTos
+
+### Add a new dataset
+
+**TODO: REVISE**

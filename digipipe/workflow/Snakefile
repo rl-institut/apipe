@@ -1,0 +1,17 @@
+"""
+Snakemake file for digipipe
+"""
+from helpers import search_data_workflows
+
+
+# Include all snakefiles in data store
+for smk in search_data_workflows():
+    include: smk
+
+# ===== RULES =====
+
+# for testing
+rule all:
+    input: "../requirements.txt"
+    output: "../requirements2.txt"
+    shell: "cp -p {input} {output}"

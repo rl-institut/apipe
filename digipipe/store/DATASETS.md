@@ -1,5 +1,9 @@
 # Data pipeline
 
+## Structure of the data store
+
+**TBD**
+
 ## Data flow
 
 This section describes the workflow of the data pipeline.
@@ -24,13 +28,15 @@ case.
 
 ### (0) Raw
 
-Immutable raw data as downloaded with description and metadata.
+Immutable raw data as downloaded with 2 additional files: 
+[description](0_raw/.TEMPLATE/dataset.md) and
+[metadata](0_raw/.TEMPLATE/metadata.json).
 
-Template with further details:
+Template with further instructions:
 [0_raw/.TEMPLATE/dataset.md](0_raw/.TEMPLATE/dataset.md)
 
-Note: Assumptions are defined in the scenarios, see the scenario readme in
-[SCENARIOS.md](../scenarios/SCENARIOS.md). 
+Note: Assumptions are to be defined in the scenarios, see the scenario readme
+in [SCENARIOS.md](../scenarios/SCENARIOS.md). 
 
 > **Example:**
 > - Dataset A: ERA5 weather dataset for Germany
@@ -46,10 +52,10 @@ Data from `(0) Raw`  that has undergone some preprocesing such as:
  - **But NO merging/combining/clipping of multiple (raw) datasets! This can be 
    done in (2)**
 
-Note: Name MUST be the same as in `0_raw`.
+The preprocessing rules can be defined in the dataset's
+[snakemake file](1_preprocessed/.TEMPLATE/create.smk).
 
-Template with further details:
-[1_preprocessed/.TEMPLATE/dataset.md](1_preprocessed/.TEMPLATE/dataset.md)
+Note: The directory name MUST be the same as in `0_raw`.
 
 > **Example:**
 > - Dataset D: Extracted ERA5 weather dataset for Germany (from dataset A)
@@ -63,8 +69,8 @@ Template with further details:
 Datasets, created from arbitrary combinations of datasets from
 `(1) Preprocessed` and/or `(2) Datasets`.
 
-Template with further details:
-[2_datasets/.TEMPLATE/dataset.md](2_datasets/.TEMPLATE/dataset.md)
+The creation rules can be defined in the dataset's
+[snakemake file](2_datasets/.TEMPLATE/create.smk).
 
 > **Example:**
 > 

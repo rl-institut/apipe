@@ -1,6 +1,6 @@
 <p align="left">
-    <img alt="Digiplan logo" align="left" height="150" src="docs/img/digiplan-logo.png">
-    <img alt="RLI logo" align="right" height="140" src="docs/img/rli_logo.png">
+    <img alt="Digiplan logo" align="left" height="150" src="docs/img/logos/digiplan-logo.png">
+    <img alt="RLI logo" align="right" height="140" src="docs/img/logos/rli_logo.png">
 </p>
 <br/><br/><br/><br/><br/><br/><br/>
 

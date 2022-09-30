@@ -28,15 +28,12 @@ case.
 
 ### (0) Raw
 
-Immutable raw data as downloaded with 2 additional files: 
-[description](0_raw/.TEMPLATE/dataset.md) and
-[metadata](0_raw/.TEMPLATE/metadata.json).
+Immutable raw data as downloaded with 2 additional files:
+[description](0_raw/.TEMPLATE/dataset.md) (see this file for further
+instructions) and [metadata](0_raw/.TEMPLATE/metadata.json).
 
-Template with further instructions:
-[0_raw/.TEMPLATE/dataset.md](0_raw/.TEMPLATE/dataset.md)
-
-Note: Assumptions are to be defined in the scenarios, see the scenario readme
-in [SCENARIOS.md](../scenarios/SCENARIOS.md). 
+Note: Assumptions are to be defined in the scenarios, not the raw data.
+See the scenario readme in [SCENARIOS.md](../scenarios/SCENARIOS.md). 
 
 > **Example:**
 > - Dataset A: ERA5 weather dataset for Germany
@@ -70,7 +67,9 @@ Datasets, created from arbitrary combinations of datasets from
 `(1) Preprocessed` and/or `(2) Datasets`.
 
 The creation rules can be defined in the dataset's
-[snakemake file](2_datasets/.TEMPLATE/create.smk).
+[snakemake file](2_datasets/.TEMPLATE/create.smk). Custom,
+dataset-specific configuration can be put into the
+[dataset config](2_datasets/.TEMPLATE/config.yml).
 
 > **Example:**
 > 
@@ -82,7 +81,7 @@ The creation rules can be defined in the dataset's
 
 ### (3) App data
 
-**TODO: REVISE**
+**TBD**
 
 Data ready to be used in the app / as expected by the app.
 

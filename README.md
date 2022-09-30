@@ -45,9 +45,10 @@ Make sure you have conda installed, e.g. miniconda. Then create the env:
     conda create -n digipipe /local/path/to/digipipe/environment.yml
     conda activate digipipe
 
-## Structure, pipeline and conventions
+## Further reading on structure, pipeline and conventions
 
-Adhere to instructions given in [DATASETS.md](digipipe/store/DATASETS.md).
+- Datasets/data flow: [DATASETS.md](digipipe/store/DATASETS.md)
+- Scenarios: [SCENARIOS.md](digipipe/scenarios/SCENARIOS.md)
 
 ## Runtime and resources
 

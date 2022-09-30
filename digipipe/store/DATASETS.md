@@ -1,10 +1,6 @@
 # Data pipeline
 
-## Structure of this repo
-
-**TODO: REVISE**
-
-## Data pipeline
+## Data flow
 
 This section describes the workflow of the data pipeline.
 
@@ -93,6 +89,9 @@ configuration, can get quite large.  You can change the directory in
 `config.yml` -> `path` -> `temp`.
 
 ## Further notes
+
+Make sure **not to commit any data files** located in `store/` to the
+repository (they should be omitted as defined in the `.gitignore` file).
 
 ### Coordinate reference system
 

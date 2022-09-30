@@ -24,17 +24,17 @@ case.
 
 **Example data flow:**
 
-![example data flow](docs/img/datasets/pipeline_dataflow_example.png)
+![example data flow](../../docs/img/datasets/pipeline_dataflow_example.png)
 
 ### (0) Raw
 
 Immutable raw data as downloaded with description and metadata.
 
 Template with further details:
-[digipipe/store/0_raw/.TEMPLATE/.dataset.md](digipipe/store/0_raw/.TEMPLATE/.dataset.md)
+[0_raw/.TEMPLATE/.dataset.md](0_raw/.TEMPLATE/.dataset.md)
 
 Note: Assumptions are defined in the scenarios, see the scenario readme in
-[digipipe/scenarios/SCENARIOS.md](digipipe/scenarios/SCENARIOS.md). 
+[SCENARIOS.md](../scenarios/SCENARIOS.md). 
 
 > **Example:**
 > - Dataset A: ERA5 weather dataset for Germany
@@ -53,7 +53,7 @@ Data from `(0) Raw`  that has undergone some preprocesing such as:
 Note: Name MUST be the same as in `0_raw`.
 
 Template with further details:
-[digipipe/store/1_preprocessed/.TEMPLATE/.dataset.md](digipipe/store/1_preprocessed/.TEMPLATE/.dataset.md)
+[1_preprocessed/.TEMPLATE/.dataset.md](1_preprocessed/.TEMPLATE/.dataset.md)
 
 > **Example:**
 > - Dataset D: Extracted ERA5 weather dataset for Germany (from dataset A)
@@ -68,7 +68,7 @@ Datasets, created from arbitrary combinations of datasets from
 `(1) Preprocessed` and/or `(2) Datasets`.
 
 Template with further details:
-[digipipe/store/2_datasets/.TEMPLATE/.dataset.md](digipipe/store/2_datasets/.TEMPLATE/.dataset.md)
+[2_datasets/.TEMPLATE/.dataset.md](2_datasets/.TEMPLATE/.dataset.md)
 
 > **Example:**
 > 
@@ -100,8 +100,8 @@ Please use LAEA Europe (EPSG:3035) as default CRS when writing geodata.
 
 **TODO: REVISE**
 
-- The files in `store/converted/` can have an arbitrary CRS.
-- In the preprocessing (Step 3) it is converted to the CRS specified in the global `config.yml` -> `preprocessing` -> 
+- The files in `store/raw/` can have an arbitrary CRS.
+- In the preprocessing (step 1) it is converted to the CRS specified in the global `config.yml` -> `preprocessing` -> 
   `crs`. It is important to use a equal-area CRS to make sure operations such as buffering work properly. By default,
   it is set to LAEA Europe (EPSG:3035).
 - The final output is written in CRS specified in the global `config.yml` -> `output` -> `crs`. By default, it is set

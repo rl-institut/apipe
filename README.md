@@ -31,7 +31,8 @@ Some additional system packages are required, install them by
 
 Notes:
 - Make sure you have GDAL>=3.0 as older versions will not work
-- `imagemagick` is optional and only required for report creation, cf. [PIPELINE.md](PIPELINE.md)
+- `imagemagick` is optional and only required for report creation, cf.
+  [DATASETS.md](digipipe/store/DATASETS.md)
 
 Install package with
 
@@ -46,7 +47,7 @@ Make sure you have conda installed, e.g. miniconda. Then create the env:
 
 ## Structure, pipeline and conventions
 
-Adhere to instructions given in [PIPELINE.md](PIPELINE.md).
+Adhere to instructions given in [DATASETS.md](digipipe/store/DATASETS.md).
 
 ## Runtime and resources
 

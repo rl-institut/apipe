@@ -12,15 +12,19 @@ This section describes the workflow of the data pipeline.
 
 Overview:
 
-| **Step** | **Directory**         | **Description**                          | **Rule(s) for this target** | **Cfg section** |
-|:--------:|-----------------------|------------------------------------------|-----------------------------|-----------------|
-|    0     | store/0_raw/          | Raw data as downloaded                   |                             |                 |
-|    1     | store/1_preprocessed/ | Preprocessed data ()                     |                             |                 |
-|    2     | store/2_datasets/     | Datasets, created from preprocessed data |                             |                 |
-|    3     | store/3_appdata/      | Data ready to be used in the app         |                             |                 |
+| **Step** | **Directory**         | **Description**                  | **Rule(s) for this target** | **Cfg section** |
+|:--------:|-----------------------|----------------------------------|-----------------------------|-----------------|
+|    0     | store/0_raw/          | Raw data as downloaded           |                             |                 |
+|    1     | store/1_preprocessed/ | Preprocessed data, 1:1 from (0)  |                             |                 |
+|    2     | store/2_datasets/     | Datasets, n:1 from (1) and (2)   |                             |                 |
+|    3     | store/3_appdata/      | Data ready to be used in the app |                             |                 |
 
 In the following each step is shortly described along a common example use
-case. 
+case.
+
+**Example data flow:**
+
+![example data flow](docs/img/datasets/pipeline_dataflow_example.png)
 
 ### (0) Raw
 
@@ -30,13 +34,13 @@ Template with further details:
 [digipipe/store/0_raw/.TEMPLATE/.dataset.md](digipipe/store/0_raw/.TEMPLATE/.dataset.md)
 
 > **Example:**
-> 1. ERA5 weather dataset for Germany
-> 2. MaStR dataset on renewable generators
-> 3. Shapefile of region of interest
+> - Dataset A: ERA5 weather dataset for Germany
+> - Dataset B: MaStR dataset on renewable generators
+> - Dataset C: Shapefile of region of interest
 
 ### (1) Preprocessed
 
-Data that has undergone some preprocesing such as:
+Data from `(0) Raw`  that has undergone some preprocesing such as:
  - Archive extracted
  - CRS transformed (see below for CRS conventions)
  - Fields filtered
@@ -49,25 +53,27 @@ Template with further details:
 [digipipe/store/1_preprocessed/.TEMPLATE/.dataset.md](digipipe/store/1_preprocessed/.TEMPLATE/.dataset.md)
 
 > **Example:**
-> 1. Extracted ERA5 weather dataset for Germany
-> 2. Wind energy turbines extracted from MaStR dataset, filter for columns
->    power and geometry
-> 3. Region of interest converted to Geopackage file, CRS transformed
+> - Dataset D: Extracted ERA5 weather dataset for Germany (from dataset A)
+> - Dataset E: Wind energy turbines extracted from MaStR dataset, filter for
+>   columns power and geometry (from dataset B)
+> - Dataset F: Region of interest converted to Geopackage file, CRS
+>   transformed (from dataset C)
 
 ### (2) Datasets
 
-Datasets, created from preprocessed datasets. Here you are free to do what you
-want.
+Datasets, created from arbitrary combinations of datasets from
+`(1) Preprocessed` and/or `(2) Datasets`.
 
 Template with further details:
 [digipipe/store/2_datasets/.TEMPLATE/.dataset.md](digipipe/store/2_datasets/.TEMPLATE/.dataset.md)
 
 > **Example:**
 > 
-> Using the preprocessed datssets from above:
-> 1. Wind energy turbines in the region of interest (datasets 2-3)
-> 2. Normalized wind energy feedin timeseries for the region (datasets 1-3)
-> 3. Mean wind speed in the region (datasets 1 and 3)
+> Using datasets from (1) and (2):
+> - Dataset G: Wind energy turbines in the region of interest (from datasets E+F)
+> - Dataset H: Normalized wind energy feedin timeseries for the region (from
+>   datasets D+G)
+> - Dataset I: Region of interest (from dataset F)
 
 ### (3) App data
 

@@ -132,3 +132,19 @@ dmypy.json
 .DS_Store
 .snakemake
 .idea
+
+# Data files
+digipipe/store/0_raw/*/data/*
+!digipipe/store/0_raw/*/data/.gitkeep
+!digipipe/store/0_raw/.TEMPLATE/data/*
+
+digipipe/store/1_preprocessed/*/data/*
+!digipipe/store/1_preprocessed/*/data/.gitkeep
+!digipipe/store/1_preprocessed/.TEMPLATE/data/*
+
+digipipe/store/2_datasets/*/data/*
+!digipipe/store/2_datasets/*/data/.gitkeep
+!digipipe/store/2_datasets/.TEMPLATE/data/*
+
+digipipe/store/3_appdata/*
+!digipipe/store/3_appdata/*/.gitkeep

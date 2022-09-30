@@ -49,10 +49,10 @@ Data from `(0) Raw`  that has undergone some preprocesing such as:
  - **But NO merging/combining/clipping of multiple (raw) datasets! This can be 
    done in (2)**
 
+Note: The directory name MUST be the same as in `0_raw`.
+
 The preprocessing rules can be defined in the dataset's
 [snakemake file](1_preprocessed/.TEMPLATE/create.smk).
-
-Note: The directory name MUST be the same as in `0_raw`.
 
 > **Example:**
 > - Dataset D: Extracted ERA5 weather dataset for Germany (from dataset A)
@@ -66,10 +66,12 @@ Note: The directory name MUST be the same as in `0_raw`.
 Datasets, created from arbitrary combinations of datasets from
 `(1) Preprocessed` and/or `(2) Datasets`.
 
-The creation rules can be defined in the dataset's
-[snakemake file](2_datasets/.TEMPLATE/create.smk). Custom,
-dataset-specific configuration can be put into the
-[dataset config](2_datasets/.TEMPLATE/config.yml).
+Notes:
+- The creation rules can be defined in the dataset's
+[snakemake file](2_datasets/.TEMPLATE/create.smk).
+- Custom, dataset-specific configuration can be put into the
+[dataset config](2_datasets/.TEMPLATE/config.yml)
+- Custom, dataset-specific scripts are located in `scripts`
 
 > **Example:**
 > 

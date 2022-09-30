@@ -90,8 +90,13 @@ configuration, can get quite large.  You can change the directory in
 
 ## Further notes
 
+### No data files in the repository!
+
 Make sure **not to commit any data files** located in `store/` to the
-repository (they should be omitted as defined in the `.gitignore` file).
+repository (except for the descriptive readme and metadata files). They should
+be omitted by the rules defined in the `.gitignore` file but you better don't
+count on it. Instead, save them in the designated directory on the
+[RLI Wolke](https://wolke.rl-institut.de/f/160572).
 
 ### Coordinate reference system
 

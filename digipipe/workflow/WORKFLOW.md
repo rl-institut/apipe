@@ -1,0 +1,6 @@
+# Workflow
+
+**TBD**
+
+- Snakefile
+- Configs?

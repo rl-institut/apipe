@@ -48,6 +48,7 @@ Make sure you have conda installed, e.g. miniconda. Then create the env:
 ## Further reading on structure, pipeline and conventions
 
 - Datasets/data flow: [DATASETS.md](digipipe/store/DATASETS.md)
+- Workflow: [WORKFLOW.md](digipipe/workflow/WORKFLOW.md)
 - Scenarios: [SCENARIOS.md](digipipe/scenarios/SCENARIOS.md)
 
 ## Runtime and resources

@@ -31,8 +31,7 @@ Some additional system packages are required, install them by
 
 Notes:
 - Make sure you have GDAL>=3.0 as older versions will not work
-- `imagemagick` is optional and only required for report creation, cf.
-  [DATASETS.md](digipipe/store/DATASETS.md)
+- `imagemagick` is optional and only required for report creation
 
 Install package with
 

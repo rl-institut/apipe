@@ -32,7 +32,7 @@ Add a metadata for every dataset you put here for describing data with
 machine-readable information. Adhere to the OEP Metadata v1.5.1. You can make
 use the [Metadata creator](https://meta.rl-institut.de/meta_creator/151).
 
-See the [.metadata.json](.metadata.json) file in this directory.
+See the [metadata.json](metadata.json) file in this directory.
 
 Alternatively, you can create them manually: follow
 [this example](https://github.com/OpenEnergyPlatform/oemetadata/blob/develop/metadata/latest/example.json)

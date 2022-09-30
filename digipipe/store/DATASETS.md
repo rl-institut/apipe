@@ -27,7 +27,7 @@ case.
 Immutable raw data as downloaded with description and metadata.
 
 Template with further details:
-[0_raw/.TEMPLATE/.dataset.md](0_raw/.TEMPLATE/.dataset.md)
+[0_raw/.TEMPLATE/dataset.md](0_raw/.TEMPLATE/dataset.md)
 
 Note: Assumptions are defined in the scenarios, see the scenario readme in
 [SCENARIOS.md](../scenarios/SCENARIOS.md). 
@@ -49,7 +49,7 @@ Data from `(0) Raw`  that has undergone some preprocesing such as:
 Note: Name MUST be the same as in `0_raw`.
 
 Template with further details:
-[1_preprocessed/.TEMPLATE/.dataset.md](1_preprocessed/.TEMPLATE/.dataset.md)
+[1_preprocessed/.TEMPLATE/dataset.md](1_preprocessed/.TEMPLATE/dataset.md)
 
 > **Example:**
 > - Dataset D: Extracted ERA5 weather dataset for Germany (from dataset A)
@@ -64,7 +64,7 @@ Datasets, created from arbitrary combinations of datasets from
 `(1) Preprocessed` and/or `(2) Datasets`.
 
 Template with further details:
-[2_datasets/.TEMPLATE/.dataset.md](2_datasets/.TEMPLATE/.dataset.md)
+[2_datasets/.TEMPLATE/dataset.md](2_datasets/.TEMPLATE/dataset.md)
 
 > **Example:**
 > 

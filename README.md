@@ -46,7 +46,7 @@ Make sure you have conda installed, e.g. miniconda. Then create the env:
 
 ## Structure, pipeline and conventions
 
-See [PIPELINE.md](PIPELINE.md)
+Adhere to instructions given in [PIPELINE.md](PIPELINE.md).
 
 ## Runtime and resources
 

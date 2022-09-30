@@ -1,4 +1,4 @@
-# Pipeline docs
+# Data pipeline
 
 ## Structure of this repo
 
@@ -32,6 +32,9 @@ Immutable raw data as downloaded with description and metadata.
 
 Template with further details:
 [digipipe/store/0_raw/.TEMPLATE/.dataset.md](digipipe/store/0_raw/.TEMPLATE/.dataset.md)
+
+Note: Assumptions are defined in the scenarios, see the scenario readme in
+[digipipe/scenarios/SCENARIOS.md](digipipe/scenarios/SCENARIOS.md). 
 
 > **Example:**
 > - Dataset A: ERA5 weather dataset for Germany

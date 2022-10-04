@@ -38,7 +38,7 @@ See the scenario readme in [SCENARIOS.md](../scenarios/SCENARIOS.md).
 > **Example:**
 > - Dataset A: ERA5 weather dataset for Germany
 > - Dataset B: MaStR dataset on renewable generators
-> - Dataset C: Shapefile of region of interest
+> - Dataset C: Shapefiles of region: federal districts and municipalities
 
 ### (1) Preprocessed
 
@@ -58,8 +58,10 @@ The preprocessing rules can be defined in the dataset's
 > - Dataset D: Extracted ERA5 weather dataset for Germany (from dataset A)
 > - Dataset E: Wind energy turbines extracted from MaStR dataset, filter for
 >   columns power and geometry (from dataset B)
-> - Dataset F: Region of interest converted to Geopackage file, CRS
->   transformed (from dataset C)
+> - Dataset F: Federal districts converted to Geopackage file, CRS transformed
+>   (from dataset C)
+> - Dataset G: Municipalities converted to Geopackage file, CRS transformed
+>   (from dataset C)
 
 ### (2) Datasets
 
@@ -76,10 +78,11 @@ Notes:
 > **Example:**
 > 
 > Using datasets from (1) and (2):
-> - Dataset G: Wind energy turbines in the region of interest (from datasets E+F)
-> - Dataset H: Normalized wind energy feedin timeseries for the region (from
+> - Dataset H: Wind energy turbines in the region of interest (from datasets E+F)
+> - Dataset I: Normalized wind energy feedin timeseries for the region (from
 >   datasets D+G)
-> - Dataset I: Region of interest (from dataset F)
+> - Dataset J: Federal districts (from dataset F)
+> - Dataset K: Municipalities (from dataset G)
 
 ### (3) App data
 

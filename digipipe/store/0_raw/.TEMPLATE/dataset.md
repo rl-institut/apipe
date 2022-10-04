@@ -1,4 +1,4 @@
-# (0) Raw dataset: .TEMPLATE
+# Raw dataset: .TEMPLATE
 
 This is a descriptive file for the raw dataset in this directory.
 

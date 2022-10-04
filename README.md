@@ -56,3 +56,47 @@ Make sure you have conda installed, e.g. miniconda. Then create the env:
 
 **Warning:** A full pipeline run takes 10 hours on a Xeon E5-2690 using 14
 cores and requires about 600 GB of disk space.
+
+## Structure of this repo
+
+```
+.
+├── digipipe
+│   ├── config
+│   │   └── global.yml              # Global config
+│   ├── scenarios                         # Scenario definition
+│   │   ├── .TEMPLATE
+│   │   └── SCENARIOS.md
+│   ├── scripts                           # Main scripts
+│   │   ├── esm                     # - for energy system modelling
+│   ├── store                             # Data store
+│   │   ├── 0_raw                   # - Raw datasets
+│   │   │   ├── .TEMPLATE
+│   │   ├── 1_preprocessed          # - Preprocessed datasets
+│   │   │   └── .TEMPLATE
+│   │   ├── 2_datasets              # - Processed datasets
+│   │   │   └── .TEMPLATE
+│   │   ├── 3_appdata               # - App data
+│   │   │   ├── data
+│   │   │   ├── metadata
+│   │   │   └── scenarios
+│   │   ├── temp                    # - Store temp files here
+│   │   └── DATASETS.md
+│   ├── workflow
+│   │   ├── helpers.py
+│   │   ├── Snakefile               # Main snakefile
+│   │   └── WORKFLOW.md
+├── docs                                        # ReadTheDocs content
+├── .github
+├── tests
+├── CHANGELOG.md
+├── CONTRIBUTING.md
+├── environment.yml
+├── .gitignore
+├── LICENSE
+├── README.md
+├── requirements.txt
+└── setup.py
+```
+
+(created via `tree --dirsfirst -L 4 -a -I '__*|*log|.gitkeep|PKG-INFO|*egg-info*|img|.git|.idea|venv|.snakemake' . > dirtree.txt`)

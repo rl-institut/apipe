@@ -1,9 +1,5 @@
 # Data pipeline
 
-## Structure of the data store
-
-**TBD**
-
 ## Data flow
 
 This section describes the workflow of the data pipeline.
@@ -50,7 +46,10 @@ Data from `(0) Raw`  that has undergone some preprocesing such as:
    done in (2)**
 
 The preprocessing rules can be defined in the dataset's
-[snakemake file](1_preprocessed/.TEMPLATE/create.smk).
+[snakemake file](1_preprocessed/.TEMPLATE/create.smk). As all rules will be
+searched for and included in the main [Snakefile](../workflow/Snakefile), they
+must have unique names. It's a good idea to use the dataset name as prefix,
+e.g. `osm_forest_<RULE_NAME>`.
 
 > **Example:**
 > - Dataset D: Extracted ERA5 weather dataset for Germany (from dataset A)

@@ -87,6 +87,32 @@ Notes:
 
 Data ready to be used in the app / as expected by the app.
 
+While `(2) Datasets` may contain datasets from intermediate steps (see below),
+this directory holds app-ready datasets only.
+
+### To which processing step do the different stages of my data belong to?
+
+Often, there are multiple options to assign a dataset. If you're still unsure
+where the different stages of your dataset should be located after having
+read the examples above, the following example may help you:
+
+Let's say you want to integrate some subsets of an OpenStreetMap dataset,
+namely extracting (a) forests and (b) residential structures for a specific
+region. You want both be stored in separate files. This involves (e.g.):
+1. Convert the pbf file to a more handy type such as Geopackage
+2. Extract data using OSM tags
+3. Clip with region
+
+First, you would create a new raw dataset in `(0) Raw`. Then, you could either
+put steps 1 and 2 in the preprocessing, resulting in two datasets in
+`(1) Preprocessed`. For each, you could then perform step 3 in `(2) Datasets`.
+However, this would imply a redundant execution of step 1. While this is
+basically fine in the terms of the pipeline flow, it might be a better idea to
+apply only step 1 and create one dataset in `(1) Preprocessed`. Using this
+dataset, you would create the two extracts in `(2) Datasets`. Finally, the
+datasets after performing step 3 would be created in `(2) Datasets` as well
+resulting in a total of four datasets in `(2) Datasets`.
+
 ### Temporary files
 
 **TODO: REVISE**

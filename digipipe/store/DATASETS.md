@@ -49,8 +49,6 @@ Data from `(0) Raw`  that has undergone some preprocesing such as:
  - **But NO merging/combining/clipping of multiple (raw) datasets! This can be 
    done in (2)**
 
-Note: The directory name MUST be the same as in `0_raw`.
-
 The preprocessing rules can be defined in the dataset's
 [snakemake file](1_preprocessed/.TEMPLATE/create.smk).
 

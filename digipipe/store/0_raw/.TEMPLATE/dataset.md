@@ -16,7 +16,7 @@ Examples:
 - [ERA5 weather dataset](https://cds.climate.copernicus.eu/cdsapp#!/dataset/reanalysis-era5-single-levels?tab=overview)
 - [BKG administrative areas](https://gdz.bkg.bund.de/index.php/default/verwaltungsgebiete-1-250-000-stand-01-01-vg250-01-01.html)
 
-Put raw files into dir `data`.
+Put raw files into dir `data` and, if possible, do not rename the file(s).
 
 ## Description
 

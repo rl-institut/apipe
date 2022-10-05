@@ -45,11 +45,15 @@ Data from `(0) Raw`  that has undergone some preprocesing such as:
  - **But NO merging/combining/clipping of multiple (raw) datasets! This can be 
    done in (2)**
 
-The preprocessing rules can be defined in the dataset's
-[snakemake file](1_preprocessed/.TEMPLATE/create.smk). As all rules will be
-searched for and included in the main [Snakefile](../workflow/Snakefile), they
-must have unique names. It's a good idea to use the dataset name as prefix,
-e.g. `rule osm_forest_<RULE_NAME>`.
+Notes:
+- The preprocessing rules can be defined in the dataset's
+  [snakemake file](1_preprocessed/.TEMPLATE/create.smk). As all rules will be
+  searched for and included in the main [Snakefile](../workflow/Snakefile),
+  they must have unique names. It's a good idea to use the dataset name as
+  prefix, e.g. `rule osm_forest_<RULE_NAME>`.
+- Custom, dataset-specific configuration can be put into the
+  [dataset config](1_preprocessed/.TEMPLATE/config.yml). Make sure you add a
+  **title and description**, even if you don't use any config parameters.
 
 > **Example:**
 > - Dataset D: Extracted ERA5 weather dataset for Germany (from dataset A)
@@ -67,10 +71,11 @@ Datasets, created from arbitrary combinations of datasets from
 
 Notes:
 - The creation rules can be defined in the dataset's
-[snakemake file](2_datasets/.TEMPLATE/create.smk).
+  [snakemake file](2_datasets/.TEMPLATE/create.smk).
 - Custom, dataset-specific configuration can be put into the
-[dataset config](2_datasets/.TEMPLATE/config.yml)
-- Custom, dataset-specific scripts are located in `scripts`
+  [dataset config](2_datasets/.TEMPLATE/config.yml). Make sure you add a
+  **title and description**, even if you don't use any config parameters.
+- Custom, dataset-specific scripts are located in `scripts`.
 
 > **Example:**
 > 

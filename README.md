@@ -35,7 +35,7 @@ Notes:
 
 Install package with
 
-    pip install -e /local/path/to/djagora_data/
+    pip install -e /local/path/to/digipipe/
 
 ### Install using conda
 

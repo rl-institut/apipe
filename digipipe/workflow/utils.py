@@ -11,6 +11,6 @@ def search_data_workflows():
     smk_files = []
     for root, dirs, files in os.walk(get_abs_store_path()):
         for file in files:
-            if file.endswith(".smk"):
-                smk_files.append(os.path.join(root,file))
+            if file.endswith(".smk") and ".TEMPLATE" not in str(root):
+                smk_files.append(os.path.join(root, file))
     return smk_files

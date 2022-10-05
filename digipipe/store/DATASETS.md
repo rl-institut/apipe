@@ -128,13 +128,17 @@ configuration, can get quite large.  You can change the directory in
 
 ## Further notes
 
-### No data files in the repository!
+### No data files in the repository! But keep the `.gitkeep` file
 
 Make sure **not to commit any data files** located in `store/` to the
 repository (except for the descriptive readme and metadata files). They have
 been  rules defined in the `.gitignore` file which should make git omit those
 files  but you better don't count on it. Instead, save them in the designated
 directory on the [RLI Wolke](https://wolke.rl-institut.de/f/160572).
+
+Each data directory in the provided templates contain an empty `.gitkeep`
+file. When creating a new dataset, please commit this file too to make sure
+the (empty) data directory is retained. 
 
 ### Coordinate reference system
 

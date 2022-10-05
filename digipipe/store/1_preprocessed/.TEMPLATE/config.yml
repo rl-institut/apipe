@@ -1,0 +1,8 @@
+"""
+This file holds configuration parameters for the creation of this dataset.
+"""
+
+# Name of the dataset (used e.g. for report purposes)
+title: "Template dataset to show how things work"
+
+# Further custom configuration goes here

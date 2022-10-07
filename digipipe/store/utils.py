@@ -43,7 +43,7 @@ def get_abs_dataset_path(category, name, data_dir=True):
     return p
 
 
-def osm_create_tag_string_osmium(taglist):
+def create_tag_string_osmium(taglist):
     """Create tag string required by osmium for extraction of OSM data.
 
     Parameters
@@ -63,7 +63,7 @@ def osm_create_tag_string_osmium(taglist):
     return tag_string
 
 
-def osm_create_tag_string_ogr(taglist):
+def create_tag_string_ogr(taglist):
     """Create tag string required by ogr2ogr for extraction of OSM data.
 
     Parameters

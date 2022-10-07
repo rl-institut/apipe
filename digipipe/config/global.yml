@@ -1,0 +1,10 @@
+####################################################################
+# This file holds global configuration parameters for the pipeline #
+####################################################################
+
+geodata:
+  # target CRS (warning: do not change, cf. DATASETS.md)
+  crs: "EPSG:3035"
+  # some input layers have invalid geometries, this is fixed by buffering by a very small distance (in m),
+  # it is enabled by setting fix_geom_by_buffering to True for the respective layer
+  fix_geom_buffer: 0.1

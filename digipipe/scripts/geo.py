@@ -167,9 +167,12 @@ def reproject_simplify_filter_rename(
                 f"(requested CRS: {target_crs.lower()}) !"
             )
 
-    # Read file and transform to target CRS
-    if str(gdf.crs).lower() != target_crs.lower():
-        gdf = gdf.to_crs(target_crs)
+    # Transform to target CRS
+    if gdf.crs is not None:
+        if str(gdf.crs).lower() != target_crs.lower():
+            gdf = gdf.to_crs(target_crs)
+    else:
+        raise ValueError("Geodata has not CRS assigned.")
 
     # Filter by min size
     if min_size is not None:

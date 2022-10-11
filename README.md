@@ -27,7 +27,7 @@ Make sure you have Python >= 3.6 installed, let's create a virtual env:
 
 Some additional system packages are required, install them by
 
-    apt install gdal-bin python-gdal libspatialindex-dev imagemagick osmium-tool
+    apt install gdal-bin python3-gdal libspatialindex-dev imagemagick osmium-tool graphviz graphviz-dev
 
 Notes:
 - Make sure you have GDAL>=3.0 as older versions will not work

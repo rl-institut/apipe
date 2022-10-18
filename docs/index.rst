@@ -11,3 +11,13 @@ in welchem das `Stakeholder-Empowerment-Tool StEmp-ABW <https://wam.rl-institut.
 erneuert wird.
 
 
+|
+
+.. image:: img/logos/rli_logo.png
+   :height: 80 px
+   :align: left
+   :alt: Logo des Reiner Lemoine Instituts
+.. image:: img/logos/digiplan-logo.png
+   :height: 80 px
+   :align: center
+   :alt: Logo des Projekts DigiPlan

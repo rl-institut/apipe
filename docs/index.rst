@@ -16,6 +16,7 @@ erneuert wird.
    :maxdepth: 1
 
    installation
+   structure
 
 
 .. toctree::

@@ -61,8 +61,12 @@ extensions = [
     'sphinx.ext.viewcode',
     'sphinx.ext.napoleon',
     'sphinx.ext.extlinks',
-    'sphinx.ext.graphviz'
+    'sphinx.ext.graphviz',
+    'm2r2'
 ]
+
+# source_suffix = '.rst'
+source_suffix = ['.rst', '.md']
 
 # Napoleon settings
 napoleon_google_docstring = True

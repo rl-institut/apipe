@@ -18,6 +18,7 @@ erneuert wird.
    installation
    structure
    data
+   workflow
 
 
 .. toctree::

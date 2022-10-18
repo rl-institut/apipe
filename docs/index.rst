@@ -15,6 +15,7 @@ erneuert wird.
    :caption: Inhalt
    :maxdepth: 1
 
+   installation
 
 
 .. toctree::

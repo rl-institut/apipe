@@ -13,3 +13,4 @@ networkx
 pygraphviz
 pygments
 rasterio
+Jinja2==3.0.3

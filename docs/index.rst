@@ -17,6 +17,7 @@ erneuert wird.
 
    installation
    structure
+   data
 
 
 .. toctree::

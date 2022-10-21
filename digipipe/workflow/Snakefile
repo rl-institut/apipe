@@ -1,17 +1,33 @@
 """
 Snakemake file for digipipe
 """
-from helpers import search_data_workflows
 
+from snakemake.utils import min_version
+min_version("6.0")
 
-# Include all snakefiles in data store
-for smk in search_data_workflows():
-    include: smk
+from digipipe.scripts.config import load_dataset_configs
+from digipipe.config import GLOBAL_CONFIG
+
+config = GLOBAL_CONFIG
+config.update(load_dataset_configs())
+
+# include store modules
+include: "../store/preprocessed/module.smk"
+include: "../store/datasets/module.smk"
 
 # ===== RULES =====
 
-# for testing
 rule all:
-    input: "../requirements.txt"
-    output: "../requirements2.txt"
-    shell: "cp -p {input} {output}"
+    input:
+        forests=rules.datasets_osm_forest_extract_tags.output,
+        muns=rules.datasets_bkg_vg250_muns_abw_create.output,
+        districts=rules.datasets_bkg_vg250_districts_abw_create.output,
+        region=rules.datasets_bkg_vg250_region_abw_create.output,
+        # ds1=get_abs_dataset_path("2_datasets", "osm_forest") / "osm_forest.gpkg",
+        # ds2=get_abs_dataset_path("2_datasets", "bkg_vg250_muns_abw") / "bkg_vg250_muns_abw.gpkg",
+        # ds3=get_abs_dataset_path("2_datasets", "bkg_vg250_districts_abw") / "bkg_vg250_districts_abw.gpkg",
+        # ds4=get_abs_dataset_path("2_datasets", "bkg_vg250_region_abw") / "bkg_vg250_region_abw.gpkg"
+    # run:
+    #     print("CONFIG MAIN:")
+    #     print(config)
+    #     print(workflow.basedir)

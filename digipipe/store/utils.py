@@ -26,7 +26,7 @@ def get_abs_dataset_path(category, name, data_dir=False):
     ----------
     category : str
         Category in data store, one of
-        ["raw", "preprocessed", "dataset", "appdata"] # TODO:NAMING
+        ["raw", "preprocessed", "dataset", "appdata"]
     name : str
         Name of dataset (subdir)
     data_dir : bool

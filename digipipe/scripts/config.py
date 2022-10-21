@@ -2,7 +2,10 @@
 Helper functions for configs
 """
 
+import os
 import yaml
+from pathlib import Path
+from digipipe.store.utils import get_abs_store_root_path
 
 
 def read_config(file: str) -> dict:
@@ -24,3 +27,49 @@ def read_config(file: str) -> dict:
         except yaml.YAMLError as exc:
             print(exc)
     return cfg
+
+
+def load_dataset_configs() -> dict:
+    """Load datasets' yml configs and merge them using the directory tree for
+    naming.
+
+    Parameters
+    ----------
+    config_files : list of str
+        List of paths to config files
+    Returns
+    -------
+    dict
+        Config dict of format:
+        {"store":
+            {"category":
+                {"<DATASET_NAME>": {<CONTENT_OF_DATASET_CONFIG>}, ...}
+            }
+        }
+    """
+
+    def search_store_configs() -> list:
+        """Search for configs (*.yml) in data store, exclude templates.
+
+        Returns
+        -------
+        list
+            Paths to config files
+        """
+        cfg_files = list()
+        for root, dirs, files in os.walk(get_abs_store_root_path()):
+            for file in files:
+                if (file == "config.yml") and ".TEMPLATE" not in str(root):
+                    cfg_files.append(Path(os.path.join(root, file)))
+        return cfg_files
+
+    merged_cfg = dict()
+    for file in search_store_configs():
+        path = Path(file).resolve()
+        section = path.parent.parent.name
+        subsection = path.parent.name
+        cfg = read_config(file)
+        if merged_cfg.get(section, None) is None:
+            merged_cfg[section] = {}
+        merged_cfg[section][subsection] = cfg
+    return {"store": merged_cfg}

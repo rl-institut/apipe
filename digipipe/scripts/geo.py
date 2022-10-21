@@ -12,7 +12,7 @@ from typing import Tuple
 
 from digipipe.scripts.config import read_config
 
-GLOBAL_CONFIG = read_config("config/global.yml")
+from digipipe.config import GLOBAL_CONFIG
 
 
 def read_schema_from_file(file: str) -> Tuple[str, OrderedDict]:

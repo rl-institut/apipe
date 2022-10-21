@@ -16,3 +16,5 @@ tags:
     ["landuse", "forest"],
     ["natural", "wood"],
   ]
+
+geom_type: "multipolygons"

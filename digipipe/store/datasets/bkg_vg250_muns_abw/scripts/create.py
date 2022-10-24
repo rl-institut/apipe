@@ -1,6 +1,5 @@
 import sys
 import geopandas as gpd
-from digipipe.scripts.config import read_config
 from digipipe.scripts.geo import (
     convert_to_multipolygon,
     write_geofile,
@@ -24,7 +23,7 @@ def process():
 
 
 if __name__ == "__main__":
-    infile = sys.argv[1]
-    config = read_config(sys.argv[2])
-    outfile = sys.argv[3]
+    infile = snakemake.input[0]
+    config = snakemake.config
+    outfile = snakemake.output[0]
     process()

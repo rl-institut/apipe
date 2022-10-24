@@ -14,8 +14,4 @@ rule create:
     """
     input: rules.preprocessed_bkg_vg250_create.output
     output: DATASET_PATH / "data" / "bkg_vg250_muns_abw.gpkg"
-    params:
-        script=DATASET_PATH / "scripts" / "create.py",
-        config_path=DATASET_PATH / "config.yml"
-    shell:
-        "python {params.script} {input} {params.config_path} {output}"
+    script: DATASET_PATH / "scripts" / "create.py"

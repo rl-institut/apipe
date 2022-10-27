@@ -14,6 +14,7 @@
 #
 import os
 import sys
+import sphinx_material
 from unittest.mock import MagicMock
 
 #sys.path.insert(0, os.path.abspath('..'))
@@ -104,7 +105,7 @@ master_doc = 'index'
 #
 # This is also used if you do content translation via gettext catalogs.
 # Usually you set "language" from the command line for these cases.
-language = None
+# = None
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
@@ -120,7 +121,79 @@ pygments_style = 'sphinx'
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'sphinx_rtd_theme'
+extensions.append("sphinx_material")
+html_theme_path = sphinx_material.html_theme_path()
+html_context = sphinx_material.get_html_context()
+html_theme = "sphinx_material"
+html_logo = "img/logos/RLI_DigiPlan_logos_horizontal.png"
+
+
+# material theme options (see theme.conf for more information)
+html_theme_options = {
+    "repo_url": "https://github.com/rl-institut-private/digipipe",
+    "repo_name": "See source code on GitHub",
+    "html_minify": False,
+    "html_prettify": True,
+    "css_minify": True,
+    # "logo_icon": "&#xe869",
+    "repo_type": "github",
+    "color_primary": "blue-grey",
+    #"color_accent": "orange",
+    "globaltoc_depth": 3,
+    #"touch_icon": "img/logos/digiplan-logo-horizontal.png",
+    "theme_color": "002C50",
+    "master_doc": False,
+    "nav_links": [
+        {
+            "href": "index",
+            "internal": True,
+            "title": "digipipe"
+        },
+        {
+            "href": "installation",
+            "internal": True,
+            "title": "Installation",
+        },
+        {
+            "href": "structure",
+            "internal": True,
+            "title": "Struktur des Repos",
+        },
+        {
+            "href": "data",
+            "internal": True,
+            "title": "Data pipeline",
+        },
+        {
+            "href": "workflow",
+            "internal": True,
+            "title": "Workflow",
+        },
+        {
+            "href": "scenarios",
+            "internal": True,
+            "title": "Scenarios",
+        }
+    ],
+    "heroes": {
+        "index": "digipipe - Die Pipeline zum digitalen Planungsatlas Anhalt für die Region Anhalt-Bitterfeld-Wittenberg (ABW)",
+        "installation": "Installation",
+        "structure": "Struktur des Repos",
+        "data": "Data pipeline",
+        "workflow": "Workflow",
+        "scenarios": "Scenarios",
+    },
+    "version_dropdown": True,
+    "version_json": "_static/versions.json",
+    "version_info": {
+        "Release": "https://bashtage.github.io/sphinx-material/",
+        "Development": "https://bashtage.github.io/sphinx-material/devel/",
+        "Release (rel)": "/sphinx-material/",
+        "Development (rel)": "/sphinx-material/devel/",
+    },
+    "table_classes": ["plain"],
+}
+
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the

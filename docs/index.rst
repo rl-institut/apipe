@@ -26,14 +26,9 @@ erneuert wird.
    :caption: API
    :maxdepth: 1
 
-
 |
 
-.. image:: img/logos/rli_logo.png
+.. image:: img/logos/RLI_DigiPlan_logos.png
    :height: 80 px
    :align: left
    :alt: Logo des Reiner Lemoine Instituts
-.. image:: img/logos/digiplan-logo.png
-   :height: 80 px
-   :align: center
-   :alt: Logo des Projekts DigiPlan

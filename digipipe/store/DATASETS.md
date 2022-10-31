@@ -20,7 +20,7 @@ case.
 
 **Example data flow:**
 
-![example data flow](~/../../docs/img/datasets/pipeline_dataflow_example.png)
+![example data flow](../../docs/img/datasets/pipeline_dataflow_example.png)
 
 ### (0) Raw
 

@@ -150,38 +150,38 @@ html_theme_options = {
             "title": "digipipe"
         },
         {
-            "href": "installation",
+            "href": "sections/installation",
             "internal": True,
             "title": "Installation",
         },
         {
-            "href": "structure",
+            "href": "sections/structure",
             "internal": True,
             "title": "Struktur des Repos",
         },
         {
-            "href": "data",
+            "href": "sections/data",
             "internal": True,
             "title": "Data pipeline",
         },
         {
-            "href": "workflow",
+            "href": "sections/workflow",
             "internal": True,
             "title": "Workflow",
         },
         {
-            "href": "scenarios",
+            "href": "sections/scenarios",
             "internal": True,
             "title": "Scenarios",
         }
     ],
     "heroes": {
         "index": "digipipe - Die Pipeline zum digitalen Planungsatlas Anhalt für die Region Anhalt-Bitterfeld-Wittenberg (ABW)",
-        "installation": "Installation",
-        "structure": "Struktur des Repos",
-        "data": "Data pipeline",
-        "workflow": "Workflow",
-        "scenarios": "Scenarios",
+        "sections/installation": "Installation",
+        "sections/structure": "Struktur des Repos",
+        "sections/data": "Data pipeline",
+        "sections/workflow": "Workflow",
+        "sections/scenarios": "Scenarios",
     },
     "version_dropdown": True,
     "version_json": "_static/versions.json",

@@ -15,11 +15,11 @@ erneuert wird.
    :caption: Inhalt
    :maxdepth: 1
 
-   installation
-   structure
-   data
-   workflow
-   scenarios
+   sections/installation
+   sections/structure
+   sections/data
+   sections/workflow
+   sections/scenarios
 
 
 .. toctree::

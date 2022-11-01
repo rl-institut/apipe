@@ -213,7 +213,9 @@ if __name__ == "__main__":
 
         with Timer(text="Created solph.Energystem.", logger=logger.info):
             es = EnergySystem.from_datapackage(
-                os.path.join(preprocessed, esys_conf.settings.optimize.filename_metadata),
+                os.path.join(
+                    preprocessed, esys_conf.settings.optimize.filename_metadata
+                ),
                 attributemap={},
                 typemap=TYPEMAP,
             )

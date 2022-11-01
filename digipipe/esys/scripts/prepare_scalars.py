@@ -21,7 +21,11 @@ import sys
 
 from oemof.tools.economics import annuity
 
-from digipipe.esys.esys.tools.data_processing import ScalarProcessor, load_b3_scalars, save_df
+from digipipe.esys.esys.tools.data_processing import (
+    ScalarProcessor,
+    load_b3_scalars,
+    save_df,
+)
 from digipipe.esys.esys.config import esys_conf
 
 

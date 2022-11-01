@@ -1,0 +1,479 @@
+# Bus "electricity":
+
+solar-pv_ground:
+  carrier: solar
+  tech: pv_ground
+  type: volatile
+  foreign_keys:
+    bus: electricity
+    profile: solar-pv_ground-profile
+  defaults:
+    marginal_cost: 0
+    output_parameters: "{}"
+
+solar-pv_rooftop:
+  carrier: solar
+  tech: pv_rooftop
+  type: volatile
+  foreign_keys:
+    bus: electricity
+    profile: solar-pv_rooftop-profile
+  defaults:
+    marginal_cost: 0
+    output_parameters: "{}"
+
+electricity-import:
+  carrier: electricity
+  tech: import
+  type: shortage
+  foreign_keys:
+    bus: electricity
+  defaults:
+    output_parameters: "{}"
+
+electricity-export:
+  carrier: electricity
+  tech: export
+  type: excess
+  foreign_keys:
+    bus: electricity
+  defaults:
+    input_parameters: "{}"
+
+ch4-gt:
+  carrier: ch4
+  tech: gt
+  type: conversion
+  foreign_keys:
+    from_bus: ch4
+    to_bus: electricity
+  defaults:
+    output_parameters: "{}"
+
+ch4-extchp_large:
+  carrier: ch4
+  tech: extchp_large
+  type: extraction
+  foreign_keys:
+    fuel_bus: ch4
+    electricity_bus: electricity
+    heat_bus: heat_central
+
+ch4-bpchp_small:
+  carrier: ch4
+  tech: bpchp_small
+  type: backpressure
+  foreign_keys:
+    fuel_bus: ch4
+    electricity_bus: electricity
+    heat_bus: heat_decentral
+
+electricity-bev_charging:
+  carrier: electricity
+  tech: bev_charging
+  type: load
+  foreign_keys:
+    bus: electricity
+    profile: electricity-bev_charging-profile
+
+electricity-large_scale_battery:
+  carrier: electricity
+  tech: large_scale_battery
+  type: storage
+  foreign_keys:
+    bus: electricity
+  defaults:
+    input_parameters: "{}"
+    output_parameters: "{}"
+
+electricity-demand:
+  carrier: electricity
+  tech: demand
+  type: load
+  foreign_keys:
+    bus: electricity
+    profile: electricity-demand-profile
+
+electricity-heatpump_large:
+  carrier: electricity
+  tech: heatpump_large
+  type: conversion
+  foreign_keys:
+    from_bus: electricity
+    to_bus: heat_central
+  defaults:
+    output_parameters: "{}"
+
+electricity-heatpump_small:
+  carrier: electricity
+  tech: heatpump_small
+  type: conversion
+  foreign_keys:
+    from_bus: electricity
+    to_bus: heat_decentral
+    efficiency: efficiency-profile
+  defaults:
+    output_parameters: "{}"
+
+electricity-pth_large:
+  carrier: electricity
+  tech: pth_large
+  type: conversion
+  foreign_keys:
+    from_bus: electricity
+    to_bus: heat_central
+  defaults:
+    output_parameters: "{}"
+
+electricity-pth_small:
+  carrier: electricity
+  tech: pth_small
+  type: conversion
+  foreign_keys:
+    from_bus: electricity
+    to_bus: heat_decentral
+  defaults:
+    output_parameters: "{}"
+
+
+
+# Bus "central heat":
+
+ch4-boiler_large:
+  carrier: ch4
+  tech: boiler_large
+  type: conversion
+  foreign_keys:
+    from_bus: ch4
+    to_bus: heat_central
+  defaults:
+    output_parameters: "{}"
+
+heat_central-demand:
+  carrier: heat_central
+  tech: demand
+  type: load
+  foreign_keys:
+    bus: heat_central
+    profile: heat_central-demand-profile
+
+heat_central-excess:
+  carrier: heat_central
+  tech: excess
+  type: excess
+  foreign_keys:
+    bus: heat_central
+  defaults:
+    marginal_cost: 0
+    input_parameters: "{}"
+
+heat_central-shortage:
+  carrier: heat_central
+  tech: shortage
+  type: shortage
+  foreign_keys:
+    bus: heat_central
+  defaults:
+    output_parameters: "{}"
+
+heat_central-storage:
+  carrier: heat_central
+  tech: storage
+  type: storage
+  foreign_keys:
+    bus: heat_central
+  defaults:
+    input_parameters: "{}"
+    output_parameters: "{}"
+
+
+
+# Bus "decentral heat":
+
+ch4-boiler_small:
+  carrier: ch4
+  tech: boiler_small
+  type: conversion
+  foreign_keys:
+    from_bus: ch4
+    to_bus: heat_decentral
+  defaults:
+    output_parameters: "{}"
+
+wood-oven:
+  carrier: wood
+  tech: oven
+  type: conversion
+  foreign_keys:
+    from_bus: wood
+    to_bus: heat_decentral
+  defaults:
+    output_parameters: "{}"
+
+lignite-oven:
+  carrier: lignite
+  tech: oven
+  type: conversion
+  foreign_keys:
+    from_bus: lignite
+    to_bus: heat_decentral
+  defaults:
+    output_parameters: "{}"
+
+solar-thermalcollector:
+  carrier: solar
+  tech: thermalcollector
+  type: volatile
+  foreign_keys:
+    bus: heat_decentral
+    profile: solar-thermalcollector-profile
+  defaults:
+    marginal_cost: 0
+    output_parameters: "{}"
+
+heat_decentral-demand:
+  carrier: heat_decentral
+  tech: demand
+  type: load
+  foreign_keys:
+    bus: heat_decentral
+    profile: heat_decentral-demand-profile
+
+heat_decentral-excess:
+  carrier: heat_decentral
+  tech: excess
+  type: excess
+  foreign_keys:
+    bus: heat_decentral
+  defaults:
+    marginal_cost: 0
+    input_parameters: "{}"
+
+heat_decentral-shortage:
+  carrier: heat_decentral
+  tech: shortage
+  type: shortage
+  foreign_keys:
+    bus: heat_decentral
+  defaults:
+    output_parameters: "{}"
+
+heat_decentral-storage:
+  carrier: heat_decentral
+  tech: storage
+  type: storage
+  foreign_keys:
+    bus: heat_decentral
+  defaults:
+    input_parameters: "{}"
+    output_parameters: "{}"
+
+
+
+# Bus "ch4":
+ch4-import:
+  carrier: ch4
+  tech: import
+  type: shortage
+  foreign_keys:
+    bus: ch4
+  defaults:
+    output_parameters: "{}"
+
+ch4-export:
+  carrier: ch4
+  tech: export
+  type: excess
+  foreign_keys:
+    bus: ch4
+  defaults:
+    output_parameters: "{}"
+
+ch4-demand:
+  carrier: ch4
+  tech: demand
+  type: load
+  foreign_keys:
+    bus: ch4
+    profile: ch4-demand-profile
+
+ch4-shortage:
+  carrier: ch4
+  tech: shortage
+  type: shortage
+  foreign_keys:
+    bus: ch4
+  defaults:
+    output_parameters: "{}"
+
+biomass-fermenter:
+  carrier: biomass
+  tech: fermenter
+  type: conversion
+  foreign_keys:
+    from_bus: biomass
+    to_bus: ch4
+  defaults:
+    output_parameters: "{}"
+
+
+
+# Bus "wood":
+wood-import:
+  carrier: wood
+  tech: import
+  type: shortage
+  foreign_keys:
+    bus: wood
+  defaults:
+    output_parameters: "{}"
+
+wood-demand:
+  carrier: wood
+  tech: demand
+  type: load
+  foreign_keys:
+    bus: wood
+    profile: wood-demand-profile
+
+wood-shortage:
+  carrier: wood
+  tech: shortage
+  type: shortage
+  foreign_keys:
+    bus: wood
+  defaults:
+    output_parameters: "{}"
+
+
+
+# Bus "lignite":
+lignite-import:
+  carrier: lignite
+  tech: import
+  type: shortage
+  foreign_keys:
+    bus: lignite
+  defaults:
+    output_parameters: "{}"
+
+lignite-demand:
+  carrier: lignite
+  tech: demand
+  type: load
+  foreign_keys:
+    bus: lignite
+    profile: lignite-demand-profile
+
+lignite-shortage:
+  carrier: lignite
+  tech: shortage
+  type: shortage
+  foreign_keys:
+    bus: lignite
+  defaults:
+    output_parameters: "{}"
+
+
+# Bus "biomass":
+biomass-import:
+  carrier: biomass
+  tech: import
+  type: shortage
+  foreign_keys:
+    bus: biomass
+  defaults:
+    output_parameters: "{}"
+
+biomass-demand:
+  carrier: biomass
+  tech: demand
+  type: load
+  foreign_keys:
+    bus: biomass
+    profile: biomass-demand-profile
+
+
+# Bus "h2":
+#h2-import:
+#  carrier: h2
+#  tech: import
+#  type: shortage
+#  foreign_keys:
+#    bus: h2
+#  defaults:
+#    output_parameters: "{}"
+#
+#h2-export:
+#  carrier: h2
+#  tech: export
+#  type: excess
+#  foreign_keys:
+#    bus: h2
+#  defaults:
+#    input_parameters: "{}"
+#
+#h2-shortage:
+#  carrier: h2
+#  tech: shortage
+#  type: shortage
+#  foreign_keys:
+#    bus: h2
+#  defaults:
+#    output_parameters: "{}"
+#
+#electricity-electrolyzer:
+#  carrier: electricity
+#  tech: electrolyzer
+#  type: conversion
+#  foreign_keys:
+#    from_bus: electricity
+#    to_bus: h2
+#  defaults:
+#    output_parameters: "{}"
+#
+#h2-bpchp_small:
+#  carrier: h2
+#  tech: bpchp_small
+#  type: backpressure
+#  foreign_keys:
+#    fuel_bus: h2
+#    electricity_bus: electricity
+#    heat_bus: heat_decentral
+#
+#h2-extchp_large:
+#  carrier: h2
+#  tech: extchp_large
+#  type: extraction
+#  foreign_keys:
+#    fuel_bus: h2
+#    electricity_bus: electricity
+#    heat_bus: heat_central
+#
+#h2-demand:
+#  carrier: h2
+#  tech: demand
+#  type: load
+#  foreign_keys:
+#    bus: h2
+#    profile: h2-demand-profile
+#
+#h2-cavern:
+#  carrier: h2
+#  tech: cavern
+#  type: storage
+#  foreign_keys:
+#    bus: h2
+#  defaults:
+#    input_parameters: "{}"
+#    output_parameters: "{}"
+#
+#h2-excess:
+#  carrier: h2
+#  tech: excess
+#  type: excess
+#  foreign_keys:
+#    bus: h2
+#  defaults:
+#    marginal_cost: 0
+#    input_parameters: "{}"

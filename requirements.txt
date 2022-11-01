@@ -13,3 +13,4 @@ networkx
 pygraphviz
 pygments
 rasterio
+oemof-B3 @ git+https://git@github.com/rl-institut/oemof-B3@dev#egg=oemof-B3

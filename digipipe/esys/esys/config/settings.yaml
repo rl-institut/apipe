@@ -1,0 +1,25 @@
+general:
+  plot_filetype: .png
+  ts_index_name: id_ts
+  scal_index_name: id_scal
+
+labels: de
+
+build_datapackage:
+  el_gas_relation: electricity_gas_relation  # appears in optimize as well
+  emission: emission
+  additional_scalars_file: additional_scalars.csv
+
+optimize:
+  filename_metadata: datapackage.json
+  solver: cbc
+  solve_kwargs:
+    tee: True
+    keepfiles: True
+  cmdline_options:
+    AllowableGap: 0.01
+  debug: true
+  receive_duals: false
+  el_gas_relation: electricity_gas_relation  # appears in build_datapackage as well
+  el_key: electricity  # prefix of keywords for gas electricity relation
+  gas_key: gas  # prefix of keywords for gas electricity relation

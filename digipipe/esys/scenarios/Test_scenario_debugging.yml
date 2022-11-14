@@ -3,8 +3,8 @@
 
 # build_datapackage
 
-name: Test_scenario
-label: Test-Scenario
+name: Test_scenario_debugging
+label: Test-Scenario_debugging
 
 datetimeindex:
   start:

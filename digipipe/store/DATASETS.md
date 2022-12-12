@@ -2,7 +2,7 @@
 
 ## Data flow
 
-This section describes the workflow of the data pipeline.
+This section describes the data flow of the pipeline.
 
 (RAW) -> (PREPROCESSED) -> (DATASETS) -> (APPDATA)
 
@@ -22,11 +22,20 @@ case.
 
 ![example data flow](../../docs/img/datasets/pipeline_dataflow_example.png)
 
+**Snakefile**
+
+
+
+- As all rules will be
+  searched for and included in the main [Snakefile](../workflow/Snakefile),
+  they must have unique names. It's a good idea to use the dataset name as
+  prefix, e.g. `rule osm_forest_<RULE_NAME>`.
+
 ### (0) Raw
 
 Contains immutable raw data as downloaded with 2 additional files:
-[description](raw/.TEMPLATE/dataset.md) (see that file for further
-instructions) and [metadata](raw/.TEMPLATE/metadata.json).
+[dataset.md](raw/.TEMPLATE/dataset.md) (see that file for further
+instructions) and [metadata.json)](raw/.TEMPLATE/metadata.json).
 
 Note: Assumptions are to be defined in the scenarios, not the raw data.
 See the scenario readme in [SCENARIOS.md](../scenarios/SCENARIOS.md).
@@ -45,14 +54,15 @@ Data from `(0) Raw`  that has undergone some preprocessing such as:
  - **But NO merging/combining/clipping of multiple (raw) datasets! This should
    be done in (2)**
 
-Notes:
-- The preprocessing rules can be defined in the dataset's
-  [snakemake file](preprocessed/.TEMPLATE/create.smk). As all rules will be
-  searched for and included in the main [Snakefile](../workflow/Snakefile),
-  they must have unique names. It's a good idea to use the dataset name as
-  prefix, e.g. `rule osm_forest_<RULE_NAME>`.
-- Custom, dataset-specific configuration can be put into the
-  [dataset config](preprocessed/.TEMPLATE/config.yml). Make sure you add a
+Rules and config
+- Preprocessing rule(s) for the dataset can be defined in the dataset's
+  Snakefile.
+  [preprocessed/.TEMPLATE/create.smk](preprocessed/.TEMPLATE/create.smk).
+- Subsequently, these rules **must be** included in the module file
+  [preprocessed/module.smk](preprocessed/module.smk) to take effect (see
+  template in the file).
+- Custom, dataset-specific configuration can be put into the dataset's config
+  file [config.yml](preprocessed/.TEMPLATE/config.yml). Make sure you add a
   **title and description**, even if you don't use any config parameters.
 
 > **Example:**
@@ -69,11 +79,15 @@ Notes:
 Datasets, created from arbitrary combinations of datasets from
 `store/preprocessed/` and/or `store/datasets/`.
 
-Notes:
-- The creation rules can be defined in the dataset's
-  [snakemake file](datasets/.TEMPLATE/create.smk).
-- Custom, dataset-specific configuration can be put into the
-  [dataset config](datasets/.TEMPLATE/config.yml). Make sure you add a
+Rules and config
+- Creation rule(s) for the dataset can be defined in the dataset's
+  Snakefile.
+  [datasets/.TEMPLATE/create.smk](datasets/.TEMPLATE/create.smk).
+- Subsequently, these rules **must be** included in the module file
+  [datasets/module.smk](datasets/module.smk) to take effect (see
+  template in the file).
+- Custom, dataset-specific configuration can be put into the dataset's config
+  file [config.yml](datasets/.TEMPLATE/config.yml). Make sure you add a
   **title and description**, even if you don't use any config parameters.
 - Custom, dataset-specific scripts are located in `scripts`.
 
@@ -158,4 +172,4 @@ Please use LAEA Europe (EPSG:3035) as default CRS when writing geodata.
 
 ### Add a new dataset
 
-**TODO: REVISE**
+**TBD**

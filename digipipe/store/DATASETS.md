@@ -67,7 +67,7 @@ Notes:
 ### (2) Datasets
 
 Datasets, created from arbitrary combinations of datasets from
-`Preprocessed` and/or `Datasets`.
+`store/preprocessed/` and/or `store/datasets/`.
 
 Notes:
 - The creation rules can be defined in the dataset's
@@ -79,7 +79,7 @@ Notes:
 
 > **Example:**
 > 
-> Using datasets from `Preprocessed` and `Datasets`:
+> Using datasets from `store/preprocessed/` and `store/datasets/`:
 > - Dataset H: Wind energy turbines in the region of interest (from datasets E+F)
 > - Dataset I: Normalized wind energy feedin timeseries for the region (from
 >   datasets D+G)
@@ -92,8 +92,8 @@ Notes:
 
 Data ready to be used in the app / as expected by the app.
 
-While `Datasets` may contain datasets from intermediate steps (see below),
-this directory holds app-ready datasets only.
+While `store/datasets/` may contain datasets from intermediate steps (see
+below), this directory holds app-ready datasets only.
 
 ### To which processing step do the different stages of my data belong to?
 
@@ -108,15 +108,16 @@ region. You want both be stored in separate files. This involves (e.g.):
 2. Extract data using OSM tags
 3. Clip with region
 
-First, you would create a new raw dataset in `raw`. Then, you could either
-put steps 1 and 2 in the preprocessing, resulting in two datasets in
-`preprocessed`. For each, you could then perform step 3 in `datasets`.
+First, you would create a new raw dataset in `store/raw/`. Then, you could
+either  put steps 1 and 2 in the preprocessing, resulting in two datasets in
+`store/preprocessed/`. For each, you could then perform step 3 in
+`store/datasets/`.
 However, this would imply a redundant execution of step 1. While this is
 basically fine in the terms of the pipeline flow, it might be a better idea to
-apply only step 1 and create one dataset in `preprocessed`. Using this
-dataset, you would create the two extracts in `datasets`. Finally, the
-datasets after performing step 3 would be created in `datasets` as well
-resulting in a total of four datasets in `datasets`.
+apply only step 1 and create one dataset in `store/preprocessed/`. Using this
+dataset, you would create the two extracts in `store/datasets/`. Finally, the
+datasets after performing step 3 would be created in `store/datasets/` as well
+resulting in a total of four datasets in `store/datasets/`.
 
 ### Temporary files
 

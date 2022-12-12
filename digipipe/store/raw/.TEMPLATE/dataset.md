@@ -6,10 +6,10 @@ Naming convention: `<source_datasetname>` (lower case), e.g. for a dataset on
 natural reserves by the Bundesamt für Naturschutz (BfN) you would name the dir
 `bfn_natural_reserves` or similar.
 
-What is a dataset? Well, there're different definitions around but in the
+What is a dataset? Well, there are different definitions around but in the
 workflow of this pipeline a dataset is a collection of data treated as a
 single unit which can consist of multiple files and identified by a single
-meta data file.
+metadata file.
 
 Examples:
 - [OSM Germany](https://download.geofabrik.de/europe/germany-latest.osm.pbf)

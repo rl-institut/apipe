@@ -56,8 +56,7 @@ Data from `(0) Raw` that has undergone some preprocessing such as:
 
 Rules and config
 - Preprocessing rule(s) for the dataset can be defined in the dataset's
-  Snakefile.
-  [preprocessed/.TEMPLATE/create.smk](preprocessed/.TEMPLATE/create.smk).
+  Snakefile: [preprocessed/.TEMPLATE/create.smk](preprocessed/.TEMPLATE/create.smk).
 - Subsequently, these rules **must be** included in the module file
   [preprocessed/module.smk](preprocessed/module.smk) to take effect (see
   template in the file).

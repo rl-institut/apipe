@@ -33,7 +33,7 @@ case.
 
 ### (0) Raw
 
-Contains immutable raw data as downloaded with 2 additional files:
+Contains immutable raw data as downloaded. In directory `.TEMPLATE` there are two additional files:
 [dataset.md](raw/.TEMPLATE/dataset.md) (see that file for further
 instructions) and [metadata.json)](raw/.TEMPLATE/metadata.json).
 

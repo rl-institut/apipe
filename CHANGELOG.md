@@ -10,6 +10,7 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Setup initial structure and files
 - Add first bunch of datasets for testing the data flow
 - Modularize datasets
+- Add first draft of RTD docs
 
 ### Changed
 

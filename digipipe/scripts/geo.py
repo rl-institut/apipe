@@ -12,7 +12,7 @@ from typing import Tuple
 
 from digipipe.scripts.config import read_config
 
-GLOBAL_CONFIG = read_config("config/global.yml")
+from digipipe.config import GLOBAL_CONFIG
 
 
 def read_schema_from_file(file: str) -> Tuple[str, OrderedDict]:
@@ -117,7 +117,7 @@ def reproject_simplify_filter_rename(
         gdf: gpd.GeoDataFrame,
         attrs_filter_by_values: dict = None,
         attrs_mapping: dict = None,
-        target_crs: str = GLOBAL_CONFIG["geodata"]["crs"].lower(),
+        target_crs: str = GLOBAL_CONFIG["global"]["geodata"]["crs"].lower(),
         min_size: float = None,
         simplify_tol: float = None,
         fix_geom: bool = False,
@@ -189,7 +189,7 @@ def reproject_simplify_filter_rename(
 
     # Fix invalid geometries
     if fix_geom is True:
-        buffer = GLOBAL_CONFIG["geodata"]["fix_geom_buffer"]
+        buffer = GLOBAL_CONFIG["global"]["geodata"]["fix_geom_buffer"]
         if buffer > 0:
             gdf["geometry"] = gdf.buffer(buffer)
 

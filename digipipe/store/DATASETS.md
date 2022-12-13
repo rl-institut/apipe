@@ -2,18 +2,18 @@
 
 ## Data flow
 
-This section describes the workflow of the data pipeline.
+This section describes the data flow of the pipeline.
 
 (RAW) -> (PREPROCESSED) -> (DATASETS) -> (APPDATA)
 
 Overview:
 
-| **Step** | **Directory**         | **Description**                  | **Rule(s) for this target** | **Cfg section** |
-|:--------:|-----------------------|----------------------------------|-----------------------------|-----------------|
-|    0     | store/0_raw/          | Raw data as downloaded           |                             |                 |
-|    1     | store/1_preprocessed/ | Preprocessed data, 1:1 from (0)  |                             |                 |
-|    2     | store/2_datasets/     | Datasets, n:1 from (1) and (2)   |                             |                 |
-|    3     | store/3_appdata/      | Data ready to be used in the app |                             |                 |
+| **Step** | **Directory**         | **Description**                           | **Rule(s) for this target** | **Cfg section** |
+|:--------:|-----------------------|-------------------------------------------|-----------------------------|-----------------|
+|    0     | `store/raw/`          | Raw data as downloaded                    | TBD                         | TBD             |
+|    1     | `store/preprocessed/` | Preprocessed data, 1:1 from (0)           | TBD                         | TBD             |
+|    2     | `store/datasets/`     | Datasets, n:1 from (0) and (1)            | TBD                         | TBD             |
+|    3     | `store/appdata/`      | Data ready to be used in the app from (2) | TBD                         | TBD             |
 
 In the following each step is shortly described along a common example use
 case.
@@ -22,14 +22,23 @@ case.
 
 ![example data flow](../../docs/img/datasets/pipeline_dataflow_example.png)
 
+**Snakefile**
+
+
+
+- As all rules will be
+  searched for and included in the main [Snakefile](../workflow/Snakefile),
+  they must have unique names. It's a good idea to use the dataset name as
+  prefix, e.g. `rule osm_forest_<RULE_NAME>`.
+
 ### (0) Raw
 
-Immutable raw data as downloaded with 2 additional files:
-[description](0_raw/.TEMPLATE/dataset.md) (see this file for further
-instructions) and [metadata](0_raw/.TEMPLATE/metadata.json).
+Contains immutable raw data as downloaded with 2 additional files:
+[dataset.md](raw/.TEMPLATE/dataset.md) (see that file for further
+instructions) and [metadata.json)](raw/.TEMPLATE/metadata.json).
 
 Note: Assumptions are to be defined in the scenarios, not the raw data.
-See the scenario readme in [SCENARIOS.md](../scenarios/SCENARIOS.md). 
+See the scenario readme in [SCENARIOS.md](../scenarios/SCENARIOS.md).
 
 > **Example:**
 > - Dataset A: ERA5 weather dataset for Germany
@@ -38,21 +47,22 @@ See the scenario readme in [SCENARIOS.md](../scenarios/SCENARIOS.md).
 
 ### (1) Preprocessed
 
-Data from `(0) Raw`  that has undergone some preprocesing such as:
+Data from `(0) Raw`  that has undergone some preprocessing such as:
  - Archive extracted
  - CRS transformed (see below for CRS conventions)
  - Fields filtered
- - **But NO merging/combining/clipping of multiple (raw) datasets! This can be 
-   done in (2)**
+ - **But NO merging/combining/clipping of multiple (raw) datasets! This should
+   be done in (2)**
 
-Notes:
-- The preprocessing rules can be defined in the dataset's
-  [snakemake file](1_preprocessed/.TEMPLATE/create.smk). As all rules will be
-  searched for and included in the main [Snakefile](../workflow/Snakefile),
-  they must have unique names. It's a good idea to use the dataset name as
-  prefix, e.g. `rule osm_forest_<RULE_NAME>`.
-- Custom, dataset-specific configuration can be put into the
-  [dataset config](1_preprocessed/.TEMPLATE/config.yml). Make sure you add a
+Rules and config
+- Preprocessing rule(s) for the dataset can be defined in the dataset's
+  Snakefile.
+  [preprocessed/.TEMPLATE/create.smk](preprocessed/.TEMPLATE/create.smk).
+- Subsequently, these rules **must be** included in the module file
+  [preprocessed/module.smk](preprocessed/module.smk) to take effect (see
+  template in the file).
+- Custom, dataset-specific configuration can be put into the dataset's config
+  file [config.yml](preprocessed/.TEMPLATE/config.yml). Make sure you add a
   **title and description**, even if you don't use any config parameters.
 
 > **Example:**
@@ -67,19 +77,23 @@ Notes:
 ### (2) Datasets
 
 Datasets, created from arbitrary combinations of datasets from
-`(1) Preprocessed` and/or `(2) Datasets`.
+`store/preprocessed/` and/or `store/datasets/`.
 
-Notes:
-- The creation rules can be defined in the dataset's
-  [snakemake file](2_datasets/.TEMPLATE/create.smk).
-- Custom, dataset-specific configuration can be put into the
-  [dataset config](2_datasets/.TEMPLATE/config.yml). Make sure you add a
+Rules and config
+- Creation rule(s) for the dataset can be defined in the dataset's
+  Snakefile.
+  [datasets/.TEMPLATE/create.smk](datasets/.TEMPLATE/create.smk).
+- Subsequently, these rules **must be** included in the module file
+  [datasets/module.smk](datasets/module.smk) to take effect (see
+  template in the file).
+- Custom, dataset-specific configuration can be put into the dataset's config
+  file [config.yml](datasets/.TEMPLATE/config.yml). Make sure you add a
   **title and description**, even if you don't use any config parameters.
 - Custom, dataset-specific scripts are located in `scripts`.
 
 > **Example:**
 > 
-> Using datasets from (1) and (2):
+> Using datasets from `store/preprocessed/` and `store/datasets/`:
 > - Dataset H: Wind energy turbines in the region of interest (from datasets E+F)
 > - Dataset I: Normalized wind energy feedin timeseries for the region (from
 >   datasets D+G)
@@ -92,8 +106,8 @@ Notes:
 
 Data ready to be used in the app / as expected by the app.
 
-While `(2) Datasets` may contain datasets from intermediate steps (see below),
-this directory holds app-ready datasets only.
+While `store/datasets/` may contain datasets from intermediate steps (see
+below), this directory holds app-ready datasets only.
 
 ### To which processing step do the different stages of my data belong to?
 
@@ -108,15 +122,16 @@ region. You want both be stored in separate files. This involves (e.g.):
 2. Extract data using OSM tags
 3. Clip with region
 
-First, you would create a new raw dataset in `(0) Raw`. Then, you could either
-put steps 1 and 2 in the preprocessing, resulting in two datasets in
-`(1) Preprocessed`. For each, you could then perform step 3 in `(2) Datasets`.
+First, you would create a new raw dataset in `store/raw/`. Then, you could
+either  put steps 1 and 2 in the preprocessing, resulting in two datasets in
+`store/preprocessed/`. For each, you could then perform step 3 in
+`store/datasets/`.
 However, this would imply a redundant execution of step 1. While this is
 basically fine in the terms of the pipeline flow, it might be a better idea to
-apply only step 1 and create one dataset in `(1) Preprocessed`. Using this
-dataset, you would create the two extracts in `(2) Datasets`. Finally, the
-datasets after performing step 3 would be created in `(2) Datasets` as well
-resulting in a total of four datasets in `(2) Datasets`.
+apply only step 1 and create one dataset in `store/preprocessed/`. Using this
+dataset, you would create the two extracts in `store/datasets/`. Finally, the
+datasets after performing step 3 would be created in `store/datasets/` as well
+resulting in a total of four datasets in `store/datasets/`.
 
 ### Temporary files
 
@@ -128,7 +143,7 @@ configuration, can get quite large.  You can change the directory in
 
 ## Further notes
 
-### No data files in the repository! But keep the `.gitkeep` file
+### No data files in the repository! But keep the `.gitkeep` files
 
 Make sure **not to commit any data files** located in `store/` to the
 repository (except for the descriptive readme and metadata files). They have
@@ -157,4 +172,4 @@ Please use LAEA Europe (EPSG:3035) as default CRS when writing geodata.
 
 ### Add a new dataset
 
-**TODO: REVISE**
+**TBD**

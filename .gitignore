@@ -134,17 +134,17 @@ dmypy.json
 .idea
 
 # Data files
-digipipe/store/0_raw/*/data/*
-!digipipe/store/0_raw/*/data/.gitkeep
-!digipipe/store/0_raw/.TEMPLATE/data/*
+digipipe/store/raw/*/data/*
+!digipipe/store/raw/*/data/.gitkeep
+!digipipe/store/raw/.TEMPLATE/data/*
 
-digipipe/store/1_preprocessed/*/data/*
-!digipipe/store/1_preprocessed/*/data/.gitkeep
-!digipipe/store/1_preprocessed/.TEMPLATE/data/*
+digipipe/store/preprocessed/*/data/*
+!digipipe/store/preprocessed/*/data/.gitkeep
+!digipipe/store/preprocessed/.TEMPLATE/data/*
 
-digipipe/store/2_datasets/*/data/*
-!digipipe/store/2_datasets/*/data/.gitkeep
-!digipipe/store/2_datasets/.TEMPLATE/data/*
+digipipe/store/datasets/*/data/*
+!digipipe/store/datasets/*/data/.gitkeep
+!digipipe/store/datasets/.TEMPLATE/data/*
 
-digipipe/store/3_appdata/*
-!digipipe/store/3_appdata/*/.gitkeep
+digipipe/store/appdata/*
+!digipipe/store/appdata/*/.gitkeep

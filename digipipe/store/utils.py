@@ -19,14 +19,14 @@ def get_abs_store_root_path():
     return Path(os.path.dirname(inspect.getfile(store)))
 
 
-def get_abs_dataset_path(category, name, data_dir=True):
+def get_abs_dataset_path(category, name, data_dir=False):
     """Get absolute path to a dataset
 
     Parameters
     ----------
     category : str
         Category in data store, one of
-        ["0_raw", "1-preprocessed", "2_dataset"]
+        ["raw", "preprocessed", "dataset", "appdata"]
     name : str
         Name of dataset (subdir)
     data_dir : bool
@@ -37,6 +37,8 @@ def get_abs_dataset_path(category, name, data_dir=True):
     PosixPath
         Path to dataset
     """
+    if category not in ["raw", "preprocessed", "datasets", "appdata"]:
+        raise ValueError(f"Category '{category}' not found.")
     p = Path(get_abs_store_root_path()) / category / name
     if data_dir is True:
         p = p / "data"

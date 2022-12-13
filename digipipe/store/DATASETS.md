@@ -80,8 +80,7 @@ Datasets, created from arbitrary combinations of datasets from
 
 Rules and config
 - Creation rule(s) for the dataset can be defined in the dataset's
-  Snakefile.
-  [datasets/.TEMPLATE/create.smk](datasets/.TEMPLATE/create.smk).
+  Snakefile: [datasets/.TEMPLATE/create.smk](datasets/.TEMPLATE/create.smk).
 - Subsequently, these rules **must be** included in the module file
   [datasets/module.smk](datasets/module.smk) to take effect (see
   template in the file).

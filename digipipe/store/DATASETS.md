@@ -47,7 +47,7 @@ See the scenario readme in [SCENARIOS.md](../scenarios/SCENARIOS.md).
 
 ### (1) Preprocessed
 
-Data from `(0) Raw`  that has undergone some preprocessing such as:
+Data from `(0) Raw` that has undergone some preprocessing such as:
  - Archive extracted
  - CRS transformed (see below for CRS conventions)
  - Fields filtered

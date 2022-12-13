@@ -10,36 +10,58 @@ Das Repository ist wie folgt aufgebaut:
     .
     ├── digipipe
     │   ├── config
-    │   │   └── global.yml              # Global config
-    │   ├── scenarios                   # Scenario definition
-    │   │   ├── .TEMPLATE
+    │   │   └── global.yml                          # Global config
+    │   ├── logs                                    # Place for log files
+    │   ├── scenarios                               # Scenario definition
+    │   │   ├── .TEMPLATE                           # - Template
     │   │   └── SCENARIOS.md
-    │   ├── scripts                     # Main scripts
-    │   │   ├── esm                     # - for energy system modelling
-    │   ├── store                       # Data store
-    │   │   ├── 0_raw                   # - Raw datasets
-    │   │   │   ├── .TEMPLATE
-    │   │   ├── 1_preprocessed          # - Preprocessed datasets
-    │   │   │   └── .TEMPLATE
-    │   │   ├── 2_datasets              # - Processed datasets
-    │   │   │   └── .TEMPLATE
-    │   │   ├── 3_appdata               # - App data
+    │   ├── scripts                                 # Main scripts
+    │   │   ├── esm                                 # - for energy system modelling
+    │   │   ├── config.py                           # - config-related functions
+    │   │   └── geo.py                              # - spatial functions
+    │   ├── store                                   # Data store
+    │   │   ├── appdata                             # - App-ready data
     │   │   │   ├── data
     │   │   │   ├── metadata
     │   │   │   └── scenarios
-    │   │   ├── temp                    # - Store temp files here
-    │   │   └── DATASETS.md
-    │   ├── workflow
-    │   │   ├── helpers.py
-    │   │   ├── Snakefile               # Main snakefile
-    │   │   └── WORKFLOW.md
-    ├── docs                            # ReadTheDocs content
-    ├── .github
+    │   │   ├── datasets                            # - Processed datasets
+    │   │   │   ├── bkg_vg250_districts_abw
+    │   │   │   ├── bkg_vg250_muns_abw
+    │   │   │   ├── bkg_vg250_region_abw
+    │   │   │   ├── osm_forest
+    │   │   │   ├── .TEMPLATE
+    │   │   │   └── module.smk
+    │   │   ├── preprocessed                        # - Preprocessed datasets
+    │   │   │   ├── bkg_vg250
+    │   │   │   ├── osm_filtered
+    │   │   │   ├── .TEMPLATE
+    │   │   │   └── module.smk
+    │   │   ├── raw                                 # - Raw datasets
+    │   │   │   ├── bkg_vg250
+    │   │   │   ├── destatis_gv
+    │   │   │   ├── osm_openstreetmap
+    │   │   │   └── .TEMPLATE
+    │   │   ├── temp                                # - Temporary files
+    │   │   ├── DATASETS.md
+    │   │   └── utils.py
+    │   └── workflow
+    │       ├── Snakefile                           # Main snakefile
+    │       ├── utils.py
+    │       └── WORKFLOW.md
+    ├── docs                                        # Documentation
+    │   ├── sections
+    │   │   ├── data.rst
+    │   │   ├── installation.rst
+    │   │   ├── scenarios.rst
+    │   │   ├── structure.rst
+    │   │   └── workflow.rst
+    │   ├── conf.py
+    │   ├── index.rst
+    │   └── Makefile
     ├── tests
     ├── CHANGELOG.md
     ├── CONTRIBUTING.md
     ├── environment.yml
-    ├── .gitignore
     ├── LICENSE
     ├── README.md
     ├── requirements.txt

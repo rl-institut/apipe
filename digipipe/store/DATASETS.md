@@ -121,7 +121,7 @@ region. You want both be stored in separate files. This involves (e.g.):
 3. Clip with region
 
 First, you would create a new raw dataset in `store/raw/`. Then, you could
-either  put steps 1 and 2 in the preprocessing, resulting in two datasets in
+either put steps 1 and 2 in the preprocessing, resulting in two datasets in
 `store/preprocessed/`. For each, you could then perform step 3 in
 `store/datasets/`.
 However, this would imply a redundant execution of step 1. While this is

@@ -33,9 +33,9 @@ case.
 
 ### (0) Raw
 
-Contains immutable raw data as downloaded. In directory `.TEMPLATE` there are two additional files:
-[dataset.md](raw/.TEMPLATE/dataset.md) (see that file for further
-instructions) and [metadata.json)](raw/.TEMPLATE/metadata.json).
+Contains immutable raw data as downloaded. In directory `.TEMPLATE` there are
+two additional files: [dataset.md](raw/.TEMPLATE/dataset.md) (see that file
+for further  instructions) and [metadata.json)](raw/.TEMPLATE/metadata.json).
 
 Note: Assumptions are to be defined in the scenarios, not the raw data.
 See the scenario readme in [SCENARIOS.md](../scenarios/SCENARIOS.md).

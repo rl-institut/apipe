@@ -14,5 +14,8 @@ networkx
 pygraphviz
 pygments
 rasterio
+Jinja2==3.0.3
+m2r2
+sphinx-material
 dynaconf>=3.1.7
 oemoflex @ git+https://git@github.com/rl-institut/oemoflex@dev#egg=oemoflex

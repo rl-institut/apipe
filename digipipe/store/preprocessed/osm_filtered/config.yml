@@ -8,8 +8,8 @@ title:
 
 # Description of this dataset
 description:
-  OSM data filtered for tags below, reprojected to LAEA Europe (EPSG:3035)
-  and converted to Geopackage.
+  OSM data filtered for tags below, reprojected to LAEA Europe (EPSG:3035) and
+  converted to Geopackage.
 
 # Tags to include
 tags:

@@ -92,7 +92,7 @@ cores and requires about 600 GB of disk space.
 │   │   ├── raw                                 # - Raw datasets
 │   │   │   ├── bkg_vg250
 │   │   │   ├── destatis_gv
-│   │   │   ├── osm_openstreetmap
+│   │   │   ├── osm_sachsen-anhalt
 │   │   │   └── .TEMPLATE
 │   │   ├── temp                                # - Temporary files
 │   │   ├── DATASETS.md

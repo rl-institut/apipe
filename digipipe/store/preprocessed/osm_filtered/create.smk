@@ -10,7 +10,7 @@ rule convert:
     """
     Convert OSM pbf file while filtering for all requested tags. All attributes are retained.
     """
-    input: get_abs_dataset_path("raw", "osm_openstreetmap") / "data" / "sachsen-anhalt-221003.osm.pbf"
+    input: get_abs_dataset_path("raw", "osm_sachsen-anhalt") / "data" / "sachsen-anhalt-221003.osm.pbf"
     output: get_abs_dataset_path("preprocessed", "osm_filtered") / "data" / "sachsen-anhalt-221003.osm.gpkg"
     params: tags=create_tag_string_osmium(config["tags"])
     shell:

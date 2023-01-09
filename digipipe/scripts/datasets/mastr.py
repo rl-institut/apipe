@@ -95,7 +95,7 @@ def add_voltage_level(
 
 
 def add_geometry(
-        units: gpd.GeoDataFrame,
+        units: pd.DataFrame,
         drop_units_wo_coords: bool = True,
 ) -> gpd.GeoDataFrame:
     """
@@ -104,7 +104,7 @@ def add_geometry(
 
     Parameters
     ----------
-    units : gpd.GeoDataFrame
+    units : pd.DataFrame
         Units with columns `lat` and `lon` in CRS WGS84 (EPSG:4326)
     drop_units_wo_coords : bool
         Drop units which do not have valid lat and lon values.

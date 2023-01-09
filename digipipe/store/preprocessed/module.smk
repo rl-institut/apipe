@@ -20,7 +20,6 @@ use rule * from bkg_vg250 as preprocessed_bkg_vg250_*
 module osm_filtered:
     snakefile: "osm_filtered/create.smk"
     config: config["store"]["preprocessed"]["osm_filtered"]
-    replace_prefix: {"osm_": "hoho_"}
 use rule * from osm_filtered as preprocessed_osm_filtered_*
 
 module bnetza_mastr:

@@ -83,3 +83,15 @@ def create_tag_string_ogr(taglist):
          for tag, val in taglist]) + "\""
     tags = ",".join([tag for tag, _ in taglist])
     return {"tags": tags, "conditions": tag_conditions}
+
+
+PATH_TO_ABW_MUNICIPALITIES_GPKG = get_abs_dataset_path(
+    "datasets",
+    "bkg_vg250_muns_abw",
+    data_dir=True
+) / "bkg_vg250_muns_abw.gpkg"
+PATH_TO_ABW_DISTRICTS_GPKG = get_abs_dataset_path(
+    "datasets",
+    "bkg_vg250_districts_abw",
+    data_dir=True
+) / "bkg_vg250_districts_abw.gpkg"

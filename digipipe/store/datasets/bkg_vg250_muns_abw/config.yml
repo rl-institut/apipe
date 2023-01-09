@@ -14,7 +14,6 @@ description:
 layer: vg250_gem
 attributes:
   {"AGS": "ags",
-   "NUTS": "nuts",
    "GEN": "name",
    "geometry": "geometry"}
 attributes_filter:

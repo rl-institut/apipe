@@ -133,6 +133,7 @@ def reproject_simplify_filter_rename(
         Attributes whose values are to be filtered. Use attributes as dict
         keys and desired values as dict values (values can be of type str,
         int, float or list)
+        Example: {"GF": 4, "NUTS": ["DEE01", "DEE05", "DEE0E"]}
     attrs_mapping : dict
         Attributes to select and rename. Use original attributes' names as
         dict keys and new names as values.

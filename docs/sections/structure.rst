@@ -16,6 +16,7 @@ Das Repository ist wie folgt aufgebaut:
     │   │   ├── .TEMPLATE                           # - Template
     │   │   └── SCENARIOS.md
     │   ├── scripts                                 # Main scripts
+    │   │   ├── datasets                            # - for data processing which is shared by different datasets
     │   │   ├── esm                                 # - for energy system modelling
     │   │   ├── config.py                           # - config-related functions
     │   │   └── geo.py                              # - spatial functions

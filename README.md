@@ -69,6 +69,7 @@ cores and requires about 600 GB of disk space.
 │   │   ├── .TEMPLATE                           # - Template
 │   │   └── SCENARIOS.md
 │   ├── scripts                                 # Main scripts
+│   │   ├── datasets                            # - for data processing which is shared by different datasets
 │   │   ├── esm                                 # - for energy system modelling
 │   │   ├── config.py                           # - config-related functions
 │   │   └── geo.py                              # - spatial functions

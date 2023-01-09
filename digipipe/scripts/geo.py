@@ -122,6 +122,8 @@ def rename_filter_attributes(
 ) -> Union[pd.DataFrame, gpd.GeoDataFrame]:
     """Rename attributes and filter them by values
 
+    Note: Only attributes as given by `attrs_mapping` are kept!
+
     Parameters
     ----------
     gdf : pd.DataFrame or gpd.GeoDataFrame

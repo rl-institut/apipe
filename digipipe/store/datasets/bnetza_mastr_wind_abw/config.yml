@@ -24,7 +24,8 @@ attributes:
    "DatumEndgueltigeStilllegung": "decommissioning_date",
    "NameStromerzeugungseinheit": "name",
    "NameWindpark": "name_park",
-   "Nettonennleistung": "capacity",
+   "Bruttoleistung": "capacity_gross",
+   "Nettonennleistung": "capacity_net",
    "Lage": "site_type",
    "Hersteller": "manufacturer_name",
    "Typenbezeichnung": "type_name",
@@ -36,7 +37,8 @@ attributes:
    "AuflagenAbschaltungSchattenwurf": "constraint_deactivation_shadowing",
    "AuflagenAbschaltungTierschutz": "constraint_deactivation_animals",
    "AuflagenAbschaltungEiswurf": "constraint_deactivation_ice",
-   "Buergerenergie": "citizens_unit"}
+   "Buergerenergie": "citizens_unit",
+   "NetzbetreiberpruefungStatus": "validated_by_system_operator"}
 
 # Output settings
 layer: bnetza_mastr_wind_abw

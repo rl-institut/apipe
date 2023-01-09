@@ -13,6 +13,7 @@ def process():
         gdf=data,
         attrs_filter_by_values=config["attributes_filter"],
         attrs_mapping=config["attributes"],
+        add_id_column=True,
     )
     data = convert_to_multipolygon(data)
     write_geofile(

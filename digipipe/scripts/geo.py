@@ -3,12 +3,14 @@ Helper functions for geodata processing
 """
 
 import fiona
-import os
 import geopandas as gpd
+import os
+import pandas as pd
+
 from collections import OrderedDict
 from shapely.geometry.multipolygon import MultiPolygon
 from shapely.ops import transform
-from typing import Tuple
+from typing import Tuple, Union
 
 from digipipe.scripts.config import read_config
 
@@ -113,10 +115,56 @@ def write_geofile(
                 encoding=encoding)
 
 
-def reproject_simplify_filter_rename(
-        gdf: gpd.GeoDataFrame,
+def rename_filter_attributes(
+        gdf: Union[pd.DataFrame, gpd.GeoDataFrame],
         attrs_filter_by_values: dict = None,
         attrs_mapping: dict = None,
+) -> Union[pd.DataFrame, gpd.GeoDataFrame]:
+    """Rename attributes and filter them by values
+
+    Parameters
+    ----------
+    gdf : pd.DataFrame or gpd.GeoDataFrame
+        Geodata
+    attrs_filter_by_values : dict
+        Attributes whose values are to be filtered. Use attributes as dict
+        keys and desired values as dict values (values can be of type str,
+        int, float or list)
+        Example: {"GF": 4, "NUTS": ["DEE01", "DEE05", "DEE0E"]}
+    attrs_mapping : dict
+        Attributes to select and rename. Use original attributes' names as
+        dict keys and new names as values.
+
+    Returns
+    -------
+    pd.DataFrame or gpd.GeoDataFrame
+        Filtered geodata
+    """
+    # Filter by attribute values, if defined
+    if attrs_filter_by_values is not None:
+        query = ""
+        for k, v in attrs_filter_by_values.items():
+            if isinstance(v, list):
+                query += f" & {k} in @v"
+            elif isinstance(v, (str, int, float)):
+                query += f" & {k}=={v}"
+            else:
+                raise ValueError(
+                    "Data type in attribute filter is not supported!"
+                )
+        query = query[2:]
+        gdf = gdf.query(query)
+
+    # Extract and rename fields
+    if attrs_mapping is not None:
+        gdf = gdf.filter(attrs_mapping.keys())
+        gdf.rename(columns=attrs_mapping, inplace=True)
+
+    return gdf
+
+
+def reproject_simplify(
+        gdf: gpd.GeoDataFrame,
         target_crs: str = GLOBAL_CONFIG["global"]["geodata"]["crs"].lower(),
         min_size: float = None,
         simplify_tol: float = None,
@@ -129,14 +177,6 @@ def reproject_simplify_filter_rename(
     ----------
     gdf : gpd.GeoDataFrame
         Geodata
-    attrs_filter_by_values : dict
-        Attributes whose values are to be filtered. Use attributes as dict
-        keys and desired values as dict values (values can be of type str,
-        int, float or list)
-        Example: {"GF": 4, "NUTS": ["DEE01", "DEE05", "DEE0E"]}
-    attrs_mapping : dict
-        Attributes to select and rename. Use original attributes' names as
-        dict keys and new names as values.
     target_crs : str
         CRS the data should be reprojected to.
     min_size : float
@@ -193,26 +233,6 @@ def reproject_simplify_filter_rename(
         buffer = GLOBAL_CONFIG["global"]["geodata"]["fix_geom_buffer"]
         if buffer > 0:
             gdf["geometry"] = gdf.buffer(buffer)
-
-    # Filter by attribute values, if defined
-    if attrs_filter_by_values is not None:
-        query = ""
-        for k, v in attrs_filter_by_values.items():
-            if isinstance(v, list):
-                query += f" & {k} in @v"
-            elif isinstance(v, (str, int, float)):
-                query += f" & {k}=={v}"
-            else:
-                raise ValueError(
-                    "Data type in attribute filter is not supported!"
-                )
-        query = query[2:]
-        gdf = gdf.query(query)
-
-    # Extract and rename fields
-    if attrs_mapping is not None:
-        gdf = gdf.filter(attrs_mapping.keys())
-        gdf.rename(columns=attrs_mapping, inplace=True)
 
     # Reindex starting from 0 and add new column "id" with same values
     if add_id_column is True:

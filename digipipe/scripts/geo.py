@@ -220,3 +220,38 @@ def reproject_simplify_filter_rename(
         gdf = gdf.assign(id=gdf.index)
 
     return gdf
+
+
+def overlay(
+        gdf: gpd.GeoDataFrame,
+        gdf_overlay: gpd.GeoDataFrame,
+        retain_rename_overlay_columns: dict = None,
+) -> gpd.GeoDataFrame:
+    """Clips geodata to polygon
+
+    Parameters
+    ----------
+    gdf : gpd.GeoDataFrame
+        Geodata to be clipped (geometry in column "geometry")
+    gdf_overlay : gpd.GeoDataFrame
+        Geodata to clip `gdf` to, e.g. municipalities (geometry in column
+        "geometry")
+    retain_rename_overlay_columns : dict
+        Columns to retain from `gdf_clip` (do not include "geometry")
+    """
+    if retain_rename_overlay_columns is None:
+        columns = ["geometry"]
+        retain_rename_overlay_columns = {}
+    else:
+        if "geometry" in retain_rename_overlay_columns.keys():
+            raise ValueError("Geometry must not be in rename dict!")
+        columns = list(retain_rename_overlay_columns.keys()) + ["geometry"]
+
+    # Clip and rename columns
+    gdf_clipped = gpd.overlay(
+        gdf,
+        gdf_overlay[columns],
+        how='intersection'
+    ).rename(columns=retain_rename_overlay_columns)
+
+    return gdf_clipped

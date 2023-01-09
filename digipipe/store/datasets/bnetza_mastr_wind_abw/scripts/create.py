@@ -13,7 +13,6 @@ def process() -> None:
     units = pd.read_csv(
         snakemake.input.units,
         usecols=columns_dict.keys(),
-        dtype={"Postleitzahl": str},
     ).rename(columns=columns_dict).set_index("mastr_id")
 
     units = mastr.add_voltage_level(

@@ -146,7 +146,9 @@ def rename_filter_attributes(
         for k, v in attrs_filter_by_values.items():
             if isinstance(v, list):
                 query += f" & {k} in @v"
-            elif isinstance(v, (str, int, float)):
+            elif isinstance(v, str):
+                query += f" & {k}=='{v}'"
+            elif isinstance(v, (int, float)):
                 query += f" & {k}=={v}"
             else:
                 raise ValueError(

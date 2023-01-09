@@ -30,3 +30,8 @@ module osm_forest:
     snakefile: "osm_forest/create.smk"
     config: config["store"]["datasets"]["osm_forest"]
 use rule * from osm_forest as datasets_osm_forest_*
+
+module bnetza_mastr_wind_abw:
+    snakefile: "bnetza_mastr_wind_abw/create.smk"
+    config: config["store"]["datasets"]["bnetza_mastr_wind_abw"]
+use rule * from bnetza_mastr_wind_abw as datasets_bnetza_mastr_wind_abw_*

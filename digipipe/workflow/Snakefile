@@ -27,6 +27,8 @@ rule all:
         # ds2=get_abs_dataset_path("2_datasets", "bkg_vg250_muns_abw") / "bkg_vg250_muns_abw.gpkg",
         # ds3=get_abs_dataset_path("2_datasets", "bkg_vg250_districts_abw") / "bkg_vg250_districts_abw.gpkg",
         # ds4=get_abs_dataset_path("2_datasets", "bkg_vg250_region_abw") / "bkg_vg250_region_abw.gpkg"
+        #mastr=rules.preprocessed_bnetza_mastr_create.output.files
+        wind=rules.datasets_bnetza_mastr_wind_abw_create.output
     # run:
     #     print("CONFIG MAIN:")
     #     print(config)

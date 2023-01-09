@@ -1,0 +1,46 @@
+##############################################################################
+# This file holds configuration parameters for the creation of this dataset. #
+##############################################################################
+
+# Name of the dataset (used e.g. for report purposes)
+title:
+  Windenergieanlagen in der Region ABW
+
+# Description of this dataset
+description:
+  Windenergieanlagen in der Region ABW aus MaStR-Registerdaten extrahiert,
+  gefltert, geolokalisiert und als Geopackage bereitgestellt.
+
+# Filter settings
+attributes:
+  {"EinheitMastrNummer": "mastr_id",
+   "EinheitBetriebsstatus": "status",
+   "LokationMastrNummer": "mastr_location_id",
+   "Land": "country",
+   "Landkreis": "district",
+   "Postleitzahl": "postcode",
+   "Gemeinde": "municipality",
+   "Gemeindeschluessel": "ags",
+   "Laengengrad": "lon",
+   "Breitengrad": "lat",
+   "Inbetriebnahmedatum": "commissioning_date",
+   "GeplantesInbetriebnahmedatum": "commissioning_date_planned",
+   "DatumEndgueltigeStilllegung": "decommissioning_date",
+   "NameStromerzeugungseinheit": "name",
+   "NameWindpark": "name_park",
+   "Nettonennleistung": "capacity",
+   "Lage": "site_type",
+   "Hersteller": "manufacturer_name",
+   "Typenbezeichnung": "type_name",
+   "Nabenhoehe": "hub_height",
+   "Rotordurchmesser": "rotor_diameter",
+   "AuflageAbschaltungLeistungsbegrenzung": "constraint_deactivation_sound_emission",
+   "AuflagenAbschaltungSchallimmissionsschutzNachts": "constraint_deactivation_sound_emission_night",
+   "AuflagenAbschaltungSchallimmissionsschutzTagsueber": "constraint_deactivation_sound_emission_day",
+   "AuflagenAbschaltungSchattenwurf": "constraint_deactivation_shadowing",
+   "AuflagenAbschaltungTierschutz": "constraint_deactivation_animals",
+   "AuflagenAbschaltungEiswurf": "constraint_deactivation_ice",
+   "Buergerenergie": "citizens_unit"}
+
+# Output settings
+layer: bnetza_mastr_wind_abw

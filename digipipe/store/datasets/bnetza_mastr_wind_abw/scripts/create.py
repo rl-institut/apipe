@@ -21,14 +21,11 @@ def process() -> None:
         gridconn_path=snakemake.input.gridconn
     )
 
-    # Drop units outside of Germany
-    units = units.loc[(units.country == "Deutschland")]
+    # Do some basic filtering
+    units = mastr.cleanse(units)
 
     # Add geometry and drop units without coords
     units = mastr.add_geometry(units)
-
-    # Do some basic filtering
-    units = mastr.cleanse(units)
 
     # Clip to ABW and add mun and district ids
     units = overlay(

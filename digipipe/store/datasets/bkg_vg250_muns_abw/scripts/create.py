@@ -3,16 +3,20 @@ import geopandas as gpd
 from digipipe.scripts.geo import (
     convert_to_multipolygon,
     write_geofile,
-    reproject_simplify_filter_rename
+    rename_filter_attributes,
+    reproject_simplify
 )
 
 
 def process():
     data = gpd.read_file(infile, layer=config["layer"])
-    data = reproject_simplify_filter_rename(
+    data = rename_filter_attributes(
         gdf=data,
         attrs_filter_by_values=config["attributes_filter"],
         attrs_mapping=config["attributes"],
+    )
+    data = reproject_simplify(
+        gdf=data,
         add_id_column=True,
     )
     data = convert_to_multipolygon(data)

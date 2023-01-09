@@ -1,11 +1,7 @@
-import sys
 import pandas as pd
 import geopandas as gpd
-from digipipe.scripts.config import read_config
 from digipipe.scripts.geo import (
-    convert_to_multipolygon,
     write_geofile,
-    reproject_simplify_filter_rename,
     overlay
 )
 

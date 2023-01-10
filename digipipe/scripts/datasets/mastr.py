@@ -120,7 +120,7 @@ def add_geometry(
         units_count_orig = len(units)
         units = units.loc[(~units.lon.isna() & ~units.lat.isna())]
         print(
-            f"{len(units)-units_count_orig} units have been dropped as they "
+            f"{units_count_orig-len(units)} units have been dropped as they "
             f"have no or invalid coordinates."
         )
 

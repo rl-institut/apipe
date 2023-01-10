@@ -15,7 +15,7 @@ SOURCE_DATASET_PATH = get_abs_dataset_path("preprocessed", "bnetza_mastr", data_
 
 rule create:
     """
-    Extract districts of ABW region
+    Extract ground-mounted PV plants for ABW region
     """
     input:
         units=SOURCE_DATASET_PATH / "bnetza_mastr_solar_raw.csv",

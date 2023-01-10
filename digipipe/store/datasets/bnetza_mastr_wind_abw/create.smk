@@ -15,7 +15,7 @@ SOURCE_DATASET_PATH = get_abs_dataset_path("preprocessed", "bnetza_mastr", data_
 
 rule create:
     """
-    Extract districts of ABW region
+    Extract wind turbines for ABW region
     """
     input:
         units=SOURCE_DATASET_PATH / "bnetza_mastr_wind_raw.csv",

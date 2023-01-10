@@ -9,7 +9,7 @@ title:
 # Description of this dataset
 description:
   Photovoltaik-Freiflächenanlagen in der Region ABW aus MaStR-Registerdaten
-  extrahiert, gefltert, geolokalisiert und als Geopackage bereitgestellt.
+  extrahiert, gefiltert, geolokalisiert und als Geopackage bereitgestellt.
 
 # Filter settings
 attributes:

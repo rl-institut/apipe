@@ -144,10 +144,12 @@ def rename_filter_attributes(
     """
     # Filter by attribute values, if defined
     if attrs_filter_by_values is not None:
+        list_vals = []
         query = ""
         for k, v in attrs_filter_by_values.items():
             if isinstance(v, list):
-                query += f" & {k} in @v"
+                list_vals.append(v)
+                query += f" & {k} in @list_vals[{len(list_vals)-1}]"
             elif isinstance(v, str):
                 query += f" & {k}=='{v}'"
             elif isinstance(v, (int, float)):

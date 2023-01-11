@@ -40,3 +40,8 @@ module bnetza_mastr_pv_ground_abw:
     snakefile: "bnetza_mastr_pv_ground_abw/create.smk"
     config: config["store"]["datasets"]["bnetza_mastr_pv_ground_abw"]
 use rule * from bnetza_mastr_pv_ground_abw as datasets_bnetza_mastr_pv_ground_abw_*
+
+module bnetza_mastr_pv_roof_abw:
+    snakefile: "bnetza_mastr_pv_roof_abw/create.smk"
+    config: config["store"]["datasets"]["bnetza_mastr_pv_roof_abw"]
+use rule * from bnetza_mastr_pv_roof_abw as datasets_bnetza_mastr_pv_roof_abw_*

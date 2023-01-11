@@ -29,7 +29,8 @@ rule all:
         # ds4=get_abs_dataset_path("2_datasets", "bkg_vg250_region_abw") / "bkg_vg250_region_abw.gpkg"
         #mastr=rules.preprocessed_bnetza_mastr_create.output.files
         wind=rules.datasets_bnetza_mastr_wind_abw_create.output,
-        pv_ground=rules.datasets_bnetza_mastr_pv_ground_abw_create.output
+        pv_ground=rules.datasets_bnetza_mastr_pv_ground_abw_create.output,
+        pv_roof=rules.datasets_bnetza_mastr_pv_roof_abw_create.output
     # run:
     #     print("CONFIG MAIN:")
     #     print(config)

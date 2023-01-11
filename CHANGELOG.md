@@ -12,6 +12,7 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Modularize datasets
 - Add first draft of RTD docs
 - Add dataset: BNetzA MaStR
+- Add Nominatim geocoder
 
 ### Changed
 

@@ -2,7 +2,11 @@
 
 import geopandas as gpd
 import pandas as pd
+from geopy.extra.rate_limiter import RateLimiter
+from geopy.geocoders import Nominatim
 from typing import Union
+
+from digipipe.config import GLOBAL_CONFIG
 
 
 def cleanse(
@@ -132,7 +136,93 @@ def add_geometry(
         crs=4326,
     ).to_crs(3035)
 
-    # Drop unnecessaryw columns
+    # Drop unnecessary columns
     units.drop(columns=["lon", "lat"], inplace=True)
 
     return units
+
+
+def geocode(mastr_df: pd.DataFrame) -> gpd.GeoDataFrame:
+    """
+    Geocode locations from MaStR unit table using zip code and city.
+
+    Parameters
+    ----------
+    mastr_df : pd.DataFrame
+        Units from MaStR
+
+    Returns
+    -------
+    gpd.GeoDataFrame
+        Units with geometry
+    """
+
+    def geocoder(
+            user_agent: str,
+            min_delay_seconds: int,
+    ) -> RateLimiter:
+        """Setup Nominatim geocoding class.
+
+        Parameters
+        -----------
+        user_agent : str
+            The app name.
+        min_delay_seconds : int
+            Delay in seconds to use between requests to Nominatim.
+            A minimum of 1 is advised.
+        Returns
+        -------
+        geopy.extra.rate_limiter.RateLimiter
+            Nominatim RateLimiter geocoding class to use for geocoding.
+        """
+        locator = Nominatim(user_agent=user_agent)
+        return RateLimiter(
+            locator.geocode,
+            min_delay_seconds=min_delay_seconds,
+        )
+
+    # Define geocoder
+    ratelimiter = geocoder(
+        GLOBAL_CONFIG["global"]["geodata"]["geocoder"]["user_agent"],
+        GLOBAL_CONFIG["global"]["geodata"]["geocoder"]["interval_sec"],
+    )
+
+    # Merge zip code and city and get unique values
+    mastr_df = mastr_df.assign(
+        zip_and_city=mastr_df.zip_code.astype(str) + " " + mastr_df.city,
+    )
+    unique_locations = pd.DataFrame(
+        data=mastr_df.zip_and_city.unique(),
+        columns=["zip_and_city"],
+    )
+    # Geocode unique locations!
+    print(f"Geocoding {len(unique_locations)} locations...")
+    unique_locations = unique_locations.assign(
+        location=unique_locations.zip_and_city.apply(ratelimiter)
+    )
+    unique_locations = unique_locations.assign(
+        point=unique_locations.location.apply(
+            lambda loc: tuple(loc.point) if loc else None
+        )
+    )
+    unique_locations[["latitude", "longitude", "altitude"]] = pd.DataFrame(
+        unique_locations.point.tolist(), index=unique_locations.index
+    )
+    unique_locations = gpd.GeoDataFrame(
+        unique_locations,
+        geometry=gpd.points_from_xy(unique_locations.longitude,
+                                    unique_locations.latitude),
+        crs="EPSG:4326",
+    )
+    # Merge locations back in units
+    mastr_df = gpd.GeoDataFrame(
+        mastr_df.merge(
+            unique_locations[["zip_and_city", "geometry"]],
+            on="zip_and_city",
+        ).drop(columns=["zip_and_city"])
+    ).to_crs(GLOBAL_CONFIG["global"]["geodata"]["crs"])
+
+    # Drop unnecessary columns
+    mastr_df.drop(columns=["lon", "lat"], inplace=True)
+
+    return mastr_df

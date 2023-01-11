@@ -12,8 +12,6 @@ from shapely.geometry.multipolygon import MultiPolygon
 from shapely.ops import transform
 from typing import Tuple, Union
 
-from digipipe.scripts.config import read_config
-
 from digipipe.config import GLOBAL_CONFIG
 
 

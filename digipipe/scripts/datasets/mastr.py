@@ -183,9 +183,13 @@ def geocode(mastr_df: pd.DataFrame) -> gpd.GeoDataFrame:
         )
 
     # Define geocoder
+    user_agent = GLOBAL_CONFIG["global"]["geodata"]["geocoder"]["user_agent"]
+    interval_sec = (
+        GLOBAL_CONFIG["global"]["geodata"]["geocoder"]["interval_sec"]
+    )
     ratelimiter = geocoder(
-        GLOBAL_CONFIG["global"]["geodata"]["geocoder"]["user_agent"],
-        GLOBAL_CONFIG["global"]["geodata"]["geocoder"]["interval_sec"],
+        user_agent,
+        interval_sec,
     )
 
     # Merge zip code and city and get unique values
@@ -197,7 +201,10 @@ def geocode(mastr_df: pd.DataFrame) -> gpd.GeoDataFrame:
         columns=["zip_and_city"],
     )
     # Geocode unique locations!
-    print(f"Geocoding {len(unique_locations)} locations...")
+    print(
+        f"Geocoding {len(unique_locations)} locations, this will take "
+        f"about {round(len(unique_locations) * interval_sec / 60, 1)} min..."
+    )
     unique_locations = unique_locations.assign(
         location=unique_locations.zip_and_city.apply(ratelimiter)
     )

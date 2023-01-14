@@ -6,8 +6,6 @@ from geopy.extra.rate_limiter import RateLimiter
 from geopy.geocoders import Nominatim
 from typing import Union
 
-from digipipe.config import GLOBAL_CONFIG
-
 
 def cleanse(
     units: Union[pd.DataFrame, gpd.GeoDataFrame]
@@ -143,14 +141,29 @@ def add_geometry(
     return units
 
 
-def geocode(mastr_df: pd.DataFrame) -> gpd.GeoDataFrame:
+def geocode(
+        mastr_df: pd.DataFrame,
+        user_agent: str = "geocoder",
+        interval: int = 1,
+        target_crs: str = "EPSG:3035",
+) -> gpd.GeoDataFrame:
     """
     Geocode locations from MaStR unit table using zip code and city.
 
     Parameters
     ----------
     mastr_df : pd.DataFrame
-        Units from MaStR
+        Units from MaStR. Must contain the following columns:
+        * zip_code (str)
+        * city (str)
+        *
+    user_agent : str
+        Some app name. Defaults to "geocoder"
+    interval : int
+        Delay in seconds to use between requests to Nominatim.
+        A minimum of 1 is advised (default)
+    target_crs : str
+        CRS the data should be reprojected to. Defaults to EPSG:3035.
 
     Returns
     -------
@@ -160,17 +173,18 @@ def geocode(mastr_df: pd.DataFrame) -> gpd.GeoDataFrame:
 
     def geocoder(
             user_agent: str,
-            min_delay_seconds: int,
+            interval: int,
     ) -> RateLimiter:
         """Setup Nominatim geocoding class.
 
         Parameters
         -----------
         user_agent : str
-            The app name.
-        min_delay_seconds : int
+            Some app name.
+        interval : int
             Delay in seconds to use between requests to Nominatim.
             A minimum of 1 is advised.
+
         Returns
         -------
         geopy.extra.rate_limiter.RateLimiter
@@ -179,17 +193,13 @@ def geocode(mastr_df: pd.DataFrame) -> gpd.GeoDataFrame:
         locator = Nominatim(user_agent=user_agent)
         return RateLimiter(
             locator.geocode,
-            min_delay_seconds=min_delay_seconds,
+            min_delay_seconds=interval,
         )
 
     # Define geocoder
-    user_agent = GLOBAL_CONFIG["global"]["geodata"]["geocoder"]["user_agent"]
-    interval_sec = (
-        GLOBAL_CONFIG["global"]["geodata"]["geocoder"]["interval_sec"]
-    )
     ratelimiter = geocoder(
         user_agent,
-        interval_sec,
+        interval,
     )
 
     # Merge zip code and city and get unique values
@@ -203,7 +213,7 @@ def geocode(mastr_df: pd.DataFrame) -> gpd.GeoDataFrame:
     # Geocode unique locations!
     print(
         f"Geocoding {len(unique_locations)} locations, this will take "
-        f"about {round(len(unique_locations) * interval_sec / 60, 1)} min..."
+        f"about {round(len(unique_locations) * interval / 60, 1)} min..."
     )
     unique_locations = unique_locations.assign(
         location=unique_locations.zip_and_city.apply(ratelimiter)
@@ -228,9 +238,6 @@ def geocode(mastr_df: pd.DataFrame) -> gpd.GeoDataFrame:
             unique_locations[["zip_and_city", "geometry"]],
             on="zip_and_city",
         ).drop(columns=["zip_and_city"])
-    ).to_crs(GLOBAL_CONFIG["global"]["geodata"]["crs"])
-
-    # Drop unnecessary columns
-    mastr_df.drop(columns=["lon", "lat"], inplace=True)
+    ).to_crs(target_crs)
 
     return mastr_df

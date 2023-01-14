@@ -9,5 +9,5 @@ geodata:
   # it is enabled by setting fix_geom_by_buffering to True for the respective layer
   fix_geom_buffer: 0.1
   geocoder:
-    interval_sec: 1
     user_agent: "geocoder"
+    interval_sec: 1

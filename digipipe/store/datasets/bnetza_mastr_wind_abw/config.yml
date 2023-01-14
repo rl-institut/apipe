@@ -16,6 +16,8 @@ attributes:
   {"EinheitMastrNummer": "mastr_id",
    "EinheitBetriebsstatus": "status",
    "LokationMastrNummer": "mastr_location_id",
+   "Postleitzahl": "zip_code",
+   "Ort": "city",
    "Laengengrad": "lon",
    "Breitengrad": "lat",
    "Inbetriebnahmedatum": "commissioning_date",
@@ -40,7 +42,8 @@ attributes:
    "NetzbetreiberpruefungStatus": "validated_by_system_operator"}
 attributes_filter:
   {"Land": "Deutschland",
-   "Lage": "Windkraft an Land"}
+   "Lage": "Windkraft an Land",
+   "Landkreis": ["Wittenberg", "Anhalt-Bitterfeld", "Dessau-Roßlau"]}
 
 # Output settings
 layer: bnetza_mastr_wind_abw

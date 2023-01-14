@@ -20,8 +20,6 @@ attributes:
    "LokationMastrNummer": "mastr_location_id",
    "Postleitzahl": "zip_code",
    "Ort": "city",
-   "Gemeinde": "municipality_name",
-   "Gemeindeschluessel": "municipality_ags",
    "Laengengrad": "lon",
    "Breitengrad": "lat",
    "Inbetriebnahmedatum": "commissioning_date",

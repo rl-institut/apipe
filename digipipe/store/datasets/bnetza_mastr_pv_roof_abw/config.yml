@@ -46,6 +46,7 @@ attributes:
    "NetzbetreiberpruefungStatus": "validated_by_system_operator"}
 attributes_filter:
   {"Land": "Deutschland",
+   "EinheitBetriebsstatus": ["In Betrieb", "In Planung"],
    "Lage": [
      "Bauliche Anlagen (Hausdach, Gebäude und Fassade)",
      "Bauliche Anlagen (Sonstige)",

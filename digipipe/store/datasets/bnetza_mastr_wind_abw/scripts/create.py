@@ -52,6 +52,7 @@ def process() -> None:
         geometry_approximated=True,
     )
 
+    # Merge both DFs
     units = pd.concat([units_with_geom, units_with_inferred_geom])
 
     # Clip to ABW and add mun and district ids
@@ -66,9 +67,54 @@ def process() -> None:
         retain_rename_overlay_columns={"id": "district_id"}
     )
 
+    # Aggregate units with approximated position
+    units_with_inferred_geom["lon"] = units_with_inferred_geom.geometry.x
+    units_with_inferred_geom["lat"] = units_with_inferred_geom.geometry.y
+    units_with_inferred_geom_agg = (
+        units_with_inferred_geom[
+            ["zip_code", "city", "capacity_net", "capacity_gross", "lat", "lon"]
+        ].groupby(["lat", "lon", "zip_code", "city"], as_index=False).agg({
+            "capacity_net": ["sum", "count"],
+            "capacity_gross": "sum",
+        })
+    )
+    units_with_inferred_geom_agg.columns = [
+        '_'.join(tup).rstrip('_') for tup in
+        units_with_inferred_geom_agg.columns
+    ]
+    units_with_inferred_geom_agg = units_with_inferred_geom_agg.rename(
+        columns={
+            "capacity_net_sum": "capacity_net",
+            "capacity_gross_sum": "capacity_gross",
+            "capacity_net_count": "unit_count",
+        }
+    )
+    units_with_inferred_geom_agg = gpd.GeoDataFrame(
+        units_with_inferred_geom_agg,
+        geometry=gpd.points_from_xy(units_with_inferred_geom_agg.lon,
+                                    units_with_inferred_geom_agg.lat),
+        crs="EPSG:3035",
+    )[[
+        "zip_code", "city", "capacity_net",
+        "capacity_gross", "unit_count", "geometry"
+    ]]
+    units_with_inferred_geom_agg = units_with_inferred_geom_agg.assign(
+        status="In Betrieb oder in Planung",
+        geometry_approximated=True,
+    )
+    units_agg = pd.concat([
+        units_with_geom.assign(unit_count=1),
+        units_with_inferred_geom_agg
+    ])
+
     write_geofile(
         gdf=units,
         file=snakemake.output.outfile,
+        layer_name=snakemake.config["layer"],
+    )
+    write_geofile(
+        gdf=units_agg,
+        file=snakemake.output.outfile_agg,
         layer_name=snakemake.config["layer"],
     )
 

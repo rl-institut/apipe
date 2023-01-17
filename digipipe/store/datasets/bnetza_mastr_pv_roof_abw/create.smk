@@ -24,7 +24,8 @@ rule create:
         abw_muns=PATH_TO_ABW_MUNICIPALITIES_GPKG,
         abw_districts=PATH_TO_ABW_DISTRICTS_GPKG
     output:
-        outfile=DATASET_PATH / "data" / "bnetza_mastr_pv_roof_abw.gpkg"
+        outfile=DATASET_PATH / "data" / "bnetza_mastr_pv_roof_abw.gpkg",
+        outfile_agg=DATASET_PATH / "data" / "bnetza_mastr_pv_roof_agg_abw.gpkg"
     params:
         config_file=DATASET_PATH / "config.yml"
     script:

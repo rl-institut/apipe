@@ -45,3 +45,8 @@ module bnetza_mastr_pv_roof_abw:
     snakefile: "bnetza_mastr_pv_roof_abw/create.smk"
     config: config["store"]["datasets"]["bnetza_mastr_pv_roof_abw"]
 use rule * from bnetza_mastr_pv_roof_abw as datasets_bnetza_mastr_pv_roof_abw_*
+
+module bnetza_mastr_biomass_abw:
+    snakefile: "bnetza_mastr_biomass_abw/create.smk"
+    config: config["store"]["datasets"]["bnetza_mastr_biomass_abw"]
+use rule * from bnetza_mastr_biomass_abw as datasets_bnetza_mastr_biomass_abw_*

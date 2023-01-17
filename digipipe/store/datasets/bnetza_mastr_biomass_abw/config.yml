@@ -1,0 +1,52 @@
+##############################################################################
+# This file holds configuration parameters for the creation of this dataset. #
+##############################################################################
+
+# Name of the dataset (used e.g. for report purposes)
+title:
+  Biomasse-/Biogasanlagen in der Region ABW
+
+# Description of this dataset
+description: |
+  Biomasse-/Biogasanlagen in der Region ABW aus MaStR-Registerdaten als
+  Geopackage.
+  Es werden alle Anlagen berücksichtigt, die in Betrieb sind oder sich in
+  Planung befinden. Anlagen mit Geokoordinaten werden gereferenziert
+  übernommen, für Anlagen die keine Koordinaten aufweisen (üblicherweise <=30
+  kW Nennleistung) erfolgt ein Geocoding anhand von PLZ und Ort, um eine
+  ungefähre Position bereit zu stellen.
+  Neben einem anlagenscharfen Datensatz wird ein weiterer Datensatz erzeugt,
+  der alle Anlagen mit approximierter Position je Position zusammenfasst und
+  jeweils typische Kennwerte enthält (Anzahl Anlagen, Gesamtleistung).
+
+# Filter settings
+attributes:
+  {"EinheitMastrNummer": "mastr_id",
+   "KwkMastrNummer": "kwk_mastr_id",
+   "EinheitBetriebsstatus": "status",
+   "LokationMastrNummer": "mastr_location_id",
+   "Postleitzahl": "zip_code",
+   "Ort": "city",
+   "Laengengrad": "lon",
+   "Breitengrad": "lat",
+   "Inbetriebnahmedatum": "commissioning_date",
+   "GeplantesInbetriebnahmedatum": "commissioning_date_planned",
+   "DatumEndgueltigeStilllegung": "decommissioning_date",
+   "NameStromerzeugungseinheit": "name",
+   "Bruttoleistung": "capacity_gross",
+   "Nettonennleistung": "capacity_net",
+   "ThermischeNutzleistung": "th_capacity",
+   "Einspeisungsart": "feedin_type",
+   "Technologie": "technology",
+   "Hauptbrennstoff": "fuel_name",
+   "Biomasseart": "fuel_type",
+   "AusschliesslicheVerwendungBiomasse": "biomass_only",
+   "BiogasInanspruchnahmeFlexiPraemie": "flexibility_bonus",
+   "NetzbetreiberpruefungStatus": "validated_by_system_operator"}
+attributes_filter:
+  {"Land": "Deutschland",
+   "EinheitBetriebsstatus": ["In Betrieb", "In Planung"],
+   "Landkreis": ["Wittenberg", "Anhalt-Bitterfeld", "Dessau-Roßlau"]}
+
+# Output settings
+layer: bnetza_mastr_biomass_abw

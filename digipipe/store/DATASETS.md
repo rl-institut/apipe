@@ -144,9 +144,9 @@ configuration, can get quite large.  You can change the directory in
 ### No data files in the repository! But keep the `.gitkeep` files
 
 Make sure **not to commit any data files** located in `store/` to the
-repository (except for the descriptive readme and metadata files). They have
-been  rules defined in the `.gitignore` file which should make git omit those
-files  but you better don't count on it. Instead, save them in the designated
+repository (except for the descriptive readme and metadata files). Rules have
+been defined in the `.gitignore` file which should make git omit those
+files but you better don't count on it. Instead, save them in the designated
 directory on the [RLI Wolke](https://wolke.rl-institut.de/f/160572).
 
 Each data directory in the provided templates contain an empty `.gitkeep`

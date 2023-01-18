@@ -6,6 +6,7 @@ from digipipe.scripts.geo import (
     overlay,
     rename_filter_attributes
 )
+from digipipe.store.utils import df_merge_string_columns
 
 from digipipe.config import GLOBAL_CONFIG
 
@@ -70,13 +71,20 @@ def process() -> None:
     # Aggregate units with approximated position
     units_with_inferred_geom["lon"] = units_with_inferred_geom.geometry.x
     units_with_inferred_geom["lat"] = units_with_inferred_geom.geometry.y
+
+    units_with_inferred_geom["fuel_primary"].fillna("", inplace=True)
+    units_with_inferred_geom["fuel_secondary"].fillna("", inplace=True)
+
     units_with_inferred_geom_agg = (
         units_with_inferred_geom[
-            ["zip_code", "city", "capacity_net", "capacity_gross", "th_capacity", "fuel_primary", "fuel_secondary" "lat", "lon"]
+            ["zip_code", "city", "capacity_net", "capacity_gross",
+             "th_capacity", "fuel_primary", "fuel_secondary", "lat", "lon"]
         ].groupby(["lat", "lon", "zip_code", "city"], as_index=False).agg({
             "capacity_net": ["sum", "count"],
             "capacity_gross": "sum",
             "th_capacity": "sum",
+            "fuel_primary": ";".join,
+            "fuel_secondary": ";".join,
         })
     )
     units_with_inferred_geom_agg.columns = [
@@ -89,16 +97,24 @@ def process() -> None:
             "capacity_gross_sum": "capacity_gross",
             "th_capacity_sum": "th_capacity",
             "capacity_net_count": "unit_count",
+            "fuel_primary_join": "fuel_primary",
+            "fuel_secondary_join": "fuel_secondary",
         }
     )
+
+    # Merge fuel types into one and make unique
+    units_with_inferred_geom_agg["fuels"] = df_merge_string_columns(
+        units_with_inferred_geom_agg[["fuel_primary", "fuel_secondary"]]
+    )
+
     units_with_inferred_geom_agg = gpd.GeoDataFrame(
         units_with_inferred_geom_agg,
         geometry=gpd.points_from_xy(units_with_inferred_geom_agg.lon,
                                     units_with_inferred_geom_agg.lat),
         crs="EPSG:3035",
     )[[
-        "zip_code", "city", "capacity_net",
-        "capacity_gross", "th_capacity", "unit_count", "geometry"
+        "zip_code", "city", "capacity_net", "capacity_gross", "th_capacity",
+        "fuels", "unit_count", "geometry"
     ]]
     units_with_inferred_geom_agg = units_with_inferred_geom_agg.assign(
         status="In Betrieb oder in Planung",

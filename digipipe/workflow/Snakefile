@@ -32,7 +32,8 @@ rule all:
         pv_ground=rules.datasets_bnetza_mastr_pv_ground_abw_create.output,
         pv_roof=rules.datasets_bnetza_mastr_pv_roof_abw_create.output,
         biomass=rules.datasets_bnetza_mastr_biomass_abw_create.output,
-        hydro=rules.datasets_bnetza_mastr_hydro_abw_create.output
+        hydro=rules.datasets_bnetza_mastr_hydro_abw_create.output,
+        combustion=rules.datasets_bnetza_mastr_combustion_abw_create.output
     # run:
     #     print("CONFIG MAIN:")
     #     print(config)

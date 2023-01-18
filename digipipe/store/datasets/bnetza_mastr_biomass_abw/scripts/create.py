@@ -72,10 +72,12 @@ def process() -> None:
     units_with_inferred_geom["lat"] = units_with_inferred_geom.geometry.y
     units_with_inferred_geom_agg = (
         units_with_inferred_geom[
-            ["zip_code", "city", "capacity_net", "capacity_gross", "lat", "lon"]
+            ["zip_code", "city", "capacity_net",
+             "capacity_gross", "th_capacity", "lat", "lon"]
         ].groupby(["lat", "lon", "zip_code", "city"], as_index=False).agg({
             "capacity_net": ["sum", "count"],
             "capacity_gross": "sum",
+            "th_capacity": "sum",
         })
     )
     units_with_inferred_geom_agg.columns = [
@@ -86,6 +88,7 @@ def process() -> None:
         columns={
             "capacity_net_sum": "capacity_net",
             "capacity_gross_sum": "capacity_gross",
+            "th_capacity_sum": "th_capacity",
             "capacity_net_count": "unit_count",
         }
     )
@@ -96,7 +99,7 @@ def process() -> None:
         crs="EPSG:3035",
     )[[
         "zip_code", "city", "capacity_net",
-        "capacity_gross", "unit_count", "geometry"
+        "capacity_gross", "th_capacity", "unit_count", "geometry"
     ]]
     units_with_inferred_geom_agg = units_with_inferred_geom_agg.assign(
         status="In Betrieb oder in Planung",

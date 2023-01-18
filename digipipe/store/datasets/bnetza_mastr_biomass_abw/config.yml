@@ -38,7 +38,7 @@ attributes:
    "ThermischeNutzleistung": "th_capacity",
    "Einspeisungsart": "feedin_type",
    "Technologie": "technology",
-   "Hauptbrennstoff": "fuel_name",
+   "Hauptbrennstoff": "fuel",
    "Biomasseart": "fuel_type",
    "AusschliesslicheVerwendungBiomasse": "biomass_only",
    "BiogasInanspruchnahmeFlexiPraemie": "flexibility_bonus",

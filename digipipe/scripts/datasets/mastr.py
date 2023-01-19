@@ -123,8 +123,7 @@ def add_geometry(
         units = units.loc[(~units.lon.isna() & ~units.lat.isna())]
         print(
             f"{units_count_orig-len(units)} units have no or invalid "
-            f"coordinates. Their locations will be approximated using "
-            f"geocoding."
+            f"coordinates."
         )
 
     units = gpd.GeoDataFrame(
@@ -212,7 +211,7 @@ def geocode(
     )
     # Geocode unique locations!
     print(
-        f"Geocoding {len(unique_locations)} locations, this will take "
+        f"Geocoding {len(unique_locations)} unique locations, this will take "
         f"about {round(len(unique_locations) * interval / 60, 1)} min..."
     )
     unique_locations = unique_locations.assign(

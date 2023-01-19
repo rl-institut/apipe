@@ -36,7 +36,7 @@ def process() -> None:
     # add column to indicate that location from original data was used
     units_with_geom = mastr.add_geometry(units)
     units_with_geom = units_with_geom.assign(
-        geometry_approximated=False,
+        geometry_approximated=0,
     )
 
     # Add geometry for all units without coords (<=30 kW) and
@@ -49,7 +49,7 @@ def process() -> None:
         interval=GLOBAL_CONFIG["global"]["geodata"]["geocoder"]["interval_sec"],
     )
     units_with_inferred_geom = units_with_inferred_geom.assign(
-        geometry_approximated=True,
+        geometry_approximated=1,
     )
 
     # Merge both DFs
@@ -100,7 +100,7 @@ def process() -> None:
     ]]
     units_with_inferred_geom_agg = units_with_inferred_geom_agg.assign(
         status="In Betrieb oder in Planung",
-        geometry_approximated=True,
+        geometry_approximated=1,
     )
     units_agg = pd.concat([
         units_with_geom.assign(unit_count=1),

@@ -141,7 +141,7 @@ def add_geometry(
 
 
 def geocode(
-        mastr_df: pd.DataFrame,
+        units_df: pd.DataFrame,
         user_agent: str = "geocoder",
         interval: int = 1,
         target_crs: str = "EPSG:3035",
@@ -151,7 +151,7 @@ def geocode(
 
     Parameters
     ----------
-    mastr_df : pd.DataFrame
+    units_df : pd.DataFrame
         Units from MaStR. Must contain the following columns:
         * zip_code (str)
         * city (str)
@@ -202,11 +202,11 @@ def geocode(
     )
 
     # Merge zip code and city and get unique values
-    mastr_df = mastr_df.assign(
-        zip_and_city=mastr_df.zip_code.astype(str) + " " + mastr_df.city,
+    units_df = units_df.assign(
+        zip_and_city=units_df.zip_code.astype(str) + " " + units_df.city,
     )
     unique_locations = pd.DataFrame(
-        data=mastr_df.zip_and_city.unique(),
+        data=units_df.zip_and_city.unique(),
         columns=["zip_and_city"],
     )
     # Geocode unique locations!
@@ -232,11 +232,11 @@ def geocode(
         crs="EPSG:4326",
     )
     # Merge locations back in units
-    mastr_df = gpd.GeoDataFrame(
-        mastr_df.merge(
+    units_gdf = gpd.GeoDataFrame(
+        units_df.merge(
             unique_locations[["zip_and_city", "geometry"]],
             on="zip_and_city",
         ).drop(columns=["zip_and_city"])
     ).to_crs(target_crs)
 
-    return mastr_df
+    return units_gdf

@@ -39,7 +39,7 @@ def cleanse(
 
 
 def add_voltage_level(
-    units: pd.DataFrame,
+    units_df: pd.DataFrame,
     locations_path: str,
     gridconn_path: str,
 ) -> pd.DataFrame:
@@ -48,7 +48,7 @@ def add_voltage_level(
 
     Parameters
     ----------
-    units : pd.DataFrame
+    units_df : pd.DataFrame
         Units from MaStR
     locations_path : str
         Path to MaStR locations file
@@ -77,7 +77,7 @@ def add_voltage_level(
     ).drop_duplicates().rename(columns={"Spannungsebene": "voltage_level"})
 
     # Add voltage level to units
-    units = units.merge(
+    units_df = units_df.merge(
         locations[["mastr_location_id2", "voltage_level"]],
         left_on="mastr_location_id",
         right_on="mastr_location_id2",
@@ -85,7 +85,7 @@ def add_voltage_level(
     )
 
     # Drop unnecessary columns
-    units.drop(
+    units_df.drop(
         columns=[
             "mastr_location_id",
             "mastr_location_id2",
@@ -93,7 +93,7 @@ def add_voltage_level(
         inplace=True,
     )
 
-    return units
+    return units_df
 
 
 def add_geometry(

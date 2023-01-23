@@ -4,7 +4,7 @@ import geopandas as gpd
 import pandas as pd
 from geopy.extra.rate_limiter import RateLimiter
 from geopy.geocoders import Nominatim
-from typing import Union
+from typing import Tuple, Union
 
 
 def cleanse(
@@ -240,3 +240,102 @@ def geocode(
     ).to_crs(target_crs)
 
     return units_gdf
+
+
+def geocode_units_wo_geometry(
+        units_df: pd.DataFrame,
+        columns_agg_functions: dict,
+        target_crs: str = "EPSG:3035",
+) -> Tuple[gpd.GeoDataFrame, gpd.GeoDataFrame]:
+    """
+    Add locations to units without coordinates by geocoding. The units are
+    returned with approximated locations (1 unit per row) as well as grouped by
+    approximated location (1 dataset with >=1 units per row) with aggregated
+    attributes as given by `columns_agg_functions`.
+
+    Parameters
+    ----------
+    units_df : pd.DataFrame
+        Units without geometry. Must have columns "zip_code" and "city" as well
+        as the columns specified in `columns_agg_functions`.
+        Note: If existent, geometry column will be overwritten.
+    columns_agg_functions : dict
+        Defines how columns shall be aggregated. Format as in Pandas' .agg()
+        function.
+        Example:
+            {
+                "capacity_net": ("capacity_net", "sum"),
+                "unit_count": ("capacity_net", "count"),
+                "capacity_gross": ("capacity_gross", "sum")
+            }
+        In this example, the sum of `capacity_net` and number of units is
+        calculated and named to "capacity_net" and "unit_count", respectively.
+        Also, the sum of `capacity_gross` is calculated and the name is
+        retained.
+    target_crs : str
+        CRS the data should be reprojected to. Defaults to EPSG:3035
+
+    Returns
+    -------
+    gpd.GeoDataFrame
+        Units with approximated location (1 unit per row).
+    gpd.GeoDataFrame
+        Units grouped by approximated location (1 dataset with >=1 units per
+        row) with aggregated attributes as given by `columns_agg_functions`.
+    """
+    def aggregate_units_wo_geometry(
+            units_gdf: gpd.GeoDataFrame
+    ) -> gpd.GeoDataFrame:
+        """"""
+
+        # Aggregate units with approximated position
+        units_gdf["lon"] = units_gdf.geometry.x
+        units_gdf["lat"] = units_gdf.geometry.y
+
+        grouping_columns = ["zip_code", "city", "lat", "lon"]
+        units_agg_gdf = (
+            units_gdf[
+                grouping_columns + columns_agg_names
+            ].groupby(grouping_columns, as_index=False).agg(
+                **columns_agg_functions
+            )
+        )
+
+        # Create geometry and select columns
+        units_agg_gdf = gpd.GeoDataFrame(
+            units_agg_gdf,
+            geometry=gpd.points_from_xy(units_agg_gdf.lon,
+                                        units_agg_gdf.lat),
+            crs=target_crs,
+        )[
+            ["zip_code", "city"] +
+            list(columns_agg_functions.keys()) +
+            ["geometry"]
+            ]
+        return units_agg_gdf.assign(
+            status="In Betrieb oder in Planung",
+            geometry_approximated=1,
+        )
+
+    # Check if all required columns are present
+    if not all([c in units_df.columns for c in ["zip_code", "city"]]):
+        raise ValueError(
+            "Column zip_code or city not present, geocoding not possible."
+        )
+    columns_agg_names = list({c for c, _ in columns_agg_functions.values()})
+    if not all([c in units_df.columns for c in columns_agg_names]):
+        raise ValueError(
+            "On or more columns requested in the aggregation functions dict "
+            "(columns_agg_functions) are not present, cannot proceed."
+        )
+
+    units_with_inferred_geom_gdf = geocode(units_df)
+    units_with_inferred_geom_gdf = units_with_inferred_geom_gdf.assign(
+        geometry_approximated=1,
+    )
+
+    units_with_inferred_geom_agg_gdf = aggregate_units_wo_geometry(
+        units_with_inferred_geom_gdf.copy()
+    )
+
+    return units_with_inferred_geom_gdf, units_with_inferred_geom_agg_gdf

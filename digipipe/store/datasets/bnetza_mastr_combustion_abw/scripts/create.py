@@ -28,7 +28,7 @@ def process() -> None:
     ).set_index("mastr_id")
 
     units = mastr.add_voltage_level(
-        units=units,
+        units_df=units,
         locations_path=snakemake.input.locations,
         gridconn_path=snakemake.input.gridconn
     )
@@ -40,21 +40,47 @@ def process() -> None:
         geometry_approximated=0,
     )
 
+    units_without_geom = (
+        units.loc[(units.lon.isna() | units.lat.isna())].drop(
+            columns=["lon", "lat"])
+        )
+
     # Add geometry for all units without coords (<=30 kW) and
     # add column to indicate that location was inferred by geocoding
-    units_with_inferred_geom = mastr.geocode(
-        units.loc[(units.lon.isna() | units.lat.isna())].drop(
-            columns=["lon", "lat"]
-        ),
-        user_agent=GLOBAL_CONFIG["global"]["geodata"]["geocoder"]["user_agent"],
-        interval=GLOBAL_CONFIG["global"]["geodata"]["geocoder"]["interval_sec"],
-    )
-    units_with_inferred_geom = units_with_inferred_geom.assign(
-        geometry_approximated=1,
-    )
+    if len(units_without_geom) > 0:
+        units_without_geom["fuel_primary"].fillna("", inplace=True)
+        units_without_geom["fuel_secondary"].fillna("", inplace=True)
 
-    # Merge both DFs
-    units = pd.concat([units_with_geom, units_with_inferred_geom])
+        units_with_inferred_geom_gdf, units_with_inferred_geom_agg_gdf = (
+            mastr.geocode_units_wo_geometry(
+                units_without_geom,
+                columns_agg_functions={
+                    "capacity_net": ("capacity_net", "sum"),
+                    "unit_count": ("capacity_net", "count"),
+                    "capacity_gross": ("capacity_gross", "sum"),
+                    "th_capacity": ("th_capacity", "sum"),
+                    "fuel_primary": ("fuel_primary", ";".join),
+                    "fuel_secondary": ("fuel_secondary", ";".join),
+                }
+            )
+        )
+
+        # Merge fuel types into one and make unique
+        units_with_inferred_geom_agg_gdf["fuels"] = df_merge_string_columns(
+            units_with_inferred_geom_agg_gdf[
+                ["fuel_primary", "fuel_secondary"]
+            ]
+        )
+
+        # Merge both GDFs
+        units = pd.concat([units_with_geom, units_with_inferred_geom_gdf])
+        units_agg = pd.concat([
+            units_with_geom.assign(unit_count=1),
+            units_with_inferred_geom_agg_gdf
+        ])
+    else:
+        units = units_with_geom
+        units_agg = units_with_geom.assign(unit_count=1)
 
     # Clip to ABW and add mun and district ids
     units = overlay(
@@ -67,63 +93,16 @@ def process() -> None:
         gdf_overlay=gpd.read_file(snakemake.input.abw_districts),
         retain_rename_overlay_columns={"id": "district_id"}
     )
-
-    # Aggregate units with approximated position
-    units_with_inferred_geom["lon"] = units_with_inferred_geom.geometry.x
-    units_with_inferred_geom["lat"] = units_with_inferred_geom.geometry.y
-
-    units_with_inferred_geom["fuel_primary"].fillna("", inplace=True)
-    units_with_inferred_geom["fuel_secondary"].fillna("", inplace=True)
-
-    units_with_inferred_geom_agg = (
-        units_with_inferred_geom[
-            ["zip_code", "city", "capacity_net", "capacity_gross",
-             "th_capacity", "fuel_primary", "fuel_secondary", "lat", "lon"]
-        ].groupby(["lat", "lon", "zip_code", "city"], as_index=False).agg({
-            "capacity_net": ["sum", "count"],
-            "capacity_gross": "sum",
-            "th_capacity": "sum",
-            "fuel_primary": ";".join,
-            "fuel_secondary": ";".join,
-        })
+    units_agg = overlay(
+        gdf=units_agg,
+        gdf_overlay=gpd.read_file(snakemake.input.abw_muns),
+        retain_rename_overlay_columns={"id": "mun_id"}
     )
-    units_with_inferred_geom_agg.columns = [
-        '_'.join(tup).rstrip('_') for tup in
-        units_with_inferred_geom_agg.columns
-    ]
-    units_with_inferred_geom_agg = units_with_inferred_geom_agg.rename(
-        columns={
-            "capacity_net_sum": "capacity_net",
-            "capacity_gross_sum": "capacity_gross",
-            "th_capacity_sum": "th_capacity",
-            "capacity_net_count": "unit_count",
-            "fuel_primary_join": "fuel_primary",
-            "fuel_secondary_join": "fuel_secondary",
-        }
+    units_agg = overlay(
+        gdf=units_agg,
+        gdf_overlay=gpd.read_file(snakemake.input.abw_districts),
+        retain_rename_overlay_columns={"id": "district_id"}
     )
-
-    # Merge fuel types into one and make unique
-    units_with_inferred_geom_agg["fuels"] = df_merge_string_columns(
-        units_with_inferred_geom_agg[["fuel_primary", "fuel_secondary"]]
-    )
-
-    units_with_inferred_geom_agg = gpd.GeoDataFrame(
-        units_with_inferred_geom_agg,
-        geometry=gpd.points_from_xy(units_with_inferred_geom_agg.lon,
-                                    units_with_inferred_geom_agg.lat),
-        crs="EPSG:3035",
-    )[[
-        "zip_code", "city", "capacity_net", "capacity_gross", "th_capacity",
-        "fuels", "unit_count", "geometry"
-    ]]
-    units_with_inferred_geom_agg = units_with_inferred_geom_agg.assign(
-        status="In Betrieb oder in Planung",
-        geometry_approximated=1,
-    )
-    units_agg = pd.concat([
-        units_with_geom.assign(unit_count=1),
-        units_with_inferred_geom_agg
-    ])
 
     write_geofile(
         gdf=units,

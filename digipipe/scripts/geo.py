@@ -182,7 +182,8 @@ def reproject_simplify(
     gdf : gpd.GeoDataFrame
         Geodata
     target_crs : str
-        CRS the data should be reprojected to.
+        CRS the data should be reprojected to. Defaults to value from global
+        config.
     min_size : float
         Min. size of area to select (in sqm). Use None for no filtering
         (default).

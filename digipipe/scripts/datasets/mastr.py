@@ -97,7 +97,7 @@ def add_voltage_level(
 
 
 def add_geometry(
-        units: pd.DataFrame,
+        units_df: pd.DataFrame,
         drop_units_wo_coords: bool = True,
 ) -> gpd.GeoDataFrame:
     """
@@ -106,7 +106,7 @@ def add_geometry(
 
     Parameters
     ----------
-    units : pd.DataFrame
+    units_df : pd.DataFrame
         Units with columns `lat` and `lon` in CRS WGS84 (EPSG:4326)
     drop_units_wo_coords : bool
         Drop units which do not have valid lat and lon values.
@@ -119,25 +119,25 @@ def add_geometry(
     """
     # Drop units without coords idf requested
     if drop_units_wo_coords:
-        units_count_orig = len(units)
-        units = units.loc[(~units.lon.isna() & ~units.lat.isna())]
+        units_count_orig = len(units_df)
+        units_df = units_df.loc[(~units_df.lon.isna() & ~units_df.lat.isna())]
         print(
-            f"{units_count_orig-len(units)} units have no or invalid "
+            f"{units_count_orig-len(units_df)} units have no or invalid "
             f"coordinates."
         )
 
-    units = gpd.GeoDataFrame(
-        units,
+    units_gdf = gpd.GeoDataFrame(
+        units_df,
         geometry=gpd.points_from_xy(
-            units["lon"], units["lat"], crs=4326
+            units_df["lon"], units_df["lat"], crs=4326
         ),
         crs=4326,
     ).to_crs(3035)
 
     # Drop unnecessary columns
-    units.drop(columns=["lon", "lat"], inplace=True)
+    units_gdf.drop(columns=["lon", "lat"], inplace=True)
 
-    return units
+    return units_gdf
 
 
 def geocode(

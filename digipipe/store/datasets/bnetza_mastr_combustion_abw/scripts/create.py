@@ -66,21 +66,42 @@ def process() -> None:
         )
 
         # Merge fuel types into one and make unique
+        # import pdb
+        # pdb.set_trace()
         units_with_inferred_geom_agg_gdf["fuels"] = df_merge_string_columns(
             units_with_inferred_geom_agg_gdf[
                 ["fuel_primary", "fuel_secondary"]
             ]
         )
+        # units_with_inferred_geom_agg_gdf[
+        #     ["fuel_primary", "fuel_secondary"]
+        # ] = None
 
         # Merge both GDFs
-        units = pd.concat([units_with_geom, units_with_inferred_geom_gdf])
+        units = pd.concat(
+            [units_with_geom, units_with_inferred_geom_gdf]
+        ).drop(columns=["fuel_primary", "fuel_secondary"])
         units_agg = pd.concat([
-            units_with_geom.assign(unit_count=1),
+            units_with_geom.assign(
+                unit_count=1,
+                fuels=(
+                    units_with_geom["fuel_primary"].fillna("") + "; " +
+                    units_with_geom["fuel_secondary"].fillna("")
+                ),
+            ),
             units_with_inferred_geom_agg_gdf
-        ])
+        ]).drop(columns=["fuel_primary", "fuel_secondary"])
     else:
-        units = units_with_geom
-        units_agg = units_with_geom.assign(unit_count=1)
+        units = units_with_geom.drop(
+            columns=["fuel_primary", "fuel_secondary"]
+        )
+        units_agg = units_with_geom.assign(
+            unit_count=1,
+            fuels=(
+                    units_with_geom["fuel_primary"].fillna("") + "; " +
+                    units_with_geom["fuel_secondary"].fillna("")
+            ),
+        ).drop(columns=["fuel_primary", "fuel_secondary"])
 
     # Clip to ABW and add mun and district ids
     units = overlay(

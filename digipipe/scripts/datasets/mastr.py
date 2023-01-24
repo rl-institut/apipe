@@ -2,6 +2,7 @@
 
 import geopandas as gpd
 import pandas as pd
+from geopy.exc import GeocoderUnavailable
 from geopy.extra.rate_limiter import RateLimiter
 from geopy.geocoders import Nominatim
 from typing import Tuple, Union
@@ -189,11 +190,15 @@ def geocode(
         geopy.extra.rate_limiter.RateLimiter
             Nominatim RateLimiter geocoding class to use for geocoding.
         """
-        locator = Nominatim(user_agent=user_agent)
-        return RateLimiter(
-            locator.geocode,
-            min_delay_seconds=interval,
-        )
+        try:
+            locator = Nominatim(user_agent=user_agent)
+            return RateLimiter(
+                locator.geocode,
+                min_delay_seconds=interval,
+            )
+        except GeocoderUnavailable as e:
+            print("Geocoder unavailable, aborting geocoding!")
+            raise
 
     # Define geocoder
     ratelimiter = geocoder(

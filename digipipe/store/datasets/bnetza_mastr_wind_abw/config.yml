@@ -16,7 +16,7 @@ description: |
   ungefähre Position bereit zu stellen.
   Neben einem anlagenscharfen Datensatz wird ein weiterer Datensatz erzeugt,
   der alle Anlagen mit approximierter Position je Position zusammenfasst und
-  jeweils typische Kennwerte enthält (Anzahl Anlagen, Gesamtleistung).
+  jeweils typische Kennwerte enthält (u.a. Anzahl Anlagen, Gesamtleistung).
 
 # Filter settings
 attributes:

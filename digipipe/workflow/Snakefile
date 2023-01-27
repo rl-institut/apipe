@@ -34,7 +34,8 @@ rule all:
         biomass=rules.datasets_bnetza_mastr_biomass_abw_create.output,
         hydro=rules.datasets_bnetza_mastr_hydro_abw_create.output,
         combustion=rules.datasets_bnetza_mastr_combustion_abw_create.output,
-        gsgk=rules.datasets_bnetza_mastr_gsgk_abw_create.output
+        gsgk=rules.datasets_bnetza_mastr_gsgk_abw_create.output,
+        storage=rules.datasets_bnetza_mastr_storage_abw_create.output
     # run:
     #     print("CONFIG MAIN:")
     #     print(config)

@@ -65,3 +65,8 @@ module bnetza_mastr_gsgk_abw:
     snakefile: "bnetza_mastr_gsgk_abw/create.smk"
     config: config["store"]["datasets"]["bnetza_mastr_gsgk_abw"]
 use rule * from bnetza_mastr_gsgk_abw as datasets_bnetza_mastr_gsgk_abw_*
+
+module bnetza_mastr_storage_abw:
+    snakefile: "bnetza_mastr_storage_abw/create.smk"
+    config: config["store"]["datasets"]["bnetza_mastr_storage_abw"]
+use rule * from bnetza_mastr_storage_abw as datasets_bnetza_mastr_storage_abw_*

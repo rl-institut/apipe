@@ -27,6 +27,8 @@ def process():
         gdf_use_centroid=True,
     ).rename(columns={"municipality_id": "id"})
 
+    muns = muns.assign(area_km2=muns.area/1e6)
+
     muns = convert_to_multipolygon(muns)
 
     write_geofile(

@@ -20,7 +20,11 @@ def process():
         gdf=data,
         add_id_column=True,
     )
+
     data = convert_to_multipolygon(data)
+
+    data = data.assign(area_km2=data.area / 1e6)
+
     write_geofile(
         gdf=data,
         file=outfile,

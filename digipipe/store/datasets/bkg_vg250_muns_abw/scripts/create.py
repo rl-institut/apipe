@@ -21,11 +21,11 @@ def process():
     )
 
     muns = overlay(
-        gdf=muns.rename(columns={"id": "mun_id"}),
+        gdf=muns.rename(columns={"id": "municipality_id"}),
         gdf_overlay=gpd.read_file(snakemake.input.abw_districts),
         retain_rename_overlay_columns={"id": "district_id"},
         gdf_use_centroid=True,
-    ).rename(columns={"mun_id": "id"})
+    ).rename(columns={"municipality_id": "id"})
 
     muns = convert_to_multipolygon(muns)
 

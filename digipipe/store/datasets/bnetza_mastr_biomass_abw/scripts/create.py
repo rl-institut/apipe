@@ -74,7 +74,7 @@ def process() -> None:
     units = overlay(
         gdf=units,
         gdf_overlay=gpd.read_file(snakemake.input.abw_muns),
-        retain_rename_overlay_columns={"id": "mun_id"}
+        retain_rename_overlay_columns={"id": "municipality_id"}
     )
     units = overlay(
         gdf=units,
@@ -84,7 +84,7 @@ def process() -> None:
     units_agg = overlay(
         gdf=units_agg,
         gdf_overlay=gpd.read_file(snakemake.input.abw_muns),
-        retain_rename_overlay_columns={"id": "mun_id"}
+        retain_rename_overlay_columns={"id": "municipality_id"}
     )
     units_agg = overlay(
         gdf=units_agg,

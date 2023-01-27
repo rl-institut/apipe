@@ -251,6 +251,7 @@ def overlay(
         gdf: gpd.GeoDataFrame,
         gdf_overlay: gpd.GeoDataFrame,
         retain_rename_overlay_columns: dict = None,
+        gdf_use_centroid: bool = False
 ) -> gpd.GeoDataFrame:
     """Clips geodata to polygon
 
@@ -263,6 +264,9 @@ def overlay(
         "geometry")
     retain_rename_overlay_columns : dict
         Columns to retain from `gdf_clip` (do not include "geometry")
+    gdf_use_centroid : bool
+        If True, the centroid of gdf will be used for overlay (geometry column
+        will be retained though). Defaults to False.
     """
     if retain_rename_overlay_columns is None:
         columns = ["geometry"]
@@ -272,11 +276,27 @@ def overlay(
             raise ValueError("Geometry must not be in rename dict!")
         columns = list(retain_rename_overlay_columns.keys()) + ["geometry"]
 
-    # Clip and rename columns
-    gdf_clipped = gpd.overlay(
-        gdf,
-        gdf_overlay[columns],
-        how='intersection'
-    ).rename(columns=retain_rename_overlay_columns)
+    # Use centroid if requested
+    if gdf_use_centroid is True:
+        # Retain geometry
+        geometry_backup = gdf.geometry.copy()
+
+        # Clip and rename columns
+        gdf_clipped = gpd.overlay(
+            gdf.assign(geometry=gdf.centroid),
+            gdf_overlay[columns],
+            how='intersection'
+        ).rename(
+            columns=retain_rename_overlay_columns
+        ).assign(
+            geometry=geometry_backup
+        )
+    else:
+        # Clip and rename columns
+        gdf_clipped = gpd.overlay(
+            gdf,
+            gdf_overlay[columns],
+            how='intersection'
+        ).rename(columns=retain_rename_overlay_columns)
 
     return gdf_clipped

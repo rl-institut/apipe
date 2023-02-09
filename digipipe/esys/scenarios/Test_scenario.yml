@@ -32,6 +32,7 @@ paths_scalars:
 filter_scalars:
   1:
     scenario_key:
+      - "ALL"
       - "dummy_scenario"
 
 paths_timeseries:

@@ -7,13 +7,16 @@ in_path1 : str
 out_path : str
     ``results/_resources/scal_costs_efficiencies.csv``: path incl. file name of output file with
     prepared scalar data
+
 Outputs
 ---------
 pandas.DataFrame
     with scalar data prepared for parametrization
+
 Description
 -------------
 The script performs the following steps to prepare scalar data for parametrization:
+
 * Calculate annualized investment cost from overnight cost, lifetime and wacc.
 """
 

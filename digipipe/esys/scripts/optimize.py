@@ -9,15 +9,18 @@ optimized : str
     ``results/{scenario}/optimized/`` Target path to store dump of oemof.solph.Energysystem
     with optimization results and parameters.
 logfile : str
-    ``logs/{scenario}.log``: path to logfile
+    ``results/{scenario}/{scenario}.log``: path to logfile
+
 Outputs
 ---------
 es.dump
     oemof.solph.EnergySystem with results, meta-results and parameters
+
 Description
 -------------
 Given an EnergyDataPackage, this script creates an oemof.solph.EnergySystem and an
 oemof.solph.Model, which is optimized.
+
 The following constraints are added:
     - `emission_limit`: maximum amount of emissions
     - `equate_flows_by_keyword`: electricity-gas relation is set (electricity/gas = factor).
@@ -25,6 +28,7 @@ The following constraints are added:
       To use this constraint you need to copy
       [`equate_flows.py`](https://github.com/oemof/oemof-solph/blob/features/equate-flows/src/oemof/solph/constraints/equate_variables.py)
       of oemof.solph into `/tools` directory of `oemof-B3`.
+
 The EnergySystem with results, meta-results and parameters is saved.
 """
 import logging
@@ -76,6 +80,7 @@ def get_emission_limit(scalars):
 def get_electricity_gas_relations(scalars):
     r"""
     Gets electricity/gas relations from scalars. Returns None if no relations are given.
+
     Returns
     -------
     pd.DataFrame
@@ -114,8 +119,10 @@ def get_bpchp_output_parameters(scalars):
 def add_output_parameters_to_bpchp(parameters, energysystem):
     r"""
     Adds keywords for electricity-gas relation constraint to backpressure CHPs.
+
     This is necessary as oemof.tabular does not support `output_parameters` of these components,
     yet. The keywords are set as attributes of the output flow towards `heat_bus`.
+
     Parameters
     ----------
     parameters : pd.DataFrame
@@ -150,10 +157,12 @@ def add_output_parameters_to_bpchp(parameters, energysystem):
 def add_electricity_gas_relation_constraints(model, relations):
     r"""
     Adds constraint `equate_flows_by_keyword` to `model`.
+
     The components belonging to 'electricity' or 'gas' are selected by keywords. The keywords of
     components powered by gas start with `esys_conf.settings.optimize.gas_key` and such powered by
     electricity with `esys_conf.settings.optimize.el_key`, followed by `carrier` and `region` e.g.
     <`GAS_KEY`>-<carrier>-<region>.
+
     Parameters
     ----------
     model : oemof.solph.Model
@@ -190,7 +199,7 @@ if __name__ == "__main__":
     optimized = sys.argv[2]
 
     logfile = sys.argv[3]
-    logger = esys_conf.add_snake_logger(logfile, "optimize")
+    logger = esys_conf.add_snake_logger("optimize")
 
     # get additional scalars, set to None at first
     emission_limit = None
@@ -283,7 +292,6 @@ if __name__ == "__main__":
         es.params = processing.parameter_as_dict(es)
 
         # dump the EnergySystem
-        es.dump(optimized)
         es.dump(optimized)
 
         logger.info(f"Results saved to {optimized}.")

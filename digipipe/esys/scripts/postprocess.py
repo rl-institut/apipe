@@ -10,25 +10,30 @@ scenario_name : str
 destination : str
     ``results/{scenario}/postprocessed``: Target path for postprocessed results.
 logfile : str
-    ``logs/{scenario}.log``: path to logfile
+    ``results/{scenario}/{scenario}.log``: path to logfile
+
 Outputs
 ---------
 oemoflex.ResultsDatapackage
     ResultsDatapackage
+
 Description
 -------------
 The script performs the postprocessing of optimization results.
+
 Explanations about the structure of the postprocessed data can be found in section
-:ref:`Postprocessed data` of the `docu <https://oemof-b3.readthedocs.io/en/latest/index.html>`_.
+:ref:`Postprocessing` of the `docu <https://oemof-b3.readthedocs.io/en/latest/index.html>`_.
 """
 import os
 import sys
 import pandas as pd
 
 from oemof.solph import EnergySystem
+from oemoflex import config as oemoflex_config
 from oemoflex.model.datapackage import ResultsDataPackage
 
 from digipipe.esys.esys.config import esys_conf
+
 
 if __name__ == "__main__":
 
@@ -38,8 +43,9 @@ if __name__ == "__main__":
 
     destination = sys.argv[3]
 
-    logfile = sys.argv[4]
-    logger = esys_conf.add_snake_logger(logfile, "postprocess")
+    logger = esys_conf.add_snake_logger("postprocess")
+
+    oemoflex_config.config.settings.SEPARATOR = esys_conf.settings.general.separator
 
     try:
         es = EnergySystem()
@@ -53,7 +59,8 @@ if __name__ == "__main__":
         rdp.to_csv_dir(destination)
 
         pd.Series({"objective": es.meta_results["objective"]}).to_csv(
-            os.path.join(destination, "objective.csv")
+            os.path.join(destination, "objective.csv"),
+            sep=esys_conf.settings.general.separator,
         )
 
     except:  # noqa: E722

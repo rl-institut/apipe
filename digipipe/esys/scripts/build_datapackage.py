@@ -7,28 +7,32 @@ scenario_specs : str
 destination : str
     ``results/{scenario}/preprocessed``: path of output directory
 logfile : str
-    ``logs/{scenario}.log``: path to logfile
+    ``results/{scenario}/{scenario}.log``: path to logfile
+
 Outputs
 ---------
 oemoflex.EnergyDatapackage
     EnergyDatapackage that can be read by oemof.tabular, with data (scalars and timeseries)
     as csv and metadata (describing resources and foreign key relations) as json.
+
 Description
 -------------
 The script creates an empty EnergyDatapackage from the specifications given in the scenario_specs,
 fills it with scalar and timeseries data, infers the metadata and saves it to the given
 destination. Further, additional parameters like emission limit are saved in a separate file.
+
 Explanations about the structure of the preprocessed datapackage can be found in section
-:ref:`Preprocessed datapackages` of the
+:ref:`Build datapackages` of the
 `docu <https://oemof-b3.readthedocs.io/en/latest/index.html>`_.
+
 """
-import logging
 import sys
 import os
 from collections import OrderedDict
 
 import pandas as pd
 from oemoflex.model.datapackage import EnergyDataPackage
+from oemoflex import config as oemoflex_config
 from digipipe.esys.esys.config.esys_conf import load_yaml
 
 from digipipe.esys.esys.model import (
@@ -44,11 +48,10 @@ from digipipe.esys.esys.tools.data_processing import (
     multi_load_b3_timeseries,
     unstack_timeseries,
     expand_regions,
+    prepare_attr_name,
     save_df,
 )
 from digipipe.esys.esys.config import esys_conf
-
-logger = logging.getLogger()
 
 
 def update_with_checks(old, new):
@@ -61,6 +64,7 @@ def update_with_checks(old, new):
         Old Series or DataFrame to update
     new : pd.Series or pd.DataFrame
         New Series or DataFrame
+
     Returns
     -------
     None
@@ -81,6 +85,7 @@ def parametrize_scalars(edp, scalars, filters):
     r"""
     Parametrizes an oemoflex.EnergyDataPackage with scalars. Accepts an OrderedDict of filters
     that is used to filter the scalars and subsequently update the EnergyDatapackage.
+
     Parameters
     ----------
     edp : oemoflex.EnergyDatapackage
@@ -89,6 +94,7 @@ def parametrize_scalars(edp, scalars, filters):
         Scalar data
     filters : OrderedDict
         Filters for the scalar data
+
     Returns
     -------
     edp : oemoflex.EnergyDatapackage
@@ -120,6 +126,7 @@ def parametrize_scalars(edp, scalars, filters):
 def parametrize_sequences(edp, ts, filters):
     r"""
     Parametrizes an oemoflex.EnergyDataPackage with timeseries.
+
     Parameters
     ----------
     edp : oemoflex.EnergyDatapackage
@@ -128,6 +135,7 @@ def parametrize_sequences(edp, ts, filters):
         Timeseries data
     filters : dict
         Filters for timeseries data
+
     Returns
     -------
     edp : oemoflex.EnergyDatapackage
@@ -237,12 +245,13 @@ if __name__ == "__main__":
 
     destination = sys.argv[2]
 
-    logfile = sys.argv[3]
-    logger = esys_conf.add_snake_logger(logfile, "build_datapackage")
+    logger = esys_conf.add_snake_logger("build_datapackage")
 
     scenario_specs = load_yaml(scenario_specs)
 
     model_structure = model_structures[scenario_specs["model_structure"]]
+
+    oemoflex_config.config.settings.SEPARATOR = esys_conf.settings.general.separator
 
     # setup empty EnergyDataPackage
     datetimeindex = pd.date_range(
@@ -271,6 +280,12 @@ if __name__ == "__main__":
 
     # Replace 'ALL' in the column regions by the actual regions
     scalars = expand_regions(scalars, model_structure["regions"])
+
+    # Check and set attribute 'name'
+    scalars = prepare_attr_name(
+        scalars,
+        esys_conf.settings.build_datapackage.overwrite_name,
+    )
 
     # get filters for scalars
     filters = OrderedDict(sorted(scenario_specs["filter_scalars"].items()))

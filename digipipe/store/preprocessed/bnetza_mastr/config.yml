@@ -25,5 +25,6 @@ files_extract:
     "bnetza_mastr_locations_extended_raw.csv",
     "bnetza_mastr_solar_raw.csv",
     "bnetza_mastr_storage_raw.csv",
+    "bnetza_mastr_storage_unit_raw.csv",
     "bnetza_mastr_wind_raw.csv",
   ]

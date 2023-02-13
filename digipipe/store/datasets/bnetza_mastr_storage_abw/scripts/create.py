@@ -11,20 +11,44 @@ from digipipe.config import GLOBAL_CONFIG
 
 
 def process() -> None:
-    attrs = snakemake.config["attributes"]
-    attrs_filter = snakemake.config["attributes_filter"]
-
+    # Read units
     units = pd.read_csv(
         snakemake.input.units,
-        usecols=set(attrs.keys()) | set(attrs_filter.keys()),
+        usecols=(
+            set(snakemake.config["unit_attributes"].keys()) |
+            set(snakemake.config["unit_attributes_filter"].keys())
+        ),
         dtype={"Postleitzahl": str},
     )
-
     units = rename_filter_attributes(
         gdf=units,
-        attrs_filter_by_values=attrs_filter,
-        attrs_mapping=attrs,
+        attrs_filter_by_values=snakemake.config["unit_attributes_filter"],
+        attrs_mapping=snakemake.config["unit_attributes"],
     ).set_index("mastr_id")
+
+    # Read plants (for storage capacity)
+    plants = pd.read_csv(
+        snakemake.input.units_capacity,
+        usecols=snakemake.config["plant_attributes"].keys(),
+    )
+    plants = rename_filter_attributes(
+        gdf=plants,
+        attrs_mapping=snakemake.config["plant_attributes"],
+    )
+
+    # Merge storage capacity
+    units = units.merge(
+        plants,
+        left_on="mastr_id",
+        right_on="unit_mastr_id",
+        how="left",
+    ).drop(columns=["unit_mastr_id", "plant_mastr_id"])
+    units_count_wo_capacity = len(units.loc[units.plant_mastr_id.isna()])
+    if units_count_wo_capacity > 0:
+        print(
+            f"{units_count_wo_capacity} storages have no plant associated and "
+            f"hence no storage capacity assigned."
+        )
 
     units = mastr.add_voltage_level(
         units_df=units,
@@ -54,6 +78,7 @@ def process() -> None:
                     "capacity_net": ("capacity_net", "sum"),
                     "unit_count": ("capacity_net", "count"),
                     "capacity_gross": ("capacity_gross", "sum"),
+                    "storage_capacity": ("storage_capacity", "sum"),
                 }
             )
         )

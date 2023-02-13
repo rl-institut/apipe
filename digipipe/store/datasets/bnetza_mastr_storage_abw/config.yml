@@ -19,7 +19,7 @@ description: |
   jeweils typische Kennwerte enthält (u.a. Anzahl Anlagen, Gesamtleistung).
 
 # Filter settings
-attributes:
+unit_attributes:
   {"EinheitMastrNummer": "mastr_id",
    "EinheitBetriebsstatus": "status",
    "LokationMastrNummer": "mastr_location_id",
@@ -33,7 +33,6 @@ attributes:
    "NameStromerzeugungseinheit": "name",
    "Bruttoleistung": "capacity_gross",
    "Nettonennleistung": "capacity_net",
-   "NutzbareSpeicherkapazitaet": "storage_capacity",
    "Einspeisungsart": "feedin_type",
    "Einheittyp": "type",
    "Batterietechnologie": "battery_technology",
@@ -41,10 +40,15 @@ attributes:
    "Pumpspeichertechnologie": "pumped_hydro_technology",
    "Notstromaggregat": "emergency_generator",
    "NetzbetreiberpruefungStatus": "validated_by_system_operator"}
-attributes_filter:
+unit_attributes_filter:
   {"Land": "Deutschland",
    "EinheitBetriebsstatus": ["In Betrieb", "In Planung"],
    "Landkreis": ["Wittenberg", "Anhalt-Bitterfeld", "Dessau-Roßlau"]}
+
+plant_attributes:
+  {"VerknuepfteEinheit": "unit_mastr_id",
+   "MastrNummer": "plant_mastr_id",
+   "NutzbareSpeicherkapazitaet": "storage_capacity"}
 
 # Output settings
 layer: bnetza_mastr_storage_abw

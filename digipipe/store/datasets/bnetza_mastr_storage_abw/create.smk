@@ -19,6 +19,7 @@ rule create:
     """
     input:
         units=SOURCE_DATASET_PATH / "bnetza_mastr_storage_raw.csv",
+        units_capacity=SOURCE_DATASET_PATH / "bnetza_mastr_storage_unit_raw.csv",
         locations=SOURCE_DATASET_PATH / "bnetza_mastr_locations_extended_raw.csv",
         gridconn=SOURCE_DATASET_PATH / "bnetza_mastr_grid_connections_raw.csv",
         abw_muns=PATH_TO_ABW_MUNICIPALITIES_GPKG,

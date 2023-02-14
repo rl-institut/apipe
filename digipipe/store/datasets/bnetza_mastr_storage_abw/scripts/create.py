@@ -42,13 +42,14 @@ def process() -> None:
         left_on="mastr_id",
         right_on="unit_mastr_id",
         how="left",
-    ).drop(columns=["unit_mastr_id", "plant_mastr_id"])
+    )
     units_count_wo_capacity = len(units.loc[units.plant_mastr_id.isna()])
     if units_count_wo_capacity > 0:
         print(
             f"{units_count_wo_capacity} storages have no plant associated and "
             f"hence no storage capacity assigned."
         )
+    units.drop(columns=["unit_mastr_id", "plant_mastr_id"], inplace=True)
 
     units = mastr.add_voltage_level(
         units_df=units,

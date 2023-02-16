@@ -1,12 +1,14 @@
-import pandas as pd
 import geopandas as gpd
+import pandas as pd
 
 
 def process() -> None:
     pop_history = pd.concat(
-        [pd.read_csv(f, dtype={"ags": str}, index_col="ags")
-         for f in snakemake.input.pop_history],
-        axis=1
+        [
+            pd.read_csv(f, dtype={"ags": str}, index_col="ags")
+            for f in snakemake.input.pop_history
+        ],
+        axis=1,
     )
     pop_prognosis = pd.read_csv(
         snakemake.input.pop_prognosis,
@@ -34,39 +36,43 @@ def process() -> None:
         year_delta_base = avail_years_prognosis[-1] - avail_years_prognosis[-2]
         year_delta_extrapol = year - avail_years_prognosis[-1]
         pop_prognosis[str(year)] = (
-            pop_prognosis[str(avail_years_prognosis[-1])] +
-            (
-                    pop_prognosis[str(avail_years_prognosis[-1])] -
-                    pop_prognosis[str(avail_years_prognosis[-2])]
-            ) / year_delta_base * year_delta_extrapol
+            pop_prognosis[str(avail_years_prognosis[-1])]
+            + (
+                pop_prognosis[str(avail_years_prognosis[-1])]
+                - pop_prognosis[str(avail_years_prognosis[-2])]
+            )
+            / year_delta_base
+            * year_delta_extrapol
         )
 
     # Drop not requested prognosis years and glue everything together
     pop_prognosis.drop(
-        columns=[c for c in pop_prognosis.columns
-                 if int(c) not in prognosis_years+extrapol_years],
-        inplace=True
+        columns=[
+            c
+            for c in pop_prognosis.columns
+            if int(c) not in prognosis_years + extrapol_years
+        ],
+        inplace=True,
     )
     population = pd.concat([pop_history, pop_prognosis], axis=1)
 
     # Add mun_id and data origin
-    population = pd.concat(
-        [muns.set_index("ags")["id"].rename("mun_id"), population],
-        axis=1
-    ).sort_index().set_index("mun_id", drop=True)
+    population = (
+        pd.concat([muns.set_index("ags")["id"].rename("mun_id"), population], axis=1)
+        .sort_index()
+        .set_index("mun_id", drop=True)
+    )
     population.columns = pd.MultiIndex.from_arrays(
         [
             population.columns,
-            len(avail_years_history)*["historic"] +
-            len(prognosis_years)*["prognosis"] +
-            len(extrapol_years)*["extrapolation"]
+            len(avail_years_history) * ["historic"]
+            + len(prognosis_years) * ["prognosis"]
+            + len(extrapol_years) * ["extrapolation"],
         ],
-        names=("year", "type")
+        names=("year", "type"),
     )
 
-    population.to_csv(
-        snakemake.output[0]
-    )
+    population.to_csv(snakemake.output[0])
 
 
 if __name__ == "__main__":

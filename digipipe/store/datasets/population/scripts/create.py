@@ -49,6 +49,21 @@ def process() -> None:
     )
     population = pd.concat([pop_history, pop_prognosis], axis=1)
 
+    # Add mun_id and data origin
+    population = pd.concat(
+        [muns.set_index("ags")["id"].rename("mun_id"), population],
+        axis=1
+    ).sort_index().set_index("mun_id", drop=True)
+    population.columns = pd.MultiIndex.from_arrays(
+        [
+            population.columns,
+            len(avail_years_history)*["historic"] +
+            len(prognosis_years)*["prognosis"] +
+            len(extrapol_years)*["extrapolation"]
+        ],
+        names=("year", "type")
+    )
+
     population.to_csv(
         snakemake.output[0]
     )

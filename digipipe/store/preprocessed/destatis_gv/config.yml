@@ -1,0 +1,40 @@
+##############################################################################
+# This file holds configuration parameters for the creation of this dataset. #
+##############################################################################
+
+# Name of the dataset (used e.g. for report purposes)
+title:
+  Population per municipality
+
+# Description of this dataset
+description:
+  Municipalities with population from the Federal Statistical Office for
+  years 2010, 2015, 2020, 2021, 2022.
+
+# Excel file
+excel_file:
+  sheet_name:
+    {
+      "2010": "Gemeindedaten",
+      "2015": "Onlineprodukt_Gemeinden_311215",
+      "2020": "Onlineprodukt_Gemeinden",
+      "2021": "Onlineprodukt_Gemeinden",
+      "2022": "Onlineprodukt_Gemeinden"
+    }
+  usecols: "C:E, G, J"
+  skiprows: 6
+  names:
+    [
+      "Land",
+      "RB",
+      "Kreis",
+      "Gem",
+      "population"
+    ]
+  dtype:
+    {
+      "Land": str,
+      "RB": str,
+      "Kreis": str,
+      "Gem": str
+    }

@@ -7,8 +7,6 @@ from digipipe.scripts.geo import (
     rename_filter_attributes
 )
 
-from digipipe.config import GLOBAL_CONFIG
-
 
 def process() -> None:
     # Read units

@@ -8,8 +8,6 @@ from digipipe.scripts.geo import (
 )
 from digipipe.store.utils import df_merge_string_columns
 
-from digipipe.config import GLOBAL_CONFIG
-
 
 def process() -> None:
     attrs = snakemake.config["attributes"]

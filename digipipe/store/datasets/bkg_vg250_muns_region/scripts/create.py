@@ -1,11 +1,8 @@
 import geopandas as gpd
-from digipipe.scripts.geo import (
-    convert_to_multipolygon,
-    write_geofile,
-    rename_filter_attributes,
-    reproject_simplify,
-    overlay
-)
+
+from digipipe.scripts.geo import (convert_to_multipolygon, overlay,
+                                  rename_filter_attributes, reproject_simplify,
+                                  write_geofile)
 
 
 def process():
@@ -27,7 +24,7 @@ def process():
         gdf_use_centroid=True,
     ).rename(columns={"municipality_id": "id"})
 
-    muns = muns.assign(area_km2=muns.area/1e6)
+    muns = muns.assign(area_km2=muns.area / 1e6)
 
     muns = convert_to_multipolygon(muns)
 

@@ -1,0 +1,11 @@
+##############################################################################
+# This file holds configuration parameters for the creation of this dataset. #
+##############################################################################
+
+# Name of the dataset (used e.g. for report purposes)
+title:
+  Region
+
+# Description of this dataset
+description:
+  Region aus Geodaten der Verwaltungsgebiete zusammengeführt.

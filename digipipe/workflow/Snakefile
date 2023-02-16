@@ -20,22 +20,22 @@ include: "../store/datasets/module.smk"
 rule all:
     input:
         forests=rules.datasets_osm_forest_extract_tags.output,
-        muns=rules.datasets_bkg_vg250_muns_abw_create.output,
-        districts=rules.datasets_bkg_vg250_districts_abw_create.output,
-        region=rules.datasets_bkg_vg250_region_abw_create.output,
+        muns=rules.datasets_bkg_vg250_muns_region_create.output,
+        districts=rules.datasets_bkg_vg250_districts_region_create.output,
+        region=rules.datasets_bkg_vg250_region_create.output,
         # ds1=get_abs_dataset_path("2_datasets", "osm_forest") / "osm_forest.gpkg",
-        # ds2=get_abs_dataset_path("2_datasets", "bkg_vg250_muns_abw") / "bkg_vg250_muns_abw.gpkg",
-        # ds3=get_abs_dataset_path("2_datasets", "bkg_vg250_districts_abw") / "bkg_vg250_districts_abw.gpkg",
-        # ds4=get_abs_dataset_path("2_datasets", "bkg_vg250_region_abw") / "bkg_vg250_region_abw.gpkg"
+        # ds2=get_abs_dataset_path("2_datasets", "bkg_vg250_muns_region") / "bkg_vg250_muns_region.gpkg",
+        # ds3=get_abs_dataset_path("2_datasets", "bkg_vg250_districts_region") / "bkg_vg250_districts_region.gpkg",
+        # ds4=get_abs_dataset_path("2_datasets", "bkg_vg250_region_region") / "bkg_vg250_region_region.gpkg"
         #mastr=rules.preprocessed_bnetza_mastr_create.output.files
-        wind=rules.datasets_bnetza_mastr_wind_abw_create.output,
-        pv_ground=rules.datasets_bnetza_mastr_pv_ground_abw_create.output,
-        pv_roof=rules.datasets_bnetza_mastr_pv_roof_abw_create.output,
-        biomass=rules.datasets_bnetza_mastr_biomass_abw_create.output,
-        hydro=rules.datasets_bnetza_mastr_hydro_abw_create.output,
-        combustion=rules.datasets_bnetza_mastr_combustion_abw_create.output,
-        gsgk=rules.datasets_bnetza_mastr_gsgk_abw_create.output,
-        storage=rules.datasets_bnetza_mastr_storage_abw_create.output
+        wind=rules.datasets_bnetza_mastr_wind_region_create.output,
+        pv_ground=rules.datasets_bnetza_mastr_pv_ground_region_create.output,
+        pv_roof=rules.datasets_bnetza_mastr_pv_roof_region_create.output,
+        biomass=rules.datasets_bnetza_mastr_biomass_region_create.output,
+        hydro=rules.datasets_bnetza_mastr_hydro_region_create.output,
+        combustion=rules.datasets_bnetza_mastr_combustion_region_create.output,
+        gsgk=rules.datasets_bnetza_mastr_gsgk_region_create.output,
+        storage=rules.datasets_bnetza_mastr_storage_region_create.output
     # run:
     #     print("CONFIG MAIN:")
     #     print(config)

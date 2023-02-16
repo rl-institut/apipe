@@ -88,16 +88,16 @@ def create_tag_string_ogr(taglist):
     return {"tags": tags, "conditions": tag_conditions}
 
 
-PATH_TO_ABW_MUNICIPALITIES_GPKG = get_abs_dataset_path(
+PATH_TO_REGION_MUNICIPALITIES_GPKG = get_abs_dataset_path(
     "datasets",
-    "bkg_vg250_muns_abw",
+    "bkg_vg250_muns_region",
     data_dir=True
-) / "bkg_vg250_muns_abw.gpkg"
-PATH_TO_ABW_DISTRICTS_GPKG = get_abs_dataset_path(
+) / "bkg_vg250_muns_region.gpkg"
+PATH_TO_REGION_DISTRICTS_GPKG = get_abs_dataset_path(
     "datasets",
-    "bkg_vg250_districts_abw",
+    "bkg_vg250_districts_region",
     data_dir=True
-) / "bkg_vg250_districts_abw.gpkg"
+) / "bkg_vg250_districts_region.gpkg"
 
 
 def df_merge_string_columns(

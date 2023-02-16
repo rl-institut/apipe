@@ -64,8 +64,6 @@ def process() -> None:
         )
 
         # Merge fuel types into one and make unique
-        # import pdb
-        # pdb.set_trace()
         units_with_inferred_geom_agg_gdf["fuels"] = df_merge_string_columns(
             units_with_inferred_geom_agg_gdf[
                 ["fuel_primary", "fuel_secondary"]

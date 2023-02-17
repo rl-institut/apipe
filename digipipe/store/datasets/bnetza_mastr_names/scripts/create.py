@@ -19,15 +19,14 @@ def process() -> None:
                 )
 
     naming_dict = {
-        "datasets_caption_map":
-            {_: "mastr" for _ in snakemake.params.mastr_configs.keys()},
-        "captions": {
-            "mastr": naming_dict
-        }
+        "datasets_caption_map": {
+            _: "mastr" for _ in snakemake.params.mastr_configs.keys()
+        },
+        "captions": {"mastr": naming_dict},
     }
 
     # Dump as JSON while preserving umlaute
-    with open(snakemake.output.outfile, 'w', encoding="utf8") as f:
+    with open(snakemake.output.outfile, "w", encoding="utf8") as f:
         json.dump(naming_dict, f, ensure_ascii=False, indent=4)
 
 

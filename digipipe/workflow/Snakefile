@@ -45,11 +45,11 @@ rule clean:
     params:
         preprocessed=expand(
             get_abs_dataset_path("preprocessed", "{name}", data_dir=True) / "*",
-            name=load_dataset_configs().get("store")["preprocessed"].keys()
+            name=config.get("store")["preprocessed"].keys()
         ),
         datasets=expand(
             get_abs_dataset_path("datasets", "{name}", data_dir=True) / "*",
-            name=load_dataset_configs().get("store")["datasets"].keys()
+            name=config.get("store")["datasets"].keys()
         )
     shell:
         """

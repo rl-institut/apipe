@@ -71,10 +71,10 @@ module bnetza_mastr_storage_region:
     config: config["store"]["datasets"]["bnetza_mastr_storage_region"]
 use rule * from bnetza_mastr_storage_region as datasets_bnetza_mastr_storage_region_*
 
-module bnetza_mastr_names:
-    snakefile: "bnetza_mastr_names/create.smk"
-    config: config["store"]["datasets"]["bnetza_mastr_names"]
-use rule * from bnetza_mastr_names as datasets_bnetza_mastr_names_*
+module bnetza_mastr_captions:
+    snakefile: "bnetza_mastr_captions/create.smk"
+    config: config["store"]["datasets"]["bnetza_mastr_captions"]
+use rule * from bnetza_mastr_captions as datasets_bnetza_mastr_captions_*
 
 module population:
     snakefile: "population/create.smk"

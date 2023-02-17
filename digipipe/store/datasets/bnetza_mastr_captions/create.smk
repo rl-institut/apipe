@@ -7,8 +7,7 @@ Note: To include the file in the main workflow, it must be added to the respecti
 from digipipe.scripts.config import load_dataset_configs
 from digipipe.store.utils import get_abs_dataset_path
 
-DATASET_PATH = get_abs_dataset_path("datasets", "bnetza_mastr_names")
-SOURCE_DATASET_PATH = get_abs_dataset_path("preprocessed", "bnetza_mastr", data_dir=True)
+DATASET_PATH = get_abs_dataset_path("datasets", "bnetza_mastr_captions")
 
 def get_mastr_configs() -> dict:
     return {

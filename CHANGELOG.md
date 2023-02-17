@@ -15,6 +15,7 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Add Nominatim geocoder
 - Add dataset: population
 - Clean rule
+- Datasets attribute captions
 
 ### Changed
 

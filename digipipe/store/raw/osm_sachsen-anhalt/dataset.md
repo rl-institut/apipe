@@ -1,3 +1,3 @@
-# Raw dataset: osm_sachsen-anhalt
+# OpenStreetMap
 
 OpenStreetMap data extract for Sachsen-Anhalt.

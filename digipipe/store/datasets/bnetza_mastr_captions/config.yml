@@ -1,13 +1,3 @@
 ##############################################################################
 # This file holds configuration parameters for the creation of this dataset. #
 ##############################################################################
-
-# Name of the dataset (used e.g. for report purposes)
-title:
-  Bezeichner und Namen aus MaStR
-
-# Description of this dataset
-description: |
-  Bezeichner und Namen aus MaStR als Mapping
-  <NAME_IN_GEODATEN> -> <NAME_IN_MASTR> wobei CamelCase aus <NAME_IN_MASTR> in
-  Leerzeichen konvertiert werden.

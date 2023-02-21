@@ -156,7 +156,6 @@ def geocode(
         Units from MaStR. Must contain the following columns:
         * zip_code (str)
         * city (str)
-        *
     user_agent : str
         Some app name. Defaults to "geocoder"
     interval : int

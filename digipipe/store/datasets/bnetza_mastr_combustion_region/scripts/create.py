@@ -65,9 +65,6 @@ def process() -> None:
         units_with_inferred_geom_agg_gdf["fuels"] = df_merge_string_columns(
             units_with_inferred_geom_agg_gdf[["fuel_primary", "fuel_secondary"]]
         )
-        # units_with_inferred_geom_agg_gdf[
-        #     ["fuel_primary", "fuel_secondary"]
-        # ] = None
 
         # Merge both GDFs
         units = pd.concat([units_with_geom, units_with_inferred_geom_gdf]).drop(

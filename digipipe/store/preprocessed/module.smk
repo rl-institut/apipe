@@ -21,3 +21,8 @@ module osm_filtered:
     snakefile: "osm_filtered/create.smk"
     config: config["store"]["preprocessed"]["osm_filtered"]
 use rule * from osm_filtered as preprocessed_osm_filtered_*
+
+module bnetza_mastr:
+    snakefile: "bnetza_mastr/create.smk"
+    config: config["store"]["preprocessed"]["bnetza_mastr"]
+use rule * from bnetza_mastr as preprocessed_bnetza_mastr_*

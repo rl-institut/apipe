@@ -16,8 +16,3 @@ excel_file:
 # Years to be included (leave empty for all)
 years:
   []
-#  [
-#    2025,
-#    2030,
-#    2035
-#  ]

@@ -56,11 +56,14 @@ def process() -> None:
     )
     population = pd.concat([pop_history, pop_prognosis], axis=1)
 
-    # Add mun_id and data origin
+    # Add municipality_id and data origin
     population = (
-        pd.concat([muns.set_index("ags")["id"].rename("mun_id"), population], axis=1)
+        pd.concat(
+            [muns.set_index("ags")["id"].rename("municipality_id"),
+             population],
+            axis=1)
         .sort_index()
-        .set_index("mun_id", drop=True)
+        .set_index("municipality_id", drop=True)
     )
     population.columns = pd.MultiIndex.from_arrays(
         [

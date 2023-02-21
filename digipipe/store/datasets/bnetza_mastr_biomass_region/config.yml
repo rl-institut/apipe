@@ -16,7 +16,7 @@ description: |
   kW Nennleistung) erfolgt ein Geocoding anhand von PLZ und Ort, um eine
   ungefähre Position bereit zu stellen.
   Neben einem anlagenscharfen Datensatz wird ein weiterer Datensatz erzeugt,
-  der alle Anlagen mit approximierter Position je Position zusammenfasst und
+  der alle Anlagen mit approximierter Position je Anlage zusammenfasst und
   jeweils typische Kennwerte enthält (u.a. Anzahl Anlagen, Gesamtleistung).
 
 # Filter settings

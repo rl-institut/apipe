@@ -291,7 +291,17 @@ def geocode_units_wo_geometry(
     def aggregate_units_wo_geometry(
             units_gdf: gpd.GeoDataFrame
     ) -> gpd.GeoDataFrame:
-        """"""
+        """Aggregate units by approximated position
+
+        Parameters
+        ----------
+        units_gdf : gpd.GeoDataFrame
+            Units
+        Returns
+        -------
+        gpd.GeoDataFrame
+            Units aggregated by position
+        """
 
         # Aggregate units with approximated position
         units_gdf["lon"] = units_gdf.geometry.x

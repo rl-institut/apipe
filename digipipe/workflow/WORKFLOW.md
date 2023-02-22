@@ -25,7 +25,7 @@ The entire pipeline can be visualized as a directed acyclic graph (DAG). The fol
 
 As the full graph is too packed with information and therefore hardly to grasp,
 consider to show only certain parts by disabling some target files in the `all`
-rule. Also, a simple rule graph (the one shown above) can be created using
+rule. Also, a simple rule graph (the one shown above) can be created and saved in the current directory using
 
     snakemake --rulegraph | dot -Tsvg > dag_rules_simple.svg
 

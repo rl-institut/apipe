@@ -2,10 +2,10 @@
 r"""
 Inputs
 -------
-scenario_specs : str
-    ``scenarios/{scenario}.yml``: path of input file (.yml) containing scenario specifications
+scenarios_dir : str
+    ``scenarios``: path to scenarios directory
 destination : str
-    path of output directory
+    ``raw/scalars/empty_scalars.csv``: path of output directory for empty scalars of all scenarios
 
 Outputs
 ---------
@@ -23,11 +23,8 @@ import pandas as pd
 from oemoflex.model.datapackage import EnergyDataPackage
 
 from digipipe.esys.esys.config.esys_conf import load_yaml, settings
-from digipipe.esys.esys.model import (
-    bus_attrs_update,
-    component_attrs_update,
-    model_structures,
-)
+from digipipe.esys.esys.model import (bus_attrs_update,model_structures)
+from digipipe.esys.esys import model
 from digipipe.esys.esys.tools.data_processing import (
     HEADER_B3_SCAL,
     load_b3_scalars,
@@ -73,7 +70,8 @@ def format_input_scalars(df):
     _df = format_header(_df, HEADER_B3_SCAL, "id_scal")
 
     # Keep only those rows whose values are not set
-    _df = _df.loc[_df.loc[:, "var_value"].isna()]
+    if settings.create_empty_scalars.drop_default_scalars:
+        _df = _df.loc[_df.loc[:, "var_value"].isna()]
 
     # Combine those parameters that are valid for all regions
     _df.loc[_df["var_name"].isin(NON_REGIONAL), ["name", "region"]] = [None, "ALL"]
@@ -131,44 +129,51 @@ def save_empty_scalars(sc, path):
 
 
 if __name__ == "__main__":
-    scenario_specs = sys.argv[1]
+    scenarios_dir = sys.argv[1]
 
     destination = sys.argv[2]
 
-    scenario_specs = load_yaml(scenario_specs)
+    scenarios = os.listdir(scenarios_dir)
 
-    edp = get_edp_from_scenario(scenario_specs)
-
-    components = edp.data["component"].reset_index()
-
-    empty_scalars = format_input_scalars(components)
-
-    # set scenario name
-    empty_scalars.loc[:, "scenario_key"] = scenario_specs["name"]
-
-    # if empty raw scalars should be created, reverse the annuisation as well.
-    # if empty resources scalars are needed, set this to False.
-    raw_scalars = True
-    if raw_scalars:
-        empty_scalars = expand_scalars(
-            empty_scalars,
-            column="var_name",
-            where="capacity_cost",
-            expand=["capacity_cost_overnight", "lifetime", "fixom_cost"],
+    for scenario_specs in scenarios:
+        component_attrs_update = load_yaml(
+            os.path.join(model.here, "component_attrs_update.yml")
         )
 
-        empty_scalars = expand_scalars(
-            empty_scalars,
-            column="var_name",
-            where="storage_capacity_cost",
-            expand=["storage_capacity_cost_overnight", "storage_fixom_cost"],
-        )
+        scenario_specs = load_yaml(os.path.join(scenarios_dir, scenario_specs))
 
-    # Add wacc
-    wacc_dict = {"scenario_key": scenario_specs["name"]}
-    wacc_dict.update(settings.create_empty_scalars.wacc)
-    empty_scalars = add_new_entry_to_scalars(empty_scalars, wacc_dict)
+        edp = get_edp_from_scenario(scenario_specs)
 
-    empty_scalars = sort_values(empty_scalars)
+        components = edp.data["component"].reset_index()
 
-    save_empty_scalars(empty_scalars, destination)
+        empty_scalars = format_input_scalars(components)
+
+        # set scenario name
+        empty_scalars.loc[:, "scenario_key"] = scenario_specs["name"]
+
+        # if empty raw scalars should be created, reverse the annuisation as well.
+        # if empty resources scalars are needed, set this to False.
+        raw_scalars = True
+        if raw_scalars:
+            empty_scalars = expand_scalars(
+                empty_scalars,
+                column="var_name",
+                where="capacity_cost",
+                expand=["capacity_cost_overnight", "lifetime", "fixom_cost"],
+            )
+
+            empty_scalars = expand_scalars(
+                empty_scalars,
+                column="var_name",
+                where="storage_capacity_cost",
+                expand=["storage_capacity_cost_overnight", "storage_fixom_cost"],
+            )
+
+        # Add wacc
+        wacc_dict = {"scenario_key": scenario_specs["name"]}
+        wacc_dict.update(settings.create_empty_scalars.wacc)
+        empty_scalars = add_new_entry_to_scalars(empty_scalars, wacc_dict)
+
+        empty_scalars = sort_values(empty_scalars)
+
+        save_empty_scalars(empty_scalars, destination)

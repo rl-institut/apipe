@@ -18,5 +18,6 @@ region:
 | Dataset            | Coverage       | Alternative dataset |
 +====================+================+=====================+
 | stala_st_pop_prog  | Sachsen-Anhalt |                     |
++--------------------+----------------+---------------------+
 | osm_sachsen-anhalt | Sachsen-Anhalt |                     |
 +--------------------+----------------+---------------------+

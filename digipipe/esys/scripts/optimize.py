@@ -270,7 +270,7 @@ if __name__ == "__main__":
         )
 
         with Timer(text="Solved the model.", logger=logger.info):
-            if config.settings.optimize.write_lp_file:
+            if esys_conf.settings.optimize.write_lp_file:
                 m.write(
                     os.path.join(optimized, "optimized.lp"),
                     io_options={"symbolic_solver_labels": True},

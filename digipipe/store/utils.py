@@ -126,11 +126,14 @@ def df_merge_string_columns(
     pd.Series
         Column with joined strings
     """
+    df_result = df.copy()
     for col in df.columns:
-        df[col] = df[col].apply(
-            lambda f: "|".join([_ for _ in set(f.split(source_delimiter)) if _ != ""])
+        df_result[col] = df[col].apply(
+            lambda f: "|".join(
+                [_ for _ in set(f.split(source_delimiter)) if _ != ""]
+            )
         )
-    s = df.agg("|".join, axis=1)
+    s = df_result.agg("|".join, axis=1)
 
     return s.apply(
         lambda f: target_delimiter.join([_ for _ in set(f.split("|")) if _ != ""])

@@ -54,15 +54,16 @@ Data from `(0) Raw` that has undergone some preprocessing such as:
  - **But NO merging/combining/clipping of multiple (raw) datasets! This should
    be done in (2)**
 
-Rules and config
+Rules, config and info
 - Preprocessing rule(s) for the dataset can be defined in the dataset's
   Snakefile: [preprocessed/.TEMPLATE/create.smk](preprocessed/.TEMPLATE/create.smk).
 - Subsequently, these rules **must be** included in the module file
   [preprocessed/module.smk](preprocessed/module.smk) to take effect (see
   template in the file).
 - Custom, dataset-specific configuration can be put into the dataset's config
-  file [config.yml](preprocessed/.TEMPLATE/config.yml). Make sure you add a
-  **title and description**, even if you don't use any config parameters.
+  file [preprocessed/.TEMPLATE/config.yml](preprocessed/.TEMPLATE/config.yml).
+- The title and description of each dataset are to be gathered in the file
+  [preprocessed/.TEMPLATE/dataset.md](preprocessed/.TEMPLATE/dataset.md).
 
 > **Example:**
 > - Dataset D: Extracted ERA5 weather dataset for Germany (from dataset A)
@@ -78,15 +79,16 @@ Rules and config
 Datasets, created from arbitrary combinations of datasets from
 `store/preprocessed/` and/or `store/datasets/`.
 
-Rules and config
+Rules, config and info
 - Creation rule(s) for the dataset can be defined in the dataset's
   Snakefile: [datasets/.TEMPLATE/create.smk](datasets/.TEMPLATE/create.smk).
 - Subsequently, these rules **must be** included in the module file
   [datasets/module.smk](datasets/module.smk) to take effect (see
   template in the file).
 - Custom, dataset-specific configuration can be put into the dataset's config
-  file [config.yml](datasets/.TEMPLATE/config.yml). Make sure you add a
-  **title and description**, even if you don't use any config parameters.
+  file [datasets/.TEMPLATE/config.yml](datasets/.TEMPLATE/config.yml).
+- The title and description of each dataset are to be gathered in the file
+  [datasets/.TEMPLATE/dataset.md](datasets/.TEMPLATE/dataset.md).
 - Custom, dataset-specific scripts are located in `scripts`.
 
 > **Example:**

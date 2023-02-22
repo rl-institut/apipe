@@ -2,15 +2,6 @@
 # This file holds configuration parameters for the creation of this dataset. #
 ##############################################################################
 
-# Name of the dataset (used e.g. for report purposes)
-title:
-  Population per municipality
-
-# Description of this dataset
-description:
-  Municipalities with population from the Federal Statistical Office for
-  years 2010, 2015, 2020, 2021, 2022.
-
 # Excel file
 excel_file:
   sheet_name:

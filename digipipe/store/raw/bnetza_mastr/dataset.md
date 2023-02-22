@@ -1,4 +1,4 @@
-# Raw dataset: bnetza_mastr
+# Power units from Marktstammdatenregister
 
 Power units from Marktstammdatenregister obtained and dumped with the
 [open-mastr](https://github.com/OpenEnergyPlatform/open-MaStR) tool. The

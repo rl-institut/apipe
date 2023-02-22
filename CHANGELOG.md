@@ -7,6 +7,7 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 ## [Unreleased]
 
 ### Added
+
 - Setup initial structure and files
 - Add first bunch of datasets for testing the data flow
 - Modularize datasets
@@ -18,6 +19,8 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Datasets attribute captions
 
 ### Changed
+
+- Move dataset docs from config to md files
 
 ### Removed
 

@@ -25,6 +25,7 @@ def read_config(file: str) -> dict:
         try:
             cfg = yaml.safe_load(cfg_file)
         except yaml.YAMLError as exc:
+            print(f"Error while reading config file: {file}")
             print(exc)
     return cfg
 

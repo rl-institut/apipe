@@ -3,14 +3,14 @@ Helper functions for geodata processing
 """
 
 import fiona
-import os
 import geopandas as gpd
+import os
+import pandas as pd
+
 from collections import OrderedDict
 from shapely.geometry.multipolygon import MultiPolygon
 from shapely.ops import transform
-from typing import Tuple
-
-from digipipe.scripts.config import read_config
+from typing import Tuple, Union
 
 from digipipe.config import GLOBAL_CONFIG
 
@@ -113,10 +113,62 @@ def write_geofile(
                 encoding=encoding)
 
 
-def reproject_simplify_filter_rename(
-        gdf: gpd.GeoDataFrame,
+def rename_filter_attributes(
+        gdf: Union[pd.DataFrame, gpd.GeoDataFrame],
         attrs_filter_by_values: dict = None,
         attrs_mapping: dict = None,
+) -> Union[pd.DataFrame, gpd.GeoDataFrame]:
+    """Rename attributes and filter them by values
+
+    Note: Only attributes as given by `attrs_mapping` are kept!
+
+    Parameters
+    ----------
+    gdf : pd.DataFrame or gpd.GeoDataFrame
+        Geodata
+    attrs_filter_by_values : dict
+        Attributes whose values are to be filtered. Use attributes as dict
+        keys and desired values as dict values (values can be of type str,
+        int, float or list)
+        Example: {"GF": 4, "NUTS": ["DEE01", "DEE05", "DEE0E"]}
+    attrs_mapping : dict
+        Attributes to select and rename. Use original attributes' names as
+        dict keys and new names as values.
+
+    Returns
+    -------
+    pd.DataFrame or gpd.GeoDataFrame
+        Filtered geodata
+    """
+    # Filter by attribute values, if defined
+    if attrs_filter_by_values is not None:
+        list_vals = []
+        query = ""
+        for k, v in attrs_filter_by_values.items():
+            if isinstance(v, list):
+                list_vals.append(v)
+                query += f" & {k} in @list_vals[{len(list_vals)-1}]"
+            elif isinstance(v, str):
+                query += f" & {k}=='{v}'"
+            elif isinstance(v, (int, float)):
+                query += f" & {k}=={v}"
+            else:
+                raise ValueError(
+                    "Data type in attribute filter is not supported!"
+                )
+        query = query[2:]
+        gdf = gdf.query(query)
+
+    # Extract and rename fields
+    if attrs_mapping is not None:
+        gdf = gdf.filter(attrs_mapping.keys())
+        gdf.rename(columns=attrs_mapping, inplace=True)
+
+    return gdf
+
+
+def reproject_simplify(
+        gdf: gpd.GeoDataFrame,
         target_crs: str = GLOBAL_CONFIG["global"]["geodata"]["crs"].lower(),
         min_size: float = None,
         simplify_tol: float = None,
@@ -129,15 +181,9 @@ def reproject_simplify_filter_rename(
     ----------
     gdf : gpd.GeoDataFrame
         Geodata
-    attrs_filter_by_values : dict
-        Attributes whose values are to be filtered. Use attributes as dict
-        keys and desired values as dict values (values can be of type str,
-        int, float or list)
-    attrs_mapping : dict
-        Attributes to select and rename. Use original attributes' names as
-        dict keys and new names as values.
     target_crs : str
-        CRS the data should be reprojected to.
+        CRS the data should be reprojected to. Defaults to value from global
+        config.
     min_size : float
         Min. size of area to select (in sqm). Use None for no filtering
         (default).
@@ -193,29 +239,64 @@ def reproject_simplify_filter_rename(
         if buffer > 0:
             gdf["geometry"] = gdf.buffer(buffer)
 
-    # Filter by attribute values, if defined
-    if attrs_filter_by_values is not None:
-        query = ""
-        for k, v in attrs_filter_by_values.items():
-            if isinstance(v, list):
-                query += f" & {k} in @v"
-            elif isinstance(v, (str, int, float)):
-                query += f" & {k}=={v}"
-            else:
-                raise ValueError(
-                    "Data type in attribute filter is not supported!"
-                )
-        query = query[2:]
-        gdf = gdf.query(query)
-
-    # Extract and rename fields
-    if attrs_mapping is not None:
-        gdf = gdf.filter(attrs_mapping.keys())
-        gdf.rename(columns=attrs_mapping, inplace=True)
-
     # Reindex starting from 0 and add new column "id" with same values
     if add_id_column is True:
         gdf.reset_index(drop=True, inplace=True)
         gdf = gdf.assign(id=gdf.index)
 
     return gdf
+
+
+def overlay(
+        gdf: gpd.GeoDataFrame,
+        gdf_overlay: gpd.GeoDataFrame,
+        retain_rename_overlay_columns: dict = None,
+        gdf_use_centroid: bool = False
+) -> gpd.GeoDataFrame:
+    """Clips geodata to polygon
+
+    Parameters
+    ----------
+    gdf : gpd.GeoDataFrame
+        Geodata to be clipped (geometry in column "geometry")
+    gdf_overlay : gpd.GeoDataFrame
+        Geodata to clip `gdf` to, e.g. municipalities (geometry in column
+        "geometry")
+    retain_rename_overlay_columns : dict
+        Columns to retain from `gdf_clip` (do not include "geometry")
+    gdf_use_centroid : bool
+        If True, the centroid of gdf will be used for overlay (geometry column
+        will be retained though). Defaults to False.
+    """
+    if retain_rename_overlay_columns is None:
+        columns = ["geometry"]
+        retain_rename_overlay_columns = {}
+    else:
+        if "geometry" in retain_rename_overlay_columns.keys():
+            raise ValueError("Geometry must not be in rename dict!")
+        columns = list(retain_rename_overlay_columns.keys()) + ["geometry"]
+
+    # Use centroid if requested
+    if gdf_use_centroid is True:
+        # Retain geometry
+        geometry_backup = gdf.geometry.copy()
+
+        # Clip and rename columns
+        gdf_clipped = gpd.overlay(
+            gdf.assign(geometry=gdf.centroid),
+            gdf_overlay[columns],
+            how='intersection'
+        ).rename(
+            columns=retain_rename_overlay_columns
+        ).assign(
+            geometry=geometry_backup
+        )
+    else:
+        # Clip and rename columns
+        gdf_clipped = gpd.overlay(
+            gdf,
+            gdf_overlay[columns],
+            how='intersection'
+        ).rename(columns=retain_rename_overlay_columns)
+
+    return gdf_clipped

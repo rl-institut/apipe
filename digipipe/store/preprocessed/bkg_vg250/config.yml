@@ -4,8 +4,9 @@
 
 # Name of the dataset (used e.g. for report purposes)
 title:
-  BKG Verwaltungsgebiete 1:250 000 VG250 (Ebenen)
+  Administative areas of Germany (Verwaltungsgebiete 1:250 000).
 
 # Description of this dataset
 description:
-  Geodaten der Verwaltungsgebiete entpackt und in EPSG 3035 transformiert.
+  Geodata of administrative areas extracted, reprojected to LAEA Europe
+  (EPSG:3035) and converted to Geopackage.

@@ -1,3 +1,3 @@
-# Raw dataset: openstreetmap
+# Raw dataset: bkg_vg250
 
-OpenStreetMap data extract for Sachsen-Anhalt.
+Administative areas of Germany (Verwaltungsgebiete 1:250 000).

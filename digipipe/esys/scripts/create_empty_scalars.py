@@ -23,7 +23,7 @@ import pandas as pd
 from oemoflex.model.datapackage import EnergyDataPackage
 
 from digipipe.esys.esys.config.esys_conf import load_yaml, settings
-from digipipe.esys.esys.model import (bus_attrs_update,model_structures)
+from digipipe.esys.esys.model import bus_attrs_update, model_structures
 from digipipe.esys.esys import model
 from digipipe.esys.esys.tools.data_processing import (
     HEADER_B3_SCAL,

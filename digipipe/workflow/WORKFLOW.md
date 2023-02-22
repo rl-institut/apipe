@@ -19,7 +19,7 @@ To clean all produced data, use
 
 ## Pipeline visualization / DAG
 
-The entire pipeline can be visualized as directed acyclic graph (DAG) with
+The entire pipeline can be visualized as a directed acyclic graph (DAG). The following command creates the DAG as an svg file in the current directory:
 
     snakemake --dag | dot -Tsvg > dag_rules_full.svg
 

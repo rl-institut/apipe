@@ -1,0 +1,26 @@
+##############################################################################
+# This file holds configuration parameters for the creation of this dataset. #
+##############################################################################
+
+# Name of the dataset (used e.g. for report purposes)
+title:
+  Population prognosis per municipality
+
+# Description of this dataset
+description:
+  Population prognosis per municipality until 2035.
+
+# Excel file
+excel_file:
+  sheet_name: "7. RBP"
+  usecols: "A, G:S"
+  skiprows: 3
+  nrows: 230
+  dtype:
+    {
+      "AGS": str
+    }
+
+# Years to be included (leave empty for all)
+years:
+  []

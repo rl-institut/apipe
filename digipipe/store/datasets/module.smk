@@ -70,3 +70,8 @@ module bnetza_mastr_storage_region:
     snakefile: "bnetza_mastr_storage_region/create.smk"
     config: config["store"]["datasets"]["bnetza_mastr_storage_region"]
 use rule * from bnetza_mastr_storage_region as datasets_bnetza_mastr_storage_region_*
+
+module population:
+    snakefile: "population/create.smk"
+    config: config["store"]["datasets"]["population"]
+use rule * from population as datasets_population_*

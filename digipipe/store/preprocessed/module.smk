@@ -26,3 +26,13 @@ module bnetza_mastr:
     snakefile: "bnetza_mastr/create.smk"
     config: config["store"]["preprocessed"]["bnetza_mastr"]
 use rule * from bnetza_mastr as preprocessed_bnetza_mastr_*
+
+module destatis_gv:
+    snakefile: "destatis_gv/create.smk"
+    config: config["store"]["preprocessed"]["destatis_gv"]
+use rule * from destatis_gv as preprocessed_destatis_gv_*
+
+module stala_st_pop_prog:
+    snakefile: "stala_st_pop_prog/create.smk"
+    config: config["store"]["preprocessed"]["stala_st_pop_prog"]
+use rule * from stala_st_pop_prog as preprocessed_stala_st_pop_prog_*

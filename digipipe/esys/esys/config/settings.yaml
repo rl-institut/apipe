@@ -19,6 +19,7 @@ optimize:
   solve_kwargs:
     tee: True
     keepfiles: True
+  write_lp_file: False
   cmdline_options:
     AllowableGap: 0.01
   debug: false
@@ -48,3 +49,4 @@ create_empty_scalars:
       "type": "ALL",
       "var_unit": "None",
   }
+  drop_default_scalars: True

@@ -29,7 +29,7 @@ rule. Also, a simple rule graph (the one shown above) can be created and saved i
 
     snakemake --rulegraph | dot -Tsvg > dag_rules_simple.svg
 
-To create a graph showing the file dependencies, type
+To create a graph in the current directory showing the file dependencies, type
 
     snakemake --filegraph | dot -Tsvg > dag_files.svg
 

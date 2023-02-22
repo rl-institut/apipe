@@ -11,6 +11,11 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Add first bunch of datasets for testing the data flow
 - Modularize datasets
 - Add first draft of RTD docs
+- Add dataset: BNetzA MaStR
+- Add Nominatim geocoder
+- Add dataset: population
+- Clean rule
+- Datasets attribute captions
 - Create list of region-specific datasets in the docs
 
 ### Changed

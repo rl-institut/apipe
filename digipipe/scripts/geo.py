@@ -12,8 +12,6 @@ from shapely.geometry.multipolygon import MultiPolygon
 from shapely.ops import transform
 from typing import Tuple, Union
 
-from digipipe.scripts.config import read_config
-
 from digipipe.config import GLOBAL_CONFIG
 
 
@@ -122,6 +120,8 @@ def rename_filter_attributes(
 ) -> Union[pd.DataFrame, gpd.GeoDataFrame]:
     """Rename attributes and filter them by values
 
+    Note: Only attributes as given by `attrs_mapping` are kept!
+
     Parameters
     ----------
     gdf : pd.DataFrame or gpd.GeoDataFrame
@@ -142,11 +142,15 @@ def rename_filter_attributes(
     """
     # Filter by attribute values, if defined
     if attrs_filter_by_values is not None:
+        list_vals = []
         query = ""
         for k, v in attrs_filter_by_values.items():
             if isinstance(v, list):
-                query += f" & {k} in @v"
-            elif isinstance(v, (str, int, float)):
+                list_vals.append(v)
+                query += f" & {k} in @list_vals[{len(list_vals)-1}]"
+            elif isinstance(v, str):
+                query += f" & {k}=='{v}'"
+            elif isinstance(v, (int, float)):
                 query += f" & {k}=={v}"
             else:
                 raise ValueError(
@@ -178,7 +182,8 @@ def reproject_simplify(
     gdf : gpd.GeoDataFrame
         Geodata
     target_crs : str
-        CRS the data should be reprojected to.
+        CRS the data should be reprojected to. Defaults to value from global
+        config.
     min_size : float
         Min. size of area to select (in sqm). Use None for no filtering
         (default).
@@ -246,6 +251,7 @@ def overlay(
         gdf: gpd.GeoDataFrame,
         gdf_overlay: gpd.GeoDataFrame,
         retain_rename_overlay_columns: dict = None,
+        gdf_use_centroid: bool = False
 ) -> gpd.GeoDataFrame:
     """Clips geodata to polygon
 
@@ -258,6 +264,9 @@ def overlay(
         "geometry")
     retain_rename_overlay_columns : dict
         Columns to retain from `gdf_clip` (do not include "geometry")
+    gdf_use_centroid : bool
+        If True, the centroid of gdf will be used for overlay (geometry column
+        will be retained though). Defaults to False.
     """
     if retain_rename_overlay_columns is None:
         columns = ["geometry"]
@@ -267,11 +276,27 @@ def overlay(
             raise ValueError("Geometry must not be in rename dict!")
         columns = list(retain_rename_overlay_columns.keys()) + ["geometry"]
 
-    # Clip and rename columns
-    gdf_clipped = gpd.overlay(
-        gdf,
-        gdf_overlay[columns],
-        how='intersection'
-    ).rename(columns=retain_rename_overlay_columns)
+    # Use centroid if requested
+    if gdf_use_centroid is True:
+        # Retain geometry
+        geometry_backup = gdf.geometry.copy()
+
+        # Clip and rename columns
+        gdf_clipped = gpd.overlay(
+            gdf.assign(geometry=gdf.centroid),
+            gdf_overlay[columns],
+            how='intersection'
+        ).rename(
+            columns=retain_rename_overlay_columns
+        ).assign(
+            geometry=geometry_backup
+        )
+    else:
+        # Clip and rename columns
+        gdf_clipped = gpd.overlay(
+            gdf,
+            gdf_overlay[columns],
+            how='intersection'
+        ).rename(columns=retain_rename_overlay_columns)
 
     return gdf_clipped

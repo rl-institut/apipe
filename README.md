@@ -50,6 +50,10 @@ Make sure you have conda installed, e.g. miniconda. Then create the env:
 - Workflow: [WORKFLOW.md](digipipe/workflow/WORKFLOW.md)
 - Scenarios: [SCENARIOS.md](digipipe/scenarios/SCENARIOS.md)
 
+## Run the pipeline
+
+See [WORKFLOW.md](digipipe/workflow/WORKFLOW.md)
+
 ## Runtime and resources
 
 **TO BE UPDATED**
@@ -69,6 +73,7 @@ cores and requires about 600 GB of disk space.
 │   │   ├── .TEMPLATE                           # - Template
 │   │   └── SCENARIOS.md
 │   ├── scripts                                 # Main scripts
+│   │   ├── datasets                            # - for data processing which is shared by different datasets
 │   │   ├── esm                                 # - for energy system modelling
 │   │   ├── config.py                           # - config-related functions
 │   │   └── geo.py                              # - spatial functions

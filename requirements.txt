@@ -7,6 +7,7 @@ pyyaml
 descartes
 fiona
 rtree
+openpyxl==3.1.0
 plotly
 rasterstats
 networkx
@@ -16,3 +17,4 @@ rasterio
 Jinja2==3.0.3
 m2r2
 sphinx-material
+geopy

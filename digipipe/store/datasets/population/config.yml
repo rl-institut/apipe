@@ -1,0 +1,31 @@
+##############################################################################
+# This file holds configuration parameters for the creation of this dataset. #
+##############################################################################
+
+# Name of the dataset (used e.g. for report purposes)
+title:
+  Population over time
+
+# Description of this dataset
+description: |
+  Population over time. Includes historical and prognosis data as well as
+  linearly extrapolated data.
+
+# Population prognosis: years to be included from prognosis data
+# Note: all available years will be used for the subsequent extrapolation,
+#       not-requested prognosis years will be simply dropped in the end.
+prognosis:
+  years:
+    [
+      2025,
+      2030,
+      2035
+    ]
+
+# Population extrapolation: years to be covered
+extrapolation:
+  years:
+    [
+      2040,
+      2045
+    ]

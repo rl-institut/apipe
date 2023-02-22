@@ -124,7 +124,7 @@ def add_geometry(
         units_df = units_df.loc[(~units_df.lon.isna() & ~units_df.lat.isna())]
         print(
             f"{units_count_orig-len(units_df)} units have no or invalid "
-            f"coordinates."
+            f"coordinates. Their locations will be geocoded."
         )
 
     units_gdf = gpd.GeoDataFrame(

@@ -78,7 +78,7 @@ def add_voltage_level(
     ).drop_duplicates().rename(columns={"Spannungsebene": "voltage_level"})
 
     # Add voltage level to units
-    units_df = units_df.merge(
+    units_df = units_df.reset_index().merge(
         locations[["mastr_location_id2", "voltage_level"]],
         left_on="mastr_location_id",
         right_on="mastr_location_id2",

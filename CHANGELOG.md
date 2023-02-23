@@ -23,6 +23,7 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 
 - Move dataset docs from config to md files
 - Retain mastr_id in MaStR datasets
+- Fix loading of empty yml files
 
 ### Removed
 

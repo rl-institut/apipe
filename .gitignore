@@ -134,9 +134,6 @@ dmypy.json
 .idea
 
 # Data files
-digipipe/esys/raw/
-digipipe/esys/results/
-
 digipipe/store/raw/*/data/*
 !digipipe/store/raw/*/data/.gitkeep
 !digipipe/store/raw/.TEMPLATE/data/*
@@ -148,6 +145,7 @@ digipipe/store/preprocessed/*/data/*
 digipipe/store/datasets/*/data/*
 !digipipe/store/datasets/*/data/.gitkeep
 !digipipe/store/datasets/.TEMPLATE/data/*
+digipipe/store/datasets/esys_raw
 
 digipipe/store/appdata/*
 !digipipe/store/appdata/*/.gitkeep

@@ -1,4 +1,9 @@
 from digipipe.esys.esys.config.esys_conf import load_yaml
+from digipipe.store.utils import get_abs_dataset_path
+import os
+
+APPDATA_ESYS_PATH = get_abs_dataset_path("appdata", "esys")
+
 
 def get_paths_scenario_input(wildcards):
     scenario_specs = load_yaml(f"scenarios/{wildcards.scenario}.yml")
@@ -13,11 +18,10 @@ def get_paths_scenario_input(wildcards):
 
 rule build_datapackage:
     input:
-        get_paths_scenario_input,
         scenario="scenarios/{scenario}.yml"
-    output: directory("results/{scenario}/preprocessed")
+    output: directory(APPDATA_ESYS_PATH/"{scenario}/preprocessed")
     params:
-        logfile="results/{scenario}/{scenario}.log"
+        logfile=os.path.join(APPDATA_ESYS_PATH, "{scenario}", "{scenario}.log")
     wildcard_constraints:
         # Do not use this rule for the examples. Use prepare_example instead
         scenario=r"(?!example_).*"

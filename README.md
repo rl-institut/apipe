@@ -50,6 +50,10 @@ Make sure you have conda installed, e.g. miniconda. Then create the env:
 - Workflow: [WORKFLOW.md](digipipe/workflow/WORKFLOW.md)
 - Scenarios: [SCENARIOS.md](digipipe/scenarios/SCENARIOS.md)
 
+## Run the pipeline
+
+See [WORKFLOW.md](digipipe/workflow/WORKFLOW.md)
+
 ## Runtime and resources
 
 **TO BE UPDATED**

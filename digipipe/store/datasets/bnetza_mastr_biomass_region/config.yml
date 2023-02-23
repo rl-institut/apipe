@@ -2,23 +2,6 @@
 # This file holds configuration parameters for the creation of this dataset. #
 ##############################################################################
 
-# Name of the dataset (used e.g. for report purposes)
-title:
-  Biomasse-/Biogasanlagen in der Region
-
-# Description of this dataset
-description: |
-  Biomasse-/Biogasanlagen in der Region aus MaStR-Registerdaten als
-  Geopackage.
-  Es werden alle Anlagen berücksichtigt, die in Betrieb sind oder sich in
-  Planung befinden. Anlagen mit Geokoordinaten werden georeferenziert
-  übernommen, für Anlagen die keine Koordinaten aufweisen (üblicherweise <=30
-  kW Nennleistung) erfolgt ein Geocoding anhand von PLZ und Ort, um eine
-  ungefähre Position bereit zu stellen.
-  Neben einem anlagenscharfen Datensatz wird ein weiterer Datensatz erzeugt,
-  der alle Anlagen mit approximierter Position je Anlage zusammenfasst und
-  jeweils typische Kennwerte enthält (u.a. Anzahl Anlagen, Gesamtleistung).
-
 # Filter settings
 attributes:
   {"EinheitMastrNummer": "mastr_id",

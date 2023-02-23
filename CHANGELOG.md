@@ -7,6 +7,7 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 ## [Unreleased]
 
 ### Added
+
 - Setup initial structure and files
 - Add first bunch of datasets for testing the data flow
 - Modularize datasets
@@ -14,8 +15,12 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Add dataset: BNetzA MaStR
 - Add Nominatim geocoder
 - Add dataset: population
+- Clean rule
+- Datasets attribute captions
 
 ### Changed
+
+- Move dataset docs from config to md files
 
 ### Removed
 

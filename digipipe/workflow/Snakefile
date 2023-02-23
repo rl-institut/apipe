@@ -6,6 +6,7 @@ from snakemake.utils import min_version
 min_version("6.0")
 
 from digipipe.scripts.config import load_dataset_configs
+from digipipe.store.utils import get_abs_dataset_path
 from digipipe.config import GLOBAL_CONFIG
 
 config = GLOBAL_CONFIG
@@ -29,6 +30,7 @@ rule all:
         biomass=rules.datasets_bnetza_mastr_biomass_region_create.output,
         hydro=rules.datasets_bnetza_mastr_hydro_region_create.output,
         combustion=rules.datasets_bnetza_mastr_combustion_region_create.output,
+        mastr_names=rules.datasets_bnetza_mastr_captions_create.output,
         gsgk=rules.datasets_bnetza_mastr_gsgk_region_create.output,
         storage=rules.datasets_bnetza_mastr_storage_region_create.output,
         population=rules.datasets_population_create.output
@@ -36,3 +38,22 @@ rule all:
     #     print("CONFIG MAIN:")
     #     print(config)
     #     print(workflow.basedir)
+
+rule clean:
+    """
+    Remove all output and temporary files.
+    """
+    params:
+        preprocessed=expand(
+            get_abs_dataset_path("preprocessed", "{name}", data_dir=True) / "*",
+            name=config.get("store")["preprocessed"].keys()
+        ),
+        datasets=expand(
+            get_abs_dataset_path("datasets", "{name}", data_dir=True) / "*",
+            name=config.get("store")["datasets"].keys()
+        )
+    shell:
+        """
+        rm -f {params.preprocessed}
+        rm -f {params.datasets}
+        """

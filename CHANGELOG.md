@@ -17,6 +17,7 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Add dataset: population
 - Clean rule
 - Datasets attribute captions
+- Create list of region-specific datasets in the docs
 
 ### Changed
 

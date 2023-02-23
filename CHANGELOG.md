@@ -22,6 +22,7 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 ### Changed
 
 - Move dataset docs from config to md files
+- Fix loading of empty yml files
 
 ### Removed
 

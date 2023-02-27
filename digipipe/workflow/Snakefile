@@ -16,6 +16,10 @@ config.update(load_dataset_configs())
 include: "../store/preprocessed/module.smk"
 include: "../store/datasets/module.smk"
 
+# Include esys snakefiles
+include: "../esys/Snakefile"
+
+
 # ===== RULES =====
 
 rule all:

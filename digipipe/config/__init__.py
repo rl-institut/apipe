@@ -15,7 +15,7 @@ def locate_global_config() -> Path:
     if cwd.name == "digipipe":
         return (cwd / config_dir).resolve()
     elif cwd.name == "workflow":
-        return (cwd / ".." / config_dir).resolve()
+        return (cwd.parent / config_dir).resolve()
     else:
         raise FileNotFoundError(
             "Global config file not found, make sure you execute the workflow "

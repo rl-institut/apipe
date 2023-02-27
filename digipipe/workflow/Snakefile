@@ -12,6 +12,9 @@ from digipipe.config import GLOBAL_CONFIG
 config = GLOBAL_CONFIG
 config.update(load_dataset_configs())
 
+# Path to esys appdata
+APPDATA_ESYS_PATH = get_abs_dataset_path("appdata", "esys")
+
 # include store modules
 include: "../store/preprocessed/module.smk"
 include: "../store/datasets/module.smk"
@@ -60,4 +63,10 @@ rule clean:
         """
         rm -f {params.preprocessed}
         rm -f {params.datasets}
+
+        # Check if there are subdirectories in appdata esys dir
+        if [ "$(find {APPDATA_ESYS_PATH} -mindepth 1 -type d)" ]; then
+          rm -r {APPDATA_ESYS_PATH}/*
+        fi
+        echo "Removed all preprocessed data in directories: preprocessed, datasets and appdata."
         """

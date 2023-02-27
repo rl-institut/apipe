@@ -145,7 +145,6 @@ digipipe/store/preprocessed/*/data/*
 digipipe/store/datasets/*/data/*
 !digipipe/store/datasets/*/data/.gitkeep
 !digipipe/store/datasets/.TEMPLATE/data/*
-digipipe/store/datasets/esys_raw
 
 digipipe/store/appdata/*
 !digipipe/store/appdata/*/.gitkeep

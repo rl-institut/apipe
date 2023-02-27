@@ -1,5 +1,6 @@
 import os
 from pathlib import Path
+
 from digipipe.scripts.config import read_config
 
 

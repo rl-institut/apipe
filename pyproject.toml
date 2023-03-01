@@ -56,6 +56,33 @@ python = ">=3.7"
 # TODO: geopy
 
 [tool.poetry.dev-dependencies]
+Werkzeug = "^2.0.1" # https://github.com/pallets/werkzeug   # TODO: Find out if needed
+ipdb = "^0.13.7"  # https://github.com/gotcha/ipdb   # TODO: Find out if needed
+sphinx = "^5.3.0"  # https://github.com/sphinx-doc/sphinx
+sphinx-material = "^0.0.35"
+m2r2 = "^0.3.3"
+
+
+# Testing
+# ------------------------------------------------------------------------------
+# mypy = "^0.812"  # https://github.com/python/mypy
+pytest = "^6.2.4"  # https://github.com/pytest-dev/pytest
+
+
+# Code quality
+# ------------------------------------------------------------------------------
+flake8 = "^3.9.2"  # https://github.com/PyCQA/flake8
+pylint-django = "^2.3.0"  # https://github.com/PyCQA/pylint-django  # downgraded because https://github.com/PyCQA/pylint-django/issues/309
+pre-commit = "^2.13.0"  # https://github.com/pre-commit/pre-commit
+flake8-bandit = "^3.0.0"
+flake8-bugbear = "^22.4.25"
+flake8-builtins = "^1.5.3"
+flake8-comprehensions = "^3.10.0"
+darglint = "^1.8.1"
+flake8-eradicate = "^1.2.1"
+flake8-isort = "^4.1.1"
+flake8-pytest-style = "^1.6.0"
+black = "^21.12b0"
 
 [build-system]
 

@@ -30,6 +30,8 @@ classifiers = [  # Optional
 readme = "README.md"
 repository = "https://github.com/rl-institut/digipipe"
 
+[tool.poetry.urls]
+"Bug Tracker" = "https://github.com/rl-institut/digipipe/issues"
 
 [tool.poetry.dependencies]
 

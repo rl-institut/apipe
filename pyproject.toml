@@ -34,6 +34,26 @@ repository = "https://github.com/rl-institut/digipipe"
 "Bug Tracker" = "https://github.com/rl-institut/digipipe/issues"
 
 [tool.poetry.dependencies]
+python = ">=3.7"
+# TODO: Add packages here via `poetry add <package_name>
+# TODO: Following packages need to be added: pandas
+# TODO: geopandas
+# TODO: shapely
+# TODO: snakemake
+# TODO: matplotlib
+# TODO: pyyaml
+# TODO: descartes
+# TODO: fiona
+# TODO: rtree
+# TODO: openpyxl==3.1.0
+# TODO: plotly
+# TODO: rasterstats
+# TODO: networkx
+# TODO: pygraphviz
+# TODO: pygments
+# TODO: rasterio
+# TODO: Jinja2==3.0.3
+# TODO: geopy
 
 [tool.poetry.dev-dependencies]
 

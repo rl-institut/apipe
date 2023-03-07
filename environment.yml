@@ -1,8 +1,6 @@
 name: digipipe
 dependencies:
    - python=3.8
-   - gdal=3.*
-   - python-gdal
    - libspatialindex
    - imagemagick
    - pip

@@ -32,7 +32,7 @@ Es werden einige zusätzliche Systempakete benötigt, die Sie mit dem folgenden 
 
 Weitere Anmerkungen:
 
-* Stellen Sie sicher, dass Sie `GDAL>=3.0` haben, da ältere Versionen nicht funktionieren.
+* Stellen Sie sicher, dass Sie `GDAL>=3.0` haben, da ältere Versionen nicht funktionieren. Außerdem haben wir Probleme mit einigen GDAL-Versionen festgestellt. Auf unserem System läuft digipipe stabil mit GDAL Version 3.0.4. Stellen Sie also sicher, dass Sie auch diese Version verwenden, wenn Sie Probleme mit GDAL haben.
 * `imagemagick` ist optional und nur für die Berichtserstellung erforderlich
 
 Installieren Sie das Paket mit:

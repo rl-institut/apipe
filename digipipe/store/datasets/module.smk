@@ -76,7 +76,7 @@ module bnetza_mastr_captions:
     config: config["store"]["datasets"]["bnetza_mastr_captions"]
 use rule * from bnetza_mastr_captions as datasets_bnetza_mastr_captions_*
 
-module population:
-    snakefile: "population/create.smk"
-    config: config["store"]["datasets"]["population"]
-use rule * from population as datasets_population_*
+module population_region:
+    snakefile: "population_region/create.smk"
+    config: config["store"]["datasets"]["population_region"]
+use rule * from population_region as datasets_population_region_*

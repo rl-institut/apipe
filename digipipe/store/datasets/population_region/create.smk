@@ -9,7 +9,7 @@ from digipipe.store.utils import (
     PATH_TO_REGION_MUNICIPALITIES_GPKG
 )
 
-DATASET_PATH = get_abs_dataset_path("datasets", "population")
+DATASET_PATH = get_abs_dataset_path("datasets", "population_region")
 
 rule create:
     """

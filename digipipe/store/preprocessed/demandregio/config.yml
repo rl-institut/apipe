@@ -1,0 +1,30 @@
+##############################################################################
+# This file holds configuration parameters for the creation of this dataset. #
+##############################################################################
+
+# Files to be extracted from raw dataset
+files_extract:
+  [
+    "dr_cts_power_consumption_2017.csv",
+    "dr_cts_power_consumption_2022.csv",
+    "dr_cts_power_consumption_2035.csv",
+    "dr_cts_power_timeseries_2017.csv",
+    "dr_cts_power_timeseries_2022.csv",
+    "dr_cts_power_timeseries_2035.csv",
+    "dr_hh_households_2011.csv",
+    "dr_hh_population.csv",
+    "dr_hh_power_consumption_2017.csv",
+    "dr_hh_power_consumption_2022.csv",
+    "dr_hh_power_consumption_2035.csv",
+    "dr_hh_power_consumption_2045.csv",
+    "dr_hh_power_timeseries_2017.csv",
+    "dr_hh_power_timeseries_2022.csv",
+    "dr_hh_power_timeseries_2035.csv",
+    "dr_hh_power_timeseries_2045.csv",
+    "dr_ind_power_consumption_2017.csv",
+    "dr_ind_power_consumption_2022.csv",
+    "dr_ind_power_consumption_2035.csv",
+    "dr_ind_power_timeseries_2017.csv",
+    "dr_ind_power_timeseries_2022.csv",
+    "dr_ind_power_timeseries_2035.csv"
+  ]

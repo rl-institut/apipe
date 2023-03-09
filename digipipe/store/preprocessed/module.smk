@@ -36,3 +36,8 @@ module stala_st_pop_prog:
     snakefile: "stala_st_pop_prog/create.smk"
     config: config["store"]["preprocessed"]["stala_st_pop_prog"]
 use rule * from stala_st_pop_prog as preprocessed_stala_st_pop_prog_*
+
+module demandregio:
+    snakefile: "demandregio/create.smk"
+    config: config["store"]["preprocessed"]["demandregio"]
+use rule * from demandregio as preprocessed_demandregio_*

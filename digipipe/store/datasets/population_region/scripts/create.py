@@ -3,6 +3,16 @@ import pandas as pd
 
 
 def process() -> None:
+    # Get muns and their NUTS3 code
+    muns = gpd.read_file(snakemake.input.region_muns)
+    districts = gpd.read_file(snakemake.input.region_districts)
+    muns = muns.merge(
+        districts[["id", "nuts"]].rename(columns={"id": "district_id"}),
+        left_on="district_id",
+        right_on="district_id"
+    )
+
+    # Historical data: load, get available years and filter by region
     pop_history = pd.concat(
         [
             pd.read_csv(f, dtype={"ags": str}, index_col="ags")
@@ -10,51 +20,126 @@ def process() -> None:
         ],
         axis=1,
     )
-    pop_prognosis = pd.read_csv(
-        snakemake.input.pop_prognosis,
-        dtype={"ags": str},
-        index_col="ags",
-    ).round()
-
-    # Filter by region and get available years
-    muns = gpd.read_file(snakemake.input.region_muns)
-
     pop_history = pop_history.loc[pop_history.index.isin(muns.ags)]
     avail_years_history = pop_history.columns.astype(int).to_list()
     print(f"Historical years: {avail_years_history}")
 
-    prognosis_years = snakemake.config["prognosis"]["years"]
-    pop_prognosis = pop_prognosis.loc[pop_prognosis.index.isin(muns.ags)]
-    avail_years_prognosis = pop_prognosis.columns.astype(int).to_list()
-    print(f"Prognosis years: {prognosis_years}")
+    # Prognosis: load state data on municipal level and filter by region
+    pop_prognosis_years_mun = snakemake.config[
+        "prognosis_fstate_munlevel"]["years"]
+    if len(pop_prognosis_years_mun) > 0:
+        pop_prognosis_mun = pd.read_csv(
+            snakemake.input.prognosis_fstate_munlevel,
+            dtype={"ags": str},
+            index_col="ags",
+        ).round()
+        pop_prognosis_mun = pop_prognosis_mun.loc[
+            pop_prognosis_mun.index.isin(muns.ags)]
+        avail_years_prognosis = pop_prognosis_mun.columns.astype(int).to_list()
+        print(
+            f"Prognosis years (state data on municipal level): "
+            f"{pop_prognosis_years_mun}"
+        )
+        pop_reference = pop_prognosis_mun
+        pop_reference_years = pop_prognosis_years_mun
+    else:
+        pop_reference = pop_history
+        pop_reference_years = avail_years_history
+        print(
+            f"No years for prognosis with state data on municipal level "
+            f"provided, skipping..."
+        )
+
+    # Prognosis: load country data on district (NUTS 3) level
+    pop_prognosis_years_district = snakemake.config[
+        "prognosis_germany_districtlevel"]["years"]
+    if len(pop_prognosis_years_district) > 0:
+        pop_prognosis_district = pd.read_csv(
+            snakemake.input.prognosis_germany_districtlevel,
+            index_col="nuts3",
+        )
+        pop_prognosis_district = pop_prognosis_district.loc[
+            muns.nuts.unique()][[str(y) for y in pop_prognosis_years_district]
+        ]
+        avail_years_prognosis = pop_prognosis_district.columns.astype(
+            int).to_list()
+        print(
+            f"Prognosis years (country data on district level): "
+            f"{pop_prognosis_years_district}"
+        )
+
+        # Merge prognoses: create municipal prognosis from NUTS 3 level data by
+        # using municipal shares from the last available state's municipal
+        # prognosis.
+        pop_reference_lastyear = pd.concat([
+            pop_reference[str(pop_reference_years[-1])],
+            muns[["ags", "nuts"]].set_index("ags")],
+            axis=1
+        )
+        pop_reference_lastyear = pop_reference_lastyear.assign(
+            share=(
+                pop_reference_lastyear[str(pop_reference_years[-1])] /
+                pop_reference_lastyear.groupby(
+                    "nuts")[str(pop_reference_years[-1])].transform("sum")
+            )
+        ).drop(columns=[str(pop_reference_years[-1])]).reset_index()
+        pop_prognosis_district = pop_reference_lastyear.merge(
+            pop_prognosis_district.reset_index(),
+            left_on="nuts",
+            right_on="nuts3"
+        ).set_index("ags")
+        for year in pop_prognosis_years_district:
+            pop_reference[str(year)] = pop_prognosis_district["share"].mul(
+                pop_prognosis_district[str(year)]
+            ).round()
+    else:
+        print(
+            f"No years for prognosis with country data on district level "
+            f"provided, skipping..."
+        )
 
     # Extrapolate population linearly for years from config
     extrapol_years = snakemake.config["extrapolation"]["years"]
-    print(f"Extrapolation years: {extrapol_years}")
-    for year in extrapol_years:
-        # Extrapolate until 2045 using the last 2 available years
-        year_delta_base = avail_years_prognosis[-1] - avail_years_prognosis[-2]
-        year_delta_extrapol = year - avail_years_prognosis[-1]
-        pop_prognosis[str(year)] = (
-            pop_prognosis[str(avail_years_prognosis[-1])]
-            + (
-                pop_prognosis[str(avail_years_prognosis[-1])]
-                - pop_prognosis[str(avail_years_prognosis[-2])]
+    if len(extrapol_years) > 0:
+        print(f"Extrapolation years: {extrapol_years}")
+        for year in extrapol_years:
+            # Extrapolate using the last 2 available years
+            year_delta_base = (
+                    avail_years_prognosis[-1] - avail_years_prognosis[-2]
             )
-            / year_delta_base
-            * year_delta_extrapol
-        )
+            year_delta_extrapol = year - avail_years_prognosis[-1]
+            pop_reference[str(year)] = (
+                pop_reference[str(avail_years_prognosis[-1])]
+                + (
+                    pop_reference[str(avail_years_prognosis[-1])]
+                    - pop_reference[str(avail_years_prognosis[-2])]
+                )
+                / year_delta_base
+                * year_delta_extrapol
+            )
+    else:
+        print(f"No extrapolation years provided, skipping extrapolation...")
 
-    # Drop not requested prognosis years and glue everything together
-    pop_prognosis.drop(
+    # Drop not requested years
+    pop_reference.drop(
         columns=[
             c
-            for c in pop_prognosis.columns
-            if int(c) not in prognosis_years + extrapol_years
+            for c in pop_reference.columns
+            if int(c) not in (
+                avail_years_history + pop_reference_years +
+                pop_prognosis_years_district + extrapol_years
+            )
         ],
         inplace=True,
     )
-    population = pd.concat([pop_history, pop_prognosis], axis=1)
+
+    # Extra-include historic data depending on if first prognosis was used
+    if not all(
+            [str(year) in pop_reference.columns for year in avail_years_history]
+    ):
+        population = pd.concat([pop_history, pop_reference], axis=1)
+    else:
+        population = pop_reference
 
     # Add municipality_id and data origin
     population = (
@@ -69,7 +154,10 @@ def process() -> None:
         [
             population.columns,
             len(avail_years_history) * ["historic"]
-            + len(prognosis_years) * ["prognosis"]
+            + (
+                len(pop_prognosis_years_mun) +
+                len(pop_prognosis_years_district)
+            ) * ["prognosis"]
             + len(extrapol_years) * ["extrapolation"],
         ],
         names=("year", "type"),

@@ -38,7 +38,8 @@ NUTS3.
 
 Jahre
 - Bevölkerung bis 2017 historische Werte
-- Bevölkerung ab 2018 prognostizierte Werte
+- Bevölkerung ab 2018 prognostizierte Werte basierend auf der 14. koordinierten
+  Bevölkerungsvorausberechnung der Statistischen Ämter von Bund und Ländern.
 - Haushalte nur 2011
 
 ```python

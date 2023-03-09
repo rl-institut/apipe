@@ -6,7 +6,8 @@ Note: To include the file in the main workflow, it must be added to the respecti
 
 from digipipe.store.utils import (
     get_abs_dataset_path,
-    PATH_TO_REGION_MUNICIPALITIES_GPKG
+    PATH_TO_REGION_MUNICIPALITIES_GPKG,
+    PATH_TO_REGION_DISTRICTS_GPKG
 )
 
 DATASET_PATH = get_abs_dataset_path("datasets", "population_region")
@@ -20,8 +21,12 @@ rule create:
             get_abs_dataset_path("preprocessed", "destatis_gv") / "data" / "3112{year}_Auszug_GV.csv",
             year=[2010, 2015, 2020, 2021, 2022]
         ),
-        pop_prognosis=get_abs_dataset_path("preprocessed", "stala_st_pop_prog") / "data" / "population_prognosis.csv",
-        region_muns=PATH_TO_REGION_MUNICIPALITIES_GPKG
+        prognosis_fstate_munlevel=get_abs_dataset_path(
+            "preprocessed", "stala_st_pop_prog") / "data" / "population_prognosis.csv",
+        prognosis_germany_districtlevel=get_abs_dataset_path(
+            "preprocessed", "demandregio") / "data" / "dr_hh_population.csv",
+        region_muns=PATH_TO_REGION_MUNICIPALITIES_GPKG,
+        region_districts=PATH_TO_REGION_DISTRICTS_GPKG
     output:
         DATASET_PATH / "data" / "population.csv"
     script:

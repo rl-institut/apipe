@@ -18,6 +18,8 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Clean rule
 - Datasets attribute captions
 - Create list of region-specific datasets in the docs
+- Integrate building of energy system for appdata in pipeline via dir *esys*
+- Update store with dir structure for *esys* data
 
 ### Changed
 
@@ -25,6 +27,7 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Retain mastr_id in MaStR datasets
 - Fix loading of empty yml files
 - Fix loading of global config when in workflow dir
+- Integrate esys Snakefile in workflow Snakefile and update clean rule
 
 ### Removed
 

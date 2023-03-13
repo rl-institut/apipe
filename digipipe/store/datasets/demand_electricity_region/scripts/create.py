@@ -52,35 +52,33 @@ def normalize_filter_timeseries(
     timeseries.to_csv(outfile)
 
 
-def disaggregate_consumption_by_pop(
-        infile: Path,
-        outfile: Path,
+def disaggregate_consumption_to_municipality(
+        consumption_district,
         muns: gpd.GeoDataFrame,
         districts: gpd.GeoDataFrame,
-        population: pd.DataFrame,
-        year: int,
-) -> None:
-    """Disaggregates NUTS 3 consumption to municipalities using linear scaling
-    by population for one year.
+        disagg_data: pd.DataFrame,
+        disagg_data_col: str,
+) -> pd.DataFrame:
+    """Disaggregates NUTS 3 consumption to municipalities by linear scaling
+    using factors from `disagg_data`.
 
     Parameters
     ----------
-    infile : Path
-        CSV with consumption per NUTS 3 for specific year
-    outfile : Path
-        CSV with consumption per municipality for specific year
+    consumption_district : pd.DataFrame
+        Annual consumption per district (NUTS 3 level)
     muns : gpd.GeoDataFrame
         Municipalities
     districts : gpd.GeoDataFrame
         Federal districts
-    population : pd.DataFrame
-        Population for year
-    year : int
-        Target year for which the population data is used
+    disagg_data : pd.DataFrame
+        DF that contains municipal data to scale consumption by
+    disagg_data_col : str
+        Name of DF column used for scaling
 
     Returns
     -------
-
+    pd.DataFrame
+        Annual consumption per municipality
     """
     # Get muns and their NUTS3 code
     muns = muns.merge(
@@ -88,44 +86,44 @@ def disaggregate_consumption_by_pop(
         left_on="district_id",
         right_on="district_id"
     )
-    population.columns = population.columns.droplevel(1)
-    population = population[str(year)].reset_index().merge(
+    disagg_data = disagg_data.reset_index().merge(
         muns[["id", "nuts"]],
         left_on="municipality_id",
         right_on="id"
     ).drop(columns=["id"])
 
-    # Calc relative population share within each district
-    population = population.assign(
+    # Calc relative share within each district
+    disagg_data = disagg_data.assign(
         pop_share=(
-                population[str(year)] /
-                population.groupby("nuts")[str(year)].transform("sum")
+                disagg_data[disagg_data_col] /
+                disagg_data.groupby("nuts")[
+                    disagg_data_col].transform("sum")
         )
     ).set_index("nuts")
 
-    consumption_nuts = pd.read_csv(infile).set_index("nuts3").loc[
-        districts.nuts.to_list()].sum(axis=1).to_frame(name="consumption_nuts")
+    # Filter consumption dataset
+    consumption_district = consumption_district.loc[districts.nuts.to_list()]
 
     # Merge consumption and calc value per municipality
-    consumption = population.merge(
-        consumption_nuts,
+    consumption = disagg_data.merge(
+        consumption_district,
         left_index=True,
         right_index=True,
     )
-    consumption[str(year)] = consumption_nuts.consumption_nuts.mul(
-        consumption.pop_share)
+    consumption[disagg_data_col] = (
+        consumption_district.consumption_district.mul(consumption.pop_share)
+    )
     consumption = consumption[
-        ["municipality_id", str(year)]].set_index("municipality_id")
+        ["municipality_id", disagg_data_col]].set_index("municipality_id")
 
     # Check result
     np.testing.assert_almost_equal(
         consumption.sum().sum(),
-        consumption_nuts.sum().sum(),
+        consumption_district.sum().sum(),
         err_msg="Sum of disaggregated values does not match total value!"
     )
 
-    # Write
-    consumption.to_csv(outfile)
+    return consumption
 
 
 def merge_consumption_multiple_years(

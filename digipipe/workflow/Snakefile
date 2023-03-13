@@ -36,7 +36,8 @@ rule all:
         population=rules.datasets_population_region_create.output,
         demand_hh_ts=rules.datasets_demand_electricity_region_hh_normalize_timeseries.output,
         demand_hh_con=rules.datasets_demand_electricity_region_hh_merge_consumption_years.output,
-        employment_region=rules.datasets_employment_region_create.output
+        demand_cts_ts=rules.datasets_demand_electricity_region_cts_normalize_timeseries.output,
+        demand_cts_con=rules.datasets_demand_electricity_region_cts_merge_consumption_years.output,
     # run:
     #     print("CONFIG MAIN:")
     #     print(config)

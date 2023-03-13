@@ -9,3 +9,11 @@ hh_electricity_demand:
       2022,
       2045
     ]
+
+# CTS demand: years to create demand prognoses for
+cts_electricity_demand:
+  years:
+    [
+      2022,
+      2035
+    ]

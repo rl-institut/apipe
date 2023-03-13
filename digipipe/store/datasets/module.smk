@@ -81,6 +81,11 @@ module population_region:
     config: config["store"]["datasets"]["population_region"]
 use rule * from population_region as datasets_population_region_*
 
+module employment_region:
+    snakefile: "employment_region/create.smk"
+    config: config["store"]["datasets"]["employment_region"]
+use rule * from employment_region as datasets_employment_region_*
+
 module demand_electricity_region:
     snakefile: "demand_electricity_region/create.smk"
     config: config["store"]["datasets"]["demand_electricity_region"]

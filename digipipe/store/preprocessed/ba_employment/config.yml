@@ -1,0 +1,21 @@
+##############################################################################
+# This file holds configuration parameters for the creation of this dataset. #
+##############################################################################
+
+# Excel file
+excel_file:
+  sheet_name: "Gemeindedaten"
+  usecols: "A, K, O"
+  skiprows: 8
+  names:
+    [
+      "ags",
+      "employees",
+      "companies"
+    ]
+  dtype:
+    {
+      "ags": str,
+      "employees": str,
+      "companies": str
+    }

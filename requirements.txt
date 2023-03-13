@@ -8,6 +8,7 @@ descartes
 fiona
 rtree
 openpyxl==3.1.0
+pyxlsb
 plotly
 rasterstats
 networkx

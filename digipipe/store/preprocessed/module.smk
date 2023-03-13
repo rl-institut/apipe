@@ -41,3 +41,8 @@ module demandregio:
     snakefile: "demandregio/create.smk"
     config: config["store"]["preprocessed"]["demandregio"]
 use rule * from demandregio as preprocessed_demandregio_*
+
+module ba_employment:
+    snakefile: "ba_employment/create.smk"
+    config: config["store"]["preprocessed"]["ba_employment"]
+use rule * from ba_employment as preprocessed_ba_employment_ *

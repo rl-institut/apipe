@@ -24,10 +24,3 @@ rule create:
         ogr2ogr -f GPKG -t_srs EPSG:3035 {output} {params.original_file} {params.layers}
         rm {params.original_file}
         """
-        # with ZipFile(input) as f:
-        #     f.extract(
-        #         "vg250_01-01.utm32s.gpkg.ebenen/vg250_ebenen_0101/DE_VG250.gpkg",
-        #         path=get_abs_dataset_path("preprocessed", "bkg_vg250")
-        #     )
-        #     #f.extractall(get_abs_dataset_path("preprocessed", "bkg_vg250"))
-        #     #f.extractall()

@@ -7,6 +7,7 @@ hh_electricity_demand:
   years:
     [
       2022,
+      2035,
       2045
     ]
 

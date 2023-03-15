@@ -19,6 +19,7 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Datasets attribute captions
 - Create list of region-specific datasets in the docs
 - Add dataset: employees and companies
+- Add dataset: demandregio electricity demand
 
 ### Changed
 

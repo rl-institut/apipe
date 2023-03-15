@@ -26,6 +26,7 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Fix loading of empty yml files
 - Fix loading of global config when in workflow dir
 - Fix shapely deprecation warning
+- Fix ogr2ogr conversion with recent GDAL version (v3.6.2)
 
 ### Removed
 

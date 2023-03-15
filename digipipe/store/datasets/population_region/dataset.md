@@ -20,10 +20,11 @@ tatsächliche regionale Auflösung wird dadurch reduziert.
 ## Prognosen bis 2045
 
 DemandRegio (Raw dataset: [demandregio](../../raw/demandregio/dataset.md))
-basierend auf der 14. koordinierten Bevölkerungsvorausberechnung der
-Statistischen Ämter von Bund und Ländern. Diese Daten liegen auf Landkreisebene
-vor, daher erfolgt eine gleichmäßige Skalierung der  dazugehörigen Gemeinden
-auf den jeweiligen Prognosewert.
+basierend auf der
+[14. koordinierten Bevölkerungsvorausberechnung](https://www.destatis.de/DE/Themen/Gesellschaft-Umwelt/Bevoelkerung/Bevoelkerungsvorausberechnung/aktualisierung-bevoelkerungsvorausberechnung.html)
+der Statistischen Ämter von Bund und Ländern. Diese Daten liegen auf
+Landkreisebene vor, daher erfolgt eine gleichmäßige Skalierung der
+dazugehörigen Gemeinden auf den jeweiligen Prognosewert.
 
 Deaktivieren mittels entfernen der Zieljahre in `config.yml` im Abschnitt
 `prognosis_germany_districtlevel`.

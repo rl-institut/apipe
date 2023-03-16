@@ -29,6 +29,7 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Fix loading of global config when in workflow dir
 - Integrate esys Snakefile in workflow Snakefile and update clean rule
 - Fix shapely deprecation warning
+- Fix ogr2ogr conversion with recent GDAL version (v3.6.2)
 
 ### Removed
 

@@ -10,7 +10,7 @@
 
 Pipeline for data and energy system in the Digiplan project.
 
-## Installation 
+## Installation
 
 **Note: Linux only, Windows is currently not supported.**
 
@@ -48,6 +48,20 @@ Some additional system packages are required, install them by
 Notes:
 - Make sure you have GDAL>=3.0 as older versions will not work
 - `imagemagick` is optional and only required for report creation
+
+## Contributing to digipipe
+
+You can write `issues <https://github.com/rl-institut-private/digipipe/issues>`_ to announce bugs or to propose enhancements.
+
+If you want to participate in the development of digipipe, please make sure you use pre-commit.
+
+You activate it with:
+
+    pre-commit install
+
+To trigger a check manually, execute:
+
+    pre-commit run -a
 
 ## Further reading on structure, pipeline and conventions
 

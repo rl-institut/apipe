@@ -95,3 +95,9 @@ line-length = 80
 [tool.isort]
 profile = "black"
 line_length = 80
+
+[tool.ruff]
+line-length = 80
+ignore = [
+  "F821",  # Undefined name
+]

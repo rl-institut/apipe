@@ -30,7 +30,10 @@ Some additional system packages are required, install them by
     apt install gdal-bin python3-gdal libspatialindex-dev imagemagick osmium-tool graphviz graphviz-dev
 
 Notes:
-- Make sure you have GDAL>=3.0 as older versions will not work. Besides we have experienced problems with some GDAL versions. On our system digipipe runs stable with GDAL version 3.0.4, so make sure you also use this version if you encounter problems related to GDAL.
+- Make sure you have GDAL>=3.0 as older versions will not work. Besides we
+  have experienced problems with some GDAL versions. On our system digipipe
+  runs stable with GDAL version 3.0.4, so make sure you also use this version
+  if you encounter problems related to GDAL.
 - `imagemagick` is optional and only required for report creation
 
 Install package with

@@ -25,6 +25,8 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Retain mastr_id in MaStR datasets
 - Fix loading of empty yml files
 - Fix loading of global config when in workflow dir
+- Fix shapely deprecation warning
+- Fix ogr2ogr conversion with recent GDAL version (v3.6.2)
 - Fix conda installation by removing gdal from environment.yml -
   Note that in digipipe the stable gdal version is: 3.0.4
 

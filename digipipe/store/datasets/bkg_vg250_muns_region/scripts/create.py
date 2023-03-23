@@ -3,6 +3,7 @@ import geopandas as gpd
 from digipipe.scripts.geo import (convert_to_multipolygon, overlay,
                                   rename_filter_attributes, reproject_simplify,
                                   write_geofile)
+from digipipe.config.__init__ import add_snake_logger
 
 
 def process():
@@ -34,7 +35,11 @@ def process():
         layer_name=config["layer"],
     )
 
+    logger.info(f"Datapackage has been created at: {snakemake.output[0]}")
+
 
 if __name__ == "__main__":
     config = snakemake.config
+    logger = add_snake_logger(str(snakemake.log), "bkg_vg250_muns_region")
+
     process()

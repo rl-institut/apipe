@@ -16,4 +16,5 @@ rule create:
         muns=rules.preprocessed_bkg_vg250_create.output,
         districts=PATH_TO_REGION_DISTRICTS_GPKG
     output: DATASET_PATH / "data" / "bkg_vg250_muns_region.gpkg"
+    log: DATASET_PATH / "data" / "bkg_vg250_muns_region.log"
     script: DATASET_PATH / "scripts" / "create.py"

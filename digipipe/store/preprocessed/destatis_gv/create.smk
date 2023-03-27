@@ -16,5 +16,7 @@ rule create:
         get_abs_dataset_path("raw", "destatis_gv") / "data" / "3112{year}_Auszug_GV.xlsx"
     output:
         DATASET_PATH / "data" / "3112{year}_Auszug_GV.csv"
+    log:
+        DATASET_PATH / "data" / "3112{year}_Auszug_GV.csv"
     script:
         DATASET_PATH / "scripts" / "create.py"

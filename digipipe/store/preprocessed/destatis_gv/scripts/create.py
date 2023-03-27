@@ -1,5 +1,7 @@
 import pandas as pd
 
+from digipipe.config.__init__ import add_snake_logger
+
 
 def process() -> None:
     # Get Excel config and set sheet name
@@ -23,6 +25,9 @@ def process() -> None:
 
     data[["ags", snakemake.wildcards.year]].to_csv(snakemake.output[0], index=None)
 
+    logger.info(f"Datapackage has been created at: {snakemake.output[0]}")
+
 
 if __name__ == "__main__":
+    logger = add_snake_logger(str(snakemake.log), f"3112{snakemake.wildcards.year}_Auszug_GV")
     process()

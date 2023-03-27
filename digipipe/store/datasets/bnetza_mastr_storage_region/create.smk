@@ -29,5 +29,6 @@ rule create:
         outfile_agg=DATASET_PATH / "data" / "bnetza_mastr_storage_agg_region.gpkg"
     params:
         config_file=DATASET_PATH / "config.yml"
+    log: DATASET_PATH / "data" / "bnetza_mastr_storage_region.log"
     script:
         DATASET_PATH / "scripts" / "create.py"

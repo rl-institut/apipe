@@ -5,6 +5,7 @@ Note: To include the file in the main workflow, it must be added to the respecti
 """
 
 from digipipe.store.utils import get_abs_dataset_path
+from digipipe.config.__init__ import add_snake_logger
 
 DATASET_PATH = get_abs_dataset_path("preprocessed", "bnetza_mastr")
 
@@ -16,7 +17,13 @@ rule create:
     params:
         outpath=DATASET_PATH / "data",
         files_extract=" ".join([f"bnetza_open_mastr_2022-12-19/{f}" for f in config["files_extract"]])
-    shell:
-        """
-        unzip -j {input} {params.files_extract} -d {params.outpath}
-        """
+    log:
+        DATASET_PATH / "data" / "bnetza_mastr.log"
+    run:
+        logger = add_snake_logger(f"{log}", "bnetza_mastr")
+        shell(
+            """
+            unzip -j {input} {params.files_extract} -d {params.outpath}
+            """
+        )
+        logger.info(f"Datapackage has been created at: {output}")

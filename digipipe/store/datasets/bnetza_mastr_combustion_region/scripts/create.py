@@ -5,6 +5,7 @@ from digipipe.scripts.datasets import mastr
 from digipipe.scripts.geo import (overlay, rename_filter_attributes,
                                   write_geofile)
 from digipipe.store.utils import df_merge_string_columns
+from digipipe.config.__init__ import add_snake_logger
 
 
 def process() -> None:
@@ -121,11 +122,18 @@ def process() -> None:
         file=snakemake.output.outfile,
         layer_name=snakemake.config["layer"],
     )
+
+    logger.info(f"Datapackage has been created at: {snakemake.output.outfile}")
+
     write_geofile(
         gdf=units_agg,
         file=snakemake.output.outfile_agg,
         layer_name=snakemake.config["layer"],
     )
 
+    logger.info(f"Datapackage has been created at: {snakemake.output.outfile_agg}")
 
-process()
+
+if __name__ == "__main__":
+    logger = add_snake_logger(str(snakemake.log), "bnetza_mastr_combustion_region")
+    process()

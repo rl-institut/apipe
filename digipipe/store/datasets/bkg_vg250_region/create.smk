@@ -17,5 +17,7 @@ rule create:
     params:
         script=DATASET_PATH / "scripts" / "create.py",
         config_path=DATASET_PATH / "config.yml"
+    log:
+        DATASET_PATH / "data" / "bkg_vg250_region.log"
     shell:
-        "python {params.script} {input} {params.config_path} {output}"
+        "python {params.script} {input} {params.config_path} {output} {log}"

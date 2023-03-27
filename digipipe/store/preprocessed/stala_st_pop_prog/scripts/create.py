@@ -2,6 +2,8 @@ import re
 
 import pandas as pd
 
+from digipipe.config.__init__ import add_snake_logger
+
 
 def process() -> None:
     data = pd.read_excel(
@@ -32,6 +34,9 @@ def process() -> None:
 
     data.to_csv(snakemake.output[0])
 
+    logger.info(f"Datapackage has been created at: {snakemake.output[0]}")
+
 
 if __name__ == "__main__":
+    logger = add_snake_logger(str(snakemake.log), "stala_st_pop_prog")
     process()

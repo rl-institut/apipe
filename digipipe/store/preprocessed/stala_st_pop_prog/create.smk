@@ -14,4 +14,5 @@ rule create:
     """
     input: get_abs_dataset_path("raw", "stala_st_pop_prog") / "data" / "1_Internettabelle_7RBP_nach_Prognosejahr_Geschlecht_alle_Ebenen.xlsx"
     output: DATASET_PATH / "data" / "population_prognosis.csv"
+    log: DATASET_PATH / "data" / "population_prognosis.log"
     script: DATASET_PATH / "scripts" / "create.py"

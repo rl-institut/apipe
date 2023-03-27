@@ -24,5 +24,7 @@ rule create:
         region_muns=PATH_TO_REGION_MUNICIPALITIES_GPKG
     output:
         DATASET_PATH / "data" / "population.csv"
+    log:
+        DATASET_PATH / "data" / "population.log"
     script:
         DATASET_PATH / "scripts" / "create.py"

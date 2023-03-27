@@ -23,16 +23,16 @@ def process() -> None:
 
     pop_history = pop_history.loc[pop_history.index.isin(muns.ags)]
     avail_years_history = pop_history.columns.astype(int).to_list()
-    print(f"Historical years: {avail_years_history}")
+    logger.info(f"Historical years: {avail_years_history}")
 
     prognosis_years = snakemake.config["prognosis"]["years"]
     pop_prognosis = pop_prognosis.loc[pop_prognosis.index.isin(muns.ags)]
     avail_years_prognosis = pop_prognosis.columns.astype(int).to_list()
-    print(f"Prognosis years: {prognosis_years}")
+    logger.info(f"Prognosis years: {prognosis_years}")
 
     # Extrapolate population linearly for years from config
     extrapol_years = snakemake.config["extrapolation"]["years"]
-    print(f"Extrapolation years: {extrapol_years}")
+    logger.info(f"Extrapolation years: {extrapol_years}")
     for year in extrapol_years:
         # Extrapolate until 2045 using the last 2 available years
         year_delta_base = avail_years_prognosis[-1] - avail_years_prognosis[-2]

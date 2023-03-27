@@ -17,11 +17,11 @@ def process() -> None:
     data.columns = [int(col[1]) for col in data.columns.str.split("\n")]
 
     # Select desired years
-    print(f"Available years for population prognosis: {data.columns.to_list()}")
+    logger.info(f"Available years for population prognosis: {data.columns.to_list()}")
     years = snakemake.config["years"]
     if len(years) > 0:
         data = data[years]
-        print(f"  Selected: {years}")
+        logger.info(f"  Selected: {years}")
 
     # Rename columns
     data.reset_index(inplace=True)

@@ -42,7 +42,7 @@ def process() -> None:
     )
     units_count_wo_capacity = len(units.loc[units.plant_mastr_id.isna()])
     if units_count_wo_capacity > 0:
-        print(
+        logger.warning(
             f"{units_count_wo_capacity} storages have no plant associated and "
             f"hence no storage capacity assigned."
         )

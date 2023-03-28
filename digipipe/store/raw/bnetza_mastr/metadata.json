@@ -4,47 +4,37 @@ Prozessiert mit: https://github.com/OpenEnergyPlatform/open-MaStR/
 {
     "name": "bnetza_mastr",
     "title": "Marktstammdatenregisterdaten",
-    "id": null,
+    "id": "bnetza_mastr",
     "description": "Daten aus dem Marktstammdatenregister der Bundesnetzagentur",
     "language": [
-        "de", "en"
+    "en-GB",
+    "de-DE"
     ],
-    "subject": [
-        {
-            "name": null,
-            "path": null
-        }
-    ],
+    "subject": [],
     "keywords": [
-        null
+        "Markstammdatenregister",
+        "openmastr",
+        "mastr"
     ],
     "publicationDate": "2022-12-19",
     "context": {
-        "homepage": "https://www.marktstammdatenregister.de/MaStR/Datendownload",
-        "documentation": " https://github.com/OpenEnergyPlatform/open-MaStR/",
-        "sourceCode": null,
-        "contact": "https://github.com/nesnoj",
-        "grantNo": null,
-        "fundingAgency": null,
-        "fundingAgencyLogo": null,
-        "publisherLogo": null
+        "homepage": "https://abw.rl-institut.de",
+        "documentation": "https://digiplan.readthedocs.io",
+        "sourceCode": "https://github.com/rl-institut/digipipe/",
+        "contact": "https://reiner-lemoine-institut.de/ueber-uns/kontakt/",
+        "grantNo": "None",
+        "fundingAgency": "https://www.region-gestalten.bund.de",
+        "fundingAgencyLogo": "https://www.region-gestalten.bund.de/Region/SiteGlobals/Frontend/Images/logo.svg",
+        "publisherLogo": "https://reiner-lemoine-institut.de//wp-content/uploads/2015/09/rlilogo.png"
     },
     "spatial": {
-        "location": null,
-        "extent": null,
-        "resolution": null
+        "location": "Germany",
+        "extent": "Germany",
+        "resolution": ""
     },
     "temporal": {
-        "referenceDate": null,
-        "timeseries": [
-            {
-                "start": null,
-                "end": null,
-                "resolution": null,
-                "alignment": null,
-                "aggregationType": null
-            }
-        ]
+        "referenceDate": "2022-12-19",
+        "timeseries": []
     },
     "sources": [
         {
@@ -76,8 +66,8 @@ Prozessiert mit: https://github.com/OpenEnergyPlatform/open-MaStR/
             "title": "hedwiglieselotte",
             "email": "hedwig.bartels@rl-institut.de",
             "date": "2023-03-28",
-            "object": null,
-            "comment": null
+            "object": "metadata",
+            "comment": "Create metadata"
         }
     ],
     "resources": [
@@ -88,74 +78,21 @@ Prozessiert mit: https://github.com/OpenEnergyPlatform/open-MaStR/
             "format": null,
             "encoding": null,
             "schema": {
-                "fields": [
-                    {
-                        "name": null,
-                        "description": null,
-                        "type": null,
-                        "unit": null,
-                        "isAbout": [
-                            {
-                                "name": null,
-                                "path": null
-                            }
-                        ],
-                        "valueReference": [
-                            {
-                                "value": null,
-                                "name": null,
-                                "path": null
-                            }
-                        ]
-                    },
-                    {
-                        "name": null,
-                        "description": null,
-                        "type": null,
-                        "unit": null,
-                        "isAbout": [
-                            {
-                                "name": null,
-                                "path": null
-                            }
-                        ],
-                        "valueReference": [
-                            {
-                                "value": null,
-                                "name": null,
-                                "path": null
-                            }
-                        ]
-                    }
-                ],
-                "primaryKey": [
-                    null
-                ],
-                "foreignKeys": [
-                    {
-                        "fields": [
-                            null
-                        ],
-                        "reference": {
-                            "resource": null,
-                            "fields": [
-                                null
-                            ]
-                        }
-                    }
-                ]
+                "fields": [],
+                "primaryKey": [],
+                "foreignKeys": []
             },
             "dialect": {
-                "delimiter": null,
+                "delimiter": "",
                 "decimalSeparator": "."
             }
         }
     ],
     "@id": "bnetza_mastr",
-    "@context": null,
+    "@context": "null",
     "review": {
-        "path": null,
-        "badge": null
+        "path": "",
+        "badge": ""
     },
     "metaMetadata": {
         "metadataVersion": "OEP-1.5.2",

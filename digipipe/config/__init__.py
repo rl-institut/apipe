@@ -18,6 +18,7 @@ class LevelFilter(logging.Filter):
 LOGGING_LEVEL = 20  # Corresponds to the severity level "Info"
 
 root_logger = logging.getLogger()
+root_logger.handlers.clear()  # Remove the default handler
 root_logger.setLevel(LOGGING_LEVEL)
 
 stream_formatter = logging.Formatter("%(levelname)s - %(message)s")

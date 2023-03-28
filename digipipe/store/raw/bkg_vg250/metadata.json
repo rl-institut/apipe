@@ -15,7 +15,7 @@
     "keywords": [
         null
     ],
-    "publicationDate": "01.01.2022",
+    "publicationDate": "2022-01-01",
     "context": {
         "homepage": "https://digiplan.rl-institut.de/",
         "documentation": "https://github.com/rl-institut-private/digipipe",
@@ -50,19 +50,19 @@
             "path": "https://gdz.bkg.bund.de/index.php/default/digitale-geodaten/verwaltungsgebiete/verwaltungsgebiete-1-250-000-stand-01-01-vg250-01-01.html",
             "licenses": [
                 {
-                    "name": "Open Data Datenlizenz Deutschland – Namensnennung – Version 2.0",
-                    "title": "dl-de/by-2-0",
+                    "name": "dl-de/by-2-0",
+                    "title": "Open Data Datenlizenz Deutschland – Namensnennung – Version 2.0",
                     "path": "http://www.govdata.de/dl-de/by-2-0",
                     "instruction": "The data and meta-data provided may, for commercial and non-commercial use, in particular be copied, printed, presented, altered, processed and transmitted to third parties; be merged with own data and with the data of others and be combined to form new and independent datasets;be integrated in internal and external business processes, products and applications in public and non-public electronic networks.",
                     "attribution": null
                 }
             ]
-        },
+        }
     ],
     "licenses": [
         {
-           "name": "Open Data Datenlizenz Deutschland – Namensnennung – Version 2.0",
-            "title": "dl-de/by-2-0",
+           "name": "dl-de/by-2-0",
+            "title": "Open Data Datenlizenz Deutschland – Namensnennung – Version 2.0?" ,
             "path": "http://www.govdata.de/dl-de/by-2-0",
             "instruction": "The data and meta-data provided may, for commercial and non-commercial use, in particular be copied, printed, presented, altered, processed and transmitted to third parties; be merged with own data and with the data of others and be combined to form new and independent datasets;be integrated in internal and external business processes, products and applications in public and non-public electronic networks.",
             "attribution": null
@@ -72,7 +72,7 @@
         {
             "title": "hedwiglieselotte",
             "email": "hedwig.bartels@rl-institut.de",
-            "date": "21.03.2023",
+            "date": "2023-03-23",
             "object": null,
             "comment": null
         }

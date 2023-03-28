@@ -49,7 +49,7 @@ def add_snake_logger(logging_path, rulename):
         if logging_path:
             logfile = logging_path
         else:
-            DEFAULT_LOGFILE
+            logfile = DEFAULT_LOGFILE
 
     handler = logging.FileHandler(logfile)
     file_formatter = logging.Formatter(

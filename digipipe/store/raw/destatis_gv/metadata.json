@@ -3,47 +3,35 @@ Originale Datenquelle: https://www.destatis.de/DE/Themen/Laender-Regionen/Region
 {
     "name": "destatis_gv",
     "title": "Adminstratives Gemeinndeverzeichnis",
-    "id": null,
+    "id": "destatis_gv",
     "description": "Alle politisch selbständigen Gemeinden mit ausgewählten Merkmalen am 31.12.2022 ",
     "language": [
-        "de"
+        "de-DE"
     ],
-    "subject": [
-        {
-            "name": null,
-            "path": null
-        }
-    ],
+    "subject": [],
     "keywords": [
-        null
+        "destatis",
+        "gemeindeverzeichnis"
     ],
     "publicationDate": "2023-01-12",
     "context": {
-        "homepage": "https://www.destatis.de/DE/Home/_inhalt.html",
-        "documentation": null,
-        "sourceCode": "https://www.destatis.de/DE/Themen/Laender-Regionen/Regionales/Gemeindeverzeichnis/Administrativ/Archiv/GVAuszugQ/AuszugGV4QAktuell.html",
-        "contact": "ttps://github.com/nesnoj",
-        "grantNo": null,
-        "fundingAgency": null,
-        "fundingAgencyLogo": null,
-        "publisherLogo": null
+       "homepage": "https://abw.rl-institut.de",
+        "documentation": "https://digiplan.readthedocs.io",
+        "sourceCode": "https://github.com/rl-institut/digipipe/",
+        "contact": "https://reiner-lemoine-institut.de/ueber-uns/kontakt/",
+        "grantNo": "None",
+        "fundingAgency": "https://www.region-gestalten.bund.de",
+        "fundingAgencyLogo": "https://www.region-gestalten.bund.de/Region/SiteGlobals/Frontend/Images/logo.svg",
+        "publisherLogo": "https://reiner-lemoine-institut.de//wp-content/uploads/2015/09/rlilogo.png"
     },
     "spatial": {
-        "location": null,
-        "extent": null,
-        "resolution": null
+        "location": "Germany",
+        "extent": "Germany",
+        "resolution": ""
     },
     "temporal": {
-        "referenceDate": null,
-        "timeseries": [
-            {
-                "start": null,
-                "end": null,
-                "resolution": null,
-                "alignment": null,
-                "aggregationType": null
-            }
-        ]
+        "referenceDate": "2022-02-14",
+        "timeseries": []
     },
     "sources": [
         {
@@ -75,8 +63,8 @@ Originale Datenquelle: https://www.destatis.de/DE/Themen/Laender-Regionen/Region
             "title": "hedwiglieselotte",
             "email": "hedwig.bartels@rl-institut.de",
             "date": "2023-03-28",
-            "object": null,
-            "comment": null
+            "object": "metadata",
+            "comment": "create metadata"
         }
     ],
     "resources": [
@@ -87,74 +75,23 @@ Originale Datenquelle: https://www.destatis.de/DE/Themen/Laender-Regionen/Region
             "format": null,
             "encoding": null,
             "schema": {
-                "fields": [
-                    {
-                        "name": null,
-                        "description": null,
-                        "type": null,
-                        "unit": null,
-                        "isAbout": [
-                            {
-                                "name": null,
-                                "path": null
-                            }
-                        ],
-                        "valueReference": [
-                            {
-                                "value": null,
-                                "name": null,
-                                "path": null
-                            }
-                        ]
+                "fields": []
                     },
-                    {
-                        "name": null,
-                        "description": null,
-                        "type": null,
-                        "unit": null,
-                        "isAbout": [
-                            {
-                                "name": null,
-                                "path": null
-                            }
-                        ],
-                        "valueReference": [
-                            {
-                                "value": null,
-                                "name": null,
-                                "path": null
-                            }
-                        ]
-                    }
                 ],
-                "primaryKey": [
-                    null
-                ],
-                "foreignKeys": [
-                    {
-                        "fields": [
-                            null
-                        ],
-                        "reference": {
-                            "resource": null,
-                            "fields": [
-                                null
-                            ]
-                        }
-                    }
-                ]
+                "primaryKey": [],
+                "foreignKeys": []
             },
             "dialect": {
-                "delimiter": null,
+                "delimiter": "",
                 "decimalSeparator": "."
             }
         }
     ],
     "@id": "destatis_gv",
-    "@context": null,
+    "@context": "",
     "review": {
-        "path": null,
-        "badge": null
+        "path": "",
+        "badge": ""
     },
     "metaMetadata": {
         "metadataVersion": "OEP-1.5.2",

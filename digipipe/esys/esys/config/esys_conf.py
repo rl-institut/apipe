@@ -27,6 +27,7 @@ DEBUG = settings.get("DEBUG", False)
 LOGGING_LEVEL = settings.get("LOGGING_LEVEL", logging.DEBUG if DEBUG else logging.INFO)
 
 root_logger = logging.getLogger()
+root_logger.handlers.clear()  # Remove the default handler
 root_logger.setLevel(LOGGING_LEVEL)
 
 stream_formatter = logging.Formatter("%(levelname)s - %(message)s")

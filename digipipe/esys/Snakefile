@@ -20,6 +20,7 @@ rule make_esys_appdata:
             scenario=scenario_groups["all-scenarios"]
         )
 
+# TODO: To be deleted with issue 52 resolve
 rule postprocessed_esys_appdata:
     input:
         plots=expand(

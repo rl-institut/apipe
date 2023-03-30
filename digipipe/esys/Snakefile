@@ -19,3 +19,10 @@ rule make_esys_appdata:
             "store/appdata/esys/{scenario}/preprocessed",
             scenario=scenario_groups["all-scenarios"]
         )
+
+rule postprocessed_esys_appdata:
+    input:
+        plots=expand(
+            "store/appdata/esys/{scenario}/postprocessed",
+            scenario=scenario_groups["all-scenarios"]
+        )

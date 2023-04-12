@@ -17,6 +17,6 @@ rule create:
     output:
         DATASET_PATH / "data" / "3112{year}_Auszug_GV.csv"
     log:
-        DATASET_PATH / "data" / "3112{year}_Auszug_GV.csv"
+        DATASET_PATH / "data" / "3112{year}_Auszug_GV.log"
     script:
         DATASET_PATH / "scripts" / "create.py"

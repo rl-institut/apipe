@@ -1,0 +1,44 @@
+# This scenario config file contains information for several steps in the model pipeline, i.e.
+# build_datapackage, parametrize, optimize and potentially also postprocess or plot.
+
+# build_datapackage
+
+name: status_quo_scenario
+label: status-quo Scenario
+
+datetimeindex:
+  start:
+    "2019-01-01 00:00:00"
+  freq:
+    "H"
+  periods:
+    8760
+
+model_structure:
+  model_structure_full
+
+# parametrize
+
+paths_scalars:
+  - store/datasets/esys_raw/data/scalars/scalars.csv
+  - store/appdata/esys/_resources/scal_costs_efficiencies.csv
+
+filter_scalars:
+  1:
+    scenario_key:
+      - "ALL"
+      - "status_quo_scenario"
+
+paths_resources:
+
+
+paths_timeseries:
+  - store/datasets/esys_raw/data/time_series/empty_ts_efficiencies.csv
+  - store/datasets/esys_raw/data/time_series/empty_ts_feedin.csv
+  - store/datasets/esys_raw/data/time_series/empty_ts_load.csv
+
+filter_timeseries:
+  scenario_key:
+    - "empty_ts"
+  timeindex_start:
+    "2019-01-01 00:00:00"

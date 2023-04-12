@@ -40,7 +40,8 @@ rule all:
         mastr_names=rules.datasets_bnetza_mastr_captions_create.output,
         gsgk=rules.datasets_bnetza_mastr_gsgk_region_create.output,
         storage=rules.datasets_bnetza_mastr_storage_region_create.output,
-        population=rules.datasets_population_create.output
+        population=rules.datasets_population_create.output,
+        esys_appdata=rules.make_esys_appdata.output
     # run:
     #     print("CONFIG MAIN:")
     #     print(config)

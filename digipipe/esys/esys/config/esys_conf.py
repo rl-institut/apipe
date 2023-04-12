@@ -2,8 +2,10 @@ import logging
 import pathlib
 import sys
 
-import yaml
 from dynaconf import Dynaconf
+
+from digipipe.scripts.config import read_config
+
 
 CONFIG_PATH = pathlib.Path(__file__).parent
 ROOT_DIR = CONFIG_PATH.parent.parent
@@ -61,10 +63,7 @@ def add_snake_logger(rulename):
 
 
 def load_yaml(file_path):
-    with open(file_path, "r") as yaml_file:
-        yaml_data = yaml.load(yaml_file, Loader=yaml.FullLoader)
-
-    return yaml_data
+    return read_config(file_path)
 
 
 LABELS = load_yaml(CONFIG_PATH / "labels" / f"{settings.labels}.yml")

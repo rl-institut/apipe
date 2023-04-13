@@ -30,6 +30,8 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Integrate esys Snakefile in workflow Snakefile and update clean rule
 - Fix shapely deprecation warning
 - Fix ogr2ogr conversion with recent GDAL version (v3.6.2)
+- Exchange the Test_scenario with the scenarios status_quo_scenario and
+  2045_scenario of *esys* in digipipe/esys/scenarios directory
 
 ### Removed
 

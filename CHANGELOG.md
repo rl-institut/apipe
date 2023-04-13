@@ -20,6 +20,7 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Create list of region-specific datasets in the docs
 - Integrate building of energy system for appdata in pipeline via dir *esys*
 - Update store with dir structure for *esys* data
+- Add creation of empty time series for the *esys*
 
 ### Changed
 

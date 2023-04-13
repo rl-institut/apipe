@@ -38,7 +38,8 @@ from digipipe.esys.esys.tools.data_processing import (HEADER_B3_TS,
 
 def get_sub_dict(subsub_key, _dict):
     """
-    This function extracts a subsub-dictionary from a dictionary using a subsub-key
+    This function extracts a subsub-dictionary from a dictionary using a
+    subsub-key
 
     Inputs
     -------
@@ -88,12 +89,15 @@ def set_ts_values(periods, date_rng, name):
     Raises
     ------
     KeyError
-        If settings.create_empty_ts.ts_values is not set to either 'zeros' or 'empty'.
+        If settings.create_empty_ts.ts_values is not set to either 'zeros' or
+        'empty'.
     """
     ts_values = settings.create_empty_ts.ts_values
 
     if ts_values == "zeros":
-        df = pd.DataFrame(np.zeros((periods, 1)), index=date_rng, columns=[name])
+        df = pd.DataFrame(
+            np.zeros((periods, 1)), index=date_rng, columns=[name]
+        )
     elif ts_values == "empty":
         df = pd.DataFrame(
             np.empty((periods, 1)) * np.nan, index=date_rng, columns=[name]
@@ -127,7 +131,9 @@ def create_empty_ts_with_zero_or_nan_values(name):
     datetime_format = settings.create_empty_ts.datetime_format
 
     # Get start date from scenario specifications
-    start = datetime.strptime(scenario_specs["datetimeindex"]["start"], datetime_format)
+    start = datetime.strptime(
+        scenario_specs["datetimeindex"]["start"], datetime_format
+    )
 
     # Get periods and freq from scenario specifications
     periods = scenario_specs["datetimeindex"]["periods"]
@@ -223,13 +229,18 @@ if __name__ == "__main__":
             os.path.join(model.here, "component_attrs_update.yml")
         )
 
-        # Get all foreign_keys that contain "profile" from component_attrs_update
+        # Get all foreign_keys that contain "profile" from
+        # component_attrs_update
         foreign_keys_profile = get_sub_dict("profile", component_attrs_update)
 
-        # Get all foreign_keys that contain "efficiency" from component_attrs_update
-        foreign_keys_efficiency = get_sub_dict("efficiency", component_attrs_update)
+        # Get all foreign_keys that contain "efficiency" from
+        # component_attrs_update
+        foreign_keys_efficiency = get_sub_dict(
+            "efficiency", component_attrs_update
+        )
 
-        # Save profile names depending on whether it is a load, a feed-in or an efficiency
+        # Save profile names depending on whether it is a load, a feed-in or
+        # an efficiency
         load_names = [
             attr_subdict["profile"]
             for attr_subdict in foreign_keys_profile
@@ -241,7 +252,8 @@ if __name__ == "__main__":
             if not "demand" in attr_subdict["profile"]  # noqa: E713
         ]
         efficiency_names = [
-            attr_subdict["efficiency"] for attr_subdict in foreign_keys_efficiency
+            attr_subdict["efficiency"] for
+            attr_subdict in foreign_keys_efficiency
         ]
 
         for region in model_structure["regions"]:
@@ -254,5 +266,7 @@ if __name__ == "__main__":
                 save_ts(df_feedin, path_empty_ts_feedin)
 
             if efficiency_names:
-                df_efficiencies = get_df_of_all_empty_ts(efficiency_names, region)
+                df_efficiencies = get_df_of_all_empty_ts(
+                    efficiency_names, region
+                )
                 save_ts(df_efficiencies, path_empty_ts_efficiencies)

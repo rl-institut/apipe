@@ -15,3 +15,10 @@ In the future, empty raw data (scalars and time series) will be created
 automatically. Then, assumptions on constant parameters such as plant costs,
 lifetime and efficiencies are mapped and set as values of the corresponding
 variables in the scalars.
+
+Empty scalars and time series can be created from the energy model setup with
+
+```
+snakemake -j1 create_empty_scalars
+snakemake -j1 create_empty_ts
+```

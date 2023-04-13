@@ -22,17 +22,18 @@ Description
 The script creates empty DataFrames for load, feed-in and efficiency time
 series data that serve as template for input data.
 """
-import sys
 import os
-import pandas as pd
-import numpy as np
-
+import sys
 from datetime import datetime
 
+import numpy as np
+import pandas as pd
+
+from digipipe.esys.esys import model
 from digipipe.esys.esys.config.esys_conf import load_yaml, settings
 from digipipe.esys.esys.model import model_structures
-from digipipe.esys.esys import model
-from digipipe.esys.esys.tools.data_processing import HEADER_B3_TS, stack_timeseries
+from digipipe.esys.esys.tools.data_processing import (HEADER_B3_TS,
+                                                      stack_timeseries)
 
 
 def get_sub_dict(subsub_key, dict):
@@ -94,7 +95,9 @@ def set_ts_values(periods, date_rng, name):
     if ts_values == "zeros":
         df = pd.DataFrame(np.zeros((periods, 1)), index=date_rng, columns=[name])
     elif ts_values == "empty":
-        df = pd.DataFrame(np.empty((periods, 1)) * np.nan, index=date_rng, columns=[name])
+        df = pd.DataFrame(
+            np.empty((periods, 1)) * np.nan, index=date_rng, columns=[name]
+        )
     else:
         raise KeyError(
             f"{ts_values} is not a valid option. Valid options are: 'zeros' or"
@@ -124,9 +127,7 @@ def create_empty_ts_with_zero_or_nan_values(name):
     format = settings.create_empty_ts.datetime_format
 
     # Get start date from scenario specifications
-    start = datetime.strptime(
-        scenario_specs["datetimeindex"]["start"], format
-    )
+    start = datetime.strptime(scenario_specs["datetimeindex"]["start"], format)
 
     # Get periods and freq from scenario specifications
     periods = scenario_specs["datetimeindex"]["periods"]

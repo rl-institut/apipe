@@ -36,7 +36,7 @@ from digipipe.esys.esys.tools.data_processing import (HEADER_B3_TS,
                                                       stack_timeseries)
 
 
-def get_sub_dict(subsub_key, dict):
+def get_sub_dict(subsub_key, _dict):
     """
     This function extracts a subsub-dictionary from a dictionary using a subsub-key
 
@@ -45,7 +45,7 @@ def get_sub_dict(subsub_key, dict):
     subsub_key : str
         Key of the subsub-dictionary
 
-    dict : dict
+    _dict : dict
         Dictionary with two inner dictionaries
 
     Outputs
@@ -57,7 +57,7 @@ def get_sub_dict(subsub_key, dict):
 
     subsub_dict = [
         subsubdict
-        for sub_dict in dict.values()
+        for sub_dict in _dict.values()
         for subsubdict in sub_dict.values()
         if subsub_key in subsubdict
     ]
@@ -124,10 +124,10 @@ def create_empty_ts_with_zero_or_nan_values(name):
         Dataframe containing ts with zeros as values and name as column name
 
     """
-    format = settings.create_empty_ts.datetime_format
+    datetime_format = settings.create_empty_ts.datetime_format
 
     # Get start date from scenario specifications
-    start = datetime.strptime(scenario_specs["datetimeindex"]["start"], format)
+    start = datetime.strptime(scenario_specs["datetimeindex"]["start"], datetime_format)
 
     # Get periods and freq from scenario specifications
     periods = scenario_specs["datetimeindex"]["periods"]
@@ -142,7 +142,7 @@ def create_empty_ts_with_zero_or_nan_values(name):
     return df
 
 
-def get_df_of_all_empty_ts(profile_names, region):
+def get_df_of_all_empty_ts(profile_names, _region):
     """
     This function provides a Dataframe with all ts of a profile (load, feedin
     or efficiency)
@@ -152,7 +152,7 @@ def get_df_of_all_empty_ts(profile_names, region):
     profile_names : list
         List with names of profiles (loads, feedins or efficiencies)
 
-    region : str
+    _region : str
         Region
 
     Outputs
@@ -173,7 +173,7 @@ def get_df_of_all_empty_ts(profile_names, region):
         stacked_df = stacked_df.reindex(columns=HEADER_B3_TS)
 
         # Add region and scenario_specs to Dataframe
-        stacked_df["region"] = region
+        stacked_df["region"] = _region
         stacked_df["scenario_key"] = settings.create_empty_ts.filter_ts
 
         # Append Dataframe to ts_profile_df and add index name

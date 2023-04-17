@@ -32,7 +32,8 @@ Es werden einige zusätzliche Systempakete benötigt, die Sie mit dem folgenden 
 
 Weitere Anmerkungen:
 
-* Stellen Sie sicher, dass Sie `GDAL>=3.0` haben, da ältere Versionen nicht funktionieren.
+* Stellen Sie sicher, dass Sie `GDAL>=3.0` haben, da ältere Versionen nicht
+  funktionieren.
 * `imagemagick` ist optional und nur für die Berichtserstellung erforderlich
 
 Installieren Sie das Paket mit:

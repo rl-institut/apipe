@@ -35,4 +35,3 @@ if __name__ == "__main__":
     outfile = sys.argv[3]
     logger = add_snake_logger(None, "bkg_vg250_region")
     process()
-

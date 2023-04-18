@@ -114,4 +114,3 @@ def process() -> None:
 if __name__ == "__main__":
     logger = add_snake_logger(str(snakemake.log), "bnetza_mastr_gsgk_region")
     process()
-

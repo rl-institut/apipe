@@ -21,7 +21,7 @@ Navigieren Sie in den Repo-Ordner. Richten Sie eine conda-Umgebung ein und aktiv
 .. code-block::
 
    conda env create -f environment.yml
-   conda activate digiplan
+   conda activate digipipe
 
 Installieren Sie `poetry <https://python-poetry.org/>`_ (der in diesem Projekt verwendete Python-Abhängigkeitsmanager
 Projekt) und Abhängigkeiten für das Projekt (Hinweis: Die Installation von poetry via pip in dieselbe Umgebung wird

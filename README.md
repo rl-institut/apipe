@@ -27,7 +27,7 @@ Enter repo folder. Set up a conda environment and activate it with:
 
 ```
 conda env create -f environment.yml
-conda activate digiplan
+conda activate digipipe
 ```
 
 Install [poetry](https://python-poetry.org/) (python dependency manager used

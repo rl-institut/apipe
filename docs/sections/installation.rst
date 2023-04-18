@@ -37,7 +37,7 @@ Es werden einige zusätzliche Systempakete benötigt, die Sie mit dem folgenden 
 
 .. code-block::
 
-   apt install gdal-bin python3-gdal libspatialindex-dev imagemagick osmium-tool graphviz graphviz-dev
+   sudo apt install gdal-bin python3-gdal libspatialindex-dev imagemagick osmium-tool graphviz graphviz-dev
 
 Weitere Anmerkungen:
 

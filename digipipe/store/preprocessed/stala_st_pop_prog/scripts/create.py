@@ -1,5 +1,3 @@
-import re
-
 import pandas as pd
 
 from digipipe.config.__init__ import add_snake_logger

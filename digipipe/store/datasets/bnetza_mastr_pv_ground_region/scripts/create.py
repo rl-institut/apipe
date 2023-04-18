@@ -2,8 +2,11 @@ import geopandas as gpd
 import pandas as pd
 
 from digipipe.scripts.datasets import mastr
-from digipipe.scripts.geo import (overlay, rename_filter_attributes,
-                                  write_geofile)
+from digipipe.scripts.geo import (
+    overlay,
+    rename_filter_attributes,
+    write_geofile,
+)
 from digipipe.config.__init__ import add_snake_logger
 
 
@@ -59,7 +62,10 @@ def process() -> None:
         units = pd.concat([units_with_geom, units_with_inferred_geom_gdf])
 
         units_agg = pd.concat(
-            [units_with_geom.assign(unit_count=1), units_with_inferred_geom_agg_gdf]
+            [
+                units_with_geom.assign(unit_count=1),
+                units_with_inferred_geom_agg_gdf,
+            ]
         )
     else:
         units = units_with_geom
@@ -107,3 +113,4 @@ def process() -> None:
 if __name__ == "__main__":
     logger = add_snake_logger(str(snakemake.log), "bnetza_mastr_pv_ground_region")
     process()
+

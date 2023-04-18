@@ -61,9 +61,9 @@ def process() -> None:
     # Add municipality_id and data origin
     population = (
         pd.concat(
-            [muns.set_index("ags")["id"].rename("municipality_id"),
-             population],
-            axis=1)
+            [muns.set_index("ags")["id"].rename("municipality_id"), population],
+            axis=1,
+        )
         .sort_index()
         .set_index("municipality_id", drop=True)
     )

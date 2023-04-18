@@ -19,6 +19,7 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Datasets attribute captions
 - Create list of region-specific datasets in the docs
 - pyproject.toml and poetry.lock file have been added with the conversion to poetry
+- Add pre-commit in order to check for errors and linting bugs before commits
 
 ### Changed
 
@@ -31,6 +32,7 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Fix conda installation by removing python-gdal from environment.yml
 - The package management in digipipe has been changed to poetry.
 - The installation of a virtual environment is done only from the environment.yml file and via conda.
+- Apply linters on repo among others: black, isort, check-json and end-of-file-fixer
 
 ### Removed
 

@@ -21,7 +21,9 @@ def process() -> None:
     # Create AGS and drop old cols
     data = data.assign(ags=data.Land + data.RB + data.Kreis + data.Gem)
 
-    data[["ags", snakemake.wildcards.year]].to_csv(snakemake.output[0], index=None)
+    data[["ags", snakemake.wildcards.year]].to_csv(
+        snakemake.output[0], index=None
+    )
 
 
 if __name__ == "__main__":

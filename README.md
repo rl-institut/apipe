@@ -10,7 +10,7 @@
 
 Pipeline for data and energy system in the Digiplan project.
 
-## Installation 
+## Installation
 
 **Note: Linux only, Windows is currently not supported.**
 
@@ -27,7 +27,7 @@ Enter repo folder. Set up a conda environment and activate it with:
 
 ```
 conda env create -f environment.yml
-conda activate digiplan
+conda activate digipipe
 ```
 
 Install [poetry](https://python-poetry.org/) (python dependency manager used
@@ -43,11 +43,25 @@ poetry install
 
 Some additional system packages are required, install them by
 
-    apt install gdal-bin python3-gdal libspatialindex-dev imagemagick osmium-tool graphviz graphviz-dev
+    sudo apt install gdal-bin python3-gdal libspatialindex-dev imagemagick osmium-tool graphviz graphviz-dev
 
 Notes:
 - Make sure you have GDAL>=3.0 as older versions will not work.
 - `imagemagick` is optional and only required for report creation
+
+## Contributing to digipipe
+
+You can write `issues <https://github.com/rl-institut-private/digipipe/issues>`_ to announce bugs or to propose enhancements.
+
+If you want to participate in the development of digipipe, please make sure you use pre-commit.
+
+You activate it with:
+
+    pre-commit install
+
+To trigger a check manually, execute:
+
+    pre-commit run -a
 
 ## Further reading on structure, pipeline and conventions
 

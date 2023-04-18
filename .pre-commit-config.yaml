@@ -78,4 +78,12 @@ repos:
           [
             "--ignore-missing-imports", # Ignore missing imports
             "--warn-unused-ignores", # Warn about unused ignore comments
+            "--disable-error-code=name-defined", # To suppress Name "snakemake"
+            # is not defined  [name-defined]
+            "--disable-error-code=var-annotated",
+            "--disable-error-code=var-annotated",
+            "--disable-error-code=dict-item",
+            "--disable-error-code=arg-type",
+            "--disable-error-code=assignment",
+            "--disable-error-code=attr-defined",
           ]

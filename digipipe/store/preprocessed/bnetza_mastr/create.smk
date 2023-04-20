@@ -23,7 +23,7 @@ rule create:
         logger = add_snake_logger(f"{log}", "bnetza_mastr")
         shell(
             """
-            unzip -j {input} {params.files_extract} -d {params.outpath}
+            unzip -j {input} {params.files_extract} -d {params.outpath} 2>&1 > {log}
             """
         )
         logger.info(f"Datapackage has been created at: {output}")

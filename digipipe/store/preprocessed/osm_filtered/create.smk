@@ -19,6 +19,6 @@ rule convert:
         logger = add_snake_logger(f"{log}", "osm_filtered")
         shell(
             "osmium tags-filter --remove-tags -f osm {input} {params.tags} | "
-            "ogr2ogr -f GPKG -t_srs EPSG:3035 {output} /vsistdin/?buffer_limit=-1"
+            "ogr2ogr -f GPKG -t_srs EPSG:3035 {output} /vsistdin/?buffer_limit=-1 2>&1 > {log}"
         )
         logger.info(f"Datapackage has been created at: {output}")

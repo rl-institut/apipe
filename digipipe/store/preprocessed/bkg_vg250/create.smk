@@ -25,9 +25,9 @@ rule create:
         logger = add_snake_logger(f"{log}", "bkg_vg250")
         shell(
             """
-            unzip -j {input} {params.file_path_in_zip} -d {params.outpath}
-            ogr2ogr -f GPKG -t_srs EPSG:3035 {output} {params.original_file} {params.layers}
-            rm {params.original_file}
+            unzip -j {input} {params.file_path_in_zip} -d {params.outpath} 2>&1 > {log}
+            ogr2ogr -f GPKG -t_srs EPSG:3035 {output} {params.original_file} {params.layers} 2>&1 > {log}
+            rm {params.original_file} 2>&1 > {log}
             """
         )
         logger.info(f"Datapackage has been created at: {output}")

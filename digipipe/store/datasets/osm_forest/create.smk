@@ -23,7 +23,7 @@ rule extract_tags:
 
         shell(
             f"ogr2ogr -f GPKG -select {params.tags['tags']} "
-            f"{params.tags['conditions']} {output} {input} {params.geom_type}"
+            f"{params.tags['conditions']} {output} {input} {params.geom_type} 2>&1 > {log}"
         )
 
         logger.info(f"Datapackage has been created at: {output}")

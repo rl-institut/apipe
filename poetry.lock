@@ -3234,6 +3234,18 @@ files = [
 ]
 
 [[package]]
+name = "pyxlsb"
+version = "1.0.10"
+description = "Excel 2007-2010 Binary Workbook (xlsb) parser"
+category = "main"
+optional = false
+python-versions = "*"
+files = [
+    {file = "pyxlsb-1.0.10-py2.py3-none-any.whl", hash = "sha256:87c122a9a622e35ca5e741d2e541201d28af00fb46bec492cfa9586890b120b4"},
+    {file = "pyxlsb-1.0.10.tar.gz", hash = "sha256:8062d1ea8626d3f1980e8b1cfe91a4483747449242ecb61013bc2df85435f685"},
+]
+
+[[package]]
 name = "pyyaml"
 version = "6.0"
 description = "YAML parser and emitter for Python"
@@ -4574,4 +4586,4 @@ testing = ["big-O", "flake8 (<5)", "jaraco.functools", "jaraco.itertools", "more
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.8,<4.0"
-content-hash = "2ce798dacfdaf865cd0d3fcecc082f75418ca681b9c5616d6f5aa62b4058855e"
+content-hash = "79990fdab6b8bbf341692df596e99867918f70ca0dcf441b954b6aad41a49a79"

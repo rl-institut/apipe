@@ -55,6 +55,7 @@ jinja2 = "3.0.3"
 geopy = "^2.3.0"
 oemoflex = { git = "https://git@github.com/rl-institut/oemoflex", tag = "0.0.1"}
 ruff = "^0.0.257"
+pyxlsb = "^1.0.10"
 
 
 [tool.poetry.dev-dependencies]

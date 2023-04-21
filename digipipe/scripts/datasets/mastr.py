@@ -1,11 +1,12 @@
 """Shared functions for processing data from MaStR dataset"""
 
+from typing import Tuple, Union
+
 import geopandas as gpd
 import pandas as pd
 from geopy.exc import GeocoderUnavailable
 from geopy.extra.rate_limiter import RateLimiter
 from geopy.geocoders import Nominatim
-from typing import Tuple, Union
 
 
 def cleanse(
@@ -68,14 +69,18 @@ def add_voltage_level(
     ).rename(columns={"MastrNummer": "mastr_location_id2"})
     gridconn = pd.read_csv(
         gridconn_path,
-        usecols=["NetzanschlusspunktMastrNummer", "Spannungsebene"]
+        usecols=["NetzanschlusspunktMastrNummer", "Spannungsebene"],
     )
-    locations = locations.merge(
-        gridconn,
-        left_on="Netzanschlusspunkte",
-        right_on="NetzanschlusspunktMastrNummer",
-        how="left",
-    ).drop_duplicates().rename(columns={"Spannungsebene": "voltage_level"})
+    locations = (
+        locations.merge(
+            gridconn,
+            left_on="Netzanschlusspunkte",
+            right_on="NetzanschlusspunktMastrNummer",
+            how="left",
+        )
+        .drop_duplicates()
+        .rename(columns={"Spannungsebene": "voltage_level"})
+    )
 
     # Add voltage level to units
     units_df = units_df.reset_index().merge(
@@ -98,8 +103,8 @@ def add_voltage_level(
 
 
 def add_geometry(
-        units_df: pd.DataFrame,
-        drop_units_wo_coords: bool = True,
+    units_df: pd.DataFrame,
+    drop_units_wo_coords: bool = True,
 ) -> gpd.GeoDataFrame:
     """
     Add `geometry` column to MaStR unit data using `lat` and `lon` values.
@@ -129,9 +134,7 @@ def add_geometry(
 
     units_gdf = gpd.GeoDataFrame(
         units_df,
-        geometry=gpd.points_from_xy(
-            units_df["lon"], units_df["lat"], crs=4326
-        ),
+        geometry=gpd.points_from_xy(units_df["lon"], units_df["lat"], crs=4326),
         crs=4326,
     ).to_crs(3035)
 
@@ -142,10 +145,10 @@ def add_geometry(
 
 
 def geocode(
-        units_df: pd.DataFrame,
-        user_agent: str = "geocoder",
-        interval: int = 1,
-        target_crs: str = "EPSG:3035",
+    units_df: pd.DataFrame,
+    user_agent: str = "geocoder",
+    interval: int = 1,
+    target_crs: str = "EPSG:3035",
 ) -> gpd.GeoDataFrame:
     """
     Geocode locations from MaStR unit table using zip code and city.
@@ -171,8 +174,8 @@ def geocode(
     """
 
     def geocoder(
-            user_agent: str,
-            interval: int,
+        user_agent: str,
+        interval: int,
     ) -> RateLimiter:
         """Setup Nominatim geocoding class.
 
@@ -195,7 +198,7 @@ def geocode(
                 locator.geocode,
                 min_delay_seconds=interval,
             )
-        except GeocoderUnavailable as e:
+        except GeocoderUnavailable:
             print("Geocoder unavailable, aborting geocoding!")
             raise
 
@@ -231,8 +234,9 @@ def geocode(
     )
     unique_locations = gpd.GeoDataFrame(
         unique_locations,
-        geometry=gpd.points_from_xy(unique_locations.longitude,
-                                    unique_locations.latitude),
+        geometry=gpd.points_from_xy(
+            unique_locations.longitude, unique_locations.latitude
+        ),
         crs="EPSG:4326",
     )
     # Merge locations back in units
@@ -247,9 +251,9 @@ def geocode(
 
 
 def geocode_units_wo_geometry(
-        units_df: pd.DataFrame,
-        columns_agg_functions: dict,
-        target_crs: str = "EPSG:3035",
+    units_df: pd.DataFrame,
+    columns_agg_functions: dict,
+    target_crs: str = "EPSG:3035",
 ) -> Tuple[gpd.GeoDataFrame, gpd.GeoDataFrame]:
     """
     Add locations to units without coordinates by geocoding. The units are
@@ -287,8 +291,9 @@ def geocode_units_wo_geometry(
         Units grouped by approximated location (1 dataset with >=1 units per
         row) with aggregated attributes as given by `columns_agg_functions`.
     """
+
     def aggregate_units_wo_geometry(
-            units_gdf: gpd.GeoDataFrame
+        units_gdf: gpd.GeoDataFrame,
     ) -> gpd.GeoDataFrame:
         """Aggregate units by approximated position
 
@@ -308,24 +313,21 @@ def geocode_units_wo_geometry(
 
         grouping_columns = ["zip_code", "city", "lat", "lon"]
         units_agg_gdf = (
-            units_gdf[
-                grouping_columns + columns_agg_names
-            ].groupby(grouping_columns, as_index=False).agg(
-                **columns_agg_functions
-            )
+            units_gdf[grouping_columns + columns_agg_names]
+            .groupby(grouping_columns, as_index=False)
+            .agg(**columns_agg_functions)
         )
 
         # Create geometry and select columns
         units_agg_gdf = gpd.GeoDataFrame(
             units_agg_gdf,
-            geometry=gpd.points_from_xy(units_agg_gdf.lon,
-                                        units_agg_gdf.lat),
+            geometry=gpd.points_from_xy(units_agg_gdf.lon, units_agg_gdf.lat),
             crs=target_crs,
         )[
-            ["zip_code", "city"] +
-            list(columns_agg_functions.keys()) +
-            ["geometry"]
-            ]
+            ["zip_code", "city"]
+            + list(columns_agg_functions.keys())
+            + ["geometry"]
+        ]
         return units_agg_gdf.assign(
             status="In Betrieb oder in Planung",
             geometry_approximated=1,

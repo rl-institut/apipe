@@ -3,8 +3,10 @@ Helper functions for configs
 """
 
 import os
-import yaml
 from pathlib import Path
+
+import yaml
+
 from digipipe.store.utils import get_abs_store_root_path
 
 
@@ -21,7 +23,7 @@ def read_config(file: Path) -> dict:
     dict
         Config dict
     """
-    with open(file, 'r') as cfg_file:
+    with open(file, "r") as cfg_file:
         try:
             cfg = yaml.safe_load(cfg_file) or {}
         except yaml.YAMLError as exc:

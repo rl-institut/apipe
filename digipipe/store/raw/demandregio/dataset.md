@@ -4,7 +4,7 @@ Regionalisierte Bevölkerungsprognose sowie Strom-, Wärme und Gasbedarf auf
 Landkreisebene.
 
 Die Daten wurden abgerufen mit einer
-[modifizierten Version des DemandRegio disaggregators](https://github.com/nesnoj/disaggregator), 
+[modifizierten Version des DemandRegio disaggregators](https://github.com/nesnoj/disaggregator),
 in der softwareseitige, jedoch keine methodischen Änderungen vorgenommen wurden.
 
 Der disaggregator basiert auf Daten bis 2017, anschließende Jahre werden
@@ -14,7 +14,7 @@ Weitere Informationen zum Projekt DemandRegio
 - [Abschlussbericht](https://www.ffe.de/wp-content/uploads/2020/10/DemandRegio_Abschlussbericht.pdf)
 - [Abschlussworkshop](https://www.tu.berlin/er/forschung/projekte/demandregio-2)
 
-Die erzeugten Rohdaten wie unten beschrieben wurden mittels 
+Die erzeugten Rohdaten wie unten beschrieben wurden mittels
 [API](http://opendata.ffe.de:4000/) abgerufen. Diese können alternativ direkt
 vom [OpenData-Portal der FfE](https://opendata.ffe.de/project/demandregio/)
 bezogen werden.
@@ -79,7 +79,7 @@ for year in [2017, 2022, 2035, 2045]:
       year=year,
       scale_by_pop=True,
   ).to_csv(f"dr_hh_power_consumption_{year}.csv")
-  
+
   # Timeseries
   temporal.disagg_temporal_power_housholds_slp(
       use_nuts3code=True,

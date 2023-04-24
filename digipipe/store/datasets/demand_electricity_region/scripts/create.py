@@ -1,11 +1,12 @@
-import geopandas as gpd
-import pandas as pd
-import numpy as np
 from pathlib import Path
+
+import geopandas as gpd
+import numpy as np
+import pandas as pd
 
 
 def normalize_filter_timeseries(
-        infile: Path, outfile: Path, region_nuts: list = []
+    infile: Path, outfile: Path, region_nuts: list = None
 ) -> None:
     """Extract timeseries for specific districts, merge and normalize them to
     1 (MWh)
@@ -36,13 +37,10 @@ def normalize_filter_timeseries(
     # Get timeseries, filter region, resample to 1h
     timeseries = pd.read_csv(infile)
     timeseries.index = timeindex
-    timeseries = (
-        timeseries[region_nuts].resample("H").sum()
-    )
+    timeseries = timeseries[region_nuts].resample("H").sum()
     # Average SLP timeseries and normalize to 1 MWh
     timeseries = timeseries.sum(axis=1)
-    timeseries = timeseries.div(
-        timeseries.sum()).reset_index(drop=True)
+    timeseries = timeseries.div(timeseries.sum()).reset_index(drop=True)
     timeseries.name = "consumption_norm"
 
     # Check result
@@ -53,11 +51,11 @@ def normalize_filter_timeseries(
 
 
 def disaggregate_consumption_to_municipality(
-        consumption_district,
-        muns: gpd.GeoDataFrame,
-        districts: gpd.GeoDataFrame,
-        disagg_data: pd.DataFrame,
-        disagg_data_col: str,
+    consumption_district,
+    muns: gpd.GeoDataFrame,
+    districts: gpd.GeoDataFrame,
+    disagg_data: pd.DataFrame,
+    disagg_data_col: str,
 ) -> pd.DataFrame:
     """Disaggregates NUTS 3 consumption to municipalities by linear scaling
     using factors from `disagg_data`.
@@ -84,20 +82,19 @@ def disaggregate_consumption_to_municipality(
     muns = muns.merge(
         districts[["id", "nuts"]].rename(columns={"id": "district_id"}),
         left_on="district_id",
-        right_on="district_id"
+        right_on="district_id",
     )
-    disagg_data = disagg_data.reset_index().merge(
-        muns[["id", "nuts"]],
-        left_on="municipality_id",
-        right_on="id"
-    ).drop(columns=["id"])
+    disagg_data = (
+        disagg_data.reset_index()
+        .merge(muns[["id", "nuts"]], left_on="municipality_id", right_on="id")
+        .drop(columns=["id"])
+    )
 
     # Calc relative share within each district
     disagg_data = disagg_data.assign(
         pop_share=(
-                disagg_data[disagg_data_col] /
-                disagg_data.groupby("nuts")[
-                    disagg_data_col].transform("sum")
+            disagg_data[disagg_data_col]
+            / disagg_data.groupby("nuts")[disagg_data_col].transform("sum")
         )
     ).set_index("nuts")
 
@@ -110,25 +107,26 @@ def disaggregate_consumption_to_municipality(
         left_index=True,
         right_index=True,
     )
-    consumption[disagg_data_col] = (
-        consumption_district.consumption_district.mul(consumption.pop_share)
+    consumption[
+        disagg_data_col
+    ] = consumption_district.consumption_district.mul(consumption.pop_share)
+    consumption = consumption[["municipality_id", disagg_data_col]].set_index(
+        "municipality_id"
     )
-    consumption = consumption[
-        ["municipality_id", disagg_data_col]].set_index("municipality_id")
 
     # Check result
     np.testing.assert_almost_equal(
         consumption.sum().sum(),
         consumption_district.sum().sum(),
-        err_msg="Sum of disaggregated values does not match total value!"
+        err_msg="Sum of disaggregated values does not match total value!",
     )
 
     return consumption
 
 
 def merge_consumption_multiple_years(
-        infiles: list,
-        outfile: Path,
+    infiles: list,
+    outfile: Path,
 ) -> None:
     """Merge consumption from different years into one
 
@@ -144,10 +142,7 @@ def merge_consumption_multiple_years(
     None
     """
     consumption = pd.concat(
-        [
-            pd.read_csv(f, index_col="municipality_id")
-            for f in infiles
-        ],
+        [pd.read_csv(f, index_col="municipality_id") for f in infiles],
         axis=1,
     )
     consumption.to_csv(outfile)

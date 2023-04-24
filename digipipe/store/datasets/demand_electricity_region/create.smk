@@ -17,7 +17,8 @@ DATASET_PATH = get_abs_dataset_path("datasets", "demand_electricity_region")
 
 rule hh_normalize_timeseries:
     """
-    Extract household demand timeseries for districts, merge and normalize them
+    Extract household electricity demand timeseries for districts, merge and
+    normalize them
     """
     input:
         timeseries=get_abs_dataset_path("preprocessed", "demandregio") /
@@ -34,7 +35,8 @@ rule hh_normalize_timeseries:
 
 rule hh_disaggregate_consumption:
     """
-    Disaggregate household consumption from districts to municipalities for one year
+    Disaggregate household electricity consumption from districts to
+    municipalities for one year
     """
     input:
         consumption=get_abs_dataset_path("preprocessed", "demandregio") /
@@ -62,7 +64,7 @@ rule hh_disaggregate_consumption:
 
 rule hh_merge_consumption_years:
     """
-    Merge the consumptions from different years into one
+    Merge the electricity consumptions from different years into one
     """
     input:
         consumption=expand(
@@ -79,7 +81,8 @@ rule hh_merge_consumption_years:
 
 rule cts_normalize_timeseries:
     """
-    Extract CTS demand timeseries for districts, merge and normalize them
+    Extract CTS electricity demand timeseries for districts, merge and
+    normalize them
     """
     input:
         timeseries=get_abs_dataset_path("preprocessed", "demandregio") /
@@ -96,7 +99,8 @@ rule cts_normalize_timeseries:
 
 rule cts_disaggregate_consumption:
     """
-    Disaggregate CTS consumption from districts to municipalities for one year
+    Disaggregate CTS electricity consumption from districts to municipalities
+    for one year
     """
     input:
         consumption=get_abs_dataset_path("preprocessed", "demandregio") /
@@ -126,7 +130,7 @@ rule cts_disaggregate_consumption:
 
 rule cts_merge_consumption_years:
     """
-    Merge the consumptions from different years into one
+    Merge the electricity consumptions from different years into one
     """
     input:
         consumption=expand(
@@ -135,6 +139,72 @@ rule cts_merge_consumption_years:
         )
     output:
         consumption = DATASET_PATH / "data" / "demand_cts_power_consumption.csv"
+    run:
+        create.merge_consumption_multiple_years(
+            infiles=input.consumption,
+            outfile=output.consumption,
+        )
+
+rule ind_normalize_timeseries:
+    """
+    Extract industry electricity demand timeseries for districts, merge and
+    normalize them
+    """
+    input:
+        timeseries=get_abs_dataset_path("preprocessed", "demandregio") /
+                   "data" / "dr_ind_power_timeseries_2022.csv",
+        region_districts=PATH_TO_REGION_DISTRICTS_GPKG
+    output:
+        timeseries=DATASET_PATH / "data" / "demand_ind_power_timeseries.csv"
+    run:
+        create.normalize_filter_timeseries(
+            infile=input.timeseries,
+            outfile=output.timeseries,
+            region_nuts=gpd.read_file(input.region_districts).nuts.to_list(),
+        )
+
+rule ind_disaggregate_consumption:
+    """
+    Disaggregate industry electricity consumption from districts to
+    municipalities for one year
+    """
+    input:
+        consumption=get_abs_dataset_path("preprocessed", "demandregio") /
+                    "data" / "dr_ind_power_consumption_{year}.csv",
+        employment=get_abs_dataset_path("datasets", "employment_region") /
+                   "data" / "employees.csv",
+        region_muns=PATH_TO_REGION_MUNICIPALITIES_GPKG,
+        region_districts=PATH_TO_REGION_DISTRICTS_GPKG
+    output:
+        consumption=DATASET_PATH / "data" / "demand_ind_power_consumption_{year}.csv"
+    run:
+        consumption_district = pd.read_csv(
+            input.consumption,
+            index_col=0
+        ).sum(axis=0).T.to_frame(name="consumption_district")
+        consumption = create.disaggregate_consumption_to_municipality(
+            consumption_district=consumption_district,
+            muns=gpd.read_file(input.region_muns),
+            districts=gpd.read_file(input.region_districts),
+            disagg_data=pd.read_csv(
+                input.employment,
+                index_col=0,
+            ),
+            disagg_data_col="employees"
+        )
+        consumption.rename(columns={"employees": wildcards.year}).to_csv(output.consumption)
+
+rule ind_merge_consumption_years:
+    """
+    Merge the electricity consumptions from different years into one
+    """
+    input:
+        consumption=expand(
+            DATASET_PATH / "data" / "demand_ind_power_consumption_{year}.csv",
+            year=config["ind_electricity_demand"]["years"]
+        )
+    output:
+        consumption = DATASET_PATH / "data" / "demand_ind_power_consumption.csv"
     run:
         create.merge_consumption_multiple_years(
             infiles=input.consumption,

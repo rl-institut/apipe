@@ -18,3 +18,11 @@ cts_electricity_demand:
       2022,
       2035
     ]
+
+# industry demand: years to create demand prognoses for
+ind_electricity_demand:
+  years:
+    [
+      2022,
+      2035
+    ]

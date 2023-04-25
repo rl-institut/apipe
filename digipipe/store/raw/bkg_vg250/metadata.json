@@ -7,7 +7,7 @@
     "en-GB",
     "de-DE"
     ],
-    "subject": [],
+    "subject": null,
     "keywords": [
         "adminstrative areas",
         "Verwaltungsgebiete"
@@ -31,31 +31,31 @@
     },
     "temporal": {
         "referenceDate": "2022-01-01",
-        "timeseries": []
+        "timeseries": null
     },
     "sources": [
         {
             "title": "Bundesamt für Kartographie und Geodäsie",
-            "description": "GeoBasis-DE / BKG 2022",
+            "description": "Das Bundesamt für Kartographie und Geodäsie (BKG) gehört zum Geschäftsbereich des Bundesministeriums des Innern, für Bau und Heimat und ist ein modernes Kompetenz- und Dienstleistungszentrum des Bundes.",
             "path": "https://gdz.bkg.bund.de/index.php/default/digitale-geodaten/verwaltungsgebiete/verwaltungsgebiete-1-250-000-stand-01-01-vg250-01-01.html",
             "licenses": [
                 {
-                    "name": "dl-de/by-2-0",
+                    "name": "DL-DE-BY-2.0",
                     "title": "Open Data Datenlizenz Deutschland – Namensnennung – Version 2.0",
                     "path": "http://www.govdata.de/dl-de/by-2-0",
                     "instruction": "The data and meta-data provided may, for commercial and non-commercial use, in particular be copied, printed, presented, altered, processed and transmitted to third parties; be merged with own data and with the data of others and be combined to form new and independent datasets;be integrated in internal and external business processes, products and applications in public and non-public electronic networks.",
-                    "attribution": null
+                    "attribution": " © GeoBasis-DE / BKG - 2022"
                 }
             ]
         }
     ],
     "licenses": [
         {
-           "name": "dl-de/by-2-0",
-            "title": "Open Data Datenlizenz Deutschland – Namensnennung – Version 2.0?" ,
-            "path": "http://www.govdata.de/dl-de/by-2-0",
-            "instruction": "The data and meta-data provided may, for commercial and non-commercial use, in particular be copied, printed, presented, altered, processed and transmitted to third parties; be merged with own data and with the data of others and be combined to form new and independent datasets;be integrated in internal and external business processes, products and applications in public and non-public electronic networks.",
-            "attribution": null
+           "name": "DL-DE-BY-2.0",
+           "title": "Open Data Datenlizenz Deutschland – Namensnennung – Version 2.0" ,
+           "path": "http://www.govdata.de/dl-de/by-2-0",
+           "instruction": "The data and meta-data provided may, for commercial and non-commercial use, in particular be copied, printed, presented, altered, processed and transmitted to third parties; be merged with own data and with the data of others and be combined to form new and independent datasets;be integrated in internal and external business processes, products and applications in public and non-public electronic networks.",
+           "attribution": "© GeoBasis-DE / BKG - 2022"
         }
     ],
     "contributors": [
@@ -63,7 +63,7 @@
             "title": "hedwiglieselotte",
             "email": "hedwig.bartels@rl-institut.de",
             "date": "2023-03-23",
-            "object": ",metadata",
+            "object": "metadata",
             "comment": "create metadata"
         }
     ],
@@ -75,10 +75,10 @@
             "format": null,
             "encoding": null,
             "schema": {
-                "fields": []
+                "fields": null
                     },
-                "primaryKey": [],
-                "foreignKeys": []
+                "primaryKey": null,
+                "foreignKeys": null
             },
             "dialect": {
                 "delimiter": "",
@@ -86,8 +86,8 @@
             }
         }
     ],
-    "@id": "bkg_vg250",
-    "@context": null,
+    "@id": null,
+    "@context": "https://raw.githubusercontent.com/OpenEnergyPlatform/oemetadata/develop/metadata/latest/context.json",
     "review": {
         "path": "",
         "badge": ""

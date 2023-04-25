@@ -92,8 +92,8 @@
       }
     }
   ],
-  "@id": "osm_sachsen-anhalt",
-  "@context": "",
+  "@id": null,
+  "@context": "https://raw.githubusercontent.com/OpenEnergyPlatform/oemetadata/develop/metadata/latest/context.json",
   "review": {
     "path": "",
     "badge": ""

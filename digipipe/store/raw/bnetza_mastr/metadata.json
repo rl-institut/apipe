@@ -1,5 +1,3 @@
-Originale Datenquelle: https://www.marktstammdatenregister.de/MaStR/Datendownload
-Prozessiert mit: https://github.com/OpenEnergyPlatform/open-MaStR/
 {
     "name": "bnetza_mastr",
     "title": "Marktstammdatenregisterdaten",
@@ -9,7 +7,7 @@ Prozessiert mit: https://github.com/OpenEnergyPlatform/open-MaStR/
     "en-GB",
     "de-DE"
     ],
-    "subject": [],
+    "subject": null,
     "keywords": [
         "Markstammdatenregister",
         "openmastr",
@@ -33,31 +31,31 @@ Prozessiert mit: https://github.com/OpenEnergyPlatform/open-MaStR/
     },
     "temporal": {
         "referenceDate": "2022-12-19",
-        "timeseries": []
+        "timeseries": null
     },
     "sources": [
         {
             "title": "Marktstammdatenregister",
             "description": "Marktstammdatenregister der Bundesnetzagentur Deutschland",
-            "path": "https://www.marktstammdatenregister.de/MaStR/Datendownload",
+                "path": "https://www.marktstammdatenregister.de/MaStR/Datendownload",
             "licenses": [
                 {
-                    "name": "dl-de/by-2-0",
+                    "name": "DL-DE-BY-2.0",
                     "title": "Open Data Datenlizenz Deutschland – Namensnennung – Version 2.0",
                     "path": "http://www.govdata.de/dl-de/by-2-0",
                     "instruction": "The data and meta-data provided may, for commercial and non-commercial use, in particular be copied, printed, presented, altered, processed and transmitted to third parties; be merged with own data and with the data of others and be combined to form new and independent datasets;be integrated in internal and external business processes, products and applications in public and non-public electronic networks.",
-                    "attribution": null
+                    "attribution": "© Marktstammdatenregister 2023"
                 }
             ]
         }
     ],
     "licenses": [
         {
-           "name": "dl-de/by-2-0",
+           "name": "DL-DE-BY-2.0",
             "title": "Open Data Datenlizenz Deutschland – Namensnennung – Version 2.0?" ,
             "path": "http://www.govdata.de/dl-de/by-2-0",
             "instruction": "The data and meta-data provided may, for commercial and non-commercial use, in particular be copied, printed, presented, altered, processed and transmitted to third parties; be merged with own data and with the data of others and be combined to form new and independent datasets;be integrated in internal and external business processes, products and applications in public and non-public electronic networks.",
-            "attribution": null
+            "attribution": "© Marktstammdatenregister 2023"
         }
     ],
     "contributors": [
@@ -77,9 +75,9 @@ Prozessiert mit: https://github.com/OpenEnergyPlatform/open-MaStR/
             "format": null,
             "encoding": null,
             "schema": {
-                "fields": [],
-                "primaryKey": [],
-                "foreignKeys": []
+                "fields": null,
+                "primaryKey": null,
+                "foreignKeys": null
             },
             "dialect": {
                 "delimiter": "",
@@ -87,8 +85,8 @@ Prozessiert mit: https://github.com/OpenEnergyPlatform/open-MaStR/
             }
         }
     ],
-    "@id": "bnetza_mastr",
-    "@context": "null",
+    "@id": null,
+    "@context": "https://raw.githubusercontent.com/OpenEnergyPlatform/oemetadata/develop/metadata/latest/context.json",
     "review": {
         "path": "",
         "badge": ""

@@ -1,4 +1,3 @@
-Originale Datenquelle: https://www.destatis.de/DE/Themen/Laender-Regionen/Regionales/Gemeindeverzeichnis/Administrativ/Archiv/GVAuszugQ/AuszugGV4QAktuell.html
 {
     "name": "destatis_gv",
     "title": "Adminstratives Gemeinndeverzeichnis",
@@ -7,7 +6,7 @@ Originale Datenquelle: https://www.destatis.de/DE/Themen/Laender-Regionen/Region
     "language": [
         "de-DE"
     ],
-    "subject": [],
+    "subject": null,
     "keywords": [
         "destatis",
         "gemeindeverzeichnis"
@@ -30,7 +29,7 @@ Originale Datenquelle: https://www.destatis.de/DE/Themen/Laender-Regionen/Region
     },
     "temporal": {
         "referenceDate": "2022-02-14",
-        "timeseries": []
+        "timeseries": null
     },
     "sources": [
         {
@@ -39,22 +38,22 @@ Originale Datenquelle: https://www.destatis.de/DE/Themen/Laender-Regionen/Region
             "path": "https://www.destatis.de/DE/Themen/Laender-Regionen/Regionales/Gemeindeverzeichnis/Administrativ/Archiv/GVAuszugQ/AuszugGV4QAktuell.html",
             "licenses": [
                 {
-                    "name": null,
-                    "title": null,
-                    "path": null,
-                    "instruction": null,
-                    "attribution": null
+                    "name": "DL-DE-BY-2.0",
+                    "title": "Data licence Germany – attribution – version 2.0",
+                    "path": "https://www.govdata.de/dl-de/by-2-0",
+                    "instruction": "The data and meta-data provided may, for commercial and non-commercial use, in particular be copied, printed, presented, altered, processed and transmitted to third parties; be merged with own data and with the data of others and be combined to form new and independent datasets; be integrated in internal and external business processes, products and applications in public and non-public electronic networks.",
+                    "attribution": "© Statistisches Bundesamt (Destatis), 2023"
                 }
             ]
         }
     ],
     "licenses": [
         {
-            "name": null,
-            "title": null,
-            "path": null,
-            "instruction": null,
-            "attribution": null
+            "name": "DL-DE-BY-2.0",
+            "title": "Data licence Germany – attribution – version 2.0",
+            "path": "https://www.govdata.de/dl-de/by-2-0",
+            "instruction": "The data and meta-data provided may, for commercial and non-commercial use, in particular be copied, printed, presented, altered, processed and transmitted to third parties; be merged with own data and with the data of others and be combined to form new and independent datasets; be integrated in internal and external business processes, products and applications in public and non-public electronic networks.",
+            "attribution": "© Statistisches Bundesamt (Destatis), 2023"
         }
     ],
     "contributors": [
@@ -74,11 +73,11 @@ Originale Datenquelle: https://www.destatis.de/DE/Themen/Laender-Regionen/Region
             "format": null,
             "encoding": null,
             "schema": {
-                "fields": []
+                "fields": null
                     },
-                ],
-                "primaryKey": [],
-                "foreignKeys": []
+
+                "primaryKey": null,
+                "foreignKeys": null
             },
             "dialect": {
                 "delimiter": "",
@@ -86,8 +85,8 @@ Originale Datenquelle: https://www.destatis.de/DE/Themen/Laender-Regionen/Region
             }
         }
     ],
-    "@id": "destatis_gv",
-    "@context": "",
+    "@id": null,
+    "@context": "https://raw.githubusercontent.com/OpenEnergyPlatform/oemetadata/develop/metadata/latest/context.json",
     "review": {
         "path": "",
         "badge": ""

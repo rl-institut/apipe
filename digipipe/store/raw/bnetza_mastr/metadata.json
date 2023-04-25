@@ -27,7 +27,7 @@
     "spatial": {
         "location": "Germany",
         "extent": "Germany",
-        "resolution": ""
+        "resolution": null
     },
     "temporal": {
         "referenceDate": "2022-12-19",

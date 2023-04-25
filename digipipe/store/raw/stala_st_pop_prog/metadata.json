@@ -47,13 +47,13 @@ Originale Datenquelle:
         {
             "title": "1_Internettabelle_7RBP_nach_Prognosejahr_Geschlecht_alle_Ebenen",
             "description": "Prognostizierter Bevölkerungsstand in den Gemeinden, kreisfreien Städten und Landkreisen nach Prognosejahr und Geschlecht",
-            "path": "/statistik.sachsen-anhalt.de/themen/bevoelkerung-mikrozensus-freiwillige-haushaltserhebungen/bevoelkerung/bevoelkerungsprognose-und-haushalteprognose/#c312231",
+            "path": "statistik.sachsen-anhalt.de/themen/bevoelkerung-mikrozensus-freiwillige-haushaltserhebungen/bevoelkerung/bevoelkerungsprognose-und-haushalteprognose/#c312231",
             "licenses": [
                 {
-                    "name": null,
-                    "title": null,
-                    "path": null,
-                    "instruction": null,
+                    "name": "DL-DE-BY-2.0",
+                    "title": "Data licence Germany – attribution – Version 2.0",
+                    "path": "https://www.govdata.de/dl-de/by-2-0",
+                    "instruction": "The data and meta-data provided may, for commercial and non-commercial use, in particular be copied, printed, presented, altered, processed and transmitted to third parties; be merged with own data and with the data of others and be combined to form new and independent datasets; be integrated in internal and external business processes, products and applications in public and non-public electronic networks.",
                     "attribution": "© 2023 Landesportal Sachsen-Anhalt "
                 }
             ]
@@ -109,8 +109,8 @@ Originale Datenquelle:
             }
         }
     ],
-    "@id": "stala_st_pop_prog",
-    "@context": "",
+    "@id": null,
+    "@context": "https://raw.githubusercontent.com/OpenEnergyPlatform/oemetadata/develop/metadata/latest/context.json",
     "review": {
         "path": "",
         "badge": ""

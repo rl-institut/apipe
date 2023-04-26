@@ -10,7 +10,7 @@
 
 Pipeline for data and energy system in the Digiplan project.
 
-## Installation 
+## Installation
 
 **Note: Linux only, Windows is currently not supported.**
 
@@ -18,31 +18,50 @@ First, clone via SSH using
 
     git clone git@github.com:rl-institut-private/digipipe.git /local/path/to/digipipe/
 
-### Install using pip:
+Prerequisite:
+* _conda_ ([Anaconda](https://docs.anaconda.com/anaconda/install/)
+/[Miniconda](https://conda.io/en/latest/miniconda.html))
+* `python <https://www.python.org/downloads/>`_
 
-Make sure you have Python >= 3.6 installed, let's create a virtual env:
+Enter repo folder. Set up a conda environment and activate it with:
 
-    virtualenv --python=python3.8 venv
-    source venv/bin/activate
+```
+conda env create -f environment.yml
+conda activate digipipe
+```
+
+Install [poetry](https://python-poetry.org/) (python dependency manager used
+in this project) and dependencies for the project (Note: Installing poetry via
+pip into same environment is not recommended and can cause trouble! Instead it
+should be installed system-wide via command below or
+[pipx](https://python-poetry.org/docs/#installing-with-pipx)):
+
+```
+curl -sSL https://install.python-poetry.org | python3 -
+poetry install
+```
 
 Some additional system packages are required, install them by
 
-    apt install gdal-bin python3-gdal libspatialindex-dev imagemagick osmium-tool graphviz graphviz-dev
+    sudo apt install gdal-bin python3-gdal libspatialindex-dev imagemagick osmium-tool graphviz graphviz-dev
 
 Notes:
-- Make sure you have GDAL>=3.0 as older versions will not work
+- Make sure you have GDAL>=3.0 as older versions will not work.
 - `imagemagick` is optional and only required for report creation
 
-Install package with
+## Contributing to digipipe
 
-    pip install -e /local/path/to/digipipe/
+You can write `issues <https://github.com/rl-institut-private/digipipe/issues>`_ to announce bugs or to propose enhancements.
 
-### Install using conda
+If you want to participate in the development of digipipe, please make sure you use pre-commit.
 
-Make sure you have conda installed, e.g. miniconda. Then create the env:
-    
-    conda create -n digipipe /local/path/to/digipipe/environment.yml
-    conda activate digipipe
+You activate it with:
+
+    pre-commit install
+
+To trigger a check manually, execute:
+
+    pre-commit run -a
 
 ## Further reading on structure, pipeline and conventions
 

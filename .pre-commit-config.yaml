@@ -86,4 +86,5 @@ repos:
             "--disable-error-code=arg-type",
             "--disable-error-code=assignment",
             "--disable-error-code=attr-defined",
+            "--disable-error-code=index",
           ]

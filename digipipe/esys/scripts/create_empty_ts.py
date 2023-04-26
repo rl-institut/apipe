@@ -3,14 +3,14 @@ r"""
 Inputs
 -------
 scenarios_dir : str
-    ``scenarios``: path to scenarios directory
+    ``esys/scenarios``: path to scenarios directory
 destination : str
-    ``raw/time_series/empty_ts_efficiencies.csv``: path of output directory for
-    empty ts with efficiencies of all scenarios
-    ``raw/time_series/empty_ts_feedin.csv``: path of output directory for
-    empty ts with feedins of all scenarios
-    ``raw/time_series/empty_ts_load.csv``: path of output directory for
-    empty ts with loads of all scenarios
+    ``store/datasets/esys_raw/time_series/empty_ts_efficiencies.csv``: path of
+    output directory for empty ts with efficiencies of all scenarios
+    ``store/datasets/esys_raw/time_series/empty_ts_feedin.csv``: path of output
+    directory for empty ts with feedins of all scenarios
+    ``store/datasets/esys_raw/time_series/empty_ts_load.csv``: path of output
+    directory for empty ts with loads of all scenarios
 
 Outputs
 ---------
@@ -32,8 +32,10 @@ import pandas as pd
 from digipipe.esys.esys import model
 from digipipe.esys.esys.config.esys_conf import load_yaml, settings
 from digipipe.esys.esys.model import model_structures
-from digipipe.esys.esys.tools.data_processing import (HEADER_B3_TS,
-                                                      stack_timeseries)
+from digipipe.esys.esys.tools.data_processing import (
+    HEADER_B3_TS,
+    stack_timeseries,
+)
 
 
 def get_sub_dict(subsub_key, _dict):
@@ -66,7 +68,7 @@ def get_sub_dict(subsub_key, _dict):
     return subsub_dict
 
 
-def set_ts_values(periods, date_rng, name):
+def create_empty_ts_with_zero_or_nan_values(periods, date_rng, name):
     """
     Returns a pandas DataFrame with time series values set to either zeros or
     NaNs, based on settings.yaml
@@ -112,7 +114,7 @@ def set_ts_values(periods, date_rng, name):
     return df
 
 
-def create_empty_ts_with_zero_or_nan_values(name):
+def create_empty_ts(name):
     """
     This function provides a Dataframe with a time series of zeros
     according to the start, periods and freq of the scenario specifications
@@ -132,7 +134,7 @@ def create_empty_ts_with_zero_or_nan_values(name):
 
     # Get start date from scenario specifications
     start = datetime.strptime(
-        scenario_specs["datetimeindex"]["start"], datetime_format
+        scenario_specs["filter_timeseries"]["timeindex_start"], datetime_format
     )
 
     # Get periods and freq from scenario specifications
@@ -143,7 +145,7 @@ def create_empty_ts_with_zero_or_nan_values(name):
     date_rng = pd.date_range(start=start, periods=periods, freq=freq)
 
     # Create DataFrame with ts of zeros from date range and name
-    df = set_ts_values(periods, date_rng, name)
+    df = create_empty_ts_with_zero_or_nan_values(periods, date_rng, name)
 
     return df
 
@@ -170,7 +172,7 @@ def get_df_of_all_empty_ts(profile_names, _region):
     ts_df = pd.DataFrame(columns=HEADER_B3_TS)
 
     for name in profile_names:
-        df = create_empty_ts_with_zero_or_nan_values(name)
+        df = create_empty_ts(name)
 
         # Stack Dataframe
         stacked_df = stack_timeseries(df)
@@ -189,6 +191,38 @@ def get_df_of_all_empty_ts(profile_names, _region):
     return ts_df
 
 
+def drop_duplicates(_df):
+    """
+    Remove duplicate rows from a pandas DataFrame based on specified columns.
+
+    Parameters
+    ----------
+    _df : pandas DataFrame
+        The DataFrame to remove duplicates from.
+
+    Returns
+    -------
+    _df : pandas DataFrame
+        The updated DataFrame with duplicate rows removed.
+
+    Notes
+    -----
+    Duplicate rows are determined based on the values in the specified columns.
+    By default, all columns except the "series" column are used to determine
+    duplicates. If there are multiple rows with the same values in the
+    specified columns, only the first occurrence is kept and subsequent
+    occurrences are dropped.
+    """
+    columns = [col for col in _df.columns if col != "series"]
+
+    _df = _df.drop_duplicates(
+        subset=columns,
+        ignore_index=True,
+    )
+
+    return _df
+
+
 def save_ts(_df, path):
     """
     This function saves time series that contain values of datetime format
@@ -204,12 +238,16 @@ def save_ts(_df, path):
 
 
     """
-    _df.to_csv(
-        path,
-        index=True,
-        date_format="%Y-%m-%d %H:%M:%S",
-        sep=settings.general.separator,
-    )
+    if not os.path.exists(path) or settings.create_empty_ts.overwrite:
+
+        _df.index.name = "id_ts"
+
+        _df.to_csv(
+            path,
+            index=True,
+            date_format="%Y-%m-%d %H:%M:%S",
+            sep=settings.general.separator,
+        )
 
 
 if __name__ == "__main__":
@@ -220,6 +258,10 @@ if __name__ == "__main__":
     path_empty_ts_efficiencies = sys.argv[4]
 
     scenarios = os.listdir(scenarios_dir)
+
+    all_load_ts = pd.DataFrame(columns=HEADER_B3_TS)
+    all_feedin_ts = pd.DataFrame(columns=HEADER_B3_TS)
+    all_efficiencies_ts = pd.DataFrame(columns=HEADER_B3_TS)
 
     for scenario_specs in scenarios:
         scenario_specs = load_yaml(os.path.join(scenarios_dir, scenario_specs))
@@ -239,8 +281,8 @@ if __name__ == "__main__":
             "efficiency", component_attrs_update
         )
 
-        # Save profile names depending on whether it is a load, a feed-in or
-        # an efficiency
+        # Save profile names depending on whether it is a load, a feed-in or an
+        # efficiency
         load_names = [
             attr_subdict["profile"]
             for attr_subdict in foreign_keys_profile
@@ -252,21 +294,49 @@ if __name__ == "__main__":
             if not "demand" in attr_subdict["profile"]  # noqa: E713
         ]
         efficiency_names = [
-            attr_subdict["efficiency"] for
-            attr_subdict in foreign_keys_efficiency
+            attr_subdict["efficiency"]
+            for attr_subdict in foreign_keys_efficiency
         ]
 
+        ts_dict = {
+            "load": load_names,
+            "feedin": feedin_names,
+            "efficiency": efficiency_names,
+        }
+
         for region in model_structure["regions"]:
+
             if load_names:
                 df_loads = get_df_of_all_empty_ts(load_names, region)
-                save_ts(df_loads, path_empty_load_ts)
+                all_load_ts = pd.concat(
+                    [all_load_ts, df_loads], ignore_index=True
+                )
 
             if feedin_names:
                 df_feedin = get_df_of_all_empty_ts(feedin_names, region)
-                save_ts(df_feedin, path_empty_ts_feedin)
+                all_feedin_ts = pd.concat(
+                    [all_feedin_ts, df_feedin], ignore_index=True
+                )
 
             if efficiency_names:
                 df_efficiencies = get_df_of_all_empty_ts(
                     efficiency_names, region
                 )
-                save_ts(df_efficiencies, path_empty_ts_efficiencies)
+                all_efficiencies_ts = pd.concat(
+                    [all_efficiencies_ts, df_efficiencies], ignore_index=True
+                )
+
+    ts_dict = {
+        "load": (load_names, all_load_ts, path_empty_load_ts),
+        "feedin": (feedin_names, all_feedin_ts, path_empty_ts_feedin),
+        "efficiency": (
+            efficiency_names,
+            all_efficiencies_ts,
+            path_empty_ts_efficiencies,
+        ),
+    }
+
+    for ts_type, (ts_name, ts_data, ts_path) in ts_dict.items():
+        if ts_name:
+            drop_duplicates(ts_data)
+            save_ts(ts_data, ts_path)

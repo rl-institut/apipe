@@ -1,11 +1,9 @@
 name: digipipe
+channels:
+  - conda-forge
 dependencies:
    - python=3.8
    - gdal=3.*
-   - python-gdal
+   - coincbc   # TODO: To be deleted after issue #52 done
    - libspatialindex
    - imagemagick
-   - pip
-   - pip:
-      - -e .
-      - -r requirements.txt

@@ -85,7 +85,7 @@ def create_tag_string_ogr(taglist):
         '-where "'
         + " OR ".join(
             [
-                "=".join(['\\"' + tag + '\\"', f'\\"' + str(val) + '\\"'])
+                "=".join(['\\"' + tag + '\\"', '\\"' + str(val) + '\\"'])
                 for tag, val in taglist
             ]
         )
@@ -100,7 +100,9 @@ PATH_TO_REGION_MUNICIPALITIES_GPKG = (
     / "bkg_vg250_muns_region.gpkg"
 )
 PATH_TO_REGION_DISTRICTS_GPKG = (
-    get_abs_dataset_path("datasets", "bkg_vg250_districts_region", data_dir=True)
+    get_abs_dataset_path(
+        "datasets", "bkg_vg250_districts_region", data_dir=True
+    )
     / "bkg_vg250_districts_region.gpkg"
 )
 
@@ -136,5 +138,7 @@ def df_merge_string_columns(
     s = df_result.agg("|".join, axis=1)
 
     return s.apply(
-        lambda f: target_delimiter.join([_ for _ in set(f.split("|")) if _ != ""])
+        lambda f: target_delimiter.join(
+            [_ for _ in set(f.split("|")) if _ != ""]
+        )
     )

@@ -85,7 +85,7 @@
         "primaryKey": [],
         "foreignKeys": []
       },
-      "dialect": {
+    "dialect": {
         "delimiter": "",
         "decimalSeparator": ""
       }

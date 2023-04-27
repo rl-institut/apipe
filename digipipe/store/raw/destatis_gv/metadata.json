@@ -79,11 +79,10 @@
                 "primaryKey": null,
                 "foreignKeys": null
             },
-            "dialect": {
-                "delimiter": "",
-                "decimalSeparator": "."
+        "dialect", {
+            "delimiter": "",
+            "decimalSeparator": "."
             }
-        }
     ],
     "@id": null,
     "@context": "https://raw.githubusercontent.com/OpenEnergyPlatform/oemetadata/develop/metadata/latest/context.json",

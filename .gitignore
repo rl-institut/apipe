@@ -148,3 +148,6 @@ digipipe/store/datasets/*/data/*
 
 digipipe/store/appdata/*
 !digipipe/store/appdata/*/.gitkeep
+
+digipipe/store/temp/*
+!digipipe/store/raw/.gitkeep

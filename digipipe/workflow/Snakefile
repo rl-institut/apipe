@@ -57,3 +57,73 @@ rule clean:
         rm -f {params.preprocessed}
         rm -f {params.datasets}
         """
+
+rule download_raw_zip:
+    output:
+        "store/temp/store_raw.zip",
+    shell:
+        """
+        set -e
+        wget -O store/temp/store_raw.zip https://wolke.rl-institut.de/s/w8WKwXT3f9ZzZQJ/download
+        """
+
+rule update_raw:
+    input:
+        "store/temp/store_raw.zip",
+    run:
+        import os, builtins
+        import shutil
+        import zipfile
+
+        temp_dir = "store/temp"
+        raw_dir = "store/raw"
+        temp_raw_dir = "store/temp/store/raw"
+
+        # Extract the files from the ZIP file to temp_dir
+        with zipfile.ZipFile("store/temp/store_raw.zip", "r") as zip_ref:
+            zip_ref.extractall(temp_dir)
+
+            # Iterate through all subdirectories of the root directory
+        for dirpath, dirnames, filenames in os.walk(temp_raw_dir):
+            # Iterate through all files in the current directory
+            for filename in filenames:
+                # Check if the file is a zip file
+                if filename.endswith(".zip"):
+                    # Extract the zip file to the current directory
+                    with zipfile.ZipFile(
+                        os.path.join(dirpath, filename), "r"
+                    ) as zip_ref:
+                        zip_ref.extractall(dirpath)
+                    os.remove(os.path.join(dirpath, filename))
+
+                # Get a list of all directories within temp_raw_dir
+        dir_list = [
+            d
+            for d in os.listdir(temp_raw_dir)
+            if os.path.isdir(os.path.join(temp_raw_dir, d))
+        ]
+
+        # Loop through each directory and copy it to raw_dir
+        for d in dir_list:
+            src_dir = os.path.join(temp_raw_dir, d)
+            dst_dir = os.path.join(raw_dir, d)
+            if os.path.exists(dst_dir):
+                print(
+                    f"Directory '{dst_dir}' already exists. Do you want to overwrite it?"
+                )
+                overwrite = builtins.input("Enter y/n: ")
+                if overwrite.lower() == "y":
+                    shutil.rmtree(dst_dir)
+                else:
+                    continue
+            # Copy the directory to the destination directory
+            shutil.copytree(src_dir, dst_dir)
+        # clean temp folder
+        temp_dir_content = os.listdir(temp_dir)
+        for item in temp_dir_content:
+            item_path = os.path.join(temp_dir, item)
+            if os.path.isfile(item_path) and item != ".gitkeep":
+                # If the item is a file, remove it
+                os.remove(item_path)
+            elif os.path.isdir(item_path):
+                shutil.rmtree(item_path)

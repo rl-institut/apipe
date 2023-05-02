@@ -79,24 +79,19 @@ rule update_raw:
         raw_dir = "store/raw"
         temp_raw_dir = "store/temp/store/raw"
 
-        # Extract the files from the ZIP file to temp_dir
         with zipfile.ZipFile("store/temp/store_raw.zip", "r") as zip_ref:
             zip_ref.extractall(temp_dir)
 
-            # Iterate through all subdirectories of the root directory
         for dirpath, dirnames, filenames in os.walk(temp_raw_dir):
-            # Iterate through all files in the current directory
             for filename in filenames:
-                # Check if the file is a zip file
                 if filename.endswith(".zip"):
-                    # Extract the zip file to the current directory
                     with zipfile.ZipFile(
                         os.path.join(dirpath, filename), "r"
                     ) as zip_ref:
                         zip_ref.extractall(dirpath)
                     os.remove(os.path.join(dirpath, filename))
 
-                # Get a list of all directories within temp_raw_dir
+        # Get a list of all directories within temp_raw_dir
         dir_list = [
             d
             for d in os.listdir(temp_raw_dir)
@@ -118,12 +113,11 @@ rule update_raw:
                     continue
             # Copy the directory to the destination directory
             shutil.copytree(src_dir, dst_dir)
-        # clean temp folder
+        # Clean temp folder
         temp_dir_content = os.listdir(temp_dir)
         for item in temp_dir_content:
             item_path = os.path.join(temp_dir, item)
             if os.path.isfile(item_path) and item != ".gitkeep":
-                # If the item is a file, remove it
                 os.remove(item_path)
             elif os.path.isdir(item_path):
                 shutil.rmtree(item_path)

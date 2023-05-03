@@ -20,6 +20,7 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Create list of region-specific datasets in the docs
 - pyproject.toml and poetry.lock file have been added with the conversion to poetry
 - Add pre-commit in order to check for errors and linting bugs before commits
+- Add types-pyyaml package
 - Integrate building of energy system for appdata in pipeline via dir *esys*
 - Update store with dir structure for *esys* data
 

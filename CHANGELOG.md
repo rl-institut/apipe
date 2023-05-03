@@ -37,6 +37,7 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - The installation of a virtual environment is done only from the environment.yml file and via conda.
 - Apply linters on repo among others: black, isort, check-json and end-of-file-fixer
 - Update population with prognoses from demandregio dataset
+- Fix C419 flake8 error
 
 ### Removed
 

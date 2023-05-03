@@ -6,6 +6,7 @@ from snakemake.utils import min_version
 min_version("6.0")
 
 from digipipe.scripts.config import load_dataset_configs
+from digipipe.scripts.data_io import extract_zipfile, copy_files, clean_folder
 from digipipe.store.utils import get_abs_dataset_path
 from digipipe.config import GLOBAL_CONFIG
 
@@ -59,65 +60,27 @@ rule clean:
         """
 
 rule download_raw_zip:
+    """
+    Downloads zipfile from Wolke containing the raw data and stores it in 'store/temp'
+    """
     output:
-        "store/temp/store_raw.zip",
+        raw_zip = "store/temp/store_raw.zip",
     shell:
         """
-        set -e
-        wget -O store/temp/store_raw.zip https://wolke.rl-institut.de/s/w8WKwXT3f9ZzZQJ/download
+        wget -O {input.raw_zip} https://wolke.rl-institut.de/s/w8WKwXT3f9ZzZQJ/download --retry-connrefused --waitretry=1 --read-timeout=15 --timeout=10 -t 0
         """
 
 rule update_raw:
+    """
+    Extracts the downloaded zipfile, copies containing folders to 'store/raw' and cleans up 'store/temp' afterwards
+    """
     input:
-        "store/temp/store_raw.zip",
+        raw_zip="store/temp/store_raw.zip"
+    params:
+        temp_dir="store/temp",
+        raw_dir="store/raw",
+        temp_raw_dir="store/temp/store/raw"
     run:
-        import os, builtins
-        import shutil
-        import zipfile
-
-        temp_dir = "store/temp"
-        raw_dir = "store/raw"
-        temp_raw_dir = "store/temp/store/raw"
-
-        with zipfile.ZipFile("store/temp/store_raw.zip", "r") as zip_ref:
-            zip_ref.extractall(temp_dir)
-
-        for dirpath, dirnames, filenames in os.walk(temp_raw_dir):
-            for filename in filenames:
-                if filename.endswith(".zip"):
-                    with zipfile.ZipFile(
-                        os.path.join(dirpath, filename), "r"
-                    ) as zip_ref:
-                        zip_ref.extractall(dirpath)
-                    os.remove(os.path.join(dirpath, filename))
-
-        # Get a list of all directories within temp_raw_dir
-        dir_list = [
-            d
-            for d in os.listdir(temp_raw_dir)
-            if os.path.isdir(os.path.join(temp_raw_dir, d))
-        ]
-
-        # Loop through each directory and copy it to raw_dir
-        for d in dir_list:
-            src_dir = os.path.join(temp_raw_dir, d)
-            dst_dir = os.path.join(raw_dir, d)
-            if os.path.exists(dst_dir):
-                print(
-                    f"Directory '{dst_dir}' already exists. Do you want to overwrite it?"
-                )
-                overwrite = builtins.input("Enter y/n: ")
-                if overwrite.lower() == "y":
-                    shutil.rmtree(dst_dir)
-                else:
-                    continue
-            # Copy the directory to the destination directory
-            shutil.copytree(src_dir, dst_dir)
-        # Clean temp folder
-        temp_dir_content = os.listdir(temp_dir)
-        for item in temp_dir_content:
-            item_path = os.path.join(temp_dir, item)
-            if os.path.isfile(item_path) and item != ".gitkeep":
-                os.remove(item_path)
-            elif os.path.isdir(item_path):
-                shutil.rmtree(item_path)
+        extract_zipfile(input.raw_zip, params.temp_dir)
+        copy_files(params.temp_raw_dir, params.raw_dir)
+        clean_folder(params.temp_dir)

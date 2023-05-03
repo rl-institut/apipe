@@ -6,13 +6,15 @@ from dynaconf import Dynaconf
 
 from digipipe.scripts.config import read_config
 
-
 CONFIG_PATH = pathlib.Path(__file__).parent
 ROOT_DIR = CONFIG_PATH.parent.parent
 
 settings = Dynaconf(
     envvar_prefix="DYNACONF",
-    settings_files=[CONFIG_PATH / "settings.yaml", CONFIG_PATH / ".secrets.yaml"],
+    settings_files=[
+        CONFIG_PATH / "settings.yaml",
+        CONFIG_PATH / ".secrets.yaml",
+    ],
 )
 
 
@@ -26,7 +28,9 @@ class LevelFilter(logging.Filter):
 
 
 DEBUG = settings.get("DEBUG", False)
-LOGGING_LEVEL = settings.get("LOGGING_LEVEL", logging.DEBUG if DEBUG else logging.INFO)
+LOGGING_LEVEL = settings.get(
+    "LOGGING_LEVEL", logging.DEBUG if DEBUG else logging.INFO
+)
 
 root_logger = logging.getLogger()
 root_logger.handlers.clear()  # Remove the default handler
@@ -46,8 +50,8 @@ def add_snake_logger(rulename):
     Adds logging to file
 
     Logfile is read from input parameters, ending with ".log"
-    This is done in order to add loggers for subprocesses (like data_preprocessing.py),
-    where logfile is unknown.
+    This is done in order to add loggers for subprocesses
+    (like data_preprocessing.py), where logfile is unknown.
     """
     logger = logging.getLogger(rulename)
     logfile = next(

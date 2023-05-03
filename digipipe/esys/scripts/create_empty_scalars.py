@@ -5,7 +5,8 @@ Inputs
 scenarios_dir : str
     ``scenarios``: path to scenarios directory
 destination : str
-    ``raw/scalars/empty_scalars.csv``: path of output directory for empty scalars of all scenarios
+    ``raw/scalars/empty_scalars.csv``: path of output directory for empty
+    scalars of all scenarios
 
 Outputs
 ---------
@@ -14,23 +15,24 @@ pandas.DataFrame
 
 Description
 -------------
-The script creates an empty DataFrame for scalar data that serve as a template for input data.
+The script creates an empty DataFrame for scalar data that serve as a template
+for input data.
 """
-import sys
 import os
-import pandas as pd
+import sys
 
+import pandas as pd
 from oemoflex.model.datapackage import EnergyDataPackage
 
+from digipipe.esys.esys import model
 from digipipe.esys.esys.config.esys_conf import load_yaml, settings
 from digipipe.esys.esys.model import bus_attrs_update, model_structures
-from digipipe.esys.esys import model
 from digipipe.esys.esys.tools.data_processing import (
     HEADER_B3_SCAL,
-    load_b3_scalars,
     format_header,
-    sort_values,
+    load_b3_scalars,
     save_df,
+    sort_values,
 )
 
 NON_REGIONAL = settings.create_empty_scalars.non_regional
@@ -74,7 +76,10 @@ def format_input_scalars(df):
         _df = _df.loc[_df.loc[:, "var_value"].isna()]
 
     # Combine those parameters that are valid for all regions
-    _df.loc[_df["var_name"].isin(NON_REGIONAL), ["name", "region"]] = [None, "ALL"]
+    _df.loc[_df["var_name"].isin(NON_REGIONAL), ["name", "region"]] = [
+        None,
+        "ALL",
+    ]
 
     _df.drop_duplicates(inplace=True)
 
@@ -151,7 +156,8 @@ if __name__ == "__main__":
         # set scenario name
         empty_scalars.loc[:, "scenario_key"] = scenario_specs["name"]
 
-        # if empty raw scalars should be created, reverse the annuisation as well.
+        # if empty raw scalars should be created, reverse the annuisation as
+        # well.
         # if empty resources scalars are needed, set this to False.
         raw_scalars = True
         if raw_scalars:
@@ -166,7 +172,10 @@ if __name__ == "__main__":
                 empty_scalars,
                 column="var_name",
                 where="storage_capacity_cost",
-                expand=["storage_capacity_cost_overnight", "storage_fixom_cost"],
+                expand=[
+                    "storage_capacity_cost_overnight",
+                    "storage_fixom_cost",
+                ],
             )
 
         # Add wacc

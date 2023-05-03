@@ -3,10 +3,11 @@ r"""
 Inputs
 -------
 in_path1 : str
-    ``raw/scalars/costs_efficiencies.csv``: path incl. file name of input file with raw scalar data
+    ``raw/scalars/costs_efficiencies.csv``: path incl. file name of input file
+    with raw scalar data
 out_path : str
-    ``results/_resources/scal_costs_efficiencies.csv``: path incl. file name of output file with
-    prepared scalar data
+    ``results/_resources/scal_costs_efficiencies.csv``: path incl. file name of
+    output file with prepared scalar data
 
 Outputs
 ---------
@@ -15,7 +16,8 @@ pandas.DataFrame
 
 Description
 -------------
-The script performs the following steps to prepare scalar data for parametrization:
+The script performs the following steps to prepare scalar data for
+parametrization:
 
 * Calculate annualized investment cost from overnight cost, lifetime and wacc.
 """
@@ -24,12 +26,12 @@ import sys
 
 from oemof.tools.economics import annuity
 
+from digipipe.esys.esys.config import esys_conf
 from digipipe.esys.esys.tools.data_processing import (
     ScalarProcessor,
     load_b3_scalars,
     save_df,
 )
-from digipipe.esys.esys.config import esys_conf
 
 
 def annuise_investment_cost(sc):
@@ -43,9 +45,10 @@ def annuise_investment_cost(sc):
             [var_name_cost, "lifetime", var_name_fixom_cost]
         )
 
-        # TODO: Currently, (storage)_capacity_overnight_cost, (storage)_fixom_cost and lifetime have
-        # to be given for each tech and each scenario, but wacc may change per scenario, but
-        # is defined for all techs uniformly. Could offer a more general and flexible solution.
+        # TODO: Currently, (storage)_capacity_overnight_cost,
+        # (storage)_fixom_cost and lifetime have to be given for each tech and
+        # each scenario, but wacc may change per scenario, but is defined for
+        # all techs uniformly. Could offer a more general and flexible solution.
 
         # wacc is defined per scenario, ignore other index levels
         wacc = sc.get_unstacked_var("wacc")
@@ -61,7 +64,9 @@ def annuise_investment_cost(sc):
             1,
         )
 
-        sc.append(var_name_cost.replace("_overnight", ""), annuised_investment_cost)
+        sc.append(
+            var_name_cost.replace("_overnight", ""), annuised_investment_cost
+        )
 
     sc.drop(
         [

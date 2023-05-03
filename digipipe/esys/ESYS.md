@@ -2,10 +2,10 @@
 
 The energy system in digipipe, the pipeline for digiplan, is created using
 [oemof-B3](https://github.com/rl-institut/oemof-B3)`.
- 
+
 ## Build the energy system
 
-To test if everything works, you can run the test scenario with 
+To test if everything works, you can run the test scenario with
 
 ```
 snakemake -j1 make_esys_appdata

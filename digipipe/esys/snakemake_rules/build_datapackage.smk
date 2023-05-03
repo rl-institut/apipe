@@ -22,4 +22,3 @@ rule build_datapackage:
         # Do not use this rule for the examples. Use prepare_example instead
         scenario=r"(?!example_).*"
     shell: "python esys/scripts/build_datapackage.py {input.scenario} {output} {params.logfile}"
-

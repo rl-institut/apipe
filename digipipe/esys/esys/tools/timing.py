@@ -6,6 +6,16 @@ import time
 
 
 class Timer:
+    """
+    A timer utility to measure the elapsed time of code blocks.
+    adapted from https://github.com/realpython/codetiming
+
+    Usage:
+      - Create a new timer with a descriptive text message.
+      - Start the timer with the `start()` method.
+      - Stop the timer with the `stop()` method to report the elapsed time.
+    """
+
     def __init__(self, text, logger=print):
         self._start_time = None
         self.text = text
@@ -21,7 +31,8 @@ class Timer:
         self._start_time = None
         if self.logger:
             self.logger(
-                self.text + f" Elapsed time: {datetime.timedelta(seconds=elapsed_time)}"
+                self.text
+                + f" Elapsed time: {datetime.timedelta(seconds=elapsed_time)}"
             )
 
     def __enter__(self):

@@ -3,9 +3,10 @@
 """Constraints to relate variables in an existing model.
 
 This script is copied from oemof.solph
-https://github.com/oemof/oemof-solph/blob/features/equate-flows/src/oemof/solph/constraints/equate_flows.py
-and can be deleted once oemof.tabular is updated to the new oemof version and oemof-B3 installs
-oemof.solph version (or branch) containing this script.
+https://github.com/oemof/oemof-solph/blob/features/equate-flows/src/oemof/solph
+/constraints/equate_flows.py
+and can be deleted once oemof.tabular is updated to the new oemof version and
+oemof-B3 installs oemof.solph version (or branch) containing this script.
 
 SPDX-FileCopyrightText: Uwe Krien <krien@uni-bremen.de>
 SPDX-FileCopyrightText: Simon Hilpert
@@ -45,7 +46,9 @@ def equate_flows(model, flows1, flows2, factor1=1, name="equate_flows"):
     return model
 
 
-def equate_flows_by_keyword(model, keyword1, keyword2, factor1=1, name="equate_flows"):
+def equate_flows_by_keyword(
+    model, keyword1, keyword2, factor1=1, name="equate_flows"
+):
     r"""
     This wrapper for equate_flows allows to equate groups of flows by using a
     keyword instead of a list of flows.

@@ -20,6 +20,7 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Create list of region-specific datasets in the docs
 - pyproject.toml and poetry.lock file have been added with the conversion to poetry
 - Add pre-commit in order to check for errors and linting bugs before commits
+- Add types-pyyaml package
 - Integrate building of energy system for appdata in pipeline via dir *esys*
 - Update store with dir structure for *esys* data
 
@@ -36,6 +37,7 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - The package management in digipipe has been changed to poetry.
 - The installation of a virtual environment is done only from the environment.yml file and via conda.
 - Apply linters on repo among others: black, isort, check-json and end-of-file-fixer
+- Fix C419 flake8 error
 - Exchange the Test_scenario with the scenarios status_quo_scenario and
   2045_scenario of *esys* in digipipe/esys/scenarios directory
 

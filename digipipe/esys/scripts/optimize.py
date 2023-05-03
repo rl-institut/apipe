@@ -3,11 +3,11 @@ r"""
 Inputs
 -------
 preprocessed : str
-    ``results/{scenario}/preprocessed``: Path to preprocessed EnergyDatapackage containing
-    elements, sequences and datapackage.json.
+    ``results/{scenario}/preprocessed``: Path to preprocessed EnergyDatapackage
+    containing elements, sequences and datapackage.json.
 optimized : str
-    ``results/{scenario}/optimized/`` Target path to store dump of oemof.solph.Energysystem
-    with optimization results and parameters.
+    ``results/{scenario}/optimized/`` Target path to store dump of
+    oemof.solph.Energysystem with optimization results and parameters.
 logfile : str
     ``results/{scenario}/{scenario}.log``: path to logfile
 
@@ -18,15 +18,18 @@ es.dump
 
 Description
 -------------
-Given an EnergyDataPackage, this script creates an oemof.solph.EnergySystem and an
-oemof.solph.Model, which is optimized.
+Given an EnergyDataPackage, this script creates an oemof.solph.EnergySystem and
+an oemof.solph.Model, which is optimized.
 
 The following constraints are added:
     - `emission_limit`: maximum amount of emissions
-    - `equate_flows_by_keyword`: electricity-gas relation is set (electricity/gas = factor).
-      This constraint is only added if 'electricity_gas_relation' is added to the scalars.
+    - `equate_flows_by_keyword`: electricity-gas relation is set
+      (electricity/gas = factor).
+      This constraint is only added if 'electricity_gas_relation' is added to
+      the scalars.
       To use this constraint you need to copy
-      [`equate_flows.py`](https://github.com/oemof/oemof-solph/blob/features/equate-flows/src/oemof/solph/constraints/equate_variables.py)
+      [`equate_flows.py`](https://github.com/oemof/oemof-solph/blob/features/
+      equate-flows/src/oemof/solph/constraints/equate_variables.py)
       of oemof.solph into `/tools` directory of `oemof-B3`.
 
 The EnergySystem with results, meta-results and parameters is saved.
@@ -34,8 +37,8 @@ The EnergySystem with results, meta-results and parameters is saved.
 import logging
 import os
 import sys
-import numpy as np
 
+import numpy as np
 from oemof import solph
 from oemof.solph import EnergySystem, Model, constraints, processing
 
@@ -44,11 +47,10 @@ from oemof.solph import EnergySystem, Model, constraints, processing
 from oemof.tabular import datapackage  # noqa
 from oemof.tabular.facades import TYPEMAP
 
+from digipipe.esys.esys.config import esys_conf
 from digipipe.esys.esys.tools import data_processing as dp
 from digipipe.esys.esys.tools.equate_flows import equate_flows_by_keyword
-from digipipe.esys.esys.config import esys_conf
 from digipipe.esys.esys.tools.timing import Timer
-
 
 logger = logging.getLogger()
 
@@ -61,14 +63,20 @@ def drop_values_by_keyword(df, keyword="None"):
 
 
 def get_emission_limit(scalars):
-    """Gets emission limit from scalars and returns None if it is missing or None."""
+    """
+    Gets emission limit from scalars and returns None if it is missing or
+    None.
+    """
     emission_df_raw = scalars.loc[scalars["carrier"] == "emission"].set_index(
         "var_name"
     )
     emission_df = drop_values_by_keyword(emission_df_raw)
 
     # return None if no emission limit is given ('None' or entry missing)
-    if emission_df.empty or emission_df.at["emission_limit", "var_value"] is np.nan:
+    if (
+        emission_df.empty
+        or emission_df.at["emission_limit", "var_value"] is np.nan
+    ):
         logger.info("No emission limit will be set.")
         return None
     else:
@@ -79,7 +87,8 @@ def get_emission_limit(scalars):
 
 def get_electricity_gas_relations(scalars):
     r"""
-    Gets electricity/gas relations from scalars. Returns None if no relations are given.
+    Gets electricity/gas relations from scalars. Returns None if no relations
+    are given.
 
     Returns
     -------
@@ -97,7 +106,9 @@ def get_electricity_gas_relations(scalars):
         return None
     else:
         busses = relations.carrier.drop_duplicates().values
-        logger.info(f"Gas electricity relations will be set for busses: {busses}")
+        logger.info(
+            f"Gas electricity relations will be set for busses: {busses}"
+        )
         return relations
 
 
@@ -120,8 +131,9 @@ def add_output_parameters_to_bpchp(parameters, energysystem):
     r"""
     Adds keywords for electricity-gas relation constraint to backpressure CHPs.
 
-    This is necessary as oemof.tabular does not support `output_parameters` of these components,
-    yet. The keywords are set as attributes of the output flow towards `heat_bus`.
+    This is necessary as oemof.tabular does not support `output_parameters` of
+    these components, yet. The keywords are set as attributes of the output
+    flow towards `heat_bus`.
 
     Parameters
     ----------
@@ -144,11 +156,14 @@ def add_output_parameters_to_bpchp(parameters, energysystem):
 
             # set keyword as attribute with value
             setattr(
-                energysystem.groups[element.name_].outputs.data[bus], keyword, value
+                energysystem.groups[element.name_].outputs.data[bus],
+                keyword,
+                value,
             )
         else:
             logging.warning(
-                f"No element '{element.name_}' in EnergySystem. Cannot add output_parameters."
+                f"No element '{element.name_}' in EnergySystem. Cannot add "
+                f"output_parameters."
             )
 
     return energysystem
@@ -158,18 +173,19 @@ def add_electricity_gas_relation_constraints(model, relations):
     r"""
     Adds constraint `equate_flows_by_keyword` to `model`.
 
-    The components belonging to 'electricity' or 'gas' are selected by keywords. The keywords of
-    components powered by gas start with `esys_conf.settings.optimize.gas_key` and such powered by
-    electricity with `esys_conf.settings.optimize.el_key`, followed by `carrier` and `region` e.g.
-    <`GAS_KEY`>-<carrier>-<region>.
+    The components belonging to 'electricity' or 'gas' are selected by
+    keywords. The keywords of components powered by gas start with
+    `esys_conf.settings.optimize.gas_key` and such powered by electricity with
+    `esys_conf.settings.optimize.el_key`, followed by `carrier` and `region`
+    e.g. <`GAS_KEY`>-<carrier>-<region>.
 
     Parameters
     ----------
     model : oemof.solph.Model
         optmization model
     relations : pd.DataFrame
-        Contains electricity/gas relations in column 'var_value'. Further contains at least columns
-        'carrier' and 'region'.
+        Contains electricity/gas relations in column 'var_value'. Further
+        contains at least columns 'carrier' and 'region'.
     """
     for index, row in relations.iterrows():
         # Formulate suffix for keywords <carrier>-<region>
@@ -184,7 +200,9 @@ def add_electricity_gas_relation_constraints(model, relations):
 
 
 def get_additional_scalars():
-    """Returns additional scalars as pd.DataFrame or None if file does not exist"""
+    """
+    Returns additional scalars as pd.DataFrame or None if file does not exist
+    """
     filename_add_scalars = os.path.join(preprocessed, "additional_scalars.csv")
     if os.path.exists(filename_add_scalars):
         scalars = dp.load_b3_scalars(filename_add_scalars)
@@ -217,7 +235,8 @@ if __name__ == "__main__":
     try:
 
         logger.info(
-            f"Created solph.EnergSystem using oemof.solph version '{solph.__version__}'."
+            f"Created solph.EnergSystem using oemof.solph version "
+            f"'{solph.__version__}'."
         )
 
         with Timer(text="Created solph.Energystem.", logger=logger.info):
@@ -233,11 +252,15 @@ if __name__ == "__main__":
         if esys_conf.settings.optimize.debug:
             es.timeindex = es.timeindex[:3]
 
-            logger.info("Using DEBUG mode: Running model with first 3 timesteps only.")
+            logger.info(
+                "Using DEBUG mode: Running model with first 3 timesteps only."
+            )
 
         # add output_parameters of bpchp
         if bpchp_out is not None:
-            es = add_output_parameters_to_bpchp(parameters=bpchp_out, energysystem=es)
+            es = add_output_parameters_to_bpchp(
+                parameters=bpchp_out, energysystem=es
+            )
 
         # create model from energy system (this is just oemof.solph)
         logger.info("Creating solph.Model.")
@@ -268,7 +291,8 @@ if __name__ == "__main__":
         logger.info(
             f"Solving with solver '{esys_conf.settings.optimize.solver}' "
             f"using solve_kwargs '{esys_conf.settings.optimize.solve_kwargs}' "
-            f"and cmdline_options '{esys_conf.settings.optimize.cmdline_options}'."
+            f"and cmdline_options "
+            f"'{esys_conf.settings.optimize.cmdline_options}'."
         )
 
         with Timer(text="Solved the model.", logger=logger.info):
@@ -285,7 +309,8 @@ if __name__ == "__main__":
 
     except:  # noqa: E722
         logger.exception(
-            f"Could not optimize energysystem for datapackage from '{preprocessed}'."
+            f"Could not optimize energysystem for datapackage from "
+            f"'{preprocessed}'."
         )
         raise
 

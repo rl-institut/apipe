@@ -3,7 +3,8 @@ r"""
 Inputs
 -------
 scenario_specs : str
-    ``scenarios/{scenario}.yml``: path of input file (.yml) containing scenario specifications
+    ``scenarios/{scenario}.yml``: path of input file (.yml) containing scenario
+    specifications
 destination : str
     ``results/{scenario}/preprocessed``: path of output directory
 logfile : str
@@ -12,52 +13,54 @@ logfile : str
 Outputs
 ---------
 oemoflex.EnergyDatapackage
-    EnergyDatapackage that can be read by oemof.tabular, with data (scalars and timeseries)
-    as csv and metadata (describing resources and foreign key relations) as json.
+    EnergyDatapackage that can be read by oemof.tabular, with data (scalars and
+    timeseries) as csv and metadata (describing resources and foreign key
+    relations) as json.
 
 Description
 -------------
-The script creates an empty EnergyDatapackage from the specifications given in the scenario_specs,
-fills it with scalar and timeseries data, infers the metadata and saves it to the given
-destination. Further, additional parameters like emission limit are saved in a separate file.
+The script creates an empty EnergyDatapackage from the specifications given in
+the scenario_specs, fills it with scalar and timeseries data, infers the
+metadata and saves it to the given destination. Further, additional parameters
+like emission limit are saved in a separate file.
 
-Explanations about the structure of the preprocessed datapackage can be found in section
-:ref:`Build datapackages` of the
+Explanations about the structure of the preprocessed datapackage can be found
+in section :ref:`Build datapackages` of the
 `docu <https://oemof-b3.readthedocs.io/en/latest/index.html>`_.
 
 """
-import sys
 import os
+import sys
 from collections import OrderedDict
 
 import pandas as pd
-from oemoflex.model.datapackage import EnergyDataPackage
 from oemoflex import config as oemoflex_config
-from digipipe.esys.esys.config.esys_conf import load_yaml
+from oemoflex.model.datapackage import EnergyDataPackage
 
+from digipipe.esys.esys.config import esys_conf
+from digipipe.esys.esys.config.esys_conf import load_yaml
 from digipipe.esys.esys.model import (
-    model_structures,
     bus_attrs_update,
     component_attrs_update,
     foreign_keys_update,
+    model_structures,
 )
 from digipipe.esys.esys.tools.data_processing import (
+    expand_regions,
     filter_df,
-    update_filtered_df,
     multi_load_b3_scalars,
     multi_load_b3_timeseries,
-    unstack_timeseries,
-    expand_regions,
     prepare_attr_name,
     save_df,
+    unstack_timeseries,
+    update_filtered_df,
 )
-from digipipe.esys.esys.config import esys_conf
 
 
 def update_with_checks(old, new):
     r"""
-    Updates a Series or DataFrame with new data. Raises a warning if there is new data that is not
-    in the index of the old data.
+    Updates a Series or DataFrame with new data. Raises a warning if there is
+    new data that is not in the index of the old data.
 
     Parameters
     ----------
@@ -84,8 +87,9 @@ def update_with_checks(old, new):
 
 def parametrize_scalars(edp, scalars, filters):
     r"""
-    Parametrizes an oemoflex.EnergyDataPackage with scalars. Accepts an OrderedDict of filters
-    that is used to filter the scalars and subsequently update the EnergyDatapackage.
+    Parametrizes an oemoflex.EnergyDataPackage with scalars. Accepts an
+    OrderedDict of filters that is used to filter the scalars and
+    subsequently update the EnergyDatapackage.
 
     Parameters
     ----------
@@ -113,7 +117,9 @@ def parametrize_scalars(edp, scalars, filters):
     duplicated = filtered.loc[filtered.index.duplicated()]
 
     if duplicated.any():
-        raise ValueError(f"There are duplicates in the scalar data: {duplicated}")
+        raise ValueError(
+            f"There are duplicates in the scalar data: {duplicated}"
+        )
 
     update_with_checks(edp.data["component"], filtered)
 
@@ -155,7 +161,9 @@ def parametrize_sequences(edp, ts, filters):
 
         data = group.copy()  # avoid pandas SettingWithCopyWarning
 
-        data.loc[:, "var_name"] = data.loc[:, "region"] + "-" + data.loc[:, "var_name"]
+        data.loc[:, "var_name"] = (
+            data.loc[:, "region"] + "-" + data.loc[:, "var_name"]
+        )
 
         data_unstacked = unstack_timeseries(data)
 
@@ -163,14 +171,18 @@ def parametrize_sequences(edp, ts, filters):
 
         edp.data[name].index.name = "timeindex"
 
-    logger.info(f"Updated DataPackage with timeseries from '{paths_timeseries}'.")
+    logger.info(
+        f"Updated DataPackage with timeseries from '{paths_timeseries}'."
+    )
 
     return edp
 
 
 def load_additional_scalars(scalars, filters):
-    """Loads additional scalars like the emission limit and filters by 'scenario_key'"""
-    # get electricity/gas relations and parameters for the calculation of emission_limit
+    """Loads additional scalars like the emission limit and filters by
+    'scenario_key'"""
+    # get electricity/gas relations and parameters for the calculation of
+    # emission_limit
     el_gas_rel = scalars.loc[
         scalars.var_name == esys_conf.settings.build_datapackage.el_gas_relation
     ]
@@ -178,9 +190,9 @@ def load_additional_scalars(scalars, filters):
         scalars.carrier == esys_conf.settings.build_datapackage.emission
     ]
 
-    # get `output_parameters` of backpressure components as they are not taken into
-    # consideration in oemof.tabular so far. They are added to the components' output flow towards
-    # the heat bus in script `optimize.py`.
+    # get `output_parameters` of backpressure components as they are not taken
+    # into consideration in oemof.tabular so far. They are added to the
+    # components' output flow towards the heat bus in script `optimize.py`.
     bpchp_out = scalars.loc[
         (scalars.tech == "bpchp") & (scalars.var_name == "output_parameters")
     ]
@@ -191,7 +203,8 @@ def load_additional_scalars(scalars, filters):
     # subsequently apply filters
     filtered_df = update_filtered_df(df, filters)
 
-    # calculate emission limit and prepare data frame in case all necessary data is available
+    # calculate emission limit and prepare data frame in case all necessary data
+    # is available
     _filtered_df = filtered_df.copy().set_index("var_name")
     try:
         emission_limit = calculate_emission_limit(
@@ -213,7 +226,8 @@ def load_additional_scalars(scalars, filters):
         index=[0],
     )
 
-    # add emission limit to filtered additional scalars and adapt format of data frame
+    # add emission limit to filtered additional scalars and adapt format of
+    # data frame
     add_scalars = pd.concat([filtered_df, emission_limit_df], sort=False)
     add_scalars.reset_index(inplace=True, drop=True)
     add_scalars.index.name = "id_scal"
@@ -224,7 +238,8 @@ def load_additional_scalars(scalars, filters):
 def save_additional_scalars(additional_scalars, destination):
     """Saves `additional_scalars` to additional_scalar_file in `destination`"""
     filename = os.path.join(
-        destination, esys_conf.settings.build_datapackage.additional_scalars_file
+        destination,
+        esys_conf.settings.build_datapackage.additional_scalars_file,
     )
     save_df(additional_scalars, filename)
 
@@ -238,7 +253,9 @@ def calculate_emission_limit(
     Emission limit is calculated by
     emissions_1990 * (1 - emission_reduction_factor) - emissions_not_modeled"""
 
-    return emissions_1990 * (1 - emission_reduction_factor) - emissions_not_modeled
+    return (
+        emissions_1990 * (1 - emission_reduction_factor) - emissions_not_modeled
+    )
 
 
 if __name__ == "__main__":
@@ -252,7 +269,9 @@ if __name__ == "__main__":
 
     model_structure = model_structures[scenario_specs["model_structure"]]
 
-    oemoflex_config.config.settings.SEPARATOR = esys_conf.settings.general.separator
+    oemoflex_config.config.settings.SEPARATOR = (
+        esys_conf.settings.general.separator
+    )
 
     # setup empty EnergyDataPackage
     datetimeindex = pd.date_range(
@@ -291,8 +310,11 @@ if __name__ == "__main__":
     # get filters for scalars
     filters = OrderedDict(sorted(scenario_specs["filter_scalars"].items()))
 
-    # load additional scalars like "emission_limit" and filter by `filters` in 'scenario_key'
-    additional_scalars = load_additional_scalars(scalars=scalars, filters=filters)
+    # load additional scalars like "emission_limit" and filter by `filters` in
+    # 'scenario_key'
+    additional_scalars = load_additional_scalars(
+        scalars=scalars, filters=filters
+    )
 
     # Drop those scalars that do not belong to a specific component
     scalars = scalars.loc[~scalars["name"].isna()]

@@ -3,6 +3,29 @@ import os
 import shutil
 import zipfile
 
+import requests
+
+
+def download_file(url: str, dest_file: str) -> None:
+    """Downloads file from url to specified destination.
+
+    Parameters
+    ----------
+    url : str
+        The URL string of the file to be downloaded.
+    dest_file : str
+        The destination path/filename of the file to be downloaded.
+    """
+    print(f"Downloading from {url}")
+    with requests.get(url, stream=True, timeout=10) as r:
+        r.raise_for_status()
+        with open(dest_file, "wb") as f:
+            for i, block in enumerate(r.iter_content(chunk_size=1024)):
+                f.write(block)
+                downloaded_size = i * 1024 / 1000000
+                print(f"{downloaded_size:.2f} MB...", end="\r")
+    print(f"Download completed to {dest_file}")
+
 
 def extract_zipfile(zip_path: str, dest_path: str) -> None:
     """Extracts zipfile to destination path

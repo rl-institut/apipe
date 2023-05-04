@@ -6,7 +6,7 @@ from snakemake.utils import min_version
 min_version("6.0")
 
 from digipipe.scripts.config import load_dataset_configs
-from digipipe.scripts.data_io import extract_zipfile, copy_files, clean_folder
+from digipipe.scripts.data_io import *
 from digipipe.store.utils import get_abs_dataset_path
 from digipipe.config import GLOBAL_CONFIG
 
@@ -59,16 +59,18 @@ rule clean:
         rm -f {params.datasets}
         """
 
+
 rule download_raw_zip:
     """
     Downloads zipfile from Wolke containing the raw data and stores it in 'store/temp'
     """
     output:
-        raw_zip = "store/temp/store_raw.zip",
-    shell:
-        """
-        wget -O {input.raw_zip} https://wolke.rl-institut.de/s/w8WKwXT3f9ZzZQJ/download --retry-connrefused --waitretry=1 --read-timeout=15 --timeout=10 -t 0
-        """
+        raw_zip="store/temp/store_raw.zip"
+    params:
+        url="https://wolke.rl-institut.de/s/w8WKwXT3f9ZzZQJ/download",
+    run:
+        download_file(params.url, output.raw_zip)
+
 
 rule update_raw:
     """

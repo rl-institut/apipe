@@ -25,5 +25,5 @@ snakemake -j1 create_empty_ts
 
 These prompts create empty csv files with scalars and time series in the
 following directories:
-- digipipe/digipipe/store/datasets/esys_raw/data/scalars/
-- digipipe/digipipe/store/datasets/esys_raw/data/time_series/
+- `digipipe/digipipe/store/datasets/esys_raw/data/scalars/`
+- `digipipe/digipipe/store/datasets/esys_raw/data/time_series/`

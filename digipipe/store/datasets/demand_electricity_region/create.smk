@@ -36,11 +36,14 @@ rule hh_normalize_timeseries:
 rule hh_disaggregate_consumption:
     """
     Disaggregate household electricity consumption from districts to
-    municipalities for one year
+    municipalities for one year and create prognosis
     """
     input:
-        consumption=get_abs_dataset_path("preprocessed", "demandregio") /
-                    "data" / "dr_hh_power_consumption_{year}.csv",
+        consumption_today_region=get_abs_dataset_path("preprocessed", "demandregio") /
+                    "data" / "dr_hh_power_consumption_2022.csv",
+        consumption_future_germany=get_abs_dataset_path(
+            "preprocessed","bmwk_long_term_scenarios"
+        ) / "data" / "T45-Strom_hh_consumption.csv",
         population=get_abs_dataset_path("datasets", "population_region") /
                    "data" / "population.csv",
         region_muns=PATH_TO_REGION_MUNICIPALITIES_GPKG,
@@ -50,9 +53,22 @@ rule hh_disaggregate_consumption:
     run:
         population = pd.read_csv(input.population, header=[0, 1], index_col=0)
         population.columns = population.columns.droplevel(1)
+
+        # Today's demand
         consumption_district = pd.read_csv(
-            input.consumption
+            input.consumption_today_region
         ).set_index("nuts3").sum(axis=1).to_frame(name="consumption_district") * 1e3
+
+        # Future demand
+        consumption_future_germany = pd.read_csv(
+            input.consumption_future_germany,
+            index_col=0
+        ).rename(columns={
+            "Energiebedarf in TWh / Energy Demand in TWh": "demand",
+            "Energieträger / Energy Carrier": "carrier"
+        })
+        consumption_future_germany = consumption_future_germany.loc[
+            consumption_future_germany.carrier == "Strom"].demand.to_frame()
         consumption = create.disaggregate_consumption_to_municipality(
             consumption_district=consumption_district,
             muns=gpd.read_file(input.region_muns),
@@ -60,6 +76,13 @@ rule hh_disaggregate_consumption:
             disagg_data=population,
             disagg_data_col=str(wildcards.year),
         )
+        if int(wildcards.year) > 2022:
+            consumption = (
+                    float(consumption_future_germany.loc[int(wildcards.year)]) *
+                    float(consumption.sum()) / consumption_district.sum().sum() *
+                    1e6 * (consumption / consumption.sum())
+            ).rename(columns={"2022": wildcards.year})
+
         consumption.to_csv(output.consumption)
 
 rule hh_merge_consumption_years:

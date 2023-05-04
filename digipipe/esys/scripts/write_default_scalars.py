@@ -21,8 +21,7 @@ def get_var_value_and_comment(which):
     ----------
     which : str
         string indicating what var_value and comment are chosen as default.
-        Valid options are: zeros, empty, dummy_ratio, high_costs, false and
-        empty_dict.
+        Valid options are: zeros, empty, high_costs, false and empty_dict.
 
     Returns
     -------
@@ -37,9 +36,6 @@ def get_var_value_and_comment(which):
     elif which == "empty":
         var_value = np.nan
         comment = "Empty"
-    elif which == "dummy_ratio":
-        var_value = 0.1
-        comment = "Dummy ratio"
     elif which == "high_costs":
         var_value = 1000000000
         comment = "High slack cost on shortage"
@@ -52,8 +48,8 @@ def get_var_value_and_comment(which):
     else:
         raise ValueError(
             f"'{which}' is not a valid option. Please provide a valid options. "
-            f"Valid options are: zeros, empty, dummy_ratio, high_costs, false "
-            f"and empty_dict."
+            f"Valid options are: zeros, empty, high_costs, false and "
+            f"empty_dict."
         )
 
     return var_value, comment
@@ -117,8 +113,8 @@ def update_df(_df, which, condition, unit):
         The DataFrame to update.
     which : str
         Specifies the type of value to set for the "var_value" column.
-        Valid options are "zeros", "empty", "dummy_ratio", "high_costs",
-        "false", and "empty_dict".
+        Valid options are "zeros", "empty", "high_costs", "false", and
+        "empty_dict".
     condition : pandas.Series of bools
         A boolean mask indicating which rows of `_df` should be updated.
     unit : str

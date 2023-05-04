@@ -1,0 +1,85 @@
+write_default_scalars:
+  capacity: {
+    "var_name": "capacity",
+    "type": None,
+    "tech": None,
+    "which": "zeros",
+    "var_unit": "MW",
+  }
+  amount: {
+    "var_name": "amount",
+    "type": None,
+    "tech": None,
+    "which": "empty",
+    "var_unit": "MWh/a",
+  }
+  capacity_potential: {
+    "var_name": "capacity_potential",
+    "type": None,
+    "tech": None,
+    "which": "empty",
+    "var_unit": "MW",
+  }
+  carrier_cost: {
+    "var_name": "carrier_cost",
+    "type": None,
+    "tech": None,
+    "which": "zeros",
+    "var_unit": "Eur/MWh",
+  }
+  expandable: {
+    "var_name": "expandable",
+    "type": None,
+    "tech": None,
+    "which": "false",
+    "var_unit": "None",
+  }
+  input_parameters: {
+    "var_name": "input_parameters",
+    "type": None,
+    "tech": None,
+    "which": "empty_dict",
+    "var_unit": "None",
+  }
+  input_parameters_export: {
+    "var_name": "input_parameters",
+    "type": None,
+    "tech": export,
+    "which": "empty_dict",
+    "var_unit": "kg_CO2_eq/MWh",
+  }
+  marginal_cost_shortage: {
+    "var_name": "marginal_cost",
+    "type": shortage,
+    "tech": None,
+    "which": "high_costs",
+    "var_unit": "EUR/MWh",
+  }
+  marginal_cost_volatile: {
+    "var_name": "marginal_cost",
+    "type": volatile,
+    "tech": None,
+    "which": "zeros",
+    "var_unit": "EUR/MWh",
+  }
+  storage_capacity: {
+    "var_name": "storage_capacity",
+    "type": None,
+    "tech": None,
+    "which": "zeros",
+    "var_unit": "MWh",
+  }
+  storage_capacity_potential: {
+    "var_name": "storage_capacity_potential",
+    "type": None,
+    "tech": None,
+    "which": "empty",
+    "var_unit": "MWh",
+  }
+  wacc: {
+    "var_name": "wacc",
+    "type": None,
+    "tech": None,
+    "which": "zeros",
+    "var_unit": "None",
+  }

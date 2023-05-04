@@ -52,7 +52,7 @@ rule hh_disaggregate_consumption:
         population.columns = population.columns.droplevel(1)
         consumption_district = pd.read_csv(
             input.consumption
-        ).set_index("nuts3").sum(axis=1).to_frame(name="consumption_district")
+        ).set_index("nuts3").sum(axis=1).to_frame(name="consumption_district") * 1e3
         consumption = create.disaggregate_consumption_to_municipality(
             consumption_district=consumption_district,
             muns=gpd.read_file(input.region_muns),

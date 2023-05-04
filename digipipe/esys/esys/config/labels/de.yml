@@ -4,7 +4,9 @@ biomass-st: Biomass DT
 biomass: Biomasse
 ch4-boiler: CH4 Boiler
 ch4-bpchp: CH4 KWK (Gegendruck)
-ch4-demand: CH4 Bedarf
+ch4-demand_hh: CH4 Bedarf HH
+ch4-demand_ghd: CH4 Bedarf GHD
+ch4-demand_i: CH4 Bedarf I
 ch4-excess: CH4 Überschuss
 ch4-export: CH4 Export
 ch4-extchp: CH4 KWK (Entnahmekond.)
@@ -13,7 +15,9 @@ ch4-import: CH4 Import
 ch4-shortage: CH4 Shortage
 electricity-bev_charging: BEV
 electricity-curtailment: Abregelung
-electricity-demand: Strombedarf
+electricity-demand_hh: Strombedarf HH
+electricity-demand_ghd: Strombedarf GHD
+electricity-demand_i: Strombedarf I
 electricity-electrolyzer: Elektrolyse
 electricity-export: Stromexport
 electricity-heatpump_large: Wärmepumpe (groß)
@@ -31,11 +35,15 @@ h2-gt: H2 GT
 hard coal: Steinkohle
 h2-import: H2 Import
 h2-shortage: H2 Import
-heat_central-demand: zen. Wärmebedarf
+heat_central-demand_hh: zen. Wärmebedarf HH
+heat_central-demand_ghd: zen. Wärmebedarf GHD
+heat_central-demand_i: zen. Wärmebedarf I
 heat_central-excess: zen. Wärmeüberschuss
 heat_central-shortage: zen. Wärme Shortage
 heat_central-storage: zen. Wärmespeicher
-heat_decentral-demand: dez. Wärmebedarf
+heat_decentral-demand_hh: dez. Wärmebedarf HH
+heat_decentral-demand_ghd: dez. Wärmebedarf GHD
+heat_decentral-demand_i: dez. Wärmebedarf I
 heat_decentral-excess: dez. Wärmeüberschuss
 heat_decentral-shortage: dez. Wärme Shortage
 heat_decentral-storage: dez. Wärmespeicher

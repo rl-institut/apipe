@@ -25,3 +25,13 @@ Strombedarf für Haushalte, GHD und Industrie auf Gemeindeebene.
   Feiertagen und werden daher vernachlässigt.
 
 ## Industrie
+
+- Jährlicher Strombedarf in GWh für 2022 und 2035 je Gemeinde, von Landkreis-
+  auf Gemeindeebene disaggregiert anhand der sozialversicherungspflichtig
+  Beschäftigten im Jahr 2022.
+- Gemittelte, normierte Bedarfszeitreihe (auf 1 MWh) aus Daten von 2022 die für
+  alle Zielszenarien und Aggregationsebenen verwendet wird. Basis bilden sowohl
+  SLP- als auch branchenspezifische Profile. Aufgrund der geringen Differenzen
+  zwischen den Landkreisen werden diese gemittelt. Differenzen zwischen
+  verschiedenen Jahren bestehen nur aufgrund der Lage von Wochenenden und
+  Feiertagen und werden daher vernachlässigt.

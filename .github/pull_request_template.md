@@ -1,8 +1,17 @@
-Fixes # .
+Fixes #
 
-## Before merging into `dev`-branch, please make sure that
+## Before merging into `dev`-branch, please make sure that the following points are checked:
 
-- [ ] if data flow was adjusted: data pipeline run finishes successfully
-- [ ] pre-commit tests passed
-- [ ] the `CHANGELOG.rst` was updated
-- [ ] the docs were updated
+- [ ] All pre-commit tests passed
+- [ ] File `CHANGELOG.md` was updated
+- [ ] The docs were updated
+
+If packages were modified:
+- [ ] File `poetry.lock` was updated with: `poetry lock`
+- [ ] A new env was successfully set up
+
+If data flow was adjusted:
+- [ ] Data pipeline run finished successfully with: `snakemake -jX`
+- [ ] Esys appdata was created successfully with: `snakemake -jX make_esys_appdata`
+
+  (with `X` =  desired number of cores, e.g. 1)

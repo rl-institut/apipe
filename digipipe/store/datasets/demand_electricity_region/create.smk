@@ -55,33 +55,25 @@ rule hh_disaggregate_consumption:
         population.columns = population.columns.droplevel(1)
 
         # Today's demand
-        consumption_district = pd.read_csv(
+        consumption_districts = pd.read_csv(
             input.consumption_today_region
-        ).set_index("nuts3").sum(axis=1).to_frame(name="consumption_district") * 1e3
-
-        # Future demand
-        consumption_future_germany = pd.read_csv(
-            input.consumption_future_germany,
-            index_col=0
-        ).rename(columns={
-            "Energiebedarf in TWh / Energy Demand in TWh": "demand",
-            "Energieträger / Energy Carrier": "carrier"
-        })
-        consumption_future_germany = consumption_future_germany.loc[
-            consumption_future_germany.carrier == "Strom"].demand.to_frame()
+        ).set_index("nuts3").sum(axis=1).to_frame(name="consumption_districts") * 1e3
         consumption = create.disaggregate_consumption_to_municipality(
-            consumption_district=consumption_district,
+            consumption_districts=consumption_districts,
             muns=gpd.read_file(input.region_muns),
             districts=gpd.read_file(input.region_districts),
             disagg_data=population,
             disagg_data_col=str(wildcards.year),
         )
+
+        # Future demand
         if int(wildcards.year) > 2022:
-            consumption = (
-                    float(consumption_future_germany.loc[int(wildcards.year)]) *
-                    float(consumption.sum()) / consumption_district.sum().sum() *
-                    1e6 * (consumption / consumption.sum())
-            ).rename(columns={"2022": wildcards.year})
+            consumption = create.demand_prognosis(
+                consumption_future_germany=input.consumption_future_germany,
+                consumption_districts=consumption_districts,
+                consumption_region=consumption,
+                year=int(wildcards.year)
+            )
 
         consumption.to_csv(output.consumption)
 

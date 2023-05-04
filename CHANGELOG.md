@@ -23,6 +23,7 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Add types-pyyaml package
 - Integrate building of energy system for appdata in pipeline via dir *esys*
 - Update store with dir structure for *esys* data
+- Add writing of default values to *esys* raw scalar data
 
 ### Changed
 

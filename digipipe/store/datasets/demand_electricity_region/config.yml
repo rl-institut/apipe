@@ -7,7 +7,7 @@ hh_electricity_demand:
   years:
     [
       2022,
-      2035,
+      #2035,
       2045
     ]
 
@@ -16,7 +16,7 @@ cts_electricity_demand:
   years:
     [
       2022,
-      2035,
+      #2035,
       2045
     ]
 
@@ -25,6 +25,6 @@ ind_electricity_demand:
   years:
     [
       2022,
-      2035,
+      #2035,
       2045
     ]

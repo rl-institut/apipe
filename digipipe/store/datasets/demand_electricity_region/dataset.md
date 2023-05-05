@@ -4,7 +4,7 @@ Strombedarf für Haushalte, GHD und Industrie auf Gemeindeebene.
 
 Datengrundlage
 - Strombedarf 2022: [DemandRegio](../../preprocessed/demandregio/dataset.md)
-- Strombedarfsprognosen 2035 und 2045:
+- Strombedarfsprognosen 2045:
   [BMWK Langfristszenarien](../../preprocessed/bmwk_long_term_scenarios/dataset.md)
 
 Die Berechnung der regionalen Prognosewerte je Verbrauchssektor Haushalte, GHD

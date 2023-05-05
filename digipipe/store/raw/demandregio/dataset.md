@@ -78,7 +78,7 @@ for year in [2017, 2022, 2035, 2045]:
       weight_by_income=True,
       year=year,
       scale_by_pop=True,
-  ).to_csv(f"dr_hh_power_consumption_{year}.csv")
+  ).to_csv(f"dr_hh_power_demand_{year}.csv")
 
   # Timeseries
   temporal.disagg_temporal_power_housholds_slp(
@@ -121,7 +121,7 @@ for year in [2017, 2022, 2035]:
       source='power',
       use_nuts3code=True,
       year=year,
-  ).to_csv(f"dr_cts_power_consumption_{year}.csv")
+  ).to_csv(f"dr_cts_power_demand_{year}.csv")
   # Timeseries
   temporal.disagg_temporal_power_CTS(
       detailed=False,
@@ -137,7 +137,7 @@ for year in [2017, 2022, 2035]:
       source='power',
       use_nuts3code=True,
       year=year,
-  ).to_csv(f"dr_ind_power_consumption_{year}.csv")
+  ).to_csv(f"dr_ind_power_demand_{year}.csv")
   # Timeseries
   temporal.disagg_temporal_industry(
       source="power",

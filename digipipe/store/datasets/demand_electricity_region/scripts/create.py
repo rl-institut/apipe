@@ -41,7 +41,7 @@ def normalize_filter_timeseries(
     # Average SLP timeseries and normalize to 1 MWh
     timeseries = timeseries.sum(axis=1)
     timeseries = timeseries.div(timeseries.sum()).reset_index(drop=True)
-    timeseries.name = "consumption_norm"
+    timeseries.name = "demand_norm"
 
     # Check result
     assert timeseries.sum() == 1, "Sum of normalized timeseries is not 1"
@@ -50,8 +50,8 @@ def normalize_filter_timeseries(
     timeseries.to_csv(outfile)
 
 
-def disaggregate_consumption_to_municipality(
-    consumption_districts: pd.DataFrame,
+def disaggregate_demand_to_municipality(
+    demand_districts: pd.DataFrame,
     muns: gpd.GeoDataFrame,
     districts: gpd.GeoDataFrame,
     disagg_data: pd.DataFrame,
@@ -62,21 +62,21 @@ def disaggregate_consumption_to_municipality(
 
     Parameters
     ----------
-    consumption_districts : pd.DataFrame
-        Annual consumption per district (NUTS 3 level)
+    demand_districts : pd.DataFrame
+        Annual demand per district (NUTS 3 level)
     muns : gpd.GeoDataFrame
         Municipalities
     districts : gpd.GeoDataFrame
         Federal districts
     disagg_data : pd.DataFrame
-        DF that contains municipal data to scale consumption by
+        DF that contains municipal data to scale demand by
     disagg_data_col : str
         Name of DF column used for scaling
 
     Returns
     -------
     pd.DataFrame
-        Annual consumption per municipality
+        Annual demand per municipality
     """
     # Get muns and their NUTS3 code
     muns = muns.merge(
@@ -98,60 +98,60 @@ def disaggregate_consumption_to_municipality(
         )
     ).set_index("nuts")
 
-    # Filter consumption dataset
-    consumption_districts = consumption_districts.loc[districts.nuts.to_list()]
+    # Filter demand dataset
+    demand_districts = demand_districts.loc[districts.nuts.to_list()]
 
-    # Merge consumption and calc value per municipality
-    consumption = disagg_data.merge(
-        consumption_districts,
+    # Merge demand and calc value per municipality
+    demand = disagg_data.merge(
+        demand_districts,
         left_index=True,
         right_index=True,
     )
-    consumption[
-        disagg_data_col
-    ] = consumption_districts.consumption_districts.mul(consumption.pop_share)
-    consumption = consumption[["municipality_id", disagg_data_col]].set_index(
+    demand[disagg_data_col] = demand_districts.demand_districts.mul(
+        demand.pop_share
+    )
+    demand = demand[["municipality_id", disagg_data_col]].set_index(
         "municipality_id"
     )
 
     # Check result
     np.testing.assert_almost_equal(
-        consumption.sum().sum(),
-        consumption_districts.sum().sum(),
+        demand.sum().sum(),
+        demand_districts.sum().sum(),
         err_msg="Sum of disaggregated values does not match total value!",
     )
 
-    return consumption
+    return demand
 
 
-def merge_consumption_multiple_years(
+def merge_demand_multiple_years(
     infiles: list,
     outfile: Path,
 ) -> None:
-    """Merge consumption from different years into one
+    """Merge demand from different years into one
 
     Parameters
     ----------
     infiles : list of Path
-        CSV with each holding consumption per municipality for one year
+        CSV with each holding demand per municipality for one year
     outfile : Path
-        CSV with consumption per municipality for all years
+        CSV with demand per municipality for all years
 
     Returns
     -------
     None
     """
-    consumption = pd.concat(
+    demand = pd.concat(
         [pd.read_csv(f, index_col="municipality_id") for f in infiles],
         axis=1,
     )
-    consumption.to_csv(outfile)
+    demand.to_csv(outfile)
 
 
 def demand_prognosis(
-    consumption_future_germany: Path,
-    consumption_districts: pd.DataFrame,
-    consumption_region: pd.DataFrame,
+    demand_future_germany: Path,
+    demand_districts: pd.DataFrame,
+    demand_region: pd.DataFrame,
     year: int,
 ) -> pd.DataFrame:
     """Create demand prognosis for target year per municipality by scaling with
@@ -159,36 +159,36 @@ def demand_prognosis(
 
     Parameters
     ----------
-    consumption_future_germany : pd.DataFrame
-        Total consumption per carrier in Germany
-    consumption_districts : pd.DataFrame
-        Annual consumption per district (NUTS 3 level)
-    consumption_region : pd.DataFrame
-        Annual consumption per municipality (today)
+    demand_future_germany : pd.DataFrame
+        Total demand per carrier in Germany
+    demand_districts : pd.DataFrame
+        Annual demand per district (NUTS 3 level)
+    demand_region : pd.DataFrame
+        Annual demand per municipality (today)
     year
 
     Returns
     -------
     pd.DataFrame
-        Annual consumption per municipality (prognosis)
+        Annual demand per municipality (prognosis)
     """
 
-    consumption_future_germany = pd.read_csv(
-        consumption_future_germany, index_col=0
+    demand_future_germany = pd.read_csv(
+        demand_future_germany, index_col=0
     ).rename(
         columns={
             "Energiebedarf in TWh / Energy Demand in TWh": "demand",
             "Energieträger / Energy Carrier": "carrier",
         }
     )
-    consumption_future_germany = consumption_future_germany.loc[
-        consumption_future_germany.carrier == "Strom"
+    demand_future_germany = demand_future_germany.loc[
+        demand_future_germany.carrier == "Strom"
     ].demand.to_frame()
-    consumption = (
-        float(consumption_future_germany.loc[year])
-        * float(consumption_region.sum())
-        / consumption_districts.sum().sum()
+    demand = (
+        float(demand_future_germany.loc[year])
+        * float(demand_region.sum())
+        / demand_districts.sum().sum()
         * 1e6
-        * (consumption_region / consumption_region.sum())
+        * (demand_region / demand_region.sum())
     ).rename(columns={"2022": year})
-    return consumption
+    return demand

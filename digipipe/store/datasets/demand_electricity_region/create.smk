@@ -33,32 +33,32 @@ rule hh_normalize_timeseries:
             region_nuts=gpd.read_file(input.region_districts).nuts.to_list(),
         )
 
-rule hh_disaggregate_consumption:
+rule hh_disaggregate_demand:
     """
-    Disaggregate household electricity consumption from districts to
+    Disaggregate household electricity demand from districts to
     municipalities for one year and create prognosis
     """
     input:
-        consumption_today_region=get_abs_dataset_path("preprocessed", "demandregio") /
-                    "data" / "dr_hh_power_consumption_2022.csv",
-        consumption_future_germany=get_abs_dataset_path(
+        demand_today_region=get_abs_dataset_path("preprocessed", "demandregio") /
+                    "data" / "dr_hh_power_demand_2022.csv",
+        demand_future_germany=get_abs_dataset_path(
             "preprocessed","bmwk_long_term_scenarios"
-        ) / "data" / "T45-Strom_hh_consumption.csv",
+        ) / "data" / "T45-Strom_hh_demand.csv",
         population=get_abs_dataset_path("datasets", "population_region") /
                    "data" / "population.csv",
         region_muns=PATH_TO_REGION_MUNICIPALITIES_GPKG,
         region_districts=PATH_TO_REGION_DISTRICTS_GPKG
     output:
-        consumption=DATASET_PATH / "data" / "demand_hh_power_consumption_{year}.csv"
+        demand=DATASET_PATH / "data" / "demand_hh_power_demand_{year}.csv"
     run:
         population = pd.read_csv(input.population, header=[0, 1], index_col=0)
         population.columns = population.columns.droplevel(1)
         # Today's demand
-        consumption_districts = pd.read_csv(
-            input.consumption_today_region
-        ).set_index("nuts3").sum(axis=1).to_frame(name="consumption_districts") * 1e3
-        consumption = create.disaggregate_consumption_to_municipality(
-            consumption_districts=consumption_districts,
+        demand_districts = pd.read_csv(
+            input.demand_today_region
+        ).set_index("nuts3").sum(axis=1).to_frame(name="demand_districts") * 1e3
+        demand = create.disaggregate_demand_to_municipality(
+            demand_districts=demand_districts,
             muns=gpd.read_file(input.region_muns),
             districts=gpd.read_file(input.region_districts),
             disagg_data=population,
@@ -66,29 +66,29 @@ rule hh_disaggregate_consumption:
         )
         # Future demand
         if int(wildcards.year) > 2022:
-            consumption = create.demand_prognosis(
-                consumption_future_germany=input.consumption_future_germany,
-                consumption_districts=consumption_districts,
-                consumption_region=consumption,
+            demand = create.demand_prognosis(
+                demand_future_germany=input.demand_future_germany,
+                demand_districts=demand_districts,
+                demand_region=demand,
                 year=int(wildcards.year)
             )
-        consumption.to_csv(output.consumption)
+        demand.to_csv(output.demand)
 
-rule hh_merge_consumption_years:
+rule hh_merge_demand_years:
     """
-    Merge the electricity consumptions from different years into one
+    Merge the electricity demands from different years into one
     """
     input:
-        consumption=expand(
-            DATASET_PATH / "data" / "demand_hh_power_consumption_{year}.csv",
+        demand=expand(
+            DATASET_PATH / "data" / "demand_hh_power_demand_{year}.csv",
             year=config["hh_electricity_demand"]["years"]
         )
     output:
-        consumption = DATASET_PATH / "data" / "demand_hh_power_consumption.csv"
+        demand = DATASET_PATH / "data" / "demand_hh_power_demand.csv"
     run:
-        create.merge_consumption_multiple_years(
-            infiles=input.consumption,
-            outfile=output.consumption,
+        create.merge_demand_multiple_years(
+            infiles=input.demand,
+            outfile=output.demand,
         )
 
 rule cts_normalize_timeseries:
@@ -109,32 +109,32 @@ rule cts_normalize_timeseries:
             region_nuts=gpd.read_file(input.region_districts).nuts.to_list(),
         )
 
-rule cts_disaggregate_consumption:
+rule cts_disaggregate_demand:
     """
-    Disaggregate CTS electricity consumption from districts to municipalities
+    Disaggregate CTS electricity demand from districts to municipalities
     for one year
     """
     input:
-        consumption_today_region=get_abs_dataset_path(
+        demand_today_region=get_abs_dataset_path(
             "preprocessed", "demandregio") / "data" /
-            "dr_cts_power_consumption_2022.csv",
-        consumption_future_germany=get_abs_dataset_path(
+            "dr_cts_power_demand_2022.csv",
+        demand_future_germany=get_abs_dataset_path(
         "preprocessed","bmwk_long_term_scenarios"
-            ) / "data" / "T45-Strom_cts_consumption.csv",
+            ) / "data" / "T45-Strom_cts_demand.csv",
         employment=get_abs_dataset_path("datasets", "employment_region") /
                    "data" / "employees.csv",
         region_muns=PATH_TO_REGION_MUNICIPALITIES_GPKG,
         region_districts=PATH_TO_REGION_DISTRICTS_GPKG
     output:
-        consumption=DATASET_PATH / "data" / "demand_cts_power_consumption_{year}.csv"
+        demand=DATASET_PATH / "data" / "demand_cts_power_demand_{year}.csv"
     run:
         # Today's demand
-        consumption_districts = pd.read_csv(
-            input.consumption_today_region,
+        demand_districts = pd.read_csv(
+            input.demand_today_region,
             index_col=0
-        ).sum(axis=0).T.to_frame(name="consumption_districts")
-        consumption = create.disaggregate_consumption_to_municipality(
-            consumption_districts=consumption_districts,
+        ).sum(axis=0).T.to_frame(name="demand_districts")
+        demand = create.disaggregate_demand_to_municipality(
+            demand_districts=demand_districts,
             muns=gpd.read_file(input.region_muns),
             districts=gpd.read_file(input.region_districts),
             disagg_data=pd.read_csv(
@@ -145,29 +145,29 @@ rule cts_disaggregate_consumption:
         )
         # Future demand
         if int(wildcards.year) > 2022:
-            consumption = create.demand_prognosis(
-                consumption_future_germany=input.consumption_future_germany,
-                consumption_districts=consumption_districts,
-                consumption_region=consumption,
+            demand = create.demand_prognosis(
+                demand_future_germany=input.demand_future_germany,
+                demand_districts=demand_districts,
+                demand_region=demand,
                 year=int(wildcards.year)
             )
-        consumption.rename(columns={"employees": wildcards.year}).to_csv(output.consumption)
+        demand.rename(columns={"employees": wildcards.year}).to_csv(output.demand)
 
-rule cts_merge_consumption_years:
+rule cts_merge_demand_years:
     """
-    Merge the electricity consumptions from different years into one
+    Merge the electricity demands from different years into one
     """
     input:
-        consumption=expand(
-            DATASET_PATH / "data" / "demand_cts_power_consumption_{year}.csv",
+        demand=expand(
+            DATASET_PATH / "data" / "demand_cts_power_demand_{year}.csv",
             year=config["cts_electricity_demand"]["years"]
         )
     output:
-        consumption = DATASET_PATH / "data" / "demand_cts_power_consumption.csv"
+        demand = DATASET_PATH / "data" / "demand_cts_power_demand.csv"
     run:
-        create.merge_consumption_multiple_years(
-            infiles=input.consumption,
-            outfile=output.consumption,
+        create.merge_demand_multiple_years(
+            infiles=input.demand,
+            outfile=output.demand,
         )
 
 rule ind_normalize_timeseries:
@@ -188,31 +188,31 @@ rule ind_normalize_timeseries:
             region_nuts=gpd.read_file(input.region_districts).nuts.to_list(),
         )
 
-rule ind_disaggregate_consumption:
+rule ind_disaggregate_demand:
     """
-    Disaggregate industry electricity consumption from districts to
+    Disaggregate industry electricity demand from districts to
     municipalities for one year
     """
     input:
-        consumption_today_region=get_abs_dataset_path("preprocessed", "demandregio") /
-                    "data" / "dr_ind_power_consumption_2022.csv",
-        consumption_future_germany=get_abs_dataset_path(
+        demand_today_region=get_abs_dataset_path("preprocessed", "demandregio") /
+                    "data" / "dr_ind_power_demand_2022.csv",
+        demand_future_germany=get_abs_dataset_path(
         "preprocessed","bmwk_long_term_scenarios"
-            ) / "data" / "T45-Strom_ind_consumption.csv",
+            ) / "data" / "T45-Strom_ind_demand.csv",
         employment=get_abs_dataset_path("datasets", "employment_region") /
                    "data" / "employees.csv",
         region_muns=PATH_TO_REGION_MUNICIPALITIES_GPKG,
         region_districts=PATH_TO_REGION_DISTRICTS_GPKG
     output:
-        consumption=DATASET_PATH / "data" / "demand_ind_power_consumption_{year}.csv"
+        demand=DATASET_PATH / "data" / "demand_ind_power_demand_{year}.csv"
     run:
         # Today's demand
-        consumption_districts = pd.read_csv(
-            input.consumption_today_region,
+        demand_districts = pd.read_csv(
+            input.demand_today_region,
             index_col=0
-        ).sum(axis=0).T.to_frame(name="consumption_districts")
-        consumption = create.disaggregate_consumption_to_municipality(
-            consumption_districts=consumption_districts,
+        ).sum(axis=0).T.to_frame(name="demand_districts")
+        demand = create.disaggregate_demand_to_municipality(
+            demand_districts=demand_districts,
             muns=gpd.read_file(input.region_muns),
             districts=gpd.read_file(input.region_districts),
             disagg_data=pd.read_csv(
@@ -223,27 +223,27 @@ rule ind_disaggregate_consumption:
         )
         # Future demand
         if int(wildcards.year) > 2022:
-            consumption = create.demand_prognosis(
-                consumption_future_germany=input.consumption_future_germany,
-                consumption_districts=consumption_districts,
-                consumption_region=consumption,
+            demand = create.demand_prognosis(
+                demand_future_germany=input.demand_future_germany,
+                demand_districts=demand_districts,
+                demand_region=demand,
                 year=int(wildcards.year)
             )
-        consumption.rename(columns={"employees": wildcards.year}).to_csv(output.consumption)
+        demand.rename(columns={"employees": wildcards.year}).to_csv(output.demand)
 
-rule ind_merge_consumption_years:
+rule ind_merge_demand_years:
     """
-    Merge the electricity consumptions from different years into one
+    Merge the electricity demands from different years into one
     """
     input:
-        consumption=expand(
-            DATASET_PATH / "data" / "demand_ind_power_consumption_{year}.csv",
+        demand=expand(
+            DATASET_PATH / "data" / "demand_ind_power_demand_{year}.csv",
             year=config["ind_electricity_demand"]["years"]
         )
     output:
-        consumption = DATASET_PATH / "data" / "demand_ind_power_consumption.csv"
+        demand = DATASET_PATH / "data" / "demand_ind_power_demand.csv"
     run:
-        create.merge_consumption_multiple_years(
-            infiles=input.consumption,
-            outfile=output.consumption,
+        create.merge_demand_multiple_years(
+            infiles=input.demand,
+            outfile=output.demand,
         )

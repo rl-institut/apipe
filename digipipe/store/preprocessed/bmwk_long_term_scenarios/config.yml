@@ -5,9 +5,9 @@
 # Files to be extracted from raw dataset
 files_extract:
   [
-    "T45-Strom_buildings_heating_consumption_by_carrier.csv",
+    "T45-Strom_buildings_heating_demand_by_carrier.csv",
     "T45-Strom_buildings_heating_structure_by_technology.csv",
-    "T45-Strom_cts_consumption.csv",
-    "T45-Strom_hh_consumption.csv",
-    "T45-Strom_ind_consumption.csv"
+    "T45-Strom_cts_demand.csv",
+    "T45-Strom_hh_demand.csv",
+    "T45-Strom_ind_demand.csv"
   ]

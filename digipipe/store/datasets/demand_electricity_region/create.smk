@@ -53,7 +53,6 @@ rule hh_disaggregate_consumption:
     run:
         population = pd.read_csv(input.population, header=[0, 1], index_col=0)
         population.columns = population.columns.droplevel(1)
-
         # Today's demand
         consumption_districts = pd.read_csv(
             input.consumption_today_region
@@ -65,7 +64,6 @@ rule hh_disaggregate_consumption:
             disagg_data=population,
             disagg_data_col=str(wildcards.year),
         )
-
         # Future demand
         if int(wildcards.year) > 2022:
             consumption = create.demand_prognosis(
@@ -74,7 +72,6 @@ rule hh_disaggregate_consumption:
                 consumption_region=consumption,
                 year=int(wildcards.year)
             )
-
         consumption.to_csv(output.consumption)
 
 rule hh_merge_consumption_years:
@@ -118,8 +115,12 @@ rule cts_disaggregate_consumption:
     for one year
     """
     input:
-        consumption=get_abs_dataset_path("preprocessed", "demandregio") /
-                    "data" / "dr_cts_power_consumption_{year}.csv",
+        consumption_today_region=get_abs_dataset_path(
+            "preprocessed", "demandregio") / "data" /
+            "dr_cts_power_consumption_2022.csv",
+        consumption_future_germany=get_abs_dataset_path(
+        "preprocessed","bmwk_long_term_scenarios"
+            ) / "data" / "T45-Strom_cts_consumption.csv",
         employment=get_abs_dataset_path("datasets", "employment_region") /
                    "data" / "employees.csv",
         region_muns=PATH_TO_REGION_MUNICIPALITIES_GPKG,
@@ -127,12 +128,13 @@ rule cts_disaggregate_consumption:
     output:
         consumption=DATASET_PATH / "data" / "demand_cts_power_consumption_{year}.csv"
     run:
-        consumption_district = pd.read_csv(
-            input.consumption,
+        # Today's demand
+        consumption_districts = pd.read_csv(
+            input.consumption_today_region,
             index_col=0
-        ).sum(axis=0).T.to_frame(name="consumption_district")
+        ).sum(axis=0).T.to_frame(name="consumption_districts")
         consumption = create.disaggregate_consumption_to_municipality(
-            consumption_district=consumption_district,
+            consumption_districts=consumption_districts,
             muns=gpd.read_file(input.region_muns),
             districts=gpd.read_file(input.region_districts),
             disagg_data=pd.read_csv(
@@ -141,6 +143,14 @@ rule cts_disaggregate_consumption:
             ),
             disagg_data_col="employees"
         )
+        # Future demand
+        if int(wildcards.year) > 2022:
+            consumption = create.demand_prognosis(
+                consumption_future_germany=input.consumption_future_germany,
+                consumption_districts=consumption_districts,
+                consumption_region=consumption,
+                year=int(wildcards.year)
+            )
         consumption.rename(columns={"employees": wildcards.year}).to_csv(output.consumption)
 
 rule cts_merge_consumption_years:
@@ -184,8 +194,11 @@ rule ind_disaggregate_consumption:
     municipalities for one year
     """
     input:
-        consumption=get_abs_dataset_path("preprocessed", "demandregio") /
-                    "data" / "dr_ind_power_consumption_{year}.csv",
+        consumption_today_region=get_abs_dataset_path("preprocessed", "demandregio") /
+                    "data" / "dr_ind_power_consumption_2022.csv",
+        consumption_future_germany=get_abs_dataset_path(
+        "preprocessed","bmwk_long_term_scenarios"
+            ) / "data" / "T45-Strom_ind_consumption.csv",
         employment=get_abs_dataset_path("datasets", "employment_region") /
                    "data" / "employees.csv",
         region_muns=PATH_TO_REGION_MUNICIPALITIES_GPKG,
@@ -193,12 +206,13 @@ rule ind_disaggregate_consumption:
     output:
         consumption=DATASET_PATH / "data" / "demand_ind_power_consumption_{year}.csv"
     run:
-        consumption_district = pd.read_csv(
-            input.consumption,
+        # Today's demand
+        consumption_districts = pd.read_csv(
+            input.consumption_today_region,
             index_col=0
-        ).sum(axis=0).T.to_frame(name="consumption_district")
+        ).sum(axis=0).T.to_frame(name="consumption_districts")
         consumption = create.disaggregate_consumption_to_municipality(
-            consumption_district=consumption_district,
+            consumption_districts=consumption_districts,
             muns=gpd.read_file(input.region_muns),
             districts=gpd.read_file(input.region_districts),
             disagg_data=pd.read_csv(
@@ -207,6 +221,14 @@ rule ind_disaggregate_consumption:
             ),
             disagg_data_col="employees"
         )
+        # Future demand
+        if int(wildcards.year) > 2022:
+            consumption = create.demand_prognosis(
+                consumption_future_germany=input.consumption_future_germany,
+                consumption_districts=consumption_districts,
+                consumption_region=consumption,
+                year=int(wildcards.year)
+            )
         consumption.rename(columns={"employees": wildcards.year}).to_csv(output.consumption)
 
 rule ind_merge_consumption_years:

@@ -23,6 +23,7 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Add types-pyyaml package
 - Add dataset: employees and companies
 - Add dataset: demandregio electricity demand
+- Add dataset: BMWK long-term scenarios
 
 ### Changed
 

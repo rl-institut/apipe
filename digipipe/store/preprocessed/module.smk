@@ -46,3 +46,8 @@ module ba_employment:
     snakefile: "ba_employment/create.smk"
     config: config["store"]["preprocessed"]["ba_employment"]
 use rule * from ba_employment as preprocessed_ba_employment_ *
+
+module bmwk_long_term_scenarios:
+    snakefile: "bmwk_long_term_scenarios/create.smk"
+    config: config["store"]["preprocessed"]["bmwk_long_term_scenarios"]
+use rule * from bmwk_long_term_scenarios as preprocessed_bmwk_long_term_scenarios_ *

@@ -17,7 +17,8 @@ sektorspezifischer Parameter auf Gemeindeebene desaggregiert (s.u.)
 ## Haushalte
 
 - Jährlicher Strombedarf je Gemeinde in MWh, von Landkreis- auf Gemeindeebene
-  disaggregiert anhand von Bevölkerungsprognosen.
+  disaggregiert anhand von Bevölkerungsprognosen
+  ([STALA ST](../../preprocessed/stala_st_pop_prog/dataset.md)).
 - Gemittelte, normierte Bedarfszeitreihe (auf 1 MWh) aus Daten von 2022 die für
   alle Zielszenarien und Aggregationsebenen verwendet wird, da die Basis
   SLP-Profile sind und Differenzen zwischen verschiedenen Jahren nur aufgrund
@@ -28,7 +29,7 @@ sektorspezifischer Parameter auf Gemeindeebene desaggregiert (s.u.)
 
 - Jährlicher Strombedarf je Gemeinde in MWh, von Landkreis- auf Gemeindeebene
   disaggregiert anhand von sozialversicherungspflichtig Beschäftigten im Jahr
-  2022.
+  2022 ([BA für Arbeit](../../preprocessed/ba_employment/dataset.md)).
 - Gemittelte, normierte Bedarfszeitreihe (auf 1 MWh) aus Daten von 2022 die für
   alle Zielszenarien und Aggregationsebenen verwendet wird. Basis bilden sowohl
   SLP- als auch branchenspezifische Profile. Aufgrund der geringen Differenzen

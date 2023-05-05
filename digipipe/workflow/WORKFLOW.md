@@ -48,3 +48,12 @@ The graphs also provide information on the completed (solid lines) and pending
   - [store/datasets/module.smk](../store/datasets/module.smk)
 - In each of these modules, the rules as well as the config from the contained
   datasets are imported.
+
+
+## Download and update RAW dataset
+
+To download, extract and copy a current set of raw data into 'store/raw', type
+
+    snakemake -j<NUMBER_OF_CPU_CORES> -R update_raw
+
+A zip file from the specified URL ([Wolke](https://wolke.rl-institut.de/s/w8WKwXT3f9ZzZQJ/download)) is downloaded and unzipped to "store/temp". The corresponding folders containing the raw data are copied to "store/raw". A prompt asks if an existing folder should be overwritten. Confirm with "y" to overwrite or with "n" to leave this folder unchanged.

@@ -2,6 +2,7 @@
 
 ## Download and update RAW dataset
 
+To run the pipeline the input dataset is required.
 To download, extract and copy a current set of raw data into `store/raw`, type
 
     snakemake -j<NUMBER_OF_CPU_CORES> -R update_raw

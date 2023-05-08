@@ -7,7 +7,7 @@ min_version("6.0")
 
 from digipipe.scripts.config import load_dataset_configs
 from digipipe.scripts.data_io import *
-from digipipe.store.utils import get_abs_dataset_path
+from digipipe.store.utils import get_abs_dataset_path, get_abs_store_root_path
 from digipipe.config import GLOBAL_CONFIG
 
 config = GLOBAL_CONFIG
@@ -62,27 +62,34 @@ rule clean:
 
 rule download_raw_zip:
     """
-    Downloads zipfile from Wolke containing the raw data and stores it in 'store/temp'
+    Downloads zipfile from the cloud containing the raw data and stores it in 'store/temp'
     """
     output:
-        raw_zip="store/temp/store_raw.zip"
+        raw_zip=get_abs_store_root_path()/"temp"/"raw.zip"
     params:
-        url="https://wolke.rl-institut.de/s/w8WKwXT3f9ZzZQJ/download",
+        url=config["global"]["input_data"]["download_url"]
     run:
-        download_file(params.url, output.raw_zip)
+        try:
+            download_file(params.url, output.raw_zip)
+        except Exception as e:
+            raise RuntimeError(f"Error downloading file from {params.url}: {e}")
+
 
 
 rule update_raw:
     """
-    Extracts the downloaded zipfile, copies containing folders to 'store/raw' and cleans up 'store/temp' afterwards
+    Extracts 'raw.zip' and copies containing folders to 'store/raw'
     """
     input:
-        raw_zip="store/temp/store_raw.zip"
+        raw_zip=get_abs_store_root_path()/"temp"/"raw.zip"
     params:
-        temp_dir="store/temp",
-        raw_dir="store/raw",
-        temp_raw_dir="store/temp/store/raw"
+        temp_dir=get_abs_store_root_path()/"temp",
+        raw_dir=get_abs_store_root_path()/"raw",
+        temp_raw_dir=get_abs_store_root_path()/"temp"/"store"/"raw"
     run:
-        extract_zipfile(input.raw_zip, params.temp_dir)
-        copy_files(params.temp_raw_dir, params.raw_dir)
-        clean_folder(params.temp_dir)
+        try:
+            extract_zipfile(input.raw_zip, params.temp_dir)
+            copy_files(params.temp_raw_dir, params.raw_dir)
+            clean_folder(params.temp_dir)
+        except Exception as e:
+            raise RuntimeError(f"Error updating raw data: {e}")

@@ -22,7 +22,7 @@ def download_file(url: str, dest_file: str) -> None:
         with open(dest_file, "wb") as f:
             for i, block in enumerate(r.iter_content(chunk_size=1024)):
                 f.write(block)
-                downloaded_size = i * 1024 / 1000000
+                downloaded_size = i * 1024 / 1e6
                 print(f"{downloaded_size:.2f} MB...", end="\r")
     print(f"Download completed to {dest_file}")
 
@@ -59,19 +59,24 @@ def copy_files(src_path: str, dest_path: str) -> None:
     ]
     # Loop through each directory and copy it to destination directory
     for d in dir_list:
-        src_dir = os.path.join(src_path, d)
-        dst_dir = os.path.join(dest_path, d)
+        src_dir = os.path.join(src_path, d, "data")
+        dst_dir = os.path.join(dest_path, d, "data")
         if os.path.exists(dst_dir):
             print(
-                f"Directory '{dst_dir}' already exists."
-                "Do you want to overwrite it?"
+                f"Raw data for '{d}' already exists. "
+                "Do you want to update it?"
             )
             overwrite = builtins.input("Enter y/n: ")
+            while overwrite.lower() not in ["y", "n"]:
+                overwrite = input("Invalid input.\nEnter y/n:  ")
             if overwrite.lower() == "y":
                 shutil.rmtree(dst_dir)
             else:
                 continue
         shutil.copytree(src_dir, dst_dir)
+        gitkeep_path = os.path.join(dst_dir, ".gitkeep")
+        with open(gitkeep_path, "w"):
+            pass
 
 
 def clean_folder(folder_path: str) -> None:

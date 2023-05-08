@@ -47,6 +47,9 @@
 ]
 
 'profile': [
+    'electricity-demand_hh',
+    'electricity-demand_ghd',
+    'electricity-demand_i',
     'ch4-demand_hh',
     'ch4-demand_ghd',
     'ch4-demand_i',

@@ -57,7 +57,7 @@ def copy_files(src_path: str, dest_path: str) -> None:
         for d in os.listdir(src_path)
         if os.path.isdir(os.path.join(src_path, d))
     ]
-    # Loop through each directory and copy it to destination directory
+    # Loop through each directory and copy files within 'data'
     for d in dir_list:
         src_dir = os.path.join(src_path, d, "data")
         dst_dir = os.path.join(dest_path, d, "data")
@@ -73,7 +73,13 @@ def copy_files(src_path: str, dest_path: str) -> None:
                 shutil.rmtree(dst_dir)
             else:
                 continue
-        shutil.copytree(src_dir, dst_dir)
+        file_list = [
+            f
+            for f in os.listdir(src_dir)
+            if os.path.isfile(os.path.join(src_dir, f))
+        ]
+        for f in file_list:
+            shutil.copy(os.path.join(src_dir, f), os.path.join(dst_dir, f))
 
 
 def clean_folder(folder_path: str) -> None:

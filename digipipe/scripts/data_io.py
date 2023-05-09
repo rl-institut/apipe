@@ -74,9 +74,6 @@ def copy_files(src_path: str, dest_path: str) -> None:
             else:
                 continue
         shutil.copytree(src_dir, dst_dir)
-        gitkeep_path = os.path.join(dst_dir, ".gitkeep")
-        with open(gitkeep_path, "w"):
-            pass
 
 
 def clean_folder(folder_path: str) -> None:

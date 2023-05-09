@@ -1,4 +1,3 @@
-import builtins
 import os
 import shutil
 import zipfile
@@ -51,35 +50,33 @@ def copy_files(src_path: str, dest_path: str) -> None:
     dest_path : str
         Destination path of directory to copy to
     """
-    # Get a list of all directories within source directory
+    # Get a list of directories within source directory
     dir_list = [
         d
         for d in os.listdir(src_path)
         if os.path.isdir(os.path.join(src_path, d))
     ]
-    # Loop through each directory and copy files within 'data'
+    # Loop through each directory and copy files within "data" directory to
+    # destination directory of dataset
     for d in dir_list:
         src_dir = os.path.join(src_path, d, "data")
         dst_dir = os.path.join(dest_path, d, "data")
+        # Check if destination directory for dataset already exists
         if os.path.exists(dst_dir):
-            print(
-                f"Raw data for '{d}' already exists. "
-                "Do you want to update it?"
-            )
-            overwrite = builtins.input("Enter y/n: ")
+            print(f"\nRaw data for '{d}' already exists. ")
+            overwrite = input("Do you want to update it? (y/n) ")
             while overwrite.lower() not in ["y", "n"]:
-                overwrite = input("Invalid input.\nEnter y/n:  ")
+                overwrite = input("Invalid input. Enter 'y' or 'n': ")
             if overwrite.lower() == "y":
-                shutil.rmtree(dst_dir)
+                for file in os.listdir(src_dir):
+                    src_file = os.path.join(src_dir, file)
+                    shutil.copy(src_file, dst_dir)
+                print(f"Updated data for '{d}'.")
             else:
                 continue
-        file_list = [
-            f
-            for f in os.listdir(src_dir)
-            if os.path.isfile(os.path.join(src_dir, f))
-        ]
-        for f in file_list:
-            shutil.copy(os.path.join(src_dir, f), os.path.join(dst_dir, f))
+        else:
+            shutil.copytree(src_dir, dst_dir)
+            print(f"\nAdded new dataset '{d}'.")
 
 
 def clean_folder(folder_path: str) -> None:

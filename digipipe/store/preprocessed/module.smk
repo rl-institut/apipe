@@ -51,3 +51,8 @@ module bmwk_long_term_scenarios:
     snakefile: "bmwk_long_term_scenarios/create.smk"
     config: config["store"]["preprocessed"]["bmwk_long_term_scenarios"]
 use rule * from bmwk_long_term_scenarios as preprocessed_bmwk_long_term_scenarios_ *
+
+module seenergies_peta5:
+    snakefile: "seenergies_peta5/create.smk"
+    config: config["store"]["preprocessed"]["seenergies_peta5"]
+use rule * from seenergies_peta5 as preprocessed_seenergies_peta5_ *

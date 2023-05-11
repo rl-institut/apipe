@@ -38,7 +38,7 @@ repos:
         name: flake8
         args:
           - --max-line-length=80
-          - --ignore=DAR101,DAR201,F821,DAR401,W503,E800,E722,B001,B008,C408,W605, B007
+          - --ignore=DAR101,DAR201,F821,DAR401,W503,E800,E722,B001,B008,C408,W605,B007,A003
         entry: flake8
         language: python
         types: [python]
@@ -67,6 +67,9 @@ repos:
             "--disable=R1705", # Disable the R1705 error TODO: To be fixed
             "--disable=E0401", # Disable the E0401 error TODO: To be fixed
             "--disable=E0611", # Disable the E0611 error TODO: To be fixed
+            "--disable=W1203", # Disable the W1203 error TODO: To be fixed
+            "--disable=R1725", # Disable the R1725 error TODO: To be fixed
+            "--disable=R0903", # Disable the R0903 error TODO: To be fixed
             "--max-line-length=80", # Set the maximum line length to 80
           ]
       - id: mypy

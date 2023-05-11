@@ -1,7 +1,7 @@
 import geopandas as gpd
 import pandas as pd
 
-from digipipe.config.__init__ import add_snake_logger
+from digipipe.config import add_snake_logger
 
 
 def process() -> None:

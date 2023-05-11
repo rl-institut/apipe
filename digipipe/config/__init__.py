@@ -1,12 +1,16 @@
 import logging
 import os
-from pathlib import Path
 import sys
+from pathlib import Path
 
 from digipipe.scripts.config import read_config
 
 
 class LevelFilter(logging.Filter):
+    """
+    Filter class to exclude log records with a specific logging level.
+    """
+
     def __init__(self, level):
         self.level = level
         super(LevelFilter, self).__init__()
@@ -41,9 +45,7 @@ def add_snake_logger(logging_path, rulename):
     logger = logging.getLogger(rulename)
 
     # Try to obtain logging path from sys.argv and set it to None if can't
-    logfile = next(
-        (item for item in sys.argv if item.endswith(".log")), None
-    )
+    logfile = next((item for item in sys.argv if item.endswith(".log")), None)
     # If logging path not found in sys.argv
     if logfile is None:
         # If path provided calling function

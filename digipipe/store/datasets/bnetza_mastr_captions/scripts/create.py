@@ -1,7 +1,7 @@
 import json
 import re
 
-from digipipe.config.__init__ import add_snake_logger
+from digipipe.config import add_snake_logger
 
 
 def process() -> None:
@@ -35,5 +35,7 @@ def process() -> None:
 
 
 if __name__ == "__main__":
-    logger = add_snake_logger(str(snakemake.log), "bnetza_mastr_attribute_captions")
+    logger = add_snake_logger(
+        str(snakemake.log), "bnetza_mastr_attribute_captions"
+    )
     process()

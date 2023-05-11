@@ -2,6 +2,7 @@ import sys
 
 import geopandas as gpd
 
+from digipipe.config import add_snake_logger
 from digipipe.scripts.config import read_config
 from digipipe.scripts.geo import (
     convert_to_multipolygon,
@@ -9,7 +10,6 @@ from digipipe.scripts.geo import (
     reproject_simplify,
     write_geofile,
 )
-from digipipe.config.__init__ import add_snake_logger
 
 
 def process():

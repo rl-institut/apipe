@@ -1,6 +1,6 @@
 import pandas as pd
 
-from digipipe.config.__init__ import add_snake_logger
+from digipipe.config import add_snake_logger
 
 
 def process() -> None:
@@ -15,7 +15,9 @@ def process() -> None:
     data.columns = [int(col[1]) for col in data.columns.str.split("\n")]
 
     # Select desired years
-    logger.info(f"Available years for population prognosis: {data.columns.to_list()}")
+    logger.info(
+        f"Available years for population prognosis: {data.columns.to_list()}"
+    )
     years = snakemake.config["years"]
     if len(years) > 0:
         data = data[years]

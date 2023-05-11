@@ -1,6 +1,7 @@
 import geopandas as gpd
 import pandas as pd
 
+from digipipe.config import add_snake_logger
 from digipipe.scripts.datasets import mastr
 from digipipe.scripts.geo import (
     overlay,
@@ -8,7 +9,6 @@ from digipipe.scripts.geo import (
     write_geofile,
 )
 from digipipe.store.utils import df_merge_string_columns
-from digipipe.config.__init__ import add_snake_logger
 
 
 def process() -> None:
@@ -134,9 +134,13 @@ def process() -> None:
         layer_name=snakemake.config["layer"],
     )
 
-    logger.info(f"Datapackage has been created at: {snakemake.output.outfile_agg}")
+    logger.info(
+        f"Datapackage has been created at: {snakemake.output.outfile_agg}"
+    )
 
 
 if __name__ == "__main__":
-    logger = add_snake_logger(str(snakemake.log), "bnetza_mastr_combustion_region")
+    logger = add_snake_logger(
+        str(snakemake.log), "bnetza_mastr_combustion_region"
+    )
     process()

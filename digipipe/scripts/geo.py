@@ -9,6 +9,8 @@ from typing import Tuple, Union
 import fiona
 import geopandas as gpd
 import pandas as pd
+import rasterio as rio
+from rasterio.mask import mask
 from shapely.geometry.multipolygon import MultiPolygon
 from shapely.ops import transform
 
@@ -291,3 +293,38 @@ def overlay(
         ).rename(columns=retain_rename_overlay_columns)
 
     return gdf_clipped
+
+
+def clip_raster(
+    raster_file_in: str, clip_file: str, raster_file_out: str
+) -> None:
+    """Clip raster data using vector data
+
+    Parameters
+    ----------
+    raster_file_in : str
+        Path to raster file to be clipped
+    clip_file : str
+        Path to vector file used for clipping
+    raster_file_out : str
+        Path to clipped raster file
+
+    Returns
+    -------
+    None
+    """
+    clip_data = gpd.read_file(clip_file).geometry
+    with rio.open(raster_file_in) as f:
+        out_image, out_transform = mask(f, clip_data, crop=True)
+        out_meta = f.meta
+
+    out_meta.update(
+        {
+            "driver": "GTiff",
+            "height": out_image.shape[1],
+            "width": out_image.shape[2],
+            "transform": out_transform,
+        }
+    )
+    with rio.open(raster_file_out, "w", **out_meta) as dest:
+        dest.write(out_image)

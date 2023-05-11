@@ -334,12 +334,12 @@ def geocode_units_wo_geometry(
         )
 
     # Check if all required columns are present
-    if not all([c in units_df.columns for c in ["zip_code", "city"]]):
+    if not all(c in units_df.columns for c in ["zip_code", "city"]):
         raise ValueError(
             "Column zip_code or city not present, geocoding not possible."
         )
     columns_agg_names = list({c for c, _ in columns_agg_functions.values()})
-    if not all([c in units_df.columns for c in columns_agg_names]):
+    if not all(c in units_df.columns for c in columns_agg_names):
         raise ValueError(
             "On or more columns requested in the aggregation functions dict "
             "(columns_agg_functions) are not present, cannot proceed."

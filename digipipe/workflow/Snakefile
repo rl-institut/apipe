@@ -65,7 +65,7 @@ rule download_raw_zip:
     Downloads zipfile from the cloud containing the raw data and stores it in 'store/temp'
     """
     output:
-        raw_zip=get_abs_store_root_path()/"temp"/"raw.zip"
+        raw_zip=get_abs_store_root_path() / "temp" / "raw.zip"
     params:
         url=config["global"]["input_data"]["download_url"]
     run:
@@ -81,11 +81,11 @@ rule update_raw:
     Extracts 'raw.zip' and copies containing folders to 'store/raw'
     """
     input:
-        raw_zip=get_abs_store_root_path()/"temp"/"raw.zip"
+        raw_zip=get_abs_store_root_path() / "temp" / "raw.zip"
     params:
-        temp_dir=get_abs_store_root_path()/"temp",
-        raw_dir=get_abs_store_root_path()/"raw",
-        temp_raw_dir=get_abs_store_root_path()/"temp"/"store"/"raw"
+        temp_dir=get_abs_store_root_path() / "temp",
+        raw_dir=get_abs_store_root_path() / "raw",
+        temp_raw_dir=get_abs_store_root_path() / "temp" / "store" / "raw"
     run:
         try:
             extract_zipfile(input.raw_zip, params.temp_dir)

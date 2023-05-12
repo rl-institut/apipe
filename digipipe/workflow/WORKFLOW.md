@@ -9,10 +9,10 @@ To download, extract and copy a current set of raw data into `store/raw`, type
 
 A zip file from the specified URL
 ([Wolke](https://wolke.rl-institut.de/s/w8WKwXT3f9ZzZQJ/download))
-is downloaded and unzipped to `store/temp`. The corresponding folders containing
-the raw data are copied to `store/raw`.
-A prompt asks if an existing raw data folder should be updated. Confirm with 'y'
-to overwrite it or enter 'n' to leave this folder unchanged.
+is downloaded and unzipped to `store/temp`. The raw data files are copied to
+the corresponding folders in `store/raw`.
+A prompt asks if an already existing file should be updated. Confirm with "y"
+or type "n" to skip.
 
 
 ## Run

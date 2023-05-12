@@ -11,6 +11,7 @@ import geopandas as gpd
 import pandas as pd
 import rasterio as rio
 from rasterio.mask import mask
+from rasterstats import zonal_stats
 from shapely.geometry.multipolygon import MultiPolygon
 from shapely.ops import transform
 
@@ -328,3 +329,64 @@ def clip_raster(
     )
     with rio.open(raster_file_out, "w", **out_meta) as dest:
         dest.write(out_image)
+
+
+def raster_zonal_stats(
+    raster_file_in: str,
+    clip_file: str,
+    zonal_file_out: str,
+    var_name: str = "mean",
+    stats: str = "mean",
+) -> None:
+    """Create zonal stats
+
+    Parameters
+    ----------
+    raster_file_in : str
+        Path to raster file with data
+    clip_file : str
+        Path to vector file (zones) used for zonal stats
+    raster_file_out : str
+        Path to output raster file
+    var_name : str
+        Name of variable in output file
+    stats : str
+        Stats to be created, e.g. "mean" or "sum mean"
+
+    Returns
+    -------
+    None
+    """
+    schema_in_geom, schema_in_props = read_schema_from_file(clip_file)
+    clip_data = gpd.read_file(clip_file)
+
+    zonal_stats_df = gpd.GeoDataFrame()
+    zonal_stats_df = (
+        zonal_stats_df.from_features(
+            zonal_stats(
+                clip_data, raster_file_in, stats=stats, geojson_out=True
+            ),
+            crs=3035,
+        )
+        .rename(columns={"sum": var_name})
+        .to_crs(GLOBAL_CONFIG["global"]["geodata"]["crs"])
+    )
+
+    field_types = [
+        (field, dtype)
+        for field, dtype in schema_in_props.items()
+        if field in zonal_stats_df.columns
+    ]
+    field_types.extend([(var_name, "float")])
+
+    schema_out = {
+        "geometry": schema_in_geom,
+        "properties": OrderedDict(field_types),
+    }
+
+    write_geofile(
+        gdf=zonal_stats_df,
+        file=zonal_file_out,
+        layer_name="res",
+        schema=schema_out,
+    )

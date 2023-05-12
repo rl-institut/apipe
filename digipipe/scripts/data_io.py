@@ -56,27 +56,39 @@ def copy_files(src_path: str, dest_path: str) -> None:
         for d in os.listdir(src_path)
         if os.path.isdir(os.path.join(src_path, d))
     ]
-    # Loop through each directory and copy files within "data" directory to
-    # destination directory of dataset
+    # Loop through each directory and copy files within `data` directory
     for d in dir_list:
         src_dir = os.path.join(src_path, d, "data")
         dst_dir = os.path.join(dest_path, d, "data")
-        # Check if destination directory for dataset already exists
+        # Check if destination directory for data already exists
         if os.path.exists(dst_dir):
-            print(f"\nRaw data for '{d}' already exists. ")
-            overwrite = input("Do you want to update it? (y/n) ")
-            while overwrite.lower() not in ["y", "n"]:
-                overwrite = input("Invalid input. Enter 'y' or 'n': ")
-            if overwrite.lower() == "y":
-                for file in os.listdir(src_dir):
-                    src_file = os.path.join(src_dir, file)
-                    shutil.copy(src_file, dst_dir)
-                print(f"Updated data for '{d}'.")
-            else:
-                continue
+            files_to_copy = []
+            for file in os.listdir(src_dir):
+                src_file = os.path.join(src_dir, file)
+                dst_file = os.path.join(dst_dir, file)
+                if not os.path.isfile(dst_file):
+                    files_to_copy.append(file)
+                else:
+                    print(f"\n'{file}' already exists in '{d}/data'.")
+                    overwrite_file = input("Do you want to update it? (y/n) ")
+                    while overwrite_file.lower() not in ["y", "n"]:
+                        overwrite_file = input(
+                            "Invalid input. Enter 'y' or 'n': "
+                        )
+                    if overwrite_file.lower() == "y":
+                        shutil.copy(src_file, dst_file)
+                        print(f"'{file}' updated.")
+                    else:
+                        continue
+            for file in files_to_copy:
+                src_file = os.path.join(src_dir, file)
+                dst_file = os.path.join(dst_dir, file)
+                shutil.copy(src_file, dst_file)
+                print(f"\n'{file}' added to '{d}/data'.")
+        # If directory doesn't exist, copy it entirely
         else:
             shutil.copytree(src_dir, dst_dir)
-            print(f"\nAdded new dataset '{d}'.")
+            print(f"\nAdded '{d}' to 'store/raw'.")
 
 
 def clean_folder(folder_path: str) -> None:

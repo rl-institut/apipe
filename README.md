@@ -95,7 +95,8 @@ cores and requires about 600 GB of disk space.
 │   │   ├── datasets                            # - for data processing which is shared by different datasets
 │   │   ├── esm                                 # - for energy system modelling
 │   │   ├── config.py                           # - config-related functions
-│   │   └── geo.py                              # - spatial functions
+│   │   ├── geo.py                              # - spatial functions
+│   │   └── data_io.py                          # - helper functions for data handling
 │   ├── store                                   # Data store
 │   │   ├── appdata                             # - App-ready data
 │   │   │   ├── data

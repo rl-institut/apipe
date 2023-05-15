@@ -1,6 +1,23 @@
-.md-tabs__link--active,
-.md-tabs__link:focus {
-    color: inherit;
-    opacity: 1;
-    font-weight: bold;
+th {
+    background-color: #F5F5F5;
 }
+
+/* custom width
+@media only screen and (min-width: 76.25em) {
+    .md-main__inner {
+        max-width: none;
+    }
+
+    .md-sidebar--primary {
+        left: 250px;
+        margin-right: 250px;
+
+    }
+
+    .md-sidebar--secondary {
+        right: 250px;
+        margin-left: 250px;
+        -webkit-transform: none;
+        transform: none;
+    }
+} */

@@ -1,22 +1,48 @@
 ---
+repo_name:  rl-institut-private/digipipe
 repo_url: https://github.com/rl-institut-private/digipipe
 site_name: digipipe 0.0.1 dev documentation
-site_url: https://example.com/
+site_url: http://127.0.0.1:8000/
 
 nav:
   - digipipe: index.md
   - Installation: sections/installation.md
-  - Struktur des Repos: sections/structure.md
-  - Data pipeline: sections/data.md
-  - Workflow: sections/workflow.md
   - Scenarios: sections/scenarios.md
-  - Datasets: sections/datasets.md
+  - Developer Docs:
+      - Struktur des Repos: sections/structure.md
+      - Data pipeline: sections/data.md
+      - Workflow: sections/workflow.md
+  - Datasets: 
+      - datasets/index.md
+      - Raw: 
+          - datasets/raw/index.md
+          - Administative areas of Germany: datasets/raw/bkg_vg250.md
+          - Power units from Marktstammdatenregister: datasets/raw/bnetza_mastr.md
+      - Preprocessed: 
+          - datasets/preprocessed/index.md
+          - Administative areas of Germany: datasets/preprocessed/bkg_vg250.md
+          - Power units from Marktstammdatenregister: datasets/preprocessed/bnetza_mastr.md
+      - Datasets: 
+          - datasets/datasets/index.md
+          - Windenergieanlagen: datasets/datasets/bnetza_mastr_wind_region.md
+          - Speicheranlagen: datasets/datasets/bnetza_mastr_storage_region.md
+
+      - Appdata: datasets/appdata/index.md
+    
 
 theme:
   name: material
-  features: 
+  features:
+    - navigation.footer
+    - navigation.tracking
     - navigation.tabs
+    - navigation.instant
+    - navigation.indexes
+    - navigation.top 
     - content.code.copy
+    - toc.follow
+    - search.highlight
+    - search.suggestions
   palette:
     primary: Indigo
 

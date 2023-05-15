@@ -1,0 +1,6 @@
+.md-tabs__link--active,
+.md-tabs__link:focus {
+    color: inherit;
+    opacity: 1;
+    font-weight: bold;
+}

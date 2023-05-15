@@ -1,0 +1,45 @@
+---
+repo_url: https://github.com/rl-institut-private/digipipe
+site_name: digipipe 0.0.1 dev documentation
+site_url: https://example.com/
+
+nav:
+  - digipipe: index.md
+  - Installation: sections/installation.md
+  - Struktur des Repos: sections/structure.md
+  - Data pipeline: sections/data.md
+  - Workflow: sections/workflow.md
+  - Scenarios: sections/scenarios.md
+  - Datasets: sections/datasets.md
+
+theme:
+  name: material
+  features: 
+    - navigation.tabs
+    - content.code.copy
+  palette:
+    primary: Indigo
+
+extra_css:
+  - stylesheets/extra.css
+
+plugins:
+  - search:
+      lang:
+        - en
+        - de
+  - include-markdown
+
+markdown_extensions:
+  - attr_list
+  - md_in_html
+  - pymdownx.smartsymbols:
+      arrows: True
+  - toc:
+      permalink: "#"
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+
+
+

@@ -21,6 +21,8 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - pyproject.toml and poetry.lock file have been added with the conversion to poetry
 - Add pre-commit in order to check for errors and linting bugs before commits
 - Add types-pyyaml package
+- Add rules to download raw data (zipped) from cloud, extract and copy to 'store/raw'
+- Add module 'data_io', containing relevant helper functions (downloading, extracting, copying, cleaning)
 - Add Logging
 
 ### Changed

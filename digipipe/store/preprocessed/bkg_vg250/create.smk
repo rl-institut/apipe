@@ -4,10 +4,11 @@ Snakefile for this dataset
 Note: To include the file in the main workflow, it must be added to the respective module.smk .
 """
 
-from digipipe.store.utils import get_abs_dataset_path
+from digipipe.store.utils import get_abs_dataset_path, get_abs_store_root_path
 from digipipe.config.__init__ import add_snake_logger
 
 DATASET_PATH = get_abs_dataset_path("preprocessed", "bkg_vg250")
+STORE_PATH = get_abs_store_root_path()
 
 rule create:
     input:
@@ -20,7 +21,7 @@ rule create:
         file_path_in_zip=str("vg250_01-01.utm32s.gpkg.ebenen/vg250_ebenen_0101/DE_VG250.gpkg"),
         layers=" ".join(config["layers"])
     log:
-        DATASET_PATH / "data" / "bkg_vg250.log"
+        STORE_PATH / "preprocessed" / ".log" / "bkg_vg250.log"
     run:
         logger = add_snake_logger(f"{log}", "bkg_vg250")
         shell(

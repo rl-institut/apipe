@@ -6,10 +6,12 @@ Note: To include the file in the main workflow, it must be added to the respecti
 
 from digipipe.store.utils import (
     get_abs_dataset_path,
+    get_abs_store_root_path,
     PATH_TO_REGION_MUNICIPALITIES_GPKG
 )
 
 DATASET_PATH = get_abs_dataset_path("datasets", "population")
+STORE_PATH = get_abs_store_root_path()
 
 rule create:
     """
@@ -25,6 +27,6 @@ rule create:
     output:
         DATASET_PATH / "data" / "population.csv"
     log:
-        DATASET_PATH / "data" / "population.log"
+        STORE_PATH / "datasets" / ".log" / "population.log"
     script:
         DATASET_PATH / "scripts" / "create.py"

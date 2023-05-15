@@ -6,12 +6,14 @@ Note: To include the file in the main workflow, it must be added to the respecti
 
 from digipipe.store.utils import (
     get_abs_dataset_path,
+    get_abs_store_root_path,
     PATH_TO_REGION_MUNICIPALITIES_GPKG,
     PATH_TO_REGION_DISTRICTS_GPKG
 )
 
 DATASET_PATH = get_abs_dataset_path("datasets", "bnetza_mastr_pv_roof_region")
 SOURCE_DATASET_PATH = get_abs_dataset_path("preprocessed", "bnetza_mastr", data_dir=True)
+STORE_PATH = get_abs_store_root_path()
 
 rule create:
     """
@@ -28,6 +30,6 @@ rule create:
         outfile_agg=DATASET_PATH / "data" / "bnetza_mastr_pv_roof_agg_region.gpkg"
     params:
         config_file=DATASET_PATH / "config.yml"
-    log: DATASET_PATH / "data" / "bnetza_mastr_pv_roof_region.log"
+    log: STORE_PATH / "datasets" / ".log" / "bnetza_mastr_pv_roof_region.log"
     script:
         DATASET_PATH / "scripts" / "create.py"

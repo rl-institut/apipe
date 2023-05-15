@@ -4,7 +4,7 @@ Snakefile for this dataset
 Note: To include the file in the main workflow, it must be added to the respective module.smk .
 """
 
-from digipipe.store.utils import get_abs_dataset_path, create_tag_string_osmium
+from digipipe.store.utils import get_abs_dataset_path, get_abs_store_root_path, create_tag_string_osmium
 from digipipe.config.__init__ import add_snake_logger
 
 rule convert:
@@ -14,7 +14,7 @@ rule convert:
     input: get_abs_dataset_path("raw", "osm_sachsen-anhalt") / "data" / "sachsen-anhalt-221003.osm.pbf"
     output: get_abs_dataset_path("preprocessed", "osm_filtered") / "data" / "sachsen-anhalt-221003.osm.gpkg"
     params: tags=create_tag_string_osmium(config["tags"])
-    log: get_abs_dataset_path("preprocessed", "osm_filtered") / "data" / "sachsen-anhalt-221003.osm.log"
+    log: get_abs_store_root_path() / "preprocessed" / ".log" / "sachsen-anhalt-221003.osm.log"
     run:
         logger = add_snake_logger(f"{log}", "osm_filtered")
         shell(

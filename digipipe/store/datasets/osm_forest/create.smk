@@ -4,7 +4,7 @@ Snakefile for this dataset
 Note: To include the file in the main workflow, it must be added to the respective module.smk .
 """
 
-from digipipe.store.utils import get_abs_dataset_path, create_tag_string_ogr
+from digipipe.store.utils import get_abs_dataset_path, get_abs_store_root_path, create_tag_string_ogr
 from digipipe.config.__init__ import add_snake_logger
 
 rule extract_tags:
@@ -17,7 +17,7 @@ rule extract_tags:
         tags=create_tag_string_ogr(config["tags"]),
         geom_type=config["geom_type"]
     log:
-         get_abs_dataset_path("datasets", "osm_forest") / "data" / "osm_forest.log"
+         get_abs_store_root_path() / "datasets" / ".log" / "osm_forest.log"
     run:
         logger = add_snake_logger(f"{log}", "osm_forest")
 

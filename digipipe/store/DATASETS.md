@@ -4,9 +4,9 @@
 
 This section describes the data flow of the pipeline.
 
-(RAW) -> (PREPROCESSED) -> (DATASETS) -> (APPDATA)
+(RAW) --> (PREPROCESSED) --> (DATASETS) --> (APPDATA)
 
-Overview:
+**Overview:**
 
 | **Step** | **Directory**         | **Description**                           | **Rule(s) for this target** | **Cfg section** |
 |:--------:|-----------------------|-------------------------------------------|-----------------------------|-----------------|
@@ -24,12 +24,10 @@ case.
 
 **Snakefile**
 
-
-
-- As all rules will be
-  searched for and included in the main [Snakefile](../workflow/Snakefile),
-  they must have unique names. It's a good idea to use the dataset name as
-  prefix, e.g. `rule osm_forest_<RULE_NAME>`.
+As all rules will be
+searched for and included in the main [Snakefile](../workflow/Snakefile),
+they must have unique names. It's a good idea to use the dataset name as prefix,
+e.g. `rule osm_forest_<RULE_NAME>`.
 
 ### (0) Raw
 
@@ -40,39 +38,42 @@ for further  instructions) and [metadata.json)](raw/.TEMPLATE/metadata.json).
 Note: Assumptions are to be defined in the scenarios, not the raw data.
 See the scenario readme in [SCENARIOS.md](../scenarios/SCENARIOS.md).
 
-> **Example:**
-> - Dataset A: ERA5 weather dataset for Germany
-> - Dataset B: MaStR dataset on renewable generators
-> - Dataset C: Shapefiles of region: federal districts and municipalities
+!!! note "Example"
+    - Dataset A: ERA5 weather dataset for Germany
+    - Dataset B: MaStR dataset on renewable generators
+    - Dataset C: Shapefiles of region: federal districts and municipalities
 
 ### (1) Preprocessed
 
 Data from `(0) Raw` that has undergone some preprocessing such as:
- - Archive extracted
- - CRS transformed (see below for CRS conventions)
- - Fields filtered
- - **But NO merging/combining/clipping of multiple (raw) datasets! This should
-   be done in (2)**
+
+- Archive extracted
+- CRS transformed (see below for CRS conventions)
+- Fields filtered
+- **But NO merging/combining/clipping of multiple (raw) datasets! This should
+  be done in (2)**
 
 Rules, config and info
-- Preprocessing rule(s) for the dataset can be defined in the dataset's
-  Snakefile: [preprocessed/.TEMPLATE/create.smk](preprocessed/.TEMPLATE/create.smk).
-- Subsequently, these rules **must be** included in the module file
-  [preprocessed/module.smk](preprocessed/module.smk) to take effect (see
-  template in the file).
-- Custom, dataset-specific configuration can be put into the dataset's config
-  file [preprocessed/.TEMPLATE/config.yml](preprocessed/.TEMPLATE/config.yml).
-- The title and description of each dataset are to be gathered in the file
-  [preprocessed/.TEMPLATE/dataset.md](preprocessed/.TEMPLATE/dataset.md).
 
-> **Example:**
-> - Dataset D: Extracted ERA5 weather dataset for Germany (from dataset A)
-> - Dataset E: Wind energy turbines extracted from MaStR dataset, filter for
->   columns power and geometry (from dataset B)
-> - Dataset F: Federal districts converted to Geopackage file, CRS transformed
->   (from dataset C)
-> - Dataset G: Municipalities converted to Geopackage file, CRS transformed
->   (from dataset C)
+- Preprocessing rule(s) for the dataset can be defined in the dataset's Snakefile:
+[preprocessed/.TEMPLATE/create.smk](preprocessed/.TEMPLATE/create.smk).
+- Subsequently, these rules **must be** included in the module file
+[preprocessed/module.smk](preprocessed/module.smk) to take effect (see
+template in the file).
+- Custom, dataset-specific configuration can be put into the dataset's config
+file [preprocessed/.TEMPLATE/config.yml](preprocessed/.TEMPLATE/config.yml).
+- The title and description of each dataset are to be gathered in the file
+[preprocessed/.TEMPLATE/dataset.md](preprocessed/.TEMPLATE/dataset.md).
+
+!!! note "Example"
+
+    - Dataset D: Extracted ERA5 weather dataset for Germany (from dataset A)
+    - Dataset E: Wind energy turbines extracted from MaStR dataset, filter for
+      columns power and geometry (from dataset B)
+    - Dataset F: Federal districts converted to Geopackage file, CRS transformed
+      (from dataset C)
+    - Dataset G: Municipalities converted to Geopackage file, CRS transformed
+      (from dataset C)
 
 ### (2) Datasets
 
@@ -80,6 +81,7 @@ Datasets, created from arbitrary combinations of datasets from
 `store/preprocessed/` and/or `store/datasets/`.
 
 Rules, config and info
+
 - Creation rule(s) for the dataset can be defined in the dataset's
   Snakefile: [datasets/.TEMPLATE/create.smk](datasets/.TEMPLATE/create.smk).
 - Subsequently, these rules **must be** included in the module file
@@ -91,14 +93,14 @@ Rules, config and info
   [datasets/.TEMPLATE/dataset.md](datasets/.TEMPLATE/dataset.md).
 - Custom, dataset-specific scripts are located in `scripts`.
 
-> **Example:**
->
-> Using datasets from `store/preprocessed/` and `store/datasets/`:
-> - Dataset H: Wind energy turbines in the region of interest (from datasets E+F)
-> - Dataset I: Normalized wind energy feedin timeseries for the region (from
->   datasets D+G)
-> - Dataset J: Federal districts (from dataset F)
-> - Dataset K: Municipalities (from dataset G)
+!!! note "Example"
+    Using datasets from `store/preprocessed/` and `store/datasets/`:
+
+    - Dataset H: Wind energy turbines in the region of interest (from datasets E+F)
+    - Dataset I: Normalized wind energy feedin timeseries for the region (from
+      datasets D+G)
+    - Dataset J: Federal districts (from dataset F)
+    - Dataset K: Municipalities (from dataset G)
 
 ### (3) App data
 
@@ -118,6 +120,7 @@ read the examples above, the following example may help you:
 Let's say you want to integrate some subsets of an OpenStreetMap dataset,
 namely extracting (a) forests and (b) residential structures for a specific
 region. You want both be stored in separate files. This involves (e.g.):
+
 1. Convert the pbf file to a more handy type such as Geopackage
 2. Extract data using OSM tags
 3. Clip with region
@@ -128,9 +131,9 @@ either put steps 1 and 2 in the preprocessing, resulting in two datasets in
 `store/datasets/`.
 However, this would imply a redundant execution of step 1. While this is
 basically fine in the terms of the pipeline flow, it might be a better idea to
-apply only step 1 and create one dataset in `store/preprocessed/`. Using this
-dataset, you would create the two extracts in `store/datasets/`. Finally, the
-datasets after performing step 3 would be created in `store/datasets/` as well
+apply only step 1 and create one dataset in `store/preprocessed/`.
+Using this dataset, you would create the two extracts in `store/datasets/`.
+Finally, the datasets after performing step 3 would be created in `store/datasets/` as well
 resulting in a total of four datasets in `store/datasets/`.
 
 ### Temporary files
@@ -139,7 +142,7 @@ resulting in a total of four datasets in `store/datasets/`.
 
 Temporary files are stored in `store/temp/` by default and, depending on your
 configuration, can get quite large.  You can change the directory in
-`config.yml` -> `path` -> `temp`.
+`config.yml` --> `path` --> `temp`.
 
 ## Further notes
 
@@ -162,10 +165,10 @@ Please use LAEA Europe (EPSG:3035) as default CRS when writing geodata.
 **TODO: REVISE**
 
 - The files in `store/raw/` can have an arbitrary CRS.
-- In the preprocessing (step 1) it is converted to the CRS specified in the global `config.yml` -> `preprocessing` ->
+- In the preprocessing (step 1) it is converted to the CRS specified in the global `config.yml` --> `preprocessing` -->
   `crs`. It is important to use a equal-area CRS to make sure operations such as buffering work properly. By default,
   it is set to LAEA Europe (EPSG:3035).
-- The final output is written in CRS specified in the global `config.yml` -> `output` -> `crs`. By default, it is set
+- The final output is written in CRS specified in the global `config.yml` --> `output` --> `crs`. By default, it is set
   to WGS84 (EPSG:4326) used by the app.
 
 ## HowTos

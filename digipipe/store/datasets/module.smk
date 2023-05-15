@@ -21,6 +21,16 @@ module bkg_vg250_muns_region:
     config: config["store"]["datasets"]["bkg_vg250_muns_region"]
 use rule * from bkg_vg250_muns_region as datasets_bkg_vg250_muns_region_*
 
+module bkg_vg250_state:
+    snakefile: "bkg_vg250_state/create.smk"
+    config: config["store"]["datasets"]["bkg_vg250_state"]
+use rule * from bkg_vg250_state as datasets_bkg_vg250_state_*
+
+module bkg_vg250_federal_states:
+    snakefile: "bkg_vg250_federal_states/create.smk"
+    config: config["store"]["datasets"]["bkg_vg250_federal_states"]
+use rule * from bkg_vg250_federal_states as datasets_bkg_vg250_federal_states_*
+
 module bkg_vg250_region:
     snakefile: "bkg_vg250_region/create.smk"
     config: config["store"]["datasets"]["bkg_vg250_region"]

@@ -65,9 +65,9 @@
       "format": null,
       "encoding": null,
       "schema": {
-          "fields": null,
-          "primaryKey": null,
-          "foreignKeys": null
+          "fields": [],
+          "primaryKey": [],
+          "foreignKeys": []
      },
     "dialect": {
         "delimiter": "",

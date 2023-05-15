@@ -17,7 +17,7 @@
         "documentation": "https://digiplan.readthedocs.io",
         "sourceCode": "https://github.com/rl-institut/digipipe/",
         "contact": "https://reiner-lemoine-institut.de/ueber-uns/kontakt/",
-        "grantNo": "None",
+        "grantNo": null,
         "fundingAgency": "https://www.region-gestalten.bund.de",
         "fundingAgencyLogo": "https://www.region-gestalten.bund.de/Region/SiteGlobals/Frontend/Images/logo.svg",
         "publisherLogo": "https://reiner-lemoine-institut.de//wp-content/uploads/2015/09/rlilogo.png"
@@ -73,16 +73,15 @@
             "format": null,
             "encoding": null,
             "schema": {
-                "fields": null
-                    },
-
+                "fields": [],
                 "primaryKey": null,
-                "foreignKeys": null
+                "foreignKeys": []
             },
-        "dialect", {
-            "delimiter": "",
-            "decimalSeparator": "."
+            "dialect": {
+                "delimiter": "",
+                "decimalSeparator": "."
             }
+        }
     ],
     "@id": null,
     "@context": "https://raw.githubusercontent.com/OpenEnergyPlatform/oemetadata/develop/metadata/latest/context.json",

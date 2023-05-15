@@ -28,13 +28,13 @@
     "resolution": ""
  },
  "temporal": {
-    "referenceDate": "",
+    "referenceDate": null,
     "timeseries": [
         {
          "start": "2019",
          "end": "2035",
          "resolution": "1 year",
-         "alignment": "null",
+         "alignment": null,
          "aggregationType": "sum"
         }
     ]
@@ -82,7 +82,7 @@
         }
     }
  ],
- "@id": null,
+ "@id": [],
  "@context": "https://raw.githubusercontent.com/OpenEnergyPlatform/oemetadata/develop/metadata/latest/context.json",
  "review": {
     "path": "",

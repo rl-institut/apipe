@@ -1,0 +1,54 @@
+##############################################################################
+# This file holds configuration parameters for the creation of this dataset. #
+##############################################################################
+
+# Params for PDF extraction
+
+# Relative area on page in %
+area: [58, 0, 86, 100]
+sectors:
+   hh:
+     page: 10
+     column_names:
+       ["carrier",
+        "space_heating",
+        "hot_water",
+        "process_heat",
+        "heat_total",
+        "space_cooling",
+        "process_colling",
+        "cooling_total",
+        "mech_energy",
+        "ICT",
+        "lighting",
+        "total"]
+   cts:
+     page: 14
+     column_names:
+       ["carrier",
+        "space_heating",
+        "hot_water",
+        "process_heat",
+        "heat_total",
+        "space_cooling",
+        "process_colling",
+        "cooling_total",
+        "mech_energy",
+        "ICT",
+        "lighting",
+        "total"]
+   ind:
+     page: 6
+     column_names:
+       ["carrier",
+        "space_heating",
+        "hot_water",
+        "process_heat",
+        "heat_total",
+        "space_cooling",
+        "process_colling",
+        "cooling_total",
+        "mech_energy",
+        "ICT",
+        "lighting",
+        "total"]

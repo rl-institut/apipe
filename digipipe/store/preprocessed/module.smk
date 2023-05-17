@@ -56,3 +56,8 @@ module seenergies_peta5:
     snakefile: "seenergies_peta5/create.smk"
     config: config["store"]["preprocessed"]["seenergies_peta5"]
 use rule * from seenergies_peta5 as preprocessed_seenergies_peta5_ *
+
+module ageb_energy_balance:
+    snakefile: "ageb_energy_balance/create.smk"
+    config: config["store"]["preprocessed"]["ageb_energy_balance"]
+use rule * from ageb_energy_balance as preprocessed_ageb_energy_balance_ *

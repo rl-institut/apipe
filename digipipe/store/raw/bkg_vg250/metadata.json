@@ -34,8 +34,8 @@
  },
 "sources": [
   {
-    "title": "Bundesamt für Kartographie und Geodäsie",
-    "description": "Das Bundesamt für Kartographie und Geodäsie (BKG) gehört zum Geschäftsbereich des Bundesministeriums des Innern, für Bau und Heimat und ist ein modernes Kompetenz- und Dienstleistungszentrum des Bundes.",
+    "title": "Bundesamt für Kartographie und Geodäsie - Verwaltungsgebiete 1:250 000 VG250 (Ebenen)",
+    "description": "Dieser Datensatz stellt die Verwaltungsgebiete 1:250 000 (VG250) mit Stand 01.01. für das Gebiet der Bundesrepublik Deutschland bereit.",
     "path": "https://gdz.bkg.bund.de/index.php/default/digitale-geodaten/verwaltungsgebiete/verwaltungsgebiete-1-250-000-stand-01-01-vg250-01-01.html",
     "licenses": [
         {

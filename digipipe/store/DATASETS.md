@@ -8,12 +8,12 @@ This section describes the data flow of the pipeline.
 
 **Overview:**
 
-| **Step** | **Directory**         | **Description**                           | **Rule(s) for this target** | **Cfg section** |
-|:--------:|-----------------------|-------------------------------------------|-----------------------------|-----------------|
-|    0     | `store/raw/`          | Raw data as downloaded                    | TBD                         | TBD             |
-|    1     | `store/preprocessed/` | Preprocessed data, 1:1 from (0)           | TBD                         | TBD             |
-|    2     | `store/datasets/`     | Datasets, n:1 from (0) and (1)            | TBD                         | TBD             |
-|    3     | `store/appdata/`      | Data ready to be used in the app from (2) | TBD                         | TBD             |
+| **Step** | **Directory**         | **Description**                           | **Rule(s) for target** | **Cfg section** |
+|:--------:|-----------------------|-------------------------------------------|------------------------|-----------------|
+|    0     | `store/raw/`          | Raw data as downloaded                    | TBD                    | TBD             |
+|    1     | `store/preprocessed/` | Preprocessed data, 1:1 from (0)           | TBD                    | TBD             |
+|    2     | `store/datasets/`     | Datasets, n:1 from (0) and (1)            | TBD                    | TBD             |
+|    3     | `store/appdata/`      | Data ready to be used in the app from (2) | TBD                    | TBD             |
 
 In the following each step is shortly described along a common example use
 case.
@@ -31,12 +31,12 @@ e.g. `rule osm_forest_<RULE_NAME>`.
 
 ### (0) Raw
 
-Contains immutable raw data as downloaded. In directory `.TEMPLATE` there are
-two additional files: [dataset.md](raw/.TEMPLATE/dataset.md) (see that file
-for further  instructions) and [metadata.json)](raw/.TEMPLATE/metadata.json).
+Contains immutable raw data as downloaded. In directory `TEMPLATE` there are
+two additional files: [dataset.md](../store/raw/TEMPLATE/dataset.md) (see that file
+for further  instructions) and [metadata.json)](../store/raw/TEMPLATE/metadata.json).
 
 Note: Assumptions are to be defined in the scenarios, not the raw data.
-See the scenario readme in [SCENARIOS.md](../scenarios/SCENARIOS.md).
+See the scenario readme in [SCENARIOS.md](../../digipipe/scenarios/SCENARIOS.md).
 
 !!! note "Example"
     - Dataset A: ERA5 weather dataset for Germany
@@ -56,14 +56,14 @@ Data from `(0) Raw` that has undergone some preprocessing such as:
 Rules, config and info
 
 - Preprocessing rule(s) for the dataset can be defined in the dataset's Snakefile:
-[preprocessed/.TEMPLATE/create.smk](preprocessed/.TEMPLATE/create.smk).
+[preprocessed/TEMPLATE/create.smk](preprocessed/TEMPLATE/create.smk).
 - Subsequently, these rules **must be** included in the module file
 [preprocessed/module.smk](preprocessed/module.smk) to take effect (see
 template in the file).
 - Custom, dataset-specific configuration can be put into the dataset's config
-file [preprocessed/.TEMPLATE/config.yml](preprocessed/.TEMPLATE/config.yml).
+file [preprocessed/TEMPLATE/config.yml](preprocessed/TEMPLATE/config.yml).
 - The title and description of each dataset are to be gathered in the file
-[preprocessed/.TEMPLATE/dataset.md](preprocessed/.TEMPLATE/dataset.md).
+[preprocessed/TEMPLATE/dataset.md](preprocessed/TEMPLATE/dataset.md).
 
 !!! note "Example"
 
@@ -83,14 +83,14 @@ Datasets, created from arbitrary combinations of datasets from
 Rules, config and info
 
 - Creation rule(s) for the dataset can be defined in the dataset's
-  Snakefile: [datasets/.TEMPLATE/create.smk](datasets/.TEMPLATE/create.smk).
+  Snakefile: [datasets/TEMPLATE/create.smk](datasets/TEMPLATE/create.smk).
 - Subsequently, these rules **must be** included in the module file
   [datasets/module.smk](datasets/module.smk) to take effect (see
   template in the file).
 - Custom, dataset-specific configuration can be put into the dataset's config
-  file [datasets/.TEMPLATE/config.yml](datasets/.TEMPLATE/config.yml).
+  file [datasets/TEMPLATE/config.yml](datasets/TEMPLATE/config.yml).
 - The title and description of each dataset are to be gathered in the file
-  [datasets/.TEMPLATE/dataset.md](datasets/.TEMPLATE/dataset.md).
+  [datasets/TEMPLATE/dataset.md](datasets/TEMPLATE/dataset.md).
 - Custom, dataset-specific scripts are located in `scripts`.
 
 !!! note "Example"

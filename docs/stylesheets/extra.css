@@ -1,5 +1,52 @@
 th {
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+[data-md-color-scheme="default"] th {
     background-color: #F5F5F5;
+}
+
+[data-md-color-scheme="slate"] th {
+    background-color: #21222C;
+}
+
+.md-typeset .admonition.info,
+.md-typeset details.info {
+    border-color: #4051B5;
+}
+
+.md-typeset .info>.admonition-title,
+.md-typeset .info>summary {
+    background-color: #ffffff1a;
+}
+
+.md-typeset .info>.admonition-title::before,
+.md-typeset .info>summary::before {
+    background-color: #4051B5;
+    -webkit-mask-image: var(--md-admonition-icon--info);
+    mask-image: var(--md-admonition-icon--info);
+}
+
+:root {
+    --md-admonition-icon--metadata: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 9h-2V7h2m0 10h-2v-6h2m-1-9A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2Z"/></svg>')
+}
+
+.md-typeset .admonition.metadata,
+.md-typeset details.metadata {
+    border-color: #4051B5;
+}
+
+.md-typeset .metadata>.admonition-title,
+.md-typeset .metadata>summary {
+    background-color: #4052b510;
+}
+
+.md-typeset .metadata>.admonition-title::before,
+.md-typeset .metadata>summary::before {
+    background-color: #4051B5;
+    -webkit-mask-image: var(--md-admonition-icon--metadata);
+    mask-image: var(--md-admonition-icon--metadata);
 }
 
 /* custom width

@@ -1,34 +1,44 @@
----
 repo_name:  rl-institut-private/digipipe
 repo_url: https://github.com/rl-institut-private/digipipe
 site_name: digipipe 0.0.1 dev documentation
 site_url: http://127.0.0.1:8000/
+docs_dir: .
+site_dir: ./site
 
 nav:
   - digipipe: index.md
-  - Installation: sections/installation.md
-  - Scenarios: sections/scenarios.md
+  - Installation: docs/sections/installation.md
+  - Scenarios: docs/sections/scenarios.md
   - Developer Docs:
-      - Struktur des Repos: sections/structure.md
-      - Data pipeline: sections/data.md
-      - Workflow: sections/workflow.md
-  - Datasets: 
-      - datasets/index.md
-      - Raw: 
-          - datasets/raw/index.md
-          - Administative areas of Germany: datasets/raw/bkg_vg250.md
-          - Power units from Marktstammdatenregister: datasets/raw/bnetza_mastr.md
-      - Preprocessed: 
-          - datasets/preprocessed/index.md
-          - Administative areas of Germany: datasets/preprocessed/bkg_vg250.md
-          - Power units from Marktstammdatenregister: datasets/preprocessed/bnetza_mastr.md
-      - Datasets: 
-          - datasets/datasets/index.md
-          - Windenergieanlagen: datasets/datasets/bnetza_mastr_wind_region.md
-          - Speicheranlagen: datasets/datasets/bnetza_mastr_storage_region.md
+      - Data pipeline: docs/sections/data.md
+      - Workflow: docs/sections/workflow.md
+      - Struktur des Repos: docs/sections/structure.md
+  - Datasets:
+      - Raw: docs/datasets/raw_datasets.md 
+      - Preprocessed: docs/datasets/preprocessed_datasets.md 
+      - Datasets: docs/datasets/datasets_datasets.md 
+      - Appdata: ""
 
-      - Appdata: datasets/appdata/index.md
-    
+
+plugins:
+  - search:
+      lang:
+        - en
+        - de
+  - include-markdown
+  - same-dir
+  - exclude:
+      glob:
+        - "README.md"
+        - "CHANGELOG.md"
+        - "*.tmp"
+        - "*.pdf"
+        - "*.gz"
+        - "*.py"
+        - "*.pyc"
+      regex:
+        - '.*\.(tmp|bin|tar)$'
+
 
 theme:
   name: material
@@ -44,17 +54,23 @@ theme:
     - search.highlight
     - search.suggestions
   palette:
-    primary: Indigo
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
 
 extra_css:
-  - stylesheets/extra.css
+  - docs/stylesheets/extra.css
 
-plugins:
-  - search:
-      lang:
-        - en
-        - de
-  - include-markdown
 
 markdown_extensions:
   - attr_list

@@ -6,7 +6,8 @@ from snakemake.utils import min_version
 min_version("6.0")
 
 from digipipe.scripts.config import load_dataset_configs
-from digipipe.store.utils import get_abs_dataset_path
+from digipipe.scripts.data_io import *
+from digipipe.store.utils import get_abs_dataset_path, get_abs_store_root_path
 from digipipe.config import GLOBAL_CONFIG
 
 config = GLOBAL_CONFIG
@@ -57,3 +58,38 @@ rule clean:
         rm -f {params.preprocessed}
         rm -f {params.datasets}
         """
+
+
+rule download_raw_zip:
+    """
+    Downloads zipfile from the cloud containing the raw data and stores it in 'store/temp'
+    """
+    output:
+        raw_zip=get_abs_store_root_path() / "temp" / "raw.zip"
+    params:
+        url=config["global"]["input_data"]["download_url"]
+    run:
+        try:
+            download_file(params.url, output.raw_zip)
+        except Exception as e:
+            raise RuntimeError(f"Error downloading file from {params.url}: {e}")
+
+
+
+rule update_raw:
+    """
+    Extracts 'raw.zip' and copies containing folders to 'store/raw'
+    """
+    input:
+        raw_zip=get_abs_store_root_path() / "temp" / "raw.zip"
+    params:
+        temp_dir=get_abs_store_root_path() / "temp",
+        raw_dir=get_abs_store_root_path() / "raw",
+        temp_raw_dir=get_abs_store_root_path() / "temp" / "store" / "raw"
+    run:
+        try:
+            extract_zipfile(input.raw_zip, params.temp_dir)
+            copy_files(params.temp_raw_dir, params.raw_dir)
+            clean_folder(params.temp_dir)
+        except Exception as e:
+            raise RuntimeError(f"Error updating raw data: {e}")

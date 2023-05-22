@@ -1,0 +1,14 @@
+# Population prognosis
+
+Population prognosis until 2035 by the Statistisches Landesamt Sachsen-Anhalt.
+
+
+??? info "Metadaten"
+    ```json
+    {
+        "Originale Datenquelle": [
+            "https://statistik.sachsen-anhalt.de/themen/bevoelkerung-mikrozensus-freiwillige-haushaltserhebungen/bevoelkerung/bevoelkerungsprognose-und-haushalteprognose/#c312231",
+            "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Bevoelkerung/Tabellen/Bevoelkerungsprognose/1_Internettabelle_7RBP_nach_Prognosejahr_Geschlecht_alle_Ebenen.xlsx"
+        ]
+    }
+    ```

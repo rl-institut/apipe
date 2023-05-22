@@ -72,7 +72,6 @@ instance/
 docs/_build/
 
 # Mkdocs documentation
-docs/datasets
 site/
 
 # PyBuilder

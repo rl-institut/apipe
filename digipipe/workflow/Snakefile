@@ -34,7 +34,13 @@ rule all:
         mastr_names=rules.datasets_bnetza_mastr_captions_create.output,
         gsgk=rules.datasets_bnetza_mastr_gsgk_region_create.output,
         storage=rules.datasets_bnetza_mastr_storage_region_create.output,
-        population=rules.datasets_population_create.output
+        population=rules.datasets_population_region_create.output,
+        demand_hh_ts=rules.datasets_demand_electricity_region_hh_normalize_timeseries.output,
+        demand_hh_con=rules.datasets_demand_electricity_region_hh_merge_demand_years.output,
+        demand_cts_ts=rules.datasets_demand_electricity_region_cts_normalize_timeseries.output,
+        demand_cts_con=rules.datasets_demand_electricity_region_cts_merge_demand_years.output,
+        demand_ind_ts=rules.datasets_demand_electricity_region_ind_normalize_timeseries.output,
+        demand_ind_con=rules.datasets_demand_electricity_region_ind_merge_demand_years.output,
     # run:
     #     print("CONFIG MAIN:")
     #     print(config)

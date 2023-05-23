@@ -56,9 +56,9 @@ geopy = "^2.3.0"
 oemoflex = { git = "https://git@github.com/rl-institut/oemoflex", tag = "0.0.1"}
 ruff = "^0.0.257"
 types-pyyaml = "^6.0.12.9"
+pyxlsb = "^1.0.10"
 requests = "^2.30.0"
 types-requests = "^2.30.0.0"
-
 
 [tool.poetry.dev-dependencies]
 sphinx = "^5.3.0"  # https://github.com/sphinx-doc/sphinx

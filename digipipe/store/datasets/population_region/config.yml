@@ -1,0 +1,29 @@
+##############################################################################
+# This file holds configuration parameters for the creation of this dataset. #
+##############################################################################
+
+# Population prognosis: years to be included from state prognosis
+# data on municipal level (empty list to deactivate).
+prognosis_fstate_munlevel:
+  years:
+    [
+      2025,
+      2030,
+      2035
+    ]
+
+# Population prognosis: years to be included from country prognosis
+# data on state level (empty list to deactivate).
+prognosis_germany_districtlevel:
+  years:
+    [
+      2040,
+      2045
+    ]
+
+# Population extrapolation: years to be covered (empty list to deactivate)
+# Note: all available prognosis years will be used for the extrapolation,
+#       not-requested prognosis years (above) will be simply dropped in the end.
+extrapolation:
+  years:
+    []

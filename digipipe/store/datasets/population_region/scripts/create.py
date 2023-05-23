@@ -152,7 +152,7 @@ def process() -> None:
 
     # Extra-include historic data depending on if first prognosis was used
     if not all(
-        [str(year) in pop_reference.columns for year in avail_years_history]
+        str(year) in pop_reference.columns for year in avail_years_history
     ):
         population = pd.concat([pop_history, pop_reference], axis=1)
     else:

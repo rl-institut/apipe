@@ -24,6 +24,9 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Add dataset: employees and companies
 - Add dataset: demandregio electricity demand
 - Add dataset: BMWK long-term scenarios
+- Add rules to download raw data (zipped) from cloud, extract and copy to 'store/raw'
+- Add module 'data_io', containing relevant helper functions (downloading, extracting, copying, cleaning)
+- Create metadata
 
 ### Changed
 

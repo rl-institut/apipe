@@ -1,5 +1,20 @@
 # Workflow
 
+## Download and update RAW dataset
+
+To run the pipeline the input dataset is required.
+To download, extract and copy a current set of raw data into `store/raw`, type
+
+    snakemake -j<NUMBER_OF_CPU_CORES> -R update_raw
+
+A zip file from the specified URL
+([Wolke](https://wolke.rl-institut.de/s/w8WKwXT3f9ZzZQJ/download))
+is downloaded and unzipped to `store/temp`. The raw data files are copied to
+the corresponding folders in `store/raw`.
+A prompt asks if an already existing file should be updated. Confirm with "y"
+or type "n" to skip.
+
+
 ## Run
 
 To run the pipeline, go to Digipipe's root `digipipe/` or to

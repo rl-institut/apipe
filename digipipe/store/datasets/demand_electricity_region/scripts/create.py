@@ -56,7 +56,11 @@ def normalize_filter_timeseries(
     timeseries.name = "demand_norm"
 
     # Check result
-    assert timeseries.sum() == 1, "Sum of normalized timeseries is not 1"
+    np.testing.assert_almost_equal(
+        timeseries.sum(),
+        1,
+        err_msg="Sum of normalized timeseries is not 1!",
+    )
 
     # Write
     timeseries.to_csv(outfile)

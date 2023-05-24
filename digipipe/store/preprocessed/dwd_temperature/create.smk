@@ -23,6 +23,10 @@ rule create:
             input.temperature,
             index_col=["timestamp", "ags_id"],
         )
+        # Calc regional mean from municipal values
         temp = temp.astype("float").reset_index().drop(
             columns=["ags_id"]).groupby("timestamp").agg("mean").round(2)
+        # Remove timestamp
+        temp = temp.reset_index().drop(columns=["timestamp"])
+        # Dump
         temp.to_csv(output.temperature)

@@ -1,0 +1,7 @@
+{
+  "Datenquellen": {
+    "Open Data Bereich des Climate Data Center des DWD": "https://www.dwd.de/DE/leistungen/cdc/climate-data-center.html",
+    "Datensatz Lufttemperatur": "https://opendata.dwd.de/climate_environment/CDC/observations_germany/climate/hourly/air_temperature/historical/",
+    "Datensatz Bodentemperatur": "https://opendata.dwd.de/climate_environment/CDC/observations_germany/climate/hourly/soil_temperature/historical/"
+  }
+}

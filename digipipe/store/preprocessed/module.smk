@@ -61,3 +61,8 @@ module ageb_energy_balance:
     snakefile: "ageb_energy_balance/create.smk"
     config: config["store"]["preprocessed"]["ageb_energy_balance"]
 use rule * from ageb_energy_balance as preprocessed_ageb_energy_balance_ *
+
+module dwd_temperature:
+    snakefile: "dwd_temperature/create.smk"
+    config: config["store"]["preprocessed"]["dwd_temperature"]
+use rule * from dwd_temperature as preprocessed_dwd_temperature_ *

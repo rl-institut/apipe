@@ -23,6 +23,7 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Add types-pyyaml package
 - Add rules to download raw data (zipped) from cloud, extract and copy to 'store/raw'
 - Add module 'data_io', containing relevant helper functions (downloading, extracting, copying, cleaning)
+- Add script to generate dataset md files for documentation
 
 ### Changed
 
@@ -37,7 +38,9 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - The installation of a virtual environment is done only from the environment.yml file and via conda.
 - Apply linters on repo among others: black, isort, check-json and end-of-file-fixer
 - Fix C419 flake8 error
+- Switch to mkdocs for documentation (Sphinx deleted)
 
 ### Removed
 
 - setup.py and requirements.txt files are omitted with the conversion to poetry
+- sphinx from poetry environment

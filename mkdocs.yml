@@ -1,4 +1,4 @@
-repo_name:  rl-institut-private/digipipe
+repo_name: rl-institut-private/digipipe
 repo_url: https://github.com/rl-institut-private/digipipe
 site_name: digipipe 0.0.1 dev documentation
 site_url: http://127.0.0.1:8000/
@@ -17,8 +17,6 @@ nav:
       - Raw: docs/datasets/raw_datasets.md 
       - Preprocessed: docs/datasets/preprocessed_datasets.md 
       - Datasets: docs/datasets/datasets_datasets.md 
-      - Appdata: ""
-
 
 plugins:
   - search:
@@ -29,16 +27,18 @@ plugins:
   - same-dir
   - exclude:
       glob:
-        - "README.md"
-        - "CHANGELOG.md"
+        - digipipe/store/
+        - digipipe/config/*
+        - README.md
+        - CHANGELOG.md
         - "*.tmp"
         - "*.pdf"
         - "*.gz"
         - "*.py"
         - "*.pyc"
+        - "*.gpkg"
       regex:
         - '.*\.(tmp|bin|tar)$'
-
 
 theme:
   name: material
@@ -67,10 +67,8 @@ theme:
         icon: material/brightness-4
         name: Switch to light mode
 
-
 extra_css:
   - docs/stylesheets/extra.css
-
 
 markdown_extensions:
   - attr_list
@@ -82,6 +80,4 @@ markdown_extensions:
   - admonition
   - pymdownx.details
   - pymdownx.superfences
-
-
 

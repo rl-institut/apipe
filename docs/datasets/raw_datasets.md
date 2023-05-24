@@ -5,9 +5,9 @@
 
 OpenStreetMap data extract for Sachsen-Anhalt.
 
-**Datensatz: `raw/osm_sachsen-anhalt`**
+**Dataset: `raw/osm_sachsen-anhalt`**
 
-??? metadata "Metadaten"
+??? metadata "Metadata"
     ```json
     {
         "TODO": "!! PLEASE CHECK IF THE JSON IS CORRECT !!",
@@ -128,9 +128,9 @@ OpenStreetMap data extract for Sachsen-Anhalt.
 
 Administative areas of Germany (Verwaltungsgebiete 1:250 000).
 
-**Datensatz: `raw/bkg_vg250`**
+**Dataset: `raw/bkg_vg250`**
 
-??? metadata "Metadaten"
+??? metadata "Metadata"
     ```json
     {
         "Originale Datenquelle": "https://gdz.bkg.bund.de/index.php/default/digitale-geodaten/verwaltungsgebiete/verwaltungsgebiete-1-250-000-stand-01-01-vg250-01-01.html"
@@ -160,9 +160,9 @@ The Marktstammdatenregister (MaStR) is a German register provided by the
 German Federal Network Agency (Bundesnetzagentur / BNetza) that keeps
 track of all power and gas units located in Germany.
 
-**Datensatz: `raw/bnetza_mastr`**
+**Dataset: `raw/bnetza_mastr`**
 
-??? metadata "Metadaten"
+??? metadata "Metadata"
     ```json
     {
         "Originale Datenquelle": "https://www.marktstammdatenregister.de/MaStR/Datendownload",
@@ -175,9 +175,9 @@ track of all power and gas units located in Germany.
 
 Municipalities with population from the Federal Statistical Office.
 
-**Datensatz: `raw/destatis_gv`**
+**Dataset: `raw/destatis_gv`**
 
-??? metadata "Metadaten"
+??? metadata "Metadata"
     ```json
     {
         "Originale Datenquelle": "https://www.destatis.de/DE/Themen/Laender-Regionen/Regionales/Gemeindeverzeichnis/Administrativ/Archiv/GVAuszugQ/AuszugGV4QAktuell.html"
@@ -189,9 +189,9 @@ Municipalities with population from the Federal Statistical Office.
 
 Population prognosis until 2035 by the Statistisches Landesamt Sachsen-Anhalt.
 
-**Datensatz: `raw/stala_st_pop_prog`**
+**Dataset: `raw/stala_st_pop_prog`**
 
-??? metadata "Metadaten"
+??? metadata "Metadata"
     ```json
     {
         "Originale Datenquelle": [

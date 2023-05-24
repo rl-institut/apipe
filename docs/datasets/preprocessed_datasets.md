@@ -6,7 +6,7 @@
 OSM data filtered for specific tags, reprojected to LAEA Europe (EPSG:3035)
 and converted to Geopackage.
 
-**Datensatz: `preprocessed/osm_filtered`**
+**Dataset: `preprocessed/osm_filtered`**
 
 
 ------------------------------
@@ -15,7 +15,7 @@ and converted to Geopackage.
 Geodata of administrative areas (Verwaltungsgebiete 1:250 000) extracted,
 reprojected to LAEA Europe(EPSG:3035) and converted to Geopackage.
 
-**Datensatz: `preprocessed/bkg_vg250`**
+**Dataset: `preprocessed/bkg_vg250`**
 
 
 ------------------------------
@@ -23,7 +23,7 @@ reprojected to LAEA Europe(EPSG:3035) and converted to Geopackage.
 
 Power units from MaStR extracted for selected technologies.
 
-**Datensatz: `preprocessed/bnetza_mastr`**
+**Dataset: `preprocessed/bnetza_mastr`**
 
 
 ------------------------------
@@ -32,7 +32,7 @@ Power units from MaStR extracted for selected technologies.
 Municipalities with population from the Federal Statistical Office for years
 2010, 2015, 2020, 2021, 2022.
 
-**Datensatz: `preprocessed/destatis_gv`**
+**Dataset: `preprocessed/destatis_gv`**
 
 
 ------------------------------
@@ -41,5 +41,5 @@ Municipalities with population from the Federal Statistical Office for years
 Population prognosis per municipality for selected years until 2035 by the
 Statistisches Landesamt Sachsen-Anhalt.
 
-**Datensatz: `preprocessed/stala_st_pop_prog`**
+**Dataset: `preprocessed/stala_st_pop_prog`**
 

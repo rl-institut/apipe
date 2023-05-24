@@ -14,7 +14,7 @@ Neben einem anlagenscharfen Datensatz wird ein weiterer Datensatz erzeugt,
 der alle Anlagen mit approximierter Position je Position zusammenfasst und
 jeweils typische Kennwerte enthält (u.a. Anzahl Anlagen, Gesamtleistung).
 
-**Datensatz: `datasets/bnetza_mastr_storage_region`**
+**Dataset: `datasets/bnetza_mastr_storage_region`**
 
 
 ------------------------------
@@ -22,7 +22,7 @@ jeweils typische Kennwerte enthält (u.a. Anzahl Anlagen, Gesamtleistung).
 
 Waldflächen aus OpenStreetMap, Daten extrahiert anhand von spezifischen Tags.
 
-**Datensatz: `datasets/osm_forest`**
+**Dataset: `datasets/osm_forest`**
 
 
 ------------------------------
@@ -31,7 +31,7 @@ Waldflächen aus OpenStreetMap, Daten extrahiert anhand von spezifischen Tags.
 Gemeinden der Region aus Geodaten der Verwaltungsgebiete extrahiert und
 gefiltert.
 
-**Datensatz: `datasets/bkg_vg250_muns_region`**
+**Dataset: `datasets/bkg_vg250_muns_region`**
 
 
 ------------------------------
@@ -41,7 +41,7 @@ Bezeichner und Namen aus MaStR als Mapping <NAME_IN_GEODATEN> ->
 <NAME_IN_MASTR> wobei CamelCase aus <NAME_IN_MASTR> in Leerzeichen konvertiert
 werden.
 
-**Datensatz: `datasets/bnetza_mastr_captions`**
+**Dataset: `datasets/bnetza_mastr_captions`**
 
 
 ------------------------------
@@ -59,7 +59,7 @@ Neben einem anlagenscharfen Datensatz wird ein weiterer Datensatz erzeugt,
 der alle Anlagen mit approximierter Position je Position zusammenfasst und
 jeweils typische Kennwerte enthält (u.a. Anzahl Anlagen, Gesamtleistung).
 
-**Datensatz: `datasets/bnetza_mastr_gsgk_region`**
+**Dataset: `datasets/bnetza_mastr_gsgk_region`**
 
 
 ------------------------------
@@ -68,7 +68,7 @@ jeweils typische Kennwerte enthält (u.a. Anzahl Anlagen, Gesamtleistung).
 EinwohnerInnen je Gemeinde: Historische Daten, Prognosen und darüber hinaus
 linear extrapolierte Werte.
 
-**Datensatz: `datasets/population`**
+**Dataset: `datasets/population`**
 
 
 ------------------------------
@@ -85,7 +85,7 @@ Neben einem anlagenscharfen Datensatz wird ein weiterer Datensatz erzeugt,
 der alle Anlagen mit approximierter Position je Position zusammenfasst und
 jeweils typische Kennwerte enthält (u.a. Anzahl Anlagen, Gesamtleistung).
 
-**Datensatz: `datasets/bnetza_mastr_biomass_region`**
+**Dataset: `datasets/bnetza_mastr_biomass_region`**
 
 
 ------------------------------
@@ -102,7 +102,7 @@ Neben einem anlagenscharfen Datensatz wird ein weiterer Datensatz erzeugt,
 der alle Anlagen mit approximierter Position je Position zusammenfasst und
 jeweils typische Kennwerte enthält (u.a. Anzahl Anlagen, Gesamtleistung).
 
-**Datensatz: `datasets/bnetza_mastr_combustion_region`**
+**Dataset: `datasets/bnetza_mastr_combustion_region`**
 
 
 ------------------------------
@@ -120,7 +120,7 @@ Neben einem anlagenscharfen Datensatz wird ein weiterer Datensatz erzeugt,
 der alle Anlagen mit approximierter Position je Position zusammenfasst und
 jeweils typische Kennwerte enthält (u.a. Anzahl Anlagen, Gesamtleistung).
 
-**Datensatz: `datasets/bnetza_mastr_pv_ground_region`**
+**Dataset: `datasets/bnetza_mastr_pv_ground_region`**
 
 
 ------------------------------
@@ -137,7 +137,7 @@ Neben einem anlagenscharfen Datensatz wird ein weiterer Datensatz erzeugt,
 der alle Anlagen mit approximierter Position je Position zusammenfasst und
 jeweils typische Kennwerte enthält (u.a. Anzahl Anlagen, Gesamtleistung).
 
-**Datensatz: `datasets/bnetza_mastr_hydro_region`**
+**Dataset: `datasets/bnetza_mastr_hydro_region`**
 
 
 ------------------------------
@@ -146,7 +146,7 @@ jeweils typische Kennwerte enthält (u.a. Anzahl Anlagen, Gesamtleistung).
 Landkreise der Region aus Geodaten der Verwaltungsgebiete extrahiert und
 gefiltert.
 
-**Datensatz: `datasets/bkg_vg250_districts_region`**
+**Dataset: `datasets/bkg_vg250_districts_region`**
 
 
 ------------------------------
@@ -164,7 +164,7 @@ Neben einem anlagenscharfen Datensatz wird ein weiterer Datensatz erzeugt,
 der alle Anlagen mit approximierter Position je Position zusammenfasst und
 jeweils typische Kennwerte enthält (u.a. Anzahl Anlagen, Gesamtleistung).
 
-**Datensatz: `datasets/bnetza_mastr_pv_roof_region`**
+**Dataset: `datasets/bnetza_mastr_pv_roof_region`**
 
 
 ------------------------------
@@ -181,7 +181,7 @@ Neben einem anlagenscharfen Datensatz wird ein weiterer Datensatz erzeugt,
 der alle Anlagen mit approximierter Position je Position zusammenfasst und
 jeweils typische Kennwerte enthält (u.a. Anzahl Anlagen, Gesamtleistung).
 
-**Datensatz: `datasets/bnetza_mastr_wind_region`**
+**Dataset: `datasets/bnetza_mastr_wind_region`**
 
 
 ------------------------------
@@ -189,5 +189,5 @@ jeweils typische Kennwerte enthält (u.a. Anzahl Anlagen, Gesamtleistung).
 
 Region aus Geodaten der Landkreise zusammengeführt.
 
-**Datensatz: `datasets/bkg_vg250_region`**
+**Dataset: `datasets/bkg_vg250_region`**
 

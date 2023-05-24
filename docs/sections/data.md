@@ -4,7 +4,7 @@
  
 ## List of datasets
 
-Todo: Auto-generate list of datasets from store
+See: [Datasets](../datasets/raw_datasets.md)
 
 ## Region-specific datasets
 

@@ -100,3 +100,8 @@ module demand_electricity_region:
     snakefile: "demand_electricity_region/create.smk"
     config: config["store"]["datasets"]["demand_electricity_region"]
 use rule * from demand_electricity_region as datasets_demand_electricity_region_*
+
+module heatpump_cop:
+    snakefile: "heatpump_cop/create.smk"
+    config: config["store"]["datasets"]["heatpump_cop"]
+use rule * from heatpump_cop as datasets_heatpump_cop_*

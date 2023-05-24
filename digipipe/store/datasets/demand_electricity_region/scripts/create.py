@@ -15,7 +15,7 @@ def normalize_filter_timeseries(
     ----------
     infile : pathlib.Path
         Path to timeseries CSV with NUTS 3 codes in columns and
-        timesteps in rows (expects 15min resolution)
+        timesteps in rows (expects 15min ot 1h resolution)
     outfile : pathlib.Path
         Path to CSV outfile - aggregated and normalized timeseries
         (1h resolution)
@@ -26,18 +26,30 @@ def normalize_filter_timeseries(
     -------
     None
     """
-    # Create timeindex
-    timeindex = pd.DatetimeIndex(
-        pd.date_range(
-            start="2017-01-01 00:00:00",
-            end="2017-12-31 23:45:00",
-            freq="15Min",
-        )
-    )
-    # Get timeseries, filter region, resample to 1h
+    # Get timeseries, create timeindex, filter region, resample to 1h
     timeseries = pd.read_csv(infile)
-    timeseries.index = timeindex
-    timeseries = timeseries[region_nuts].resample("H").sum()
+    timeseries = timeseries[region_nuts]
+
+    if len(timeseries) == 8760:
+        timeseries.index = pd.DatetimeIndex(
+            pd.date_range(
+                start="2017-01-01 00:00:00",
+                end="2017-12-31 23:45:00",
+                freq="1H",
+            )
+        )
+    elif len(timeseries) == 35040:
+        timeseries.index = pd.DatetimeIndex(
+            pd.date_range(
+                start="2017-01-01 00:00:00",
+                end="2017-12-31 23:45:00",
+                freq="15Min",
+            )
+        )
+        timeseries = timeseries.resample("H").sum()
+    else:
+        raise ValueError("Invalid number of rows in timeseries!")
+
     # Average SLP timeseries and normalize to 1 MWh
     timeseries = timeseries.sum(axis=1)
     timeseries = timeseries.div(timeseries.sum()).reset_index(drop=True)

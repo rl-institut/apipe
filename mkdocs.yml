@@ -9,16 +9,16 @@ nav:
   - Digipipe: index.md
   - Hintergrund: docs/sections/background.md
   - Szenarien: docs/sections/scenarios.md
+  - Datasets:
+      - Raw: docs/datasets/raw_datasets.md
+      - Preprocessed: docs/datasets/preprocessed_datasets.md
+      - Datasets: docs/datasets/datasets_datasets.md
   - Developer Docs (en):
       - Installation: docs/sections/installation.md
       - Data pipeline: docs/sections/data.md
       - Workflow: docs/sections/workflow.md
       - Repo structure: docs/sections/structure.md
       - Docs: docs/sections/docs.md
-  - Datasets:
-      - Raw: docs/datasets/raw_datasets.md 
-      - Preprocessed: docs/datasets/preprocessed_datasets.md 
-      - Datasets: docs/datasets/datasets_datasets.md 
 
 plugins:
   - search:

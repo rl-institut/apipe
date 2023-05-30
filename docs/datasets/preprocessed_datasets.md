@@ -1,6 +1,27 @@
 # 'Preprocessed' Datasets 
 
 ------------------------------
+## BMWK Langfristszenarien
+
+Langfristszenarien des Bundesministerium für Wirtschaft und Klimaschutz, Daten
+auf Landesebene, extrahiert.
+
+**Dataset: `preprocessed/bmwk_long_term_scenarios`**
+
+
+------------------------------
+## DemandRegio
+
+Regionalisierte Bevölkerungsprognose sowie Strom-, Wärme und Gasbedarf auf
+Landkreisebene, extrahiert.
+
+Enthält Jahresverbräuche und Zeitreihen für die Sektoren Haushalte, Gewerbe,
+Handel, Dienstleistungen (GHD) und Industrie für mehrere Zieljahre.
+
+**Dataset: `preprocessed/demandregio`**
+
+
+------------------------------
 ## OpenStreetMap filtered
 
 OSM data filtered for specific tags, reprojected to LAEA Europe (EPSG:3035)
@@ -10,12 +31,12 @@ and converted to Geopackage.
 
 
 ------------------------------
-## Administative areas of Germany
+## Sozialversicherungspflichtig Beschäftigte und Betriebe
 
-Geodata of administrative areas (Verwaltungsgebiete 1:250 000) extracted,
-reprojected to LAEA Europe(EPSG:3035) and converted to Geopackage.
+Gesamtanzahl sozialversicherungspflichtig Beschäftigte und Betriebsstätten
+extrahiert und in CSV konvertiert.
 
-**Dataset: `preprocessed/bkg_vg250`**
+**Dataset: `preprocessed/ba_employment`**
 
 
 ------------------------------
@@ -24,6 +45,15 @@ reprojected to LAEA Europe(EPSG:3035) and converted to Geopackage.
 Power units from MaStR extracted for selected technologies.
 
 **Dataset: `preprocessed/bnetza_mastr`**
+
+
+------------------------------
+## Population prognosis Sachsen-Anhalt
+
+Population prognosis per municipality for selected years until 2035 by the
+Statistisches Landesamt Sachsen-Anhalt.
+
+**Dataset: `preprocessed/stala_st_pop_prog`**
 
 
 ------------------------------
@@ -36,10 +66,10 @@ Municipalities with population from the Federal Statistical Office for years
 
 
 ------------------------------
-## Population prognosis Sachsen-Anhalt
+## Administative areas of Germany
 
-Population prognosis per municipality for selected years until 2035 by the
-Statistisches Landesamt Sachsen-Anhalt.
+Geodata of administrative areas (Verwaltungsgebiete 1:250 000) extracted,
+reprojected to LAEA Europe(EPSG:3035) and converted to Geopackage.
 
-**Dataset: `preprocessed/stala_st_pop_prog`**
+**Dataset: `preprocessed/bkg_vg250`**
 

@@ -1,6 +1,5 @@
-# Struktur des Repos
+# Structure of this repo
 
-Das Repository ist wie folgt aufgebaut:
 ```
 .
 ├── digipipe
@@ -14,7 +13,8 @@ Das Repository ist wie folgt aufgebaut:
 │   │   ├── datasets                            # - for data processing which is shared by different datasets
 │   │   ├── esm                                 # - for energy system modelling
 │   │   ├── config.py                           # - config-related functions
-│   │   └── geo.py                              # - spatial functions
+│   │   ├── geo.py                              # - spatial functions
+│   │   └── data_io.py                          # - helper functions for data handling
 │   ├── store                                   # Data store
 │   │   ├── appdata                             # - App-ready data
 │   │   │   ├── data
@@ -64,7 +64,4 @@ Das Repository ist wie folgt aufgebaut:
 └── setup.py
 ```
 
-Erstellt mit:
-```
-tree --dirsfirst -L 4 -a -I '__*|*log|.gitkeep|PKG-INFO|*egg-info*|img|.git|.idea|venv|.snakemake' . > dirtree.txt
-```
+(created via `tree --dirsfirst -L 4 -a -I '__*|*log|.gitkeep|PKG-INFO|*egg-info*|img|.git|.idea|venv|.snakemake' . > dirtree.txt`)

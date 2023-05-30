@@ -41,7 +41,8 @@ def generate_dataset_mds():
                             md_file.write("#" + dataset_file.read())
                             md_file.write("\n")
                             md_file.write(
-                                f"**Dataset: `{category}/{os.path.basename(root)}`**\n\n"
+                                f"**Dataset: "
+                                f"`{category}/{os.path.basename(root)}`**\n\n"
                             )
 
                         # Check if the corresponding metadata.json file exists

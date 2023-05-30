@@ -6,10 +6,10 @@ docs_dir: .
 site_dir: ./site
 
 nav:
-  - digipipe: index.md
-  - Installation: docs/sections/installation.md
+  - Digipipe: index.md
   - Scenarios: docs/sections/scenarios.md
-  - Developer Docs:
+  - Developer Docs (en):
+      - Installation: docs/sections/installation.md
       - Data pipeline: docs/sections/data.md
       - Workflow: docs/sections/workflow.md
       - Struktur des Repos: docs/sections/structure.md

@@ -9,7 +9,7 @@ nav:
   - Digipipe: index.md
   - Hintergrund: docs/sections/background.md
   - Szenarien: docs/sections/scenarios.md
-  - Datasets:
+  - Daten:
       - Raw: docs/datasets/raw_datasets.md
       - Preprocessed: docs/datasets/preprocessed_datasets.md
       - Datasets: docs/datasets/datasets_datasets.md

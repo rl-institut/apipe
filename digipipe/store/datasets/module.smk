@@ -105,3 +105,8 @@ module heatpump_cop:
     snakefile: "heatpump_cop/create.smk"
     config: config["store"]["datasets"]["heatpump_cop"]
 use rule * from heatpump_cop as datasets_heatpump_cop_*
+
+module demand_heat_region:
+    snakefile: "demand_heat_region/create.smk"
+    config: config["store"]["datasets"]["demand_heat_region"]
+use rule * from demand_heat_region as datasets_demand_heat_region_*

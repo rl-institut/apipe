@@ -31,7 +31,7 @@ plugins:
   - same-dir
   - exclude:
       glob:
-        - digipipe/store/
+        - digipipe/store/*
         - digipipe/config/*
         - README.md
         - CHANGELOG.md

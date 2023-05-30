@@ -13,6 +13,7 @@ nav:
       - Data pipeline: docs/sections/data.md
       - Workflow: docs/sections/workflow.md
       - Repo structure: docs/sections/structure.md
+      - Docs: docs/sections/docs.md
   - Datasets:
       - Raw: docs/datasets/raw_datasets.md 
       - Preprocessed: docs/datasets/preprocessed_datasets.md 

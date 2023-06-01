@@ -1,7 +1,7 @@
 # BMWK Langfristszenarien
 
 Langfristszenarien des Bundesministerium für Wirtschaft und Klimaschutz, Daten
-auf Landesebene.
+auf Deutschlandebene.
 
 Die Daten wurden über den
 [Szenario Explorer](https://langfristszenarien.de/enertile-explorer-de/szenario-explorer/)

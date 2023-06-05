@@ -1,0 +1,30 @@
+##############################################################################
+# This file holds configuration parameters for the creation of this dataset. #
+##############################################################################
+
+# Household demand: years to create demand prognoses for
+hh_electricity_demand:
+  years:
+    [
+      2022,
+      #2035,
+      2045
+    ]
+
+# CTS demand: years to create demand prognoses for
+cts_electricity_demand:
+  years:
+    [
+      2022,
+      #2035,
+      2045
+    ]
+
+# industry demand: years to create demand prognoses for
+ind_electricity_demand:
+  years:
+    [
+      2022,
+      #2035,
+      2045
+    ]

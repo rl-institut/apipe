@@ -141,7 +141,7 @@ rule cts_disaggregate_demand:
                 input.employment,
                 index_col=0,
             ),
-            disagg_data_col="employees"
+            disagg_data_col="employees_total"
         )
         # Future demand
         if int(wildcards.year) > 2022:
@@ -151,7 +151,7 @@ rule cts_disaggregate_demand:
                 demand_region=demand,
                 year=int(wildcards.year)
             )
-        demand.rename(columns={"employees": wildcards.year}).to_csv(output.demand)
+        demand.rename(columns={"employees_total": wildcards.year}).to_csv(output.demand)
 
 rule cts_merge_demand_years:
     """
@@ -219,7 +219,7 @@ rule ind_disaggregate_demand:
                 input.employment,
                 index_col=0,
             ),
-            disagg_data_col="employees"
+            disagg_data_col="employees_total"
         )
         # Future demand
         if int(wildcards.year) > 2022:
@@ -229,7 +229,7 @@ rule ind_disaggregate_demand:
                 demand_region=demand,
                 year=int(wildcards.year)
             )
-        demand.rename(columns={"employees": wildcards.year}).to_csv(output.demand)
+        demand.rename(columns={"employees_total": wildcards.year}).to_csv(output.demand)
 
 rule ind_merge_demand_years:
     """

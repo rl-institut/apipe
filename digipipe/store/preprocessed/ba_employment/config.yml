@@ -10,12 +10,12 @@ excel_file:
   names:
     [
       "ags",
-      "employees",
-      "companies"
+      "employees_total",
+      "companies_total"
     ]
   dtype:
     {
       "ags": str,
-      "employees": str,
-      "companies": str
+      "employees_total": str,
+      "companies_total": str
     }

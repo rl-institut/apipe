@@ -67,10 +67,10 @@ module dwd_temperature:
     config: config["store"]["preprocessed"]["dwd_temperature"]
 use rule * from dwd_temperature as preprocessed_dwd_temperature_ *
 
-module regstat:
-    snakefile: "regstat/create.smk"
-    config: config["store"]["preprocessed"]["regstat"]
-use rule * from regstat as preprocessed_regstat_ *
+module regiostat:
+    snakefile: "regiostat/create.smk"
+    config: config["store"]["preprocessed"]["regiostat"]
+use rule * from regiostat as preprocessed_regiostat_ *
 
 module eurostat_lau:
     snakefile: "eurostat_lau/create.smk"

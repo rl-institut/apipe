@@ -1,0 +1,22 @@
+##############################################################################
+# This file holds configuration parameters for the creation of this dataset. #
+##############################################################################
+
+# Excel file
+excel_file:
+  sheet_name: "43531-01-02-4"
+  usecols: "A:B, C:J"
+  skiprows: 4
+  nrows: 540
+
+column_names:
+  ["lau_code",
+   "district",
+   "total",
+   "lignite",
+   "fuel_oil",
+   "natural_gas",
+   "renewables",
+   "electrical_energy",
+   "heat",
+   "other"]

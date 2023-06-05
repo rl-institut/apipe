@@ -66,3 +66,8 @@ module dwd_temperature:
     snakefile: "dwd_temperature/create.smk"
     config: config["store"]["preprocessed"]["dwd_temperature"]
 use rule * from dwd_temperature as preprocessed_dwd_temperature_ *
+
+module regstat_energy:
+    snakefile: "regstat_energy/create.smk"
+    config: config["store"]["preprocessed"]["regstat_energy"]
+use rule * from regstat_energy as preprocessed_regstat_energy_ *

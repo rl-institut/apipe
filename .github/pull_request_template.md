@@ -2,7 +2,7 @@ Fixes #
 
 ## Before merging into `dev`-branch, please make sure that the following points are checked:
 
-- [ ] All pre-commit tests passed
+- [ ] All pre-commit tests passed locally with: `pre-commit run -a`
 - [ ] File `CHANGELOG.md` was updated
 - [ ] The docs were updated
 

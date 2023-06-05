@@ -71,3 +71,8 @@ module regstat_energy:
     snakefile: "regstat_energy/create.smk"
     config: config["store"]["preprocessed"]["regstat_energy"]
 use rule * from regstat_energy as preprocessed_regstat_energy_ *
+
+module eurostat_lau:
+    snakefile: "eurostat_lau/create.smk"
+    config: config["store"]["preprocessed"]["eurostat_lau"]
+use rule * from eurostat_lau as preprocessed_eurostat_lau_ *

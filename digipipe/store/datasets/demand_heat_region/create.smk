@@ -109,7 +109,7 @@ rule heat_demand_shares:
         with open(output.demand_shares, "w", encoding="utf8") as f:
             json.dump(demand_shares, f, indent=4)
 
-rule heat_demand:
+rule heat_demand_hh_cts:
     """
     Calculate absolute heat demands for municipalities for HH and CTS
     """
@@ -125,7 +125,7 @@ rule heat_demand:
             "preprocessed", "bmwk_long_term_scenarios") / "data" /
             "T45-Strom_buildings_heating_demand_by_carrier.csv",
     output:
-        DATASET_PATH / "demand_heat_{sector}_2021.csv"
+        DATASET_PATH / "demand_heat_{sector}.csv"
     run:
         ### Demand 2021 ###
         demand_germany=pd.read_csv(input.demand_germany, index_col="carrier")
@@ -149,7 +149,7 @@ rule heat_demand:
         demand_muns.rename(columns={0: 2022}, inplace=True)
         print(f"Demand {wildcards.sector}: ", demand_muns.sum())
 
-        ### Demand 2045: Calc reduction factor ###
+        ### Demand 2045: Use reduction factor ###
         demand_future_germany_TNStrom = pd.read_csv(
             input.demand_future_germany_TNStrom,
             usecols=["Jahr", "Energiebedarf in TWh"],

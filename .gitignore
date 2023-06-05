@@ -71,6 +71,9 @@ instance/
 # Sphinx documentation
 docs/_build/
 
+# Mkdocs documentation
+site/
+
 # PyBuilder
 target/
 
@@ -148,3 +151,6 @@ digipipe/store/datasets/*/data/*
 
 digipipe/store/appdata/*
 !digipipe/store/appdata/*/.gitkeep
+
+digipipe/store/temp/*
+!digipipe/store/temp/.gitkeep

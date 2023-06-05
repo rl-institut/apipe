@@ -1,13 +1,12 @@
 {
-  "TODO": "!! PLEASE CHECK IF THE JSON IS CORRECT !!",
   "name": "openstreetmap",
   "title": "",
   "id": "openstreetmap",
   "description": "OpenStreetMap extract for federal state of Sachsen-Anhalt",
   "language": [
-    "en-GB",
-    "de-DE"
-  ],
+    "de-DE",
+    "en-GB"
+    ],
   "subject": [],
   "keywords": [
     "openstreetmap",
@@ -65,6 +64,13 @@
       "date": "2022-10-09",
       "object": "metadata",
       "comment": "Create metadata"
+    },
+    {
+      "title": "hedwig-lieselotte",
+      "email": "hedwig.bartels@rl-institut.de",
+      "date": "2023-03-28",
+      "object": "metadata",
+      "comment": "Check and update metadata"
     }
   ],
   "resources": [
@@ -79,14 +85,14 @@
         "primaryKey": [],
         "foreignKeys": []
       },
-      "dialect": {
+    "dialect": {
         "delimiter": "",
         "decimalSeparator": ""
       }
     }
   ],
-  "@id": "",
-  "@context": "",
+  "@id": null,
+  "@context": "https://raw.githubusercontent.com/OpenEnergyPlatform/oemetadata/develop/metadata/latest/context.json",
   "review": {
     "path": "",
     "badge": ""

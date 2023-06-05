@@ -11,7 +11,7 @@ excel_file:
 
 column_names:
   ["lau_code",
-   "district",
+   "name",
    "total",
    "lignite",
    "fuel_oil",

@@ -11,10 +11,11 @@ from digipipe.scripts.geo import clip_raster, raster_zonal_stats
 from digipipe.store.utils import (
     get_abs_dataset_path,
     get_abs_store_root_path,
+    PATH_TO_REGION_MUNICIPALITIES_GPKG,
     PATH_TO_REGION_DISTRICTS_GPKG
 )
 from digipipe.store.datasets.demand_electricity_region.scripts.create import (
-    normalize_filter_timeseries
+    normalize_filter_timeseries, disaggregate_demand_to_municipality
 )
 
 DATASET_PATH = get_abs_dataset_path("datasets", "demand_heat_region", data_dir=True)
@@ -176,6 +177,77 @@ rule heat_demand_hh_cts:
             f"{round(reduction_factor, 2)} of 2022's demand."
         )
         demand_muns[2045] = demand_muns[2022] * reduction_factor
+
+        # Dump as CSV
+        demand_muns.to_csv(output[0])
+
+rule heat_demand_ind:
+    """
+    Calculate absolute heat demands for municipalities for Industry
+    """
+    input:
+        demand_heat_ind_germany=get_abs_dataset_path(
+            "preprocessed", "ageb_energy_balance") / "data" /
+            "ageb_energy_balance_germany_ind_twh_2021.csv",
+        demand_ind_states=rules.preprocessed_regiostat_extract_demand_ind.output.demand_states,
+        demand_ind_districts=rules.preprocessed_regiostat_extract_demand_ind.output.demand_districts,
+        lau_codes=rules.preprocessed_eurostat_lau_create.output,
+        employment=get_abs_dataset_path("datasets","employment_region") /
+                   "data" / "employment.csv",
+        region_muns=PATH_TO_REGION_MUNICIPALITIES_GPKG,
+        region_districts=PATH_TO_REGION_DISTRICTS_GPKG
+    output:
+        DATASET_PATH / "demand_heat_ind.csv"
+        #demand = DATASET_PATH / "demand_heat_ind_demand_{year}.csv"
+    run:
+        # Industrial heat demand Germany
+        demand_heat_ind_germany = pd.read_csv(
+            input.demand_heat_ind_germany, index_col="carrier"
+        )
+        demand_heat_ind_germany = demand_heat_ind_germany.drop("Strom", axis=0)[
+            ["space_heating", "hot_water", "process_heat"]
+        ].sum().sum() * 1e6  # TWh to MWh
+
+        # Industrial energy demand federal states and districts
+        demand_ind_germany = pd.read_csv(
+            input.demand_ind_states, index_col="lau_code", dtype={"lau_code": str}
+        ).total.sum()
+        demand_ind_districts = pd.read_csv(
+            input.demand_ind_districts, index_col="lau_code", dtype={"lau_code": str}
+        )
+
+        # Get region's NUTS codes
+        districts = gpd.read_file(input.region_districts)
+        # Get region's LAU codes
+        lau_codes_region = pd.read_csv(
+            input.lau_codes[0], dtype={"lau_code": str}, usecols=["lau_code", "nuts_code"]
+        )
+        lau_codes_region = lau_codes_region.loc[
+            lau_codes_region.nuts_code.isin(districts.nuts.to_list())]
+        lau_codes_region["lau_code"] = lau_codes_region.lau_code.apply(lambda _: _[:5])
+        lau_codes_region = lau_codes_region.groupby("lau_code").first()
+
+        # Calculate industrial demand using LAU codes of region
+        demand_ind_districts = demand_ind_districts.loc[
+            lau_codes_region.index.to_list()].join(lau_codes_region)
+        demand_ind_districts = demand_ind_districts[["nuts_code", "total"]].set_index("nuts_code")
+        demand_ind_districts = demand_ind_districts.assign(
+            demand_heat_share_germany=demand_ind_districts.total.div(demand_ind_germany)
+        )
+        demand_ind_districts = demand_ind_districts.assign(
+            demand_heat=demand_ind_districts.demand_heat_share_germany.mul(demand_heat_ind_germany)
+        )
+        demand_ind_districts = demand_ind_districts.rename(
+            columns={"demand_heat": "demand_districts"})[["demand_districts"]]
+
+        # Disggregate using employees in industry sector
+        demand_muns = disaggregate_demand_to_municipality(
+            demand_districts=demand_ind_districts,
+            muns=gpd.read_file(input.region_muns),
+            districts=districts,
+            disagg_data=pd.read_csv(input.employment, index_col=0),
+            disagg_data_col="employees_ind"
+        ).rename(columns={"employees_ind": 2022})
 
         # Dump as CSV
         demand_muns.to_csv(output[0])

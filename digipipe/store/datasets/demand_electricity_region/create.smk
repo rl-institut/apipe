@@ -122,7 +122,7 @@ rule cts_disaggregate_demand:
         "preprocessed","bmwk_long_term_scenarios"
             ) / "data" / "T45-Strom_cts_demand.csv",
         employment=get_abs_dataset_path("datasets", "employment_region") /
-                   "data" / "employees.csv",
+                   "data" / "employment.csv",
         region_muns=PATH_TO_REGION_MUNICIPALITIES_GPKG,
         region_districts=PATH_TO_REGION_DISTRICTS_GPKG
     output:
@@ -200,7 +200,7 @@ rule ind_disaggregate_demand:
         "preprocessed","bmwk_long_term_scenarios"
             ) / "data" / "T45-Strom_ind_demand.csv",
         employment=get_abs_dataset_path("datasets", "employment_region") /
-                   "data" / "employees.csv",
+                   "data" / "employment.csv",
         region_muns=PATH_TO_REGION_MUNICIPALITIES_GPKG,
         region_districts=PATH_TO_REGION_DISTRICTS_GPKG
     output:
@@ -219,7 +219,7 @@ rule ind_disaggregate_demand:
                 input.employment,
                 index_col=0,
             ),
-            disagg_data_col="employees_total"
+            disagg_data_col="employees_ind"
         )
         # Future demand
         if int(wildcards.year) > 2022:
@@ -229,7 +229,7 @@ rule ind_disaggregate_demand:
                 demand_region=demand,
                 year=int(wildcards.year)
             )
-        demand.rename(columns={"employees_total": wildcards.year}).to_csv(output.demand)
+        demand.rename(columns={"employees_ind": wildcards.year}).to_csv(output.demand)
 
 rule ind_merge_demand_years:
     """

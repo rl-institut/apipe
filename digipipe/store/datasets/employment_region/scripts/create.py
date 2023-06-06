@@ -20,7 +20,6 @@ def process() -> None:
     employees_per_company = employment_ind.employees_ind.div(
         employment_ind.companies_ind
     )
-
     if employees_per_company.isna().sum() > 0:
         print(
             f"WARNING: Number of employees or companies missing in "

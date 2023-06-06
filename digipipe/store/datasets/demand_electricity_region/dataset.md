@@ -19,8 +19,9 @@ sektorspezifischer Parameter auf Gemeindeebene desaggregiert (s.u.)
 - Jährlicher Strombedarf je Gemeinde in MWh, von Landkreis- auf Gemeindeebene
   disaggregiert anhand von Bevölkerungsprognosen
   ([STALA ST](../../preprocessed/stala_st_pop_prog/dataset.md)).
-- Gemittelte, normierte Bedarfszeitreihe (auf 1 MWh) aus Daten von 2022 die für
-  alle Zielszenarien und Aggregationsebenen verwendet wird, da die Basis
+- Gemittelte, normierte Strombedarfszeitreihe (auf 1 MWh) aus
+  [DemandRegio](../../preprocessed/demandregio/dataset.md)-Daten von 2022, die
+  für alle Zielszenarien und Aggregationsebenen verwendet wird, da die Basis
   SLP-Profile sind und Differenzen zwischen verschiedenen Jahren nur aufgrund
   der Lage von Wochenenden und Feiertagen bestehen. Diese werden daher
   vernachlässigt.
@@ -30,21 +31,23 @@ sektorspezifischer Parameter auf Gemeindeebene desaggregiert (s.u.)
 - Jährlicher Strombedarf je Gemeinde in MWh, von Landkreis- auf Gemeindeebene
   disaggregiert anhand von sozialversicherungspflichtig Beschäftigten im Jahr
   2022 ([BA für Arbeit](../../preprocessed/ba_employment/dataset.md)).
-- Gemittelte, normierte Bedarfszeitreihe (auf 1 MWh) aus Daten von 2022 die für
-  alle Zielszenarien und Aggregationsebenen verwendet wird. Basis bilden sowohl
-  SLP- als auch branchenspezifische Profile. Aufgrund der geringen Differenzen
-  zwischen den Landkreisen werden diese gemittelt. Differenzen zwischen
-  verschiedenen Jahren bestehen nur aufgrund der Lage von Wochenenden und
-  Feiertagen und werden daher vernachlässigt.
+- Gemittelte, normierte Strombedarfszeitreihe (auf 1 MWh) aus
+  [DemandRegio](../../preprocessed/demandregio/dataset.md)-Daten von 2022, die
+  für alle Zielszenarien und Aggregationsebenen verwendet wird. Basis bilden
+  sowohl SLP- als auch branchenspezifische Profile. Aufgrund der geringen
+  Differenzen zwischen den Landkreisen werden diese gemittelt. Differenzen
+  zwischen verschiedenen Jahren bestehen nur aufgrund der Lage von Wochenenden
+  und Feiertagen und werden daher vernachlässigt.
 
 ## Industrie
 
 - Jährlicher Strombedarf je Gemeinde in MWh, von Landkreis- auf Gemeindeebene
-  disaggregiert anhand der sozialversicherungspflichtig Beschäftigten im Jahr
-  2022.
-- Gemittelte, normierte Bedarfszeitreihe (auf 1 MWh) aus Daten von 2022 die für
-  alle Zielszenarien und Aggregationsebenen verwendet wird. Basis bilden sowohl
-  SLP- als auch branchenspezifische Profile. Aufgrund der geringen Differenzen
-  zwischen den Landkreisen werden diese gemittelt. Differenzen zwischen
-  verschiedenen Jahren bestehen nur aufgrund der Lage von Wochenenden und
-  Feiertagen und werden daher vernachlässigt.
+  disaggregiert anhand der Beschäftigten im verarbeitenden Gewerbe im Jahr
+  2022 ([Regionalstatistik](../../preprocessed/regiostat/dataset.md)).
+- Gemittelte, normierte Strombedarfszeitreihe (auf 1 MWh) aus
+  [DemandRegio](../../preprocessed/demandregio/dataset.md)-Daten von 2022, die
+  für alle Zielszenarien und Aggregationsebenen verwendet wird. Basis bilden
+  sowohl SLP- als auch branchenspezifische Profile. Aufgrund der geringen
+  Differenzen zwischen den Landkreisen werden diese gemittelt. Differenzen
+  zwischen verschiedenen Jahren bestehen nur aufgrund der Lage von Wochenenden
+  und Feiertagen und werden daher vernachlässigt.

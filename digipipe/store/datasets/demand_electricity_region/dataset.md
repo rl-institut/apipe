@@ -48,10 +48,15 @@ landesweiter Prognosen aus den
 
 ## Industrie
 
-- Jährlicher Strombedarf je Gemeinde in MWh aus
-  [DemandRegio](../../preprocessed/demandregio/dataset.md), von Landkreis- auf
-  Gemeindeebene disaggregiert anhand der Beschäftigten im verarbeitenden
-  Gewerbe im Jahr 2022
+- Jährlicher Strombedarf je Gemeinde in MWh. Hierfür stehen 2 Datensätze zur
+  Verfügung - welcher verwendet wird, kann in der [Konfiguration](config.yml)
+  via `ind_electricity_demand_source` eingestellt werden:
+  - [DemandRegio](../../preprocessed/demandregio/dataset.md): Werte für alle
+    Landkreise in Deutschland.
+  - [STALA ST](../../preprocessed/stala_st_energy/dataset.md) (Standard):
+    Genauere Werte, jedoch nur für Sachsen-Anhalt verfügbar.
+- Die Desaggregation von Landkreis- auf Gemeindeebene erfolgt anhand der
+  Beschäftigten im verarbeitenden Gewerbe im Jahr 2022
   ([Regionalstatistik](../../preprocessed/regiostat/dataset.md)).
 - Prognosewerte für 2045 werden durch lineare Skalierung mittels Reduktion des
   industriellen Gesamtenergiebedarfs aus

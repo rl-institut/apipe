@@ -3,6 +3,7 @@ Snakefile for this dataset
 
 Note: To include the file in the main workflow, it must be added to the respective module.smk .
 """
+import difflib
 import geopandas as gpd
 import pandas as pd
 
@@ -211,8 +212,12 @@ rule ind_disaggregate_demand:
     municipalities for one year
     """
     input:
-        demand_today_region=get_abs_dataset_path("preprocessed", "demandregio") /
-                    "data" / "dr_ind_power_demand_2022.csv",
+        demand_today_region_dr=get_abs_dataset_path(
+            "preprocessed", "demandregio") /
+            "data" / "dr_ind_power_demand_2022.csv",
+        demand_today_region_stala=get_abs_dataset_path(
+            "preprocessed", "stala_st_energy") /
+            "data" / "power_demand_industry_st_districts.csv",
         demand_future_TN=get_abs_dataset_path(
             "preprocessed","bmwk_long_term_scenarios"
             ) / "data" / "TN-Strom_ind_demand.csv",
@@ -226,21 +231,44 @@ rule ind_disaggregate_demand:
     output:
         demand=DATASET_PATH / "data" / "demand_ind_power_demand_{year}.csv"
     run:
-        # Today's demand
-        demand_districts = pd.read_csv(
-            input.demand_today_region,
-            index_col=0
-        ).sum(axis=0).T.to_frame(name="demand_districts")
+        districts = gpd.read_file(input.region_districts)
+        # Today's demand: use dataset defined in config
+        if config["ind_electricity_demand_source"] == "demandregio":
+            demand_districts = pd.read_csv(
+                input.demand_today_region_dr,
+                index_col=0
+            ).sum(axis=0).T.to_frame(name="demand_districts")
+        elif config["ind_electricity_demand_source"] == "stala":
+            demand_districts = pd.read_csv(
+                input.demand_today_region_stala,
+                usecols=["name", "2021"],
+                index_col="name"
+            )
+            districts["name"] = districts["name"].map(
+                lambda _: difflib.get_close_matches(
+                    _, demand_districts.index)[0]
+            )
+            demand_districts = demand_districts.merge(districts,on="name")[
+                ["nuts", "2021"]].rename(columns={
+                "2021": "demand_districts"}).set_index("nuts")
+        else:
+            raise ValueError(
+                "ind_electricity_demand_source must be one of "
+                "['demandregio', 'stala']"
+            )
+
+        # Disaggregate
         demand = disaggregate_demand_to_municipality(
             demand_districts=demand_districts,
             muns=gpd.read_file(input.region_muns),
-            districts=gpd.read_file(input.region_districts),
+            districts=districts,
             disagg_data=pd.read_csv(
                 input.employment,
                 index_col=0,
             ),
             disagg_data_col="employees_ind"
         )
+
         # Future demand
         if int(wildcards.year) > 2022:
             demand = demand_prognosis(
@@ -252,7 +280,9 @@ rule ind_disaggregate_demand:
                 scale_by="total",
                 carrier="Strom",
             )
-        demand.rename(columns={"employees_ind": wildcards.year}).to_csv(output.demand)
+        demand.rename(
+            columns={"employees_ind": wildcards.year}
+        ).to_csv(output.demand)
 
 rule ind_merge_demand_years:
     """

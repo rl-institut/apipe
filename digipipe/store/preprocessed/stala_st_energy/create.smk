@@ -25,8 +25,8 @@ rule extract_power_demand_ind:
             **config["electricity_demand_ind"]["excel_file"],
             engine="openpyxl",
         ).rename(columns={
-            "Kreisfreie Stadt\nLandkreis\n\nLand": "district"
-        }).set_index("district")
+            "Kreisfreie Stadt\nLandkreis\n\nLand": "name"
+        }).set_index("name")
         data.columns = [int(_[1]) for _ in data.columns.str.split("\n")]
 
         # Select desired years

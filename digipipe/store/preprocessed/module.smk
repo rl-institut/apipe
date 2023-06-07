@@ -37,6 +37,11 @@ module stala_st_pop_prog:
     config: config["store"]["preprocessed"]["stala_st_pop_prog"]
 use rule * from stala_st_pop_prog as preprocessed_stala_st_pop_prog_*
 
+module stala_st_energy:
+    snakefile: "stala_st_energy/create.smk"
+    config: config["store"]["preprocessed"]["stala_st_energy"]
+use rule * from stala_st_energy as preprocessed_stala_st_energy_*
+
 module demandregio:
     snakefile: "demandregio/create.smk"
     config: config["store"]["preprocessed"]["demandregio"]

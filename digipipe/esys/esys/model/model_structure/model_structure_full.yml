@@ -75,3 +75,4 @@ components:
   - solar-pv_rooftop
   - solar-thermalcollector
   - wind-onshore
+  - hydro-ror

@@ -44,3 +44,4 @@ components:
   - solar-pv_ground
   - solar-pv_rooftop
   - wind-onshore
+  - hydro-ror

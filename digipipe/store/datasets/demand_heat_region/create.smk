@@ -128,7 +128,7 @@ rule heat_demand_hh_cts:
             "preprocessed", "bmwk_long_term_scenarios") / "data" /
             "T45-Strom_buildings_heating_demand_by_carrier.csv",
     output:
-        DATASET_PATH / "demand_heat_{sector}.csv"
+        DATASET_PATH / "demand_{sector}_heat_demand.csv"
     run:
         ### Demand 2021 ###
         demand_germany=pd.read_csv(input.demand_germany, index_col="carrier")
@@ -192,8 +192,7 @@ rule heat_demand_ind:
         region_muns=PATH_TO_REGION_MUNICIPALITIES_GPKG,
         region_districts=PATH_TO_REGION_DISTRICTS_GPKG
     output:
-        DATASET_PATH / "demand_heat_ind.csv"
-        #demand = DATASET_PATH / "demand_heat_ind_demand_{year}.csv"
+        DATASET_PATH / "demand_ind_heat_demand.csv"
     run:
         # Industrial heat demand Germany
         demand_heat_ind_germany = pd.read_csv(

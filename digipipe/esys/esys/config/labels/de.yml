@@ -4,7 +4,6 @@ biomass-st: Biomass DT
 biomass: Biomasse
 ch4-boiler: CH4 Boiler
 ch4-bpchp: CH4 KWK (Gegendruck)
-ch4-demand: CH4 Bedarf
 ch4-excess: CH4 Überschuss
 ch4-export: CH4 Export
 ch4-extchp: CH4 KWK (Entnahmekond.)

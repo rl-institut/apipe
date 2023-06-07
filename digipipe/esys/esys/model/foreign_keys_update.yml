@@ -1,7 +1,5 @@
 'bus': [
-    'biomass-demand',
     'biomass-import',
-    'ch4-demand',
     'ch4-excess',
     'ch4-export',
     'ch4-import',
@@ -27,9 +25,7 @@
     'heat_decentral-excess',
     'heat_decentral-shortage',
     'heat_decentral-storage',
-    'wood-demand',
     'wood-import',
-    'lignite-demand',
     'lignite-import',
     'solar-pv_ground',
     'solar-pv_rooftop',
@@ -37,14 +33,10 @@
 ]
 
 'profile': [
-    'ch4-demand',
     'electricity-bev_charging',
 #    'h2-demand',
     'heat_central-demand',
     'heat_decentral-demand',
-    'wood-demand',
-    'lignite-demand',
-    'biomass-demand',
     'solar-pv_ground',
     'solar-pv_rooftop',
     'solar-thermalcollector',

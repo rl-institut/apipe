@@ -4,7 +4,6 @@ biomass-st: Biomass ST
 biomass: Biomass
 ch4-boiler: CH4 boiler
 ch4-bpchp: CH4 backpressure CHP
-ch4-demand: CH4 demand
 ch4-excess: CH4 excess
 ch4-export: CH4 export
 ch4-extchp: CH4 extraction CHP

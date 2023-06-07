@@ -32,14 +32,12 @@ components:
   - ch4-boiler_large
   - ch4-boiler_small
   - ch4-bpchp_small
-  - ch4-demand
   - ch4-excess
   - ch4-gt
   - ch4-extchp_large
   - ch4-shortage
 
   - biomass-import
-  - biomass-demand
 
 #  - h2-chp_small
 #  - h2-cavern
@@ -53,11 +51,9 @@ components:
 #  - h2-shortage
 
   - wood-import
-  - wood-demand
   - wood-oven
 
   - lignite-import
-  - lignite-demand
   - lignite-oven
 
   - heat_central-demand

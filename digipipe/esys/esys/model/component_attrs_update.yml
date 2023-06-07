@@ -289,14 +289,6 @@ ch4-export:
   defaults:
     output_parameters: "{}"
 
-ch4-demand:
-  carrier: ch4
-  tech: demand
-  type: load
-  foreign_keys:
-    bus: ch4
-    profile: ch4-demand-profile
-
 ch4-shortage:
   carrier: ch4
   tech: shortage
@@ -328,14 +320,6 @@ wood-import:
   defaults:
     output_parameters: "{}"
 
-wood-demand:
-  carrier: wood
-  tech: demand
-  type: load
-  foreign_keys:
-    bus: wood
-    profile: wood-demand-profile
-
 wood-shortage:
   carrier: wood
   tech: shortage
@@ -357,14 +341,6 @@ lignite-import:
   defaults:
     output_parameters: "{}"
 
-lignite-demand:
-  carrier: lignite
-  tech: demand
-  type: load
-  foreign_keys:
-    bus: lignite
-    profile: lignite-demand-profile
-
 lignite-shortage:
   carrier: lignite
   tech: shortage
@@ -384,14 +360,6 @@ biomass-import:
     bus: biomass
   defaults:
     output_parameters: "{}"
-
-biomass-demand:
-  carrier: biomass
-  tech: demand
-  type: load
-  foreign_keys:
-    bus: biomass
-    profile: biomass-demand-profile
 
 
 # Bus "h2":

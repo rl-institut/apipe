@@ -32,8 +32,8 @@ heat_decentral-shortage: "#DBDBDB"
 heat_decentral-storage: "#e2c319"
 
 ch4-boiler: "#e5194d"
-electricity-heatpump_large: "#9912A1"
-electricity-heatpump_small: "#f288e3"
+electricity-heatpump_central: "#9912A1"
+electricity-heatpump_decentral: "#f288e3"
 electricity-pth: "#e58a19"
 
 ch4-excess: "#DBDBDB"

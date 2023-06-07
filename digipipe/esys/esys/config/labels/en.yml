@@ -15,8 +15,8 @@ electricity-curtailment: Curtailment
 electricity-demand: El. demand
 electricity-electrolyzer: Electrolyzer
 electricity-export: El. export
-electricity-heatpump_large: Heat pump (DH)
-electricity-heatpump_small: Heat pump (domestic)
+electricity-heatpump_central: Heat pump (DH)
+electricity-heatpump_decentral: Heat pump (domestic)
 electricity-import: El. import
 electricity-liion_battery: Battery
 electricity-pth: res. PtH

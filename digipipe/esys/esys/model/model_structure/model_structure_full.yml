@@ -20,33 +20,33 @@ components:
   - electricity-curtailment
   - electricity-demand
 #  - electricity-electrolyzer
-  - electricity-heatpump_large
-  - electricity-heatpump_small
+  - electricity-heatpump_central
+  - electricity-heatpump_decentral
   - electricity-large_scale_battery
-  - electricity-pth_large
-  - electricity-pth_small
+  - electricity-pth_central
+  - electricity-pth_decentral
   - electricity-shortage
 
   - ch4-import
   - ch4-export
-  - ch4-boiler_large
-  - ch4-boiler_small
-  - ch4-bpchp_small
+  - ch4-boiler_central
+  - ch4-boiler_decentral
+  - ch4-bpchp_decentral
   - ch4-excess
   - ch4-gt
-  - ch4-extchp_large
+  - ch4-extchp_central
   - ch4-shortage
 
   - biomass-import
 
-#  - h2-chp_small
+#  - h2-chp_decentral
 #  - h2-cavern
 #  - h2-demand
 #  - h2-excess
 #  - h2-export
-#  - h2-bpchp_small
+#  - h2-bpchp_decentral
 #  - h2-gt
-#  - h2-extchp_large
+#  - h2-extchp_central
 #  - h2-import
 #  - h2-shortage
 

@@ -43,27 +43,27 @@
 ]
 
 'from_to_bus': [
-    'ch4-boiler_large',
-    'ch4-boiler_small',
+    'ch4-boiler_central',
+    'ch4-boiler_decentral',
     'ch4-gt',
     'biomass-fermenter',
 #    'electricity-electrolyzer',
 #    'h2-gt',
-    'electricity-heatpump_large',
-    'electricity-heatpump_small',
-    'electricity-pth_small',
-    'electricity-pth_large',
+    'electricity-heatpump_central',
+    'electricity-heatpump_decentral',
+    'electricity-pth_decentral',
+    'electricity-pth_central',
     'wood-oven',
     'lignite-oven',
 ]
 
 'chp': [
-    'ch4-bpchp_small',
-    'ch4-extchp_large',
-#    'h2-bpchp_small',
-#    'h2-extchp_small',
+    'ch4-bpchp_decentral',
+    'ch4-extchp_central',
+#    'h2-bpchp_decentral',
+#    'h2-extchp_decentral',
 ]
 
 'efficiency': [
-    'electricity-heatpump_small',
+    'electricity-heatpump_decentral',
 ]

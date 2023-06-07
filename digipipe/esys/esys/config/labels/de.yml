@@ -15,8 +15,8 @@ electricity-curtailment: Abregelung
 electricity-demand: Strombedarf
 electricity-electrolyzer: Elektrolyse
 electricity-export: Stromexport
-electricity-heatpump_large: Wärmepumpe (groß)
-electricity-heatpump_small: Wärmepumpe (Haushalt)
+electricity-heatpump_central: Wärmepumpe (groß)
+electricity-heatpump_decentral: Wärmepumpe (Haushalt)
 electricity-import: Stromimport
 electricity-liion_battery: Batterie
 electricity-pth: res. PtH

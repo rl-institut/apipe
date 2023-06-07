@@ -4,6 +4,10 @@ Wärmebedarf für Europa 2015 in GJ (1ha Auflösung) für
 - Haushalte: Raumwärme und Warmwasser
 - GHD: Raumwärme, Warmwasser und Prozesswärme
 
+Die Daten können auf der
+[Projektseite](https://s-eenergies-open-data-euf.hub.arcgis.com)
+eingesehen werden.
+
 ## Haushalte
 
 Abgerufen mittels

@@ -14,8 +14,10 @@ from digipipe.store.utils import (
     PATH_TO_REGION_MUNICIPALITIES_GPKG,
     PATH_TO_REGION_DISTRICTS_GPKG
 )
-from digipipe.store.datasets.demand_electricity_region.scripts.create import (
-    normalize_filter_timeseries, disaggregate_demand_to_municipality
+from digipipe.scripts.datasets.demand import (
+    demand_prognosis,
+    disaggregate_demand_to_municipality,
+    normalize_filter_timeseries
 )
 
 DATASET_PATH = get_abs_dataset_path("datasets", "demand_heat_region", data_dir=True)
@@ -119,10 +121,10 @@ rule heat_demand_hh_cts:
             "preprocessed", "ageb_energy_balance") / "data" /
             "ageb_energy_balance_germany_{sector}_twh_2021.csv",
         demand_shares=DATASET_PATH / "demand_heat_shares_{sector}.json",
-        demand_future_germany_TNStrom=get_abs_dataset_path(
+        demand_future_TN=get_abs_dataset_path(
             "preprocessed", "bmwk_long_term_scenarios") / "data" /
             "TN-Strom_buildings_heating_demand_by_carrier.csv",
-        demand_future_germany_T45Strom=get_abs_dataset_path(
+        demand_future_T45=get_abs_dataset_path(
             "preprocessed", "bmwk_long_term_scenarios") / "data" /
             "T45-Strom_buildings_heating_demand_by_carrier.csv",
     output:
@@ -148,35 +150,22 @@ rule heat_demand_hh_cts:
         )
         demand_muns.index.name = "municipality_id"
         demand_muns.rename(columns={0: 2022}, inplace=True)
-        print(f"Demand {wildcards.sector}: ", demand_muns.sum())
 
         ### Demand 2045: Use reduction factor ###
-        demand_future_germany_TNStrom = pd.read_csv(
-            input.demand_future_germany_TNStrom,
-            usecols=["Jahr", "Energiebedarf in TWh"],
-        ).rename(columns={
-            "Jahr": "year",
-            "Energiebedarf in TWh": "demand",
-        })
-        demand_future_germany_T45Strom = pd.read_csv(
-            input.demand_future_germany_T45Strom,
-            usecols=[" Jahr / Year", "Energiebedarf in TWh / Energy Demand in TWh"],
-        ).rename(columns={
-            " Jahr / Year": "year",
-            "Energiebedarf in TWh / Energy Demand in TWh": "demand",
-        })
-
-        reduction_factor = (
-            demand_future_germany_T45Strom.loc[
-                demand_future_germany_T45Strom.year == 2045].demand.sum() /
-            demand_future_germany_TNStrom.loc[
-                demand_future_germany_TNStrom.year == 2020].demand.sum()
+        demand_muns = demand_muns.join(
+            demand_prognosis(
+                demand_future_T45=input.demand_future_T45,
+                demand_future_TN=input.demand_future_TN,
+                demand_region=demand_muns,
+                year_base=2022,
+                year_target=2045,
+                scale_by="total",
+            ).rename(columns={2022: 2045})
         )
         print(
-            f"Heat demand for sector {wildcards.sector} in 2045: "
-            f"{round(reduction_factor, 2)} of 2022's demand."
+            f"Total heat demand for sector {wildcards.sector} in TWh:\n",
+            demand_muns.sum() / 1e6
         )
-        demand_muns[2045] = demand_muns[2022] * reduction_factor
 
         # Dump as CSV
         demand_muns.to_csv(output[0])
@@ -194,6 +183,12 @@ rule heat_demand_ind:
         lau_codes=rules.preprocessed_eurostat_lau_create.output,
         employment=get_abs_dataset_path("datasets","employment_region") /
                    "data" / "employment.csv",
+        demand_future_TN=get_abs_dataset_path(
+            "preprocessed","bmwk_long_term_scenarios"
+            ) / "data" / "TN-Strom_ind_demand.csv",
+        demand_future_T45=get_abs_dataset_path(
+            "preprocessed","bmwk_long_term_scenarios"
+            ) / "data" / "T45-Strom_ind_demand.csv",
         region_muns=PATH_TO_REGION_MUNICIPALITIES_GPKG,
         region_districts=PATH_TO_REGION_DISTRICTS_GPKG
     output:
@@ -248,6 +243,25 @@ rule heat_demand_ind:
             disagg_data=pd.read_csv(input.employment, index_col=0),
             disagg_data_col="employees_ind"
         ).rename(columns={"employees_ind": 2022})
+
+        demand_muns.index.name = "municipality_id"
+        demand_muns.rename(columns={0: 2022}, inplace=True)
+
+        ### Demand 2045: Use reduction factor ###
+        demand_muns = demand_muns.join(
+            demand_prognosis(
+                demand_future_T45=input.demand_future_T45,
+                demand_future_TN=input.demand_future_TN,
+                demand_region=demand_muns,
+                year_base=2022,
+                year_target=2045,
+                scale_by="total",
+            ).rename(columns={2022: 2045})
+        )
+        print(
+            f"Total heat demand for sector industry in TWh:\n",
+            demand_muns.sum() / 1e6
+        )
 
         # Dump as CSV
         demand_muns.to_csv(output[0])

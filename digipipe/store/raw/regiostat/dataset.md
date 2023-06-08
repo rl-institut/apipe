@@ -67,3 +67,12 @@ Zensus 2011: Gebäude mit Wohnraum nach Heizungsart
 
 - Datei: `31211-04-01-5-B.xlsx`
 - Stand: 09.05.2011
+
+## Gebäude mit Wohnraum nach Heizungsart (31231-02-01-5)
+
+Bestand an Wohngebäuden und Wohnungen in Wohn- und Nichtwohngebäuden -
+Fortschreibung auf Basis der endgültigen Ergebnisse der Gebäude- und
+Wohnungszählung 2011 (Zensus 2011).
+
+- Datei: `31231-02-01-5.xlsx`
+- Stand: 31.12.2021

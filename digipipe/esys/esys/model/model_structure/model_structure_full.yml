@@ -28,7 +28,6 @@ components:
   - electricity-shortage
 
   - ch4-import
-  - ch4-export
   - ch4-boiler_central
   - ch4-boiler_decentral
   - ch4-bpchp_decentral
@@ -43,7 +42,6 @@ components:
 #  - h2-cavern
 #  - h2-demand
 #  - h2-excess
-#  - h2-export
 #  - h2-bpchp_decentral
 #  - h2-gt
 #  - h2-extchp_central

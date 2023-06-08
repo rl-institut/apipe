@@ -11,7 +11,6 @@ busses:
 
 components:
   - biomass-import
-  - biomass-export
   - biomass-excess
   - biomass-shortage
   -
@@ -25,7 +24,6 @@ components:
   - electricity-shortage
 
   - ch4-import
-  - ch4-export
   - ch4-excess
   - ch4-gt
   - ch4-shortage
@@ -33,7 +31,6 @@ components:
 #  - h2-cavern
 #  - h2-demand
 #  - h2-excess
-#  - h2-export
 #  - h2-gt
 #  - h2-import
 #  - h2-shortage

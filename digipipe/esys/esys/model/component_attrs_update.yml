@@ -280,15 +280,6 @@ ch4-import:
   defaults:
     output_parameters: "{}"
 
-ch4-export:
-  carrier: ch4
-  tech: export
-  type: excess
-  foreign_keys:
-    bus: ch4
-  defaults:
-    output_parameters: "{}"
-
 ch4-shortage:
   carrier: ch4
   tech: shortage
@@ -371,15 +362,6 @@ biomass-import:
 #    bus: h2
 #  defaults:
 #    output_parameters: "{}"
-#
-#h2-export:
-#  carrier: h2
-#  tech: export
-#  type: excess
-#  foreign_keys:
-#    bus: h2
-#  defaults:
-#    input_parameters: "{}"
 #
 #h2-shortage:
 #  carrier: h2

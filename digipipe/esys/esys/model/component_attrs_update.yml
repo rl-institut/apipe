@@ -271,18 +271,10 @@ heat_decentral-storage:
 
 
 # Bus "ch4":
+
 ch4-import:
   carrier: ch4
   tech: import
-  type: shortage
-  foreign_keys:
-    bus: ch4
-  defaults:
-    output_parameters: "{}"
-
-ch4-shortage:
-  carrier: ch4
-  tech: shortage
   type: shortage
   foreign_keys:
     bus: ch4
@@ -302,14 +294,6 @@ biomass-fermenter:
 
 
 # Bus "wood":
-wood-import:
-  carrier: wood
-  tech: import
-  type: shortage
-  foreign_keys:
-    bus: wood
-  defaults:
-    output_parameters: "{}"
 
 wood-shortage:
   carrier: wood
@@ -323,14 +307,6 @@ wood-shortage:
 
 
 # Bus "lignite":
-lignite-import:
-  carrier: lignite
-  tech: import
-  type: shortage
-  foreign_keys:
-    bus: lignite
-  defaults:
-    output_parameters: "{}"
 
 lignite-shortage:
   carrier: lignite
@@ -342,10 +318,12 @@ lignite-shortage:
     output_parameters: "{}"
 
 
+
 # Bus "biomass":
-biomass-import:
+
+biomass-shortage:
   carrier: biomass
-  tech: import
+  tech: shortage
   type: shortage
   foreign_keys:
     bus: biomass
@@ -353,7 +331,9 @@ biomass-import:
     output_parameters: "{}"
 
 
+
 # Bus "h2":
+#
 #h2-import:
 #  carrier: h2
 #  tech: import

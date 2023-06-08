@@ -34,9 +34,8 @@ components:
   - ch4-excess
   - ch4-gt
   - ch4-extchp_central
-  - ch4-shortage
 
-  - biomass-import
+  - biomass-shortage
 
 #  - h2-chp_decentral
 #  - h2-cavern
@@ -48,10 +47,10 @@ components:
 #  - h2-import
 #  - h2-shortage
 
-  - wood-import
   - wood-oven
+  - wood-shortage
 
-  - lignite-import
+  - lignite-shortage
   - lignite-oven
 
   - heat_central-demand

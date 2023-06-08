@@ -59,7 +59,10 @@ Wind off,#73baec
 Biomass,#2ca02c
 Biomass ST,#2ca02c
 Biomass GT,#007000
+Biomass shortage,#DBDBDB
+Wood shortage,#DBDBDB
 Hard coal,black
 Lignite,saddlebrown
+Lignite shortage,#DBDBDB
 Oil,#9467bd
 Nuclear ST,pink

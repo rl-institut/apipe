@@ -2,13 +2,13 @@
 biomass-gt: Biomass GT
 biomass-st: Biomass ST
 biomass: Biomass
+biomass-shortage: Biomass shortage
 ch4-boiler: CH4 boiler
 ch4-bpchp: CH4 backpressure CHP
 ch4-excess: CH4 excess
 ch4-extchp: CH4 extraction CHP
 ch4-gt: CH4 GT
 ch4-import: CH4 import
-ch4-shortage: CH4 shortage
 electricity-bev_charging: BEV charging
 electricity-curtailment: Curtailment
 electricity-demand: El. demand
@@ -38,3 +38,5 @@ heat_decentral-storage: Heat dec. storage
 hydro-ror: Hydro ROR
 solar-pv: PV
 wind-onshore: Wind on
+wood-shortage: Wood shortage
+lignite-shortage: Lignite shortage

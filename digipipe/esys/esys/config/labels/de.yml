@@ -2,13 +2,13 @@
 biomass-gt: Biomass GT
 biomass-st: Biomass DT
 biomass: Biomasse
+biomass-shortage: Biomasse Shortage
 ch4-boiler: CH4 Boiler
 ch4-bpchp: CH4 KWK (Gegendruck)
 ch4-excess: CH4 Überschuss
 ch4-extchp: CH4 KWK (Entnahmekond.)
 ch4-gt: CH4 GT
 ch4-import: CH4 Import
-ch4-shortage: CH4 Shortage
 electricity-bev_charging: BEV
 electricity-curtailment: Abregelung
 electricity-demand: Strombedarf
@@ -39,7 +39,10 @@ heat_decentral-storage: dez. Wärmespeicher
 hydro-reservoir: Reservoir
 hydro-ror: Laufwasserkraft
 lignite: Braunkohle
+lignite-shortage: Braunkohle Shortage
 nuclear-st: Kernkraftwerk
+wood: Holz
+wood-shortage: Holz Shortage
 other: Andere
 solar-pv: PV
 wind-offshore: Wind Offshore

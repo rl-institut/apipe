@@ -20,7 +20,9 @@ from digipipe.scripts.datasets.demand import (
     normalize_filter_timeseries
 )
 
-DATASET_PATH = get_abs_dataset_path("datasets", "demand_heat_region", data_dir=True)
+DATASET_PATH = get_abs_dataset_path(
+    "datasets", "demand_heat_region", data_dir=True
+)
 
 rule raster_clip:
     """
@@ -281,3 +283,44 @@ rule normalize_timeseries:
             outfile=output.timeseries,
             region_nuts=gpd.read_file(input.region_districts).nuts.to_list(),
         )
+
+rule district_heating:
+    """
+    Calculate heat demands using district heating shares
+    """
+    input:
+        heat_demand=DATASET_PATH / "demand_{sector}_heat_demand.csv"
+    output:
+        heat_demand_cen=DATASET_PATH / "demand_{sector}_heat_demand_cen.csv",
+        heat_demand_dec=DATASET_PATH/ "demand_{sector}_heat_demand_dec.csv"
+    run:
+        print(
+            f"Split heat demand into central and decentral heat demand for "
+            f"sector: {wildcards.sector}"
+        )
+        heat_demand = pd.read_csv(
+            input.heat_demand,
+            index_col="municipality_id",
+        )
+        ds_shares = pd.DataFrame.from_dict(
+            config["district_heating_share"].get(wildcards.sector),
+            orient="index",
+            columns=["district_heating_share"]
+        )
+
+        # Check municipality IDs
+        if not all(mun_id in heat_demand.index for mun_id in ds_shares.index):
+            raise ValueError(
+                "One or more municipality IDs from district_heating_share are "
+                "not found in the heat demand data."
+            )
+
+        # Calculate district heating and decentral heating demand
+        heat_demand_cen = heat_demand.mul(
+            ds_shares.district_heating_share, axis=0)
+        heat_demand_dec = heat_demand.mul(
+            (1 - ds_shares.district_heating_share), axis=0)
+
+        # Dump
+        heat_demand_cen.to_csv(output.heat_demand_cen)
+        heat_demand_dec.to_csv(output.heat_demand_dec)

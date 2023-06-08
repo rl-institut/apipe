@@ -209,27 +209,11 @@ def demand_prognosis(
             raise ValueError("carrier must be provided when scale_by='carrier'")
 
     # Get data from future scenarios
-    demand_future_T45 = (
-        pd.read_csv(demand_future_T45)
-        .rename(
-            columns={
-                "Jahr / Year": "year",
-                " Jahr / Year": "year",
-                "Energiebedarf in TWh / Energy Demand in TWh": "demand",
-                "Energieträger / Energy Carrier": "carrier",
-            }
-        )
-        .set_index(["year", "carrier"])
+    demand_future_T45 = pd.read_csv(demand_future_T45).set_index(
+        ["year", "carrier"]
     )
-    demand_future_TN = pd.read_csv(demand_future_TN).rename(
-        columns={
-            "Jahr": "year",
-            "TWh": "demand",
-            "Energiebedarf in TWh": "demand",
-            "Energy Carrier": "carrier",
-            "Typ": "carrier",
-        }
-    )
+    demand_future_TN = pd.read_csv(demand_future_TN)
+
     # Interpolate for base year
     demand_future_TN = demand_future_TN.set_index(["year", "carrier"]).append(
         pd.DataFrame(

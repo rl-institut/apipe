@@ -90,7 +90,7 @@ Basis folgender Quellen getroffen:
 - [BMWK Langfristszenarien: Wärmenachfrage in Wärmenetzen (HH&GHD) (2025)](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/54022/62a2667df6f8c176ff129f7ede944837)
 - [STALA ST: Wärmebilanz der Industriebetriebe (2021)](https://statistik.sachsen-anhalt.de/themen/wirtschaftsbereiche/energie-und-wasserversorgung/tabellen-energieverwendung#c256237)
 - [STALA ST: Energie- und Wasserversorgung](https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Energie/Berichte/6E403_2020-A.pdf)
-- [WindNODE](https://windnode-abw.readthedocs.io/en/latest/energy_system_model.html#energy-demand-today)
+- [WindNODE](https://windnode-abw.readthedocs.io/en/latest/energy_system_model.html#district-heating)
 - [Peta5: D5 1 District Heating Areas (2020)](https://s-eenergies-open-data-euf.hub.arcgis.com/datasets/b62b8ad79f0e4ae38f032ad6aadb91a0_0/)
 
 Annahmen zu Fernwärmeanteilen (Anteil der Endenergie aus Fernwärme an gesamter

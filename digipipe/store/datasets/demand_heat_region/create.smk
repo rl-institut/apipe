@@ -125,10 +125,10 @@ rule heat_demand_hh_cts:
         demand_shares=DATASET_PATH / "demand_heat_shares_{sector}.json",
         demand_future_TN=get_abs_dataset_path(
             "preprocessed", "bmwk_long_term_scenarios") / "data" /
-            "TN-Strom_buildings_heating_demand_by_carrier.csv",
+            "TN-Strom_buildings_heating_demand_by_carrier_reformatted.csv",
         demand_future_T45=get_abs_dataset_path(
             "preprocessed", "bmwk_long_term_scenarios") / "data" /
-            "T45-Strom_buildings_heating_demand_by_carrier.csv",
+            "T45-Strom_buildings_heating_demand_by_carrier_reformatted.csv",
     output:
         DATASET_PATH / "demand_{sector}_heat_demand.csv"
     run:
@@ -187,10 +187,10 @@ rule heat_demand_ind:
                    "data" / "employment.csv",
         demand_future_TN=get_abs_dataset_path(
             "preprocessed","bmwk_long_term_scenarios"
-            ) / "data" / "TN-Strom_ind_demand.csv",
+            ) / "data" / "TN-Strom_ind_demand_reformatted.csv",
         demand_future_T45=get_abs_dataset_path(
             "preprocessed","bmwk_long_term_scenarios"
-            ) / "data" / "T45-Strom_ind_demand.csv",
+            ) / "data" / "T45-Strom_ind_demand_reformatted.csv",
         region_muns=PATH_TO_REGION_MUNICIPALITIES_GPKG,
         region_districts=PATH_TO_REGION_DISTRICTS_GPKG
     output:

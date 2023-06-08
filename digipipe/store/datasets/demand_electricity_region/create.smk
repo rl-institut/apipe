@@ -49,10 +49,10 @@ rule hh_disaggregate_demand:
                     "data" / "dr_hh_power_demand_2022.csv",
         demand_future_TN=get_abs_dataset_path(
             "preprocessed","bmwk_long_term_scenarios"
-            ) / "data" / "TN-Strom_hh_demand.csv",
+            ) / "data" / "TN-Strom_hh_demand_reformatted.csv",
         demand_future_T45=get_abs_dataset_path(
             "preprocessed","bmwk_long_term_scenarios"
-            ) / "data" / "T45-Strom_hh_demand.csv",
+            ) / "data" / "T45-Strom_hh_demand_reformatted.csv",
         population=get_abs_dataset_path("datasets", "population_region") /
                    "data" / "population.csv",
         region_muns=PATH_TO_REGION_MUNICIPALITIES_GPKG,
@@ -82,7 +82,7 @@ rule hh_disaggregate_demand:
                 year_base=2022,
                 year_target=int(wildcards.year),
                 scale_by="carrier",
-                carrier="Strom",
+                carrier="electricity",
             )
         demand.to_csv(output.demand)
 
@@ -132,10 +132,10 @@ rule cts_disaggregate_demand:
             "dr_cts_power_demand_2022.csv",
         demand_future_TN=get_abs_dataset_path(
             "preprocessed","bmwk_long_term_scenarios"
-            ) / "data" / "TN-Strom_cts_demand.csv",
+            ) / "data" / "TN-Strom_cts_demand_reformatted.csv",
         demand_future_T45=get_abs_dataset_path(
         "preprocessed","bmwk_long_term_scenarios"
-            ) / "data" / "T45-Strom_cts_demand.csv",
+            ) / "data" / "T45-Strom_cts_demand_reformatted.csv",
         employment=get_abs_dataset_path("datasets", "employment_region") /
                    "data" / "employment.csv",
         region_muns=PATH_TO_REGION_MUNICIPALITIES_GPKG,
@@ -167,7 +167,7 @@ rule cts_disaggregate_demand:
                 year_base=2022,
                 year_target=int(wildcards.year),
                 scale_by="carrier",
-                carrier="Strom",
+                carrier="electricity",
             )
         demand.rename(columns={"employees_total": wildcards.year}).to_csv(output.demand)
 
@@ -220,10 +220,10 @@ rule ind_disaggregate_demand:
             "data" / "power_demand_industry_st_districts.csv",
         demand_future_TN=get_abs_dataset_path(
             "preprocessed","bmwk_long_term_scenarios"
-            ) / "data" / "TN-Strom_ind_demand.csv",
+            ) / "data" / "TN-Strom_ind_demand_reformatted.csv",
         demand_future_T45=get_abs_dataset_path(
             "preprocessed","bmwk_long_term_scenarios"
-            ) / "data" / "T45-Strom_ind_demand.csv",
+            ) / "data" / "T45-Strom_ind_demand_reformatted.csv",
         employment=get_abs_dataset_path("datasets", "employment_region") /
                    "data" / "employment.csv",
         region_muns=PATH_TO_REGION_MUNICIPALITIES_GPKG,
@@ -278,7 +278,7 @@ rule ind_disaggregate_demand:
                 year_base=2022,
                 year_target=int(wildcards.year),
                 scale_by="total",
-                carrier="Strom",
+                carrier="electricity",
             )
         demand.rename(
             columns={"employees_ind": wildcards.year}

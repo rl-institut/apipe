@@ -60,3 +60,10 @@ die Abschnitte B und C.
 
 - Datei: `42111-01-04-5.xlsx`
 - Stand: 30.09.2021
+
+## Gebäude mit Wohnraum nach Heizungsart (31211-04-01-5-B)
+
+Zensus 2011: Gebäude mit Wohnraum nach Heizungsart
+
+- Datei: `31211-04-01-5-B.xlsx`
+- Stand: 09.05.2011

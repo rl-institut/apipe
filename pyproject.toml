@@ -64,7 +64,7 @@ mkdocs-material = "^9.1.12"
 mkdocs-include-markdown-plugin = "^4.0.4"
 mkdocs-same-dir = "^0.1.2"
 mkdocs-exclude = "^1.0.2"
-
+boto3 = "1.26.125"
 
 [tool.poetry.dev-dependencies]
 m2r2 = "^0.3.3"

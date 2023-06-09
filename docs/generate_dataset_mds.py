@@ -38,7 +38,10 @@ def generate_dataset_mds():
                         # Write the content of the dataset.md file
                         with open(dataset_md_file, "r") as dataset_file:
                             md_file.write("\n------------------------------\n")
-                            md_file.write("#" + dataset_file.read())
+                            for line in dataset_file:
+                                if line.startswith("#"):
+                                    line = "#" + line  # Add '#' to the line
+                                md_file.write(line)
                             md_file.write("\n")
                             md_file.write(
                                 f"**Dataset: "
@@ -61,8 +64,7 @@ def generate_dataset_mds():
                                 )
                             )
                             md_file.write("\n    ```\n")
-
-        print(f"Generated {category}.md file.")
+        print(f"Generated {category}_datasets.md")
 
     print("Generation of dataset category markdown files completed.")
 

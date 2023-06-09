@@ -71,3 +71,35 @@ district_heating_share:
       17: 0,
       18: 0.01,  # Wittenberg
       19: 0}
+
+# Heating structure
+heating_structure:
+  years:
+    [2022, 2045]
+
+  # Heating structure for district heating - assumptions!
+  district_heating:
+     {0:       # Dessau-Roßlau
+        {"": 0},
+      1: {},
+      2:       # Bitterfeld-Wolfen
+        {"": 0},
+      3:       # Köthen
+        {"": 0},
+      4: {},
+      5: {},
+      6: {},
+      7: {},
+      8: {},
+      9: {},
+      10: {},
+      11: {},
+      12: {},
+      13: {},
+      14: {},
+      15: {},
+      16: {},
+      17: {},
+      18:      # Wittenberg
+        {"": 0},
+      19: {}}

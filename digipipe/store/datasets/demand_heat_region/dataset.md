@@ -108,6 +108,13 @@ Die Fernwärmeanteile können in der [config.yml](config.yml) im Abschnitt
 vereinfachend angenommen, dass der Anteil an Fernwärme für alle
 Szenarien/Zieljahre gleich bleibt.
 
+## Beheizungsstruktur
+
+Die Beheizungsstruktur für 2020 und 2045 wird den
+[BMWK Langfristszenarien](../../preprocessed/bmwk_long_term_scenarios/dataset.md)
+entnommen (Gebäude: Haushalte und GHD Energiebedarf) und für 2022 interpoliert.
+Hierbei wird nach Technologien für dezentrale sowie Fernwärme unterschieden.
+
 ## Ergebnisdaten
 
 - Haushalte: Wärmebedarf gesamt: `demand_hh_heat_demand.csv`
@@ -124,3 +131,8 @@ Szenarien/Zieljahre gleich bleibt.
 - Industrie: Wärmebedarf Fernwärme: `demand_ind_heat_demand_cen.csv`
 - Industrie: Wärmebedarf dezentrale Wärme: `demand_ind_heat_demand_dec.csv`
 - GHD: Zeitreihen: `demand_ind_heat_timeseries.csv`
+
+- Beheizungsstruktur dezentral (informativ): `demand_heat_structure_dec.csv`
+- Beheizungsstruktur dezentral für Weiterverwendung im Energiesystem:
+  `demand_heat_structure_esys_dec.csv`
+- Beheizungsstruktur Fernwärme für Weiterverwendung im Energiesystem: **TBD**

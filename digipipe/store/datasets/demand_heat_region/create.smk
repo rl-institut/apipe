@@ -6,6 +6,7 @@ Note: To include the file in the main workflow, it must be added to the respecti
 
 import json
 import geopandas as gpd
+import numpy as np
 import pandas as pd
 from digipipe.scripts.geo import clip_raster, raster_zonal_stats
 from digipipe.store.utils import (
@@ -324,3 +325,85 @@ rule district_heating:
         # Dump
         heat_demand_cen.to_csv(output.heat_demand_cen)
         heat_demand_dec.to_csv(output.heat_demand_dec)
+
+rule heating_structure_hh_cts:
+    """
+    Create heating structure for households and CTS: demand per technology
+    """
+    input:
+        demand_future_TN=get_abs_dataset_path(
+            "preprocessed", "bmwk_long_term_scenarios") / "data" /
+            "TN-Strom_buildings_heating_demand_by_carrier_reformatted.csv",
+        demand_future_T45=get_abs_dataset_path(
+            "preprocessed","bmwk_long_term_scenarios") / "data" /
+            "T45-Strom_buildings_heating_demand_by_carrier_reformatted.csv"
+    output:
+        # heating_structure_cen=(
+        #     #DATASET_PATH / "demand_{sector}_heat_structure_cen.csv"
+        #     DATASET_PATH / "demand_heat_structure_cen.csv"
+        # ),
+        heating_structure_dec=(
+            #DATASET_PATH / "demand_{sector}_heat_structure_dec.csv"
+            DATASET_PATH / "demand_heat_structure_dec.csv"
+        ),
+        heating_structure_esys_dec=(
+            # DATASET_PATH / "demand_{sector}_heat_structure_esys_dec.csv"
+            DATASET_PATH/ "demand_heat_structure_esys_dec.csv"
+        )
+    run:
+        # Get data from future scenarios
+        demand_future_T45 = pd.read_csv(
+            input.demand_future_T45)#.set_index(["year", "carrier"])
+        demand_future_TN = pd.read_csv(
+            input.demand_future_TN)#.set_index(["year", "carrier"])
+
+        # Interpolate for base year
+        demand_future = pd.concat(
+            [demand_future_TN.loc[demand_future_TN.year == 2020],
+             demand_future_T45], axis=0
+        )
+        demand_future = demand_future.set_index(["year", "carrier"]).append(
+            pd.DataFrame(
+                index=pd.MultiIndex.from_product(
+                    [[2022], demand_future.carrier.unique(), [np.nan]],
+                    names=demand_future.columns,
+                )
+            )
+        )
+        demand_future.sort_index(inplace=True)
+        demand_future = demand_future.unstack(level=1).interpolate().stack()
+
+        # Calculate heating structure
+        demand_future = demand_future.loc[
+            config["heating_structure"].get("years")].reset_index()
+
+        demand_total = demand_future[["year", "demand"]].groupby("year").sum()
+        demand_dec = (
+            demand_future.loc[
+                demand_future.carrier != "district_heating"]
+        )
+        # Drop auxiliary power
+        demand_dec = demand_dec.loc[
+            demand_dec.carrier != "electricity_auxiliary"]
+        demand_total_dec = demand_dec[["year", "demand"]].groupby("year").sum()
+        demand_dec = demand_dec.set_index("year").assign(
+            demand_rel=demand_dec.set_index("year").demand.div(
+                demand_total_dec.demand)
+        )
+        demand_dec.drop(columns=["demand"], inplace=True)
+
+        #demand_total_cen = demand_total - demand_total_dec
+
+        # Dump heating structure (for info)
+        demand_dec.to_csv(output.heating_structure_dec)
+
+        # Aggregate heat pump demand
+        demand_dec.carrier = demand_dec.carrier.replace({
+            "ambient_heat_heat_pump": "heat_pump",
+            "electricity_heat_pump": "heat_pump"})
+        demand_dec = demand_dec.reset_index().groupby(["year", "carrier"]).sum()
+
+        # Dump heating structure (for esys)
+        demand_dec.to_csv(output.heating_structure_esys_dec)
+
+        # TODO: Central heating structure, cf. config -> district_heating

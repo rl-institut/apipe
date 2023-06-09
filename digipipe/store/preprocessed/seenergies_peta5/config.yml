@@ -1,0 +1,24 @@
+##############################################################################
+# This file holds configuration parameters for the creation of this dataset. #
+##############################################################################
+
+# Files to be extracted from raw dataset
+files_extract:
+  residential:
+    [
+        "HD_2015_res_Peta5_0_1_GJ.tfw",
+        "HD_2015_res_Peta5_0_1_GJ.tif.aux.xml",
+        "HD_2015_res_Peta5_0_1_GJ.tif.vat.cpg",
+        "HD_2015_res_Peta5_0_1_GJ.tif",
+        "HD_2015_res_Peta5_0_1_GJ.tif.ovr",
+        "HD_2015_res_Peta5_0_1_GJ.tif.vat.dbf",
+    ]
+  cts:
+    [
+        "HD_2015_ser_Peta5_0_1_GJ.tfw",
+        "HD_2015_ser_Peta5_0_1_GJ.tif.aux.xml",
+        "HD_2015_ser_Peta5_0_1_GJ.tif.vat.cpg",
+        "HD_2015_ser_Peta5_0_1_GJ.tif",
+        "HD_2015_ser_Peta5_0_1_GJ.tif.ovr",
+        "HD_2015_ser_Peta5_0_1_GJ.tif.vat.dbf",
+    ]

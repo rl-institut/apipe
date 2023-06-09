@@ -28,6 +28,14 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Add module 'data_io', containing relevant helper functions (downloading, extracting, copying, cleaning)
 - Create metadata
 - Add script to generate dataset md files for documentation
+- Add dataset: demand_heat_region
+- Add dataset: heatpump_cop
+- Add dataset: stala_st_energy
+- Add dataset: eurostat_lau
+- Add dataset: regstat_energy
+- Add dataset: dwd_temperature
+- Add dataset: ageb_energy_balance
+- Add dataset: seenergies_peta5
 
 ### Changed
 

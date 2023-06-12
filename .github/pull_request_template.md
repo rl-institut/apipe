@@ -5,6 +5,8 @@ Fixes #
 - [ ] All pre-commit tests passed locally with: `pre-commit run -a`
 - [ ] File `CHANGELOG.md` was updated
 - [ ] The docs were updated
+  - [ ] if `dataset.md`s were updated, the dataset docs were regenerated using
+    `python docs/generate_dataset_mds.py`
 
 If packages were modified:
 - [ ] File `poetry.lock` was updated with: `poetry lock`

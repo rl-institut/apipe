@@ -211,7 +211,8 @@ Zukunftsszenarien verwendet.
 
 ## Solarthermie
 
-Für solarthermische Anlagen kann die PV-Einspeisezeitreihe verwendet werden.
+- Einspeisezeitreihe: `st_feedin_timeseries.csv` (Kopie von
+  PV-Einspeisezeitreihe)
 
 ## Laufwasserkraft
 

@@ -2,14 +2,14 @@
 
 Einspeisezeitreihen für Erneuerbare Energien, normiert auf 1 MW und typischen
 Jahresvolllaststunden.
+Als Wetterjahr wird 2011 verwendet, siehe
+[Szenarien](../../../../docs/sections/scenarios.md).
 
 ## Windenergie
 
 Stündlich aufgelöste Zeitreihe der Windenergie Einspeisung über 1 Jahr auf Basis
 von [MaStR](../bnetza_mastr/dataset.md) und
 [renewables.ninja](http://renewables.ninja).
-Als Wetterjahr wird 2011 gewählt, siehe
-[Szenarien](../../../../docs/sections/scenarios.md).
 Auf einen Auflösung auf Gemeindeebene wird verzichtet, da die Differenz der
 Produktion der Gemeinden nach renewables.ninja <5 % beträgt.
 
@@ -187,8 +187,6 @@ Die Zeitreihe wird auf einen für Sachsen-Anhalt prognostizierten Wert von
 Stündlich aufgelöste Zeitreihe der Photovoltaikeinspeisung über 1 Jahr auf Basis
 von [MaStR](../bnetza_mastr/dataset.md) und
 [renewables.ninja](http://renewables.ninja).
-Als Wetterjahr wird 2011 gewählt, siehe
-[Szenarien](../../../../docs/sections/scenarios.md).
 Wie bei der Windeinspeisung wird auf eine Auflsöung auf Gemeindeebene aufgrund
 geringer regionaler Abweichungen verzichtet.
 

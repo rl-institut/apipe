@@ -221,6 +221,10 @@ Die Jahresvolllaststunden in den Zukunftsszenarien werden bei 1000 h belassen
 
 - Einspeisezeitreihe: `pv_feedin_timeseries.csv`
 
+## Solarthermie
+
+Für solarthermische Anlagen wird die PV-Einspeisezeitreihe verwendet.
+
 ## Laufwasserkraft
 
 Hier wird eine konstante Einspeisung angenommen, normiert auf 1 MW und 3800

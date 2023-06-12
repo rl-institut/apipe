@@ -1,4 +1,3 @@
-# OpenStreetMap filtered
+# OpenStreetMap gefiltert
 
-OSM data filtered for specific tags, reprojected to LAEA Europe (EPSG:3035)
-and converted to Geopackage.
+OSM data nach bestimmten Tags gefiltert, zu LAEA Europe (EPSG:3035) umprojiziert und in ein geopackage konvertiert.

@@ -86,6 +86,16 @@ electricity-large_scale_battery:
     input_parameters: "{}"
     output_parameters: "{}"
 
+electricity-small_scale_battery:
+  carrier: electricity
+  tech: small_scale_battery
+  type: storage
+  foreign_keys:
+    bus: electricity
+  defaults:
+    input_parameters: "{}"
+    output_parameters: "{}"
+
 electricity-demand:
   carrier: electricity
   tech: demand

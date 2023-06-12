@@ -5,7 +5,8 @@ hydro-ror: "#6d19e5"
 h2-gt: "#75CCF0"
 ch4-gt: "#71EFA4"
 
-electricity-liion_battery: "#b41de6"
+electricity-large_scale_battery: "#b41de6"
+electricity-small_scale_battery: "#c453eb"
 
 h2-cavern: "#19e5c0"
 bev_charging: "#e55c19"

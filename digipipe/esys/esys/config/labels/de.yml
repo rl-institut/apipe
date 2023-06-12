@@ -17,7 +17,8 @@ electricity-export: Stromexport
 electricity-heatpump_central: Wärmepumpe (groß)
 electricity-heatpump_decentral: Wärmepumpe (Haushalt)
 electricity-import: Stromimport
-electricity-liion_battery: Batterie
+electricity-large_scale_battery: Großbatterie
+electricity-small_scale_battery: Kleinbatterie
 electricity-pth: res. PtH
 electricity-shortage: Strom
 h2-bpchp: H2 KWK (Gegendruck)

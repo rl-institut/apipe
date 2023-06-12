@@ -23,6 +23,7 @@ components:
   - electricity-heatpump_central
   - electricity-heatpump_decentral
   - electricity-large_scale_battery
+  - electricity-small_scale_battery
   - electricity-pth_central
   - electricity-pth_decentral
   - electricity-shortage

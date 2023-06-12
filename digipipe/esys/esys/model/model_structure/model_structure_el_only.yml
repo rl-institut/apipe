@@ -20,6 +20,7 @@ components:
   - electricity-demand
 #  - electricity-electrolyzer
   - electricity-large_scale_battery
+  - electricity-small_scale_battery
   - electricity-shortage
 
   - ch4-import

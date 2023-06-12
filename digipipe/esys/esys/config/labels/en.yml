@@ -17,7 +17,8 @@ electricity-export: El. export
 electricity-heatpump_central: Heat pump (DH)
 electricity-heatpump_decentral: Heat pump (domestic)
 electricity-import: El. import
-electricity-liion_battery: Battery
+electricity-large_scale_battery: Large-scale battery
+electricity-small_scale_battery: Small-scale battery
 electricity-pth: res. PtH
 electricity-shortage: El. shortage
 h2-bpchp: H2 backpressure CHP

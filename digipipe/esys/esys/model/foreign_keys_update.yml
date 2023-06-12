@@ -4,6 +4,7 @@
     'ch4-import',
     'electricity-bev_charging',
     'electricity-large_scale_battery',
+    'electricity-small_scale_battery',
     'electricity-curtailment',
     'electricity-demand',
     'electricity-export',

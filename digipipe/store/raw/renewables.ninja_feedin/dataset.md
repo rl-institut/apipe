@@ -180,6 +180,11 @@ Die Zeitreihe wird auf einen für Sachsen-Anhalt prognostizierten Wert von
 2306 Volllaststunden skaliert
 ([PV- und Windflächenrechner](https://zenodo.org/record/6794558)).
 
+### Dateien
+
+- Einspeisezeitreihe 2022: `wind_feedin_timeseries_today.csv`
+- Einspeisezeitreihe Zukunftsszenarien: `wind_feedin_timeseries_future.csv`
+
 ## Freiflächen-Photovoltaik
 
 ### PV-Anlage (2022)
@@ -213,3 +218,15 @@ Volllaststunden skaliert
 Die Jahresvolllaststunden in den Zukunftsszenarien werden bei 1000 h belassen
 ([PV- und Windflächenrechner](https://zenodo.org/record/6794558),
 [Ariadne Szenarienreport](https://ariadneprojekt.de/media/2022/02/Ariadne_Szenarienreport_Oktober2021_corr0222_lowres.pdf)).
+
+- Einspeisezeitreihe: `pv_feedin_timeseries.csv`
+
+## Laufwasserkraft
+
+Hier wird eine konstante Einspeisung angenommen, normiert auf 1 MW und 3800
+Volllaststunden
+([foederal-erneuerbar](https://www.foederal-erneuerbar.de/landesinfo/bundesland/ST/kategorie/wasser/auswahl/840-durchschnittliche_ja/#goto_840)).
+
+### Dateien
+
+- Einspeisezeitreihe: `ror_feedin_timeseries.csv`

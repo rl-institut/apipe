@@ -36,6 +36,8 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Add dataset: dwd_temperature
 - Add dataset: ageb_energy_balance
 - Add dataset: seenergies_peta5
+- Add dataset: renewables.ninja_feedin
+- Add dataset: renewable_feedin
 
 ### Changed
 

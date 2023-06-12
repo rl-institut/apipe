@@ -179,3 +179,39 @@ Nabenhöhe von 159 m angenommen
 Die Zeitreihe wird auf einen für Sachsen-Anhalt prognostizierten Wert von
 2306 Volllaststunden skaliert
 ([PV- und Windflächenrechner](https://zenodo.org/record/6794558)).
+
+## Freiflächen-Photovoltaik
+
+### PV-Anlage (2022)
+
+Stündlich aufgelöste Zeitreihe der Photovoltaikeinspeisung über 1 Jahr auf Basis
+von [MaStR](../bnetza_mastr/dataset.md) und
+[renewables.ninja](http://renewables.ninja).
+Als Wetterjahr wird 2011 gewählt, siehe
+[Szenarien](../../../../docs/sections/scenarios.md).
+Wie bei der Windeinspeisung wird auf eine Auflsöung auf Gemeindeebene aufgrund
+geringer regionaler Abweichungen verzichtet.
+
+Für die Generierung der Zeitreihe über
+[renewables.ninja](http://renewables.ninja)
+wird eine Position(lat, lon), Nennleistung (capacity), Verluste (system_loss)
+Nachführung (tracking), Neigung (tilt) und der Azimutwinkel (azim) benötigt.
+
+Als Position wird analog zur Windenergieanlage der räumlicher Mittelwert
+verwendet. Laut MaStR werden lediglich 13 Anlagen nachgeführt (0,01 % der
+Kapazität), die Nachführung wird daher vernachlässigt. Die Neigung ist aus MaStR
+nicht bekannt, es dominieren jedoch Anlagen auf Freiflächen sowie Flachdächern
+im landwirtschaftlichen Kontext. Nach
+[Ariadne Szenarienreport](https://ariadneprojekt.de/media/2022/02/Ariadne_Szenarienreport_Oktober2021_corr0222_lowres.pdf)
+wird diese mit 30° angenommen.
+Die Nennleistung Wird auf 1 MW gesetzt/normiert.
+
+Die Zeitreihe wird auf einen für Sachsen-Anhalt typischen Wert von 1000
+Volllaststunden skaliert
+([foederal-erneuerbar](https://www.foederal-erneuerbar.de/landesinfo/bundesland/ST/kategorie/solar/auswahl/813-durchschnittliche_ja/#goto_813)).
+
+### Zukunftsszenarien
+
+Die Jahresvolllaststunden in den Zukunftsszenarien werden bei 1000 h belassen
+([PV- und Windflächenrechner](https://zenodo.org/record/6794558),
+[Ariadne Szenarienreport](https://ariadneprojekt.de/media/2022/02/Ariadne_Szenarienreport_Oktober2021_corr0222_lowres.pdf)).

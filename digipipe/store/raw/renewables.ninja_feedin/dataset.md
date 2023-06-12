@@ -1,7 +1,6 @@
 # EE-Einspeisezeitreihen
 
-Einspeisezeitreihen für Erneuerbare Energien, normiert auf 1 MW und typischen
-Jahresvolllaststunden.
+Einspeisezeitreihen für Erneuerbare Energien, normiert auf 1 MW bzw. 1 p.u.
 Als Wetterjahr wird 2011 verwendet, siehe
 [Szenarien](../../../../docs/sections/scenarios.md).
 
@@ -161,13 +160,10 @@ vestas_production = get_df(change_wpt(
 )
 ```
 
-### Gewichtung und Skapierung der Zeitreihen
+### Gewichtung und Skalierung der Zeitreihen
 
 Um die Charakteristika der beiden o.g. Anlagentypen zu berücksichtigen, erfolgt
-eine gewichtete Summierung der Zeitreihen anhand ihrer Häufigkeit. Anschließend
-wird die Zeitreihe auf einen für Sachsen-Anhalt typischen Wert von 1800
-Volllaststunden skaliert
-([foederal-erneuerbar](https://www.foederal-erneuerbar.de/landesinfo/bundesland/ST/kategorie/wind/auswahl/811-durchschnittliche_ja/#goto_811)).
+eine gewichtete Summierung der Zeitreihen anhand der berechneten Häufigkeit.
 
 ### Zukunftsszenarien
 
@@ -176,14 +172,11 @@ zukünftige WEA berechnet. Hierbei wird eine Enercon E126 6500 mit einer
 Nabenhöhe von 159 m angenommen
 ([PV- und Windflächenrechner](https://zenodo.org/record/6794558)).
 
-Die Zeitreihe wird auf einen für Sachsen-Anhalt prognostizierten Wert von
-2306 Volllaststunden skaliert
-([PV- und Windflächenrechner](https://zenodo.org/record/6794558)).
+Da die Zeitreihe sich nur marginal von der obigen Status-quo-Zeitreihe
+unterscheidet, wird letztere sowohl für den Status quo als auch die
+Zukunftsszenarien verwendet.
 
-### Dateien
-
-- Einspeisezeitreihe 2022: `wind_feedin_timeseries_today.csv`
-- Einspeisezeitreihe Zukunftsszenarien: `wind_feedin_timeseries_future.csv`
+- Einspeisezeitreihe: `wind_feedin_timeseries.csv`
 
 ## Freiflächen-Photovoltaik
 
@@ -209,28 +202,38 @@ im landwirtschaftlichen Kontext. Nach
 wird diese mit 30° angenommen.
 Die Nennleistung Wird auf 1 MW gesetzt/normiert.
 
-Die Zeitreihe wird auf einen für Sachsen-Anhalt typischen Wert von 1000
-Volllaststunden skaliert
-([foederal-erneuerbar](https://www.foederal-erneuerbar.de/landesinfo/bundesland/ST/kategorie/solar/auswahl/813-durchschnittliche_ja/#goto_813)).
-
 ### Zukunftsszenarien
 
-Die Jahresvolllaststunden in den Zukunftsszenarien werden bei 1000 h belassen
-([PV- und Windflächenrechner](https://zenodo.org/record/6794558),
-[Ariadne Szenarienreport](https://ariadneprojekt.de/media/2022/02/Ariadne_Szenarienreport_Oktober2021_corr0222_lowres.pdf)).
+Die Status-quo-Zeitreihe wird sowohl für den Status quo als auch die
+Zukunftsszenarien verwendet.
 
 - Einspeisezeitreihe: `pv_feedin_timeseries.csv`
 
 ## Solarthermie
 
-Für solarthermische Anlagen wird die PV-Einspeisezeitreihe verwendet.
+Für solarthermische Anlagen kann die PV-Einspeisezeitreihe verwendet werden.
 
 ## Laufwasserkraft
 
-Hier wird eine konstante Einspeisung angenommen, normiert auf 1 MW und 3800
-Volllaststunden
-([foederal-erneuerbar](https://www.foederal-erneuerbar.de/landesinfo/bundesland/ST/kategorie/wasser/auswahl/840-durchschnittliche_ja/#goto_840)).
-
-### Dateien
+Hier wird eine konstante Einspeisung angenommen.
 
 - Einspeisezeitreihe: `ror_feedin_timeseries.csv`
+
+## Jahresvolllaststunden
+
+Anhand typischer heutiger und prognostizierter Werte für Sachsen-Anhalt werden
+folgende Jahresvolllaststunden angenommen:
+
+| Technologie     | Jahr | Volllaststunden | Quelle(n)                                                                                                                                                                                  |
+|-----------------|------|----------------:|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Windenergie     | 2022 |            1800 | [foederal-erneuerbar](https://www.foederal-erneuerbar.de/landesinfo/bundesland/ST/kategorie/wind/auswahl/811-durchschnittliche_ja/#goto_811)                                               |
+|                 | 2045 |            2300 | [PV- und Windflächenrechner](https://zenodo.org/record/6794558)                                                                                                                            |
+| Photovoltaik    | 2022 |            1000 | [foederal-erneuerbar](https://www.foederal-erneuerbar.de/landesinfo/bundesland/ST/kategorie/solar/auswahl/813-durchschnittliche_ja/#goto_813)                                              |
+|                 | 2045 |            1000 | [PV- und Windflächenrechner](https://zenodo.org/record/6794558), [Ariadne Szenarienreport](https://ariadneprojekt.de/media/2022/02/Ariadne_Szenarienreport_Oktober2021_corr0222_lowres.pdf) |
+| Laufwasserkraft | 2022 |            3800 | [foederal-erneuerbar](https://www.foederal-erneuerbar.de/landesinfo/bundesland/ST/kategorie/wasser/auswahl/840-durchschnittliche_ja/#goto_840)                                             |
+|                 | 2045 |            3800 | [foederal-erneuerbar](https://www.foederal-erneuerbar.de/landesinfo/bundesland/ST/kategorie/wasser/auswahl/840-durchschnittliche_ja/#goto_840)                                             |
+
+- Volllaststunden je Technologie: `full_load_hours.json`
+
+TODO: Generalisieren - automatische Generierung anhand von Global Wind Atlas /
+Global Solar Atlas.

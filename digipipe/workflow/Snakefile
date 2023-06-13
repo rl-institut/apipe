@@ -58,11 +58,11 @@ rule all:
         x5=get_abs_dataset_path("datasets", "demand_heat_region") / "data" / "demand_heat_structure_dec.csv",
         x6=get_abs_dataset_path("datasets", "demand_heat_region") / "data" / "demand_heat_structure_esys_dec.csv",
 
-        feedin_wind = expand(
-            get_abs_dataset_path("datasets", "renewable_feedin") / "data" / "{tech}_feedin_timeseries_{time}.csv",
+        feedin_wind=expand(
+            get_abs_dataset_path("datasets", "renewable_feedin") / "data" / "{tech}_feedin_timeseries.csv",
             tech=["wind", "pv", "st","ror"],
-            time=["today", "future"]
         ),
+        full_load_hours=get_abs_dataset_path("datasets", "renewable_feedin") / "data" / "full_load_hours.json",
         z=rules.datasets_heatpump_cop_merge.output
 
     # run:

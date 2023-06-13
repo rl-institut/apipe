@@ -55,6 +55,7 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Update population with prognoses from demandregio dataset
 - Fix C419 flake8 error
 - Switch to mkdocs for documentation (Sphinx deleted)
+- Normalize renewable feedin timeseries
 
 ### Removed
 

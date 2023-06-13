@@ -2,6 +2,9 @@
 biomass: Biomasse
 biomass-biogas_plant: Biogasanlage
 biomass-shortage: Biomasse Shortage
+biogas: Biogas
+biogas-biogas_upgrading_plant: Biogas-Aufbereitungsanlage
+biogas-shortage: Biogas Shortage
 ch4-boiler: CH4 Boiler
 ch4-bpchp: CH4 KWK (Gegendruck)
 ch4-excess: CH4 Überschuss

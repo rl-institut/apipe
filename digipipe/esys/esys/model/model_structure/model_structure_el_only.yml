@@ -7,10 +7,12 @@ busses:
   - ch4
   - electricity
   - biomass
+  - biogas
 #  - h2
 
 components:
   - biomass-shortage
+  - biogas-shortage
   - electricity-import
   - electricity-export
   - electricity-bev_charging
@@ -26,6 +28,7 @@ components:
   - ch4-gt
 
   - biomass-biogas_plant
+  - biogas-biogas_upgrading_plant
 #  - h2-cavern
 #  - h2-demand
 #  - h2-excess

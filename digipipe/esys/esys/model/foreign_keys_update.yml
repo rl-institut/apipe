@@ -1,5 +1,6 @@
 'bus': [
     'biomass-shortage',
+    'biogas-shortage',
     'ch4-excess',
     'ch4-import',
     'electricity-bev_charging',
@@ -45,6 +46,7 @@
     'ch4-boiler_decentral',
     'ch4-gt',
     'biomass-biogas_plant',
+    'biogas-biogas_upgrading_plant',
 #    'electricity-electrolyzer',
 #    'h2-gt',
     'electricity-heatpump_central',

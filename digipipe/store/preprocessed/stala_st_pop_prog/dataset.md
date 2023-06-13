@@ -1,4 +1,7 @@
-# Population prognosis Sachsen-Anhalt
+# Bevölkerungsprognose Sachsen-Anhalt
 
-Population prognosis per municipality for selected years until 2035 by the
-Statistisches Landesamt Sachsen-Anhalt.
+Bevölkerungsprognose je Gemeinde bis 2035 des Statistischen Landesamtes
+Sachsen-Anhalt, extrahiert und konvertiert.
+
+Raw dataset:
+[stala_st_pop_prog](../../raw/stala_st_pop_prog/dataset.md)

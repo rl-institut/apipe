@@ -14,7 +14,7 @@ def process() -> None:
 
     # Set empty values to 0 and convert dtypes
     data = data.replace(["*", " "], 0)
-    data = data.astype({"employees": int, "companies": int})
+    data = data.astype({"employees_total": int, "companies_total": int})
 
     # Drop empoty and aggregated rows
     data = data.loc[data.ags.str.len() == 8].set_index("ags")

@@ -1,0 +1,105 @@
+##############################################################################
+# This file holds configuration parameters for the creation of this dataset. #
+##############################################################################
+
+# Share of heat demand in district heating networks of total heat demand
+# Format: municipality_id: share
+district_heating_share:
+  # Households
+  hh:
+     {0: 0.36,   # Dessau-Roßlau
+      1: 0,
+      2: 0.11,   # Bitterfeld-Wolfen
+      3: 0.07,   # Köthen
+      4: 0,
+      5: 0,
+      6: 0,
+      7: 0,
+      8: 0,
+      9: 0,
+      10: 0,
+      11: 0,
+      12: 0,
+      13: 0,
+      14: 0,
+      15: 0,
+      16: 0,
+      17: 0,
+      18: 0.15,  # Wittenberg
+      19: 0}
+  # CTS
+  cts:
+     {0: 0.36,   # Dessau-Roßlau
+      1: 0,
+      2: 0.11,   # Bitterfeld-Wolfen
+      3: 0.07,   # Köthen
+      4: 0,
+      5: 0,
+      6: 0,
+      7: 0,
+      8: 0,
+      9: 0,
+      10: 0,
+      11: 0,
+      12: 0,
+      13: 0,
+      14: 0,
+      15: 0,
+      16: 0,
+      17: 0,
+      18: 0.15,  # Wittenberg
+      19: 0}
+  # industry
+  ind:
+     {0: 0.19,   # Dessau-Roßlau
+      1: 0,
+      2: 0.21,   # Bitterfeld-Wolfen
+      3: 0.21,   # Köthen
+      4: 0,
+      5: 0,
+      6: 0,
+      7: 0,
+      8: 0,
+      9: 0,
+      10: 0,
+      11: 0,
+      12: 0,
+      13: 0,
+      14: 0,
+      15: 0,
+      16: 0,
+      17: 0,
+      18: 0.01,  # Wittenberg
+      19: 0}
+
+# Heating structure
+heating_structure:
+  years:
+    [2022, 2045]
+
+  # Heating structure for district heating - assumptions!
+  district_heating:
+     {0:       # Dessau-Roßlau
+        {"": 0},
+      1: {},
+      2:       # Bitterfeld-Wolfen
+        {"": 0},
+      3:       # Köthen
+        {"": 0},
+      4: {},
+      5: {},
+      6: {},
+      7: {},
+      8: {},
+      9: {},
+      10: {},
+      11: {},
+      12: {},
+      13: {},
+      14: {},
+      15: {},
+      16: {},
+      17: {},
+      18:      # Wittenberg
+        {"": 0},
+      19: {}}

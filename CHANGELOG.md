@@ -56,6 +56,7 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Fix C419 flake8 error
 - Switch to mkdocs for documentation (Sphinx deleted)
 - Normalize renewable feedin timeseries
+- Fix instruction to obtain raw files
 
 ### Removed
 

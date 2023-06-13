@@ -12,7 +12,7 @@ rule create:
     input:
         get_abs_dataset_path("raw", "demandregio") / "data" / "demandregio.zip"
     output:
-        files = [DATASET_PATH / f for f in config["files_extract"]]
+        files=[DATASET_PATH / f for f in config["files_extract"]]
     params:
         outpath=DATASET_PATH,
         files_extract=" ".join(config["files_extract"])

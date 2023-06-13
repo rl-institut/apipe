@@ -70,8 +70,8 @@ rule all:
             tech=["wind", "pv", "st","ror"],
         ),
         full_load_hours=get_abs_dataset_path("datasets", "renewable_feedin") / "data" / "full_load_hours.json",
-        z=rules.datasets_heatpump_cop_merge.output
-        
+        z=rules.datasets_heatpump_cop_merge.output,
+
         esys_appdata=rules.make_esys_appdata.output
 
     # run:

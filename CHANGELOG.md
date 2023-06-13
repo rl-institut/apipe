@@ -38,6 +38,7 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Add dataset: seenergies_peta5
 - Add dataset: renewables.ninja_feedin
 - Add dataset: renewable_feedin
+- Add dataset: bnetza_mastr_correction_region and correct wrong units
 
 ### Changed
 

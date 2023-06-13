@@ -44,7 +44,7 @@
     'ch4-boiler_central',
     'ch4-boiler_decentral',
     'ch4-gt',
-    'biomass-fermenter',
+    'biomass-biogas_plant',
 #    'electricity-electrolyzer',
 #    'h2-gt',
     'electricity-heatpump_central',

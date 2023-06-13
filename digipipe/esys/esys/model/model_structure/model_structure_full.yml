@@ -36,6 +36,7 @@ components:
   - ch4-gt
   - ch4-extchp_central
 
+  - biomass-biogas_plant
   - biomass-shortage
 
 #  - h2-chp_decentral
@@ -64,7 +65,6 @@ components:
   - heat_decentral-shortage
   - heat_decentral-storage
 
-  - biomass-fermenter
   - solar-pv_ground
   - solar-pv_rooftop
   - solar-thermalcollector

@@ -10,9 +10,7 @@ busses:
 #  - h2
 
 components:
-  - biomass-excess
   - biomass-shortage
-  -
   - electricity-import
   - electricity-export
   - electricity-bev_charging
@@ -27,6 +25,7 @@ components:
   - ch4-excess
   - ch4-gt
 
+  - biomass-biogas_plant
 #  - h2-cavern
 #  - h2-demand
 #  - h2-excess
@@ -34,7 +33,6 @@ components:
 #  - h2-import
 #  - h2-shortage
 
-  - biomass-fermenter
   - solar-pv_ground
   - solar-pv_rooftop
   - wind-onshore

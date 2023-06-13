@@ -291,13 +291,13 @@ ch4-import:
   defaults:
     output_parameters: "{}"
 
-biomass-fermenter:
+biomass-biogas_plant:
   carrier: biomass
-  tech: fermenter
+  tech: biogas_plant
   type: conversion
   foreign_keys:
     from_bus: biomass
-    to_bus: ch4
+    to_bus: biogas
   defaults:
     output_parameters: "{}"
 

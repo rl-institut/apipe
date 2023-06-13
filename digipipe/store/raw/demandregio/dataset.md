@@ -1,7 +1,7 @@
 # DemandRegio
 
-Regionalisierte Bevölkerungsprognose sowie Strom-, Wärme und Gasbedarf auf
-Landkreisebene.
+Regionalisierte Bevölkerungsprognose, Haushalte sowie Strom- und Gasbedarfe
+inkl. Zeitreihen auf Landkreisebene.
 
 Die Daten wurden abgerufen mit einer
 [modifizierten Version des DemandRegio disaggregators](https://github.com/nesnoj/disaggregator),
@@ -19,15 +19,13 @@ Die erzeugten Rohdaten wie unten beschrieben wurden mittels
 vom [OpenData-Portal der FfE](https://opendata.ffe.de/project/demandregio/)
 bezogen werden.
 
-**Installation (digipipe venv aktiviert):**
+Verwendetes Wetterjahr für Gasbedarfszeitreihen: 2011
+
+**Installation (in separater venv):**
 
 ```commandline
-pip install openpyxl==3.1.0
 pip install disaggregator@git+https://github.com/nesnoj/disaggregator.git#egg=disaggregator
 ```
-
-Annahmen und Parameter
-- Wetterjahr: Einheitlich 2011
 
 ## Details zum Datenabruf
 
@@ -71,85 +69,134 @@ Jahre
 ```python
 from disaggregator import spatial, temporal
 
-for year in [2017, 2022, 2035, 2045]:
-  # Consumption
-  spatial.disagg_households_power(
-      by="households",
-      weight_by_income=True,
-      year=year,
-      scale_by_pop=True,
-  ).to_csv(f"dr_hh_power_demand_{year}.csv")
+# Consumption
+spatial.disagg_households_power(
+    by="households",
+    weight_by_income=True,
+    year=2022,
+    scale_by_pop=True,
+).to_csv(f"dr_hh_power_demand_2022.csv")
 
-  # Timeseries
-  temporal.disagg_temporal_power_housholds_slp(
-      use_nuts3code=True,
-      by="households",
-      weight_by_income=True,
-      year=year,
-      scale_by_pop=True,
-  ).to_csv(f"dr_hh_power_timeseries_{year}.csv")
+# Timeseries
+temporal.disagg_temporal_power_housholds_slp(
+    use_nuts3code=True,
+    by="households",
+    weight_by_income=True,
+    year=2022,
+    scale_by_pop=True,
+).to_csv(f"dr_hh_power_timeseries_2022.csv")
 ```
 
-### Haushalte: Wärme/Gas
+### Haushalte: Gas
 
-Bedarfe und SLP-Zeitreihen je NUTS3
+Zeitreihen je NUTS3
 
-TBD
+```python
+from disaggregator import temporal
+
+# Timeseries
+temporal.disagg_temporal_gas_households(
+    use_nuts3code=True,
+    how='top-down',
+    year=2011,
+).to_csv(f"dr_hh_gas_timeseries_2011.csv")
+```
+
 
 ### GHD und Industrie: Strom
 
 Bedarfe und Zeitreihen je NUTS3
-- Bedarfe: je Wirtschaftszweig (WZ), abzüglich Eigenerzeugung
-- Zeitreihen: für alle WZ aggregiert, Einzelprofile basieren je nach WZ
-  auf gemessenen oder SLP inkl. Wanderung
-
-Jahre
-- 2017: Letzte verfügbare Daten
-- 2022: Status quo, Fortschreibung mit Berücksichtigung Beschäftigte und
-  Effizienzgewinne
-- 2035: Max. Fortschreibungsjahr mit Berücksichtigung Beschäftigte und
-  Effizienzgewinne
+- Bedarfe: Je Wirtschaftszweig (WZ), abzüglich Eigenerzeugung
+- Zeitreihen: Für alle WZ bedarfsgewichtet aggregiert, Einzelprofile basieren
+  je nach WZ auf gemessenen oder SLP inkl. Wanderung
+- Letzte verfügbare Daten aus 2017, Fortschreibung für 2022 mit
+  Berücksichtigung Beschäftigte und Effizienzgewinne
 
 ```python
 from disaggregator import spatial, temporal
 
-# CTS
-for year in [2017, 2022, 2035]:
-  # Consumption
-  spatial.disagg_CTS_industry(
-      sector='CTS',
-      source='power',
-      use_nuts3code=True,
-      year=year,
-  ).to_csv(f"dr_cts_power_demand_{year}.csv")
-  # Timeseries
-  temporal.disagg_temporal_power_CTS(
-      detailed=False,
-      use_nuts3code=True,
-      year=year,
-  ).to_csv(f"dr_cts_power_timeseries_{year}.csv")
+#######
+# CTS #
+#######
 
-# Industry
-for year in [2017, 2022, 2035]:
-  # Consumption
-  spatial.disagg_CTS_industry(
-      sector='industry',
-      source='power',
-      use_nuts3code=True,
-      year=year,
-  ).to_csv(f"dr_ind_power_demand_{year}.csv")
-  # Timeseries
-  temporal.disagg_temporal_industry(
-      source="power",
-      detailed=False,
-      use_nuts3code=True,
-      no_self_gen=False,
-      year=year,
-  ).to_csv(f"dr_ind_power_timeseries_{year}.csv")
+# Consumption
+spatial.disagg_CTS_industry(
+    sector='CTS',
+    source='power',
+    use_nuts3code=True,
+    year=2022,
+).to_csv("dr_cts_power_demand_2022.csv")
+# Timeseries
+temporal.disagg_temporal_power_CTS(
+    detailed=False,
+    use_nuts3code=True,
+    year=2022,
+).to_csv("dr_cts_power_timeseries_2022.csv")
+
+############
+# Industry #
+############
+
+# Consumption
+spatial.disagg_CTS_industry(
+    sector='industry',
+    source='power',
+    use_nuts3code=True,
+    year=2022,
+).to_csv("dr_ind_power_demand_2022.csv")
+# Timeseries
+temporal.disagg_temporal_industry(
+    source="power",
+    detailed=False,
+    use_nuts3code=True,
+    no_self_gen=False,
+    year=2022,
+).to_csv("dr_ind_power_timeseries_2022.csv")
 ```
 
-### GHD und Industrie: Wärme/Gas
+### GHD: Gas
 
-Bedarfe und SLP-Zeitreihen je NUTS3
+Zeitreihen je NUTS3 für alle WZ bedarfsgewichtet aggregiert, Einzelprofile
+basieren je nach WZ auf gemessenen oder SLP inkl. Wanderung. Letzte verfügbare
+Daten aus 2017, Fortschreibung für 2022 mit Berücksichtigung Beschäftigte und
+Effizienzgewinne.
 
-TBD
+```python
+from disaggregator import spatial, temporal
+
+# Timeseries
+x=temporal.disagg_temporal_gas_CTS(
+    detailed=False,
+    use_nuts3code=True,
+    year=2011,
+).to_csv("dr_cts_gas_timeseries_2011.csv")
+```
+
+### Industrie: Gas
+
+Bedarfe und Zeitreihen je NUTS3
+- Bedarfe: Je Wirtschaftszweig (WZ), abzüglich Eigenerzeugung
+- Zeitreihen: Für alle WZ bedarfsgewichtet aggregiert, Einzelprofile basieren
+  je nach WZ auf gemessenen oder SLP inkl. Wanderung
+- Letzte verfügbare Daten aus 2017, Fortschreibung für 2022 mit
+  Berücksichtigung Beschäftigte und Effizienzgewinne
+
+```python
+from disaggregator import spatial, temporal
+
+# Consumption
+spatial.disagg_CTS_industry(
+    sector='industry',
+    source='gas',
+    use_nuts3code=True,
+    year=2022,
+).to_csv("dr_ind_gas_demand_2022.csv")
+# Timeseries
+x=temporal.disagg_temporal_industry(
+    source="gas",
+    detailed=False,
+    use_nuts3code=True,
+    no_self_gen=False,
+    year=2011,
+).to_csv("dr_ind_gas_timeseries_2011.csv")
+```

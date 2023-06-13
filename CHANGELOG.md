@@ -28,6 +28,17 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Add module 'data_io', containing relevant helper functions (downloading, extracting, copying, cleaning)
 - Create metadata
 - Add script to generate dataset md files for documentation
+- Add dataset: demand_heat_region
+- Add dataset: heatpump_cop
+- Add dataset: stala_st_energy
+- Add dataset: eurostat_lau
+- Add dataset: regstat_energy
+- Add dataset: dwd_temperature
+- Add dataset: ageb_energy_balance
+- Add dataset: seenergies_peta5
+- Add dataset: renewables.ninja_feedin
+- Add dataset: renewable_feedin
+- Add dataset: bnetza_mastr_correction_region and correct wrong units
 - Add Logging
 
 ### Changed
@@ -45,6 +56,8 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Update population with prognoses from demandregio dataset
 - Fix C419 flake8 error
 - Switch to mkdocs for documentation (Sphinx deleted)
+- Normalize renewable feedin timeseries
+- Fix instruction to obtain raw files
 
 ### Removed
 

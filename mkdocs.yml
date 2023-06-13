@@ -9,10 +9,12 @@ nav:
   - Digipipe: index.md
   - Hintergrund: docs/sections/background.md
   - Szenarien: docs/sections/scenarios.md
+  - Energiesystem: docs/sections/esys.md
   - Daten:
       - Raw: docs/datasets/raw_datasets.md
       - Preprocessed: docs/datasets/preprocessed_datasets.md
       - Datasets: docs/datasets/datasets_datasets.md
+      - Regionale Datensätze: docs/datasets/region_specific_datasets.md
   - Developer Docs (en):
       - Installation: docs/sections/installation.md
       - Data pipeline: docs/sections/data.md

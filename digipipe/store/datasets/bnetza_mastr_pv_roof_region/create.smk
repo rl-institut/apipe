@@ -23,6 +23,9 @@ rule create:
         units=SOURCE_DATASET_PATH / "bnetza_mastr_solar_raw.csv",
         locations=SOURCE_DATASET_PATH / "bnetza_mastr_locations_extended_raw.csv",
         gridconn=SOURCE_DATASET_PATH / "bnetza_mastr_grid_connections_raw.csv",
+        unit_correction=get_abs_dataset_path(
+            "raw", "bnetza_mastr_correction_region") /
+            "data" / "bnetza_mastr_pv_roof_region_correction.csv",
         region_muns=PATH_TO_REGION_MUNICIPALITIES_GPKG,
         region_districts=PATH_TO_REGION_DISTRICTS_GPKG
     output:

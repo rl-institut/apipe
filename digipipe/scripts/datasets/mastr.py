@@ -40,6 +40,78 @@ def cleanse(
     return units
 
 
+def apply_manual_corrections(
+    units_df: pd.DataFrame,
+    units_correction_df: pd.DataFrame,
+) -> pd.DataFrame:
+    """Correct units using manual correction dataset
+
+    Parameters
+    ----------
+    units_df : pd.DataFrame
+        Units from MaStR
+    units_correction_df : pd.DataFrame
+        Correction data
+    Returns
+    -------
+    pd.DataFrame
+        Corrected units
+    """
+    for attr in units_correction_df.wrong_attr.unique():
+        # Correct site type (roof- or ground-mounted)
+        if attr == "site_type":
+            units_correction_site_df = units_correction_df.copy().loc[
+                units_correction_df.wrong_attr == "site_type"
+            ][["correction"]]
+            units_df.loc[
+                units_correction_site_df.index, "Lage"
+            ] = units_correction_site_df["correction"]
+            print(
+                f"Applied {len(units_correction_site_df)} "
+                f"corrections for column: {attr}"
+            )
+        # Correct geometry
+        elif attr == "geometry":
+            units_correction_geom_df = units_correction_df.copy()
+            units_correction_geom_df[["x", "y"]] = (
+                units_correction_geom_df.loc[
+                    (units_correction_geom_df.wrong_attr == "geometry")
+                    & (units_correction_geom_df.correction != "None")
+                ]
+                .correction.str.split(",", expand=True)
+                .astype(float)
+            )
+            units_correction_geom_df = gpd.GeoDataFrame(
+                units_correction_geom_df,
+                geometry=gpd.points_from_xy(
+                    units_correction_geom_df.x,
+                    units_correction_geom_df.y,
+                    crs=3035,
+                ),
+                crs=3035,
+            ).to_crs(4326)
+            units_correction_geom_df = units_correction_geom_df.loc[
+                ~units_correction_geom_df.geometry.is_empty
+            ]
+            units_correction_geom_df = units_correction_geom_df.assign(
+                lon=units_correction_geom_df.geometry.x,
+                lat=units_correction_geom_df.geometry.y,
+            )
+            units_df.loc[
+                units_correction_geom_df.index, ["Laengengrad", "Breitengrad"]
+            ] = units_correction_geom_df[["lon", "lat"]]
+            print(
+                f"Applied {len(units_correction_geom_df)} "
+                f"corrections for column: {attr}"
+            )
+        # If attribute does not exist
+        else:
+            raise NotImplementedError(
+                f"Correction of PV roof for attribute '{attr}' is not supported"
+            )
+    return units_df.reset_index()
+
+
 def add_voltage_level(
     units_df: pd.DataFrame,
     locations_path: str,

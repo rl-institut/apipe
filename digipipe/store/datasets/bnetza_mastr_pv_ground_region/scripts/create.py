@@ -18,6 +18,18 @@ def process() -> None:
         snakemake.input.units,
         usecols=set(attrs.keys()) | set(attrs_filter.keys()),
         dtype={"Postleitzahl": str},
+        index_col="EinheitMastrNummer",
+    )
+
+    # Apply corrections
+    unit_correction = pd.read_csv(
+        snakemake.input.unit_correction,
+        delimiter=";",
+        index_col="mastr_id",
+    )
+    units = mastr.apply_manual_corrections(
+        units_df=units,
+        units_correction_df=unit_correction,
     )
 
     units = rename_filter_attributes(

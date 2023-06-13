@@ -24,9 +24,18 @@ El. export,#737a8c
 El. import,#737a8c
 BEV charging,#e55c19
 
-H2 backpressure CHP,#0F8A8A
-CH4 backpressure CHP,#128E10
-CH4 extraction CHP,#c0e519
+CH4 central CCGT,#c0e519
+CH4 decentral CCGT,#daee78
+H2 central CCGT,#13acac
+H2 decentral CCGT,#7dc8c7
+Wood central CHP,#92583f
+Wood decentral CHP,#a48070
+Biogas central CHP,#b7cbb2
+Biogas decentral CHP,#cfdccb
+CH4 central CHP,#128E10
+CH4 decentral CHP,#74B465
+H2 central CHP,#0F8A8A
+H2 decentral CHP,#73B0AF
 
 Heat cen. demand,#ff0800
 Heat cen. excess,#DBDBDB

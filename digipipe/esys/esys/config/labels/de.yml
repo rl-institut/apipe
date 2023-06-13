@@ -5,10 +5,14 @@ biomass-shortage: Biomasse Shortage
 biogas: Biogas
 biogas-biogas_upgrading_plant: Biogas-Aufbereitungsanlage
 biogas-shortage: Biogas Shortage
+biogas-bpchp_central: Biogas zentrale KWK
+biogas-bpchp_decentral: Biogas dezentrale KWK
 ch4-boiler: CH4 Boiler
-ch4-bpchp: CH4 KWK (Gegendruck)
+ch4-bpchp_central: CH4 zentrale KWK
+ch4-bpchp_decentral: CH4 dezentrale KWK
 ch4-excess: CH4 Überschuss
-ch4-extchp: CH4 KWK (Entnahmekond.)
+ch4-extchp_central: CH4 zentrale GUD
+ch4-extchp_decentral: CH4 dezentrale GUD
 ch4-gt: CH4 GT
 ch4-import: CH4 Import
 electricity-bev_charging: BEV
@@ -23,12 +27,13 @@ electricity-large_scale_battery: Großbatterie
 electricity-small_scale_battery: Kleinbatterie
 electricity-pth: res. PtH
 electricity-shortage: Strom
-h2-bpchp: H2 KWK (Gegendruck)
+h2-bpchp_central: H2 zentrale KWK
+h2-bpchp_decentral: H2 dezentrale KWK
 h2-cavern: H2 Kaverne
 h2-demand: H2 Bedarf
 h2-excess: H2 Überschuss
-h2-gt: H2 GT
-hard coal: Steinkohle
+h2-extchp_central: H2 zentrale GUD
+h2-extchp_decentral: H2 dezentrale GUD
 h2-import: H2 Import
 h2-shortage: H2 Import
 heat_central-demand: zen. Wärmebedarf
@@ -44,7 +49,10 @@ hydro-ror: Laufwasserkraft
 lignite: Braunkohle
 lignite-shortage: Braunkohle Shortage
 nuclear-st: Kernkraftwerk
+hard coal: Steinkohle
 wood: Holz
+wood-extchp_central: Holz zentrale KWK
+wood-extchp_decentral: Holz dezentrale KWK
 wood-shortage: Holz Shortage
 other: Andere
 solar-pv: PV

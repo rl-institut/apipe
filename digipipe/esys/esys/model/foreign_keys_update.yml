@@ -58,9 +58,17 @@
 ]
 
 'chp': [
+    'ch4-bpchp_central',
     'ch4-bpchp_decentral',
     'ch4-extchp_central',
+    'ch4-extchp_decentral',
+    'biogas-bpchp_central',
+    'biogas-bpchp_decentral',
+    'wood-extchp_central',
+    'wood-extchp_decentral',
+#    'h2-bpchp_central',
 #    'h2-bpchp_decentral',
+#    'h2-extchp_central',
 #    'h2-extchp_decentral',
 ]
 

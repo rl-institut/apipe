@@ -59,6 +59,33 @@ ch4-extchp_central:
     electricity_bus: electricity
     heat_bus: heat_central
 
+ch4-extchp_decentral:
+  carrier: ch4
+  tech: extchp_decentral
+  type: extraction
+  foreign_keys:
+    fuel_bus: ch4
+    electricity_bus: electricity
+    heat_bus: heat_decentral
+
+wood-extchp_decentral:
+  carrier: wood
+  tech: extchp_decentral
+  type: extraction
+  foreign_keys:
+    fuel_bus: wood
+    electricity_bus: electricity
+    heat_bus: heat_decentral
+
+wood-extchp_central:
+  carrier: wood
+  tech: extchp_central
+  type: extraction
+  foreign_keys:
+    fuel_bus: wood
+    electricity_bus: electricity
+    heat_bus: heat_central
+
 ch4-bpchp_decentral:
   carrier: ch4
   tech: bpchp_decentral
@@ -67,6 +94,33 @@ ch4-bpchp_decentral:
     fuel_bus: ch4
     electricity_bus: electricity
     heat_bus: heat_decentral
+
+ch4-bpchp_central:
+  carrier: ch4
+  tech: bpchp_central
+  type: backpressure
+  foreign_keys:
+    fuel_bus: ch4
+    electricity_bus: electricity
+    heat_bus: heat_central
+
+biogas-bpchp_decentral:
+  carrier: biogas
+  tech: bpchp_decentral
+  type: backpressure
+  foreign_keys:
+    fuel_bus: biogas
+    electricity_bus: electricity
+    heat_bus: heat_decentral
+
+biogas-bpchp_central:
+  carrier: biogas
+  tech: bpchp_central
+  type: backpressure
+  foreign_keys:
+    fuel_bus: biogas
+    electricity_bus: electricity
+    heat_bus: heat_central
 
 electricity-bev_charging:
   carrier: electricity
@@ -395,6 +449,15 @@ biogas-shortage:
 #  defaults:
 #    output_parameters: "{}"
 #
+#h2-bpchp_central:
+#  carrier: h2
+#  tech: bpchp_central
+#  type: backpressure
+#  foreign_keys:
+#    fuel_bus: h2
+#    electricity_bus: electricity
+#    heat_bus: heat_central
+#
 #h2-bpchp_decentral:
 #  carrier: h2
 #  tech: bpchp_decentral
@@ -412,6 +475,15 @@ biogas-shortage:
 #    fuel_bus: h2
 #    electricity_bus: electricity
 #    heat_bus: heat_central
+#
+#h2-extchp_decentral:
+#  carrier: h2
+#  tech: extchp_decentral
+#  type: extraction
+#  foreign_keys:
+#    fuel_bus: h2
+#    electricity_bus: electricity
+#    heat_bus: heat_decentral
 #
 #h2-demand:
 #  carrier: h2

@@ -10,7 +10,7 @@ DATASET_PATH = get_abs_dataset_path("datasets", "renewable_feedin")
 
 rule normalize_feedin_timeseries:
     """
-    normalize feedin timeseries and drop time index
+    Normalize feedin timeseries and drop time index
     """
     input:
         get_abs_dataset_path(
@@ -25,7 +25,7 @@ rule normalize_feedin_timeseries:
 
 rule copy_full_load_hours:
     """
-    copy full load hours
+    Copy full load hours
     """
     input:
         get_abs_dataset_path(

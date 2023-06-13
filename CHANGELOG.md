@@ -62,6 +62,9 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Fix instruction to obtain raw files
 - Exchange the Test_scenario with the scenarios status_quo_scenario and
   2045_scenario of *esys* in digipipe/esys/scenarios directory
+- Changes were applied to the energy system. Among others RoR, small batteries
+  and biogas were added. A distinction was made between centralized and
+  decentralized CHPs
 
 ### Removed
 

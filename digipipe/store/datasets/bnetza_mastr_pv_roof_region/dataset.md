@@ -11,3 +11,10 @@ ungefähre Position bereit zu stellen.
 Neben einem anlagenscharfen Datensatz wird ein weiterer Datensatz erzeugt,
 der alle Anlagen mit approximierter Position je Position zusammenfasst und
 jeweils typische Kennwerte enthält (u.a. Anzahl Anlagen, Gesamtleistung).
+
+## Datenkorrektur
+
+Einige Anlagen sind hinsichtlich Ihrer geografischen Lage oder Typs fehlerhaft.
+Anhand des Datensatzes
+[bnetza_mastr_correction_region](../../raw/bnetza_mastr_correction_region/dataset.md)
+wird für diese Anlagen eine Datenkorrektur vorgenommen.

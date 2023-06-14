@@ -3,29 +3,36 @@ Snakefile for this dataset
 
 Note: To include the file in the main workflow, it must be added to the respective module.smk .
 """
-import json
 import pandas as pd
 from digipipe.store.utils import get_abs_dataset_path
 
 DATASET_PATH = get_abs_dataset_path("datasets", "renewable_feedin")
 
-rule rescale_timeseries:
+rule normalize_feedin_timeseries:
     """
-    Get raw feedin timeseries and scale to full load hours
+    Normalize feedin timeseries and drop time index
     """
     input:
-        raw_ts=get_abs_dataset_path(
+        get_abs_dataset_path(
             "raw", "renewables.ninja_feedin") / "data" /
-            "{tech}_feedin_timeseries.csv",
-        full_load_hours=get_abs_dataset_path(
+            "{tech}_feedin_timeseries.csv"
+    output:
+        DATASET_PATH / "data" / "{tech}_feedin_timeseries.csv",
+    run:
+        feedin_timeseries = pd.read_csv(input[0]).power
+        feedin_timeseries = feedin_timeseries.div(feedin_timeseries.sum())
+        feedin_timeseries.to_csv(output[0])
+
+rule copy_full_load_hours:
+    """
+    Copy full load hours
+    """
+    input:
+        get_abs_dataset_path(
             "raw", "renewables.ninja_feedin") / "data" / "full_load_hours.json"
     output:
-        today_ts=DATASET_PATH / "data" / "{tech}_feedin_timeseries_today.csv",
-        future_ts=DATASET_PATH / "data" / "{tech}_feedin_timeseries_future.csv"
-    run:
-        feedin_timeseries = pd.read_csv(input.raw_ts).power
-        with open(input.full_load_hours, "r") as f:
-            flh=json.load(f)["full_load_hours"].get(wildcards.tech)
-
-        feedin_timeseries.mul(flh.get("today")).to_csv(output.today_ts)
-        feedin_timeseries.mul(flh.get("future")).to_csv(output.future_ts)
+        DATASET_PATH / "data" / "full_load_hours.json"
+    shell:
+        """
+        cp -p {input} {output}
+        """

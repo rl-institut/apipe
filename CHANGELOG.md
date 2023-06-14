@@ -38,6 +38,7 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Add dataset: seenergies_peta5
 - Add dataset: renewables.ninja_feedin
 - Add dataset: renewable_feedin
+- Add dataset: bnetza_mastr_correction_region and correct wrong units
 
 ### Changed
 
@@ -54,6 +55,8 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Update population with prognoses from demandregio dataset
 - Fix C419 flake8 error
 - Switch to mkdocs for documentation (Sphinx deleted)
+- Normalize renewable feedin timeseries
+- Fix instruction to obtain raw files
 - Translate all dataset.md files to German
 
 ### Removed

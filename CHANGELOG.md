@@ -60,8 +60,7 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Switch to mkdocs for documentation (Sphinx deleted)
 - Normalize renewable feedin timeseries
 - Fix instruction to obtain raw files
-- Exchange the Test_scenario with the scenarios status_quo_scenario and
-  2045_scenario of *esys* in digipipe/esys/scenarios directory
+- Exchange *Test_scenario* with *2045_scenario* in *digipipe/esys/scenarios*
 
 ### Removed
 

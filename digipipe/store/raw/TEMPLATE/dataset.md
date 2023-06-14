@@ -1,50 +1,48 @@
-# Name of the dataset
+# Name des Datensatzes
 
-Here comes a short description of the dataset.
-This is helpful for documentation and report generation purposes.
+Eine kurze Beschreibung des Datensatzes. 
+Diese hilft der Dokumentation und bei der Erstellung des Berichts.
 
-# Notes (just for information, must not be part of the dataset.md file)
+# Notizen (nur zur Infomration, dieese müssen nicht Teil des dataset.md files sein.)
 
-Naming convention: `<source_datasetname>` (lower case), e.g. for a dataset on
-natural reserves by the Bundesamt für Naturschutz (BfN) you would name the dir
-`bfn_natural_reserves` or similar.
+Benennungskonvention: `<quelle_datasetname>` (Kleinschreibung), z.B. ein Datensatz über
+Naturschutzgebiete des Bundesamtes für Naturschutz (BfN) könnte `bfn_natural_reserves` heißen.
 
-What is a dataset? Well, there are different definitions around but in the
-workflow of this pipeline a dataset is a collection of data treated as a
-single unit which can consist of multiple files and identified by a single
-metadata file.
+Was ist ein Datensatz? Es gibt verschiedene Definitionen, aber in dieser Pipeline ist ein Datensatz eine Sammlung von Daten, 
+die als eine Einheit behandelt, welche aus mehreren Dateien bestehen 
+und durch eine einzige Metadaten-Datei identifiziert werden kann.
 
-Examples:
+Beispiele:
 - [OSM Germany](https://download.geofabrik.de/europe/germany-latest.osm.pbf)
 - [ERA5 weather dataset](https://cds.climate.copernicus.eu/cdsapp#!/dataset/reanalysis-era5-single-levels?tab=overview)
 - [BKG administrative areas](https://gdz.bkg.bund.de/index.php/default/verwaltungsgebiete-1-250-000-stand-01-01-vg250-01-01.html)
 
-Put raw files into dir `data` and, if possible, do not rename the file(s).
+Rohdateien kommen in das Verzeichnis `data` und werden nach Möglichkeit nicht umbenannt.
 
-## Description
+## Beschreibung
 
-Please provide at least a brief description:
+Bitte gib zumindest eine kurze Beschreibung:
 
-- What is this dataset about?
-- Are there any specific things worth to know? (apart from metadata that MUST
-  be created, see below)
+- Worum geht es in dem Datensatz
+- Gibt es Besonderheiten, die es zu wissen gilt? (neben Metadaten, welche UNBEDINGT 
+  erstellt werden muss, dazu unten mehr)
 
-A quick and dirty description is better than no description.
+Eine schnelle und suboptimale Beschreibung ist besser als keine.
 
-## Metadata
+## Metadaten
 
-Add a metadata for every raw/original dataset you put here for describing data
-with machine-readable information. Adhere to the
-[OEP](https://openenergy-platform.org/about/) Metadata v1.5.1. You can make
-use of the [Metadata creator](https://meta.rl-institut.de/meta_creator/151).
+Füge für jeden Roh-/Originaldatensatz, der erstellt wird, Metadaten zur Beschreibung der Daten
+mit maschinenlesbaren Informationen hinzu. 
+Folge der [OEP](https://openenergy-platform.org/about/) Metadaten v1.5.1. 
+Es kann der [Metadata creator](https://meta.rl-institut.de/meta_creator/151) verwendet werden.
 
-See the [metadata.json](metadata.json) file in this directory.
+Zum Vergleich die [metadata.json](metadata.json) in diesem Verzeichnis.
 
-Alternatively, you can create them manually: follow
-[this example](https://github.com/OpenEnergyPlatform/oemetadata/blob/develop/metadata/latest/example.json)
-to understand how the fields are used. Field are described in detail in the
-[Open Energy Metadata Description](https://github.com/OpenEnergyPlatform/oemetadata/blob/develop/metadata/v141/metadata_key_description.md).
-Please verify that your metadata string is in compliance with the OEP Metadata
-standard using the [OMI tool](https://github.com/OpenEnergyPlatform/omi).
-If your metadata string is compliant, OMI puts the keys in the correct order
-and  prints the full string (use `-o` option for export).
+Alternativ kann sie auch manuell erstellt werden: 
+Folgen Sie [dieses Beispiel](https://github.com/OpenEnergyPlatform/oemetadata/blob/develop/metadata/latest/example.json)
+um zu verstehen, wie die Felder verwendet werden. Die Felder werden in der
+[Open Energy Metadata Description](https://github.com/OpenEnergyPlatform/oemetadata/blob/develop/metadata/v141/metadata_key_description.md) im Detail beschrieben.
+Bitte überprüfe, ob der Metadatenstring den OEP-Metadaten
+Standards entspricht, indem das [OMI-Tool](https://github.com/OpenEnergyPlatform/omi) verwendet wird.
+Wenn der Metadatenstring konform ist, bringt OMI die Schlüssel in die richtige Reihenfolge
+und gibt den vollständigen string aus (verwenden Sie für den Export die Option `-o`).

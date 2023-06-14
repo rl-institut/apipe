@@ -6,7 +6,7 @@
 Photovoltaik-Aufdachanlagen in der Region aus MaStR-Registerdaten als
 Geopackage.
 Es werden alle Anlagen berücksichtigt, die in Betrieb sind oder sich in
-Planung befinden. Anlagen mit Geokoordinaten werden gereferenziert
+Planung befinden. Anlagen mit Geokoordinaten werden georeferenziert
 übernommen, für Anlagen die keine Koordinaten aufweisen (üblicherweise <=30
 kW Nennleistung) erfolgt ein Geocoding anhand von PLZ und Ort, um eine
 ungefähre Position bereit zu stellen.
@@ -23,7 +23,7 @@ jeweils typische Kennwerte enthält (u.a. Anzahl Anlagen, Gesamtleistung).
 
 Biomasse-/Biogasanlagen in der Region aus MaStR-Registerdaten als Geopackage.
 Es werden alle Anlagen berücksichtigt, die in Betrieb sind oder sich in
-Planung befinden. Anlagen mit Geokoordinaten werden gereferenziert
+Planung befinden. Anlagen mit Geokoordinaten werden georeferenziert
 übernommen, für Anlagen die keine Koordinaten aufweisen (üblicherweise <=30
 kW Nennleistung) erfolgt ein Geocoding anhand von PLZ und Ort, um eine
 ungefähre Position bereit zu stellen.
@@ -157,7 +157,7 @@ landesweiter Prognosen aus den
 
 Windenergieanlagen in der Region aus MaStR-Registerdaten als Geopackage.
 Es werden alle Anlagen berücksichtigt, die in Betrieb sind oder sich in
-Planung befinden. Anlagen mit Geokoordinaten werden gereferenziert
+Planung befinden. Anlagen mit Geokoordinaten werden georeferenziert
 übernommen, für Anlagen die keine Koordinaten aufweisen (üblicherweise <=30
 kW Nennleistung) erfolgt ein Geocoding anhand von PLZ und Ort, um eine
 ungefähre Position bereit zu stellen.
@@ -183,7 +183,7 @@ gefiltert (Geofaktor 4 = "mit Struktur Land").
 
 Verbrennungskraftwerke in der Region aus MaStR-Registerdaten als Geopackage.
 Es werden alle Anlagen berücksichtigt, die in Betrieb sind oder sich in
-Planung befinden. Anlagen mit Geokoordinaten werden gereferenziert
+Planung befinden. Anlagen mit Geokoordinaten werden georeferenziert
 übernommen, für Anlagen die keine Koordinaten aufweisen (üblicherweise <=30
 kW Nennleistung) erfolgt ein Geocoding anhand von PLZ und Ort, um eine
 ungefähre Position bereit zu stellen.
@@ -244,7 +244,7 @@ Verwendet Datensätze
 Photovoltaik-Freiflächenanlagen in der Region aus MaStR-Registerdaten als
 Geopackage.
 Es werden alle Anlagen berücksichtigt, die in Betrieb sind oder sich in
-Planung befinden. Anlagen mit Geokoordinaten werden gereferenziert
+Planung befinden. Anlagen mit Geokoordinaten werden georeferenziert
 übernommen, für Anlagen die keine Koordinaten aufweisen (üblicherweise <=30
 kW Nennleistung) erfolgt ein Geocoding anhand von PLZ und Ort, um eine
 ungefähre Position bereit zu stellen.
@@ -405,7 +405,7 @@ Hierbei wird nach Technologien für dezentrale sowie Fernwärme unterschieden.
 
 Wasserkraftanlagen in der Region aus MaStR-Registerdaten als Geopackage.
 Es werden alle Anlagen berücksichtigt, die in Betrieb sind oder sich in
-Planung befinden. Anlagen mit Geokoordinaten werden gereferenziert
+Planung befinden. Anlagen mit Geokoordinaten werden georeferenziert
 übernommen, für Anlagen die keine Koordinaten aufweisen (üblicherweise <=30
 kW Nennleistung) erfolgt ein Geocoding anhand von PLZ und Ort, um eine
 ungefähre Position bereit zu stellen.
@@ -432,7 +432,7 @@ Landmasse gefiltert (Geofaktor 4 = "mit Struktur Land").
 Anlagen der Geo- oder Solarthermie, Grubengas und Klärschlamm in der Region
 aus MaStR-Registerdaten als Geopackage.
 Es werden alle Anlagen berücksichtigt, die in Betrieb sind oder sich in
-Planung befinden. Anlagen mit Geokoordinaten werden gereferenziert
+Planung befinden. Anlagen mit Geokoordinaten werden georeferenziert
 übernommen, für Anlagen die keine Koordinaten aufweisen (üblicherweise <=30
 kW Nennleistung) erfolgt ein Geocoding anhand von PLZ und Ort, um eine
 ungefähre Position bereit zu stellen.
@@ -490,7 +490,7 @@ in die [config.yml](config.yml) im Abschnitt `extrapolation` eingetragen werden.
 
 Speicheranlagen in der Region aus MaStR-Registerdaten als Geopackage.
 Es werden alle Anlagen berücksichtigt, die in Betrieb sind oder sich in
-Planung befinden. Anlagen mit Geokoordinaten werden gereferenziert
+Planung befinden. Anlagen mit Geokoordinaten werden georeferenziert
 übernommen, für Anlagen die keine Koordinaten aufweisen (üblicherweise <=30
 kW Nennleistung) erfolgt ein Geocoding anhand von PLZ und Ort, um eine
 ungefähre Position bereit zu stellen.

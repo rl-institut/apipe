@@ -19,8 +19,8 @@ components:
   - electricity-bev_charging
   - electricity-curtailment
   - electricity-demand_hh
-  - electricity-demand_ghd
-  - electricity-demand_i
+  - electricity-demand_cts
+  - electricity-demand_ind
 #  - electricity-electrolyzer
   - electricity-heatpump_large
   - electricity-heatpump_small
@@ -35,8 +35,8 @@ components:
   - ch4-boiler_small
   - ch4-bpchp_small
   - ch4-demand_hh
-  - ch4-demand_ghd
-  - ch4-demand_i
+  - ch4-demand_cts
+  - ch4-demand_ind
   - ch4-excess
   - ch4-gt
   - ch4-extchp_large
@@ -44,8 +44,8 @@ components:
 
   - biomass-import
   - biomass-demand_hh
-  - biomass-demand_ghd
-  - biomass-demand_i
+  - biomass-demand_cts
+  - biomass-demand_ind
 
 #  - h2-chp_small
 #  - h2-cavern
@@ -67,15 +67,15 @@ components:
   - lignite-oven
 
   - heat_central-demand_hh
-  - heat_central-demand_ghd
-  - heat_central-demand_i
+  - heat_central-demand_cts
+  - heat_central-demand_ind
   - heat_central-excess
   - heat_central-shortage
   - heat_central-storage
 
   - heat_decentral-demand_hh
-  - heat_decentral-demand_ghd
-  - heat_decentral-demand_i
+  - heat_decentral-demand_cts
+  - heat_decentral-demand_ind
   - heat_decentral-excess
   - heat_decentral-shortage
   - heat_decentral-storage

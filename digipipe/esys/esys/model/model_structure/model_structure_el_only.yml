@@ -13,8 +13,8 @@ components:
   - biomass-import
   - biomass-export
   - biomass-demand_hh
-  - biomass-demand_ghd
-  - biomass-demand_i
+  - biomass-demand_cts
+  - biomass-demand_ind
   - biomass-excess
   - biomass-shortage
   -
@@ -23,8 +23,8 @@ components:
   - electricity-bev_charging
   - electricity-curtailment
   - electricity-demand_hh
-  - electricity-demand_ghd
-  - electricity-demand_i
+  - electricity-demand_cts
+  - electricity-demand_ind
 #  - electricity-electrolyzer
   - electricity-large_scale_battery
   - electricity-shortage
@@ -32,8 +32,8 @@ components:
   - ch4-import
   - ch4-export
   - ch4-demand_hh
-  - ch4-demand_ghd
-  - ch4-demand_i
+  - ch4-demand_cts
+  - ch4-demand_ind
   - ch4-excess
   - ch4-gt
   - ch4-shortage

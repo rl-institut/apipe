@@ -94,21 +94,21 @@ electricity-demand_hh:
     bus: electricity
     profile: electricity-demand_hh-profile
 
-electricity-demand_ghd:
+electricity-demand_cts:
   carrier: electricity
-  tech: demand_ghd
+  tech: demand_cts
   type: load
   foreign_keys:
     bus: electricity
-    profile: electricity-demand_ghd-profile
+    profile: electricity-demand_cts-profile
 
-electricity-demand_i:
+electricity-demand_ind:
   carrier: electricity
-  tech: demand_i
+  tech: demand_ind
   type: load
   foreign_keys:
     bus: electricity
-    profile: electricity-demand_i-profile
+    profile: electricity-demand_ind-profile
 
 electricity-heatpump_large:
   carrier: electricity
@@ -173,21 +173,21 @@ heat_central-demand_hh:
     bus: heat_central
     profile: heat_central-demand_hh-profile
 
-heat_central-demand_ghd:
+heat_central-demand_cts:
   carrier: heat_central
-  tech: demand_ghd
+  tech: demand_cts
   type: load
   foreign_keys:
     bus: heat_central
-    profile: heat_central-demand_ghd-profile
+    profile: heat_central-demand_cts-profile
 
-heat_central-demand_i:
+heat_central-demand_ind:
   carrier: heat_central
-  tech: demand_i
+  tech: demand_ind
   type: load
   foreign_keys:
     bus: heat_central
-    profile: heat_central-demand_i-profile
+    profile: heat_central-demand_ind-profile
 
 heat_central-excess:
   carrier: heat_central
@@ -271,21 +271,21 @@ heat_decentral-demand_hh:
     bus: heat_decentral
     profile: heat_decentral-demand_hh-profile
 
-heat_decentral-demand_ghd:
+heat_decentral-demand_cts:
   carrier: heat_decentral
-  tech: demand_ghd
+  tech: demand_cts
   type: load
   foreign_keys:
     bus: heat_decentral
-    profile: heat_decentral-demand_ghd-profile
+    profile: heat_decentral-demand_cts-profile
 
-heat_decentral-demand_i:
+heat_decentral-demand_ind:
   carrier: heat_decentral
-  tech: demand_i
+  tech: demand_ind
   type: load
   foreign_keys:
     bus: heat_decentral
-    profile: heat_decentral-demand_i-profile
+    profile: heat_decentral-demand_ind-profile
 
 heat_decentral-excess:
   carrier: heat_decentral
@@ -345,21 +345,21 @@ ch4-demand_hh:
     bus: ch4
     profile: ch4-demand_hh-profile
 
-ch4-demand_ghd:
+ch4-demand_cts:
   carrier: ch4
-  tech: demand_ghd
+  tech: demand_cts
   type: load
   foreign_keys:
     bus: ch4
-    profile: ch4-demand_ghd-profile
+    profile: ch4-demand_cts-profile
 
-ch4-demand_i:
+ch4-demand_ind:
   carrier: ch4
-  tech: demand_i
+  tech: demand_ind
   type: load
   foreign_keys:
     bus: ch4
-    profile: ch4-demand_i-profile
+    profile: ch4-demand_ind-profile
 
 ch4-shortage:
   carrier: ch4
@@ -457,21 +457,21 @@ biomass-demand_hh:
     bus: biomass
     profile: biomass-demand_hh-profile
 
-biomass-demand_ghd:
+biomass-demand_cts:
   carrier: biomass
-  tech: demand_ghd
+  tech: demand_cts
   type: load
   foreign_keys:
     bus: biomass
-    profile: biomass-demand_ghd-profile
+    profile: biomass-demand_cts-profile
 
-biomass-demand_i:
+biomass-demand_ind:
   carrier: biomass
-  tech: demand_i
+  tech: demand_ind
   type: load
   foreign_keys:
     bus: biomass
-    profile: biomass-demand_i-profile
+    profile: biomass-demand_ind-profile
 
 
 # Bus "h2":

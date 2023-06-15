@@ -1,3 +1,3 @@
-# Municipalities population
+# Bevölkerung
 
-Municipalities with population from the Federal Statistical Office.
+Einwohnerzahl nach Gemeinden des Statistischen Bundesamts.

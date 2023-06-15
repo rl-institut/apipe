@@ -15,6 +15,9 @@ include: "snakemake_rules/create_empty_scalars.smk"
 include: "snakemake_rules/create_empty_ts.smk"
 
 rule make_esys_appdata:
+    """
+    Create esys datapackage for the app from esys raw data
+    """
     input:
         plots=expand(
             "store/appdata/esys/{scenario}/preprocessed",

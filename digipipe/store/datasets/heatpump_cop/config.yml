@@ -1,0 +1,19 @@
+##############################################################################
+# This file holds configuration parameters for the creation of this dataset. #
+##############################################################################
+
+# Heatpump parameters
+heatpumps:
+  technology:
+    # Market shares
+    share_ASHP: 0.5
+    share_GSHP: 0.5
+  params:
+    heating_temp: 40
+    quality_grade_ASHP: 0.4
+    quality_grade_GSHP: 0.4
+    icing_factor: 0.8
+    icing_temp: 2
+    # Seasonal performance factors (efficiency gain until 2045)
+    spf_ASHP: 1.25
+    spf_GSHP: 1.25

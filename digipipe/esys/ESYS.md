@@ -10,12 +10,25 @@ To test if everything works, you can run the test scenario with
 ```
 snakemake -j1 make_esys_appdata
 ```
+
 For this you have to copy the corresponding raw data from into the raw directory
 `store/esys_raw/`.
 In the future, empty raw data (scalars and time series) will be created
 automatically. Then, assumptions on constant parameters such as plant costs,
 lifetime and efficiencies are mapped and set as values of the corresponding
 variables in the scalars.
+
+Empty scalars and time series can be created from the energy model setup with
+
+```
+snakemake -j1 create_empty_scalars
+snakemake -j1 create_empty_ts
+```
+
+These prompts create empty csv files with scalars and time series in the
+following directories:
+- `store/datasets/esys_raw/data/scalars/`
+- `store/datasets/esys_raw/data/time_series/`
 
 To set up an empty energy system, the following prompt automatically writes
 default scalar values (such as zero or NaN) to the empty scalars:

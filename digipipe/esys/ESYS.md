@@ -10,6 +10,7 @@ To test if everything works, you can run the test scenario with
 ```
 snakemake -j1 make_esys_appdata
 ```
+
 For this you have to copy the corresponding raw data from into the raw directory
 `store/esys_raw/`.
 In the future, empty raw data (scalars and time series) will be created
@@ -26,5 +27,5 @@ snakemake -j1 create_empty_ts
 
 These prompts create empty csv files with scalars and time series in the
 following directories:
-- `digipipe/digipipe/store/datasets/esys_raw/data/scalars/`
-- `digipipe/digipipe/store/datasets/esys_raw/data/time_series/`
+- `store/datasets/esys_raw/data/scalars/`
+- `store/datasets/esys_raw/data/time_series/`

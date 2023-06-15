@@ -62,6 +62,7 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Normalize renewable feedin timeseries
 - Fix instruction to obtain raw files
 - Translate all dataset.md files to German
+- Exchange *Test_scenario* with *2045_scenario* in *digipipe/esys/scenarios*
 - Split each demand per sector in *esys*
 
 ### Removed

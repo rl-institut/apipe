@@ -72,10 +72,10 @@ Handel, Dienstleistungen (GHD) und Industrie für mehrere Zieljahre.
 
 
 ------------------------------
-## OpenStreetMap filtered
+## OpenStreetMap gefiltert
 
-OSM data filtered for specific tags, reprojected to LAEA Europe (EPSG:3035)
-and converted to Geopackage.
+OSM data nach bestimmten tags gefiltert, zu LAEA Europe (EPSG:3035) umprojiziert
+und in ein Geopackage konvertiert.
 
 **Dataset: `preprocessed/osm_filtered`**
 
@@ -92,9 +92,9 @@ Anzahl Beschäftigte und Betriebe extrahiert und in CSV konvertiert.
 
 
 ------------------------------
-## Power units from Marktstammdatenregister
+## Erzeugungsanlagen aus Marktstammdatenregister
 
-Power units from MaStR extracted for selected technologies.
+Erzeugungsanlagen aus dem MaStR für ausgewählte Technologien.
 
 **Dataset: `preprocessed/bnetza_mastr`**
 
@@ -162,9 +162,9 @@ Raw dataset:
 
 
 ------------------------------
-## Population
+## Bevölkerung
 
-Municipalities with population from the Federal Statistical Office for years
+Einwohnerzahl nach Gemeinden des Statistischen Bundesamts für die Jahre
 2010, 2015, 2020, 2021, 2022.
 
 **Dataset: `preprocessed/destatis_gv`**

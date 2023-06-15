@@ -6,7 +6,7 @@
 Photovoltaik-Aufdachanlagen in der Region aus MaStR-Registerdaten als
 Geopackage.
 Es werden alle Anlagen berücksichtigt, die in Betrieb sind oder sich in
-Planung befinden. Anlagen mit Geokoordinaten werden gereferenziert
+Planung befinden. Anlagen mit Geokoordinaten werden georeferenziert
 übernommen, für Anlagen die keine Koordinaten aufweisen (üblicherweise <=30
 kW Nennleistung) erfolgt ein Geocoding anhand von PLZ und Ort, um eine
 ungefähre Position bereit zu stellen.
@@ -30,7 +30,7 @@ wird für diese Anlagen eine Datenkorrektur vorgenommen.
 
 Biomasse-/Biogasanlagen in der Region aus MaStR-Registerdaten als Geopackage.
 Es werden alle Anlagen berücksichtigt, die in Betrieb sind oder sich in
-Planung befinden. Anlagen mit Geokoordinaten werden gereferenziert
+Planung befinden. Anlagen mit Geokoordinaten werden georeferenziert
 übernommen, für Anlagen die keine Koordinaten aufweisen (üblicherweise <=30
 kW Nennleistung) erfolgt ein Geocoding anhand von PLZ und Ort, um eine
 ungefähre Position bereit zu stellen.
@@ -164,7 +164,7 @@ landesweiter Prognosen aus den
 
 Windenergieanlagen in der Region aus MaStR-Registerdaten als Geopackage.
 Es werden alle Anlagen berücksichtigt, die in Betrieb sind oder sich in
-Planung befinden. Anlagen mit Geokoordinaten werden gereferenziert
+Planung befinden. Anlagen mit Geokoordinaten werden georeferenziert
 übernommen, für Anlagen die keine Koordinaten aufweisen (üblicherweise <=30
 kW Nennleistung) erfolgt ein Geocoding anhand von PLZ und Ort, um eine
 ungefähre Position bereit zu stellen.
@@ -190,7 +190,7 @@ gefiltert (Geofaktor 4 = "mit Struktur Land").
 
 Verbrennungskraftwerke in der Region aus MaStR-Registerdaten als Geopackage.
 Es werden alle Anlagen berücksichtigt, die in Betrieb sind oder sich in
-Planung befinden. Anlagen mit Geokoordinaten werden gereferenziert
+Planung befinden. Anlagen mit Geokoordinaten werden georeferenziert
 übernommen, für Anlagen die keine Koordinaten aufweisen (üblicherweise <=30
 kW Nennleistung) erfolgt ein Geocoding anhand von PLZ und Ort, um eine
 ungefähre Position bereit zu stellen.
@@ -251,7 +251,7 @@ Verwendet Datensätze
 Photovoltaik-Freiflächenanlagen in der Region aus MaStR-Registerdaten als
 Geopackage.
 Es werden alle Anlagen berücksichtigt, die in Betrieb sind oder sich in
-Planung befinden. Anlagen mit Geokoordinaten werden gereferenziert
+Planung befinden. Anlagen mit Geokoordinaten werden georeferenziert
 übernommen, für Anlagen die keine Koordinaten aufweisen (üblicherweise <=30
 kW Nennleistung) erfolgt ein Geocoding anhand von PLZ und Ort, um eine
 ungefähre Position bereit zu stellen.
@@ -419,7 +419,7 @@ Hierbei wird nach Technologien für dezentrale sowie Fernwärme unterschieden.
 
 Wasserkraftanlagen in der Region aus MaStR-Registerdaten als Geopackage.
 Es werden alle Anlagen berücksichtigt, die in Betrieb sind oder sich in
-Planung befinden. Anlagen mit Geokoordinaten werden gereferenziert
+Planung befinden. Anlagen mit Geokoordinaten werden georeferenziert
 übernommen, für Anlagen die keine Koordinaten aufweisen (üblicherweise <=30
 kW Nennleistung) erfolgt ein Geocoding anhand von PLZ und Ort, um eine
 ungefähre Position bereit zu stellen.
@@ -446,7 +446,7 @@ Landmasse gefiltert (Geofaktor 4 = "mit Struktur Land").
 Anlagen der Geo- oder Solarthermie, Grubengas und Klärschlamm in der Region
 aus MaStR-Registerdaten als Geopackage.
 Es werden alle Anlagen berücksichtigt, die in Betrieb sind oder sich in
-Planung befinden. Anlagen mit Geokoordinaten werden gereferenziert
+Planung befinden. Anlagen mit Geokoordinaten werden georeferenziert
 übernommen, für Anlagen die keine Koordinaten aufweisen (üblicherweise <=30
 kW Nennleistung) erfolgt ein Geocoding anhand von PLZ und Ort, um eine
 ungefähre Position bereit zu stellen.
@@ -504,7 +504,7 @@ in die [config.yml](config.yml) im Abschnitt `extrapolation` eingetragen werden.
 
 Speicheranlagen in der Region aus MaStR-Registerdaten als Geopackage.
 Es werden alle Anlagen berücksichtigt, die in Betrieb sind oder sich in
-Planung befinden. Anlagen mit Geokoordinaten werden gereferenziert
+Planung befinden. Anlagen mit Geokoordinaten werden georeferenziert
 übernommen, für Anlagen die keine Koordinaten aufweisen (üblicherweise <=30
 kW Nennleistung) erfolgt ein Geocoding anhand von PLZ und Ort, um eine
 ungefähre Position bereit zu stellen.
@@ -525,33 +525,18 @@ verwendet, siehe [Szenarien](../../../../docs/sections/scenarios.md).
 Raw dataset mit methodischer Beschreibung:
 [renewables.ninja_feedin](../../raw/renewables.ninja_feedin/dataset.md)
 
-### Windenergie
+### Einspeisezeitreihen
 
-Normiert auf typische heutige bzw. prognostizierte Jahresvolllaststunden.
+Zeitreihe normiert auf Summe=1 für
 
-- Einspeisezeitreihe 2022: `wind_feedin_timeseries_today.csv`
-- Einspeisezeitreihe 2045: `wind_feedin_timeseries_future.csv`
+- Windenergie: `wind_feedin_timeseries.csv`
+- Photovoltaik: `pv_feedin_timeseries.csv`
+- Solarthermie: `st_feedin_timeseries.csv`
+- Laufwasserkraft: `ror_feedin_timeseries.csv`
 
-### Photovoltaik
+### Jahresvolllaststunden
 
-Normiert auf typische heutige bzw. prognostizierte Jahresvolllaststunden.
-
-- Einspeisezeitreihe 2022: `pv_feedin_timeseries_today.csv`
-- Einspeisezeitreihe 2045: `pv_feedin_timeseries_future.csv`
-
-### Solarthermie
-
-Normiert auf 1 p.u.
-
-- Einspeisezeitreihe 2022: `st_feedin_timeseries_today.csv`
-- Einspeisezeitreihe 2045: `st_feedin_timeseries_future.csv`
-
-### Laufwasserkraft
-
-Normiert auf typische heutige bzw. prognostizierte Jahresvolllaststunden.
-
-- Einspeisezeitreihe 2022: `ror_feedin_timeseries_today.csv`
-- Einspeisezeitreihe 2045: `ror_feedin_timeseries_future.csv`
+Heutige bzw. prognostizierte Jahresvolllaststunden: `full_load_hours.json`
 
 **Dataset: `datasets/renewable_feedin`**
 

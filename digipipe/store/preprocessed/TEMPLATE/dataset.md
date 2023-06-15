@@ -1,4 +1,4 @@
-# Name of the dataset
+# Name des Datensatzes
 
-Here comes a short description of the dataset.
-This is helpful for documentation and report generation purposes.
+Eine kurze Beschreibung des Datensatzes.
+Diese hilft der Dokumentation und bei der Erstellung des Berichts.

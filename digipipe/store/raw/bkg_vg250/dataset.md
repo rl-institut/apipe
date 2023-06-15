@@ -1,3 +1,3 @@
-# Administative areas of Germany
+# Verwaltungsgebiete Deutschlands
 
-Administative areas of Germany (Verwaltungsgebiete 1:250 000).
+Verwaltungsgebiete Deutschlands (Verwaltungsgebiete 1:250 000).

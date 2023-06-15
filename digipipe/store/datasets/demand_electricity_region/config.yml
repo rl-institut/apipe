@@ -20,7 +20,7 @@ cts_electricity_demand:
       2045
     ]
 
-# industry demand: years to create demand prognoses for
+# Industry demand: years to create demand prognoses for
 ind_electricity_demand:
   years:
     [
@@ -28,3 +28,7 @@ ind_electricity_demand:
       #2035,
       2045
     ]
+
+# Industry demand: dataset to be used for today's industrial power consumption,
+# must be one of ["demandregio", "stala"]
+ind_electricity_demand_source: "stala"

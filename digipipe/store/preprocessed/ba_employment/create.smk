@@ -30,6 +30,6 @@ rule create:
     input:
         DATASET_PATH / "data" / "gemband_dlk_0.xlsb"
     output:
-        DATASET_PATH / "data" / "employees.csv"
+        DATASET_PATH / "data" / "employment_muns.csv"
     script:
         DATASET_PATH / "scripts" / "create.py"

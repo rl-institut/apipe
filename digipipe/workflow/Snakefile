@@ -48,7 +48,32 @@ rule all:
         demand_cts_con=rules.datasets_demand_electricity_region_cts_merge_demand_years.output,
         demand_ind_ts=rules.datasets_demand_electricity_region_ind_normalize_timeseries.output,
         demand_ind_con=rules.datasets_demand_electricity_region_ind_merge_demand_years.output,
+
+        # Some temp rules to generate intermediate data
+        x=expand(
+            get_abs_dataset_path("datasets", "demand_heat_region") / "data" / "demand_{sector}_heat_demand_dec.csv",
+            sector=["hh", "cts", "ind"]
+        ),
+        x2=expand(
+            get_abs_dataset_path("datasets","demand_heat_region") / "data" / "demand_{sector}_heat_demand_cen.csv",
+            sector=["hh", "cts", "ind"]
+        ),
+        x3=expand(
+            get_abs_dataset_path("datasets", "demand_heat_region") / "data" / "demand_{sector}_heat_timeseries.csv",
+                sector=["hh", "cts", "ind"]
+        ),
+        x5=get_abs_dataset_path("datasets", "demand_heat_region") / "data" / "demand_heat_structure_dec.csv",
+        x6=get_abs_dataset_path("datasets", "demand_heat_region") / "data" / "demand_heat_structure_esys_dec.csv",
+
+        feedin_wind=expand(
+            get_abs_dataset_path("datasets", "renewable_feedin") / "data" / "{tech}_feedin_timeseries.csv",
+            tech=["wind", "pv", "st","ror"],
+        ),
+        full_load_hours=get_abs_dataset_path("datasets", "renewable_feedin") / "data" / "full_load_hours.json",
+        z=rules.datasets_heatpump_cop_merge.output,
+
         esys_appdata=rules.make_esys_appdata.output
+
     # run:
     #     print("CONFIG MAIN:")
     #     print(config)

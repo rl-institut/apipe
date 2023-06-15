@@ -21,6 +21,16 @@ module bkg_vg250_muns_region:
     config: config["store"]["datasets"]["bkg_vg250_muns_region"]
 use rule * from bkg_vg250_muns_region as datasets_bkg_vg250_muns_region_*
 
+module bkg_vg250_state:
+    snakefile: "bkg_vg250_state/create.smk"
+    config: config["store"]["datasets"]["bkg_vg250_state"]
+use rule * from bkg_vg250_state as datasets_bkg_vg250_state_*
+
+module bkg_vg250_federal_states:
+    snakefile: "bkg_vg250_federal_states/create.smk"
+    config: config["store"]["datasets"]["bkg_vg250_federal_states"]
+use rule * from bkg_vg250_federal_states as datasets_bkg_vg250_federal_states_*
+
 module bkg_vg250_region:
     snakefile: "bkg_vg250_region/create.smk"
     config: config["store"]["datasets"]["bkg_vg250_region"]
@@ -90,3 +100,18 @@ module demand_electricity_region:
     snakefile: "demand_electricity_region/create.smk"
     config: config["store"]["datasets"]["demand_electricity_region"]
 use rule * from demand_electricity_region as datasets_demand_electricity_region_*
+
+module heatpump_cop:
+    snakefile: "heatpump_cop/create.smk"
+    config: config["store"]["datasets"]["heatpump_cop"]
+use rule * from heatpump_cop as datasets_heatpump_cop_*
+
+module demand_heat_region:
+    snakefile: "demand_heat_region/create.smk"
+    config: config["store"]["datasets"]["demand_heat_region"]
+use rule * from demand_heat_region as datasets_demand_heat_region_*
+
+module renewable_feedin:
+    snakefile: "renewable_feedin/create.smk"
+    config: config["store"]["datasets"]["renewable_feedin"]
+use rule * from renewable_feedin as datasets_renewable_feedin_*

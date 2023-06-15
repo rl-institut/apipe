@@ -1,3 +1,3 @@
-# Power units from Marktstammdatenregister
+# Erzeugungsanlagen aus Marktstammdatenregister
 
-Power units from MaStR extracted for selected technologies.
+Erzeugungsanlagen aus dem MaStR für ausgewählte Technologien.

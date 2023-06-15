@@ -41,6 +41,7 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Add dataset: bnetza_mastr_correction_region and correct wrong units
 - Integrate building of energy system for appdata in pipeline via dir *esys*
 - Update store with dir structure for *esys* data
+- Add creation of empty time series for the *esys*
 
 ### Changed
 
@@ -60,6 +61,7 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Switch to mkdocs for documentation (Sphinx deleted)
 - Normalize renewable feedin timeseries
 - Fix instruction to obtain raw files
+- Translate all dataset.md files to German
 - Exchange *Test_scenario* with *2045_scenario* in *digipipe/esys/scenarios*
 - Changes were applied to the energy system. Among others RoR, small batteries
   and biogas were added. A distinction was made between centralized and

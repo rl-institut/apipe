@@ -284,13 +284,24 @@ lignite-oven:
   defaults:
     output_parameters: "{}"
 
-solar-thermalcollector:
+solar-thermalcollector_central:
   carrier: solar
-  tech: thermalcollector
+  tech: thermalcollector_central
+  type: volatile
+  foreign_keys:
+    bus: heat_central
+    profile: solar-thermalcollector_central-profile
+  defaults:
+    marginal_cost: 0
+    output_parameters: "{}"
+
+solar-thermalcollector_decentral:
+  carrier: solar
+  tech: thermalcollector_decentral
   type: volatile
   foreign_keys:
     bus: heat_decentral
-    profile: solar-thermalcollector-profile
+    profile: solar-thermalcollector_decentral-profile
   defaults:
     marginal_cost: 0
     output_parameters: "{}"

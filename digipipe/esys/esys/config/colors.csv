@@ -1,5 +1,7 @@
 ,Color
 PV,#e2c319
+Heat cen. solar thermal collector,#84741d
+Heat dec. solar thermal collector,#a59124
 Wind on,#19c5e5
 Hydro reservoir,#4a19e5
 Hydro ROR,#6d19e5

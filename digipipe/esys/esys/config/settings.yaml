@@ -1,0 +1,58 @@
+general:
+  prepare_resources_locally: True
+  plot_filetype: .png
+  ts_index_name: id_ts
+  scal_index_name: id_scal
+  separator: ";"
+
+labels: de
+
+build_datapackage:
+  el_gas_relation: electricity_gas_relation  # appears in optimize as well
+  emission: emission
+  additional_scalars_file: additional_scalars.csv
+  overwrite_name: false
+
+optimize:
+  filename_metadata: datapackage.json
+  solver: cbc
+  solve_kwargs:
+    tee: True
+    keepfiles: True
+  write_lp_file: False
+  cmdline_options:
+    AllowableGap: 0.01
+  debug: true
+  receive_duals: false
+  el_gas_relation: electricity_gas_relation  # appears in build_datapackage as well
+  el_key: electricity  # prefix of keywords for gas electricity relation
+  gas_key: gas  # prefix of keywords for gas electricity relation
+
+create_empty_scalars:
+  non_regional: [
+     "capacity_cost",
+     "carrier_cost",
+     "efficiency",
+     "expandable",
+     "marginal_cost",
+     "electric_efficiency",
+     "thermal_efficiency",
+     "condensing_efficiency",
+     "loss_rate",
+     "storage_capacity_cost",
+  ]
+  wacc: {
+      "var_name": "wacc",
+      "carrier": "ALL",
+      "region": "ALL",
+      "tech": "ALL",
+      "type": "ALL",
+      "var_unit": "None",
+  }
+  drop_default_scalars: True
+
+create_empty_ts:
+  datetime_format: "%Y-%m-%d %H:%M:%S"
+  filter_ts: "empty_ts"
+  ts_values: "zeros"  # Set to 'zeros' or 'empty'
+  overwrite: false

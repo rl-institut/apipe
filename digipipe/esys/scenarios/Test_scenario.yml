@@ -1,0 +1,56 @@
+# This scenario config file contains information for several steps in the model pipeline, i.e.
+# build_datapackage, parametrize, optimize and potentially also postprocess or plot.
+
+# build_datapackage
+
+name: Test_scenario
+label: Test-Scenario
+
+datetimeindex:
+  start:
+    "2019-01-01 00:00:00"
+  freq:
+    "H"
+  periods:
+    8760
+
+model_structure:
+  model_structure_full
+
+# parametrize
+
+paths_scalars:
+  - store/datasets/esys_raw/data/scalars/capacities.csv
+  - store/datasets/esys_raw/data/scalars/potentials.csv
+  - store/datasets/esys_raw/data/scalars/carrier_costs.csv
+  - store/datasets/esys_raw/data/scalars/import_export_prices.csv
+  - store/datasets/esys_raw/data/scalars/demands.csv
+  - store/datasets/esys_raw/data/scalars/emission_constraint.csv
+  - store/datasets/esys_raw/data/scalars/el_gas_constraint.csv
+  - store/appdata/esys/_resources/scal_costs_efficiencies.csv
+
+filter_scalars:
+  1:
+    scenario_key:
+      - "ALL"
+      - "dummy_scenario"
+
+paths_resources:
+
+
+paths_timeseries:
+  - store/datasets/esys_raw/data/time_series/ts_load_ch4.csv
+  - store/datasets/esys_raw/data/time_series/ts_efficiency_heatpump_small.csv
+  - store/datasets/esys_raw/data/time_series/ts_feedin.csv
+  - store/datasets/esys_raw/data/time_series/ts_load_electricity.csv
+  - store/datasets/esys_raw/data/time_series/ts_load_heat.csv
+  - store/datasets/esys_raw/data/time_series/ts_load_wood.csv
+  - store/datasets/esys_raw/data/time_series/ts_load_lignite.csv
+  - store/datasets/esys_raw/data/time_series/ts_load_biomass.csv
+  - store/datasets/esys_raw/data/time_series/ts_load_electricity_vehicles.csv
+
+filter_timeseries:
+  scenario_key:
+    - "dummy_scenario"
+  timeindex_start:
+    "2019-01-01 00:00:00"

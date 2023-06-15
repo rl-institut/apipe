@@ -1,3 +1,3 @@
 # OpenStreetMap
 
-OpenStreetMap data extract for Sachsen-Anhalt.
+OpenStreetMap Datenauszug von Sachsen-Anhalt.

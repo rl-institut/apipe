@@ -25,7 +25,7 @@ Stromverbrauch der Industriebetriebe nach Kreisen 2003-2021 in MWh
 ------------------------------
 ## OpenStreetMap
 
-OpenStreetMap data extract for Sachsen-Anhalt.
+OpenStreetMap Datenauszug von Sachsen-Anhalt.
 
 **Dataset: `raw/osm_sachsen-anhalt`**
 
@@ -260,180 +260,6 @@ Anwendungszwecken für Jahre von 2011 bis 2021 der AG Energiebilanzen.
         "Quellen": {
             "Website": "https://ag-energiebilanzen.de/daten-und-fakten/anwendungsbilanzen/",
             "File": "https://ag-energiebilanzen.de/wp-content/uploads/2023/01/AGEB_21p2_V3_20221222.pdf"
-        }
-    }
-    ```
-
-------------------------------
-## Global Wind Atlas Windleistungsdichte
-
-Windleistungsdichte aus dem Global Wind Atlas 3.0 in 100 und 150 m Höhe in
-einer Auflösung von 250 m.
-
-**Dataset: `raw/globalwindatlas_power_density`**
-
-??? metadata "Metadata"
-    ```json
-    {
-        "ACHTUNG": "METADATEN AUS PV- UND WINDFL\u00c4CHENRECHNER, NOCH auf DIGIPLAN ANZUPASSEN!",
-        "name": "rli_wam_windleistungsdichte (wind_power_density)",
-        "title": "RLI - Windleistungsdichte in Deutschland",
-        "id": "wind_power_density",
-        "description": "Fl\u00e4chendeckender Datensatz der langfristigen, mittleren Windleistungsdichte in 150 m H\u00f6he je Bundesland.",
-        "language": [
-            "de-DE"
-        ],
-        "title_german_plural": "Windleistungsdichten",
-        "title_german_singular": "Windleistungsdichte",
-        "variable_name": "wind_power_density",
-        "keywords": [
-            "RLI",
-            "Windleistungsdichte",
-            "Wind"
-        ],
-        "publicationDate": "2021-10-01",
-        "context": {
-            "homepage": "https://reiner-lemoine-institut.de/",
-            "documentation": "https://doi.org/10.5281/zenodo.4731920",
-            "sourceCode": "https://github.com/rl-institut",
-            "contact": "https://reiner-lemoine-institut.de/forschungsfelder/transformation-von-energiesystemen-2/",
-            "grantNo": null,
-            "fundingAgency": "Agora Energiewende, Reiner Lemoine Stiftung",
-            "fundingAgencyLogo": "https://www.agora-energiewende.de/fileadmin2/downloads/presse/agora_logo_RGB.jpg",
-            "publisherLogo": "https://reiner-lemoine-institut.de//wp-content/uploads/2015/09/rlilogo.png"
-        },
-        "spatial": {
-            "location": null,
-            "extent": "Germany",
-            "resolution": "150 m"
-        },
-        "temporal": {
-            "referenceDate": null,
-            "timeseries": {
-                "start": null,
-                "end": null,
-                "resolution": null,
-                "alignment": null,
-                "aggregationType": null
-            }
-        },
-        "sources": [
-            {
-                "title": "Global Wind Atlas 3.0",
-                "description": "Global Wind Atlas 3.0, a free, web-based application developed, owned and operated by the Technical University of Denmark (DTU). The Global Wind Atlas 3.0 is released in partnership with the World Bank Group, utilizing data provided by Vortex, using funding provided by the Energy Sector Management Assistance Program (ESMAP). For additional information: https://globalwindatlas.info",
-                "path": "https://globalwindatlas.info/api/gis/country/DEU/power-density/150",
-                "licenses": [
-                    {
-                        "name": "CC BY 4.0",
-                        "title": "Creative Commons Attribution 4.0 International license, CC BY 4.0",
-                        "path": "https://globalwindatlas.info/about/TermsOfUse",
-                        "instruction": "You are free: To Share, To Create, To Adapt; As long as you: Attribute.",
-                        "attribution": "Global Wind Atlas 3.0, a free, web-based application developed, owned and operated by the Technical University of Denmark (DTU). The Global Wind Atlas 3.0 is released in partnership with the World Bank Group, utilizing data provided by Vortex, using funding provided by the Energy Sector Management Assistance Program (ESMAP). For additional information: https://globalwindatlas.info"
-                    }
-                ]
-            },
-            {
-                "title": "RLI - Djagora-Data Pipeline",
-                "description": "Data preprocessing for Djagora project",
-                "path": "https://github.com/rl-institut",
-                "licenses": [
-                    {
-                        "name": "",
-                        "title": "",
-                        "path": "",
-                        "instruction": "",
-                        "attribution": "Djagora-Data Pipeline \u00a9 Reiner Lemoine Institut"
-                    }
-                ]
-            }
-        ],
-        "licenses": [
-            {
-                "name": "CC BY 4.0",
-                "title": "Creative Commons Attribution 4.0 International license, CC BY 4.0",
-                "path": "https://creativecommons.org/licenses/by/4.0/",
-                "instruction": "You are free: To Share, To Create, To Adapt; As long as you: Attribute.",
-                "attribution": "This work is licensed by Reiner Lemoine Institut under a CC BY 4.0. It is a derivative of \u201cGlobal Wind Atlas 3.0\u201d by the original copyright holder used under CC BY 4.0. Global Wind Atlas 3.0, is a free, web-based application developed, owned and operated by the Technical University of Denmark (DTU). The Global Wind Atlas 3.0 is released in partnership with the World Bank Group, utilizing data provided by Vortex, using funding provided by the Energy Sector Management Assistance Program (ESMAP). For additional information: https://globalwindatlas.info"
-            }
-        ],
-        "contributors": [
-            {
-                "title": "nesnoj",
-                "email": "https://github.com/nesnoj",
-                "date": "2023-06-11",
-                "object": "metadata",
-                "comment": "Create metadata"
-            }
-        ],
-        "resources": [
-            {
-                "profile": "tabular-data-resource",
-                "name": "wind_power_density.gpkg",
-                "path": "",
-                "format": "gpkg",
-                "encoding": "UTF-8",
-                "schema": {
-                    "fields": [
-                        {
-                            "name": "fid",
-                            "description": "Unique identifier",
-                            "type": "integer",
-                            "unit": "none"
-                        },
-                        {
-                            "name": "id",
-                            "description": "Unique identifier",
-                            "type": "integer",
-                            "unit": "none"
-                        },
-                        {
-                            "name": "nuts",
-                            "description": "European Regional Code",
-                            "type": "text",
-                            "unit": "none"
-                        },
-                        {
-                            "name": "power_density_mean",
-                            "description": "Average power density of region",
-                            "type": "float",
-                            "unit": "W/m2"
-                        },
-                        {
-                            "name": "geom",
-                            "description": "Geometry",
-                            "type": "geometry(Multipolygon)",
-                            "unit": "none"
-                        }
-                    ],
-                    "primaryKey": "id",
-                    "foreignKeys": []
-                },
-                "dialect": {
-                    "delimiter": null,
-                    "decimalSeparator": "."
-                }
-            }
-        ],
-        "review": {
-            "path": null,
-            "badge": null
-        },
-        "metaMetadata": {
-            "metadataVersion": "OEP-1.4.1",
-            "metadataLicense": {
-                "name": "CC0-1.0",
-                "title": "Creative Commons Zero v1.0 Universal",
-                "path": "https://creativecommons.org/publicdomain/zero/1.0/"
-            }
-        },
-        "_comment": {
-            "metadata": "Metadata documentation and explanation (https://github.com/OpenEnergyPlatform/oemetadata/blob/master/metadata/v141/metadata_key_description.md)",
-            "dates": "Dates and time must follow the ISO8601 including time zone (YYYY-MM-DD or YYYY-MM-DDThh:mm:ss\u00b1hh)",
-            "units": "Use a space between numbers and units (100 m)",
-            "languages": "Languages must follow the IETF (BCP47) format (en-GB, en-US, de-DE)",
-            "licenses": "License name must follow the SPDX License List (https://spdx.org/licenses/)",
-            "review": "Following the OEP Data Review (https://github.com/OpenEnergyPlatform/data-preprocessing/wiki)",
-            "null": "If not applicable, enter 'null' without any quotation marks around it"
         }
     }
     ```
@@ -674,12 +500,28 @@ der Bundesagentur für Arbeit.
     ```
 
 ------------------------------
-## Power units from Marktstammdatenregister
+## Costs and efficiencies of components
 
-Power units from Marktstammdatenregister obtained and dumped with the
-[open-mastr](https://github.com/OpenEnergyPlatform/open-MaStR) tool. The
-dump was created with:
+Cost and efficiencies of components gathered from various sources.
 
+**Dataset: `raw/costs_efficiencies`**
+
+??? metadata "Metadata"
+    ```json
+    {
+        "Originale Datenquelle": [
+            "https://ens.dk/en/our-services/projections-and-models/technology-data",
+            "TBD"
+        ]
+    }
+    ```
+
+------------------------------
+## Erzeugungsanlagen aus Marktstammdatenregister
+
+Ereugungsanlagen aus dem Markstammdatenregister, das mit dem Tool
+[open-mastr](https://github.com/OpenEnergyPlatform/open-MaStR) erstellt und
+abgelegt wurde. Die Daten wurden folgendermaßen erstellt:
 ```
 from open_mastr import Mastr
 db = Mastr()
@@ -687,14 +529,14 @@ db.download("bulk")
 db.to_csv(None)  # (None for all data)
 ```
 
-The dumped CSV files (all tables) have been extended by a custom export of
-storage units with
-`sqlite3 -header -csv -separator "," open-mastr.db "select * from storage_units;" > bnetza_mastr_storage_unit_raw.csv`.
-Subsequently, all files were zipped.
+Die abgelegten CSV-Dateien (alle Tabellen) wurden um einen benutzerdefinierten
+Export von Speichereinheiten mit
+`sqlite3 -header -csv -separator "," open-mastr.db "select * from storage_units;" > bnetza_mastr_storage_unit_raw.csv`
+erweitert. Anschließend wurden alle Dateien komprimiert.
 
-The Marktstammdatenregister (MaStR) is a German register provided by the
-German Federal Network Agency (Bundesnetzagentur / BNetza) that keeps
-track of all power and gas units located in Germany.
+Das Marktstammdatenregister (MaStR) ist ein deutsches Register, welches von der
+Bundesnetzagentur (BNetza) bereitgestellt wird und alle in Deutschland
+befindlichen Strom- und Gasanlagen erfasst.
 
 **Dataset: `raw/bnetza_mastr`**
 
@@ -1231,9 +1073,9 @@ Sachsen-Anhalt. Stand: 2021
     ```
 
 ------------------------------
-## Municipalities population
+## Bevölkerung
 
-Municipalities with population from the Federal Statistical Office.
+Einwohnerzahl nach Gemeinden des Statistischen Bundesamts.
 
 **Dataset: `raw/destatis_gv`**
 
@@ -1606,9 +1448,9 @@ Global Solar Atlas.
     ```
 
 ------------------------------
-## Administative areas of Germany
+## Verwaltungsgebiete Deutschlands
 
-Administative areas of Germany (Verwaltungsgebiete 1:250 000).
+Verwaltungsgebiete Deutschlands (Verwaltungsgebiete 1:250 000).
 
 **Dataset: `raw/bkg_vg250`**
 

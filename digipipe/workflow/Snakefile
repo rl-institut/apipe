@@ -13,9 +13,16 @@ from digipipe.config import GLOBAL_CONFIG
 config = GLOBAL_CONFIG
 config.update(load_dataset_configs())
 
-# include store modules
+# Path to esys appdata
+APPDATA_ESYS_PATH = get_abs_dataset_path("appdata", "esys")
+
+# Include store modules
 include: "../store/preprocessed/module.smk"
 include: "../store/datasets/module.smk"
+
+# Include esys snakefiles
+include: "../esys/Snakefile"
+
 
 # ===== RULES =====
 
@@ -63,7 +70,9 @@ rule all:
             tech=["wind", "pv", "st","ror"],
         ),
         full_load_hours=get_abs_dataset_path("datasets", "renewable_feedin") / "data" / "full_load_hours.json",
-        z=rules.datasets_heatpump_cop_merge.output
+        z=rules.datasets_heatpump_cop_merge.output,
+
+        esys_appdata=rules.make_esys_appdata.output
 
     # run:
     #     print("CONFIG MAIN:")
@@ -91,6 +100,12 @@ rule clean:
         rm -f {params.preprocessed_logging}
         rm -f {params.datasets}
         rm -f {params.datasets_logging}
+
+        # Check if there are subdirectories in appdata esys dir
+        if [ "$(find {APPDATA_ESYS_PATH} -mindepth 1 -type d)" ]; then
+          rm -r {APPDATA_ESYS_PATH}/*
+        fi
+        echo "Removed all preprocessed data in directories: preprocessed, datasets and appdata."
         """
 
 

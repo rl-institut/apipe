@@ -39,6 +39,9 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Add dataset: renewables.ninja_feedin
 - Add dataset: renewable_feedin
 - Add dataset: bnetza_mastr_correction_region and correct wrong units
+- Integrate building of energy system for appdata in pipeline via dir *esys*
+- Update store with dir structure for *esys* data
+- Add creation of empty time series for the *esys*
 - Add Logging
 
 ### Changed
@@ -47,6 +50,7 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Retain mastr_id in MaStR datasets
 - Fix loading of empty yml files
 - Fix loading of global config when in workflow dir
+- Integrate esys Snakefile in workflow Snakefile and update clean rule
 - Fix shapely deprecation warning
 - Fix ogr2ogr conversion with recent GDAL version (v3.6.2)
 - Fix conda installation by removing python-gdal from environment.yml
@@ -58,6 +62,7 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Switch to mkdocs for documentation (Sphinx deleted)
 - Normalize renewable feedin timeseries
 - Fix instruction to obtain raw files
+- Translate all dataset.md files to German
 
 ### Removed
 

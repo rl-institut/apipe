@@ -1,0 +1,27 @@
+heat_central:
+  balanced:
+    True
+
+heat_decentral:
+  balanced:
+    True
+
+ch4:
+  balanced:
+    True
+
+wood:
+  balanced:
+    True
+
+lignite:
+  balanced:
+    True
+
+biomass:
+  balanced:
+    True
+
+#h2:
+#  balanced:
+#    True

@@ -1,4 +1,7 @@
 rule create_empty_ts:
+    """
+    Create empty timeseries files
+    """
     input: "esys/scenarios/"
     output:
         "store/datasets/esys_raw/data/time_series/empty_ts_load.csv",

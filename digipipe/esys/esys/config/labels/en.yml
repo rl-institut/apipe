@@ -46,7 +46,8 @@ heat_decentral-excess: Heat dec. excess
 heat_decentral-shortage: Heat dec. shortage
 heat_decentral-storage: Heat dec. storage
 hydro-ror: Hydro ROR
-solar-pv: PV
+solar-pv_ground: PV ground
+solar-pv_rooftop: PV rooftop
 solar-thermalcollector_central: Heat cen. solar thermal collector
 solar-thermalcollector_decentral: Heat dec. solar thermal collector
 wind-onshore: Wind on

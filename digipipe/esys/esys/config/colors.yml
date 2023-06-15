@@ -1,4 +1,5 @@
-solar-pv: "#e2c319"
+solar-pv_ground: "#e2c319"
+solar-pv_rooftop: "#ebd34e"
 solar-thermalcollector_central: "#84741d"
 solar-thermalcollector_decentral: "#a59124"
 wind-onshore: "#19c5e5"

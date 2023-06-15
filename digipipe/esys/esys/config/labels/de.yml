@@ -55,7 +55,8 @@ wood-extchp_central: Holz zentrale KWK
 wood-extchp_decentral: Holz dezentrale KWK
 wood-shortage: Holz Shortage
 other: Andere
-solar-pv: PV
+solar-pv_ground: PV Freifläche
+solar-pv_rooftop: PV Aufdach
 solar-thermalcollector_central: zen. Wärme Solarthermiekollektor
 solar-thermalcollector_decentral: dez. Wärme Solarthermiekollektor
 wind-offshore: Wind Offshore

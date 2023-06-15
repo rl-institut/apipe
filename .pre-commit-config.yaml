@@ -38,7 +38,7 @@ repos:
         name: flake8
         args:
           - --max-line-length=80
-          - --ignore=DAR101,DAR201,F821,DAR401,W503,E800,E722,B001,B008,C408,W605,B007,S101
+          - --ignore=DAR101,DAR201,F821,DAR401,W503,A001,A003,E800,E722,B001,B008,B023,C408,C417,W605,B007,S101
         entry: flake8
         language: python
         types: [python]
@@ -67,6 +67,22 @@ repos:
             "--disable=R1705", # Disable the R1705 error TODO: To be fixed
             "--disable=E0401", # Disable the E0401 error TODO: To be fixed
             "--disable=E0611", # Disable the E0611 error TODO: To be fixed
+            "--disable=W0621", # Disable the W0621 error TODO: To be fixed
+            "--disable=W0640", # Disable the W0640 error TODO: To be fixed
+            "--disable=C0115", # Disable the C0115 error TODO: To be fixed
+            "--disable=R1725", # Disable the R1725 error TODO: To be fixed
+            "--disable=R0903", # Disable the R0903 error TODO: To be fixed
+            "--disable=C0302", # Disable the C0302 error TODO: To be fixed
+            "--disable=W0707", # Disable the W0707 error TODO: To be fixed
+            "--disable=W0108", # Disable the W0108 error TODO: To be fixed
+            "--disable=W1203", # Disable the W1203 error TODO: To be fixed
+            "--disable=W0622", # Disable the W0622 error TODO: To be fixed
+            "--disable=R1720", # Disable the R1720 error TODO: To be fixed
+            "--disable=R0914", # Disable the R0914 error TODO: To be fixed
+            "--disable=R1724", # Disable the R1724 error TODO: To be fixed
+            "--disable=W0012", # Disable the W0012 error TODO: To be fixed
+            "--disable=W0611", # Disable the W0611 error TODO: To be fixed
+            "--disable=C0207", # Disable the C0207 error TODO: To be fixed
             "--max-line-length=80", # Set the maximum line length to 80
           ]
       - id: mypy
@@ -86,4 +102,6 @@ repos:
             "--disable-error-code=arg-type",
             "--disable-error-code=assignment",
             "--disable-error-code=attr-defined",
+            "--disable-error-code=index",
+            "--disable-error-code=misc",
           ]

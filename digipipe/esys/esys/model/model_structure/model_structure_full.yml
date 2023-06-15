@@ -1,0 +1,77 @@
+regions:
+  - ABW
+
+links:
+
+busses:
+  - ch4
+  - electricity
+  - heat_central
+  - heat_decentral
+  - wood
+  - lignite
+  - biomass
+#  - h2
+
+components:
+  - electricity-import
+  - electricity-export
+  - electricity-bev_charging
+  - electricity-curtailment
+  - electricity-demand
+#  - electricity-electrolyzer
+  - electricity-heatpump_large
+  - electricity-heatpump_small
+  - electricity-large_scale_battery
+  - electricity-pth_large
+  - electricity-pth_small
+  - electricity-shortage
+
+  - ch4-import
+  - ch4-export
+  - ch4-boiler_large
+  - ch4-boiler_small
+  - ch4-bpchp_small
+  - ch4-demand
+  - ch4-excess
+  - ch4-gt
+  - ch4-extchp_large
+  - ch4-shortage
+
+  - biomass-import
+  - biomass-demand
+
+#  - h2-chp_small
+#  - h2-cavern
+#  - h2-demand
+#  - h2-excess
+#  - h2-export
+#  - h2-bpchp_small
+#  - h2-gt
+#  - h2-extchp_large
+#  - h2-import
+#  - h2-shortage
+
+  - wood-import
+  - wood-demand
+  - wood-oven
+
+  - lignite-import
+  - lignite-demand
+  - lignite-oven
+
+  - heat_central-demand
+  - heat_central-excess
+  - heat_central-shortage
+  - heat_central-storage
+
+  - heat_decentral-demand
+  - heat_decentral-excess
+  - heat_decentral-shortage
+  - heat_decentral-storage
+
+  - biomass-fermenter
+  - solar-pv_ground
+  - solar-pv_rooftop
+  - solar-thermalcollector
+  - wind-onshore

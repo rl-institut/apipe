@@ -19,6 +19,7 @@ nav:
       - Installation: docs/sections/installation.md
       - Data pipeline: docs/sections/data.md
       - Workflow: docs/sections/workflow.md
+      - Build the energy system: docs/sections/esys_dev.md
       - Repo structure: docs/sections/structure.md
       - Docs: docs/sections/docs.md
 

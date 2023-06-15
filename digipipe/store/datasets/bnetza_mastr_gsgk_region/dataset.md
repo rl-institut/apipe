@@ -3,7 +3,7 @@
 Anlagen der Geo- oder Solarthermie, Grubengas und Klärschlamm in der Region
 aus MaStR-Registerdaten als Geopackage.
 Es werden alle Anlagen berücksichtigt, die in Betrieb sind oder sich in
-Planung befinden. Anlagen mit Geokoordinaten werden gereferenziert
+Planung befinden. Anlagen mit Geokoordinaten werden georeferenziert
 übernommen, für Anlagen die keine Koordinaten aufweisen (üblicherweise <=30
 kW Nennleistung) erfolgt ein Geocoding anhand von PLZ und Ort, um eine
 ungefähre Position bereit zu stellen.

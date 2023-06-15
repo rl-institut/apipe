@@ -525,33 +525,18 @@ verwendet, siehe [Szenarien](../../../../docs/sections/scenarios.md).
 Raw dataset mit methodischer Beschreibung:
 [renewables.ninja_feedin](../../raw/renewables.ninja_feedin/dataset.md)
 
-### Windenergie
+### Einspeisezeitreihen
 
-Normiert auf typische heutige bzw. prognostizierte Jahresvolllaststunden.
+Zeitreihe normiert auf Summe=1 für
 
-- Einspeisezeitreihe 2022: `wind_feedin_timeseries_today.csv`
-- Einspeisezeitreihe 2045: `wind_feedin_timeseries_future.csv`
+- Windenergie: `wind_feedin_timeseries.csv`
+- Photovoltaik: `pv_feedin_timeseries.csv`
+- Solarthermie: `st_feedin_timeseries.csv`
+- Laufwasserkraft: `ror_feedin_timeseries.csv`
 
-### Photovoltaik
+### Jahresvolllaststunden
 
-Normiert auf typische heutige bzw. prognostizierte Jahresvolllaststunden.
-
-- Einspeisezeitreihe 2022: `pv_feedin_timeseries_today.csv`
-- Einspeisezeitreihe 2045: `pv_feedin_timeseries_future.csv`
-
-### Solarthermie
-
-Normiert auf 1 p.u.
-
-- Einspeisezeitreihe 2022: `st_feedin_timeseries_today.csv`
-- Einspeisezeitreihe 2045: `st_feedin_timeseries_future.csv`
-
-### Laufwasserkraft
-
-Normiert auf typische heutige bzw. prognostizierte Jahresvolllaststunden.
-
-- Einspeisezeitreihe 2022: `ror_feedin_timeseries_today.csv`
-- Einspeisezeitreihe 2045: `ror_feedin_timeseries_future.csv`
+Heutige bzw. prognostizierte Jahresvolllaststunden: `full_load_hours.json`
 
 **Dataset: `datasets/renewable_feedin`**
 

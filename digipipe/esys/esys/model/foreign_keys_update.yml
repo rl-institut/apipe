@@ -11,7 +11,6 @@
     'electricity-demand_ind',
     'electricity-export',
     'electricity-import',
-    'electricity-shortage',
 #    'h2-cavern',
 #    'h2-demand',
 #    'h2-excess',

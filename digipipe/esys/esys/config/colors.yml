@@ -11,8 +11,6 @@ electricity-small_scale_battery: "#c453eb"
 h2-cavern: "#19e5c0"
 bev_charging: "#e55c19"
 
-electricity-shortage: "#DADADA"
-
 electricity-demand_hh: "#3e89f4"
 electricity-demand_gdh: "#3e89f4"
 electricity-demand_ind: "#3e89f4"

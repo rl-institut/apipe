@@ -28,7 +28,6 @@ components:
   - electricity-small_scale_battery
   - electricity-pth_central
   - electricity-pth_decentral
-  - electricity-shortage
 
   - ch4-import
   - ch4-boiler_central

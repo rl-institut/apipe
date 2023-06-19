@@ -27,7 +27,6 @@ electricity-import: Stromimport
 electricity-large_scale_battery: Großbatterie
 electricity-small_scale_battery: Kleinbatterie
 electricity-pth: res. PtH
-electricity-shortage: Strom
 h2-bpchp_central: H2 zentrale KWK
 h2-bpchp_decentral: H2 dezentrale KWK
 h2-cavern: H2 Kaverne

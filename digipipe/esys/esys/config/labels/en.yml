@@ -27,7 +27,6 @@ electricity-import: El. import
 electricity-large_scale_battery: Large-scale battery
 electricity-small_scale_battery: Small-scale battery
 electricity-pth: res. PtH
-electricity-shortage: El. shortage
 h2-bpchp_central: H2 central CHP
 h2-bpchp_decentral: H2 decentral CHP
 h2-extchp_central: H2 central CCGT

@@ -115,3 +115,8 @@ module renewable_feedin:
     snakefile: "renewable_feedin/create.smk"
     config: config["store"]["datasets"]["renewable_feedin"]
 use rule * from renewable_feedin as datasets_renewable_feedin_*
+
+module potentialarea_wind_region:
+    snakefile: "potentialarea_wind_region/create.smk"
+    config: config["store"]["datasets"]["potentialarea_wind_region"]
+use rule * from potentialarea_wind_region as datasets_potentialarea_wind_region_*

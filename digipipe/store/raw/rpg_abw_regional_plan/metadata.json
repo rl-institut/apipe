@@ -1,0 +1,7 @@
+{
+    "Quellen": {
+        "Sachlicher Teilplan Wind 2018": "https://www.planungsregion-abw.de/regionalplanung/teilplan-windenergie/teilplan-2018/",
+        "Geodaten Sachlicher Teilplan Wind 2018": "https://gis.planungsregion-abw.de/geoserver/stp_wind2018/ows?SERVICE=WFS&REQUEST=GetCapabilities",
+        "Sachlicher Teilplan Wind 2027": "https://www.planungsregion-abw.de/regionalplanung/teilplan-windenergie/teilplan-2027/"
+    }
+}

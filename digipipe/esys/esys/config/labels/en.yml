@@ -17,7 +17,9 @@ ch4-gt: CH4 GT
 ch4-import: CH4 import
 electricity-bev_charging: BEV charging
 electricity-curtailment: Curtailment
-electricity-demand: El. demand
+electricity-demand_hh: El. demand HH
+electricity-demand_cts: El. demand CTS
+electricity-demand_ind: El. demand IND
 electricity-electrolyzer: Electrolyzer
 electricity-export: El. export
 electricity-heatpump_central: Heat pump (DH)
@@ -37,11 +39,15 @@ h2-excess: H2 excess
 h2-gt: H2 GT
 h2-import: H2 import
 h2-shortage: H2 import
-heat_central-demand: Heat cen. demand
+heat_central-demand_hh: Heat cen. demand HH
+heat_central-demand_cts: Heat cen. demand CTS
+heat_central-demand_ind: Heat cen. demand IND
 heat_central-excess: Heat cen. excess
 heat_central-shortage: Heat cen. shortage
 heat_central-storage: Heat cen. storage
-heat_decentral-demand: Heat dec. demand
+heat_decentral-demand_hh: Heat dec. demand HH
+heat_decentral-demand_cts: Heat dec. demand CTS
+heat_decentral-demand_ind: Heat dec. demand IND
 heat_decentral-excess: Heat dec. excess
 heat_decentral-shortage: Heat dec. shortage
 heat_decentral-storage: Heat dec. storage

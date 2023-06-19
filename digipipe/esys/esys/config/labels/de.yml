@@ -17,7 +17,9 @@ ch4-gt: CH4 GT
 ch4-import: CH4 Import
 electricity-bev_charging: BEV
 electricity-curtailment: Abregelung
-electricity-demand: Strombedarf
+electricity-demand_hh: Strombedarf HH
+electricity-demand_cts: Strombedarf GHD
+electricity-demand_ind: Strombedarf I
 electricity-electrolyzer: Elektrolyse
 electricity-export: Stromexport
 electricity-heatpump_central: Wärmepumpe (groß)
@@ -36,11 +38,15 @@ h2-extchp_central: H2 zentrale GUD
 h2-extchp_decentral: H2 dezentrale GUD
 h2-import: H2 Import
 h2-shortage: H2 Import
-heat_central-demand: zen. Wärmebedarf
+heat_central-demand_hh: zen. Wärmebedarf HH
+heat_central-demand_cts: zen. Wärmebedarf GHD
+heat_central-demand_ind: zen. Wärmebedarf I
 heat_central-excess: zen. Wärmeüberschuss
 heat_central-shortage: zen. Wärme Shortage
 heat_central-storage: zen. Wärmespeicher
-heat_decentral-demand: dez. Wärmebedarf
+heat_decentral-demand_hh: dez. Wärmebedarf HH
+heat_decentral-demand_cts: dez. Wärmebedarf GHD
+heat_decentral-demand_ind: dez. Wärmebedarf I
 heat_decentral-excess: dez. Wärmeüberschuss
 heat_decentral-shortage: dez. Wärme Shortage
 heat_decentral-storage: dez. Wärmespeicher

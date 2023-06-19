@@ -1,5 +1,6 @@
-# This scenario config file contains information for several steps in the model pipeline, i.e.
-# build_datapackage, parametrize, optimize and potentially also postprocess or plot.
+# This scenario config file contains information for several steps in the model
+# pipeline, i.e. build_datapackage, parametrize, optimize and potentially also
+# postprocess or plot.
 
 # build_datapackage
 

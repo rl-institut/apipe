@@ -63,6 +63,7 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Fix instruction to obtain raw files
 - Translate all dataset.md files to German
 - Exchange *Test_scenario* with *2045_scenario* in *digipipe/esys/scenarios*
+- Split each demand per sector in *esys*
 - Changes were applied to the energy system. Among others RoR, small batteries
   and biogas were added. A distinction was made between centralized and
   decentralized CHPs

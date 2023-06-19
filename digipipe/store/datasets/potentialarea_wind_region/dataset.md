@@ -20,6 +20,9 @@ Dateien:
 - STP Wind 2027 - Suchraum Offenland:
   `potentialarea_wind_stp_2027_search_area_open_area.gpkg`
 
+Die darin verwendeten Attributtexte werden in die Datei
+`potentialarea_wind_attribute_captions.json` exportiert.
+
 Je Gemeinde und obigem Flächentyp/Datei wurde eine Flächensumme berechnet,
 siehe `potentialarea_wind_area_stats_muns.json`. Die Gemeinden werden über ihren
 Schlüssel `municipality_id` (vgl.

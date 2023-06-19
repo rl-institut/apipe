@@ -82,3 +82,21 @@ rule create_area_stats:
         # Dump
         with open(output[0], "w", encoding="utf8") as f:
             json.dump(area_dict, f, indent=4)
+
+rule create_captions:
+    """
+    Create attribute captions for app
+    """
+    input: rules.datasets_potentialarea_wind_region_create_area_stats.input
+    output: DATASET_PATH / "potentialarea_wind_attribute_captions.json"
+    run:
+        captions = {
+            "datasets_caption_map": {
+                Path(f).stem: "potentialarea_wind" for f in input
+            },
+            "captions": {
+                "potentialarea_wind": config["captions"]
+            }
+        }
+        with open(output[0], "w", encoding="utf8") as f:
+            json.dump(captions, f, indent=4)

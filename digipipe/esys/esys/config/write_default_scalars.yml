@@ -1,9 +1,51 @@
 write_default_scalars:
-  capacity: {
+  capacity_backpressure: {
     "var_name": "capacity",
-    "type": None,
+    "type": backpressure,
     "tech": None,
     "which": "zeros",
+    "var_unit": "MW",
+  }
+  capacity_conversion: {
+    "var_name": "capacity",
+    "type": conversion,
+    "tech": None,
+    "which": "zeros",
+    "var_unit": "MW",
+  }
+  capacity_extraction: {
+    "var_name": "capacity",
+    "type": extraction,
+    "tech": None,
+    "which": "zeros",
+    "var_unit": "MW",
+  }
+  capacity_storage: {
+    "var_name": "capacity",
+    "type": storage,
+    "tech": None,
+    "which": "zeros",
+    "var_unit": "MW",
+  }
+  capacity_volatile: {
+    "var_name": "capacity",
+    "type": volatile,
+    "tech": None,
+    "which": "zeros",
+    "var_unit": "MW",
+  }
+  capacity_shortage: {
+    "var_name": "capacity",
+    "type": shortage,
+    "tech": None,
+    "which": "empty",
+    "var_unit": "MW",
+  }
+  capacity_excess: {
+    "var_name": "capacity",
+    "type": excess,
+    "tech": None,
+    "which": "empty",
     "var_unit": "MW",
   }
   amount: {

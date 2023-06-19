@@ -19,7 +19,9 @@ components:
   - electricity-export
   - electricity-bev_charging
   - electricity-curtailment
-  - electricity-demand
+  - electricity-demand_hh
+  - electricity-demand_cts
+  - electricity-demand_ind
 #  - electricity-electrolyzer
   - electricity-heatpump_central
   - electricity-heatpump_decentral
@@ -66,12 +68,16 @@ components:
   - lignite-shortage
   - lignite-oven
 
-  - heat_central-demand
+  - heat_central-demand_hh
+  - heat_central-demand_cts
+  - heat_central-demand_ind
   - heat_central-excess
   - heat_central-shortage
   - heat_central-storage
 
-  - heat_decentral-demand
+  - heat_decentral-demand_hh
+  - heat_decentral-demand_cts
+  - heat_decentral-demand_ind
   - heat_decentral-excess
   - heat_decentral-shortage
   - heat_decentral-storage

@@ -150,13 +150,29 @@ electricity-small_scale_battery:
     input_parameters: "{}"
     output_parameters: "{}"
 
-electricity-demand:
+electricity-demand_hh:
   carrier: electricity
-  tech: demand
+  tech: demand_hh
   type: load
   foreign_keys:
     bus: electricity
-    profile: electricity-demand-profile
+    profile: electricity-demand_hh-profile
+
+electricity-demand_cts:
+  carrier: electricity
+  tech: demand_cts
+  type: load
+  foreign_keys:
+    bus: electricity
+    profile: electricity-demand_cts-profile
+
+electricity-demand_ind:
+  carrier: electricity
+  tech: demand_ind
+  type: load
+  foreign_keys:
+    bus: electricity
+    profile: electricity-demand_ind-profile
 
 electricity-heatpump_central:
   carrier: electricity
@@ -213,13 +229,29 @@ ch4-boiler_central:
   defaults:
     output_parameters: "{}"
 
-heat_central-demand:
+heat_central-demand_hh:
   carrier: heat_central
-  tech: demand
+  tech: demand_hh
   type: load
   foreign_keys:
     bus: heat_central
-    profile: heat_central-demand-profile
+    profile: heat_central-demand_hh-profile
+
+heat_central-demand_cts:
+  carrier: heat_central
+  tech: demand_cts
+  type: load
+  foreign_keys:
+    bus: heat_central
+    profile: heat_central-demand_cts-profile
+
+heat_central-demand_ind:
+  carrier: heat_central
+  tech: demand_ind
+  type: load
+  foreign_keys:
+    bus: heat_central
+    profile: heat_central-demand_ind-profile
 
 heat_central-excess:
   carrier: heat_central
@@ -295,13 +327,29 @@ solar-thermalcollector:
     marginal_cost: 0
     output_parameters: "{}"
 
-heat_decentral-demand:
+heat_decentral-demand_hh:
   carrier: heat_decentral
-  tech: demand
+  tech: demand_hh
   type: load
   foreign_keys:
     bus: heat_decentral
-    profile: heat_decentral-demand-profile
+    profile: heat_decentral-demand_hh-profile
+
+heat_decentral-demand_cts:
+  carrier: heat_decentral
+  tech: demand_cts
+  type: load
+  foreign_keys:
+    bus: heat_decentral
+    profile: heat_decentral-demand_cts-profile
+
+heat_decentral-demand_ind:
+  carrier: heat_decentral
+  tech: demand_ind
+  type: load
+  foreign_keys:
+    bus: heat_decentral
+    profile: heat_decentral-demand_ind-profile
 
 heat_decentral-excess:
   carrier: heat_decentral
@@ -345,16 +393,6 @@ ch4-import:
   defaults:
     output_parameters: "{}"
 
-biomass-biogas_plant:
-  carrier: biomass
-  tech: biogas_plant
-  type: conversion
-  foreign_keys:
-    from_bus: biomass
-    to_bus: biogas
-  defaults:
-    output_parameters: "{}"
-
 
 
 # Bus "wood":
@@ -394,9 +432,28 @@ biomass-shortage:
   defaults:
     output_parameters: "{}"
 
+biomass-biogas_plant:
+  carrier: biomass
+  tech: biogas_plant
+  type: conversion
+  foreign_keys:
+    from_bus: biomass
+    to_bus: biogas
+  defaults:
+    output_parameters: "{}"
+
 
 
 # Bus "biogas":
+
+biogas-shortage:
+  carrier: biogas
+  tech: shortage
+  type: shortage
+  foreign_keys:
+    bus: biogas
+  defaults:
+    output_parameters: "{}"
 
 biogas-biogas_upgrading_plant:
   carrier: biogas
@@ -405,15 +462,6 @@ biogas-biogas_upgrading_plant:
   foreign_keys:
     from_bus: biogas
     to_bus: ch4
-  defaults:
-    output_parameters: "{}"
-
-biogas-shortage:
-  carrier: biogas
-  tech: shortage
-  type: shortage
-  foreign_keys:
-    bus: biogas
   defaults:
     output_parameters: "{}"
 

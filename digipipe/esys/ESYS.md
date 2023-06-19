@@ -27,5 +27,24 @@ snakemake -j1 create_empty_ts
 
 These prompts create empty csv files with scalars and time series in the
 following directories:
+
 - `store/datasets/esys_raw/data/scalars/`
 - `store/datasets/esys_raw/data/time_series/`
+
+## Test the energy system
+
+To test the solvability of the energy system, run
+
+```
+snakemake -j1 postprocessed_esys_appdata
+```
+
+which should result in an output like
+
+```
+[...]
+INFO - Optimization successful...
+INFO - Solved the model. Elapsed time: 0:00:00.291995
+INFO - Model solved. Collecting results.
+INFO - Results saved to store/appdata/esys/2045_scenario/optimized.
+```

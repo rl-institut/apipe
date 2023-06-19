@@ -16,7 +16,6 @@ ch4-extchp_decentral: CH4 dezentrale GUD
 ch4-gt: CH4 GT
 ch4-import: CH4 Import
 electricity-bev_charging: BEV
-electricity-curtailment: Abregelung
 electricity-demand_hh: Strombedarf HH
 electricity-demand_cts: Strombedarf GHD
 electricity-demand_ind: Strombedarf I

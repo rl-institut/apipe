@@ -6,7 +6,6 @@
     'electricity-bev_charging',
     'electricity-large_scale_battery',
     'electricity-small_scale_battery',
-    'electricity-curtailment',
     'electricity-demand_hh',
     'electricity-demand_cts',
     'electricity-demand_ind',

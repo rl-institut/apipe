@@ -16,7 +16,6 @@ components:
   - electricity-import
   - electricity-export
   - electricity-bev_charging
-  - electricity-curtailment
   - electricity-demand_hh
   - electricity-demand_cts
   - electricity-demand_ind

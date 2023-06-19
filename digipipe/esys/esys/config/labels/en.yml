@@ -16,7 +16,6 @@ ch4-extchp_decentral: CH4 decentral CCGT
 ch4-gt: CH4 GT
 ch4-import: CH4 import
 electricity-bev_charging: BEV charging
-electricity-curtailment: Curtailment
 electricity-demand_hh: El. demand HH
 electricity-demand_cts: El. demand CTS
 electricity-demand_ind: El. demand IND

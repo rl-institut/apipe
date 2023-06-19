@@ -16,7 +16,9 @@ BEV,#e55c19
 El. shortage,#DADADA
 Curtailment,#DADADA
 
-El. demand,#3e89f4
+El. demand hh,#3e89f4
+El. demand cts,#3e89f4
+El. demand ind,#3e89f4
 El. export,#737a8c
 El. import,#737a8c
 BEV charging,#e55c19
@@ -25,13 +27,17 @@ H2 backpressure CHP,#0F8A8A
 CH4 backpressure CHP,#128E10
 CH4 extraction CHP,#c0e519
 
-Heat cen. demand,#ff0800
+Heat cen. demand hh,#ff0800
+Heat cen. demand cts,#ff0800
+Heat cen. demand ind,#ff0800
 Heat cen. excess,#DBDBDB
 Heat cen. shortage,#DBDBDB
 Heat cen. storage in,#e2c319
 Heat cen. storage,#e2c319
 Heat cen. storage out,#e2c319
-Heat dec. demand,#f2740a
+Heat dec. demand hh,#f2740a
+Heat dec. demand cts,#f2740a
+Heat dec. demand ind,#f2740a
 Heat dec. excess,#DBDBDB
 Heat dec. shortage,#DBDBDB
 Heat dec. storage out,#e2c319
@@ -52,7 +58,9 @@ Other,#7f7f7f
 
 CH4 shortage,#DBDBDB
 CH4 import,#cfcfcf
-CH4 demand,#bcf927
+CH4 demand hh,#bcf927
+CH4 demand cts,#bcf927
+CH4 demand ind,#bcf927
 H2 import,#3B5054
 H2 demand,#00fed0
 

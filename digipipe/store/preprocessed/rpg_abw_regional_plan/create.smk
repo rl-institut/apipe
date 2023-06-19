@@ -69,8 +69,8 @@ rule create_stp_2027_search_area:
             "raw", "rpg_abw_regional_plan") / "data" /
             "stp_2027_suchraum.gpkg"
     output:
-        forest=DATASET_PATH / "data" / "stp_2027_search_area_forest.gpkg",
-        open_land=DATASET_PATH / "data" / "stp_2027_search_area_open_land.gpkg"
+        forest=DATASET_PATH / "data" / "stp_2027_search_area_forest_area.gpkg",
+        open_land=DATASET_PATH / "data" / "stp_2027_search_area_open_area.gpkg"
     run:
         # Forest
         data = gpd.read_file(
@@ -81,13 +81,12 @@ rule create_stp_2027_search_area:
             rename_filter_attributes(
                 gdf=data,
                 attrs_mapping=config[
-                    "stp_2027"]["search_area_forest"]["attributes"],
+                    "stp_2027"]["search_area_forest_area"]["attributes"],
             )
         )
         write_geofile(
             gdf=data,
             file=output.forest,
-            layer_name=config["stp_2027"]["search_area_forest"]["layer"],
         )
 
         # Open land
@@ -100,11 +99,10 @@ rule create_stp_2027_search_area:
             rename_filter_attributes(
                 gdf=data,
                 attrs_mapping=config[
-                    "stp_2027"]["search_area_open_land"]["attributes"],
+                    "stp_2027"]["search_area_open_area"]["attributes"],
             )
         )
         write_geofile(
             gdf=data,
             file=output.open_land,
-            layer_name=config["stp_2027"]["search_area_open_land"]["layer"],
         )

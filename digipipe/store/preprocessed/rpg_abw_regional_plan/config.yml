@@ -44,12 +44,10 @@ stp_2027:
          "d_inkraft": "in_force_date",
          "geometry": "geometry"}
    # Suchraum Wald
-   search_area_forest:
-      layer: "stp_2027_search_area_forest"
+   search_area_forest_area:
       attributes:
         {"geometry": "geometry"}
    # Suchraum Offenland
-   search_area_open_land:
-      layer: "stp_2027_search_area_open_land"
+   search_area_open_area:
       attributes:
         {"geometry": "geometry"}

@@ -1,0 +1,55 @@
+##############################################################################
+# This file holds configuration parameters for the creation of this dataset. #
+##############################################################################
+
+# Sachlicher Teilplan Wind 2018: VR/EG
+stp_2018:
+   layer: "stp_2018_vreg"
+   attributes:
+     {"bezeich": "name_1",
+      "bezeich_2": "name_2",
+      "bezeich_3": "name_3",
+      "plan_status": "plan_status",
+      "d_beschluss": "decision_date",
+      "d_genehmigung": "authorization_date",
+      "d_inkraft": "in_force_date",
+      "geometry": "geometry"}
+
+# Sachlicher Teilplan Wind 2027: VR/EG
+stp_2027:
+   # Vorranggebiete
+   vr:
+      layer: "stp_2027_vr"
+      attributes:
+        {"bezeich": "name_1",
+         "bezeich_2": "name_2",
+         "bezeich_3": "name_3",
+         "bezeich_4": "name_4",
+         "plan_status": "plan_status",
+         "d_beschluss": "decision_date",
+         "d_genehmigung": "authorization_date",
+         "d_inkraft": "in_force_date",
+         "geometry": "geometry"}
+   # Repoweringgebiete
+   repowering:
+      layer: "stp_2027_repowering"
+      attributes:
+        {"bezeich": "name_1",
+         "bezeich_2": "name_2",
+         "bezeich_3": "name_3",
+         "bezeich_4": "name_4",
+         "plan_status": "plan_status",
+         "d_beschluss": "decision_date",
+         "d_genehmigung": "authorization_date",
+         "d_inkraft": "in_force_date",
+         "geometry": "geometry"}
+   # Suchraum Wald
+   search_area_forest:
+      layer: "stp_2027_search_area_forest"
+      attributes:
+        {"geometry": "geometry"}
+   # Suchraum Offenland
+   search_area_open_land:
+      layer: "stp_2027_search_area_open_land"
+      attributes:
+        {"geometry": "geometry"}

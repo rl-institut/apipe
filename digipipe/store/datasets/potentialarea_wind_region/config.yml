@@ -1,0 +1,12 @@
+##############################################################################
+# This file holds configuration parameters for the creation of this dataset. #
+##############################################################################
+
+areas:
+  [
+    "stp_2018_vreg",
+    "stp_2027_repowering",
+    "stp_2027_search_area_forest_area",
+    "stp_2027_search_area_open_area",
+    "stp_2027_vr"
+  ]

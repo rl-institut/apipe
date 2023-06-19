@@ -12,6 +12,13 @@ Neben einem anlagenscharfen Datensatz wird ein weiterer Datensatz erzeugt,
 der alle Anlagen mit approximierter Position je Position zusammenfasst und
 jeweils typische Kennwerte enthält (u.a. Anzahl Anlagen, Gesamtleistung).
 
+Jede Anlage wird anhand ihrer Lokation einer Gemeinde (Attribut
+`municipality_id`, vgl.
+[bkg_vg250_muns_region](../../datasets/bkg_vg250_muns_region/dataset.md)) und
+einem Landkreis (Attribut `district_id`, vgl.
+[bkg_vg250_muns_region](../../datasets/bkg_vg250_districts_region/dataset.md))
+zugeordnet.
+
 ## Datenkorrektur
 
 Einige Anlagen sind hinsichtlich Ihrer geografischen Lage oder Typs fehlerhaft.

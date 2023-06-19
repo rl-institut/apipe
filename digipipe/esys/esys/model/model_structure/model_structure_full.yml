@@ -82,6 +82,7 @@ components:
 
   - solar-pv_ground
   - solar-pv_rooftop
-  - solar-thermalcollector
+  - solar-thermalcollector_central
+  - solar-thermalcollector_decentral
   - wind-onshore
   - hydro-ror

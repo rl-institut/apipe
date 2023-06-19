@@ -32,7 +32,8 @@
     'lignite-shortage',
     'solar-pv_ground',
     'solar-pv_rooftop',
-    'solar-thermalcollector',
+    'solar-thermalcollector_central',
+    'solar-thermalcollector_decentral',
 ]
 
 'profile': [
@@ -49,7 +50,8 @@
     'heat_decentral-demand_ind',
     'solar-pv_ground',
     'solar-pv_rooftop',
-    'solar-thermalcollector',
+    'solar-thermalcollector_central',
+    'solar-thermalcollector_decentral',
 ]
 
 'from_to_bus': [

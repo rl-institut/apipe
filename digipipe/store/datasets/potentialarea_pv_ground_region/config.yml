@@ -1,0 +1,21 @@
+##############################################################################
+# This file holds configuration parameters for the creation of this dataset. #
+##############################################################################
+
+# Area names (which identify files from preprocessing)
+areas:
+  [
+    "agriculture_lfa-off_region",
+    "road_railway_region",
+  ]
+
+# Attributes' captions for the app
+captions:
+  {"name_1": "Typ",
+   "name_2": "Lage",
+   "name_3": "ID/Nr.",
+   "name_4": "Anmerkung",
+   "plan_status": "Plan Status",
+   "decision_date": "Beschlussdatum",
+   "authorization_date": "Genehmigungsdatum",
+   "in_force_date": "Datum des Inkrafttretens"}

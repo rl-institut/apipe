@@ -21,7 +21,7 @@ DATASET_PATH = get_abs_dataset_path(
     "datasets", "potentialarea_wind_region", data_dir=True
 )
 
-rule overlay_municipalities:
+rule overlay_muns:
     """
     Overlay potential area with municipalities
     """

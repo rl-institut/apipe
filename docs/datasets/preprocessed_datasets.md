@@ -111,6 +111,18 @@ Verwendet: [dwd_temperature](../../raw/dwd_temperature/dataset.md)
 
 
 ------------------------------
+## Regionalplan Anhalt-Bitterfeld-Wittenberg
+
+Vorverarbeitete Datensätze aus Teilplänen Wind der Regionalen
+Planungsgemeinschaft Anhalt-Bitterfeld-Wittenberg aus
+[rpg_abw_regional_plan](../../raw/rpg_abw_regional_plan/dataset.md).
+
+In der [config.yml](config.yml) können Einstellungen vorgenommen werden.
+
+**Dataset: `preprocessed/rpg_abw_regional_plan`**
+
+
+------------------------------
 ## Regionalstatistik (GENESIS)
 
 Enthält Datensätze der statistischen Ämter des Bundes und der Länder aus

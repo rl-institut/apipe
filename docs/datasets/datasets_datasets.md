@@ -15,6 +15,13 @@ Neben einem anlagenscharfen Datensatz wird ein weiterer Datensatz erzeugt,
 der alle Anlagen mit approximierter Position je Position zusammenfasst und
 jeweils typische Kennwerte enthält (u.a. Anzahl Anlagen, Gesamtleistung).
 
+Jede Anlage wird anhand ihrer Lokation einer Gemeinde (Attribut
+`municipality_id`, vgl.
+[bkg_vg250_muns_region](../../datasets/bkg_vg250_muns_region/dataset.md)) und
+einem Landkreis (Attribut `district_id`, vgl.
+[bkg_vg250_muns_region](../../datasets/bkg_vg250_districts_region/dataset.md))
+zugeordnet.
+
 ### Datenkorrektur
 
 Einige Anlagen sind hinsichtlich Ihrer geografischen Lage oder Typs fehlerhaft.
@@ -38,6 +45,13 @@ ungefähre Position bereit zu stellen.
 Neben einem anlagenscharfen Datensatz wird ein weiterer Datensatz erzeugt,
 der alle Anlagen mit approximierter Position je Position zusammenfasst und
 jeweils typische Kennwerte enthält (u.a. Anzahl Anlagen, Gesamtleistung).
+
+Jede Anlage wird anhand ihrer Lokation einer Gemeinde (Attribut
+`municipality_id`, vgl.
+[bkg_vg250_muns_region](../../datasets/bkg_vg250_muns_region/dataset.md)) und
+einem Landkreis (Attribut `district_id`, vgl.
+[bkg_vg250_muns_region](../../datasets/bkg_vg250_districts_region/dataset.md))
+zugeordnet.
 
 **Dataset: `datasets/bnetza_mastr_biomass_region`**
 
@@ -173,6 +187,13 @@ Neben einem anlagenscharfen Datensatz wird ein weiterer Datensatz erzeugt,
 der alle Anlagen mit approximierter Position je Position zusammenfasst und
 jeweils typische Kennwerte enthält (u.a. Anzahl Anlagen, Gesamtleistung).
 
+Jede Anlage wird anhand ihrer Lokation einer Gemeinde (Attribut
+`municipality_id`, vgl.
+[bkg_vg250_muns_region](../../datasets/bkg_vg250_muns_region/dataset.md)) und
+einem Landkreis (Attribut `district_id`, vgl.
+[bkg_vg250_muns_region](../../datasets/bkg_vg250_districts_region/dataset.md))
+zugeordnet.
+
 **Dataset: `datasets/bnetza_mastr_wind_region`**
 
 
@@ -198,6 +219,13 @@ ungefähre Position bereit zu stellen.
 Neben einem anlagenscharfen Datensatz wird ein weiterer Datensatz erzeugt,
 der alle Anlagen mit approximierter Position je Position zusammenfasst und
 jeweils typische Kennwerte enthält (u.a. Anzahl Anlagen, Gesamtleistung).
+
+Jede Anlage wird anhand ihrer Lokation einer Gemeinde (Attribut
+`municipality_id`, vgl.
+[bkg_vg250_muns_region](../../datasets/bkg_vg250_muns_region/dataset.md)) und
+einem Landkreis (Attribut `district_id`, vgl.
+[bkg_vg250_muns_region](../../datasets/bkg_vg250_districts_region/dataset.md))
+zugeordnet.
 
 **Dataset: `datasets/bnetza_mastr_combustion_region`**
 
@@ -259,6 +287,13 @@ ungefähre Position bereit zu stellen.
 Neben einem anlagenscharfen Datensatz wird ein weiterer Datensatz erzeugt,
 der alle Anlagen mit approximierter Position je Position zusammenfasst und
 jeweils typische Kennwerte enthält (u.a. Anzahl Anlagen, Gesamtleistung).
+
+Jede Anlage wird anhand ihrer Lokation einer Gemeinde (Attribut
+`municipality_id`, vgl.
+[bkg_vg250_muns_region](../../datasets/bkg_vg250_muns_region/dataset.md)) und
+einem Landkreis (Attribut `district_id`, vgl.
+[bkg_vg250_muns_region](../../datasets/bkg_vg250_districts_region/dataset.md))
+zugeordnet.
 
 ### Datenkorrektur
 
@@ -415,6 +450,41 @@ Hierbei wird nach Technologien für dezentrale sowie Fernwärme unterschieden.
 
 
 ------------------------------
+## Potenzialgebiete Windenergie
+
+Potenzialgebiete für die Errichtung von Windenergieanlagen, basierend auf den
+Teilplänen Wind der Regionalen Planungsgemeinschaft Anhalt-Bitterfeld-Wittenberg
+aus
+[rpg_abw_regional_plan](../../preprocessed/rpg_abw_regional_plan/dataset.md).
+
+Die Flächen wurden mit den Gemeindegrenzen verschnitten und den Gemeinden
+zugeordnet.
+
+Dateien:
+- STP Wind 2018 - Vorrang-/Eignungsgebiete:
+  `potentialarea_wind_stp_2018_vreg.gpkg`
+- STP Wind 2027 - Planabsicht Vorranggebiete:
+  `potentialarea_wind_stp_2027_vr.gpkg`
+- STP Wind 2027 - Planabsicht Repoweringgebiete:
+  `potentialarea_wind_stp_2027_repowering.gpkg`
+- STP Wind 2027 - Suchraum Wald:
+  `potentialarea_wind_stp_2027_search_area_forest_area.gpkg`
+- STP Wind 2027 - Suchraum Offenland:
+  `potentialarea_wind_stp_2027_search_area_open_area.gpkg`
+
+Die darin verwendeten Attributtexte werden in die Datei
+`potentialarea_wind_attribute_captions.json` exportiert.
+
+Je Gemeinde und obigem Flächentyp/Datei wurde eine Flächensumme berechnet,
+siehe `potentialarea_wind_area_stats_muns.json`. Die Gemeinden werden über ihren
+Schlüssel `municipality_id` (vgl.
+[bkg_vg250_muns_region](../../datasets/bkg_vg250_muns_region/dataset.md))
+identifiziert.
+
+**Dataset: `datasets/potentialarea_wind_region`**
+
+
+------------------------------
 ## Wasserkraftanlagen
 
 Wasserkraftanlagen in der Region aus MaStR-Registerdaten als Geopackage.
@@ -427,6 +497,13 @@ ungefähre Position bereit zu stellen.
 Neben einem anlagenscharfen Datensatz wird ein weiterer Datensatz erzeugt,
 der alle Anlagen mit approximierter Position je Position zusammenfasst und
 jeweils typische Kennwerte enthält (u.a. Anzahl Anlagen, Gesamtleistung).
+
+Jede Anlage wird anhand ihrer Lokation einer Gemeinde (Attribut
+`municipality_id`, vgl.
+[bkg_vg250_muns_region](../../datasets/bkg_vg250_muns_region/dataset.md)) und
+einem Landkreis (Attribut `district_id`, vgl.
+[bkg_vg250_muns_region](../../datasets/bkg_vg250_districts_region/dataset.md))
+zugeordnet.
 
 **Dataset: `datasets/bnetza_mastr_hydro_region`**
 
@@ -454,6 +531,13 @@ ungefähre Position bereit zu stellen.
 Neben einem anlagenscharfen Datensatz wird ein weiterer Datensatz erzeugt,
 der alle Anlagen mit approximierter Position je Position zusammenfasst und
 jeweils typische Kennwerte enthält (u.a. Anzahl Anlagen, Gesamtleistung).
+
+Jede Anlage wird anhand ihrer Lokation einer Gemeinde (Attribut
+`municipality_id`, vgl.
+[bkg_vg250_muns_region](../../datasets/bkg_vg250_muns_region/dataset.md)) und
+einem Landkreis (Attribut `district_id`, vgl.
+[bkg_vg250_muns_region](../../datasets/bkg_vg250_districts_region/dataset.md))
+zugeordnet.
 
 **Dataset: `datasets/bnetza_mastr_gsgk_region`**
 
@@ -512,6 +596,13 @@ ungefähre Position bereit zu stellen.
 Neben einem anlagenscharfen Datensatz wird ein weiterer Datensatz erzeugt,
 der alle Anlagen mit approximierter Position je Position zusammenfasst und
 jeweils typische Kennwerte enthält (u.a. Anzahl Anlagen, Gesamtleistung).
+
+Jede Anlage wird anhand ihrer Lokation einer Gemeinde (Attribut
+`municipality_id`, vgl.
+[bkg_vg250_muns_region](../../datasets/bkg_vg250_muns_region/dataset.md)) und
+einem Landkreis (Attribut `district_id`, vgl.
+[bkg_vg250_muns_region](../../datasets/bkg_vg250_districts_region/dataset.md))
+zugeordnet.
 
 **Dataset: `datasets/bnetza_mastr_storage_region`**
 

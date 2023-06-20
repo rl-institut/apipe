@@ -81,3 +81,8 @@ module eurostat_lau:
     snakefile: "eurostat_lau/create.smk"
     config: config["store"]["preprocessed"]["eurostat_lau"]
 use rule * from eurostat_lau as preprocessed_eurostat_lau_ *
+
+module rpg_abw_regional_plan:
+    snakefile: "rpg_abw_regional_plan/create.smk"
+    config: config["store"]["preprocessed"]["rpg_abw_regional_plan"]
+use rule * from rpg_abw_regional_plan as preprocessed_rpg_abw_regional_plan_ *

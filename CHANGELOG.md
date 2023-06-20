@@ -47,6 +47,7 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Add datasets: rli_pv_wfr and rli_pv_wfr_region
 - Add module appdata to workflow
 - Add dataset: geodata_infolayers
+- Add dataset: potentialarea_pv_ground_region
 
 ### Changed
 

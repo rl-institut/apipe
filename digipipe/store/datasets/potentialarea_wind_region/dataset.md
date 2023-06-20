@@ -5,9 +5,6 @@ Teilplänen Wind der Regionalen Planungsgemeinschaft Anhalt-Bitterfeld-Wittenber
 aus
 [rpg_abw_regional_plan](../../preprocessed/rpg_abw_regional_plan/dataset.md).
 
-Die Flächen wurden mit den Gemeindegrenzen verschnitten und den Gemeinden
-zugeordnet.
-
 Dateien:
 - STP Wind 2018 - Vorrang-/Eignungsgebiete:
   `potentialarea_wind_stp_2018_vreg.gpkg`
@@ -23,8 +20,9 @@ Dateien:
 Die darin verwendeten Attributtexte werden in die Datei
 `potentialarea_wind_attribute_captions.json` exportiert.
 
-Je Gemeinde und obigem Flächentyp/Datei wurde eine Flächensumme berechnet,
-siehe `potentialarea_wind_area_stats_muns.json`. Die Gemeinden werden über ihren
-Schlüssel `municipality_id` (vgl.
+Die Flächen werden mit den Gemeindegrenzen verschnitten und den Gemeinden
+zugeordnet. Je Gemeinde und obigem Flächentyp/Datei wird eine Flächensumme (in
+ha) berechnet, siehe `potentialarea_wind_area_stats_muns.json`. Die Gemeinden
+werden über den Schlüssel `municipality_id` (vgl.
 [bkg_vg250_muns_region](../../datasets/bkg_vg250_muns_region/dataset.md))
 identifiziert.

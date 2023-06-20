@@ -1,0 +1,10 @@
+##############################################################################
+# This file holds configuration parameters for the creation of this dataset. #
+##############################################################################
+
+# Area names (which identify files)
+areas:
+  [
+    "agriculture_lfa-off_region",
+    "road_railway_region",
+  ]

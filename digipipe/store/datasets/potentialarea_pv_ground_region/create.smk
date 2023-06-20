@@ -18,7 +18,7 @@ from digipipe.store.utils import (
 )
 
 DATASET_PATH = get_abs_dataset_path(
-    "datasets", "potentialarea_wind_region", data_dir=True
+    "datasets", "potentialarea_pv_ground_region", data_dir=True
 )
 
 rule overlay_muns:
@@ -27,10 +27,10 @@ rule overlay_muns:
     """
     input:
         area=get_abs_dataset_path(
-            "preprocessed", "rpg_abw_regional_plan") / "data" / "{file}.gpkg",
+            "datasets", "rli_pv_wfr_region", data_dir=True) / "{file}",
         region_muns=PATH_TO_REGION_MUNICIPALITIES_GPKG
     output:
-        area=DATASET_PATH / "potentialarea_wind_{file}.gpkg"
+        area=DATASET_PATH / "{file}"
     run:
         data = gpd.read_file(input.area)
         data = overlay(
@@ -45,24 +45,24 @@ rule overlay_muns:
 
 rule create_area_stats_muns:
     """
-    Create JSON file with stats on wind potential areas per mun
+    Create JSON file with stats on pv potential areas per mun
     """
     input:
         area=expand(
-            DATASET_PATH / "potentialarea_wind_{area}.gpkg",
+            DATASET_PATH / "potentialarea_pv_{area}.gpkg",
             area=config["areas"],
         ),
         region_muns=PATH_TO_REGION_MUNICIPALITIES_GPKG,
-    output: DATASET_PATH / "potentialarea_wind_area_stats_muns.json"
+    output: DATASET_PATH / "potentialarea_pv_ground_area_stats_muns.json"
     run:
-        print("Wind potential area stats:")
+        print("PV ground potential area stats:")
         muns = gpd.read_file(input.region_muns)
         area_dict = {}
 
         # Calc areas per area type file
         for file in input.area:
             area_name = re.findall(
-                "potentialarea_wind_(.*).gpkg",
+                "potentialarea_pv_(.*).gpkg",
                 Path(file).name,
             )[0]
             data = gpd.read_file(file)
@@ -83,20 +83,39 @@ rule create_area_stats_muns:
         with open(output[0], "w", encoding="utf8") as f:
             json.dump(area_dict, f, indent=4)
 
-rule create_captions:
+rule create_potarea_shares:
     """
-    Create attribute captions for app
+    Calc shares of actual potential areas in total potential areas (per type)
     """
-    input: rules.datasets_potentialarea_wind_region_create_area_stats_muns.input.area
-    output: DATASET_PATH / "potentialarea_wind_attribute_captions.json"
+    input:
+        potarea_pv_road_railway=get_abs_dataset_path(
+            "datasets", "rli_pv_wfr_region", data_dir=True
+        ) / "potentialarea_pv_road_railway_region.gpkg",
+        road_railway_500m=get_abs_dataset_path(
+            "datasets", "rli_pv_wfr_region", data_dir=True
+        ) / "road_railway-500m_region.gpkg",
+        potarea_pv_agri=get_abs_dataset_path(
+            "datasets", "rli_pv_wfr_region", data_dir=True
+        ) / "potentialarea_pv_agriculture_lfa-off_region.gpkg",
+        soil_quality_low=get_abs_dataset_path(
+            "datasets", "rli_pv_wfr_region", data_dir=True
+        ) / "soil_quality_low_region.gpkg",
+
+    output: DATASET_PATH / "potentialarea_pv_ground_area_shares.json"
     run:
-        captions = {
-            "datasets_caption_map": {
-                Path(f).stem: "potentialarea_wind" for f in input
-            },
-            "captions": {
-                "potentialarea_wind": config["captions"]
-            }
+        area_dict = {
+            "road_railway": round(
+                gpd.read_file(input.potarea_pv_road_railway).area.sum() /
+                gpd.read_file(input.road_railway_500m).area.sum(),
+                3
+            ),
+            "agri": round(
+                gpd.read_file(input.potarea_pv_agri).area.sum() /
+                gpd.read_file(input.soil_quality_low).area.sum(),
+                3
+            ),
         }
+
+        # Dump
         with open(output[0], "w", encoding="utf8") as f:
-            json.dump(captions, f, indent=4)
+            json.dump(area_dict, f, indent=4)

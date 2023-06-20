@@ -263,15 +263,6 @@ heat_central-excess:
     marginal_cost: 0
     input_parameters: "{}"
 
-heat_central-shortage:
-  carrier: heat_central
-  tech: shortage
-  type: shortage
-  foreign_keys:
-    bus: heat_central
-  defaults:
-    output_parameters: "{}"
-
 heat_central-storage:
   carrier: heat_central
   tech: storage
@@ -371,15 +362,6 @@ heat_decentral-excess:
   defaults:
     marginal_cost: 0
     input_parameters: "{}"
-
-heat_decentral-shortage:
-  carrier: heat_decentral
-  tech: shortage
-  type: shortage
-  foreign_keys:
-    bus: heat_decentral
-  defaults:
-    output_parameters: "{}"
 
 heat_decentral-storage:
   carrier: heat_decentral

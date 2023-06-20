@@ -41,13 +41,11 @@ heat_central-demand_hh: Heat cen. demand HH
 heat_central-demand_cts: Heat cen. demand CTS
 heat_central-demand_ind: Heat cen. demand IND
 heat_central-excess: Heat cen. excess
-heat_central-shortage: Heat cen. shortage
 heat_central-storage: Heat cen. storage
 heat_decentral-demand_hh: Heat dec. demand HH
 heat_decentral-demand_cts: Heat dec. demand CTS
 heat_decentral-demand_ind: Heat dec. demand IND
 heat_decentral-excess: Heat dec. excess
-heat_decentral-shortage: Heat dec. shortage
 heat_decentral-storage: Heat dec. storage
 hydro-ror: Hydro ROR
 solar-pv_ground: PV ground

@@ -46,7 +46,6 @@ Heat cen. demand hh,#ff0800
 Heat cen. demand cts,#ff0800
 Heat cen. demand ind,#ff0800
 Heat cen. excess,#DBDBDB
-Heat cen. shortage,#DBDBDB
 Heat cen. storage in,#e2c319
 Heat cen. storage,#e2c319
 Heat cen. storage out,#e2c319
@@ -54,7 +53,6 @@ Heat dec. demand hh,#f2740a
 Heat dec. demand cts,#f2740a
 Heat dec. demand ind,#f2740a
 Heat dec. excess,#DBDBDB
-Heat dec. shortage,#DBDBDB
 Heat dec. storage out,#e2c319
 Heat dec. storage in,#e2c319
 Heat dec. storage,#e2c319
@@ -63,8 +61,6 @@ CH4 boiler,#e5194d
 Heat pump (DH),#9912A1
 Heat pump (domestic),#f288e3
 res. PtH,#e58a19
-
-CH4 excess,#DBDBDB
 
 Electrolyzer,#15B2BC
 CH4,#bcf927

@@ -43,7 +43,7 @@ rule overlay_muns:
             file=output.area,
         )
 
-rule create_area_stats:
+rule create_area_stats_muns:
     """
     Create JSON file with stats on wind potential areas per mun
     """
@@ -87,7 +87,7 @@ rule create_captions:
     """
     Create attribute captions for app
     """
-    input: rules.datasets_potentialarea_wind_region_create_area_stats.input.area
+    input: rules.datasets_potentialarea_wind_region_create_area_stats_muns.input.area
     output: DATASET_PATH / "potentialarea_wind_attribute_captions.json"
     run:
         captions = {

@@ -676,8 +676,8 @@ Gemeinden werden über den Schlüssel `municipality_id` (vgl.
 [bkg_vg250_muns_region](../../datasets/bkg_vg250_muns_region/dataset.md))
 identifiziert.
 
-Des Weiteren werden die Flächenanteile der verfügbaren Potenzialgebiete - die
-zusätzlichen Einschränkungen wie Naturschutzgebieten etc. unterworfen sind -
+Des Weiteren werden die Flächenanteile der verfügbaren Potenzialgebiete - deren
+Nutzung nur eingeschränkt möglich ist (z.B. durch Naturschutzgebieten etc.) -
 gegenüber den gesamten Potenzialgebiete (für die Parametrierung der Regler) nach
 `potentialarea_pv_ground_area_shares.json` exportiert.
 

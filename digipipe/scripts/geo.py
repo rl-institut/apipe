@@ -43,6 +43,23 @@ def read_schema_from_file(file: str) -> Tuple[str, OrderedDict]:
     return schema_in_geom, schema_in_props
 
 
+def file_is_empty(file: str) -> bool:
+    """Check if file holds no geodata (is empty)
+
+    Parameters
+    ----------
+    file : str
+        Full path to file to read
+
+    Returns
+    -------
+    bool
+        True if file is empty, False otherwise
+    """
+    with fiona.open(file) as coll:
+        return len(coll) == 0
+
+
 def convert_to_multipolygon(gdf: gpd.GeoDataFrame) -> gpd.GeoDataFrame:
     """Convert geometry column to type MultiPolygon
 

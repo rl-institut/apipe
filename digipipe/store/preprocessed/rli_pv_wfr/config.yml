@@ -1,0 +1,72 @@
+##############################################################################
+# This file holds configuration parameters for the creation of this dataset. #
+##############################################################################
+
+# Files to be extracted from raw dataset
+files_extract:
+  geodata:
+      [
+        "air_traffic_control_system.gpkg",
+        "aviation.gpkg",
+        "biosphere_reserve.gpkg",
+        "drinking_water_protection_area.gpkg",
+        "fauna_flora_habitat.gpkg",
+        "floodplain.gpkg",
+        "forest.gpkg",
+        "grid.gpkg",
+        "industry.gpkg",
+        "landscape_protection_area.gpkg",
+        "less_favoured_areas_agricultural.gpkg",
+        "military.gpkg",
+        "national_park.gpkg",
+        "nature_conservation_area.gpkg",
+        "potentialarea_pv_agriculture_lfa-off.gpkg",
+        "potentialarea_pv_road_railway.gpkg",
+        "railway.gpkg",
+        "road.gpkg",
+        "road_railway-500m.gpkg",
+        "settlement-0m.gpkg",
+        "slope.gpkg",
+        "soil_quality_high.gpkg",
+        "soil_quality_low.gpkg",
+        "special_protection_area.gpkg",
+        "water.gpkg",
+        "wetland_ramsar.gpkg"
+      ]
+  datapackage:
+      [
+        "datapackage/datapackage.json"
+      ]
+  metadata:
+      [
+        # Metadata
+        "metadata/rli_wam_ackerbauliches_ertragspotenzial.json",
+        "metadata/rli_wam_bahnverkehr.json",
+        "metadata/rli_wam_benachteiligte_gebiete.json",
+        "metadata/rli_wam_biosphaerenreservate.json",
+        "metadata/rli_wam_drehfunkfeuer.json",
+        "metadata/rli_wam_ee_anlagen.json",
+        "metadata/rli_wam_faunaflorahabitate.json",
+        "metadata/rli_wam_feuchtgebiete.json",
+        "metadata/rli_wam_gelaendeneigung.json",
+        "metadata/rli_wam_gewaesser.json",
+        "metadata/rli_wam_industrie.json",
+        "metadata/rli_wam_landschaftschutzgebiete.json",
+        "metadata/rli_wam_luftverkehr.json",
+        "metadata/rli_wam_militaergebiete.json",
+        "metadata/rli_wam_nationalparke.json",
+        "metadata/rli_wam_naturschutzgebiete.json",
+        "metadata/rli_wam_potentialflaeche_photovoltaik.json",
+        "metadata/rli_wam_potentialflaeche_windenergie.json",
+        "metadata/rli_wam_pv_energieertrag.json",
+        "metadata/rli_wam_siedlungen.json",
+        "metadata/rli_wam_strassen.json",
+        "metadata/rli_wam_stromnetze.json",
+        "metadata/rli_wam_ueberschwemmungsgebiete.json",
+        "metadata/rli_wam_verwaltungsgrenzen.json",
+        "metadata/rli_wam_vogelschutzgebiete.json",
+        "metadata/rli_wam_waelder.json",
+        "metadata/rli_wam_wahlkreise.json",
+        "metadata/rli_wam_wasserschutzgebiete.json",
+        "metadata/rli_wam_windleistungsdichte.json"
+      ]

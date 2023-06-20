@@ -5,9 +5,9 @@ App-ready datasets for the
 
 ## Structure and content
 
-| Directory          | Content                 |
-|:-------------------|:------------------------|
-| esys               | Energy system data      |
-| geodata_infolayers | Infolayers in right box |
-|                    |                         |
-|                    |                         |
+| Directory | Content            |
+|:----------|:-------------------|
+| esys      | Energy system data |
+| geodata   | Geodata            |
+|           |                    |
+|           |                    |

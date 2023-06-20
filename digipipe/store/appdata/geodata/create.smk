@@ -9,10 +9,10 @@ from pathlib import Path
 from digipipe.store.utils import get_abs_dataset_path
 
 DATASET_PATH = get_abs_dataset_path(
-    "appdata", "geodata_infolayers", data_dir=True)
+    "appdata", "geodata", data_dir=True)
 
 
-def collect_infolayers() -> list:
+def collect_geodata() -> list:
     """Collect paths of files for info layers
 
     Returns
@@ -21,7 +21,7 @@ def collect_infolayers() -> list:
         Paths to original info layer files in store
     """
     infolayers = []
-    for dataset, layers in config["infolayers"].items():
+    for dataset, layers in config["geodata"].items():
         infolayers.extend(
             [get_abs_dataset_path("datasets", dataset, data_dir=True) / l
              for l in layers]
@@ -29,12 +29,14 @@ def collect_infolayers() -> list:
     return infolayers
 
 rule copy_files:
-    """Copy geodata for info layers"""
-    input: collect_infolayers()
+    """
+    Copy geodata listet in config
+    """
+    input: collect_geodata()
     output:
         expand(
             DATASET_PATH / "{file}",
-            file=[Path(f).name for f in collect_infolayers()]
+            file=[Path(f).name for f in collect_geodata()]
         )
     run:
         for file_in, file_out in zip(input, output):

@@ -2,8 +2,8 @@
 # This file holds configuration parameters for the creation of this dataset. #
 ##############################################################################
 
-# Infolayers in app's right box
-infolayers:
+# Files
+geodata:
   # Dataset name: [file list]
   rli_pv_wfr_region:
     [
@@ -34,6 +34,7 @@ infolayers:
       "water_region.gpkg",
       #"wetland_ramsar_region.gpkg"
     ]
+
   bnetza_mastr_biomass_region:
     ["bnetza_mastr_biomass_agg_region.gpkg"]
   bnetza_mastr_combustion_region:
@@ -50,3 +51,10 @@ infolayers:
     ["bnetza_mastr_storage_agg_region.gpkg"]
   bnetza_mastr_wind_region:
     ["bnetza_mastr_wind_agg_region.gpkg"]
+
+  bkg_vg250_districts_region:
+    ["bkg_vg250_districts_region.gpkg"]
+  bkg_vg250_muns_region:
+    ["bkg_vg250_muns_region.gpkg"]
+  bkg_vg250_region:
+    ["bkg_vg250_region.gpkg"]

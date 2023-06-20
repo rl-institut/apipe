@@ -44,6 +44,7 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Add creation of empty time series for the *esys*
 - Add dataset: rpg_abw_regional_plan
 - Add dataset: potentialarea_wind_region
+- Add datasets: rli_pv_wfr and rli_pv_wfr_region
 
 ### Changed
 

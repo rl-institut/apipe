@@ -19,6 +19,7 @@ APPDATA_ESYS_PATH = get_abs_dataset_path("appdata", "esys")
 # Include store modules
 include: "../store/preprocessed/module.smk"
 include: "../store/datasets/module.smk"
+include: "../store/appdata/module.smk"
 
 # Include esys snakefiles
 include: "../esys/Snakefile"

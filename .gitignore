@@ -149,7 +149,8 @@ digipipe/store/datasets/*/data/*
 !digipipe/store/datasets/*/data/.gitkeep
 !digipipe/store/datasets/.TEMPLATE/data/*
 
-digipipe/store/appdata/*
+digipipe/store/appdata/*/data/*
+!digipipe/store/appdata/*/data/.gitkeep
 !digipipe/store/appdata/*/.gitkeep
 
 digipipe/store/temp/*

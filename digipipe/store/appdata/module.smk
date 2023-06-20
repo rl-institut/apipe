@@ -10,3 +10,8 @@ module <DATASET_NAME>:
 use rule * from <DATASET_NAME> as appdata_<DATASET_NAME>_*
 
 """
+
+module geodata_infolayers:
+    snakefile: "geodata_infolayers/create.smk"
+    config: config["store"]["appdata"]["geodata_infolayers"]
+use rule * from geodata_infolayers as appdata_geodata_infolayers_*

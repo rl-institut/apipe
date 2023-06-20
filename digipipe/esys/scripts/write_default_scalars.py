@@ -10,7 +10,11 @@ import sys
 import numpy as np
 
 from digipipe.esys.esys.config.esys_conf import write_default_scalars
-from digipipe.esys.esys.tools.data_processing import load_b3_scalars, save_df
+from digipipe.esys.esys.tools.data_processing import (
+    filter_df,
+    load_b3_scalars,
+    save_df,
+)
 
 
 def get_var_value_and_comment(which):
@@ -137,6 +141,7 @@ def update_df(_df, which, condition, unit):
 if __name__ == "__main__":
     path_empty_sc = sys.argv[1]
     path_default_sc = sys.argv[2]
+    path_default_costs_eff = sys.argv[3]
 
     empty_sc_df = load_b3_scalars(path_empty_sc)
 
@@ -151,4 +156,28 @@ if __name__ == "__main__":
             empty_sc_df, value["which"], condition, value["var_unit"]
         )
 
-    save_df(df_updated, path_default_sc)
+    # Get all unique values for var_name
+    var_names_all = list(df_updated["var_name"].unique())
+    # Get all values for var_name in context of costs and efficiencies
+    var_names_costs_efficiencies = list(
+        write_default_scalars.costs_efficiencies
+    )
+    # Get all remaining var_values needed for default_scalars.csv
+    var_names_scalars = [
+        var_name
+        for var_name in var_names_all
+        if var_name not in var_names_costs_efficiencies
+    ]
+
+    df_costs_efficiencies = filter_df(
+        df_updated, "var_name", var_names_costs_efficiencies
+    )
+
+    df_scalars = filter_df(df_updated, "var_name", var_names_scalars)
+
+    # Write all attributes attached to costs and efficiencies in separate
+    # default_cost_efficiencies.csv file
+    save_df(df_costs_efficiencies, path_default_costs_eff)
+
+    # Write all other scalars in default_scalars.csv
+    save_df(df_scalars, path_default_sc)

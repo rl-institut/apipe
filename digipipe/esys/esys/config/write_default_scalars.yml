@@ -146,3 +146,19 @@ write_default_scalars:
     "which": "zeros",
     "var_unit": "None",
   }
+costs_efficiencies: [
+    "capacity_cost_overnight",
+    "condensing_efficiency",
+    "efficiency",
+    "electric_efficiency",
+    "expandable",
+    "fixom_cost",
+    "input_parameters",
+    "lifetime",
+    "loss_rate",
+    "marginal_cost",
+    "storage_capacity_cost_overnight",
+    "storage_fixom_cost",
+    "thermal_efficiency",
+    "wacc"
+  ]

@@ -34,7 +34,6 @@ components:
   - ch4-boiler_decentral
   - ch4-bpchp_central
   - ch4-bpchp_decentral
-  - ch4-excess
   - ch4-gt
   - ch4-extchp_central
   - ch4-extchp_decentral

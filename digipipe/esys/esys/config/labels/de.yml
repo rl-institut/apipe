@@ -10,7 +10,6 @@ biogas-bpchp_decentral: Biogas dezentrale KWK
 ch4-boiler: CH4 Boiler
 ch4-bpchp_central: CH4 zentrale KWK
 ch4-bpchp_decentral: CH4 dezentrale KWK
-ch4-excess: CH4 Überschuss
 ch4-extchp_central: CH4 zentrale GUD
 ch4-extchp_decentral: CH4 dezentrale GUD
 ch4-gt: CH4 GT

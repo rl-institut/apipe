@@ -46,8 +46,6 @@ electricity-heatpump_central: "#9912A1"
 electricity-heatpump_decentral: "#f288e3"
 electricity-pth: "#e58a19"
 
-ch4-excess: "#DBDBDB"
-
 electricity-electrolyzer: "#15B2BC"
 ch4: "#bcf927"
 

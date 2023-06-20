@@ -24,7 +24,6 @@ components:
   - electricity-small_scale_battery
 
   - ch4-import
-  - ch4-excess
   - ch4-gt
 
   - biomass-biogas_plant

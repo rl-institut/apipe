@@ -86,3 +86,8 @@ module rpg_abw_regional_plan:
     snakefile: "rpg_abw_regional_plan/create.smk"
     config: config["store"]["preprocessed"]["rpg_abw_regional_plan"]
 use rule * from rpg_abw_regional_plan as preprocessed_rpg_abw_regional_plan_ *
+
+module rli_pv_wfr:
+    snakefile: "rli_pv_wfr/create.smk"
+    config: config["store"]["preprocessed"]["rli_pv_wfr"]
+use rule * from rli_pv_wfr as preprocessed_rli_pv_wfr_ *

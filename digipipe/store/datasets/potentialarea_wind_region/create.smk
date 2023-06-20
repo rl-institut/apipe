@@ -87,7 +87,7 @@ rule create_captions:
     """
     Create attribute captions for app
     """
-    input: rules.datasets_potentialarea_wind_region_create_area_stats.input
+    input: rules.datasets_potentialarea_wind_region_create_area_stats.input.area
     output: DATASET_PATH / "potentialarea_wind_attribute_captions.json"
     run:
         captions = {

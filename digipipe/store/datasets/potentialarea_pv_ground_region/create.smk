@@ -6,6 +6,7 @@ Note: To include the file in the main workflow, it must be added to the respecti
 import json
 import re
 import geopandas as gpd
+import pandas as pd
 from pathlib import Path
 from digipipe.scripts.geo import (
     overlay,
@@ -53,7 +54,7 @@ rule create_area_stats_muns:
             area=config["areas"],
         ),
         region_muns=PATH_TO_REGION_MUNICIPALITIES_GPKG,
-    output: DATASET_PATH / "potentialarea_pv_ground_area_stats_muns.json"
+    output: DATASET_PATH / "potentialarea_pv_ground_area_stats_muns.csv"
     run:
         print("PV ground potential area stats:")
         muns = gpd.read_file(input.region_muns)
@@ -79,9 +80,9 @@ rule create_area_stats_muns:
                 f"{round(float(area_km2.sum()), 1)} sqm"
             )
 
-        # Dump
-        with open(output[0], "w", encoding="utf8") as f:
-            json.dump(area_dict, f, indent=4)
+        area_df = pd.DataFrame(area_dict)
+        area_df.index.name="municipality_id"
+        area_df.to_csv(output[0])
 
 rule create_potarea_shares:
     """

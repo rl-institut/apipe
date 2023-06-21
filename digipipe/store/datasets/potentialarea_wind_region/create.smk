@@ -66,17 +66,17 @@ rule create_area_stats_muns:
                 Path(file).name,
             )[0]
             data = gpd.read_file(file)
-            data["area_ha"] = data.area / 1e4
-            area_ha = data[
-                ["municipality_id", "area_ha"]
+            data["area_km2"] = data.area / 1e6
+            area_km2 = data[
+                ["municipality_id", "area_km2"]
             ].groupby("municipality_id").sum()
 
             # Set area of non-occurring muns to 0
-            area_ha = area_ha.reindex(muns.id, fill_value=0)
-            area_dict[area_name] = area_ha.to_dict()["area_ha"]
+            area_km2 = area_km2.reindex(muns.id, fill_value=0)
+            area_dict[area_name] = area_km2.to_dict()["area_km2"]
             print(
                 f"  Total area for {area_name}: "
-                f"{round(float(area_ha.sum()), 1)} ha"
+                f"{round(float(area_km2.sum()), 1)} sqm"
             )
 
         # Dump

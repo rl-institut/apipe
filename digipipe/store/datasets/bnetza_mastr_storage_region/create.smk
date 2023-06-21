@@ -49,4 +49,5 @@ rule create_power_stats_muns:
             muns=gpd.read_file(input.region_muns),
             column="capacity_net"
         )
+        units["capacity_net"] = units["capacity_net"].div(1e3)  # kW to MW
         units.to_csv(output[0])

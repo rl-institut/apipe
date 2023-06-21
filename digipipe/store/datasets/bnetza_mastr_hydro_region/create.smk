@@ -4,6 +4,9 @@ Snakefile for this dataset
 Note: To include the file in the main workflow, it must be added to the respective module.smk .
 """
 
+import geopandas as gpd
+
+from digipipe.scripts.datasets.mastr import create_stats_per_municipality
 from digipipe.store.utils import (
     get_abs_dataset_path,
     PATH_TO_REGION_MUNICIPALITIES_GPKG,
@@ -30,3 +33,19 @@ rule create:
         config_file=DATASET_PATH / "config.yml"
     script:
         DATASET_PATH / "scripts" / "create.py"
+
+rule create_power_stats_muns:
+    """
+    Create JSON file with stats on installed count of units and power per mun
+    """
+    input:
+        units=DATASET_PATH / "data" / "bnetza_mastr_hydro_region.gpkg",
+        region_muns=PATH_TO_REGION_MUNICIPALITIES_GPKG,
+    output: DATASET_PATH / "data" / "bnetza_mastr_hydro_stats_muns.csv"
+    run:
+        units = create_stats_per_municipality(
+            units_df=gpd.read_file(input.units),
+            muns=gpd.read_file(input.region_muns),
+            column="capacity_net"
+        )
+        units.to_csv(output[0])

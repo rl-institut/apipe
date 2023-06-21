@@ -19,6 +19,9 @@ einem Landkreis (Attribut `district_id`, vgl.
 [bkg_vg250_muns_region](../../datasets/bkg_vg250_districts_region/dataset.md))
 zugeordnet.
 
+Zusätzlich erfolgt eine statistische Auswertung der installierten Leistung in
+`bnetza_mastr_pv_ground_stats_muns.csv`.
+
 ## Datenkorrektur
 
 Einige Anlagen sind hinsichtlich Ihrer geografischen Lage oder Typs fehlerhaft.

@@ -17,6 +17,14 @@ settings = Dynaconf(
     ],
 )
 
+write_default_scalars = Dynaconf(
+    envvar_prefix="DYNACONF",
+    settings_files=[
+        CONFIG_PATH / "write_default_scalars.yml",
+        CONFIG_PATH / ".secrets.yaml",
+    ],
+)
+
 
 class LevelFilter(logging.Filter):
     def __init__(self, level):

@@ -8,8 +8,7 @@ from pathlib import Path
 
 from digipipe.store.utils import get_abs_dataset_path
 
-DATASET_PATH = get_abs_dataset_path(
-    "appdata", "geodata", data_dir=True)
+DATASET_PATH = get_abs_dataset_path("appdata", "geodata", data_dir=True)
 
 
 def collect_geodata() -> list:

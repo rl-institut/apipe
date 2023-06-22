@@ -31,6 +31,15 @@ following directories:
 - `store/datasets/esys_raw/data/scalars/`
 - `store/datasets/esys_raw/data/time_series/`
 
+To set up an empty energy system, the following prompt automatically writes
+default scalar values (such as zero or NaN) to the empty scalars:
+
+```
+snakemake -j1 write_default_scalars
+```
+With this the file `empty_scalars.csv` is automatically updated and saved to:
+`store/datasets/esys_raw/data/scalars/default_scalars.csv`
+
 ## Test the energy system
 
 To test the solvability of the energy system, run

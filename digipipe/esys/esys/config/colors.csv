@@ -45,14 +45,12 @@ H2 decentral CHP,#73B0AF
 Heat cen. demand hh,#ff0800
 Heat cen. demand cts,#ff0800
 Heat cen. demand ind,#ff0800
-Heat cen. excess,#DBDBDB
 Heat cen. storage in,#e2c319
 Heat cen. storage,#e2c319
 Heat cen. storage out,#e2c319
 Heat dec. demand hh,#f2740a
 Heat dec. demand cts,#f2740a
 Heat dec. demand ind,#f2740a
-Heat dec. excess,#DBDBDB
 Heat dec. storage out,#e2c319
 Heat dec. storage in,#e2c319
 Heat dec. storage,#e2c319

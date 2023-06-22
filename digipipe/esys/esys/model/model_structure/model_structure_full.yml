@@ -68,13 +68,11 @@ components:
   - heat_central-demand_hh
   - heat_central-demand_cts
   - heat_central-demand_ind
-  - heat_central-excess
   - heat_central-storage
 
   - heat_decentral-demand_hh
   - heat_decentral-demand_cts
   - heat_decentral-demand_ind
-  - heat_decentral-excess
   - heat_decentral-storage
 
   - solar-pv_ground

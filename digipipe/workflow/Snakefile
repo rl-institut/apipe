@@ -19,6 +19,7 @@ APPDATA_ESYS_PATH = get_abs_dataset_path("appdata", "esys")
 # Include store modules
 include: "../store/preprocessed/module.smk"
 include: "../store/datasets/module.smk"
+include: "../store/appdata/module.smk"
 
 # Include esys snakefiles
 include: "../esys/Snakefile"
@@ -70,7 +71,13 @@ rule all:
             tech=["wind", "pv", "st","ror"],
         ),
         full_load_hours=get_abs_dataset_path("datasets", "renewable_feedin") / "data" / "full_load_hours.json",
-        z=rules.datasets_heatpump_cop_merge.output,
+        cop=rules.datasets_heatpump_cop_merge.output,
+        potarea_wind=rules.datasets_potentialarea_wind_region_create_area_stats_muns.output,
+        potarea_wind2=rules.datasets_potentialarea_wind_region_create_captions.output,
+        potarea_pv=rules.datasets_potentialarea_pv_ground_region_create_area_stats_muns.output,
+        potarea_pv2=rules.datasets_potentialarea_pv_ground_region_create_potarea_shares.output,
+
+        infolayers=rules.appdata_geodata_infolayers_copy_files.output,
 
         esys_appdata=rules.make_esys_appdata.output
 

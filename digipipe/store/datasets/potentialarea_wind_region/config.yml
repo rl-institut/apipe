@@ -2,7 +2,7 @@
 # This file holds configuration parameters for the creation of this dataset. #
 ##############################################################################
 
-# Area names (which identify files form preprocessing)
+# Area names (which identify files from preprocessing)
 areas:
   [
     "stp_2018_vreg",

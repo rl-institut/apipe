@@ -71,6 +71,7 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Translate all dataset.md files to German
 - Exchange *Test_scenario* with *2045_scenario* in *digipipe/esys/scenarios*
 - Split each demand per sector in *esys*
+- File .gitignore again includes ignoring of esys appdata
 - Changes were applied to the energy system. Among others RoR, small batteries
   and biogas were added. A distinction was made between centralized and
   decentralized CHPs

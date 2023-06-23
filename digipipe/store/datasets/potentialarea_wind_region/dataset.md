@@ -22,7 +22,7 @@ Die darin verwendeten Attributtexte werden in die Datei
 
 Die Flächen werden mit den Gemeindegrenzen verschnitten und den Gemeinden
 zugeordnet. Je Gemeinde und obigem Flächentyp/Datei wird eine Flächensumme (in
-ha) berechnet, siehe `potentialarea_wind_area_stats_muns.json`. Die Gemeinden
+km²) berechnet, siehe `potentialarea_wind_area_stats_muns.csv`. Die Gemeinden
 werden über den Schlüssel `municipality_id` (vgl.
 [bkg_vg250_muns_region](../../datasets/bkg_vg250_muns_region/dataset.md))
 identifiziert.

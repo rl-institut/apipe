@@ -22,6 +22,9 @@ einem Landkreis (Attribut `district_id`, vgl.
 [bkg_vg250_muns_region](../../datasets/bkg_vg250_districts_region/dataset.md))
 zugeordnet.
 
+Zusätzlich erfolgt eine statistische Auswertung der installierten Leistung in
+`bnetza_mastr_pv_roof_stats_muns.csv`.
+
 ### Datenkorrektur
 
 Einige Anlagen sind hinsichtlich Ihrer geografischen Lage oder Typs fehlerhaft.
@@ -52,6 +55,9 @@ Jede Anlage wird anhand ihrer Lokation einer Gemeinde (Attribut
 einem Landkreis (Attribut `district_id`, vgl.
 [bkg_vg250_muns_region](../../datasets/bkg_vg250_districts_region/dataset.md))
 zugeordnet.
+
+Zusätzlich erfolgt eine statistische Auswertung der installierten Leistung in
+`bnetza_mastr_biomass_stats_muns.csv`.
 
 **Dataset: `datasets/bnetza_mastr_biomass_region`**
 
@@ -194,6 +200,9 @@ einem Landkreis (Attribut `district_id`, vgl.
 [bkg_vg250_muns_region](../../datasets/bkg_vg250_districts_region/dataset.md))
 zugeordnet.
 
+Zusätzlich erfolgt eine statistische Auswertung der installierten Leistung in
+`bnetza_mastr_wind_stats_muns.csv`.
+
 **Dataset: `datasets/bnetza_mastr_wind_region`**
 
 
@@ -240,6 +249,9 @@ Jede Anlage wird anhand ihrer Lokation einer Gemeinde (Attribut
 einem Landkreis (Attribut `district_id`, vgl.
 [bkg_vg250_muns_region](../../datasets/bkg_vg250_districts_region/dataset.md))
 zugeordnet.
+
+Zusätzlich erfolgt eine statistische Auswertung der installierten Leistung in
+`bnetza_mastr_combustion_stats_muns.csv`.
 
 **Dataset: `datasets/bnetza_mastr_combustion_region`**
 
@@ -308,6 +320,9 @@ Jede Anlage wird anhand ihrer Lokation einer Gemeinde (Attribut
 einem Landkreis (Attribut `district_id`, vgl.
 [bkg_vg250_muns_region](../../datasets/bkg_vg250_districts_region/dataset.md))
 zugeordnet.
+
+Zusätzlich erfolgt eine statistische Auswertung der installierten Leistung in
+`bnetza_mastr_pv_ground_stats_muns.csv`.
 
 ### Datenkorrektur
 
@@ -488,7 +503,7 @@ Die darin verwendeten Attributtexte werden in die Datei
 
 Die Flächen werden mit den Gemeindegrenzen verschnitten und den Gemeinden
 zugeordnet. Je Gemeinde und obigem Flächentyp/Datei wird eine Flächensumme (in
-ha) berechnet, siehe `potentialarea_wind_area_stats_muns.json`. Die Gemeinden
+km²) berechnet, siehe `potentialarea_wind_area_stats_muns.csv`. Die Gemeinden
 werden über den Schlüssel `municipality_id` (vgl.
 [bkg_vg250_muns_region](../../datasets/bkg_vg250_muns_region/dataset.md))
 identifiziert.
@@ -516,6 +531,9 @@ Jede Anlage wird anhand ihrer Lokation einer Gemeinde (Attribut
 einem Landkreis (Attribut `district_id`, vgl.
 [bkg_vg250_muns_region](../../datasets/bkg_vg250_districts_region/dataset.md))
 zugeordnet.
+
+Zusätzlich erfolgt eine statistische Auswertung der installierten Leistung in
+`bnetza_mastr_hydro_stats_muns.csv`.
 
 **Dataset: `datasets/bnetza_mastr_hydro_region`**
 
@@ -550,6 +568,9 @@ Jede Anlage wird anhand ihrer Lokation einer Gemeinde (Attribut
 einem Landkreis (Attribut `district_id`, vgl.
 [bkg_vg250_muns_region](../../datasets/bkg_vg250_districts_region/dataset.md))
 zugeordnet.
+
+Zusätzlich erfolgt eine statistische Auswertung der installierten Leistung in
+`bnetza_mastr_gsgk_stats_muns.csv`.
 
 **Dataset: `datasets/bnetza_mastr_gsgk_region`**
 
@@ -616,6 +637,9 @@ einem Landkreis (Attribut `district_id`, vgl.
 [bkg_vg250_muns_region](../../datasets/bkg_vg250_districts_region/dataset.md))
 zugeordnet.
 
+Zusätzlich erfolgt eine statistische Auswertung der installierten Leistung in
+`bnetza_mastr_storage_stats_muns.csv`.
+
 **Dataset: `datasets/bnetza_mastr_storage_region`**
 
 
@@ -671,7 +695,7 @@ Die darin verwendeten Attributtexte werden in die Datei
 
 Die Flächen werden mit den Gemeindegrenzen verschnitten und den Gemeinden
 zugeordnet. Je Gemeinde und obigem Flächentyp/Datei wird eine Flächensumme (in
-ha) berechnet, siehe `potentialarea_pv_ground_area_stats_muns.json`. Die
+km²) berechnet, siehe `potentialarea_pv_ground_area_stats_muns.csv`. Die
 Gemeinden werden über den Schlüssel `municipality_id` (vgl.
 [bkg_vg250_muns_region](../../datasets/bkg_vg250_muns_region/dataset.md))
 identifiziert.

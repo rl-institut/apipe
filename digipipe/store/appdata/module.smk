@@ -10,3 +10,8 @@ module <DATASET_NAME>:
 use rule * from <DATASET_NAME> as appdata_<DATASET_NAME>_*
 
 """
+
+module datapackage:
+    snakefile: "datapackage/create.smk"
+    config: config["store"]["appdata"]["datapackage"]
+use rule * from datapackage as appdata_datapackage_*

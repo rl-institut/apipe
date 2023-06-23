@@ -84,8 +84,7 @@ rule all:
         potarea_wind2=rules.datasets_potentialarea_wind_region_create_captions.output,
         potarea_pv=rules.datasets_potentialarea_pv_ground_region_create_area_stats_muns.output,
         potarea_pv2=rules.datasets_potentialarea_pv_ground_region_create_potarea_shares.output,
-
-        infolayers=rules.appdata_geodata_copy_files.output,
+        datapackage=rules.appdata_datapackage_create_datapackage.output,
 
         esys_appdata=rules.make_esys_appdata.output
 

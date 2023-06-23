@@ -10,8 +10,3 @@ module <DATASET_NAME>:
 use rule * from <DATASET_NAME> as appdata_<DATASET_NAME>_*
 
 """
-
-module geodata:
-    snakefile: "geodata/create.smk"
-    config: config["store"]["appdata"]["geodata"]
-use rule * from geodata as appdata_geodata_*

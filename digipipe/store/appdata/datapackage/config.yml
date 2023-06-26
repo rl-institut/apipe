@@ -796,6 +796,74 @@ resources:
                 _source_path:
                     dataset: "potentialarea_pv_ground_region"
                     file: "potentialarea_pv_ground_area_stats_muns.csv"
+            pv_roof_area_stats:
+                description: "Potenziale PV-Aufdachanlagen"
+                path: "data/potentialarea_pv_roof_area_stats_muns.csv"
+                fields:
+                    municipality_id:
+                        description: "Gemeinde-ID"
+                        unit: "-"
+                    roof_count:
+                        description: "Anzahl der Dächer/Gebäude"
+                        unit: "-"
+                    building_area_sqm:
+                        description: "Gesamtgrundfläche"
+                        unit: "m2"
+                    historic_preservation_count:
+                        description: "Anzahl der Gebäude unter Denkmalschutz"
+                        unit: "-"
+                    installable_power_south:
+                        description: "Installierbare Gesamtleistung (Südausrichtung)"
+                        unit: "MW"
+                    installable_power_north:
+                        description: "Installierbare Gesamtleistung (Nordausrichtung)"
+                        unit: "MW"
+                    installable_power_east:
+                        description: "Installierbare Gesamtleistung (Ostausrichtung)"
+                        unit: "MW"
+                    installable_power_west:
+                        description: "Installierbare Gesamtleistung (Westausrichtung)"
+                        unit: "MW"
+                    installable_power_flat:
+                        description: "Installierbare Gesamtleistung (Flachdach)"
+                        unit: "MW"
+                    installable_power_total:
+                        description: "Installierbare Gesamtleistung (Summe)"
+                        unit: "MW"
+                    energy_annual_south:
+                        description: "Erzielbarer Energieertrag (Südausrichtung)"
+                        unit: "MWh"
+                    energy_annual_north:
+                        description: "Erzielbarer Energieertrag (Nordausrichtung)"
+                        unit: "MWh"
+                    energy_annual_east:
+                        description: "Erzielbarer Energieertrag (Ostausrichtung)"
+                        unit: "MWh"
+                    energy_annual_west:
+                        description: "Erzielbarer Energieertrag (Westausrichtung)"
+                        unit: "MWh"
+                    energy_annual_flat:
+                        description: "Erzielbarer Energieertrag (Flachdach)"
+                        unit: "MWh"
+                    energy_annual_total:
+                        description: "Erzielbarer Energieertrag (Summe)"
+                        unit: "MWh"
+                _source_path:
+                    dataset: "potentialarea_pv_roof_region"
+                    file: "potentialarea_pv_roof_area_stats_muns.csv"
+            pv_roof_area_deployment_stats:
+                description: "Genutzte Potenziale PV-Aufdachanlagen"
+                path: "data/potentialarea_pv_roof_deployment_stats_muns.csv"
+                fields:
+                    municipality_id:
+                        description: "Gemeinde-ID"
+                        unit: "-"
+                    relative_deployment:
+                        description: "Relative Potenzialnutzung"
+                        unit: "-"
+                _source_path:
+                    dataset: "potentialarea_pv_roof_region"
+                    file: "potentialarea_pv_roof_deployment_stats_muns.csv"
 
         geodata:
             potentialarea_pv_agriculture_lfa-off_region:

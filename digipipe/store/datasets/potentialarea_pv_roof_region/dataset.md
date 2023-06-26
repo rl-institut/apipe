@@ -7,7 +7,7 @@ Anhalt-Bitterfeld-Wittenberg der Regionalen Planungsgemeinschaft aus Datensatz
 Die Gebäudezentroide werden mit den Gemeindegrenzen verschnitten und den
 Gemeinden zugeordnet, siehe `potentialarea_pv_roof_area_stats_muns.csv`.
 
-Des Weiteren wird je Gemeinde der reltive Anteil der bereits installierten
+Des Weiteren wird je Gemeinde der relative Anteil der bereits installierten
 Anlagenleistung an der theoretisch installierbaren Leistung (bei
 100% Dachnutzung) berechnet und in
 `potentialarea_pv_roof_deployment_stats_muns.csv` geschrieben.

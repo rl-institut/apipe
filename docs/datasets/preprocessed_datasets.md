@@ -92,6 +92,19 @@ Anzahl Beschäftigte und Betriebe extrahiert und in CSV konvertiert.
 
 
 ------------------------------
+## Geodaten PV- und Windflächenrechner
+
+Geodaten aus dem
+[PV- und Windflächenrechner](https://www.agora-energiewende.de/service/pv-und-windflaechenrechner/),
+extrahiert.
+
+Raw dataset:
+[rli_pv_windflaechenrechner](../../raw/rli_pv_wfr/dataset.md)
+
+**Dataset: `preprocessed/rli_pv_wfr`**
+
+
+------------------------------
 ## Erzeugungsanlagen aus Marktstammdatenregister
 
 Erzeugungsanlagen aus dem MaStR für ausgewählte Technologien.
@@ -108,6 +121,18 @@ Mittelwert für alle Gemeinden.
 Verwendet: [dwd_temperature](../../raw/dwd_temperature/dataset.md)
 
 **Dataset: `preprocessed/dwd_temperature`**
+
+
+------------------------------
+## Regionalplan Anhalt-Bitterfeld-Wittenberg
+
+Vorverarbeitete Datensätze aus Teilplänen Wind der Regionalen
+Planungsgemeinschaft Anhalt-Bitterfeld-Wittenberg aus
+[rpg_abw_regional_plan](../../raw/rpg_abw_regional_plan/dataset.md).
+
+In der [config.yml](config.yml) können Einstellungen vorgenommen werden.
+
+**Dataset: `preprocessed/rpg_abw_regional_plan`**
 
 
 ------------------------------
@@ -168,6 +193,18 @@ Einwohnerzahl nach Gemeinden des Statistischen Bundesamts für die Jahre
 2010, 2015, 2020, 2021, 2022.
 
 **Dataset: `preprocessed/destatis_gv`**
+
+
+------------------------------
+## Dachflächenpotenzial PV-Aufdachanlagen in ABW
+
+Abschätzung der installierten Leistung und des Ertrags von PV-Aufdachanlagen in
+Anhalt-Bitterfeld-Wittenberg der Regionalen Planungsgemeinschaft, reprojizert.
+
+Raw dataset:
+[rpg_abw_pv_roof_potential](../../raw/rpg_abw_pv_roof_potential/dataset.md)
+
+**Dataset: `preprocessed/rpg_abw_pv_roof_potential`**
 
 
 ------------------------------

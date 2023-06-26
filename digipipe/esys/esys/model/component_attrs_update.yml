@@ -86,13 +86,29 @@ electricity-large_scale_battery:
     input_parameters: "{}"
     output_parameters: "{}"
 
-electricity-demand:
+electricity-demand_hh:
   carrier: electricity
-  tech: demand
+  tech: demand_hh
   type: load
   foreign_keys:
     bus: electricity
-    profile: electricity-demand-profile
+    profile: electricity-demand_hh-profile
+
+electricity-demand_cts:
+  carrier: electricity
+  tech: demand_cts
+  type: load
+  foreign_keys:
+    bus: electricity
+    profile: electricity-demand_cts-profile
+
+electricity-demand_ind:
+  carrier: electricity
+  tech: demand_ind
+  type: load
+  foreign_keys:
+    bus: electricity
+    profile: electricity-demand_ind-profile
 
 electricity-heatpump_large:
   carrier: electricity
@@ -149,13 +165,29 @@ ch4-boiler_large:
   defaults:
     output_parameters: "{}"
 
-heat_central-demand:
+heat_central-demand_hh:
   carrier: heat_central
-  tech: demand
+  tech: demand_hh
   type: load
   foreign_keys:
     bus: heat_central
-    profile: heat_central-demand-profile
+    profile: heat_central-demand_hh-profile
+
+heat_central-demand_cts:
+  carrier: heat_central
+  tech: demand_cts
+  type: load
+  foreign_keys:
+    bus: heat_central
+    profile: heat_central-demand_cts-profile
+
+heat_central-demand_ind:
+  carrier: heat_central
+  tech: demand_ind
+  type: load
+  foreign_keys:
+    bus: heat_central
+    profile: heat_central-demand_ind-profile
 
 heat_central-excess:
   carrier: heat_central
@@ -231,13 +263,29 @@ solar-thermalcollector:
     marginal_cost: 0
     output_parameters: "{}"
 
-heat_decentral-demand:
+heat_decentral-demand_hh:
   carrier: heat_decentral
-  tech: demand
+  tech: demand_hh
   type: load
   foreign_keys:
     bus: heat_decentral
-    profile: heat_decentral-demand-profile
+    profile: heat_decentral-demand_hh-profile
+
+heat_decentral-demand_cts:
+  carrier: heat_decentral
+  tech: demand_cts
+  type: load
+  foreign_keys:
+    bus: heat_decentral
+    profile: heat_decentral-demand_cts-profile
+
+heat_decentral-demand_ind:
+  carrier: heat_decentral
+  tech: demand_ind
+  type: load
+  foreign_keys:
+    bus: heat_decentral
+    profile: heat_decentral-demand_ind-profile
 
 heat_decentral-excess:
   carrier: heat_decentral
@@ -289,13 +337,29 @@ ch4-export:
   defaults:
     output_parameters: "{}"
 
-ch4-demand:
+ch4-demand_hh:
   carrier: ch4
-  tech: demand
+  tech: demand_hh
   type: load
   foreign_keys:
     bus: ch4
-    profile: ch4-demand-profile
+    profile: ch4-demand_hh-profile
+
+ch4-demand_cts:
+  carrier: ch4
+  tech: demand_cts
+  type: load
+  foreign_keys:
+    bus: ch4
+    profile: ch4-demand_cts-profile
+
+ch4-demand_ind:
+  carrier: ch4
+  tech: demand_ind
+  type: load
+  foreign_keys:
+    bus: ch4
+    profile: ch4-demand_ind-profile
 
 ch4-shortage:
   carrier: ch4
@@ -328,13 +392,13 @@ wood-import:
   defaults:
     output_parameters: "{}"
 
-wood-demand:
+wood-demand_hh:
   carrier: wood
-  tech: demand
+  tech: demand_hh
   type: load
   foreign_keys:
     bus: wood
-    profile: wood-demand-profile
+    profile: wood-demand_hh-profile
 
 wood-shortage:
   carrier: wood
@@ -357,13 +421,13 @@ lignite-import:
   defaults:
     output_parameters: "{}"
 
-lignite-demand:
+lignite-demand_hh:
   carrier: lignite
-  tech: demand
+  tech: demand_hh
   type: load
   foreign_keys:
     bus: lignite
-    profile: lignite-demand-profile
+    profile: lignite-demand_hh-profile
 
 lignite-shortage:
   carrier: lignite
@@ -385,13 +449,29 @@ biomass-import:
   defaults:
     output_parameters: "{}"
 
-biomass-demand:
+biomass-demand_hh:
   carrier: biomass
-  tech: demand
+  tech: demand_hh
   type: load
   foreign_keys:
     bus: biomass
-    profile: biomass-demand-profile
+    profile: biomass-demand_hh-profile
+
+biomass-demand_cts:
+  carrier: biomass
+  tech: demand_cts
+  type: load
+  foreign_keys:
+    bus: biomass
+    profile: biomass-demand_cts-profile
+
+biomass-demand_ind:
+  carrier: biomass
+  tech: demand_ind
+  type: load
+  foreign_keys:
+    bus: biomass
+    profile: biomass-demand_ind-profile
 
 
 # Bus "h2":

@@ -15,6 +15,16 @@ Neben einem anlagenscharfen Datensatz wird ein weiterer Datensatz erzeugt,
 der alle Anlagen mit approximierter Position je Position zusammenfasst und
 jeweils typische Kennwerte enthält (u.a. Anzahl Anlagen, Gesamtleistung).
 
+Jede Anlage wird anhand ihrer Lokation einer Gemeinde (Attribut
+`municipality_id`, vgl.
+[bkg_vg250_muns_region](../../datasets/bkg_vg250_muns_region/dataset.md)) und
+einem Landkreis (Attribut `district_id`, vgl.
+[bkg_vg250_muns_region](../../datasets/bkg_vg250_districts_region/dataset.md))
+zugeordnet.
+
+Zusätzlich erfolgt eine statistische Auswertung der installierten Leistung in
+`bnetza_mastr_pv_roof_stats_muns.csv`.
+
 ### Datenkorrektur
 
 Einige Anlagen sind hinsichtlich Ihrer geografischen Lage oder Typs fehlerhaft.
@@ -38,6 +48,16 @@ ungefähre Position bereit zu stellen.
 Neben einem anlagenscharfen Datensatz wird ein weiterer Datensatz erzeugt,
 der alle Anlagen mit approximierter Position je Position zusammenfasst und
 jeweils typische Kennwerte enthält (u.a. Anzahl Anlagen, Gesamtleistung).
+
+Jede Anlage wird anhand ihrer Lokation einer Gemeinde (Attribut
+`municipality_id`, vgl.
+[bkg_vg250_muns_region](../../datasets/bkg_vg250_muns_region/dataset.md)) und
+einem Landkreis (Attribut `district_id`, vgl.
+[bkg_vg250_muns_region](../../datasets/bkg_vg250_districts_region/dataset.md))
+zugeordnet.
+
+Zusätzlich erfolgt eine statistische Auswertung der installierten Leistung in
+`bnetza_mastr_biomass_stats_muns.csv`.
 
 **Dataset: `datasets/bnetza_mastr_biomass_region`**
 
@@ -173,6 +193,16 @@ Neben einem anlagenscharfen Datensatz wird ein weiterer Datensatz erzeugt,
 der alle Anlagen mit approximierter Position je Position zusammenfasst und
 jeweils typische Kennwerte enthält (u.a. Anzahl Anlagen, Gesamtleistung).
 
+Jede Anlage wird anhand ihrer Lokation einer Gemeinde (Attribut
+`municipality_id`, vgl.
+[bkg_vg250_muns_region](../../datasets/bkg_vg250_muns_region/dataset.md)) und
+einem Landkreis (Attribut `district_id`, vgl.
+[bkg_vg250_muns_region](../../datasets/bkg_vg250_districts_region/dataset.md))
+zugeordnet.
+
+Zusätzlich erfolgt eine statistische Auswertung der installierten Leistung in
+`bnetza_mastr_wind_stats_muns.csv`.
+
 **Dataset: `datasets/bnetza_mastr_wind_region`**
 
 
@@ -183,6 +213,20 @@ Staatsgrenze aus Geodaten der Verwaltungsgebiete extrahiert und nach Landmasse
 gefiltert (Geofaktor 4 = "mit Struktur Land").
 
 **Dataset: `datasets/bkg_vg250_state`**
+
+
+------------------------------
+## Geodaten PV- und Windflächenrechner
+
+Geodaten aus dem
+[PV- und Windflächenrechner](https://www.agora-energiewende.de/service/pv-und-windflaechenrechner/),
+extrahiert, zu LAEA Europe (EPSG:3035) umprojiziert und auf die Regionsgrenzen
+zugeschnitten.
+
+Preprocessed dataset:
+[rli_pv_windflaechenrechner](../../preprocessed/rli_pv_wfr/dataset.md)
+
+**Dataset: `datasets/rli_pv_wfr_region`**
 
 
 ------------------------------
@@ -198,6 +242,16 @@ ungefähre Position bereit zu stellen.
 Neben einem anlagenscharfen Datensatz wird ein weiterer Datensatz erzeugt,
 der alle Anlagen mit approximierter Position je Position zusammenfasst und
 jeweils typische Kennwerte enthält (u.a. Anzahl Anlagen, Gesamtleistung).
+
+Jede Anlage wird anhand ihrer Lokation einer Gemeinde (Attribut
+`municipality_id`, vgl.
+[bkg_vg250_muns_region](../../datasets/bkg_vg250_muns_region/dataset.md)) und
+einem Landkreis (Attribut `district_id`, vgl.
+[bkg_vg250_muns_region](../../datasets/bkg_vg250_districts_region/dataset.md))
+zugeordnet.
+
+Zusätzlich erfolgt eine statistische Auswertung der installierten Leistung in
+`bnetza_mastr_combustion_stats_muns.csv`.
 
 **Dataset: `datasets/bnetza_mastr_combustion_region`**
 
@@ -259,6 +313,16 @@ ungefähre Position bereit zu stellen.
 Neben einem anlagenscharfen Datensatz wird ein weiterer Datensatz erzeugt,
 der alle Anlagen mit approximierter Position je Position zusammenfasst und
 jeweils typische Kennwerte enthält (u.a. Anzahl Anlagen, Gesamtleistung).
+
+Jede Anlage wird anhand ihrer Lokation einer Gemeinde (Attribut
+`municipality_id`, vgl.
+[bkg_vg250_muns_region](../../datasets/bkg_vg250_muns_region/dataset.md)) und
+einem Landkreis (Attribut `district_id`, vgl.
+[bkg_vg250_muns_region](../../datasets/bkg_vg250_districts_region/dataset.md))
+zugeordnet.
+
+Zusätzlich erfolgt eine statistische Auswertung der installierten Leistung in
+`bnetza_mastr_pv_ground_stats_muns.csv`.
 
 ### Datenkorrektur
 
@@ -415,6 +479,39 @@ Hierbei wird nach Technologien für dezentrale sowie Fernwärme unterschieden.
 
 
 ------------------------------
+## Potenzialgebiete Windenergie
+
+Potenzialgebiete für die Errichtung von Windenergieanlagen, basierend auf den
+Teilplänen Wind der Regionalen Planungsgemeinschaft Anhalt-Bitterfeld-Wittenberg
+aus
+[rpg_abw_regional_plan](../../preprocessed/rpg_abw_regional_plan/dataset.md).
+
+Dateien:
+- STP Wind 2018 - Vorrang-/Eignungsgebiete:
+  `potentialarea_wind_stp_2018_vreg.gpkg`
+- STP Wind 2027 - Planabsicht Vorranggebiete:
+  `potentialarea_wind_stp_2027_vr.gpkg`
+- STP Wind 2027 - Planabsicht Repoweringgebiete:
+  `potentialarea_wind_stp_2027_repowering.gpkg`
+- STP Wind 2027 - Suchraum Wald:
+  `potentialarea_wind_stp_2027_search_area_forest_area.gpkg`
+- STP Wind 2027 - Suchraum Offenland:
+  `potentialarea_wind_stp_2027_search_area_open_area.gpkg`
+
+Die darin verwendeten Attributtexte werden in die Datei
+`potentialarea_wind_attribute_captions.json` exportiert.
+
+Die Flächen werden mit den Gemeindegrenzen verschnitten und den Gemeinden
+zugeordnet. Je Gemeinde und obigem Flächentyp/Datei wird eine Flächensumme (in
+km²) berechnet, siehe `potentialarea_wind_area_stats_muns.csv`. Die Gemeinden
+werden über den Schlüssel `municipality_id` (vgl.
+[bkg_vg250_muns_region](../../datasets/bkg_vg250_muns_region/dataset.md))
+identifiziert.
+
+**Dataset: `datasets/potentialarea_wind_region`**
+
+
+------------------------------
 ## Wasserkraftanlagen
 
 Wasserkraftanlagen in der Region aus MaStR-Registerdaten als Geopackage.
@@ -427,6 +524,16 @@ ungefähre Position bereit zu stellen.
 Neben einem anlagenscharfen Datensatz wird ein weiterer Datensatz erzeugt,
 der alle Anlagen mit approximierter Position je Position zusammenfasst und
 jeweils typische Kennwerte enthält (u.a. Anzahl Anlagen, Gesamtleistung).
+
+Jede Anlage wird anhand ihrer Lokation einer Gemeinde (Attribut
+`municipality_id`, vgl.
+[bkg_vg250_muns_region](../../datasets/bkg_vg250_muns_region/dataset.md)) und
+einem Landkreis (Attribut `district_id`, vgl.
+[bkg_vg250_muns_region](../../datasets/bkg_vg250_districts_region/dataset.md))
+zugeordnet.
+
+Zusätzlich erfolgt eine statistische Auswertung der installierten Leistung in
+`bnetza_mastr_hydro_stats_muns.csv`.
 
 **Dataset: `datasets/bnetza_mastr_hydro_region`**
 
@@ -455,7 +562,39 @@ Neben einem anlagenscharfen Datensatz wird ein weiterer Datensatz erzeugt,
 der alle Anlagen mit approximierter Position je Position zusammenfasst und
 jeweils typische Kennwerte enthält (u.a. Anzahl Anlagen, Gesamtleistung).
 
+Jede Anlage wird anhand ihrer Lokation einer Gemeinde (Attribut
+`municipality_id`, vgl.
+[bkg_vg250_muns_region](../../datasets/bkg_vg250_muns_region/dataset.md)) und
+einem Landkreis (Attribut `district_id`, vgl.
+[bkg_vg250_muns_region](../../datasets/bkg_vg250_districts_region/dataset.md))
+zugeordnet.
+
+Zusätzlich erfolgt eine statistische Auswertung der installierten Leistung in
+`bnetza_mastr_gsgk_stats_muns.csv`.
+
 **Dataset: `datasets/bnetza_mastr_gsgk_region`**
+
+
+------------------------------
+## Dachflächenpotenzial PV-Aufdachanlagen in ABW
+
+Abschätzung der installierten Leistung und des Ertrags von PV-Aufdachanlagen in
+Anhalt-Bitterfeld-Wittenberg der Regionalen Planungsgemeinschaft aus Datensatz
+[rpg_abw_pv_roof_potential](../../raw/rpg_abw_pv_roof_potential/dataset.md).
+
+Die Gebäudezentroide werden mit den Gemeindegrenzen verschnitten und den
+Gemeinden zugeordnet, siehe `potentialarea_pv_roof_area_stats_muns.csv`.
+
+Des Weiteren wird je Gemeinde der relative Anteil der bereits installierten
+Anlagenleistung an der theoretisch installierbaren Leistung (bei
+100% Dachnutzung) berechnet und in
+`potentialarea_pv_roof_deployment_stats_muns.csv` geschrieben.
+
+Die Gemeinden werden über den Schlüssel `municipality_id` (vgl.
+[bkg_vg250_muns_region](../../datasets/bkg_vg250_muns_region/dataset.md))
+identifiziert.
+
+**Dataset: `datasets/potentialarea_pv_roof_region`**
 
 
 ------------------------------
@@ -513,6 +652,16 @@ Neben einem anlagenscharfen Datensatz wird ein weiterer Datensatz erzeugt,
 der alle Anlagen mit approximierter Position je Position zusammenfasst und
 jeweils typische Kennwerte enthält (u.a. Anzahl Anlagen, Gesamtleistung).
 
+Jede Anlage wird anhand ihrer Lokation einer Gemeinde (Attribut
+`municipality_id`, vgl.
+[bkg_vg250_muns_region](../../datasets/bkg_vg250_muns_region/dataset.md)) und
+einem Landkreis (Attribut `district_id`, vgl.
+[bkg_vg250_muns_region](../../datasets/bkg_vg250_districts_region/dataset.md))
+zugeordnet.
+
+Zusätzlich erfolgt eine statistische Auswertung der installierten Leistung in
+`bnetza_mastr_storage_stats_muns.csv`.
+
 **Dataset: `datasets/bnetza_mastr_storage_region`**
 
 
@@ -539,6 +688,43 @@ Zeitreihe normiert auf Summe=1 für
 Heutige bzw. prognostizierte Jahresvolllaststunden: `full_load_hours.json`
 
 **Dataset: `datasets/renewable_feedin`**
+
+
+------------------------------
+## Potenzialgebiete PV-Freiflächen
+
+Potenzialgebiete für die Errichtung von PV-Freiflächenanlagen aus dem
+[PV- und Windflächenrechner](https://www.agora-energiewende.de/service/pv-und-windflaechenrechner/)
+(s. Datensatz [rli_pv_wfr](../../raw/rli_pv_wfr/dataset.md)).
+
+Die Potenzialflächen bilden jene Flächen ab, die für die Nutzung durch
+Freiflächen-Photovoltaikanlagen grundsätzlich zur Verfügung stehen. Sie
+orientieren sich an der aktuellen Förderkulisse und wurden anhand des
+Flächenumfangs sowie den verfügbaren Geodaten ausgewählt: Von den in §37 EEG
+2021 definierten Flächen werden Flächen nach §37 Absatz 1 Nummer 2 Buchstaben c,
+h und i berücksichtigt (für Details zur Methodik siehe
+[methodisches Begleitdokument](https://zenodo.org/record/6794558) zum PV- und
+Windflächenrechner).
+
+Dateien:
+- Freiflächen-PV auf Acker- und Grünlandflächen mit geringer Bodengüte (Soil
+  Quality Rating (SQR) < 40): `potentialarea_pv_agriculture_lfa-off_region.gpkg`
+- Potenzialflächen für Freiflächen-PV entlang von Bundesautobahnen und
+  Schienenwegen (500m-Streifen): `potentialarea_pv_road_railway_region.gpkg`
+
+Die Flächen werden mit den Gemeindegrenzen verschnitten und den Gemeinden
+zugeordnet. Je Gemeinde und obigem Flächentyp/Datei wird eine Flächensumme (in
+km²) berechnet, siehe `potentialarea_pv_ground_area_stats_muns.csv`. Die
+Gemeinden werden über den Schlüssel `municipality_id` (vgl.
+[bkg_vg250_muns_region](../../datasets/bkg_vg250_muns_region/dataset.md))
+identifiziert.
+
+Des Weiteren werden die Flächenanteile der verfügbaren Potenzialgebiete - deren
+Nutzung nur eingeschränkt möglich ist (z.B. durch Naturschutzgebieten etc.) -
+gegenüber den gesamten Potenzialgebiete (für die Parametrierung der Regler) nach
+`potentialarea_pv_ground_area_shares.json` exportiert.
+
+**Dataset: `datasets/potentialarea_pv_ground_region`**
 
 
 ------------------------------

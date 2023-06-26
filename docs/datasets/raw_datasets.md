@@ -500,6 +500,33 @@ der Bundesagentur für Arbeit.
     ```
 
 ------------------------------
+## Geodaten PV- und Windflächenrechner
+
+Geodaten aus dem
+[PV- und Windflächenrechner](https://www.agora-energiewende.de/service/pv-und-windflaechenrechner/).
+
+Mehr Informationen:
+- [Begleitdokument](https://zenodo.org/record/6794558)
+- [Geodaten Potenzialflächen](https://zenodo.org/record/6728382)
+
+Enthält
+- Geodaten
+- Metadaten
+- App-Datapackage
+
+**Dataset: `raw/rli_pv_wfr`**
+
+??? metadata "Metadata"
+    ```json
+    {
+        "Quellen": {
+            "Begleitdokument": "https://zenodo.org/record/6794558",
+            "Geodaten": "https://zenodo.org/record/6728382"
+        }
+    }
+    ```
+
+------------------------------
 ## Costs and efficiencies of components
 
 Cost and efficiencies of components gathered from various sources.
@@ -688,6 +715,61 @@ nächstgelegene Wetterstation.
             "Open Data Bereich des Climate Data Center des DWD": "https://www.dwd.de/DE/leistungen/cdc/climate-data-center.html",
             "Datensatz Lufttemperatur": "https://opendata.dwd.de/climate_environment/CDC/observations_germany/climate/hourly/air_temperature/historical/",
             "Datensatz Bodentemperatur": "https://opendata.dwd.de/climate_environment/CDC/observations_germany/climate/hourly/soil_temperature/historical/"
+        }
+    }
+    ```
+
+------------------------------
+## Regionalplan Anhalt-Bitterfeld-Wittenberg
+
+Geodatensätze aus Teilplänen Wind 2018 und 2027 der Regionalen
+Planungsgemeinschaft Anhalt-Bitterfeld-Wittenberg.
+
+### Sachlicher Teilplan Wind 2018
+
+Geodaten aus rechtskräftigem
+[Sachlichen Teilplan Wind 2018](https://www.planungsregion-abw.de/regionalplanung/teilplan-windenergie/teilplan-2018/).
+
+> Im Sachlichen Teilplan "Nutzung der Windenergie in der Planungsregion
+> Anhalt-Bitterfeld-Wittenberg" vom 30.05.2018 werden 22 Vorranggebiete für die
+> Nutzung der Windenergie mit der Wirkung von Eignungsgebieten festgelegt. Sie
+> dienen der raumordnerischen Steuerung der Errichtung von raumbedeutsamen
+> Windenergieanlagen in Konzentrationszonen.
+>
+> Die oberste Landesentwicklungsbehörde hat am 01.08.2018 die Genehmigung
+> erteilt. Mit Bekanntmachung der Genehmigung tritt der Sachliche Teilplan in
+> Kraft.
+
+Dateien
+- Vorrang-/Eignungsgebiete: `stp_2018_vreg.gpkg`
+  ([Quelle](https://gis.planungsregion-abw.de/geoserver/stp_wind2018/ows?SERVICE=WFS&REQUEST=GetCapabilities))
+
+### Sachlicher Teilplan Wind 2027
+
+Geodaten aus Planentwurf des
+[Sachlichen Teilplan Wind 2027](https://www.planungsregion-abw.de/regionalplanung/teilplan-windenergie/teilplan-2027/).
+
+> Die Regionalversammlung hat am 03.03.2023 beschlossen, den Sachlichen
+> Teilplan "Windenergie 2027 in der Planungsregion Anhalt-Bitterfeld-Wittenberg"
+> aufzustellen und mit der Bekanntgabe der Allgemeinen Planungsabsicht die
+> beabsichtigten Auswahlkriterien und mögliche Gebietskulisse der Vorranggebiete
+> für die Nutzung der Windenergie bzw. für Repowering von Windenergieanlagen
+> vorzustellen.
+
+Dateien
+- Suchräume: `stp_2027_suchraum.gpkg` (Quelle: RPG ABW)
+- Planabsicht Vorranggebiete: `stp_2027_ideen_vr.gpkg` (Quelle: RPG ABW)
+- Planabsicht Repoweringgebiete: `stp_2027_ideen_repower.gpkg` (Quelle: RPG ABW)
+
+**Dataset: `raw/rpg_abw_regional_plan`**
+
+??? metadata "Metadata"
+    ```json
+    {
+        "Quellen": {
+            "Sachlicher Teilplan Wind 2018": "https://www.planungsregion-abw.de/regionalplanung/teilplan-windenergie/teilplan-2018/",
+            "Geodaten Sachlicher Teilplan Wind 2018": "https://gis.planungsregion-abw.de/geoserver/stp_wind2018/ows?SERVICE=WFS&REQUEST=GetCapabilities",
+            "Sachlicher Teilplan Wind 2027": "https://www.planungsregion-abw.de/regionalplanung/teilplan-windenergie/teilplan-2027/"
         }
     }
     ```
@@ -1443,6 +1525,39 @@ Global Solar Atlas.
         "Quellen": {
             "renewables.ninja": "https://www.renewables.ninja/about",
             "Marktstammdatenregister": "siehe dataset bnetza_mastr"
+        }
+    }
+    ```
+
+------------------------------
+## Dachflächenpotenzial PV-Aufdachanlagen in ABW
+
+Abschätzung der installierten Leistung und des Ertrags von PV-Aufdachanlagen in
+Anhalt-Bitterfeld-Wittenberg der Regionalen Planungsgemeinschaft.
+
+Dafür wurden auf Basis des
+[Digitalen Oberflächenmodells (DOM2)](https://www.lvermgeo.sachsen-anhalt.de/de/dom2-landesweit.html)
+Schattenberechnungen durchgeführt. Anhand des
+[LoD2 3D-Gebäudemodells](https://www.lvermgeo.sachsen-anhalt.de/de/download_lod2.html)
+wurden für verschiedene Dachausrichtungen (nord, ost, süd, west, flach) die
+installierbare Leistung bestimmt und mittels der Globalstrahlung und typischer
+technischer Parameter für jedes Gebäude und jede Dachflächenorientierung
+potenzielle Erträge berechnet.
+
+Quellen
+- [Hauptseite](https://www.planungsregion-abw.de/geodaten/)
+- [Geodaten](https://gis-entwicklung2.planungsregion-abw.de/geoserver/wfs?SERVICE=WFS&REQUEST=GetCapabilities)
+- [Anwendung](https://ris.planungsregion-abw.de/mapbender/application/pv_dachflaechenpot_rpg_abw)
+
+**Dataset: `raw/rpg_abw_pv_roof_potential`**
+
+??? metadata "Metadata"
+    ```json
+    {
+        "Quellen": {
+            "Hauptseite": "https://www.planungsregion-abw.de/geodaten/",
+            "Geodaten": "https://gis-entwicklung2.planungsregion-abw.de/geoserver/wfs?SERVICE=WFS&REQUEST=GetCapabilities",
+            "Tool": "https://ris.planungsregion-abw.de/mapbender/application/pv_dachflaechenpot_rpg_abw"
         }
     }
     ```

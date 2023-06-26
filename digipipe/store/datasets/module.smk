@@ -115,3 +115,23 @@ module renewable_feedin:
     snakefile: "renewable_feedin/create.smk"
     config: config["store"]["datasets"]["renewable_feedin"]
 use rule * from renewable_feedin as datasets_renewable_feedin_*
+
+module potentialarea_wind_region:
+    snakefile: "potentialarea_wind_region/create.smk"
+    config: config["store"]["datasets"]["potentialarea_wind_region"]
+use rule * from potentialarea_wind_region as datasets_potentialarea_wind_region_*
+
+module potentialarea_pv_ground_region:
+    snakefile: "potentialarea_pv_ground_region/create.smk"
+    config: config["store"]["datasets"]["potentialarea_pv_ground_region"]
+use rule * from potentialarea_pv_ground_region as datasets_potentialarea_pv_ground_region_*
+
+module potentialarea_pv_roof_region:
+    snakefile: "potentialarea_pv_roof_region/create.smk"
+    config: config["store"]["datasets"]["potentialarea_pv_roof_region"]
+use rule * from potentialarea_pv_roof_region as datasets_potentialarea_pv_roof_region_*
+
+module rli_pv_wfr_region:
+    snakefile: "rli_pv_wfr_region/create.smk"
+    config: config["store"]["datasets"]["rli_pv_wfr_region"]
+use rule * from rli_pv_wfr_region as datasets_rli_pv_wfr_region_ *

@@ -42,6 +42,15 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Integrate building of energy system for appdata in pipeline via dir *esys*
 - Update store with dir structure for *esys* data
 - Add creation of empty time series for the *esys*
+- Add dataset: rpg_abw_regional_plan
+- Add dataset: potentialarea_wind_region
+- Add writing of default values to *esys* raw scalar data
+- Add datasets: rli_pv_wfr and rli_pv_wfr_region
+- Add module appdata to workflow
+- Add dataset: geodata_infolayers
+- Add dataset: potentialarea_pv_ground_region
+- Add dataset: app datapackage
+- Add dataset: potentialarea_pv_roof_region
 - Add Logging
 
 ### Changed
@@ -63,6 +72,9 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Normalize renewable feedin timeseries
 - Fix instruction to obtain raw files
 - Translate all dataset.md files to German
+- Exchange *Test_scenario* with *2045_scenario* in *digipipe/esys/scenarios*
+- Split each demand per sector in *esys*
+- File .gitignore again includes ignoring of esys appdata
 
 ### Removed
 

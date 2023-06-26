@@ -85,7 +85,7 @@ rule create_area_stats_muns:
         agg_cols=dict(
             roof_count=("building_area_sqm", "count"),
             building_area_sqm=("building_area_sqm", "sum"),
-            historic_preservation=("historic_preservation", "sum"),
+            historic_preservation_count=("historic_preservation", "sum"),
             **cols_power_new,
             **cols_energy_new
         )
@@ -119,7 +119,7 @@ rule create_relative_deployment_stats_muns:
         pv_roof_stats=(
             rules.datasets_bnetza_mastr_pv_roof_region_create_power_stats_muns.output[0]
         )
-    output: DATASET_PATH / "pv_roof_deployment_stats_muns.csv"
+    output: DATASET_PATH / "potentialarea_pv_roof_deployment_stats_muns.csv"
     run:
         orientation_suffix = ["south", "north", "east", "west", "flat"]
         cols_power = [

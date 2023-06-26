@@ -1,0 +1,7 @@
+{
+    "Quellen": {
+        "Hauptseite": "https://www.planungsregion-abw.de/geodaten/",
+        "Geodaten": "https://gis-entwicklung2.planungsregion-abw.de/geoserver/wfs?SERVICE=WFS&REQUEST=GetCapabilities",
+        "Tool": "https://ris.planungsregion-abw.de/mapbender/application/pv_dachflaechenpot_rpg_abw"
+    }
+}

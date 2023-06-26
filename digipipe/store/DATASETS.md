@@ -104,12 +104,11 @@ Rules, config and info
 
 ### (3) App data
 
-**TBD**
-
 Data ready to be used in the app / as expected by the app.
 
-While `store/datasets/` may contain datasets from intermediate steps (see
-below), this directory holds app-ready datasets only.
+While the data from (0), (1) and (2) contain datasets from intermediate steps,
+this directory holds app-ready datasets. See
+[appdata/APPDATA](appdata/APPDATA.md) for further information.
 
 ### To which processing step do the different stages of my data belong to?
 

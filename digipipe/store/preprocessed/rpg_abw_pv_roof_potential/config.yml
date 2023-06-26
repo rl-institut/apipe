@@ -1,0 +1,20 @@
+##############################################################################
+# This file holds configuration parameters for the creation of this dataset. #
+##############################################################################
+
+layer: rpg_abw_pv_roof_potential
+attributes:
+  {"id": "building_id",
+   "installierte_leistung_kw_sued": "installable_power_kw_south",
+   "ertrag_jahr_mwh_jahr_sued": "energy_annual_mwh_south",
+   "installierte_leistung_kw_nord": "installable_power_kw_north",
+   "ertrag_jahr_mwh_jahr_nord": "energy_annual_mwh_north",
+   "installierte_leistung_kw_ost": "installable_power_kw_east",
+   "ertrag_jahr_mwh_jahr_ost": "energy_annual_mwh_east",
+   "installierte_leistung_kw_west": "installable_power_kw_west",
+   "ertrag_jahr_mwh_jahr_west": "energy_annual_mwh_west",
+   "installierte_leistung_kw_flach": "installable_power_kw_flat",
+   "ertrag_jahr_mwh_jahr_flach": "energy_annual_mwh_flat",
+   "denkmalschutz_beachten": "historic_preservation",
+   "grundfl_qm": "building_area_sqm",
+   "geometry": "geometry"}

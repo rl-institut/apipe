@@ -427,3 +427,45 @@ def geocode_units_wo_geometry(
     )
 
     return units_with_inferred_geom_gdf, units_with_inferred_geom_agg_gdf
+
+
+def create_stats_per_municipality(
+    units_df: pd.DataFrame,
+    muns: gpd.GeoDataFrame,
+    column: str,
+) -> pd.DataFrame:
+    """
+    Create statistics on units per municipality for one column.
+    Municipalities with no data in `column` are set to 0.
+
+    Parameters
+    ----------
+    units_df : pd.DataFrame
+        Units
+    muns : gpd.GeoDataFrame
+        Municipalities
+    column : str
+        Column in units_df used for aggregation
+
+    Returns
+    -------
+    pd.DataFrame
+        Units, aggregated per municipality
+    """
+
+    units_df = units_df[["municipality_id", column]]
+    units_df = (
+        units_df.groupby("municipality_id")
+        .agg(
+            column=(column, "sum"),
+            count=(column, "count"),
+        )
+        .rename(columns={"column": column})
+    )
+
+    units_df = units_df.reindex(muns.id, fill_value=0).rename(
+        columns={"id": "municipality_id"}
+    )
+    units_df.index.name = "municipality_id"
+
+    return units_df

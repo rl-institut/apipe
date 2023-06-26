@@ -6,6 +6,7 @@ Note: To include the file in the main workflow, it must be added to the respecti
 import json
 import re
 import geopandas as gpd
+import pandas as pd
 from pathlib import Path
 from digipipe.scripts.geo import (
     overlay,
@@ -45,7 +46,7 @@ rule overlay_muns:
 
 rule create_area_stats_muns:
     """
-    Create JSON file with stats on pv potential areas per mun
+    Create stats on pv potential areas per mun
     """
     input:
         area=expand(
@@ -53,7 +54,7 @@ rule create_area_stats_muns:
             area=config["areas"],
         ),
         region_muns=PATH_TO_REGION_MUNICIPALITIES_GPKG,
-    output: DATASET_PATH / "potentialarea_pv_ground_area_stats_muns.json"
+    output: DATASET_PATH / "potentialarea_pv_ground_area_stats_muns.csv"
     run:
         print("PV ground potential area stats:")
         muns = gpd.read_file(input.region_muns)
@@ -66,22 +67,22 @@ rule create_area_stats_muns:
                 Path(file).name,
             )[0]
             data = gpd.read_file(file)
-            data["area_ha"] = data.area / 1e4
-            area_ha = data[
-                ["municipality_id", "area_ha"]
+            data["area_km2"] = data.area / 1e6
+            area_km2 = data[
+                ["municipality_id", "area_km2"]
             ].groupby("municipality_id").sum()
 
             # Set area of non-occurring muns to 0
-            area_ha = area_ha.reindex(muns.id, fill_value=0)
-            area_dict[area_name] = area_ha.to_dict()["area_ha"]
+            area_km2 = area_km2.reindex(muns.id, fill_value=0)
+            area_dict[area_name] = area_km2.to_dict()["area_km2"]
             print(
                 f"  Total area for {area_name}: "
-                f"{round(float(area_ha.sum()), 1)} ha"
+                f"{round(float(area_km2.sum()), 1)} sqm"
             )
 
-        # Dump
-        with open(output[0], "w", encoding="utf8") as f:
-            json.dump(area_dict, f, indent=4)
+        area_df = pd.DataFrame(area_dict)
+        area_df.index.name="municipality_id"
+        area_df.to_csv(output[0])
 
 rule create_potarea_shares:
     """

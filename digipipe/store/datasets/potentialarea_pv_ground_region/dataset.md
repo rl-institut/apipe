@@ -19,12 +19,9 @@ Dateien:
 - Potenzialflächen für Freiflächen-PV entlang von Bundesautobahnen und
   Schienenwegen (500m-Streifen): `potentialarea_pv_road_railway_region.gpkg`
 
-Die darin verwendeten Attributtexte werden in die Datei
-`potentialarea_pv_ground_attribute_captions.json` exportiert.
-
 Die Flächen werden mit den Gemeindegrenzen verschnitten und den Gemeinden
 zugeordnet. Je Gemeinde und obigem Flächentyp/Datei wird eine Flächensumme (in
-ha) berechnet, siehe `potentialarea_pv_ground_area_stats_muns.json`. Die
+km²) berechnet, siehe `potentialarea_pv_ground_area_stats_muns.csv`. Die
 Gemeinden werden über den Schlüssel `municipality_id` (vgl.
 [bkg_vg250_muns_region](../../datasets/bkg_vg250_muns_region/dataset.md))
 identifiziert.

@@ -91,3 +91,8 @@ module rli_pv_wfr:
     snakefile: "rli_pv_wfr/create.smk"
     config: config["store"]["preprocessed"]["rli_pv_wfr"]
 use rule * from rli_pv_wfr as preprocessed_rli_pv_wfr_ *
+
+module rpg_abw_pv_roof_potential:
+    snakefile: "rpg_abw_pv_roof_potential/create.smk"
+    config: config["store"]["preprocessed"]["rpg_abw_pv_roof_potential"]
+use rule * from rpg_abw_pv_roof_potential as preprocessed_rpg_abw_pv_roof_potential_ *

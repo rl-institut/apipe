@@ -46,7 +46,7 @@ rule overlay_muns:
 
 rule create_area_stats_muns:
     """
-    Create JSON file with stats on pv potential areas per mun
+    Create stats on pv potential areas per mun
     """
     input:
         area=expand(

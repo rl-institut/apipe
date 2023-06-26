@@ -39,7 +39,7 @@ rule create:
 
 rule create_power_stats_muns:
     """
-    Create JSON file with stats on installed count of units and power per mun
+    Create stats on installed count of units and power per mun
     """
     input:
         units=DATASET_PATH / "data" / "bnetza_mastr_pv_ground_region.gpkg",

@@ -74,6 +74,10 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Exchange *Test_scenario* with *2045_scenario* in *digipipe/esys/scenarios*
 - Split each demand per sector in *esys*
 - File .gitignore again includes ignoring of esys appdata
+- Scenario 2045_scenario needs default_scalars.csv instead of scalars.csv
+- By default set costs and efficiencies of esys are written to
+  default_scalars.csv instead of default_costs_efficiencies.csv
+- Default variable_costs are passed with input_parameters for storages
 
 ### Removed
 

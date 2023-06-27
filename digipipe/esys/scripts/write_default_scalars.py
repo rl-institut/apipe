@@ -8,6 +8,7 @@ new csv file.
 import sys
 
 import numpy as np
+import pandas as pd
 
 from digipipe.esys.esys.config.esys_conf import write_default_scalars
 from digipipe.esys.esys.tools.data_processing import (
@@ -202,7 +203,24 @@ if __name__ == "__main__":
         df_updated, "var_name", var_names_costs_efficiencies
     )
 
+    # Get all already by default set values of costs and efficiencies
+    df_default_costs_efficiencies = df_costs_efficiencies.dropna(
+        subset=["var_value"]
+    )
+
+    # Keep only non default values of costs and efficiencies
+    df_costs_efficiencies = df_costs_efficiencies[
+        df_costs_efficiencies["var_value"].isna()
+    ]
+
+    # Get remaining scalars
     df_scalars = filter_df(df_updated, "var_name", var_names_scalars)
+
+    # Append all values set by default of costs and efficiencies to remaining
+    # scalars
+    df_scalars = pd.concat(
+        [df_scalars, df_default_costs_efficiencies], ignore_index=False
+    )
 
     # Write all attributes attached to costs and efficiencies in separate
     # default_cost_efficiencies.csv file

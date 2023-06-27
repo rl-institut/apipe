@@ -76,6 +76,13 @@ write_default_scalars:
     "which": "false",
     "var_unit": "None",
   }
+  input_parameters_storage: {
+    "var_name": "input_parameters",
+    "type": storage,
+    "tech": None,
+    "which": "variable_costs",
+    "var_unit": "None",
+  }
   input_parameters: {
     "var_name": "input_parameters",
     "type": None,

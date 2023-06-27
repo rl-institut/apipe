@@ -83,13 +83,6 @@ write_default_scalars:
     "which": "empty_dict",
     "var_unit": "None",
   }
-  input_parameters_export: {
-    "var_name": "input_parameters",
-    "type": None,
-    "tech": export,
-    "which": "empty_dict",
-    "var_unit": "kg_CO2_eq/MWh",
-  }
   marginal_cost_shortage: {
     "var_name": "marginal_cost",
     "type": shortage,

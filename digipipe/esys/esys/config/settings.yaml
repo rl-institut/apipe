@@ -47,7 +47,7 @@ create_empty_scalars:
       "region": "ALL",
       "tech": "ALL",
       "type": "ALL",
-      "var_unit": "None",
+      "var_unit": "",
   }
   drop_default_scalars: True
 

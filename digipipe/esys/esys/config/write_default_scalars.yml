@@ -118,13 +118,6 @@ write_default_scalars:
     "which": "empty",
     "var_unit": "MWh",
   }
-  wacc: {
-    "var_name": "wacc",
-    "type": None,
-    "tech": None,
-    "which": "empty",
-    "var_unit": "None",
-  }
   emissions_not_modeled: {
     "var_name": "emissions_not_modeled",
     "type": None,

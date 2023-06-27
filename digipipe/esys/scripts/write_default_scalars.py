@@ -17,6 +17,30 @@ from digipipe.esys.esys.tools.data_processing import (
 )
 
 
+def clear_input_parameters_of_storages(_df):
+    """
+    Deletes empty dictionaries from "var_value" where "var_name" is
+    "input_parameters" and "type" is "storage". This allows default values to
+    be written to these fields.
+
+    Parameters
+    ----------
+    _df : pandas.DataFrame
+        DataFrame containing the data.
+
+    Returns
+    -------
+    None
+        This function modifies the "_df" DataFrame in-place.
+
+    """
+    empty_sc_df.loc[
+        (empty_sc_df["var_name"] == "input_parameters")
+        & (empty_sc_df["type"] == "storage"),
+        "var_value",
+    ] = None
+
+
 def get_var_value_and_comment(which):
     """
     Returns the variable value and a comment based on the input argument.
@@ -147,6 +171,8 @@ if __name__ == "__main__":
     path_default_costs_eff = sys.argv[3]
 
     empty_sc_df = load_b3_scalars(path_empty_sc)
+
+    clear_input_parameters_of_storages(empty_sc_df)
 
     write_empty_scalars_dict = write_default_scalars.write_default_scalars
 

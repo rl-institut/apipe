@@ -49,7 +49,7 @@ create_empty_scalars:
       "type": "ALL",
       "var_unit": "",
   }
-  drop_default_scalars: True
+  drop_default_scalars: False
 
 create_empty_ts:
   datetime_format: "%Y-%m-%d %H:%M:%S"

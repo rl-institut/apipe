@@ -436,7 +436,7 @@ resources:
         _source_path:
           dataset: "renewable_feedin"
           file: "st_feedin_timeseries.csv"
-      hydro-ror:
+      hydro-ror_profile:
         description: "Einspeisezeitreihe Wasserkraft, auf 1 normalisiert"
         path: "sequences/ror_feedin_timeseries.csv"
         fields:

@@ -60,6 +60,14 @@ panel_settings:
       step: 5
     s_w_3:
       start: true
+    s_w_4:
+      start: false
+    s_w_4_1:
+      start: false
+    s_w_4_2:
+      start: false
+    s_w_5:
+      start: false
     s_pv_ff_1:
       max: 1200
       min: 0

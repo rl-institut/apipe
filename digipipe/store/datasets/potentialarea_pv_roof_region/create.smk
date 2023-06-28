@@ -134,16 +134,20 @@ rule create_relative_deployment_stats_muns:
         pv_potential = pd.DataFrame(
             pv_potential.sum(axis=1), columns=["installable_power"]
         )
-
         pv_installed = pd.read_csv(
             input.pv_roof_stats,
             usecols=["municipality_id", "capacity_net"],
             index_col="municipality_id",
         )
 
-        pv_deployed = pd.DataFrame(
-            pv_installed.capacity_net.div(pv_potential.installable_power),
-            columns=["relative_deployment"],
+        pv_deployed = pd.concat(
+            [pv_installed.capacity_net, pv_potential.installable_power],
+            axis=1,
+        )
+        pv_deployed = pv_deployed.assign(
+            relative_deployment=(
+                pv_installed.capacity_net.div(pv_potential.installable_power)
+            )
         )
 
         # Dump

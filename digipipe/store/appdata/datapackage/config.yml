@@ -378,9 +378,21 @@ resources:
       full_load_hours:
         description: "Volllaststunden je Technologie und Jahr"
         path: "scalars/full_load_hours.json"
-        fields: "null"
+        fields:
+          wind:
+            description: "Volllaststunden Windenergie"
+            unit: "-"
+          pv:
+            description: "Volllaststunden Photovoltaik"
+            unit: "-"
+          st:
+            description: "Volllaststunden Solarthermie"
+            unit: "-"
+          ror:
+            description: "Volllaststunden Laufwasserkraft"
+            unit: "-"
         _source_path:
-          dataset: "renewable_feedin"
+          dataset: "technology_data"
           file: "full_load_hours.json"
     #            spec_area:
     #                description: "Leistungsdichte in MW/km2 je Technologie"

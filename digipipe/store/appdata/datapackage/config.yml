@@ -456,6 +456,16 @@ resources:
         _source_path:
           dataset: "renewable_feedin"
           file: "wind_feedin_timeseries.csv"
+      heatpump-cop_profile:
+        description: "Wärmepumpen COP-Zeitreihe"
+        path: "sequences/heatpump_cop_timeseries.csv"
+        fields:
+          cop:
+            description: "COP"
+            unit: "-"
+        _source_path:
+          dataset: "heatpump_cop"
+          file: "heatpump_cop_timeseries.csv"
 
     geodata:
       # Generation units

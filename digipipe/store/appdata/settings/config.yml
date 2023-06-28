@@ -58,6 +58,8 @@ panel_settings:
       status_quo: 10
       future_scenario: 20
       step: 5
+    s_w_3:
+      start: true
     s_pv_ff_1:
       max: 1200
       min: 0

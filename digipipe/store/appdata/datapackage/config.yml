@@ -374,33 +374,37 @@ resources:
         _source_path:
           dataset: "bnetza_mastr_wind_region"
           file: "bnetza_mastr_wind_stats_muns.csv"
-      #technology_data:
-      full_load_hours:
+      technology_data:
         description: "Volllaststunden je Technologie und Jahr"
-        path: "scalars/full_load_hours.json"
+        path: "scalars/technology_data.json"
         fields:
-          wind:
-            description: "Volllaststunden Windenergie"
-            unit: "-"
-          pv:
-            description: "Volllaststunden Photovoltaik"
-            unit: "-"
-          st:
-            description: "Volllaststunden Solarthermie"
-            unit: "-"
-          ror:
-            description: "Volllaststunden Laufwasserkraft"
-            unit: "-"
+          full_load_hours:
+            wind:
+              description: "Volllaststunden Windenergie"
+              unit: "-"
+            pv:
+              description: "Volllaststunden Photovoltaik"
+              unit: "-"
+            st:
+              description: "Volllaststunden Solarthermie"
+              unit: "-"
+            ror:
+              description: "Volllaststunden Laufwasserkraft"
+              unit: "-"
+          power_density:
+            wind:
+              description: "Leistungsdichte Windenergie"
+              unit: "-"
+            pv_ground:
+              description: "Leistungsdichte PV-Freiflächenanlagen"
+              unit: "-"
+            st:
+              description: "Leistungsdichte Solarthermie"
+              unit: "MW/km2"
         _source_path:
           dataset: "technology_data"
-          file: "full_load_hours.json"
-    #            spec_area:
-    #                description: "Leistungsdichte in MW/km2 je Technologie"
-    #                path: "scalars/power_density.json"
-    #                fields: "null"
-    #                _source_path:
-    #                    dataset: "TBD"
-    #                    file: "TBD"
+          file: "technology_data.json"
+
     sequences:
       solar-pv_ground_profile:
         description: "Einspeisezeitreihe PV-Freiflächenanlagen, auf 1 normalisiert"

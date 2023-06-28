@@ -1,8 +1,8 @@
 # Technologiedaten
 
-Allgemeine Technologiedaten.
+Allgemeine Technologiedaten, Datei: `technology_data.json`
 
-## Jahresvolllaststunden
+## Jahresvolllaststunden (`full_load_hours`)
 
 Anhand typischer heutiger und prognostizierter Werte für Sachsen-Anhalt werden
 folgende Jahresvolllaststunden angenommen:
@@ -16,14 +16,17 @@ folgende Jahresvolllaststunden angenommen:
 | Laufwasserkraft | 2022 |            3800 | [foederal-erneuerbar](https://www.foederal-erneuerbar.de/landesinfo/bundesland/ST/kategorie/wasser/auswahl/840-durchschnittliche_ja/#goto_840)                                             |
 |                 | 2045 |            3800 | [foederal-erneuerbar](https://www.foederal-erneuerbar.de/landesinfo/bundesland/ST/kategorie/wasser/auswahl/840-durchschnittliche_ja/#goto_840)                                             |
 
-Datei: `full_load_hours.json`
-
 TBD: Generalisieren - automatische Generierung anhand von Global Wind Atlas /
 Global Solar Atlas.
 
-## Spezifischer Flächenbedarf
+## Leistungsdichte (`power_density`)
 
-TBD
+Installierbare Leistung pro Fläche / spezifischer Flächenbedarf:
+- Windenergie: 21 MW/km²
+- PV-Freiflächenanlagen: 100 MW/km²
+- Solarthermie: ? MW/km²
+
+Quelle: [PV- und Windflächenrechner](https://zenodo.org/record/6794558).
 
 ## Kosten, Emissionen und Wirkungsgrade
 

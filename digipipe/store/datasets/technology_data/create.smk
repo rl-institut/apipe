@@ -11,14 +11,14 @@ DATASET_PATH = get_abs_dataset_path(
 
 rule copy_files:
     """
-    Copy full load hours
+    Copy technology data from raw
     """
     input:
-        flh=get_abs_dataset_path(
-            "raw", "technology_data") / "data" / "full_load_hours.json"
+        get_abs_dataset_path(
+            "raw", "technology_data") / "data" / "technology_data.json"
     output:
-        flh=DATASET_PATH / "full_load_hours.json"
+        DATASET_PATH / "technology_data.json"
     shell:
         """
-        cp -p {input.flh} {output.flh}
+        cp -p {input} {output}
         """

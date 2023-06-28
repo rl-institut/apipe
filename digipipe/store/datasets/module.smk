@@ -135,3 +135,8 @@ module rli_pv_wfr_region:
     snakefile: "rli_pv_wfr_region/create.smk"
     config: config["store"]["datasets"]["rli_pv_wfr_region"]
 use rule * from rli_pv_wfr_region as datasets_rli_pv_wfr_region_ *
+
+module technology_data:
+    snakefile: "technology_data/create.smk"
+    config: config["store"]["datasets"]["technology_data"]
+use rule * from technology_data as datasets_technology_data_ *

@@ -55,14 +55,15 @@ panel_settings:
       max: 1512
       min: 0
       start: 30
-      status_quo: 50
-      future_scenario: ### <- TBD
+      status_quo: 10
+      future_scenario: 20
       step: 5
     s_pv_ff_1:
       max: 1200
       min: 0
       start: 30
-      status_quo: 50
+      status_quo: 10
+      future_scenario: 20
       step: 5
     s_pv_ff_3:
       max: 100
@@ -78,7 +79,8 @@ panel_settings:
       max: 400
       min: 0
       start: 30
-      status_quo: 50
+      status_quo: 10
+      future_scenario: 20
       step: 5
     s_pv_d_3:
       max: 100
@@ -94,19 +96,22 @@ panel_settings:
       max: 30
       min: 0
       start: 5
-      status_quo: 15
+      status_quo: 10
+      future_scenario: 20
       step: 1
     s_b_1:
       max: 30
       min: 0
       start: 5
-      status_quo: 15
+      status_quo: 10
+      future_scenario: 20
       step: 5
     s_v_1:
       max: 210
       min: 50
       start: 50
-      status_quo: 50
+      status_quo: 10
+      future_scenario: 20
       step: 10
     s_v_3:
       max: 200
@@ -127,7 +132,8 @@ panel_settings:
       max: 20
       min: 0
       start: 2
-      status_quo: 3
+      status_quo: 10
+      future_scenario: 20
       step: 0.1
     s_s_g_3:
       max: 200
@@ -140,85 +146,99 @@ panel_settings:
       max: 100
       min: 0
       start: 30
-      status_quo: 50
+      status_quo: 10
+      future_scenario: 20
       step: 5
     w_d_wp_3:
       max: 100
       min: 50
       start: 50
-      status_quo: 50
+      status_quo: 10
+      future_scenario: 20
       step: 5
     w_d_wp_4:
       max: 100
       min: 50
       start: 50
-      status_quo: 50
+      status_quo: 10
+      future_scenario: 20
       step: 5
     w_d_wp_5:
       max: 100
       min: 50
       start: 50
-      status_quo: 50
+      status_quo: 10
+      future_scenario: 20
       step: 5
     w_z_wp_1:
       max: 100
       min: 0
       start: 10
-      status_quo: 40
+      status_quo: 10
+      future_scenario: 20
       step: 5
     w_z_wp_3:
       max: 200
       min: 50
       start: 50
-      status_quo: 100
+      status_quo: 10
+      future_scenario: 20
       step: 5
     w_v_1:
       max: 100
       min: 50
       start: 10
-      status_quo: 40
+      status_quo: 10
+      future_scenario: 20
       step: 10
     w_v_3:
       max: 200
       min: 50
       start: 50
-      status_quo: 100
+      status_quo: 10
+      future_scenario: 20
       step: 10
     w_v_4:
       max: 200
       min: 50
       start: 10
-      status_quo: 100
+      status_quo: 10
+      future_scenario: 20
       step: 10
     w_v_5:
       max: 200
       min: 50
       start: 50
-      status_quo: 100
+      status_quo: 10
+      future_scenario: 20
       step: 10
     w_d_s_1:
       max: 200
       min: 25
       start: 25
-      status_quo: 100
+      status_quo: 10
+      future_scenario: 20
       step: 5
     w_d_s_3:
       max: 200
       min: 25
       start: 25
-      status_quo: 100
+      status_quo: 10
+      future_scenario: 20
       step: 5
     w_z_s_1:
       max: 200
       min: 25
       start: 25
-      status_quo: 100
+      status_quo: 10
+      future_scenario: 20
       step: 5
     w_z_s_3:
       max: 200
       min: 25
       start: 25
-      status_quo: 100
+      status_quo: 10
+      future_scenario: 20
       step: 5
 
   traffic_settings_panel:
@@ -226,11 +246,13 @@ panel_settings:
       max: 100
       min: 0
       start: 30
-      status_quo: 50
+      status_quo: 10
+      future_scenario: 20
       step: 5
     v_iv_3:
       max: 100
       min: 0
       start: 25
-      status_quo: 45
+      status_quo: 10
+      future_scenario: 20
       step: 5

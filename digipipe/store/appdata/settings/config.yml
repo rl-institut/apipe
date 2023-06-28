@@ -39,7 +39,6 @@ map_panel_layer_list:
       "fauna_flora_habitat_region",
       "special_protection_area_region",
       "biosphere_reserve_region",
-      "wetland_ramsar_region",
       "forest_region",
       "water_region",
       "floodplain_region",

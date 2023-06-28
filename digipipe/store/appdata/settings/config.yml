@@ -48,3 +48,392 @@ map_panel_layer_list:
       "soil_quality_low_region",
       "less_favoured_areas_agricultural_region"
     ]
+
+# Settings for energy panel
+panel_settings:
+  energy_settings_panel:
+    s_w_1:
+      # class: js-slider js-slider-panel js-power-mix
+      # color: '#99D8C9'
+      # grid: false
+      label: '{% trans ''Wind energy (MW)'' %}'
+      max: 1512
+      min: 0
+      start: 30
+      status_quo: 50
+      future_scenario: ### <- TBD
+      step: 5
+      tooltip: '{% trans ''The use of wind potential areas can be set here.
+
+        Note: Since the setting always refers to future, more profitable systems, maintaining
+        the current system capacity also leads to increases in yield.'' %} '
+      # type: slider
+      # sidepanel: true
+    s_w_3:
+      # class: js-sidepanel-switch
+      label: '{% trans ''Only previous priority areas/suitable areas.'' %}'
+      tooltip: '{% trans ''Only previous priority areas/suitable areas.'' %}'
+      # type: switch
+    s_w_4:
+      # class: js-sidepanel-switch
+      label: '{% trans ''Priority areas according to STP Wind 2027.'' %}'
+      tooltip: '{% trans ''Priority areas according to STP Wind 2027.'' %}'
+      # type: switch
+    s_w_4_1:
+      # class: js-sidepanel-switch
+      label: '{% trans ''Priority areas.'' %}'
+      tooltip: '{% trans ''Priority areas.'' %}'
+      # type: switch
+    s_w_4_2:
+      # class: js-sidepanel-switch
+      label: '{% trans ''Priority areas repowering.'' %}'
+      tooltip: '{% trans ''Priority areas repowering.'' %}'
+      # type: switch
+    s_w_5:
+      # class: js-sidepanel-switch
+      label: '{% trans ''Free extension in the search area.'' %}'
+      tooltip: '{% trans ''Free extension in the search area.'' %}'
+      # type: switch
+    s_w_5_1:
+      # class: js-sidepanel-switch
+      label: '{% trans ''Use of open country search area.'' %}'
+      tooltip: '{% trans ''Use of open country search area.'' %}'
+      # type: switch
+    s_w_5_2:
+      # class: js-sidepanel-switch
+      label: '{% trans ''Use of forest search space.'' %}'
+      tooltip: '{% trans ''Use of forest search space.'' %}'
+      # type: switch
+    s_pv_ff_1:
+      # class: js-slider js-slider-panel js-power-mix
+      # color: '#A6BDDB'
+      # grid: false
+      label: '{% trans ''Outdoor PV (MW)'' %}'
+      max: 1200
+      min: 0
+      start: 30
+      status_quo: 50
+      step: 5
+      tooltip: '{% trans ''Outdoor PV (MW)'' %}'
+      # type: slider
+      # sidepanel: true
+    s_pv_ff_3:
+      # class: js-slider
+      label: '{% trans ''Areas along the federal motorway and rail routes (%)'' %} '
+      max: 100
+      min: 0
+      start: 0
+      step: 5
+      tooltip: '{% trans ''Areas along the federal motorway and rail routes (%)'' %} '
+      # type: slider
+    s_pv_ff_4:
+      # class: js-slider
+      label: '{% trans ''Use of agricultural and grassland areas (%)'' %} '
+      max: 100
+      min: 0
+      start: 0
+      step: 5
+      tooltip: '{% trans ''Use of agricultural and grassland areas (%)'' %} '
+      # type: slider
+    s_pv_d_1:
+      # class: js-slider js-slider-panel js-power-mix
+      # color: '#FEC44F'
+      # grid: false
+      label: '{% trans ''Roof-mounted PV (MW)'' %}'
+      max: 400
+      min: 0
+      start: 30
+      status_quo: 50
+      step: 5
+      tooltip: '{% trans ''Roof-mounted PV'' %}'
+      # type: slider
+      # sidepanel: true
+    s_pv_d_3:
+      # class: js-slider
+      label: '{% trans ''Share of used roofs (%)'' %}'
+      max: 100
+      min: 0
+      start: 0
+      step: 5
+      tooltip: '{% trans ''Share of used roofs (%)'' %}'
+      # type: slider
+    s_pv_d_4:
+      # class: js-slider
+      label: '{% trans ''Proportion of photovoltaic systems with electricity storage (%)''
+        %}'
+      max: 100
+      min: 0
+      start: 0
+      step: 5
+      tooltip: '{% trans ''Proportion of photovoltaic systems with electricity storage
+        (%)'' %}'
+      # type: slider
+    s_h_1:
+      # class: js-slider js-slider-panel js-power-mix
+      # color: '#FA9FB5'
+      label: '{% trans ''Hydropower (MW)'' %}'
+      max: 30
+      min: 0
+      start: 5
+      status_quo: 15
+      step: 1
+      tooltip: '{% trans ''Run-of-river power plants'' %}'
+      # type: slider
+    s_b_1:
+      # class: js-slider js-slider-panel js-power-mix
+      # color: '#FA9FB5'
+      label: '{% trans ''Bioenergy (MW)'' %}'
+      max: 30
+      min: 0
+      start: 5
+      status_quo: 15
+      step: 5
+      tooltip: '{% trans ''Biomass and biogas plants'' %}'
+      # type: slider
+    s_v_1:
+      # class: js-slider js-slider-panel
+      # grid: false
+      label: '{% trans ''Power consumption without heat generation (%)'' %}'
+      max: 210
+      min: 50
+      start: 50
+      status_quo: 50
+      step: 10
+      tooltip: '{% trans ''Power consumption without providing heat using power-to-heat
+        (e.g. heat pumps)'' %}'
+      # type: slider
+      # sidepanel: true
+    s_v_3:
+      # class: js-slider
+      # grid: false
+      label: '{% trans ''Households (%)'' %}'
+      max: 200
+      min: 50
+      start: 100
+      step: 10
+      tooltip: '{% trans ''Haushalte (%)'' %}'
+      # type: slider
+    s_v_4:
+      # class: js-slider
+      label: '{% trans ''Commercial, Trade, Services (%)'' %}'
+      max: 200
+      min: 50
+      start: 100
+      step: 10
+      tooltip: '{% trans ''Commercial, Trade, Services (%)'' %}'
+      # type: slider
+    s_v_5:
+      # class: js-slider
+      label: '{% trans ''Industry (%)'' %}'
+      max: 200
+      min: 50
+      start: 100
+      step: 10
+      tooltip: '{% trans ''Industry (%)'' %}'
+      # type: slider
+    s_s_g_1:
+      # class: js-slider js-slider-panel js-power-mix
+      label: '{% trans ''Large scale batteries (GWh)'' %}'
+      max: 20
+      min: 0
+      start: 2
+      status_quo: 3
+      step: 0.1
+      tooltip: '{% trans ''Large scale batteries (GWh)'' %}'
+      # type: slider
+      # sidepanel: true
+    s_s_g_3:
+      # class: js-slider
+      label: '{% trans ''Storage of wind and PV energy (%)'' %}'
+      max: 200
+      min: 0
+      start: 5
+      step: 10
+      tooltip: '{% trans ''Storage of wind and PV energy (%)'' %}'
+      # type: slider
+
+  heat_settings_panel:
+    w_d_wp_1:
+      # class: js-slider js-slider-panel
+      # grid: false
+      label: '{% trans ''Decentralized (%)'' %}'
+      max: 100
+      min: 0
+      start: 30
+      status_quo: 50
+      step: 5
+      tooltip: '{% trans ''Decentralized heat supply'' %}'
+      # type: slider
+      # sidepanel: true
+    w_d_wp_3:
+      # class: js-slider
+      label: '{% trans ''Households (%)'' %}'
+      max: 100
+      min: 50
+      start: 50
+      status_quo: 50
+      step: 5
+      tooltip: '{% trans ''Heat pumps for heating and hot water in households with their
+        own heat generation'' %}'
+      # type: slider
+    w_d_wp_4:
+      # class: js-slider
+      label: '{% trans ''Commercial, Trade, Services (%)'' %}'
+      max: 100
+      min: 50
+      start: 50
+      status_quo: 50
+      step: 5
+      tooltip: '{% trans ''Heat pumps for heating and hot water in the commercial, retail
+        and service sectors with their own heat generation.'' %}'
+      # type: slider
+    w_d_wp_5:
+      # class: js-slider
+      label: '{% trans ''Industry (%)'' %}'
+      max: 100
+      min: 50
+      start: 50
+      status_quo: 50
+      step: 5
+      tooltip: '{% trans ''Heat pumps for heating, hot water and process heat in industry
+        with their own heat generation.'' %}'
+      # type: slider
+    w_z_wp_1:
+      # class: js-slider js-slider-panel
+      # grid: false
+      label: '{% trans ''District heating (%)'' %}'
+      max: 100
+      min: 0
+      start: 10
+      status_quo: 40
+      step: 5
+      tooltip: '{% trans ''District heating supply'' %}'
+      # type: slider
+      # sidepanel: true
+    w_z_wp_3:
+      # class: js-slider
+      label: '{% trans ''Households (%)'' %}'
+      max: 200
+      min: 50
+      start: 50
+      status_quo: 100
+      step: 5
+      tooltip: '{% trans ''Heat pumps for heating, hot water and process heat in district
+        heating networks'' %}'
+      # type: slider
+    w_v_1:
+      # class: js-slider js-slider-panel
+      # grid: false
+      label: '{% trans ''Heat consumption (%)'' %}'
+      max: 100
+      min: 50
+      start: 10
+      status_quo: 40
+      step: 10
+      tooltip: '{% trans ''Heat consumption of decentralized heat generators and district
+        heating networks'' %}'
+      # type: slider
+      # sidepanel: true
+    w_v_3:
+      # class: js-slider
+      label: '{% trans ''Households (%)'' %}'
+      max: 200
+      min: 50
+      start: 50
+      status_quo: 100
+      step: 10
+      tooltip: '{% trans ''Includes heating and hot water in households with their own
+        heat generation and households in district heating networks.'' %}'
+      # type: slider
+    w_v_4:
+      # class: js-slider
+      label: '{% trans ''Commercial, Trade, Services (%)'' %}'
+      max: 200
+      min: 50
+      start: 10
+      status_quo: 100
+      step: 10
+      tooltip: '{% trans ''Comprises heating and hot water in the commercial, retail and
+        services sector with its own heat generation and in district heating networks.''
+        %}'
+      # type: slider
+    w_v_5:
+      # class: js-slider
+      label: '{% trans ''Industry (%)'' %}'
+      max: 200
+      min: 50
+      start: 50
+      status_quo: 100
+      step: 10
+      tooltip: '{% trans ''Includes thermal heat, hot water and process heat in industry
+        with its own heat generation and in district heating networks..'' %}'
+      # type: slider
+    w_d_s_1:
+      # class: js-slider js-slider-panel
+      # grid: false
+      label: '{% trans ''Decentralized (%)'' %}'
+      max: 200
+      min: 25
+      start: 25
+      status_quo: 100
+      step: 5
+      tooltip: '{% trans ''Storage in the decentralized heat supply'' %}'
+      # type: slider
+      # sidepanel: true
+    w_d_s_3:
+      # class: js-slider
+      label: '{% trans ''Hot water tanks (%)'' %}'
+      max: 200
+      min: 25
+      start: 25
+      status_quo: 100
+      step: 5
+      tooltip: '{% trans ''Hot water tanks for heating, hot water and process heat'' %}'
+      # type: slider
+    w_z_s_1:
+      # class: js-slider js-slider-panel
+      # grid: false
+      label: '{% trans ''Large heat storage (%)'' %}'
+      max: 200
+      min: 25
+      start: 25
+      status_quo: 100
+      step: 5
+      tooltip: '{% trans ''Storage in the district heating supply'' %}'
+      # type: slider
+      # sidepanel: true
+    w_z_s_3:
+      # class: js-slider
+      label: '{% trans ''Hot water tanks (%)'' %}'
+      max: 200
+      min: 25
+      start: 25
+      status_quo: 100
+      step: 5
+      tooltip: '{% trans ''Hot water tanks for heating, hot water and process heat'' %}'
+      # type: slider
+
+  traffic_settings_panel:
+    v_iv_1:
+      # class: js-slider js-slider-panel
+      # grid: false
+      label: '{% trans ''Share of battery-electric vehicles (%)'' %}'
+      max: 100
+      min: 0
+      start: 30
+      status_quo: 50
+      step: 5
+      tooltip: '{% trans ''Share of battery-electric vehicles (%)'' %}'
+      # type: slider
+      # sidepanel: true
+    v_iv_3:
+      # class: js-slider js-slider-panel
+      # grid: false
+      label: '{% trans ''Share of battery electric and plugin-hybrid vehicles (%)'' %}'
+      max: 100
+      min: 0
+      start: 25
+      status_quo: 45
+      step: 5
+      tooltip: '{% trans ''Personal battery electric and plug-in hybrid vehicles'' %}'
+      # type: slider

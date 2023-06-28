@@ -14,6 +14,7 @@ include: "snakemake_rules/postprocessing.smk"
 include: "snakemake_rules/create_empty_scalars.smk"
 include: "snakemake_rules/create_empty_ts.smk"
 include: "snakemake_rules/write_default_scalars.smk"
+include: "snakemake_rules/write_costs_efficiencies.smk"
 
 rule make_esys_appdata:
     """

@@ -122,16 +122,22 @@ panel_settings_templates:
       max: none
       min: none
       start: none
+      status_quo: none
+      future_scenario: none
       step: none
     s_v_4:
       max: none
       min: none
       start: none
+      status_quo: none
+      future_scenario: none
       step: none
     s_v_5:
       max: none
       min: none
       start: none
+      status_quo: none
+      future_scenario: none
       step: none
     s_s_g_1:
       max: none

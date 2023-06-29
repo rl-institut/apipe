@@ -102,6 +102,7 @@ panel_settings_templates:
       max: none
       min: none
       start: none
+      status_quo: none
       step: none
     s_h_1:
       max: none

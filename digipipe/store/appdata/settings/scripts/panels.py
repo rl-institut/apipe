@@ -141,6 +141,7 @@ def generate_energy_panel_data(
             min=0,
             start="none",  # TODO
             step=5,
+            status_quo="none",
         ),
     )
     panel_settings.update(**pv)

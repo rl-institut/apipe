@@ -2,6 +2,9 @@
 # This file holds configuration parameters for the creation of this dataset. #
 ##############################################################################
 
+# Threshold to split between large and small battery storages in MWh
+battery_size_threshold: 0.1
+
 # Filter settings
 unit_attributes:
   {"EinheitMastrNummer": "mastr_id",

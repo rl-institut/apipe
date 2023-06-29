@@ -343,7 +343,7 @@ resources:
           dataset: "bnetza_mastr_pv_roof_region"
           file: "bnetza_mastr_pv_roof_stats_muns.csv"
       storage:
-        description: "Speicheranlagen: Installierte Leistung und Anzahl"
+        description: "Batteriespeicher gesamt: Installierte Leistung und Anzahl"
         path: "scalars/bnetza_mastr_storage_stats_muns.csv"
         fields:
           municipality_id:
@@ -358,6 +358,38 @@ resources:
         _source_path:
           dataset: "bnetza_mastr_storage_region"
           file: "bnetza_mastr_storage_stats_muns.csv"
+      storage_large:
+        description: "Batteriespeicher groß (>=100 kWh): Installierte Leistung und Anzahl"
+        path: "scalars/bnetza_mastr_storage_large_stats_muns.csv"
+        fields:
+          municipality_id:
+            description: "Gemeinde-ID"
+            unit: "-"
+          capacity_net:
+            description: "Nennleistung"
+            unit: "MW"
+          count:
+            description: "Anzahl"
+            unit: "-"
+        _source_path:
+          dataset: "bnetza_mastr_storage_region"
+          file: "bnetza_mastr_storage_large_stats_muns.csv"
+      storage_small:
+        description: "Batteriespeicher klein (<100 kWh): Installierte Leistung und Anzahl"
+        path: "scalars/bnetza_mastr_storage_small_stats_muns.csv"
+        fields:
+          municipality_id:
+            description: "Gemeinde-ID"
+            unit: "-"
+          capacity_net:
+            description: "Nennleistung"
+            unit: "MW"
+          count:
+            description: "Anzahl"
+            unit: "-"
+        _source_path:
+          dataset: "bnetza_mastr_storage_region"
+          file: "bnetza_mastr_storage_small_stats_muns.csv"
       wind-onshore:
         description: "Windenergieanlagen: Installierte Leistung und Anzahl"
         path: "scalars/bnetza_mastr_wind_stats_muns.csv"
@@ -512,7 +544,7 @@ resources:
           dataset: "bnetza_mastr_pv_roof_region"
           file: "bnetza_mastr_pv_roof_agg_region.gpkg"
       bnetza_mastr_storage_agg_region:
-        description: "Speicheranlagen"
+        description: "Batteriespeicher"
         path: "geodata/bnetza_mastr_storage_agg_region.gpkg"
         fields: [ ]
         _source_path:

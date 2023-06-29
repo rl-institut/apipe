@@ -18,5 +18,7 @@ einem Landkreis (Attribut `district_id`, vgl.
 [bkg_vg250_muns_region](../../datasets/bkg_vg250_districts_region/dataset.md))
 zugeordnet.
 
-Zusätzlich erfolgt eine statistische Auswertung der installierten Leistung in
-`bnetza_mastr_storage_stats_muns.csv`.
+Zusätzlich erfolgt eine Auswertung der installierten Gesamtleistung je Gemeinde:
+- Alle Speicher: `bnetza_mastr_storage_stats_muns.csv`
+- Großspeicher (>=100 kWh): `bnetza_mastr_storage_large_stats_muns.csv`
+- Kleinspeicher (<100 kWh): `bnetza_mastr_storage_small_stats_muns.csv`

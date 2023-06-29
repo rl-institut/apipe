@@ -151,6 +151,7 @@ panel_settings_templates:
       min: none
       start: none
       step: none
+      status_quo: none
 
   heat_settings_panel:
     w_d_wp_1:

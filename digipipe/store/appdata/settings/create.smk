@@ -48,6 +48,12 @@ rule create_panel_settings:
         pv_roof_stats=rules.datasets_bnetza_mastr_pv_roof_region_create_power_stats_muns.output,
         pv_roof_area_stats=rules.datasets_potentialarea_pv_roof_region_create_area_stats_muns.output,
         pv_roof_area_deploy_stats=rules.datasets_potentialarea_pv_roof_region_create_relative_deployment_stats_muns.output,
+        hydro_stats=rules.datasets_bnetza_mastr_hydro_region_create_power_stats_muns.output,
+        demand_hh_power=rules.datasets_demand_electricity_region_hh_merge_demand_years.output.demand,
+        demand_cts_power=rules.datasets_demand_electricity_region_cts_merge_demand_years.output.demand,
+        demand_ind_power=rules.datasets_demand_electricity_region_ind_merge_demand_years.output.demand,
+        storage_large_stats=rules.datasets_bnetza_mastr_storage_region_create_power_stats_muns.output.large,
+        storage_small_stats=rules.datasets_bnetza_mastr_storage_region_create_power_stats_muns.output.small,
     output:
         expand(
             DATASET_PATH / "{panel}_settings_panel.json",
@@ -71,6 +77,12 @@ rule create_panel_settings:
                 pv_roof_stats=pd.read_csv(input.pv_roof_stats[0]),
                 pv_roof_area_stats=pd.read_csv(input.pv_roof_area_stats[0], index_col="municipality_id"),
                 pv_roof_area_deploy_stats=pd.read_csv(input.pv_roof_area_deploy_stats[0]),
+                hydro_stats=pd.read_csv(input.hydro_stats[0]),
+                demand_hh_power=pd.read_csv(input.demand_hh_power, index_col="municipality_id"),
+                demand_cts_power=pd.read_csv(input.demand_cts_power, index_col="municipality_id"),
+                demand_ind_power=pd.read_csv(input.demand_ind_power, index_col="municipality_id"),
+                storage_large_stats=pd.read_csv(input.storage_large_stats),
+                storage_small_stats=pd.read_csv(input.storage_small_stats),
             )
 
             import pdb

@@ -52,19 +52,27 @@ rule overlay_muns:
 
 rule create_area_stats_muns:
     """
-    Create stats on PV potential areas per mun
+    Create stats on PV roof potentials per mun for 1) all and 2) all but
+    historic buildings.
     """
     input:
         area=DATASET_PATH / "potentialarea_pv_roof_region.gpkg",
         region_muns=PATH_TO_REGION_MUNICIPALITIES_GPKG,
-    output: DATASET_PATH / "potentialarea_pv_roof_area_stats_muns.csv"
+    output:
+        total=DATASET_PATH / "potentialarea_pv_roof_area_stats_muns.csv",
+        wo_historic=(
+            DATASET_PATH /
+            "potentialarea_pv_roof_wo_historic_area_stats_muns.csv"
+        )
     run:
         print("PV roof potential area stats:")
         muns = gpd.read_file(input.region_muns)
-        data = gpd.read_file(input.area).fillna(0)
+        potential_all = gpd.read_file(input.area).fillna(0)
 
         # define columns
-        cols_base = ["municipality_id", "historic_preservation", "building_area_sqm"]
+        cols_base = [
+            "municipality_id", "historic_preservation", "building_area_sqm"
+        ]
         orientation_suffix = ["south", "north", "east", "west", "flat"]
         cols_power = [
             f"installable_power_kw_{orient}"
@@ -82,73 +90,92 @@ rule create_area_stats_muns:
         }
 
         # aggregate per mun
-        agg_cols=dict(
+        agg_cols = dict(
             roof_count=("building_area_sqm", "count"),
             building_area_sqm=("building_area_sqm", "sum"),
             historic_preservation_count=("historic_preservation", "sum"),
             **cols_power_new,
             **cols_energy_new
         )
-        data = data[cols_base + cols_power + cols_energy].groupby(
-            "municipality_id").agg(**agg_cols)
+        potential_wo_historic = potential_all.copy()
+        potential_wo_historic = potential_wo_historic.loc[
+            ~potential_wo_historic.historic_preservation
+        ]
 
-        # kW -> MW
-        data[[_ for _ in cols_power_new.keys()]] = data[
-            cols_power_new.keys()].div(1e3)
-
-        # Produce totals
-        data = data.assign(
-            installable_power_total=data[
-                [_ for _ in cols_power_new.keys()]].sum(axis=1),
-            energy_annual_total=data[
-                [_ for _ in cols_energy_new.keys()]].sum(axis=1),
-        )
-
-        # Dump
-        data.to_csv(output[0])
+        for df, file in zip(
+            [potential_all, potential_wo_historic],
+            [output.total, output.wo_historic]
+        ):
+            df = df[
+                cols_base + cols_power + cols_energy
+            ].groupby("municipality_id").agg(**agg_cols)
+            # kW -> MW
+            df[[_ for _ in cols_power_new.keys()]] = df[
+                cols_power_new.keys()].div(1e3)
+            # Produce totals
+            df = df.assign(
+                installable_power_total=df[
+                    [_ for _ in cols_power_new.keys()]].sum(axis=1),
+                energy_annual_total=df[
+                    [_ for _ in cols_energy_new.keys()]].sum(axis=1),
+            )
+            # Dump
+            df.to_csv(file)
 
 rule create_relative_deployment_stats_muns:
     """
     Create stats on how much of the theoretically installable PV rooftop
-    potential is used, per mun.
+    potential is used per mun for 1) all and 2) all but historic buildings.
     """
     input:
-        area_stats=(
-            rules.datasets_potentialarea_pv_roof_region_create_area_stats_muns.output[0]
+        area_stats_total=(
+            rules.datasets_potentialarea_pv_roof_region_create_area_stats_muns.output.total
         ),
-        pv_roof_stats=(
+        area_stats_wo_historic=(
+            rules.datasets_potentialarea_pv_roof_region_create_area_stats_muns.output.wo_historic
+        ),
+        unit_stats=(
             rules.datasets_bnetza_mastr_pv_roof_region_create_power_stats_muns.output[0]
         )
-    output: DATASET_PATH / "potentialarea_pv_roof_deployment_stats_muns.csv"
+    output:
+        total=DATASET_PATH / "potentialarea_pv_roof_deployment_stats_muns.csv",
+        wo_historic=(
+            DATASET_PATH/
+            "potentialarea_pv_roof_wo_historic_deployment_stats_muns.csv"
+        )
     run:
         orientation_suffix = ["south", "north", "east", "west", "flat"]
         cols_power = [
             f"installable_power_{orient}"
             for orient in orientation_suffix
         ]
-        pv_potential = pd.read_csv(
-            input.area_stats,
-            usecols=["municipality_id"]+cols_power,
-            index_col="municipality_id",
-        )
-        pv_potential = pd.DataFrame(
-            pv_potential.sum(axis=1), columns=["installable_power"]
-        )
         pv_installed = pd.read_csv(
-            input.pv_roof_stats,
+            input.unit_stats,
             usecols=["municipality_id", "capacity_net"],
             index_col="municipality_id",
         )
 
-        pv_deployed = pd.concat(
-            [pv_installed.capacity_net, pv_potential.installable_power],
-            axis=1,
-        )
-        pv_deployed = pv_deployed.assign(
-            relative_deployment=(
-                pv_installed.capacity_net.div(pv_potential.installable_power)
+        for file_in, file_out in zip(
+            [input.area_stats_total, input.area_stats_wo_historic],
+            [output.total, output.wo_historic]
+        ):
+            pv_potential = pd.read_csv(
+                file_in,
+                usecols=["municipality_id"] + cols_power,
+                index_col="municipality_id",
             )
-        )
-
-        # Dump
-        pv_deployed.to_csv(output[0])
+            pv_potential = pd.DataFrame(
+                pv_potential.sum(axis=1),columns=["installable_power"]
+            )
+            pv_deployed = pd.concat(
+                [pv_installed.capacity_net, pv_potential.installable_power],
+                axis=1,
+            )
+            pv_deployed = pv_deployed.assign(
+                relative_deployment=(
+                    pv_installed.capacity_net.div(
+                        pv_potential.installable_power
+                    )
+                )
+            )
+            pv_deployed.to_csv(file_out)

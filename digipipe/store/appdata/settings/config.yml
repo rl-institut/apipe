@@ -111,13 +111,6 @@ panel_settings_templates:
       status_quo: none
       step: none
       disable: none
-    s_b_1:
-      max: none
-      min: none
-      start: none
-      status_quo: none
-      future_scenario: none
-      step: none
     s_v_1:
       max: none
       min: none

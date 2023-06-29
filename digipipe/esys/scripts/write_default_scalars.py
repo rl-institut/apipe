@@ -75,7 +75,7 @@ def get_var_value_and_comment(which):
         var_value = "{}"
         comment = "Empty"
     elif which == "variable_costs":
-        var_value = str({"variable_costs": 1e-7})
+        var_value = '{"variable_costs": 1e-7}'
         comment = "Own assumption to prevent hidden curtailment"
     else:
         raise ValueError(

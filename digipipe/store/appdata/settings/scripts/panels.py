@@ -38,6 +38,7 @@ class PanelSettings:
         for control, values_store in self.__dict__.items():
             for val in values_store.values():
                 if val == "none":
+                    print(f"Control {control} is missing at least one value.")
                     return False
         return True
 

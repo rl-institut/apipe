@@ -48,7 +48,7 @@ rule create_power_stats_muns:
         small=DATASET_PATH/ "data" / "bnetza_mastr_storage_small_stats_muns.csv",
     run:
         units = gpd.read_file(input.units)
-        units["capacity_net"] = units["capacity_net"].div(1e3)  # kW to MW
+        units["storage_capacity"] = units["storage_capacity"].div(1e3)  # kW to MW
         muns = gpd.read_file(input.region_muns)
         print("Battery storages:")
 
@@ -56,38 +56,38 @@ rule create_power_stats_muns:
         units_total = create_stats_per_municipality(
             units_df=units,
             muns=muns,
-            column="capacity_net"
+            column="storage_capacity"
         )
         print(
             f"  Storage capacity (total): "
-            f"{units_total.capacity_net.sum().round(3)} MWh"
+            f"{units_total.storage_capacity.sum().round(3)} MWh"
         )
         units_total.to_csv(output.total)
 
         # Large storage units
         units_large = create_stats_per_municipality(
             units_df=units.loc[
-                units.capacity_net >= config.get("battery_size_threshold")
+                units.storage_capacity >= config.get("battery_size_threshold")
             ],
             muns=muns,
-            column="capacity_net"
+            column="storage_capacity"
         )
         print(
             f"  Storage capacity (large): "
-            f"{units_large.capacity_net.sum().round(3)} MWh"
+            f"{units_large.storage_capacity.sum().round(3)} MWh"
         )
         units_large.to_csv(output.large)
 
         # Small storage units
         units_small = create_stats_per_municipality(
             units_df=units.loc[
-                units.capacity_net < config.get("battery_size_threshold")
+                units.storage_capacity < config.get("battery_size_threshold")
             ],
             muns=muns,
-            column="capacity_net"
+            column="storage_capacity"
         )
         print(
             f"  Storage capacity (small): "
-            f"{units_small.capacity_net.sum().round(3)} MWh"
+            f"{units_small.storage_capacity.sum().round(3)} MWh"
         )
         units_small.to_csv(output.small)

@@ -349,9 +349,9 @@ resources:
           municipality_id:
             description: "Gemeinde-ID"
             unit: "-"
-          capacity_net:
-            description: "Nennleistung"
-            unit: "MW"
+          storage_capacity:
+            description: "Speicherkapazität"
+            unit: "MWh"
           count:
             description: "Anzahl"
             unit: "-"
@@ -365,9 +365,9 @@ resources:
           municipality_id:
             description: "Gemeinde-ID"
             unit: "-"
-          capacity_net:
-            description: "Nennleistung"
-            unit: "MW"
+          storage_capacity:
+            description: "Speicherkapazität"
+            unit: "MWh"
           count:
             description: "Anzahl"
             unit: "-"
@@ -381,9 +381,9 @@ resources:
           municipality_id:
             description: "Gemeinde-ID"
             unit: "-"
-          capacity_net:
-            description: "Nennleistung"
-            unit: "MW"
+          storage_capacity:
+            description: "Speicherkapazität"
+            unit: "MWh"
           count:
             description: "Anzahl"
             unit: "-"

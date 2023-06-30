@@ -912,6 +912,19 @@ resources:
         _source_path:
           dataset: "potentialarea_pv_ground_region"
           file: "potentialarea_pv_ground_area_stats_muns.csv"
+      pv_ground_area_shares:
+        description: "Anteil Potenzialflächen an Regionsfläche nach Flächentyp"
+        path: "scalars/potentialarea_pv_ground_area_shares.json"
+        fields:
+          road_railway:
+            description: "Anteil Potenzialflächen entlang von Bundesautobahnen und Schienenwegen an Regionsfläche"
+            unit: "-"
+          agri:
+            description: "Anteil Potenzialflächen auf Acker- und Grünlandflächen mit geringer Bodengüte an Regionsfläche"
+            unit: "-"
+        _source_path:
+          dataset: "potentialarea_pv_ground_region"
+          file: "potentialarea_pv_ground_area_shares.json"
       pv_roof_area_stats:
         description: "Potenziale PV-Aufdachanlagen (alle Gebäude)"
         path: "scalars/potentialarea_pv_roof_area_stats_muns.csv"

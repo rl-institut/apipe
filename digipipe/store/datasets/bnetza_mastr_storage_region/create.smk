@@ -157,12 +157,12 @@ rule create_storage_pv_roof_stats:
                         "all_storages": round(
                             len(units_unique_loc) /
                             len(pv_roof_units),
-                            2,
+                            3,
                         ),
                         "home_storages": round(
                             len(units_unique_loc_small) /
                             len(pv_roof_units_small),
-                            2,
+                            3,
                         ),
                     },
                     "specific_capacity": {

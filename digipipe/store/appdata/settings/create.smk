@@ -54,6 +54,7 @@ rule create_panel_settings:
         demand_ind_power=rules.datasets_demand_electricity_region_ind_merge_demand_years.output.demand,
         storage_large_stats=rules.datasets_bnetza_mastr_storage_region_create_power_stats_muns.output.large,
         storage_small_stats=rules.datasets_bnetza_mastr_storage_region_create_power_stats_muns.output.small,
+        storage_pv_roof=rules.datasets_bnetza_mastr_storage_region_create_storage_pv_roof_stats.output
     output:
         expand(
             DATASET_PATH / "{panel}_settings_panel.json",
@@ -83,6 +84,7 @@ rule create_panel_settings:
                 demand_ind_power=pd.read_csv(input.demand_ind_power, index_col="municipality_id"),
                 storage_large_stats=pd.read_csv(input.storage_large_stats),
                 storage_small_stats=pd.read_csv(input.storage_small_stats),
+                storage_pv_roof=load_json(input.storage_pv_roof[0]),
             )
 
             import pdb

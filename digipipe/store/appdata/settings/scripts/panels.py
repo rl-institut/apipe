@@ -65,6 +65,7 @@ def generate_energy_panel_data(
     demand_ind_power: pd.DataFrame,
     storage_large_stats: pd.DataFrame,
     storage_small_stats: pd.DataFrame,
+    storage_pv_roof: dict,
 ):
     # Wind energy
     panel_settings.update(
@@ -152,9 +153,13 @@ def generate_energy_panel_data(
             s_pv_d_4=dict(
                 max=100,
                 min=0,
-                start="none",  # TODO
+                start=round(
+                    storage_pv_roof["pv_roof_share"]["home_storages"] * 100
+                ),
                 step=5,
-                status_quo="none",  # TODO
+                status_quo=round(
+                    storage_pv_roof["pv_roof_share"]["home_storages"] * 100
+                ),
             ),
         )
     )

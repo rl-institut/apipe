@@ -95,6 +95,10 @@ rule create_power_stats_muns:
         units_small.to_csv(output.small)
 
 rule create_storage_pv_roof_stats:
+    """
+    Calculate share of PV with storages, specific capacity and specific power of
+    storages relative to PV power.
+    """
     input:
         units=DATASET_PATH / "data" / "bnetza_mastr_storage_region.gpkg",
         pv_roof_units=rules.datasets_bnetza_mastr_pv_roof_region_create.output.outfile,

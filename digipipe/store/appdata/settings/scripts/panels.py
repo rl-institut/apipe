@@ -235,22 +235,22 @@ def generate_energy_panel_data(
             s_s_g_1=dict(
                 max=round(feedin_wind_pv_daily_mean / 10),
                 min=0,
-                start=round(storage_large_stats.capacity_net.sum()),
+                start=round(storage_large_stats.storage_capacity.sum()),
                 step=0.1,
-                status_quo=round(storage_large_stats.capacity_net.sum()),
+                status_quo=round(storage_large_stats.storage_capacity.sum()),
             ),
             s_s_g_3=dict(
                 max=10,
                 min=0,
                 start=round(
-                    storage_large_stats.capacity_net.sum()
+                    storage_large_stats.storage_capacity.sum()
                     / feedin_wind_pv_daily_mean
                     * 100,
                     1,
                 ),
                 step=0.25,
                 status_quo=round(
-                    storage_large_stats.capacity_net.sum()
+                    storage_large_stats.storage_capacity.sum()
                     / feedin_wind_pv_daily_mean
                     * 100,
                     1,

@@ -136,27 +136,34 @@ rule create_storage_pv_roof:
         )
         units_unique_loc2 = units_unique_loc.loc[mask]
 
-        with open(output[0], "w", encoding="utf8") as f:
+        with open(output[0],"w",encoding="utf8") as f:
             json.dump(
-                {"specific_capacity":
-                    {"all_storages": round(
-                        units_unique_loc.storage_capacity.sum() /
-                        units_unique_loc.pv_roof_unit_capacity_sum.sum()
-                     , 2),
-                     "home_storages": round(
-                        units_unique_loc2.storage_capacity.sum() /
-                        units_unique_loc2.pv_roof_unit_capacity_sum.sum()
-                     , 2)},
-                 "specific_power":
-                     {"all_storages": round(
-                         units_unique_loc.capacity_net.sum() /
-                         units_unique_loc.pv_roof_unit_capacity_sum.sum()
-                      ,2),
-                      "home_storages": round(
-                         units_unique_loc2.capacity_net.sum() /
-                         units_unique_loc2.pv_roof_unit_capacity_sum.sum()
-                      ,2)},
+                {
+                    "specific_capacity": {
+                        "all_storages": round(
+                            units_unique_loc.storage_capacity.sum()
+                            / units_unique_loc.pv_roof_unit_capacity_sum.sum(),
+                            2,
+                        ),
+                        "home_storages": round(
+                            units_unique_loc2.storage_capacity.sum()
+                            / units_unique_loc2.pv_roof_unit_capacity_sum.sum(),
+                            2,
+                        ),
+                    },
+                    "specific_power": {
+                        "all_storages": round(
+                            units_unique_loc.capacity_net.sum()
+                            / units_unique_loc.pv_roof_unit_capacity_sum.sum(),
+                            2,
+                        ),
+                        "home_storages": round(
+                            units_unique_loc2.capacity_net.sum()
+                            / units_unique_loc2.pv_roof_unit_capacity_sum.sum(),
+                            2,
+                        ),
+                    },
                 },
                 f,
-                indent=4
+                indent=4,
             )

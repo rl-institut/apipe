@@ -106,7 +106,7 @@ def generate_energy_panel_data(
                 status_quo=round(pv_ground_stats.capacity_net.sum()),
                 future_scenario=round(
                     float(region.area_km2)
-                    * 0.007
+                    * 0.007  # TODO
                     * tech_data["power_density"]["pv_ground"]
                 ),
             ),
@@ -154,7 +154,7 @@ def generate_energy_panel_data(
                 min=0,
                 start="none",  # TODO
                 step=5,
-                status_quo="none",
+                status_quo="none",  # TODO
             ),
         )
     )

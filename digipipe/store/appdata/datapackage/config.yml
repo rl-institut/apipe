@@ -394,6 +394,13 @@ resources:
         description: "Spezifische Kapazität und Leistung von Batteriespeichern, die PV-Aufdachanlagen zugeordnet sind"
         path: "scalars/bnetza_mastr_storage_pv_roof.json"
         fields:
+          pv_roof_share:
+            all_storages:
+              description: "Anteil von PV-Aufdachanlagen mit Speicher (alle Anlagen und Speicher)"
+              unit: "-"
+            home_storages:
+              description: "Anteil von PV-Aufdachanlagen mit Speicher (kleine Anlagen und Speicher)"
+              unit: ""
           specific_capacity:
             all_storages:
               description: "Mittlere spezifische Kapazität aller Speicher"

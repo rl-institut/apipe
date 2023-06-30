@@ -94,18 +94,33 @@ rule create_power_stats_muns:
         )
         units_small.to_csv(output.small)
 
-rule create_storage_pv_roof:
-    input: DATASET_PATH / "data" / "bnetza_mastr_storage_region.gpkg"
+rule create_storage_pv_roof_stats:
+    input:
+        units=DATASET_PATH / "data" / "bnetza_mastr_storage_region.gpkg",
+        pv_roof_units=rules.datasets_bnetza_mastr_pv_roof_region_create.output.outfile,
     output: DATASET_PATH / "data" / "bnetza_mastr_storage_pv_roof.json"
     run:
-        units = gpd.read_file(input[0])[[
+        # PV home units: guess PV home systems
+        pv_roof_units = gpd.read_file(input.pv_roof_units)[
+            ["mastr_id", "capacity_net"]
+        ]
+        hs_cfg = config.get("home_storages")
+        mask = (
+            (pv_roof_units.capacity_net >=
+             hs_cfg.get("pv_roof_capacity_thres_min")) &
+            (pv_roof_units.capacity_net <=
+             hs_cfg.get("pv_roof_capacity_thres_max"))
+        )
+        pv_roof_units_small = pv_roof_units.loc[mask]
+
+        # Storage units: calc specific values
+        units = gpd.read_file(input.units)[[
             "capacity_net",
             "storage_capacity",
             "mastr_location_id",
             "pv_roof_unit_count",
             "pv_roof_unit_capacity_sum"
         ]]
-
         units_unique_loc = units.groupby("mastr_location_id").agg(
             storage_count=("storage_capacity", "count"),
             storage_capacity=("storage_capacity", "sum"),
@@ -114,8 +129,7 @@ rule create_storage_pv_roof:
             pv_roof_unit_capacity_sum=("pv_roof_unit_capacity_sum", "first"),
         )
 
-        # Filter units
-        hs_cfg = config.get("home_storages")
+        # Filter storages
         mask = (
             (units_unique_loc.storage_count == 1
              if hs_cfg.get("only_single_storages")
@@ -134,11 +148,23 @@ rule create_storage_pv_roof:
             (units_unique_loc.pv_roof_unit_capacity_sum <=
              hs_cfg.get("pv_roof_capacity_thres_max"))
         )
-        units_unique_loc2 = units_unique_loc.loc[mask]
+        units_unique_loc_small = units_unique_loc.loc[mask]
 
-        with open(output[0],"w",encoding="utf8") as f:
+        with open(output[0], "w", encoding="utf8") as f:
             json.dump(
                 {
+                    "pv_roof_share": {
+                        "all_storages": round(
+                            len(units_unique_loc) /
+                            len(pv_roof_units),
+                            2,
+                        ),
+                        "home_storages": round(
+                            len(units_unique_loc_small) /
+                            len(pv_roof_units_small),
+                            2,
+                        ),
+                    },
                     "specific_capacity": {
                         "all_storages": round(
                             units_unique_loc.storage_capacity.sum()
@@ -146,8 +172,8 @@ rule create_storage_pv_roof:
                             2,
                         ),
                         "home_storages": round(
-                            units_unique_loc2.storage_capacity.sum()
-                            / units_unique_loc2.pv_roof_unit_capacity_sum.sum(),
+                            units_unique_loc_small.storage_capacity.sum()
+                            / units_unique_loc_small.pv_roof_unit_capacity_sum.sum(),
                             2,
                         ),
                     },
@@ -158,8 +184,8 @@ rule create_storage_pv_roof:
                             2,
                         ),
                         "home_storages": round(
-                            units_unique_loc2.capacity_net.sum()
-                            / units_unique_loc2.pv_roof_unit_capacity_sum.sum(),
+                            units_unique_loc_small.capacity_net.sum()
+                            / units_unique_loc_small.pv_roof_unit_capacity_sum.sum(),
                             2,
                         ),
                     },

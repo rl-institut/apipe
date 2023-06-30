@@ -31,5 +31,6 @@ sowie spezifische Nennleistung der Speicher (bezogen auf die installierte
 Leistung von PV-Aufdachanlagen), aggregiert für gesamte Region, für folgende
 Randbedingungen:
 - Alle PV-Anlagen: `all_storages`
-- PV-Anlagen mit 2..20 kWp sowie Batteriespeicher <20 kWh und <20 kW:
+- PV-Anlagen mit 2..20 kWp sowie Batteriespeicher <20 kWh und <20 kW (kann in
+  [config.yml](config.yml) unter `home_storages` konfiguriert werden):
   `home_storages`

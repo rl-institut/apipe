@@ -4,6 +4,7 @@ Snakefile for this dataset
 Note: To include the file in the main workflow, it must be added to the respective module.smk .
 """
 
+import json
 import geopandas as gpd
 
 from digipipe.scripts.datasets.mastr import create_stats_per_municipality
@@ -25,6 +26,7 @@ rule create:
         units_capacity=SOURCE_DATASET_PATH / "bnetza_mastr_storage_unit_raw.csv",
         locations=SOURCE_DATASET_PATH / "bnetza_mastr_locations_extended_raw.csv",
         gridconn=SOURCE_DATASET_PATH / "bnetza_mastr_grid_connections_raw.csv",
+        pv_roof_units=rules.datasets_bnetza_mastr_pv_roof_region_create.output.outfile,
         region_muns=PATH_TO_REGION_MUNICIPALITIES_GPKG,
         region_districts=PATH_TO_REGION_DISTRICTS_GPKG
     output:
@@ -37,7 +39,7 @@ rule create:
 
 rule create_power_stats_muns:
     """
-    Create stats on installed count of units and power per mun
+    Create stats on installed count of units and capacity per mun
     """
     input:
         units=DATASET_PATH / "data" / "bnetza_mastr_storage_region.gpkg",
@@ -91,3 +93,70 @@ rule create_power_stats_muns:
             f"{units_small.storage_capacity.sum().round(3)} MWh"
         )
         units_small.to_csv(output.small)
+
+rule create_storage_pv_roof:
+    input: DATASET_PATH / "data" / "bnetza_mastr_storage_region.gpkg"
+    output: DATASET_PATH / "data" / "bnetza_mastr_storage_pv_roof.json"
+    run:
+        units = gpd.read_file(input[0])[[
+            "capacity_net",
+            "storage_capacity",
+            "mastr_location_id",
+            "pv_roof_unit_count",
+            "pv_roof_unit_capacity_sum"
+        ]]
+
+        units_unique_loc = units.groupby("mastr_location_id").agg(
+            storage_count=("storage_capacity", "count"),
+            storage_capacity=("storage_capacity", "sum"),
+            capacity_net=("capacity_net", "mean"),
+            pv_roof_unit_count=("pv_roof_unit_count", "first"),
+            pv_roof_unit_capacity_sum=("pv_roof_unit_capacity_sum", "first"),
+        )
+
+        # Filter units
+        hs_cfg = config.get("home_storages")
+        mask = (
+            (units_unique_loc.storage_count == 1
+             if hs_cfg.get("only_single_storages")
+             else units_unique_loc.storage_count > 0
+             ) &
+            (units_unique_loc.storage_capacity <=
+             hs_cfg.get("storage_capacity_thres_max")) &
+            (units_unique_loc.capacity_net <=
+             hs_cfg.get("storage_power_thres_max")) &
+            (units_unique_loc.pv_roof_unit_count == 1
+             if hs_cfg.get("only_single_pv_roof_units")
+             else units_unique_loc.pv_roof_unit_count > 0
+             ) &
+            (units_unique_loc.pv_roof_unit_capacity_sum >=
+             hs_cfg.get("pv_roof_capacity_thres_min")) &
+            (units_unique_loc.pv_roof_unit_capacity_sum <=
+             hs_cfg.get("pv_roof_capacity_thres_max"))
+        )
+        units_unique_loc2 = units_unique_loc.loc[mask]
+
+        with open(output[0], "w", encoding="utf8") as f:
+            json.dump(
+                {"specific_capacity":
+                    {"all_storages": round(
+                        units_unique_loc.storage_capacity.sum() /
+                        units_unique_loc.pv_roof_unit_capacity_sum.sum()
+                     , 2),
+                     "home_storages": round(
+                        units_unique_loc2.storage_capacity.sum() /
+                        units_unique_loc2.pv_roof_unit_capacity_sum.sum()
+                     , 2)},
+                 "specific_power":
+                     {"all_storages": round(
+                         units_unique_loc.capacity_net.sum() /
+                         units_unique_loc.pv_roof_unit_capacity_sum.sum()
+                      ,2),
+                      "home_storages": round(
+                         units_unique_loc2.capacity_net.sum() /
+                         units_unique_loc2.pv_roof_unit_capacity_sum.sum()
+                      ,2)},
+                },
+                f,
+                indent=4
+            )

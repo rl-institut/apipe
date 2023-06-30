@@ -54,6 +54,7 @@ def process() -> None:
         units_df=units,
         locations_path=snakemake.input.locations,
         gridconn_path=snakemake.input.gridconn,
+        drop_location_id=False,
     )
 
     # Add geometry and drop units without coords and
@@ -116,6 +117,30 @@ def process() -> None:
         gdf=units_agg,
         gdf_overlay=gpd.read_file(snakemake.input.region_districts),
         retain_rename_overlay_columns={"id": "district_id"},
+    )
+
+    # Search for associated PV roof units and save count and sum of nom. power
+    pv_roof_units = gpd.read_file(snakemake.input.pv_roof_units)[
+        ["mastr_location_id", "capacity_net"]
+    ]
+    pv_roof_units = (
+        pv_roof_units[["mastr_location_id", "capacity_net"]]
+        .groupby("mastr_location_id")
+        .agg(
+            pv_roof_unit_count=("capacity_net", "count"),
+            pv_roof_unit_capacity_sum=("capacity_net", "sum"),
+        )
+        .reset_index()
+    )
+    units = units.merge(
+        pv_roof_units,
+        left_on="mastr_location_id",
+        right_on="mastr_location_id",
+        how="left",
+    )
+    units = units.assign(
+        pv_roof_unit_count=units.pv_roof_unit_count.fillna(0),
+        pv_roof_unit_capacity_sum=units.pv_roof_unit_capacity_sum.fillna(0),
     )
 
     write_geofile(

@@ -39,3 +39,12 @@ plant_attributes:
 
 # Output settings
 layer: bnetza_mastr_storage
+
+# Filter for PV home storages
+home_storages:
+   only_single_storages: true
+   storage_capacity_thres_max: 20
+   storage_power_thres_max: 20
+   only_single_pv_roof_units: true
+   pv_roof_capacity_thres_min: 2
+   pv_roof_capacity_thres_max: 20

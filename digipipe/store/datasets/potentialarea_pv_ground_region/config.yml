@@ -8,3 +8,6 @@ areas:
     "agriculture_lfa-off_region",
     "road_railway_region",
   ]
+
+# PV targets split: share of pv_ground
+pv_ground_share: 0.5

@@ -925,6 +925,31 @@ resources:
         _source_path:
           dataset: "potentialarea_pv_ground_region"
           file: "potentialarea_pv_ground_area_shares.json"
+      pv_ground_area_targets:
+        description: "Regionale, aus Bundeszielen anhand der Potenzialflächen desaggregierte Bundesziele für Freiflächen-PV nach Flächentyp"
+        path: "scalars/potentialarea_pv_ground_regionalized_targets.json"
+        fields:
+          target_area_total:
+            description: "Regionales Flächenziel gesamt"
+            unit: "km2"
+          target_area_road_railway:
+            description: "Regionales Flächenziel entlang von Bundesautobahnen und Schienenwegen"
+            unit: "km2"
+          target_area_agri:
+            description: "Regionales Flächenziel auf Acker- und Grünlandflächen mit geringer Bodengüte"
+            unit: "km2"
+          target_power_total:
+            description: "Regionales Leistungsziel gesamt"
+            unit: "MW"
+          target_power_road_railway:
+            description: "Regionales Leistungsziel entlang von Bundesautobahnen und Schienenwegen"
+            unit: "MW"
+          target_power_agri:
+            description: "Regionales Leistungsziel auf Acker- und Grünlandflächen mit geringer Bodengüte"
+            unit: "MW"
+        _source_path:
+          dataset: "potentialarea_pv_ground_region"
+          file: "potentialarea_pv_ground_regionalized_targets.json"
       pv_roof_area_stats:
         description: "Potenziale PV-Aufdachanlagen (alle Gebäude)"
         path: "scalars/potentialarea_pv_roof_area_stats_muns.csv"

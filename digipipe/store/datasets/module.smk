@@ -36,11 +36,6 @@ module bkg_vg250_region:
     config: config["store"]["datasets"]["bkg_vg250_region"]
 use rule * from bkg_vg250_region as datasets_bkg_vg250_region_*
 
-module osm_forest:
-    snakefile: "osm_forest/create.smk"
-    config: config["store"]["datasets"]["osm_forest"]
-use rule * from osm_forest as datasets_osm_forest_*
-
 module bnetza_mastr_wind_region:
     snakefile: "bnetza_mastr_wind_region/create.smk"
     config: config["store"]["datasets"]["bnetza_mastr_wind_region"]

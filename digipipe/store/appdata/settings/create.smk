@@ -6,8 +6,8 @@ Note: To include the file in the main workflow, it must be added to the respecti
 import json
 import geopandas as gpd
 import pandas as pd
-from pathlib import Path
 
+from digipipe.scripts.data_io import load_json
 from digipipe.store.utils import get_abs_dataset_path
 from digipipe.store.appdata.settings.scripts.panels import (
     PanelSettings,
@@ -16,9 +16,6 @@ from digipipe.store.appdata.settings.scripts.panels import (
 
 DATASET_PATH = get_abs_dataset_path("appdata", "settings", data_dir=True)
 
-def load_json(file_path: Path) -> dict:
-    with open(file_path, "r") as f:
-        return json.load(f)
 
 rule create_map_panel_layer_list:
     """
@@ -45,6 +42,7 @@ rule create_panel_settings:
         pv_ground_stats=rules.datasets_bnetza_mastr_pv_ground_region_create_power_stats_muns.output,
         pv_ground_area_stats=rules.datasets_potentialarea_pv_ground_region_create_area_stats_muns.output,
         pv_ground_area_shares=rules.datasets_potentialarea_pv_ground_region_create_potarea_shares.output,
+        pv_ground_targets=rules.datasets_potentialarea_pv_ground_region_regionalize_state_targets.output,
         pv_roof_stats=rules.datasets_bnetza_mastr_pv_roof_region_create_power_stats_muns.output,
         pv_roof_area_stats=rules.datasets_potentialarea_pv_roof_region_create_area_stats_muns.output,
         pv_roof_area_deploy_stats=rules.datasets_potentialarea_pv_roof_region_create_relative_deployment_stats_muns.output,
@@ -75,6 +73,7 @@ rule create_panel_settings:
                 pv_ground_stats=pd.read_csv(input.pv_ground_stats[0]),
                 pv_ground_area_stats=pd.read_csv(input.pv_ground_area_stats[0], index_col="municipality_id"),
                 pv_ground_area_shares=load_json(input.pv_ground_area_shares[0]),
+                pv_ground_targets=load_json(input.pv_ground_targets[0]),
                 pv_roof_stats=pd.read_csv(input.pv_roof_stats[0]),
                 pv_roof_area_stats=pd.read_csv(input.pv_roof_area_stats[0], index_col="municipality_id"),
                 pv_roof_area_deploy_stats=pd.read_csv(input.pv_roof_area_deploy_stats[0]),

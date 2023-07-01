@@ -5,11 +5,7 @@
 # Tags to include
 tags:
   [
-    ["landuse", "residential"],
-    ["landuse", "forest"],
-    ["natural", "wood"],
-    ["military", "airfield"],
-    ["aeroway", "aerodrome"],
+    ["building", "*"],
   ]
 
 geom_type: "multipolygons"

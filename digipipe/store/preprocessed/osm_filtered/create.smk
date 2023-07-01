@@ -10,8 +10,8 @@ rule convert:
     """
     Convert OSM pbf file while filtering for all requested tags. All attributes are retained.
     """
-    input: get_abs_dataset_path("raw", "osm_sachsen-anhalt") / "data" / "sachsen-anhalt-221003.osm.pbf"
-    output: get_abs_dataset_path("preprocessed", "osm_filtered") / "data" / "sachsen-anhalt-221003.osm.gpkg"
+    input: get_abs_dataset_path("raw", "osm") / "data" / "germany-230630.osm.pbf"
+    output: get_abs_dataset_path("preprocessed", "osm_filtered") / "data" / "germany-230630.osm.gpkg"
     params: tags=create_tag_string_osmium(config["tags"])
     shell:
         "osmium tags-filter --remove-tags -f osm {input} {params.tags} | "

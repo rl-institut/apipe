@@ -442,8 +442,11 @@ resources:
             wind:
               description: "Volllaststunden Windenergie"
               unit: "-"
-            pv:
-              description: "Volllaststunden Photovoltaik"
+            pv_ground:
+              description: "Volllaststunden Freiflächen-PV"
+              unit: "-"
+            pv_roof:
+              description: "Volllaststunden Aufdach-PV"
               unit: "-"
             st:
               description: "Volllaststunden Solarthermie"
@@ -454,10 +457,13 @@ resources:
           power_density:
             wind:
               description: "Leistungsdichte Windenergie"
-              unit: "-"
+              unit: "MW/km2"
             pv_ground:
               description: "Leistungsdichte PV-Freiflächenanlagen"
-              unit: "-"
+              unit: "MW/km2"
+            pv_roof:
+              description: "Leistungsdichte PV-Aufdachanlagen"
+              unit: "MW/km2"
             st:
               description: "Leistungsdichte Solarthermie"
               unit: "MW/km2"

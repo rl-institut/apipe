@@ -7,7 +7,7 @@ import json
 import re
 import geopandas as gpd
 import pandas as pd
-from pathlib import Path
+from digipipe.scripts.data_io import load_json
 from digipipe.scripts.geo import (
     overlay,
     convert_to_multipolygon,
@@ -179,3 +179,39 @@ rule create_relative_deployment_stats_muns:
                 )
             )
             pv_deployed.to_csv(file_out)
+
+rule regionalize_state_targets:
+    """
+    Calculate PV roof targets of region
+    """
+    input:
+        osm_buildings_stats=get_abs_dataset_path(
+            "datasets", "osm_buildings", data_dir=True
+        ) / "osm_buildings_ground_area.json",
+        el_capacity_targets=get_abs_dataset_path(
+            "preprocessed", "bmwk_long_term_scenarios"
+        ) / "data" / "T45-Strom_electricity_installed_power_reformatted.csv",
+    output:
+        DATASET_PATH / "potentialarea_pv_roof_regionalized_targets.json"
+    run:
+        osm_buildings_stats = load_json(input.osm_buildings_stats)
+
+        # Power target from longterm scenario
+        targets = pd.read_csv(input.el_capacity_targets, index_col="year")
+
+        target_cap = targets.loc[
+                         targets.technology == "pv"
+                     ].loc[2045].capacity * 1e3 * config.get("pv_roof_share")
+
+        with open(output[0], "w", encoding="utf8") as f:
+            json.dump(
+                {
+                    # Power targets (disaggregated)
+                    "target_power_total": round(
+                        target_cap *
+                        osm_buildings_stats["building_ground_area_share_region"]
+                    ),
+                },
+                f,
+                indent=4
+            )

@@ -1112,6 +1112,16 @@ resources:
         _source_path:
           dataset: "potentialarea_pv_roof_region"
           file: "potentialarea_pv_roof_wo_historic_deployment_stats_muns.csv"
+      pv_roof_area_targets:
+        description: "Regionale, aus Bundeszielen anhand der Gebäudegrundflächen desaggregierte Bundesziele für Aufdach-PV"
+        path: "scalars/potentialarea_pv_roof_regionalized_targets.json"
+        fields:
+          target_power_total:
+            description: "Regionales Leistungsziel gesamt"
+            unit: "MW"
+        _source_path:
+          dataset: "potentialarea_pv_roof_region"
+          file: "potentialarea_pv_roof_regionalized_targets.json"
 
     geodata:
       potentialarea_pv_agriculture_lfa-off_region:

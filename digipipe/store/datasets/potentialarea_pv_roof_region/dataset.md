@@ -20,3 +20,19 @@ Anlagenleistung an der theoretisch installierbaren Leistung (bei
 Die Gemeinden werden über den Schlüssel `municipality_id` (vgl.
 [bkg_vg250_muns_region](../../datasets/bkg_vg250_muns_region/dataset.md))
 identifiziert.
+
+## Ausbauziele
+
+Es werden PV-Ausbauziele für die Region berechnet, indem die Bundesziele aus den
+[BMWK Langfristszenarien](../../preprocessed/bmwk_long_term_scenarios/dataset.md)
+i.H.v. 428 GW
+([§4 EEG 2023](https://www.gesetze-im-internet.de/eeg_2014/__4.html): 400 GW)
+anhand der Gebäudegrundflächen disaggregiert werden. Hierzu wird der Anteil der
+Gebäudegrundflächen in der Region an der bundesweiten Gebäudegrundflächen
+berechnet (s. Datensatz [osm_buildings](../osm_buildings/dataset.md)) und die
+Ziele linear skaliert. Da in den o.g. Ausbauzielen nicht zwischen Freiflächen-
+und Aufdach-PV unterschieden wird, wird ein Verhältnis von 50:50 angenommen,
+d.h. bundesweit 214 GW auf Aufdach-PV entfallen.
+
+Der Anteil beträgt 0,62 % und das Leistungsziel damit 1327 MW, s.
+`potentialarea_pv_roof_regionalized_targets.json`.

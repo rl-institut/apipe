@@ -41,7 +41,7 @@ Es werden PV-Ausbauziele für die Region berechnet, indem die Bundesziele aus de
 [BMWK Langfristszenarien](../../preprocessed/bmwk_long_term_scenarios/dataset.md)
 i.H.v. 428 GW
 ([§4 EEG 2023](https://www.gesetze-im-internet.de/eeg_2014/__4.html): 400 GW)
-anhand der regional verfügbaren Potenzialflächen disagregiert werden. Hierzu
+anhand der regional verfügbaren Potenzialflächen disaggregiert werden. Hierzu
 wird der Anteil der Flächensumme der beiden o.g. Flächentypen an den bundesweit
 verfügbaren Flächen (Datensatz [rli_pv_wfr](../../raw/rli_pv_wfr/dataset.md))
 berechnet. Da in den o.g. Ausbauzielen nicht zwischen Freiflächen- und
@@ -53,3 +53,5 @@ Es ergeben sich folgende Flächen- und Leistungsanteile:
 Gesamt: 0.38 % (819 MW)
 - Entlang von BAB und Schienenwegen: 0.13 % (278 MW)
 - Acker- und Grünlandflächen mit geringer Bodengüte: 0.25 % (541 MW)
+
+Ergebnisse in `potentialarea_pv_ground_regionalized_targets.json`

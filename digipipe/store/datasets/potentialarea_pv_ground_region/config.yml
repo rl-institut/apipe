@@ -10,4 +10,6 @@ areas:
   ]
 
 # PV targets split: share of pv_ground
+# Caution: when adjusting this value, the pv_roof_share in dataset
+#          potentialarea_pv_roof_region must be adjusted accordingly!
 pv_ground_share: 0.5

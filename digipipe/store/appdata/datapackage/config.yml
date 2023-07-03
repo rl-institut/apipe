@@ -454,6 +454,10 @@ resources:
             ror:
               description: "Volllaststunden Laufwasserkraft"
               unit: "-"
+            bioenergy:
+              description: "Volllaststunden Bioenergie-Stromerzeugung (ohne biogenen Teil des Abfalls)"
+              unit: "-"
+
           power_density:
             wind:
               description: "Leistungsdichte Windenergie"

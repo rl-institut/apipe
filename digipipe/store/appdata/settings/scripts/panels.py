@@ -60,6 +60,7 @@ def generate_energy_panel_data(
     pv_roof_area_stats: pd.DataFrame,
     pv_roof_area_deploy_stats: pd.DataFrame,
     pv_ground_targets: dict,
+    pv_roof_targets: dict,
     hydro_stats: pd.DataFrame,
     demand_hh_power: pd.DataFrame,
     demand_cts_power: pd.DataFrame,
@@ -130,8 +131,7 @@ def generate_energy_panel_data(
                 start=round(pv_roof_stats.capacity_net.sum()),
                 step=10,
                 status_quo=round(pv_roof_stats.capacity_net.sum()),
-                # TODO mit geb.grundfläche share an de (use osm)
-                future_scenario="none",
+                future_scenario=round(pv_roof_targets["target_power_total"]),
             ),
             s_pv_d_3=dict(
                 max=50,

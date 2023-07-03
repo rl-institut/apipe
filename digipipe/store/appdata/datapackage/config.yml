@@ -68,6 +68,22 @@ resources:
         _source_path:
           dataset: "employment_region"
           file: "employment.csv"
+      osm_buildings:
+        description: "Gebäudegrundflächen und regionaler Anteil"
+        path: "scalars/osm_buildings_ground_area.json"
+        fields:
+          building_ground_area_country:
+            description: "Summe Gebäudegrundfläche in Deutschland"
+            unit: "m2"
+          building_ground_area_region:
+            description: "Summe Gebäudegrundfläche in der Region"
+            unit: "m2"
+          building_ground_area_share_region:
+            description: "Regionaler Anteil an Gebäudegrundflächen"
+            unit: "-"
+        _source_path:
+          dataset: "osm_buildings"
+          file: "osm_buildings_ground_area.json"
     geodata:
       # Administrative areas
       bkg_vg250_region:

@@ -135,3 +135,8 @@ module technology_data:
     snakefile: "technology_data/create.smk"
     config: config["store"]["datasets"]["technology_data"]
 use rule * from technology_data as datasets_technology_data_ *
+
+module osm_buildings:
+    snakefile: "osm_buildings/create.smk"
+    config: config["store"]["datasets"]["osm_buildings"]
+use rule * from osm_buildings as datasets_osm_buildings_ *

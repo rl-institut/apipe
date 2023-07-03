@@ -9,3 +9,16 @@ tags:
   ]
 
 geom_type: "multipolygons"
+
+osm_buildings:
+  # If true, the conditions from "tags" are used as filters (e.g.
+  # ["building", "yes"] results in building=yes)
+  # If false, the keys from "tags" are selected but no further conditions apply
+  use_conditions: false
+
+  tags:
+    [
+      ["building", "*"],
+    ]
+
+  geom_type: "multipolygons"

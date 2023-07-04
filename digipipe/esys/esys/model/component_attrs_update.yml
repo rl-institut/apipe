@@ -181,6 +181,7 @@ electricity-heatpump_central:
   foreign_keys:
     from_bus: electricity
     to_bus: heat_central
+    efficiency: efficiency-profile
   defaults:
     output_parameters: "{}"
 

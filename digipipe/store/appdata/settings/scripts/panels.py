@@ -427,24 +427,23 @@ def add_traffic_panel_settings(
     panel_settings: PanelSettings,
 ) -> PanelSettings:
 
-    # Todo: fill skeleton
     panel_settings.update(
         **dict(
             v_iv_1=dict(
                 max=100,
                 min=0,
-                start="none",
+                start=0,  # TODO
                 step=5,
-                status_quo="none",
-                future_scenario="none",
+                status_quo=0,  # TODO
+                future_scenario=0,  # TODO
             ),
             v_iv_3=dict(
                 max=100,
                 min=0,
-                start="none",
+                start=0,  # TODO
                 step=5,
-                status_quo="none",
-                future_scenario="none",
+                status_quo=0,  # TODO
+                future_scenario=0,  # TODO
             ),
         )
     )

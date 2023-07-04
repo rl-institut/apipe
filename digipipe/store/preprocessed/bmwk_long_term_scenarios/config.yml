@@ -8,13 +8,14 @@ files_extract:
     "T45-Strom_buildings_heating_demand_by_carrier.csv",
     "T45-Strom_buildings_heating_structure_by_technology.csv",
     "T45-Strom_cts_demand.csv",
+    "T45-Strom_electricity_installed_power.csv",
     "T45-Strom_hh_demand.csv",
     "T45-Strom_ind_demand.csv",
     "TN-Strom_buildings_heating_demand_by_carrier.csv",
     "TN-Strom_buildings_heating_structure_by_technology.csv",
     "TN-Strom_cts_demand.csv",
     "TN-Strom_hh_demand.csv",
-    "TN-Strom_ind_demand.csv"
+    "TN-Strom_ind_demand.csv",
   ]
 
 # New column names
@@ -31,6 +32,10 @@ rename_columns:
     {"Jahr / Year": "year",
      "Energiebedarf in TWh / Energy Demand in TWh": "demand",
      "Energieträger / Energy Carrier": "carrier"}
+  T45-Strom_electricity_installed_power:
+    {"Jahr / Year": "year",
+     "Technologie / Technology": "technology",
+     "Leistung in GW /  Capacity in GW": "capacity"}
   T45-Strom_hh_demand:
     {"Jahr / Year": "year",
      "Energiebedarf in TWh / Energy Demand in TWh": "demand",
@@ -122,4 +127,9 @@ rename_entries:
    "Übrige Erneuerbare": "other_renewables",
    "Übrige, erneuerbar": "other_renewables",
    "BHKW": "chp_small",
-   "PtG": "ptg"}
+   "PtG": "ptg",
+   "PV": "pv",
+   "Wasserkraft": "hydro",
+   "Wind an Land": "wind_onshore",
+   "Wind auf See": "sind_offshore",
+   "Andere": "other"}

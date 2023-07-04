@@ -29,7 +29,6 @@ include: "../esys/Snakefile"
 
 rule all:
     input:
-        forests=rules.datasets_osm_forest_extract_tags.output,
         muns=rules.datasets_bkg_vg250_muns_region_create.output,
         districts=rules.datasets_bkg_vg250_districts_region_create.output,
         region=rules.datasets_bkg_vg250_region_create.output,

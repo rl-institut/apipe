@@ -36,11 +36,6 @@ module bkg_vg250_region:
     config: config["store"]["datasets"]["bkg_vg250_region"]
 use rule * from bkg_vg250_region as datasets_bkg_vg250_region_*
 
-module osm_forest:
-    snakefile: "osm_forest/create.smk"
-    config: config["store"]["datasets"]["osm_forest"]
-use rule * from osm_forest as datasets_osm_forest_*
-
 module bnetza_mastr_wind_region:
     snakefile: "bnetza_mastr_wind_region/create.smk"
     config: config["store"]["datasets"]["bnetza_mastr_wind_region"]
@@ -135,3 +130,13 @@ module rli_pv_wfr_region:
     snakefile: "rli_pv_wfr_region/create.smk"
     config: config["store"]["datasets"]["rli_pv_wfr_region"]
 use rule * from rli_pv_wfr_region as datasets_rli_pv_wfr_region_ *
+
+module technology_data:
+    snakefile: "technology_data/create.smk"
+    config: config["store"]["datasets"]["technology_data"]
+use rule * from technology_data as datasets_technology_data_ *
+
+module osm_buildings:
+    snakefile: "osm_buildings/create.smk"
+    config: config["store"]["datasets"]["osm_buildings"]
+use rule * from osm_buildings as datasets_osm_buildings_ *

@@ -51,6 +51,11 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Add dataset: potentialarea_pv_ground_region
 - Add dataset: app datapackage
 - Add dataset: potentialarea_pv_roof_region
+- Add dataset: technology_data
+- Add dataset: settings
+- Calc panel settings from datasets
+- Add dataset: osm (Germany)
+- Add dataset: osm_buildings and add stats on ground areas
 
 ### Changed
 
@@ -74,8 +79,16 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Exchange *Test_scenario* with *2045_scenario* in *digipipe/esys/scenarios*
 - Split each demand per sector in *esys*
 - File .gitignore again includes ignoring of esys appdata
+- pv_roof area stats: distinguish between all and non-historic buildings
+- storage units: add region-wide values for spec. capacity and power for those
+  connected to PV roof units
+- Add data on installed el. power to bmwk_long_term_scenarios
+- Disaggregate PV state targets to region in potentialarea_pv_ground_region
+- Adapt osm_filtered to ose osm dataset and extract building data
+- Disaggregate PV state targets to region in potentialarea_pv_roof_region
 
 ### Removed
 
 - setup.py and requirements.txt files are omitted with the conversion to poetry
 - sphinx from poetry environment
+- Remove dataset: osm_forest

@@ -15,7 +15,10 @@ landesweiter Prognosen aus den
   [AG Energiebilanzen](../../preprocessed/ageb_energy_balance/dataset.md)
   2021 für Raumwärme, Warmwasser und Prozesswärme, desaggregiert auf Gemeinden
   mittels Wärmebedarfs-Rasterdaten aus 2015 (Wärmebedarfsdichte 1ha) aus
-  [Peta5](../../raw/seenergies_peta5/dataset.md)
+  [Peta5](../../raw/seenergies_peta5/dataset.md).
+  Anm.: Die Desaggregation könnte alternativ über Zensus "Gebäude mit Wohnraum
+  nach Heizungsart" (31231-02-01-5, s.
+  [regiostat](../../raw/regiostat/dataset.md) erfolgen)
 - Prognosewerte für 2045 werden durch lineare Skalierung mittels Reduktion der
   Gebäudewärmebedarfe aus
   [BMWK Langfristszenarien](../../preprocessed/bmwk_long_term_scenarios/dataset.md)

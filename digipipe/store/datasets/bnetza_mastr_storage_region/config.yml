@@ -2,6 +2,9 @@
 # This file holds configuration parameters for the creation of this dataset. #
 ##############################################################################
 
+# Threshold to split between large and small battery storages in MWh
+battery_size_threshold: 0.1
+
 # Filter settings
 unit_attributes:
   {"EinheitMastrNummer": "mastr_id",
@@ -36,3 +39,12 @@ plant_attributes:
 
 # Output settings
 layer: bnetza_mastr_storage
+
+# Filter for PV home storages
+home_storages:
+   only_single_storages: true
+   storage_capacity_thres_max: 30
+   storage_power_thres_max: 30
+   only_single_pv_roof_units: true
+   pv_roof_capacity_thres_min: 2
+   pv_roof_capacity_thres_max: 30

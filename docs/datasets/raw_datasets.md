@@ -23,135 +23,6 @@ Stromverbrauch der Industriebetriebe nach Kreisen 2003-2021 in MWh
     ```
 
 ------------------------------
-## OpenStreetMap
-
-OpenStreetMap Datenauszug von Sachsen-Anhalt.
-
-**Dataset: `raw/osm_sachsen-anhalt`**
-
-??? metadata "Metadata"
-    ```json
-    {
-        "name": "openstreetmap",
-        "title": "",
-        "id": "openstreetmap",
-        "description": "OpenStreetMap extract for federal state of Sachsen-Anhalt",
-        "language": [
-            "de-DE",
-            "en-GB"
-        ],
-        "subject": [],
-        "keywords": [
-            "openstreetmap",
-            "osm"
-        ],
-        "publicationDate": "2022-10-09",
-        "context": {
-            "homepage": "https://abw.rl-institut.de",
-            "documentation": "https://digiplan.readthedocs.io",
-            "sourceCode": "https://github.com/rl-institut/digipipe/",
-            "contact": "https://reiner-lemoine-institut.de/ueber-uns/kontakt/",
-            "grantNo": "None",
-            "fundingAgency": "https://www.region-gestalten.bund.de",
-            "fundingAgencyLogo": "https://www.region-gestalten.bund.de/Region/SiteGlobals/Frontend/Images/logo.svg",
-            "publisherLogo": "https://reiner-lemoine-institut.de//wp-content/uploads/2015/09/rlilogo.png"
-        },
-        "spatial": {
-            "location": "Sachsen-Anhalt",
-            "extent": "Sachsen-Anhalt",
-            "resolution": ""
-        },
-        "temporal": {
-            "referenceDate": "2022-10-09",
-            "timeseries": []
-        },
-        "sources": [
-            {
-                "title": "OpenStreetMap Data Extracts (Geofabrik)",
-                "description": "Full data extract of OpenStreetMap data",
-                "path": "https://download.geofabrik.de/europe/germany/sachsen-anhalt-221003.osm.pbf",
-                "licenses": [
-                    {
-                        "name": "ODbL-1.0",
-                        "title": "Open Data Commons Open Database License 1.0",
-                        "path": "https://opendatacommons.org/licenses/odbl/1.0/",
-                        "instruction": "You are free: To Share, To Create, To Adapt; As long as you: Attribute, Share-Alike, Keep open!",
-                        "attribution": "\u00a9 OpenStreetMap contributors"
-                    }
-                ]
-            }
-        ],
-        "licenses": [
-            {
-                "name": "ODbL-1.0",
-                "title": "Open Data Commons Open Database License 1.0",
-                "path": "https://opendatacommons.org/licenses/odbl/1.0/",
-                "instruction": "You are free: To Share, To Create, To Adapt; As long as you: Attribute, Share-Alike, Keep open!",
-                "attribution": "\u00a9 OpenStreetMap contributors"
-            }
-        ],
-        "contributors": [
-            {
-                "title": "nesnoj",
-                "email": "jonathan.amme@rl-institut.de",
-                "date": "2022-10-09",
-                "object": "metadata",
-                "comment": "Create metadata"
-            },
-            {
-                "title": "hedwig-lieselotte",
-                "email": "hedwig.bartels@rl-institut.de",
-                "date": "2023-03-28",
-                "object": "metadata",
-                "comment": "Check and update metadata"
-            }
-        ],
-        "resources": [
-            {
-                "profile": "tabular-data-resource",
-                "name": "model_draft.openstreetmap",
-                "path": "",
-                "format": "csv",
-                "encoding": "UTF-8",
-                "schema": {
-                    "fields": [],
-                    "primaryKey": [],
-                    "foreignKeys": []
-                },
-                "dialect": {
-                    "delimiter": "",
-                    "decimalSeparator": ""
-                }
-            }
-        ],
-        "@id": null,
-        "@context": "https://raw.githubusercontent.com/OpenEnergyPlatform/oemetadata/develop/metadata/latest/context.json",
-        "review": {
-            "path": "",
-            "badge": ""
-        },
-        "metaMetadata": {
-            "metadataVersion": "oemetadata_v1.5.1",
-            "metadataLicense": {
-                "name": "CC0-1.0",
-                "title": "Creative Commons Zero v1.0 Universal",
-                "path": "https://creativecommons.org/publicdomain/zero/1.0/"
-            }
-        },
-        "_comment": {
-            "metadata": "Metadata documentation and explanation (https://github.com/OpenEnergyPlatform/oemetadata)",
-            "dates": "Dates and time must follow the ISO8601 including time zone (YYYY-MM-DD or YYYY-MM-DDThh:mm:ss\u00b1hh)",
-            "units": "Use a space between numbers and units (100 m)",
-            "languages": "Languages must follow the IETF (BCP47) format (en-GB, en-US, de-DE)",
-            "licenses": "License name must follow the SPDX License List (https://spdx.org/licenses/)",
-            "review": "Following the OEP Data Review (https://github.com/OpenEnergyPlatform/data-preprocessing/blob/master/data-review/manual/review_manual.md)",
-            "null": "If not applicable use: null",
-            "todo": "If a value is not yet available, use: todo"
-        }
-    }
-    ```
-
-------------------------------
 ## sEEnergies Pan-European Thermal Atlas 5.2 (Peta5)
 
 Wärmebedarf für Europa 2015 in GJ (1ha Auflösung) für
@@ -216,13 +87,14 @@ abgerufen.
 
 #### T45-Strom
 
-| Datensatz                                      | Quelle                                                                                                    | Datei                                                     |
-|------------------------------------------------|-----------------------------------------------------------------------------------------------------------|-----------------------------------------------------------|
-| Gebäude: Haushalte und GHD Energiebedarf       | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/51944/21559a9532131c061668bf0751e519e3) | `T45-Strom_buildings_heating_demand_by_carrier.csv`       |
-| Gebäude: Anzahl der Heizungen nach Technologie | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/51944/21559a9532131c061668bf0751e519e3) | `T45-Strom_buildings_heating_structure_by_technology.csv` |
-| GHD Energieträger                              | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/52700/c6980ea467bb26a922d34617b4fd4798) | `T45-Strom_cts_demand.csv`                                |
-| Haushalte Energieträger                        | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/52700/c6980ea467bb26a922d34617b4fd4798) | `T45-Strom_hh_demand.csv`                                 |
-| Industrie Energiebedarf                        | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/52612/9de48084ac2d54c418daaf02a6ee26e0) | `T45-Strom_ind_demand.csv`                                |
+| Datensatz                                      | Quelle                                                                                                                    | Datei                                                     |
+|------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------|
+| Gebäude: Haushalte und GHD Energiebedarf       | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/51944/21559a9532131c061668bf0751e519e3)                 | `T45-Strom_buildings_heating_demand_by_carrier.csv`       |
+| Gebäude: Anzahl der Heizungen nach Technologie | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/51944/21559a9532131c061668bf0751e519e3)                 | `T45-Strom_buildings_heating_structure_by_technology.csv` |
+| GHD Energieträger                              | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/52700/c6980ea467bb26a922d34617b4fd4798)                 | `T45-Strom_cts_demand.csv`                                |
+| Haushalte Energieträger                        | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/52700/c6980ea467bb26a922d34617b4fd4798)                 | `T45-Strom_hh_demand.csv`                                 |
+| Industrie Energiebedarf                        | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/52612/9de48084ac2d54c418daaf02a6ee26e0)                 | `T45-Strom_ind_demand.csv`                                |
+| Stromsystem Deutschland Leistung               | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/48766/5c11999a03c547e04e73d61e4b5fc633)                 | `T45-Strom_electricity_installed_power.csv`               |
 
 #### TN-Strom
 
@@ -679,6 +551,58 @@ befindlichen Strom- und Gasanlagen erfasst.
             "review": "Following the OEP Data Review (https://github.com/OpenEnergyPlatform/data-preprocessing/blob/master/data-review/manual/review_manual.md)",
             "null": "If not applicable use: null",
             "todo": "If a value is not yet available, use: todo"
+        }
+    }
+    ```
+
+------------------------------
+## Technologiedaten
+
+Allgemeine Technologiedaten, Datei: `technology_data.json`
+
+### Jahresvolllaststunden (`full_load_hours`)
+
+Anhand typischer heutiger und prognostizierter Werte für Sachsen-Anhalt werden
+folgende Jahresvolllaststunden angenommen:
+
+| Technologie     | Jahr | Volllaststunden | Quelle(n) für Annahme                                                                                                                                                                                                                                                                                       | Anmerkung                                                      |
+|-----------------|------|----------------:|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------|
+| Windenergie     | 2022 |            1800 | [foederal-erneuerbar](https://www.foederal-erneuerbar.de/landesinfo/bundesland/ST/kategorie/wind/auswahl/811-durchschnittliche_ja/#goto_811)                                                                                                                                                                |                                                                |
+|                 | 2045 |            2300 | [PV- und Windflächenrechner](https://zenodo.org/record/6794558)                                                                                                                                                                                                                                             |                                                                |
+| Freiflächen-PV  | 2022 |             980 | [foederal-erneuerbar](https://www.foederal-erneuerbar.de/landesinfo/bundesland/ST/kategorie/solar/auswahl/813-durchschnittliche_ja/#goto_813), [ISE](https://www.ise.fraunhofer.de/content/dam/ise/de/documents/publications/studies/aktuelle-fakten-zur-photovoltaik-in-deutschland.pdf)                   |                                                                |
+|                 | 2045 |             980 | [PV- und Windflächenrechner](https://zenodo.org/record/6794558), [Ariadne Szenarienreport](https://ariadneprojekt.de/media/2022/02/Ariadne_Szenarienreport_Oktober2021_corr0222_lowres.pdf)                                                                                                                 |                                                                |
+| Aufdach-PV      | 2022 |             910 | [foederal-erneuerbar](https://www.foederal-erneuerbar.de/landesinfo/bundesland/ST/kategorie/solar/auswahl/813-durchschnittliche_ja/#goto_813), [ISE](https://www.ise.fraunhofer.de/content/dam/ise/de/documents/publications/studies/aktuelle-fakten-zur-photovoltaik-in-deutschland.pdf)                   |                                                                |
+|                 | 2045 |             910 | [Ariadne Szenarienreport](https://ariadneprojekt.de/media/2022/02/Ariadne_Szenarienreport_Oktober2021_corr0222_lowres.pdf)                                                                                                                                                                                  |                                                                |
+| Laufwasserkraft | 2022 |            3800 | [foederal-erneuerbar](https://www.foederal-erneuerbar.de/landesinfo/bundesland/ST/kategorie/wasser/auswahl/840-durchschnittliche_ja/#goto_840)                                                                                                                                                              |                                                                |
+|                 | 2045 |            3800 | [foederal-erneuerbar](https://www.foederal-erneuerbar.de/landesinfo/bundesland/ST/kategorie/wasser/auswahl/840-durchschnittliche_ja/#goto_840)                                                                                                                                                              |                                                                |
+| Bioenergie      | 2022 |            6000 | [foederal-erneuerbar](https://www.foederal-erneuerbar.de/landesinfo/bundesland/ST/kategorie/bioenergie/auswahl/814-durchschnittliche_ja/#goto_814), [ISE](https://www.ise.fraunhofer.de/content/dam/ise/de/documents/publications/studies/DE2018_ISE_Studie_Stromgestehungskosten_Erneuerbare_Energien.pdf) | Bioenergie-Stromerzeugung (ohne<br/>biogenen Teil des Abfalls) |
+|                 |      |                 |                                                                                                                                                                                                                                                                                                             |                                                                |
+
+TBD: Generalisieren - automatische Generierung anhand von Global Wind Atlas /
+Global Solar Atlas.
+
+### Leistungsdichte (`power_density`)
+
+Installierbare Leistung pro Fläche / spezifischer Flächenbedarf:
+- Windenergie: 21 MW/km²
+- PV-Freiflächenanlagen: 100 MW/km²
+- PV-Aufdachanlagen: 140 MW/km²
+- Solarthermie: ? MW/km²
+
+Quelle: [PV- und Windflächenrechner](https://zenodo.org/record/6794558).
+
+### Kosten, Emissionen und Wirkungsgrade
+
+Siehe Datensatz [costs_efficiencies](../costs_efficiencies/dataset.md).
+
+**Dataset: `raw/technology_data`**
+
+??? metadata "Metadata"
+    ```json
+    {
+        "Datenquellen": {
+            "FLH": "",
+            "spec_area": ""
         }
     }
     ```
@@ -1276,6 +1200,128 @@ Einwohnerzahl nach Gemeinden des Statistischen Bundesamts.
     ```
 
 ------------------------------
+## OpenStreetMap
+
+OpenStreetMap Datenauszug Deutschland.
+
+**Dataset: `raw/osm`**
+
+??? metadata "Metadata"
+    ```json
+    {
+        "name": "openstreetmap",
+        "title": "",
+        "id": "openstreetmap",
+        "description": "OpenStreetMap extract",
+        "language": [
+            "de-DE",
+            "en-GB"
+        ],
+        "subject": [],
+        "keywords": [
+            "openstreetmap",
+            "osm"
+        ],
+        "publicationDate": "2023-06-30",
+        "context": {
+            "homepage": "https://abw.rl-institut.de",
+            "documentation": "https://digiplan.readthedocs.io",
+            "sourceCode": "https://github.com/rl-institut/digipipe/",
+            "contact": "https://reiner-lemoine-institut.de/ueber-uns/kontakt/",
+            "grantNo": "None",
+            "fundingAgency": "https://www.region-gestalten.bund.de",
+            "fundingAgencyLogo": "https://www.region-gestalten.bund.de/Region/SiteGlobals/Frontend/Images/logo.svg",
+            "publisherLogo": "https://reiner-lemoine-institut.de//wp-content/uploads/2015/09/rlilogo.png"
+        },
+        "spatial": {
+            "location": "Germany",
+            "extent": "Germany",
+            "resolution": ""
+        },
+        "temporal": {
+            "referenceDate": "2023-06-30",
+            "timeseries": []
+        },
+        "sources": [
+            {
+                "title": "OpenStreetMap Data Extracts (Geofabrik)",
+                "description": "Full data extract of OpenStreetMap data",
+                "path": "https://download.geofabrik.de/europe/germany-230630.osm.pbf",
+                "licenses": [
+                    {
+                        "name": "ODbL-1.0",
+                        "title": "Open Data Commons Open Database License 1.0",
+                        "path": "https://opendatacommons.org/licenses/odbl/1.0/",
+                        "instruction": "You are free: To Share, To Create, To Adapt; As long as you: Attribute, Share-Alike, Keep open!",
+                        "attribution": "\u00a9 OpenStreetMap contributors"
+                    }
+                ]
+            }
+        ],
+        "licenses": [
+            {
+                "name": "ODbL-1.0",
+                "title": "Open Data Commons Open Database License 1.0",
+                "path": "https://opendatacommons.org/licenses/odbl/1.0/",
+                "instruction": "You are free: To Share, To Create, To Adapt; As long as you: Attribute, Share-Alike, Keep open!",
+                "attribution": "\u00a9 OpenStreetMap contributors"
+            }
+        ],
+        "contributors": [
+            {
+                "title": "nesnoj",
+                "email": "jonathan.amme@rl-institut.de",
+                "date": "2023-06-30",
+                "object": "metadata",
+                "comment": "Create metadata"
+            }
+        ],
+        "resources": [
+            {
+                "profile": "tabular-data-resource",
+                "name": "model_draft.openstreetmap",
+                "path": "",
+                "format": "csv",
+                "encoding": "UTF-8",
+                "schema": {
+                    "fields": [],
+                    "primaryKey": [],
+                    "foreignKeys": []
+                },
+                "dialect": {
+                    "delimiter": "",
+                    "decimalSeparator": ""
+                }
+            }
+        ],
+        "@id": null,
+        "@context": "https://raw.githubusercontent.com/OpenEnergyPlatform/oemetadata/develop/metadata/latest/context.json",
+        "review": {
+            "path": "",
+            "badge": ""
+        },
+        "metaMetadata": {
+            "metadataVersion": "oemetadata_v1.5.1",
+            "metadataLicense": {
+                "name": "CC0-1.0",
+                "title": "Creative Commons Zero v1.0 Universal",
+                "path": "https://creativecommons.org/publicdomain/zero/1.0/"
+            }
+        },
+        "_comment": {
+            "metadata": "Metadata documentation and explanation (https://github.com/OpenEnergyPlatform/oemetadata)",
+            "dates": "Dates and time must follow the ISO8601 including time zone (YYYY-MM-DD or YYYY-MM-DDThh:mm:ss\u00b1hh)",
+            "units": "Use a space between numbers and units (100 m)",
+            "languages": "Languages must follow the IETF (BCP47) format (en-GB, en-US, de-DE)",
+            "licenses": "License name must follow the SPDX License List (https://spdx.org/licenses/)",
+            "review": "Following the OEP Data Review (https://github.com/OpenEnergyPlatform/data-preprocessing/blob/master/data-review/manual/review_manual.md)",
+            "null": "If not applicable use: null",
+            "todo": "If a value is not yet available, use: todo"
+        }
+    }
+    ```
+
+------------------------------
 ## EE-Einspeisezeitreihen
 
 Einspeisezeitreihen für Erneuerbare Energien, normiert auf 1 MW bzw. 1 p.u.
@@ -1497,25 +1543,6 @@ Zukunftsszenarien verwendet.
 Hier wird eine konstante Einspeisung angenommen.
 
 - Einspeisezeitreihe: `ror_feedin_timeseries.csv`
-
-### Jahresvolllaststunden
-
-Anhand typischer heutiger und prognostizierter Werte für Sachsen-Anhalt werden
-folgende Jahresvolllaststunden angenommen:
-
-| Technologie     | Jahr | Volllaststunden | Quelle(n)                                                                                                                                                                                  |
-|-----------------|------|----------------:|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Windenergie     | 2022 |            1800 | [foederal-erneuerbar](https://www.foederal-erneuerbar.de/landesinfo/bundesland/ST/kategorie/wind/auswahl/811-durchschnittliche_ja/#goto_811)                                               |
-|                 | 2045 |            2300 | [PV- und Windflächenrechner](https://zenodo.org/record/6794558)                                                                                                                            |
-| Photovoltaik    | 2022 |            1000 | [foederal-erneuerbar](https://www.foederal-erneuerbar.de/landesinfo/bundesland/ST/kategorie/solar/auswahl/813-durchschnittliche_ja/#goto_813)                                              |
-|                 | 2045 |            1000 | [PV- und Windflächenrechner](https://zenodo.org/record/6794558), [Ariadne Szenarienreport](https://ariadneprojekt.de/media/2022/02/Ariadne_Szenarienreport_Oktober2021_corr0222_lowres.pdf) |
-| Laufwasserkraft | 2022 |            3800 | [foederal-erneuerbar](https://www.foederal-erneuerbar.de/landesinfo/bundesland/ST/kategorie/wasser/auswahl/840-durchschnittliche_ja/#goto_840)                                             |
-|                 | 2045 |            3800 | [foederal-erneuerbar](https://www.foederal-erneuerbar.de/landesinfo/bundesland/ST/kategorie/wasser/auswahl/840-durchschnittliche_ja/#goto_840)                                             |
-
-- Volllaststunden je Technologie: `full_load_hours.json`
-
-TODO: Generalisieren - automatische Generierung anhand von Global Wind Atlas /
-Global Solar Atlas.
 
 **Dataset: `raw/renewables.ninja_feedin`**
 

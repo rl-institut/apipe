@@ -41,6 +41,7 @@ def process() -> None:
         units_df=units,
         locations_path=snakemake.input.locations,
         gridconn_path=snakemake.input.gridconn,
+        drop_location_id=False,
     )
 
     # Add geometry and drop units without coords and

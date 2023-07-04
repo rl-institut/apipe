@@ -18,7 +18,7 @@ def generate_dataset_mds():
     source_dir = "digipipe/store"
     target_dir = "docs/datasets"
 
-    categories = ["raw", "preprocessed", "datasets"]
+    categories = ["raw", "preprocessed", "datasets", "appdata"]
 
     for category in categories:
         category_dir = os.path.join(source_dir, category)

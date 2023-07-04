@@ -86,6 +86,9 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Disaggregate PV state targets to region in potentialarea_pv_ground_region
 - Adapt osm_filtered to ose osm dataset and extract building data
 - Disaggregate PV state targets to region in potentialarea_pv_roof_region
+- Changes were applied to the energy system. Among others RoR, small batteries
+  and biogas were added. A distinction was made between centralized and
+  decentralized CHPs
 
 ### Removed
 

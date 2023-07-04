@@ -87,6 +87,10 @@ werden.
 Gesamtanzahl sozialversicherungspflichtig Beschäftigte und Betriebsstätten
 je Gemeinde für die Region.
 
+Raw datasets:
+[ba_employment](../../raw/ba_employment/dataset.md),
+[regiostat](../../raw/regiostat/dataset.md)
+
 **Dataset: `datasets/employment_region`**
 
 
@@ -216,6 +220,39 @@ gefiltert (Geofaktor 4 = "mit Struktur Land").
 
 
 ------------------------------
+## OpenStreetMap Gebäude
+
+OSM Gebäude aus [osm_filtered](../../preprocessed/osm_filtered/dataset.md)
+mittels OGR extrahieren und nach Tags (s. [config.yml](config.yml)) filtern.
+
+Ziel ist die Ermittlung des regionalen Anteils Gebäudegrundflächen an der
+gesamten Gebäudegrundfläche in Deutschland.
+
+Schritte:
+- Extraktion aller Gebäude in Deutschland -> `osm_buildings.gpkg`
+- Zentroide und Fläche je Gebäude erstellen -> `osm_buildings_centroids.gpkg`
+- Mit Region verschneiden -> `osm_buildings_centroids_region.gpkg`
+- Flächensumme berechnen -> `osm_buildings_ground_area_region.gpkg`,
+  `osm_buildings_ground_area_country.gpkg`
+- Regionalen Anteil berechnen -> `osm_buildings_ground_area_share_region.json`
+
+**Achtung:** Konvertierungs- und Extraktionsprozess benötigt ~15 GB
+Speicherplatz und kann viel Zeit in Anspruch nehmen.
+
+**Dataset: `datasets/osm_buildings`**
+
+
+------------------------------
+## Technologiedaten
+
+Allgemeine Technologiedaten.
+
+Raw dataset: [technology_data](../../raw/technology_data/dataset.md)
+
+**Dataset: `datasets/technology_data`**
+
+
+------------------------------
 ## Geodaten PV- und Windflächenrechner
 
 Geodaten aus dem
@@ -254,14 +291,6 @@ Zusätzlich erfolgt eine statistische Auswertung der installierten Leistung in
 `bnetza_mastr_combustion_stats_muns.csv`.
 
 **Dataset: `datasets/bnetza_mastr_combustion_region`**
-
-
-------------------------------
-## OpenStreetMap - Wälder
-
-Waldflächen aus OpenStreetMap, Daten extrahiert anhand von spezifischen Tags.
-
-**Dataset: `datasets/osm_forest`**
 
 
 ------------------------------
@@ -352,8 +381,10 @@ landesweiter Prognosen aus den
   [AG Energiebilanzen](../../preprocessed/ageb_energy_balance/dataset.md)
   2021 für Raumwärme, Warmwasser und Prozesswärme, desaggregiert auf Gemeinden
   mittels Wärmebedarfs-Rasterdaten aus 2015 (Wärmebedarfsdichte 1ha) aus
-  [Peta5](../../raw/seenergies_peta5/dataset.md)
-- TODO: Mittels Zensus 31231-02-01-5
+  [Peta5](../../raw/seenergies_peta5/dataset.md).
+  Anm.: Die Desaggregation könnte alternativ über Zensus "Gebäude mit Wohnraum
+  nach Heizungsart" (31231-02-01-5, s.
+  [regiostat](../../raw/regiostat/dataset.md) erfolgen)
 - Prognosewerte für 2045 werden durch lineare Skalierung mittels Reduktion der
   Gebäudewärmebedarfe aus
   [BMWK Langfristszenarien](../../preprocessed/bmwk_long_term_scenarios/dataset.md)
@@ -583,16 +614,37 @@ Anhalt-Bitterfeld-Wittenberg der Regionalen Planungsgemeinschaft aus Datensatz
 [rpg_abw_pv_roof_potential](../../raw/rpg_abw_pv_roof_potential/dataset.md).
 
 Die Gebäudezentroide werden mit den Gemeindegrenzen verschnitten und den
-Gemeinden zugeordnet, siehe `potentialarea_pv_roof_area_stats_muns.csv`.
+Gemeinden zugeordnet. Ergebnisdaten:
+- Alle Gebäude: `potentialarea_pv_roof_area_stats_muns.csv`
+- Alle nicht denkmalgeschützten Gebäude:
+  `potentialarea_pv_roof_wo_historic_area_stats_muns.csv`
 
 Des Weiteren wird je Gemeinde der relative Anteil der bereits installierten
 Anlagenleistung an der theoretisch installierbaren Leistung (bei
-100% Dachnutzung) berechnet und in
-`potentialarea_pv_roof_deployment_stats_muns.csv` geschrieben.
+100% Dachnutzung) berechnet. Ergebnisdaten:
+- Alle Gebäude: `potentialarea_pv_roof_deployment_stats_muns.csv`
+- Alle nicht denkmalgeschützten Gebäude:
+  `potentialarea_pv_roof_wo_historic_deployment_stats_muns.csv`
 
 Die Gemeinden werden über den Schlüssel `municipality_id` (vgl.
 [bkg_vg250_muns_region](../../datasets/bkg_vg250_muns_region/dataset.md))
 identifiziert.
+
+### Ausbauziele
+
+Es werden PV-Ausbauziele für die Region berechnet, indem die Bundesziele aus den
+[BMWK Langfristszenarien](../../preprocessed/bmwk_long_term_scenarios/dataset.md)
+i.H.v. 428 GW
+([§4 EEG 2023](https://www.gesetze-im-internet.de/eeg_2014/__4.html): 400 GW)
+anhand der Gebäudegrundflächen disaggregiert werden. Hierzu wird der Anteil der
+Gebäudegrundflächen in der Region an der bundesweiten Gebäudegrundflächen
+berechnet (s. Datensatz [osm_buildings](../osm_buildings/dataset.md)) und die
+Ziele linear skaliert. Da in den o.g. Ausbauzielen nicht zwischen Freiflächen-
+und Aufdach-PV unterschieden wird, wird ein Verhältnis von 50:50 angenommen,
+d.h. bundesweit 214 GW auf Aufdach-PV entfallen.
+
+Der Anteil beträgt 0,62 % und das Leistungsziel damit 1327 MW, s.
+`potentialarea_pv_roof_regionalized_targets.json`.
 
 **Dataset: `datasets/potentialarea_pv_roof_region`**
 
@@ -648,6 +700,9 @@ Planung befinden. Anlagen mit Geokoordinaten werden georeferenziert
 kW Nennleistung) erfolgt ein Geocoding anhand von PLZ und Ort, um eine
 ungefähre Position bereit zu stellen.
 
+Es wird weiterhin geprüft, ob dem Speicher eine oder mehrere PV-Aufdachanlagen
+zugeordnet sind, es wird die Anzahl und Summe der Nettonennleistung berechnet.
+
 Neben einem anlagenscharfen Datensatz wird ein weiterer Datensatz erzeugt,
 der alle Anlagen mit approximierter Position je Position zusammenfasst und
 jeweils typische Kennwerte enthält (u.a. Anzahl Anlagen, Gesamtleistung).
@@ -659,8 +714,19 @@ einem Landkreis (Attribut `district_id`, vgl.
 [bkg_vg250_muns_region](../../datasets/bkg_vg250_districts_region/dataset.md))
 zugeordnet.
 
-Zusätzlich erfolgt eine statistische Auswertung der installierten Leistung in
-`bnetza_mastr_storage_stats_muns.csv`.
+Weiterhin erfolgt eine Auswertung der installierten Gesamtleistung je Gemeinde:
+- Alle Speicher: `bnetza_mastr_storage_stats_muns.csv`
+- Großspeicher (>=100 kWh): `bnetza_mastr_storage_large_stats_muns.csv`
+- Kleinspeicher (<100 kWh): `bnetza_mastr_storage_small_stats_muns.csv`
+
+`bnetza_mastr_storage_pv_roof.json` enthält die spezifische Speicherkapazität
+sowie spezifische Nennleistung der Speicher (bezogen auf die installierte
+Leistung von PV-Aufdachanlagen), aggregiert für gesamte Region, für folgende
+Randbedingungen:
+- Alle PV-Anlagen: `all_storages`
+- PV-Anlagen mit 2..20 kWp sowie Batteriespeicher <20 kWh und <20 kW (kann in
+  [config.yml](config.yml) unter `home_storages` konfiguriert werden):
+  `home_storages`
 
 **Dataset: `datasets/bnetza_mastr_storage_region`**
 
@@ -683,15 +749,13 @@ Zeitreihe normiert auf Summe=1 für
 - Solarthermie: `st_feedin_timeseries.csv`
 - Laufwasserkraft: `ror_feedin_timeseries.csv`
 
-### Jahresvolllaststunden
-
-Heutige bzw. prognostizierte Jahresvolllaststunden: `full_load_hours.json`
-
 **Dataset: `datasets/renewable_feedin`**
 
 
 ------------------------------
 ## Potenzialgebiete PV-Freiflächen
+
+### Potenzialflächen
 
 Potenzialgebiete für die Errichtung von PV-Freiflächenanlagen aus dem
 [PV- und Windflächenrechner](https://www.agora-energiewende.de/service/pv-und-windflaechenrechner/)
@@ -712,6 +776,8 @@ Dateien:
 - Potenzialflächen für Freiflächen-PV entlang von Bundesautobahnen und
   Schienenwegen (500m-Streifen): `potentialarea_pv_road_railway_region.gpkg`
 
+### Statistische Auswertung
+
 Die Flächen werden mit den Gemeindegrenzen verschnitten und den Gemeinden
 zugeordnet. Je Gemeinde und obigem Flächentyp/Datei wird eine Flächensumme (in
 km²) berechnet, siehe `potentialarea_pv_ground_area_stats_muns.csv`. Die
@@ -723,6 +789,27 @@ Des Weiteren werden die Flächenanteile der verfügbaren Potenzialgebiete - dere
 Nutzung nur eingeschränkt möglich ist (z.B. durch Naturschutzgebieten etc.) -
 gegenüber den gesamten Potenzialgebiete (für die Parametrierung der Regler) nach
 `potentialarea_pv_ground_area_shares.json` exportiert.
+
+### Ausbauziele
+
+Es werden PV-Ausbauziele für die Region berechnet, indem die Bundesziele aus den
+[BMWK Langfristszenarien](../../preprocessed/bmwk_long_term_scenarios/dataset.md)
+i.H.v. 428 GW
+([§4 EEG 2023](https://www.gesetze-im-internet.de/eeg_2014/__4.html): 400 GW)
+anhand der regional verfügbaren Potenzialflächen disaggregiert werden. Hierzu
+wird der Anteil der Flächensumme der beiden o.g. Flächentypen an den bundesweit
+verfügbaren Flächen (Datensatz [rli_pv_wfr](../../raw/rli_pv_wfr/dataset.md))
+berechnet. Da in den o.g. Ausbauzielen nicht zwischen Freiflächen- und
+Aufdach-PV unterschieden wird, wird ein Verhältnis von 50:50 angenommen, d.h.
+bundesweit 214 GW auf Freiflächen-PV entfallen.
+
+Es ergeben sich folgende Flächen- und Leistungsanteile:
+
+Gesamt: 0.38 % (819 MW)
+- Entlang von BAB und Schienenwegen: 0.13 % (278 MW)
+- Acker- und Grünlandflächen mit geringer Bodengüte: 0.25 % (541 MW)
+
+Ergebnisse in `potentialarea_pv_ground_regionalized_targets.json`
 
 **Dataset: `datasets/potentialarea_pv_ground_region`**
 

@@ -63,10 +63,9 @@ rule create_panel_settings:
         demand_ind_heat=get_abs_dataset_path("datasets", "demand_heat_region") / "data" / "demand_ind_heat_demand.csv",
 
     output:
-        expand(
-            DATASET_PATH / "{panel}_settings_panel.json",
-            panel=["energy"]#, "heat", "traffic"]
-        )
+        panel_settings_electricity=DATASET_PATH / "energy_settings_panel.json",
+        panel_settings_heat=DATASET_PATH / "heat_settings_panel.json",
+        panel_settings_traffic=DATASET_PATH / "traffic_settings_panel.json"
     run:
         print("Creating electricity panel settings...")
         panel_settings_electricity = PanelSettings(
@@ -118,16 +117,17 @@ rule create_panel_settings:
             panel_settings_traffic,
         )
 
-        import pdb
-        pdb.set_trace()
-
-        # with open(
-        #         DATASET_PATH / f"{panel}_settings_panel.json",
-        #         "w",
-        #         encoding="utf8"
-        # ) as f:
-        #     json.dump(
-        #         config["panel_settings_templates"][f"{panel}_settings_panel"],
-        #         f,
-        #         indent=4
-        #     )
+        # Check and dump
+        for panel, file in zip(
+            [panel_settings_electricity,
+             panel_settings_heat,
+             panel_settings_traffic],
+            [output.panel_settings_electricity,
+             output.panel_settings_heat,
+             output.panel_settings_traffic]
+        ):
+            if panel.is_complete():
+                with open(file, "w", encoding="utf8") as f:
+                    json.dump(panel.settings, f, indent=4)
+            else:
+                raise ValueError(f"{panel.name} has missing values!")

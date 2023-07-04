@@ -414,3 +414,32 @@ def generate_heat_panel_data(
     )
 
     return panel_settings
+
+
+def generate_traffic_panel_data(
+    panel_settings: PanelSettings,
+) -> PanelSettings:
+
+    # Todo: fill skeleton
+    panel_settings.update(
+        **dict(
+            v_iv_1=dict(
+                max=100,
+                min=0,
+                start="none",
+                step=5,
+                status_quo="none",
+                future_scenario="none",
+            ),
+            v_iv_3=dict(
+                max=100,
+                min=0,
+                start="none",
+                step=5,
+                status_quo="none",
+                future_scenario="none",
+            ),
+        )
+    )
+
+    return panel_settings

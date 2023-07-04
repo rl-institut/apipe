@@ -13,6 +13,7 @@ from digipipe.store.appdata.settings.scripts.panels import (
     PanelSettings,
     generate_energy_panel_data,
     generate_heat_panel_data,
+    generate_traffic_panel_data,
 )
 
 DATASET_PATH = get_abs_dataset_path("appdata", "settings", data_dir=True)
@@ -104,6 +105,13 @@ rule create_panel_settings:
                 demand_hh_heat=pd.read_csv(input.demand_hh_heat, index_col="municipality_id"),
                 demand_cts_heat=pd.read_csv(input.demand_cts_heat, index_col="municipality_id"),
                 demand_ind_heat=pd.read_csv(input.demand_ind_heat, index_col="municipality_id"),
+            )
+
+            panel_settings_traffic = PanelSettings(
+                **config["panel_settings_templates"]["traffic_settings_panel"]
+            )
+            panel_settings_traffic = generate_traffic_panel_data(
+                panel_settings_traffic,
             )
 
             import pdb

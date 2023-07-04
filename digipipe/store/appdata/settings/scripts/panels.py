@@ -5,9 +5,20 @@ import pandas as pd
 class PanelSettings:
     """Value store for settings panel"""
 
-    def __init__(self, **settings):
+    def __init__(self, name, **settings):
         """Create attributes from yaml file"""
+        self.name = name
         self.__dict__.update(settings)
+
+    def __str__(self):
+        return self.name
+
+    @property
+    def settings(self):
+        """
+        Make dictionary from value store while omitting non-data attributes
+        """
+        return {k: v for k, v in self.__dict__.items() if k != "name"}
 
     def update(self, **kwargs):
         """Updates control element's attributes"""
@@ -35,16 +46,12 @@ class PanelSettings:
 
     def is_complete(self):
         """Returns True if all values are set (no default value "none" left)"""
-        for control, values_store in self.__dict__.items():
+        for control, values_store in self.settings.items():
             for val in values_store.values():
                 if val == "none":
                     print(f"Control {control} is missing at least one value.")
                     return False
         return True
-
-    def make_dict(self):
-        """Make dictionary from value store"""
-        raise NotImplementedError
 
 
 def add_electricity_panel_settings(

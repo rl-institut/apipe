@@ -77,3 +77,6 @@ create_empty_ts:
   filter_ts: "empty_ts"
   ts_values: "zeros"  # Set to 'zeros' or 'empty'
   overwrite: false
+
+write_costs_efficiencies:
+  delete_default: True

@@ -96,7 +96,7 @@ rule hh_merge_demand_years:
             year=config["hh_electricity_demand"]["years"]
         )
     output:
-        demand = DATASET_PATH / "data" / "demand_hh_power_demand.csv"
+        demand=DATASET_PATH / "data" / "demand_hh_power_demand.csv"
     run:
         merge_demand_multiple_years(
             infiles=input.demand,
@@ -181,7 +181,7 @@ rule cts_merge_demand_years:
             year=config["cts_electricity_demand"]["years"]
         )
     output:
-        demand = DATASET_PATH / "data" / "demand_cts_power_demand.csv"
+        demand=DATASET_PATH / "data" / "demand_cts_power_demand.csv"
     run:
         merge_demand_multiple_years(
             infiles=input.demand,
@@ -294,7 +294,7 @@ rule ind_merge_demand_years:
             year=config["ind_electricity_demand"]["years"]
         )
     output:
-        demand = DATASET_PATH / "data" / "demand_ind_power_demand.csv"
+        demand=DATASET_PATH / "data" / "demand_ind_power_demand.csv"
     run:
         merge_demand_multiple_years(
             infiles=input.demand,

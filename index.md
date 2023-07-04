@@ -21,5 +21,6 @@ StEmp-ABW](https://wam.rl-institut.de/stemp_abw/) erneuert wird.
     - [Raw](docs/datasets/raw_datasets.md)
     - [Preprocessed](docs/datasets/preprocessed_datasets.md)
     - [Datasets](docs/datasets/datasets_datasets.md)
+    - [Appdata](docs/datasets/appdata_datasets.md)
 
 ![Logo des Reiner Lemoine Instituts](docs/img/logos/RLI_DigiPlan_logos.png){ width="250", align="right"}

@@ -100,3 +100,4 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - setup.py and requirements.txt files are omitted with the conversion to poetry
 - sphinx from poetry environment
 - Remove dataset: osm_forest
+- Obsolete targets from rule all

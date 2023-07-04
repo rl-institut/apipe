@@ -47,7 +47,7 @@ class PanelSettings:
         raise NotImplementedError
 
 
-def generate_energy_panel_data(
+def add_electricity_panel_settings(
     panel_settings: PanelSettings,
     region: gpd.GeoDataFrame,
     tech_data: dict,
@@ -271,7 +271,7 @@ def generate_energy_panel_data(
     return panel_settings
 
 
-def generate_heat_panel_data(
+def add_heat_panel_settings(
     panel_settings: PanelSettings,
     heating_structure_decentral: pd.DataFrame,
     demand_hh_heat: pd.DataFrame,
@@ -416,7 +416,7 @@ def generate_heat_panel_data(
     return panel_settings
 
 
-def generate_traffic_panel_data(
+def add_traffic_panel_settings(
     panel_settings: PanelSettings,
 ) -> PanelSettings:
 

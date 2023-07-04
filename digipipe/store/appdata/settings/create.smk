@@ -11,9 +11,9 @@ from digipipe.scripts.data_io import load_json
 from digipipe.store.utils import get_abs_dataset_path
 from digipipe.store.appdata.settings.scripts.panels import (
     PanelSettings,
-    generate_energy_panel_data,
-    generate_heat_panel_data,
-    generate_traffic_panel_data,
+    add_electricity_panel_settings,
+    add_heat_panel_settings,
+    add_traffic_panel_settings
 )
 
 DATASET_PATH = get_abs_dataset_path("appdata", "settings", data_dir=True)
@@ -68,62 +68,63 @@ rule create_panel_settings:
             panel=["energy"]#, "heat", "traffic"]
         )
     run:
-        print("Creating panel settings...")
-        for panel in ["energy"]:#, "heat", "traffic"]:
-            panel_settings_power = PanelSettings(
-                **config["panel_settings_templates"]["energy_settings_panel"]
-            )
-            panel_settings_power = generate_energy_panel_data(
-                panel_settings_power,
-                region=gpd.read_file(input.region[0]),
-                tech_data=load_json(input.tech_data[0]),
-                wind_stats=pd.read_csv(input.wind_stats[0]),
-                wind_area_stats=pd.read_csv(input.wind_area_stats),
-                pv_ground_stats=pd.read_csv(input.pv_ground_stats[0]),
-                pv_ground_area_stats=pd.read_csv(input.pv_ground_area_stats[0], index_col="municipality_id"),
-                pv_ground_area_shares=load_json(input.pv_ground_area_shares[0]),
-                pv_ground_targets=load_json(input.pv_ground_targets[0]),
-                pv_roof_stats=pd.read_csv(input.pv_roof_stats[0]),
-                pv_roof_area_stats=pd.read_csv(input.pv_roof_area_stats[0], index_col="municipality_id"),
-                pv_roof_area_deploy_stats=pd.read_csv(input.pv_roof_area_deploy_stats[0]),
-                pv_roof_targets=load_json(input.pv_roof_targets[0]),
-                hydro_stats=pd.read_csv(input.hydro_stats[0]),
-                demand_hh_power=pd.read_csv(input.demand_hh_power, index_col="municipality_id"),
-                demand_cts_power=pd.read_csv(input.demand_cts_power, index_col="municipality_id"),
-                demand_ind_power=pd.read_csv(input.demand_ind_power, index_col="municipality_id"),
-                storage_large_stats=pd.read_csv(input.storage_large_stats),
-                #storage_small_stats=pd.read_csv(input.storage_small_stats),
-                storage_pv_roof=load_json(input.storage_pv_roof[0]),
-            )
+        print("Creating electricity panel settings...")
+        panel_settings_electricity = PanelSettings(
+            **config["panel_settings_templates"]["energy_settings_panel"]
+        )
+        panel_settings_electricity = add_electricity_panel_settings(
+            panel_settings_electricity,
+            region=gpd.read_file(input.region[0]),
+            tech_data=load_json(input.tech_data[0]),
+            wind_stats=pd.read_csv(input.wind_stats[0]),
+            wind_area_stats=pd.read_csv(input.wind_area_stats),
+            pv_ground_stats=pd.read_csv(input.pv_ground_stats[0]),
+            pv_ground_area_stats=pd.read_csv(input.pv_ground_area_stats[0], index_col="municipality_id"),
+            pv_ground_area_shares=load_json(input.pv_ground_area_shares[0]),
+            pv_ground_targets=load_json(input.pv_ground_targets[0]),
+            pv_roof_stats=pd.read_csv(input.pv_roof_stats[0]),
+            pv_roof_area_stats=pd.read_csv(input.pv_roof_area_stats[0], index_col="municipality_id"),
+            pv_roof_area_deploy_stats=pd.read_csv(input.pv_roof_area_deploy_stats[0]),
+            pv_roof_targets=load_json(input.pv_roof_targets[0]),
+            hydro_stats=pd.read_csv(input.hydro_stats[0]),
+            demand_hh_power=pd.read_csv(input.demand_hh_power, index_col="municipality_id"),
+            demand_cts_power=pd.read_csv(input.demand_cts_power, index_col="municipality_id"),
+            demand_ind_power=pd.read_csv(input.demand_ind_power, index_col="municipality_id"),
+            storage_large_stats=pd.read_csv(input.storage_large_stats),
+            #storage_small_stats=pd.read_csv(input.storage_small_stats),
+            storage_pv_roof=load_json(input.storage_pv_roof[0]),
+        )
 
-            panel_settings_heat = PanelSettings(
-                **config["panel_settings_templates"]["heat_settings_panel"]
-            )
-            panel_settings_heat = generate_heat_panel_data(
-                panel_settings_heat,
-                heating_structure_decentral=pd.read_csv(input.heating_structure_decentral, index_col="year"),
-                demand_hh_heat=pd.read_csv(input.demand_hh_heat, index_col="municipality_id"),
-                demand_cts_heat=pd.read_csv(input.demand_cts_heat, index_col="municipality_id"),
-                demand_ind_heat=pd.read_csv(input.demand_ind_heat, index_col="municipality_id"),
-            )
+        print("Creating heat panel settings...")
+        panel_settings_heat = PanelSettings(
+            **config["panel_settings_templates"]["heat_settings_panel"]
+        )
+        panel_settings_heat = add_heat_panel_settings(
+            panel_settings_heat,
+            heating_structure_decentral=pd.read_csv(input.heating_structure_decentral, index_col="year"),
+            demand_hh_heat=pd.read_csv(input.demand_hh_heat, index_col="municipality_id"),
+            demand_cts_heat=pd.read_csv(input.demand_cts_heat, index_col="municipality_id"),
+            demand_ind_heat=pd.read_csv(input.demand_ind_heat, index_col="municipality_id"),
+        )
 
-            panel_settings_traffic = PanelSettings(
-                **config["panel_settings_templates"]["traffic_settings_panel"]
-            )
-            panel_settings_traffic = generate_traffic_panel_data(
-                panel_settings_traffic,
-            )
+        print("Creating traffic panel settings...")
+        panel_settings_traffic = PanelSettings(
+            **config["panel_settings_templates"]["traffic_settings_panel"]
+        )
+        panel_settings_traffic = add_traffic_panel_settings(
+            panel_settings_traffic,
+        )
 
-            import pdb
-            pdb.set_trace()
+        import pdb
+        pdb.set_trace()
 
-            # with open(
-            #         DATASET_PATH / f"{panel}_settings_panel.json",
-            #         "w",
-            #         encoding="utf8"
-            # ) as f:
-            #     json.dump(
-            #         config["panel_settings_templates"][f"{panel}_settings_panel"],
-            #         f,
-            #         indent=4
-            #     )
+        # with open(
+        #         DATASET_PATH / f"{panel}_settings_panel.json",
+        #         "w",
+        #         encoding="utf8"
+        # ) as f:
+        #     json.dump(
+        #         config["panel_settings_templates"][f"{panel}_settings_panel"],
+        #         f,
+        #         indent=4
+        #     )

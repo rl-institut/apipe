@@ -83,7 +83,7 @@ def generate_energy_panel_data(
                 status_quo=round(wind_stats.capacity_net.sum()),
                 future_scenario=round(
                     float(region.area_km2)
-                    * 0.02
+                    * 0.022  # Todo: Move to regulation datsset
                     * tech_data["power_density"]["wind"]
                 ),
             ),

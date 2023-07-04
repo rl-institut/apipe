@@ -2,8 +2,19 @@
 
 Einstellungen für die App.
 
-Updated energy_settings_panel.json
-Updated heat_settings_panel.json
-Updated traffic_settings_panel.json
+## Layerliste (rechtes Panel)
 
-- Layerliste ([map_config.py](https://github.com/rl-institut-private/digiplan/blob/dev/digiplan/map/map_config.py)): `map_panel_layer_list.json`
+- Konfiguration: [config.yml](config.yml) -> `map_panel_layer_list`
+- Ergebnisfile: `map_panel_layer_list.json`
+- Wird manuell in die App eingepflegt (s. [map_config.py](https://github.com/rl-institut-private/digiplan/blob/dev/digiplan/map/map_config.py))
+
+## Settings panels
+
+- Konfiguration des Templates: [config.yml](config.yml) -> `panel_settings_templates`
+- Ergebnisfiles:
+  - `energy_settings_panel.json`
+  - `heat_settings_panel.json`
+  - `traffic_settings_panel.json`
+- Werden in die App eingelesen
+
+**TODO**: Parametrierung der Slider & Switches beschreiben

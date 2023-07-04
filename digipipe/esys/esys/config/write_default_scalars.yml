@@ -122,7 +122,7 @@ write_default_scalars:
     "var_name": "emissions_not_modeled",
     "type": None,
     "tech": None,
-    "which": "zeros",
+    "which": "emissions_not_modeled",
     "var_unit": "kg_CO2_eq/MWh",
   }
   emissions_1990: {
@@ -136,7 +136,7 @@ write_default_scalars:
     "var_name": "emission_reduction_factor",
     "type": None,
     "tech": None,
-    "which": "zeros",
+    "which": "emission_reduction_factor",
     "var_unit": "None",
   }
 costs_efficiencies: [

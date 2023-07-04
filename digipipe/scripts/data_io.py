@@ -1,8 +1,15 @@
+import json
 import os
 import shutil
 import zipfile
+from pathlib import Path
 
 import requests
+
+
+def load_json(file_path: Path) -> dict:
+    with open(file_path, "r") as f:
+        return json.load(f)
 
 
 def download_file(url: str, dest_file: str) -> None:

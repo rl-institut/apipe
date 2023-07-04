@@ -22,17 +22,3 @@ rule normalize_feedin_timeseries:
         feedin_timeseries = pd.read_csv(input[0]).power
         feedin_timeseries = feedin_timeseries.div(feedin_timeseries.sum())
         feedin_timeseries.to_csv(output[0])
-
-rule copy_full_load_hours:
-    """
-    Copy full load hours
-    """
-    input:
-        get_abs_dataset_path(
-            "raw", "renewables.ninja_feedin") / "data" / "full_load_hours.json"
-    output:
-        DATASET_PATH / "data" / "full_load_hours.json"
-    shell:
-        """
-        cp -p {input} {output}
-        """

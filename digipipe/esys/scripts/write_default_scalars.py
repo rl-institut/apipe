@@ -75,8 +75,14 @@ def get_var_value_and_comment(which):
         var_value = "{}"
         comment = "Empty"
     elif which == "variable_costs":
-        var_value = str({"variable_costs": 1e-7})
+        var_value = '{"variable_costs": 1e-7}'
         comment = "Own assumption to prevent hidden curtailment"
+    elif which == "emissions_not_modeled":
+        var_value = 0
+        comment = "No fossils in 2045 in the modelled sectors."
+    elif which == "emission_reduction_factor":
+        var_value = 1
+        comment = "100 % of GHG reduction in 2045"
     else:
         raise ValueError(
             f"'{which}' is not a valid option. Please provide a valid options. "

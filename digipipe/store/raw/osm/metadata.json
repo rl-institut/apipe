@@ -2,7 +2,7 @@
   "name": "openstreetmap",
   "title": "",
   "id": "openstreetmap",
-  "description": "OpenStreetMap extract for federal state of Sachsen-Anhalt",
+  "description": "OpenStreetMap extract",
   "language": [
     "de-DE",
     "en-GB"
@@ -12,7 +12,7 @@
     "openstreetmap",
     "osm"
   ],
-  "publicationDate": "2022-10-09",
+  "publicationDate": "2023-06-30",
   "context": {
     "homepage": "https://abw.rl-institut.de",
     "documentation": "https://digiplan.readthedocs.io",
@@ -24,19 +24,19 @@
     "publisherLogo": "https://reiner-lemoine-institut.de//wp-content/uploads/2015/09/rlilogo.png"
   },
   "spatial": {
-    "location": "Sachsen-Anhalt",
-    "extent": "Sachsen-Anhalt",
+    "location": "Germany",
+    "extent": "Germany",
     "resolution": ""
   },
   "temporal": {
-    "referenceDate": "2022-10-09",
+    "referenceDate": "2023-06-30",
     "timeseries": []
   },
   "sources": [
     {
       "title": "OpenStreetMap Data Extracts (Geofabrik)",
       "description": "Full data extract of OpenStreetMap data",
-      "path": "https://download.geofabrik.de/europe/germany/sachsen-anhalt-221003.osm.pbf",
+      "path": "https://download.geofabrik.de/europe/germany-230630.osm.pbf",
       "licenses": [
         {
           "name": "ODbL-1.0",
@@ -61,16 +61,9 @@
     {
       "title": "nesnoj",
       "email": "jonathan.amme@rl-institut.de",
-      "date": "2022-10-09",
+      "date": "2023-06-30",
       "object": "metadata",
       "comment": "Create metadata"
-    },
-    {
-      "title": "hedwig-lieselotte",
-      "email": "hedwig.bartels@rl-institut.de",
-      "date": "2023-03-28",
-      "object": "metadata",
-      "comment": "Check and update metadata"
     }
   ],
   "resources": [

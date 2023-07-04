@@ -69,11 +69,11 @@ rule create_panel_settings:
     run:
         print("Creating panel settings...")
         for panel in ["energy"]:#, "heat", "traffic"]:
-            panel_settings_energy = PanelSettings(
+            panel_settings_power = PanelSettings(
                 **config["panel_settings_templates"]["energy_settings_panel"]
             )
-            panel_settings_energy = generate_energy_panel_data(
-                panel_settings_energy,
+            panel_settings_power = generate_energy_panel_data(
+                panel_settings_power,
                 region=gpd.read_file(input.region[0]),
                 tech_data=load_json(input.tech_data[0]),
                 wind_stats=pd.read_csv(input.wind_stats[0]),

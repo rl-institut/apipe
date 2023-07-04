@@ -68,7 +68,8 @@ def generate_energy_panel_data(
     storage_large_stats: pd.DataFrame,
     # storage_small_stats: pd.DataFrame,
     storage_pv_roof: dict,
-):
+) -> PanelSettings:
+
     # Wind energy
     panel_settings.update(
         **dict(
@@ -192,11 +193,10 @@ def generate_energy_panel_data(
             * tech_data["full_load_hours"]["wind"]["2022"]
         )
     ) / 365
-
     panel_settings.update(
         **dict(
             s_v_1=dict(
-                max=100,
+                max=200,
                 min=50,
                 start=100,
                 step=10,
@@ -264,6 +264,151 @@ def generate_energy_panel_data(
                     * 100,
                     1,
                 ),
+            ),
+        )
+    )
+
+    return panel_settings
+
+
+def generate_heat_panel_data(
+    panel_settings: PanelSettings,
+    heating_structure_decentral: pd.DataFrame,
+    demand_hh_heat: pd.DataFrame,
+    demand_cts_heat: pd.DataFrame,
+    demand_ind_heat: pd.DataFrame,
+) -> PanelSettings:
+
+    # Supply
+    heat_pump_share = heating_structure_decentral.loc[
+        heating_structure_decentral.carrier == "heat_pump"
+    ].demand_rel
+    panel_settings.update(
+        **dict(
+            w_d_wp_1=dict(
+                max=100,
+                min=0,
+                start=round(heat_pump_share.loc[2022] * 100),
+                step=5,
+                status_quo=round(heat_pump_share.loc[2022] * 100),
+                future_scenario=round(heat_pump_share.loc[2045] * 100),
+            ),
+            w_d_wp_3=dict(
+                max=100,
+                min=0,
+                start=round(heat_pump_share.loc[2022] * 100),
+                step=5,
+            ),
+            w_d_wp_4=dict(
+                max=100,
+                min=0,
+                start=round(heat_pump_share.loc[2022] * 100),
+                step=5,
+            ),
+            w_d_wp_5=dict(
+                max=100,
+                min=0,
+                start=round(heat_pump_share.loc[2022] * 100),
+                step=5,
+            ),
+            w_z_wp_1=dict(
+                max=100,
+                min=0,
+                start=round(heat_pump_share.loc[2022] * 100),
+                step=5,
+                status_quo=round(heat_pump_share.loc[2022] * 100),
+                future_scenario=0,  # Todo: Insert cen heating structure targets
+            ),
+            w_z_wp_3=dict(
+                max=100,
+                min=0,
+                start=round(heat_pump_share.loc[2022] * 100),
+                step=5,
+                status_quo=round(heat_pump_share.loc[2022] * 100),
+                future_scenario=0,  # Todo: Insert cen heating structure targets
+            ),
+        )
+    )
+
+    # Demand
+    total_demand = (demand_hh_heat + demand_cts_heat + demand_ind_heat).sum()
+    panel_settings.update(
+        **dict(
+            w_v_1=dict(
+                max=100,
+                min=50,
+                start=100,
+                step=10,
+                status_quo=100,
+                future_scenario=round(
+                    total_demand["2045"] / total_demand["2022"] * 100
+                ),
+            ),
+            w_v_3=dict(
+                max=200,
+                min=50,
+                start=100,
+                step=10,
+                status_quo=100,
+                future_scenario=round(
+                    demand_hh_heat.sum()["2045"]
+                    / demand_hh_heat.sum()["2022"]
+                    * 100
+                ),
+            ),
+            w_v_4=dict(
+                max=200,
+                min=50,
+                start=100,
+                step=10,
+                status_quo=100,
+                future_scenario=round(
+                    demand_cts_heat.sum()["2045"]
+                    / demand_cts_heat.sum()["2022"]
+                    * 100
+                ),
+            ),
+            w_v_5=dict(
+                max=200,
+                min=50,
+                start=100,
+                step=10,
+                status_quo=100,
+                future_scenario=round(
+                    demand_ind_heat.sum()["2045"]
+                    / demand_ind_heat.sum()["2022"]
+                    * 100
+                ),
+            ),
+        )
+    )
+
+    # Storages
+    panel_settings.update(
+        **dict(
+            w_d_s_1=dict(
+                max=200,
+                min=25,
+                start=100,
+                step=5,
+            ),
+            w_d_s_3=dict(
+                max=200,
+                min=25,
+                start=100,
+                step=5,
+            ),
+            w_d_z_1=dict(
+                max=200,
+                min=25,
+                start=100,
+                step=5,
+            ),
+            w_d_z_3=dict(
+                max=200,
+                min=25,
+                start=100,
+                step=5,
             ),
         )
     )

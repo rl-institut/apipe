@@ -12,6 +12,7 @@ from digipipe.store.utils import get_abs_dataset_path
 from digipipe.store.appdata.settings.scripts.panels import (
     PanelSettings,
     generate_energy_panel_data,
+    generate_heat_panel_data,
 )
 
 DATASET_PATH = get_abs_dataset_path("appdata", "settings", data_dir=True)
@@ -53,7 +54,13 @@ rule create_panel_settings:
         demand_ind_power=rules.datasets_demand_electricity_region_ind_merge_demand_years.output.demand,
         storage_large_stats=rules.datasets_bnetza_mastr_storage_region_create_power_stats_muns.output.large,
         #storage_small_stats=rules.datasets_bnetza_mastr_storage_region_create_power_stats_muns.output.small,
-        storage_pv_roof=rules.datasets_bnetza_mastr_storage_region_create_storage_pv_roof_stats.output
+        storage_pv_roof=rules.datasets_bnetza_mastr_storage_region_create_storage_pv_roof_stats.output,
+
+        heating_structure_decentral=rules.datasets_demand_heat_region_heating_structure_hh_cts.output.heating_structure_esys_dec,
+        demand_hh_heat=get_abs_dataset_path("datasets", "demand_heat_region") / "data" / "demand_hh_heat_demand.csv",
+        demand_cts_heat=get_abs_dataset_path("datasets", "demand_heat_region") / "data" / "demand_cts_heat_demand.csv",
+        demand_ind_heat=get_abs_dataset_path("datasets", "demand_heat_region") / "data" / "demand_ind_heat_demand.csv",
+
     output:
         expand(
             DATASET_PATH / "{panel}_settings_panel.json",
@@ -62,11 +69,11 @@ rule create_panel_settings:
     run:
         print("Creating panel settings...")
         for panel in ["energy"]:#, "heat", "traffic"]:
-            panel_settings = PanelSettings(
+            panel_settings_energy = PanelSettings(
                 **config["panel_settings_templates"][f"energy_settings_panel"]
             )
-            panel_settings = generate_energy_panel_data(
-                panel_settings,
+            panel_settings_energy = generate_energy_panel_data(
+                panel_settings_energy,
                 region=gpd.read_file(input.region[0]),
                 tech_data=load_json(input.tech_data[0]),
                 wind_stats=pd.read_csv(input.wind_stats[0]),
@@ -86,6 +93,17 @@ rule create_panel_settings:
                 storage_large_stats=pd.read_csv(input.storage_large_stats),
                 #storage_small_stats=pd.read_csv(input.storage_small_stats),
                 storage_pv_roof=load_json(input.storage_pv_roof[0]),
+            )
+
+            panel_settings_heat = PanelSettings(
+                **config["panel_settings_templates"][f"heat_settings_panel"]
+            )
+            panel_settings_heat = generate_heat_panel_data(
+                panel_settings_heat,
+                heating_structure_decentral=pd.read_csv(input.heating_structure_decentral, index_col="year"),
+                demand_hh_heat=pd.read_csv(input.demand_hh_heat, index_col="municipality_id"),
+                demand_cts_heat=pd.read_csv(input.demand_cts_heat, index_col="municipality_id"),
+                demand_ind_heat=pd.read_csv(input.demand_ind_heat, index_col="municipality_id"),
             )
 
             import pdb

@@ -70,7 +70,7 @@ rule create_panel_settings:
         print("Creating panel settings...")
         for panel in ["energy"]:#, "heat", "traffic"]:
             panel_settings_energy = PanelSettings(
-                **config["panel_settings_templates"][f"energy_settings_panel"]
+                **config["panel_settings_templates"]["energy_settings_panel"]
             )
             panel_settings_energy = generate_energy_panel_data(
                 panel_settings_energy,
@@ -96,7 +96,7 @@ rule create_panel_settings:
             )
 
             panel_settings_heat = PanelSettings(
-                **config["panel_settings_templates"][f"heat_settings_panel"]
+                **config["panel_settings_templates"]["heat_settings_panel"]
             )
             panel_settings_heat = generate_heat_panel_data(
                 panel_settings_heat,

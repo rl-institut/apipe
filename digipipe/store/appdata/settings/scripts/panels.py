@@ -398,13 +398,13 @@ def generate_heat_panel_data(
                 start=100,
                 step=5,
             ),
-            w_d_z_1=dict(
+            w_z_s_1=dict(
                 max=200,
                 min=25,
                 start=100,
                 step=5,
             ),
-            w_d_z_3=dict(
+            w_z_s_3=dict(
                 max=200,
                 min=25,
                 start=100,

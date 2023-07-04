@@ -221,29 +221,21 @@ panel_settings_templates:
       max: none
       min: none
       start: none
-      status_quo: none
-      future_scenario: none
       step: none
     w_d_s_3:
       max: none
       min: none
       start: none
-      status_quo: none
-      future_scenario: none
       step: none
     w_z_s_1:
       max: none
       min: none
       start: none
-      status_quo: none
-      future_scenario: none
       step: none
     w_z_s_3:
       max: none
       min: none
       start: none
-      status_quo: none
-      future_scenario: none
       step: none
 
   traffic_settings_panel:

@@ -76,19 +76,19 @@ write_default_scalars:
     "which": "false",
     "var_unit": "None",
   }
+  input_parameters_storage: {
+    "var_name": "input_parameters",
+    "type": storage,
+    "tech": None,
+    "which": "variable_costs",
+    "var_unit": "None",
+  }
   input_parameters: {
     "var_name": "input_parameters",
     "type": None,
     "tech": None,
     "which": "empty_dict",
     "var_unit": "None",
-  }
-  input_parameters_export: {
-    "var_name": "input_parameters",
-    "type": None,
-    "tech": export,
-    "which": "empty_dict",
-    "var_unit": "kg_CO2_eq/MWh",
   }
   marginal_cost_shortage: {
     "var_name": "marginal_cost",
@@ -118,18 +118,11 @@ write_default_scalars:
     "which": "empty",
     "var_unit": "MWh",
   }
-  wacc: {
-    "var_name": "wacc",
-    "type": None,
-    "tech": None,
-    "which": "empty",
-    "var_unit": "None",
-  }
   emissions_not_modeled: {
     "var_name": "emissions_not_modeled",
     "type": None,
     "tech": None,
-    "which": "zeros",
+    "which": "emissions_not_modeled",
     "var_unit": "kg_CO2_eq/MWh",
   }
   emissions_1990: {
@@ -143,7 +136,7 @@ write_default_scalars:
     "var_name": "emission_reduction_factor",
     "type": None,
     "tech": None,
-    "which": "zeros",
+    "which": "emission_reduction_factor",
     "var_unit": "None",
   }
 costs_efficiencies: [
@@ -151,9 +144,7 @@ costs_efficiencies: [
     "condensing_efficiency",
     "efficiency",
     "electric_efficiency",
-    "expandable",
     "fixom_cost",
-    "input_parameters",
     "lifetime",
     "loss_rate",
     "marginal_cost",

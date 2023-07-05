@@ -1,8 +1,6 @@
 # Technologiedaten
 
-Allgemeine Technologiedaten, Datei: `technology_data.json`
-
-## Jahresvolllaststunden (`full_load_hours`)
+## Jahresvolllaststunden
 
 Anhand typischer heutiger und prognostizierter Werte für Sachsen-Anhalt werden
 folgende Jahresvolllaststunden angenommen:
@@ -20,10 +18,12 @@ folgende Jahresvolllaststunden angenommen:
 | Bioenergie      | 2022 |            6000 | [foederal-erneuerbar](https://www.foederal-erneuerbar.de/landesinfo/bundesland/ST/kategorie/bioenergie/auswahl/814-durchschnittliche_ja/#goto_814), [ISE](https://www.ise.fraunhofer.de/content/dam/ise/de/documents/publications/studies/DE2018_ISE_Studie_Stromgestehungskosten_Erneuerbare_Energien.pdf) | Bioenergie-Stromerzeugung (ohne<br/>biogenen Teil des Abfalls) |
 |                 |      |                 |                                                                                                                                                                                                                                                                                                             |                                                                |
 
+Datei: `technology_data.json` -> `full_load_hours`
+
 TBD: Generalisieren - automatische Generierung anhand von Global Wind Atlas /
 Global Solar Atlas.
 
-## Leistungsdichte (`power_density`)
+## Leistungsdichte
 
 Installierbare Leistung pro Fläche / spezifischer Flächenbedarf:
 - Windenergie: 21 MW/km²
@@ -31,8 +31,10 @@ Installierbare Leistung pro Fläche / spezifischer Flächenbedarf:
 - PV-Aufdachanlagen: 140 MW/km²
 - Solarthermie: ? MW/km²
 
-Quelle: [PV- und Windflächenrechner](https://zenodo.org/record/6794558).
+Quelle: [PV- und Windflächenrechner](https://zenodo.org/record/6794558)
 
-## Kosten, Emissionen und Wirkungsgrade
+Datei: `technology_data.json` -> `power_density`
 
-Siehe Datensatz [costs_efficiencies](../costs_efficiencies/dataset.md).
+## Kosten und Wirkungsgrade
+
+Datei: `raw_costs_efficiencies.csv`

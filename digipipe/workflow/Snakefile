@@ -15,6 +15,9 @@ config.update(load_dataset_configs())
 
 # Path to esys appdata
 APPDATA_ESYS_PATH = get_abs_dataset_path("appdata", "esys")
+DATASETS_ESYS_PATH = os.path.join(
+    get_abs_dataset_path("datasets", "esys_raw"), "data"
+)
 
 # Include store modules
 include: "../store/preprocessed/module.smk"
@@ -65,6 +68,9 @@ rule clean:
         # Check if there are subdirectories in appdata esys dir
         if [ "$(find {APPDATA_ESYS_PATH} -mindepth 1 -type d)" ]; then
           rm -r {APPDATA_ESYS_PATH}/*
+        fi
+        if [ "$(find {DATASETS_ESYS_PATH} -mindepth 1 -type d)" ]; then
+          rm -r {DATASETS_ESYS_PATH}/*
         fi
         echo "Removed all preprocessed data in directories: preprocessed, datasets and appdata."
         """

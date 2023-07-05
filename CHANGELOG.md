@@ -57,6 +57,7 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Add dataset: osm (Germany)
 - Add dataset: osm_buildings and add stats on ground areas
 - Add mapping of costs and efficiencies from store/raw to store/datasets
+- Add dataset: emissions
 
 ### Changed
 

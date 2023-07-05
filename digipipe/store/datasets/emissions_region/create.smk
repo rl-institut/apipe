@@ -27,36 +27,44 @@ rule create:
         )
 
         emissions_dict = dict(
-            # Sector: Energy industry (1.A.1)
-            **emissions.loc[
-                (1, "A", "1", "energy_industry")
-            ].to_frame(name="energy_industry").to_dict(orient="list"),
+            # Sector: Energy industry (CRF 1.A.1 + 1.B)
+            **emissions.loc[[
+                (1, "A", "1", "energy_industry"),
+                (1, "B", "1", "diffuse_emissions_solid_fuels"),
+                (1, "B", "2", "diffuse_emissions_fuel_oil_natural_gas"),
+            ]].sum().to_frame(
+                name="energy_industry").round(1).to_dict(orient="list"),
 
-            # Sector: Industry (1.A.2 + 2)
+            # Sector: Industry (CRF 1.A.2 + 2)
             **emissions.loc[[
                 (1, "A", "2", "industry"),
                 (2, "*", "*", "process_emissions"),
-            ]].sum().to_frame(name="industry").to_dict(orient="list"),
+            ]].sum().to_frame(
+                name="industry").round(1).to_dict(orient="list"),
 
-            # Sector: Traffic (1.A.3)
+            # Sector: Traffic (CRF 1.A.3)
             **emissions.loc[
                 (1, "A", "3", "traffic"),
-            ].to_frame(name="traffic").to_dict(orient="list"),
+            ].to_frame(
+                name="traffic").round(1).to_dict(orient="list"),
 
-            # Sector: Buildings (1.A.4 and 1.A.5)
+            # Sector: Buildings (CRF 1.A.4 + 1.A.5)
             **emissions.loc[
                 (1, "A", "4-5", "buildings_firing"),
-            ].to_frame(name="buildings_firing").to_dict(orient="list"),
+            ].to_frame(
+                name="buildings_firing").round(1).to_dict(orient="list"),
 
-            # Sector: Agriculture (3)
+            # Sector: Agriculture (CRF 3)
             **emissions.groupby(
                 "sector"
-            ).sum().loc[3].to_frame(name="agricultural").to_dict(orient="list"),
+            ).sum().loc[3].to_frame(
+                name="agricultural").round(1).to_dict(orient="list"),
 
-            # Sector: Waste and waste water
+            # Sector: Waste and waste water (CRF 5)
             **emissions.loc[
                 (5, "*", "*", "waste_waste_water"),
-            ].to_frame(name="waste_waste_water").to_dict(orient="list"),
+            ].to_frame(
+                name="waste_waste_water").round(1).to_dict(orient="list"),
         )
 
         with open(output[0], "w", encoding="utf8") as f:

@@ -57,6 +57,7 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Add dataset: osm (Germany)
 - Add dataset: osm_buildings and add stats on ground areas
 - Add mapping of costs and efficiencies from store/raw to store/datasets
+- Add deletion of all data in store/datasets/esys_raw/data
 
 ### Changed
 
@@ -95,6 +96,7 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
   default_scalars.csv instead of default_costs_efficiencies.csv
 - Default variable_costs are passed with input_parameters for storages
 - Pass time series instead of scalar with efficiency for central heat pump
+- Fix clean rule
 
 ### Removed
 

@@ -94,6 +94,7 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - By default set costs and efficiencies of esys are written to
   default_scalars.csv instead of default_costs_efficiencies.csv
 - Default variable_costs are passed with input_parameters for storages
+- Pass time series instead of scalar with efficiency for central heat pump
 
 ### Removed
 

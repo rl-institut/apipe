@@ -253,6 +253,19 @@ Raw dataset: [technology_data](../../raw/technology_data/dataset.md)
 
 
 ------------------------------
+## Emissionen
+
+Emissionen für Sachsen-Anhalt und die Region, aggregiert nach Sektoren der
+CRF-Nomenklatur.
+
+Datei `emissions.json` enthält Chartdaten.
+
+Raw dataset: [emissions](../../raw/emissions/dataset.md)
+
+**Dataset: `datasets/emissions_region`**
+
+
+------------------------------
 ## Geodaten PV- und Windflächenrechner
 
 Geodaten aus dem

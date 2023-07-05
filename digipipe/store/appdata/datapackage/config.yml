@@ -1174,3 +1174,32 @@ resources:
         _source_path:
           dataset: "potentialarea_wind_region"
           file: "potentialarea_wind_stp_2027_vr.gpkg"
+
+  # Eligible areas for Wind turbines and ground-mounted PV
+  emissions:
+    scalars:
+      emissions:
+        description: "Emissionen für Sachsen-Anhalt und die Region ABW für 1990 und 2019"
+        path: "scalars/emissions.json"
+        fields:
+          energy_industry:
+            description: "Energiewirtschaft"
+            unit: "kt CO2äq"
+          industry:
+            description: "Industrie"
+            unit: "kt CO2äq"
+          traffic:
+            description: "Verkehr"
+            unit: "kt CO2äq"
+          buildings_firing:
+            description: "Sonst. Energie (insbes. Gebäude)"
+            unit: "kt CO2äq"
+          agricultural:
+            description: "Landwirtschaft"
+            unit: "kt CO2äq"
+          waste_waste_water:
+            description: "Abfall und Abwasser"
+            unit: "kt CO2äq"
+        _source_path:
+          dataset: "emissions_region"
+          file: "emissions.json"

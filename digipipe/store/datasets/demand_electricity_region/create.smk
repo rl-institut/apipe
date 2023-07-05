@@ -131,10 +131,10 @@ rule cts_disaggregate_demand:
             "preprocessed", "demandregio") / "data" /
             "dr_cts_power_demand_2022.csv",
         demand_future_TN=get_abs_dataset_path(
-            "preprocessed","bmwk_long_term_scenarios"
+            "preprocessed", "bmwk_long_term_scenarios"
             ) / "data" / "TN-Strom_cts_demand_reformatted.csv",
         demand_future_T45=get_abs_dataset_path(
-        "preprocessed","bmwk_long_term_scenarios"
+        "preprocessed", "bmwk_long_term_scenarios"
             ) / "data" / "T45-Strom_cts_demand_reformatted.csv",
         employment=get_abs_dataset_path("datasets", "employment_region") /
                    "data" / "employment.csv",

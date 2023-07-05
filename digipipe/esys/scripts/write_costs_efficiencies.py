@@ -1,7 +1,7 @@
 # coding: utf-8
 r"""
 This module provides functionality to map raw scalar data on costs and
-efficiencies from "store/raw/costs_efficiencies/raw_costs_efficiencies.csv" to
+efficiencies from "store/raw/technology_data/data/raw_costs_efficiencies.csv" to
 the default costs and efficiencies in
 "store/datasets/esys_raw/data/scalars/default_costs_efficiencies.csv".
 The default file is initially created using the "write_default_scalars" rule.

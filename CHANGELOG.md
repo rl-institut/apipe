@@ -102,3 +102,4 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - sphinx from poetry environment
 - Remove dataset: osm_forest
 - Obsolete targets from rule all
+- Merge dataset costs_efficiencies into technology_data

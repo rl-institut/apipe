@@ -49,14 +49,14 @@ rule clean:
     Remove all output and temporary files.
     """
     params:
-        preprocessed=expand(
+        preprocessed=[expand(
             get_abs_dataset_path("preprocessed", "{name}", data_dir=True) / "*",
             name=config.get("store")["preprocessed"].keys()
-        ),
-        datasets=expand(
+        )],
+        datasets=[expand(
             get_abs_dataset_path("datasets", "{name}", data_dir=True) / "*",
             name=config.get("store")["datasets"].keys()
-        )
+        )]
     shell:
         """
         rm -f {params.preprocessed}

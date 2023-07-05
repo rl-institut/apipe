@@ -21,8 +21,14 @@ Datei: `emissions.csv`, Felder:
 
 Hier Beschreibungstext
 
-### Sektor Industrie
+### Sektor Energiewirtschaft (CRF 1.A.1 + 1.B)
 
-### Sektor Energiewirtschaft
+### Sektor Industrie (CRF 1.A.2 + 2)
 
-usw.
+### Sektor Verkehr (CRF 1.A.3)
+
+### Sektor Sonstige Energie (insbes. Gebäude) (CRF 1.A.4 + 1.A.5)
+
+### Sektor Landwirtschaft (CRF 3)
+
+### Sektor Abfall und Abwasser (CRF 5)

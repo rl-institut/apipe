@@ -10,15 +10,14 @@ from digipipe.store.utils import get_abs_dataset_path
 DATASET_PATH = get_abs_dataset_path(
     "datasets", "emissions_region", data_dir=True)
 
-rule create:
+rule create_chart_data:
     """
-    Extract and aggregate emissions
+    Extract and aggregate emissions for charts
     """
     input:
-        get_abs_dataset_path(
-            "raw", "emissions") / "data" / "emissions.csv"
+        get_abs_dataset_path("raw", "emissions") / "data" / "emissions.csv"
     output:
-        DATASET_PATH / "emissions.json"
+        DATASET_PATH / "emissions_chart_overview.json"
     run:
         emissions = pd.read_csv(
             input[0],
@@ -69,3 +68,13 @@ rule create:
 
         with open(output[0], "w", encoding="utf8") as f:
             json.dump(emissions_dict, f, indent=4)
+
+rule copy_emissions:
+    """
+    Copy raw emissions file
+    """
+    input:
+        get_abs_dataset_path("raw", "emissions") / "data" / "emissions.csv"
+    output:
+        DATASET_PATH / "emissions.csv"
+    shell: "cp -p {input} {output}"

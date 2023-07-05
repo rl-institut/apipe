@@ -1180,7 +1180,32 @@ resources:
     scalars:
       emissions:
         description: "Emissionen für Sachsen-Anhalt und die Region ABW für 1990 und 2019"
-        path: "scalars/emissions.json"
+        path: "scalars/emissions.csv"
+        fields:
+          sector:
+            description: "Sektor nach CRF"
+            unit: "-"
+          cat:
+            description: "Kategorie nach CRF"
+            unit: "-"
+          subcat:
+            description: "Unterkategorie nach CRF"
+            unit: "-"
+          name:
+            description: "Bezeichner"
+            unit: "-"
+          st:
+            description: "Emissionen Sachsen-Anhalt"
+            unit: "kt CO2äq"
+          abw:
+            description: "Emissionen Region ABW"
+            unit: "kt CO2äq"
+        _source_path:
+          dataset: "emissions_region"
+          file: "emissions.csv"
+      emissions_chart_overview:
+        description: "Chartdaten: Emissionen für Sachsen-Anhalt und die Region ABW für 1990 und 2019"
+        path: "scalars/emissions_chart_overview.json"
         fields:
           energy_industry:
             description: "Energiewirtschaft"
@@ -1202,4 +1227,4 @@ resources:
             unit: "kt CO2äq"
         _source_path:
           dataset: "emissions_region"
-          file: "emissions.json"
+          file: "emissions_chart_overview.json"

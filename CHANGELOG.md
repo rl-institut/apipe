@@ -58,6 +58,8 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Add dataset: osm_buildings and add stats on ground areas
 - Add mapping of costs and efficiencies from store/raw to store/datasets
 - Add dataset: emissions
+- Add mapping of time series data in datasets to empty time series according to
+  the mapping provided in map_ts.yml
 
 ### Changed
 
@@ -98,6 +100,10 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Pass time series instead of scalar with efficiency for central heat pump
 - Fix wind+pv_ground default values in panel settings
 - Set all default control values in panel settings
+- Adapt 2045_scenario.yml so that time series with values are used instead of
+  empty ts
+- Suppress warning of loosing data in source and comment columns while
+  unstacking if they are empty
 
 ### Removed
 
@@ -105,4 +111,5 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - sphinx from poetry environment
 - Remove dataset: osm_forest
 - Obsolete targets from rule all
+- Merge dataset costs_efficiencies into technology_data
 - Merge dataset costs_efficiencies into technology_data

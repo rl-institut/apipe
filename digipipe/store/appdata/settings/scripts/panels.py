@@ -117,14 +117,20 @@ def add_electricity_panel_settings(
             s_w_4_2=dict(start=False),
             s_w_5=dict(start=False),
             s_w_5_1=dict(
+                max=100,
+                min=0,
                 # Use theoretical values as start
                 # to meet the SQ capacity for sake of UX
-                start=search_area_start
+                start=search_area_start,
+                step=5,
             ),
             s_w_5_2=dict(
+                max=100,
+                min=0,
                 # Use theoretical values as start
                 # to meet the SQ capacity for sake of UX
-                start=search_area_start
+                start=search_area_start,
+                step=5,
             ),
         )
     )

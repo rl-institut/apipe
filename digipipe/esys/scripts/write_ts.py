@@ -9,9 +9,10 @@ The empty files are initially created using the "create_empty_ts" rule.
 
 The mapped time series are then written to
 "store/datasets/esys_raw/data/scalars/ts_efficiencies.csv",
-"store/datasets/esys_raw/data/scalars/ts_feedin.csv",
-"store/datasets/esys_raw/data/scalars/ts_load.csv" and the original files with
-the empty time series are deleted.
+"store/datasets/esys_raw/data/scalars/ts_feedin.csv" and
+"store/datasets/esys_raw/data/scalars/ts_load.csv".
+
+The original files with the empty time series are deleted.
 """
 
 import os

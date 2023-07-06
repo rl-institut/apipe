@@ -1,0 +1,25 @@
+load: {
+  "electricity-demand_hh-profile": "demand_hh_power_timeseries",
+  "electricity-demand_cts-profile": "demand_cts_power_timeseries",
+  "electricity-demand_ind-profile": "demand_ind_power_timeseries",
+  "heat_central-demand_hh-profile": "demand_hh_heat_timeseries",
+  "heat_central-demand_cts-profile": "demand_cts_heat_timeseries",
+  "heat_central-demand_ind-profile": "demand_ind_heat_timeseries",
+  "heat_decentral-demand_hh-profile": "demand_hh_heat_timeseries",
+  "heat_decentral-demand_cts-profile": "demand_cts_heat_timeseries",
+  "heat_decentral-demand_ind-profile": "demand_ind_heat_timeseries",
+}
+
+feedin: {
+  "hydro-ror-profile": "ror_feedin_timeseries",
+  "wind-onshore-profile": "wind_feedin_timeseries",
+  "solar-pv_ground-profile": "pv_feedin_timeseries",
+  "solar-pv_rooftop-profile": "pv_feedin_timeseries",
+  "electricity-bev_charging-profile": "pv_feedin_timeseries",
+  "solar-thermalcollector_central-profile": "st_feedin_timeseries",
+  "solar-thermalcollector_decentral-profile": "st_feedin_timeseries",
+}
+
+efficiencies: {
+  "efficiency-profile": "heatpump_cop_timeseries",
+}

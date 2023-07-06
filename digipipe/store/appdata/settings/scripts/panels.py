@@ -138,7 +138,6 @@ def add_electricity_panel_settings(
         )
         * 100
     )
-
     panel_settings.update(
         **dict(
             s_pv_ff_1=dict(

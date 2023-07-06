@@ -62,7 +62,7 @@ def add_electricity_panel_settings(
     wind_area_stats: pd.DataFrame,
     pv_ground_stats: pd.DataFrame,
     pv_ground_area_stats: pd.DataFrame,
-    pv_ground_area_shares: dict,
+    # pv_ground_area_shares: dict,
     pv_roof_stats: pd.DataFrame,
     pv_roof_area_stats: pd.DataFrame,
     pv_roof_area_deploy_stats: pd.DataFrame,
@@ -153,7 +153,7 @@ def add_electricity_panel_settings(
                 future_scenario=round(pv_ground_targets["target_power_total"]),
             ),
             s_pv_ff_3=dict(
-                max=pv_ground_area_shares["road_railway"] * 100,
+                max=100,
                 min=0,
                 # Use theoretical values as start
                 # to meet the SQ capacity for sake of UX
@@ -161,7 +161,7 @@ def add_electricity_panel_settings(
                 step=5,
             ),
             s_pv_ff_4=dict(
-                max=pv_ground_area_shares["agri"] * 100,
+                max=100,
                 min=0,
                 # Use theoretical values as start
                 # to meet the SQ capacity for sake of UX

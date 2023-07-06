@@ -68,6 +68,10 @@ panel_settings_templates:
       start: none
     s_w_5:
       start: none
+    s_w_5_1:
+      start: none
+    s_w_5_2:
+      start: none
     s_pv_ff_1:
       max: none
       min: none

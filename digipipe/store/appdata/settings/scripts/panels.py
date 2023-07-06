@@ -77,6 +77,22 @@ def add_electricity_panel_settings(
     storage_pv_roof: dict,
 ) -> PanelSettings:
 
+    search_area_start = round(
+        wind_stats.capacity_net.sum()
+        / (
+            wind_area_stats[
+                [
+                    "stp_2027_search_area_forest_area",
+                    "stp_2027_search_area_open_area",
+                ]
+            ]
+            .sum()
+            .sum()
+            * tech_data["power_density"]["wind"]
+        )
+        * 100
+    )
+
     # Wind energy
     panel_settings.update(
         **dict(
@@ -100,10 +116,29 @@ def add_electricity_panel_settings(
             s_w_4_1=dict(start=False),
             s_w_4_2=dict(start=False),
             s_w_5=dict(start=False),
+            s_w_5_1=dict(
+                # Use theoretical values as start
+                # to meet the SQ capacity for sake of UX
+                start=search_area_start
+            ),
+            s_w_5_2=dict(
+                # Use theoretical values as start
+                # to meet the SQ capacity for sake of UX
+                start=search_area_start
+            ),
         )
     )
 
     # PV ground and roof
+    search_area_start = round(
+        pv_ground_stats.capacity_net.sum()
+        / (
+            pv_ground_area_stats.sum().sum()
+            * tech_data["power_density"]["pv_ground"]
+        )
+        * 100
+    )
+
     panel_settings.update(
         **dict(
             s_pv_ff_1=dict(
@@ -120,13 +155,17 @@ def add_electricity_panel_settings(
             s_pv_ff_3=dict(
                 max=pv_ground_area_shares["road_railway"] * 100,
                 min=0,
-                start=0,
-                step=0.25,
+                # Use theoretical values as start
+                # to meet the SQ capacity for sake of UX
+                start=search_area_start,
+                step=5,
             ),
             s_pv_ff_4=dict(
                 max=pv_ground_area_shares["agri"] * 100,
                 min=0,
-                start=0,
+                # Use theoretical values as start
+                # to meet the SQ capacity for sake of UX
+                start=search_area_start,
                 step=5,
             ),
             s_pv_d_1=dict(

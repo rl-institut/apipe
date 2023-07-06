@@ -113,7 +113,7 @@ def add_electricity_panel_settings(
             ),
             s_w_3=dict(start=True),
             s_w_4=dict(start=False),
-            s_w_4_1=dict(start=False),
+            s_w_4_1=dict(start=True),
             s_w_4_2=dict(start=False),
             s_w_5=dict(start=False),
             s_w_5_1=dict(

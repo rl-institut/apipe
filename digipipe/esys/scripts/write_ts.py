@@ -276,8 +276,10 @@ def map_over_var_name_ts(path_ts, which, path_ts_updated):
         )
 
         updated_ts_df = pd.concat(
-            [updated_ts_df, ts_updated], ignore_index=True
+            [updated_ts_df, ts_updated], ignore_index=False
         )
+
+        updated_ts_df.index.name = ts_updated.index.name
 
     save_df(updated_ts_df, path_ts_updated)
 

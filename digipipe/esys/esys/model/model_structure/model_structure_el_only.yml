@@ -12,7 +12,6 @@ busses:
 
 components:
   - biomass-shortage
-  - biogas-shortage
   - electricity-import
   - electricity-export
   - electricity-bev_charging

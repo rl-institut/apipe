@@ -28,33 +28,7 @@ from digipipe.esys.esys.tools.data_processing import (
     stack_timeseries,
     unstack_timeseries,
 )
-
-
-def get_datasets_path():
-    """
-    Retrieve the path to the "datasets" directory within the project's "store"
-    directory.
-
-    Returns
-    -------
-    datasets_path : str
-        The absolute path to the "datasets" directory.
-    """
-    # Get the current file path
-    current_path = os.path.realpath(__file__)
-
-    # Navigate two parent directories up
-    parent_path = os.path.dirname(
-        os.path.dirname(os.path.dirname(current_path))
-    )
-
-    # Construct the path to the "store" directory
-    store_path = os.path.join(parent_path, "store")
-
-    # Construct the path to the "datasets" directory
-    datasets_path = os.path.join(store_path, "datasets")
-
-    return datasets_path
+from digipipe.store.utils import get_abs_dataset_path
 
 
 def check_if_ts_name_in_maps_ts(ts_name, mapping_file_name):
@@ -123,54 +97,6 @@ def get_datasets_data_name(key, which):
         )
 
     return value
-
-
-def get_datasets_file_path(file_name, dir_path):
-    """
-    Retrieve the complete file path for a given file name within the specified
-    directory path.
-
-    Parameters
-    ----------
-    file_name : str
-        The name of the file (without the file extension).
-    dir_path : str
-        The path to the directory containing a subdirectory 'data' with data.
-
-    Returns
-    -------
-    file_path : str
-        The complete file path to the specified file. Or None if the file path
-        does not exist.
-
-    """
-    file_path = None
-
-    # Get a list of all subdirectories in the "datasets" directory
-    subdirs = [
-        subdir
-        for subdir in os.listdir(dir_path)
-        if os.path.isdir(os.path.join(dir_path, subdir))
-    ]
-
-    # Loop through each subdir
-    for subdir in subdirs:
-        # Construct the path to the directory within the current subdir
-        data_path = os.path.join(dir_path, subdir, "data")
-
-        # Check if the directory exists
-        if os.path.exists(data_path):
-            # Construct the path to the file within the directory
-            file_path = os.path.join(data_path, file_name + ".csv")
-
-            # Check if the file exists
-            if os.path.isfile(file_path):
-                # Return the complete path to the file
-                return file_path
-            else:
-                file_path = None
-
-    return file_path
 
 
 def check_file_exists(path, file_name, df, mapping_file_name):
@@ -251,20 +177,16 @@ def map_over_var_name_ts(path_ts, which, path_ts_updated):
     # Create empty Dataframe for the updated time series
     updated_ts_df = pd.DataFrame(columns=HEADER_B3_TS)
 
-    # Get path of the directory store/datasets
-    datasets_path = get_datasets_path()
-
     # Load set of time series
     ts_set = load_b3_timeseries(path_ts)
 
     # Loop over rows (set) of ts
     for index, row in ts_set.iterrows():
-
         check_if_ts_name_in_maps_ts(row["var_name"], "map_ts.yml")
         datasets_file_name = get_datasets_data_name(row["var_name"], which)
-        datasets_file_path = get_datasets_file_path(
-            datasets_file_name, datasets_path
-        )
+        datasets_file_path = get_abs_dataset_path(
+            "datasets", datasets_file_name.get("dataset"), data_dir=True
+        ) / datasets_file_name.get("file")
 
         check_file_exists(
             datasets_file_path, datasets_file_name, row, "map_ts.yml"

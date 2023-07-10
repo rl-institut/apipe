@@ -523,6 +523,17 @@ Hierbei wird nach Technologien für dezentrale sowie Fernwärme unterschieden.
 
 
 ------------------------------
+## Captions
+
+Beschriftungen für WebApp.
+
+Dateien:
+- Felder: `captions_fields.json`
+
+**Dataset: `datasets/captions`**
+
+
+------------------------------
 ## Potenzialgebiete Windenergie
 
 Potenzialgebiete für die Errichtung von Windenergieanlagen, basierend auf den

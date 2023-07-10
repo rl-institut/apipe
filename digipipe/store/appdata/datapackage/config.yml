@@ -1228,3 +1228,20 @@ resources:
         _source_path:
           dataset: "emissions_region"
           file: "emissions_chart_overview.json"
+
+  # Captions
+  captions:
+    captions:
+      fields:
+        description: "Captions für Datensatzfelder"
+        path: "captions/captions_fields.json"
+        fields:
+          datasets_caption_map:
+            description: "Mapping File -> Eintrag"
+            unit: "-"
+          captions:
+            description: "Eintrag mit Beschriftungstexten"
+            unit: "-"
+        _source_path:
+          dataset: "captions"
+          file: "captions_fields.json"

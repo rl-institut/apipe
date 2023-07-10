@@ -8,6 +8,8 @@ import json
 import geopandas as gpd
 import numpy as np
 import pandas as pd
+from pathlib import Path
+from digipipe.scripts.data_io import load_json
 from digipipe.scripts.geo import clip_raster, raster_zonal_stats
 from digipipe.store.utils import (
     get_abs_dataset_path,
@@ -407,3 +409,25 @@ rule heating_structure_hh_cts:
         demand_dec.to_csv(output.heating_structure_esys_dec)
 
         # TODO: Central heating structure, cf. config -> district_heating
+
+rule create_captions:
+    """
+    Create attribute captions for app
+    """
+    input:
+        demand=rules.datasets_demand_heat_region_heating_structure_hh_cts.output,
+        bmwk_lts=rules.preprocessed_bmwk_long_term_scenarios_create_captions.output[0]
+    output: DATASET_PATH / "demand_heat_region_attribute_captions.json"
+    run:
+        bmwk_lts = load_json(input.bmwk_lts)
+        captions = {
+            "datasets_caption_map": {
+                Path(f).stem: "demand_heat" for f in input.demand
+            },
+            "captions": {
+                "demand_heat":
+                    bmwk_lts["captions"]["bmwk_long_term_scenarios"]
+            }
+        }
+        with open(output[0], "w", encoding="utf8") as f:
+            json.dump(captions, f, indent=4)

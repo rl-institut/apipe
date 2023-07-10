@@ -146,7 +146,7 @@ module emissions_region:
     config: config["store"]["datasets"]["emissions_region"]
 use rule * from emissions_region as datasets_emissions_region_ *
 
-module captions:
-    snakefile: "captions/create.smk"
-    config: config["store"]["datasets"]["captions"]
-use rule * from captions as datasets_captions_ *
+module app_captions:
+    snakefile: "app_captions/create.smk"
+    config: config["store"]["datasets"]["app_captions"]
+use rule * from app_captions as datasets_app_captions_ *

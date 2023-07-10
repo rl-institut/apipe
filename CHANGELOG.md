@@ -100,6 +100,7 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Fix wind+pv_ground default values in panel settings
 - Set all default control values in panel settings
 - Kick biogas shortage
+- Rename dataset captions to app_captions
 
 ### Removed
 

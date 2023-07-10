@@ -1243,5 +1243,5 @@ resources:
             description: "Eintrag mit Beschriftungstexten"
             unit: "-"
         _source_path:
-          dataset: "captions"
+          dataset: "app_captions"
           file: "captions_fields.json"

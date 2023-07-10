@@ -77,7 +77,8 @@ def add_electricity_panel_settings(
     storage_pv_roof: dict,
 ) -> PanelSettings:
 
-    search_area_start = round(
+    # Wind energy
+    wind_search_area_start = round(
         wind_stats.capacity_net.sum()
         / (
             wind_area_stats[
@@ -93,7 +94,6 @@ def add_electricity_panel_settings(
         * 100
     )
 
-    # Wind energy
     panel_settings.update(
         **dict(
             s_w_1=dict(
@@ -121,7 +121,7 @@ def add_electricity_panel_settings(
                 min=0,
                 # Use theoretical values as start
                 # to meet the SQ capacity for sake of UX
-                start=search_area_start,
+                start=wind_search_area_start,
                 step=5,
             ),
             s_w_5_2=dict(
@@ -129,14 +129,14 @@ def add_electricity_panel_settings(
                 min=0,
                 # Use theoretical values as start
                 # to meet the SQ capacity for sake of UX
-                start=search_area_start,
+                start=wind_search_area_start,
                 step=5,
             ),
         )
     )
 
     # PV ground and roof
-    search_area_start = round(
+    pv_ground_search_area_start = round(
         pv_ground_stats.capacity_net.sum()
         / (
             pv_ground_area_stats.sum().sum()
@@ -144,6 +144,18 @@ def add_electricity_panel_settings(
         )
         * 100
     )
+    pv_roof_capacity_max = (
+        pv_roof_area_stats[
+            [
+                f"installable_power_{orient}"
+                for orient in ["south", "east", "west", "flat"]
+            ]
+        ]
+        .sum()
+        .sum()
+        * 0.5
+    )  # Max. 50% of all roofs except for north-oriented
+
     panel_settings.update(
         **dict(
             s_pv_ff_1=dict(
@@ -162,7 +174,7 @@ def add_electricity_panel_settings(
                 min=0,
                 # Use theoretical values as start
                 # to meet the SQ capacity for sake of UX
-                start=search_area_start,
+                start=pv_ground_search_area_start,
                 step=5,
             ),
             s_pv_ff_4=dict(
@@ -170,15 +182,11 @@ def add_electricity_panel_settings(
                 min=0,
                 # Use theoretical values as start
                 # to meet the SQ capacity for sake of UX
-                start=search_area_start,
+                start=pv_ground_search_area_start,
                 step=5,
             ),
             s_pv_d_1=dict(
-                max=round(
-                    # max. 30 % of all roofs
-                    pv_roof_area_stats.installable_power_total.sum()
-                    * 0.3
-                ),
+                max=round(pv_roof_capacity_max),
                 min=0,
                 start=round(pv_roof_stats.capacity_net.sum()),
                 step=10,

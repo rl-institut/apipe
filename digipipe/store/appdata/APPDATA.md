@@ -5,16 +5,12 @@ App-ready datasets for the
 
 ## Structure and content
 
-| Directory   | File                        | Content                                       |
-|-------------|-----------------------------|-----------------------------------------------|
-| esys        |                             | Energy system topology and scenario           |
-|             |                             |                                               |
-| datapackage |                             | [Datapackage for app](datapackage/dataset.md) |
-|             |                             |                                               |
-| metadata    |                             |                                               |
-| settings    |                             | Settings for app                              |
-|             | energy_settings_panel.json  | Energy panel settings                         |
-|             | captions.json               | Captions                                      |
-|             |                             |                                               |
+| Directory   | File/dir             | Content                                       |
+|-------------|----------------------|-----------------------------------------------|
+| esys        |                      | Energy system topology and scenario           |
+|             |                      |                                               |
+| datapackage | datapackage_app.json | [Datapackage for app](datapackage/dataset.md) |
+|             |                      |                                               |
+| metadata    |                      |                                               |
 
 The app data is loaded on app startup.

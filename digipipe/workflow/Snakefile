@@ -29,14 +29,7 @@ include: "../esys/Snakefile"
 
 rule all:
     input:
-        mastr_names=rules.datasets_bnetza_mastr_captions_create.output,
-
-        potarea_wind2=rules.datasets_potentialarea_wind_region_create_captions.output,
-
         app_datapackage=rules.appdata_datapackage_create_datapackage.output,
-        app_settings=rules.appdata_settings_create_map_panel_layer_list.output,
-        app_settings2=rules.appdata_settings_create_panel_settings.output,
-
         esys_appdata=rules.make_esys_appdata.output
 
     # run:

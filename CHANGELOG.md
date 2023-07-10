@@ -58,6 +58,7 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Add dataset: osm_buildings and add stats on ground areas
 - Add mapping of costs and efficiencies from store/raw to store/datasets
 - Add dataset: emissions
+- Add captions to app datapackage (here: MaStR, heat, potentialarea_wind)
 - Add mapping of time series data in datasets to empty time series according to
   the mapping provided in map_ts.yml
 
@@ -101,6 +102,8 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Fix wind+pv_ground default values in panel settings
 - Set all default control values in panel settings
 - Kick biogas shortage
+- Rename dataset captions to app_captions
+- Move app settings to datasets and include in app datapackage
 - Adapt 2045_scenario.yml so that time series with values are used instead of
   empty ts
 - Suppress warning of loosing data in source and comment columns while

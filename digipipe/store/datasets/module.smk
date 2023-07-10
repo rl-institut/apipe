@@ -145,3 +145,13 @@ module emissions_region:
     snakefile: "emissions_region/create.smk"
     config: config["store"]["datasets"]["emissions_region"]
 use rule * from emissions_region as datasets_emissions_region_ *
+
+module app_captions:
+    snakefile: "app_captions/create.smk"
+    config: config["store"]["datasets"]["app_captions"]
+use rule * from app_captions as datasets_app_captions_ *
+
+module app_settings:
+    snakefile: "app_settings/create.smk"
+    config: config["store"]["datasets"]["app_settings"]
+use rule * from app_settings as datasets_app_settings_*

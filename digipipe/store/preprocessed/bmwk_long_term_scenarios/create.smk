@@ -3,8 +3,10 @@ Snakefile for this dataset
 
 Note: To include the file in the main workflow, it must be added to the respective module.smk .
 """
+import json
 import os
 import pandas as pd
+from pathlib import Path
 
 from digipipe.store.utils import get_abs_dataset_path
 
@@ -52,4 +54,21 @@ rule rename_columns_carriers:
         data = data.replace(config["rename_entries"])
 
         data.to_csv(output[0], index=False)
-        os.remove(input[0])
+        #os.remove(input[0])
+
+rule create_captions:
+    """
+    Create attribute captions for app
+    """
+    input: [DATASET_PATH / f for f in config["files_extract"]]
+    output: DATASET_PATH / "bmwk_long_term_scenarios_attribute_captions.json"
+    run:
+        captions = dict(
+            datasets_caption_map={
+                Path(f).stem: "bmwk_long_term_scenarios" for f in input},
+            captions={"bmwk_long_term_scenarios": {
+                v: k for k, v in config["rename_entries"].items()}
+            },
+        )
+        with open(output[0], "w", encoding="utf8") as f:
+            json.dump(captions, f, indent=4)

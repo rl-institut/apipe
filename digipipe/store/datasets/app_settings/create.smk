@@ -9,21 +9,21 @@ import pandas as pd
 
 from digipipe.scripts.data_io import load_json
 from digipipe.store.utils import get_abs_dataset_path
-from digipipe.store.appdata.settings.scripts.panels import (
+from digipipe.store.datasets.app_settings.scripts.panels import (
     PanelSettings,
     add_electricity_panel_settings,
     add_heat_panel_settings,
     add_traffic_panel_settings
 )
 
-DATASET_PATH = get_abs_dataset_path("appdata", "settings", data_dir=True)
+DATASET_PATH = get_abs_dataset_path("datasets", "app_settings", data_dir=True)
 
 
 rule create_map_panel_layer_list:
     """
     Create layer list for right map panel
     """
-    input: rules.appdata_datapackage_create_datapackage.output
+    input: DATASET_PATH / "energy_settings_panel.json"  # Any file (no input required)
     output: DATASET_PATH / "map_panel_layer_list.json"
     run:
         print("Creating list of layers...")

@@ -15,8 +15,3 @@ module datapackage:
     snakefile: "datapackage/create.smk"
     config: config["store"]["appdata"]["datapackage"]
 use rule * from datapackage as appdata_datapackage_*
-
-module settings:
-    snakefile: "settings/create.smk"
-    config: config["store"]["appdata"]["settings"]
-use rule * from settings as appdata_settings_*

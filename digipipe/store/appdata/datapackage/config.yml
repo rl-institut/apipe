@@ -1229,10 +1229,64 @@ resources:
           dataset: "emissions_region"
           file: "emissions_chart_overview.json"
 
+  # Settings
+  settings:
+    panels:
+      energy_settings_panel:
+        description: "Einstellungen für Panel Strom"
+        path: "settings/energy_settings_panel.json"
+        fields:
+          s_w_1:
+            description: "Attribute für Slider s_w_1"
+            unit: "-"
+        _source_path:
+          dataset: "app_settings"
+          file: "energy_settings_panel.json"
+      heat_settings_panel:
+        description: "Einstellungen für Panel Wärme"
+        path: "settings/heat_settings_panel.json"
+        fields:
+          w_d_wp_1:
+            description: "Attribute für Slider w_d_wp_1"
+            unit: "-"
+        _source_path:
+          dataset: "app_settings"
+          file: "heat_settings_panel.json"
+      traffic_settings_panel:
+        description: "Einstellungen für Panel Verkehr"
+        path: "settings/traffic_settings_panel.json"
+        fields:
+          v_iv_1:
+            description: "Attribute für Slider v_iv_1"
+            unit: "-"
+        _source_path:
+          dataset: "app_settings"
+          file: "traffic_settings_panel.json"
+    map:
+      map_panel_layer_list:
+        description: "Layerliste (rechtes Panel)"
+        path: "settings/map_panel_layer_list.json"
+        fields:
+          boundaries:
+            description: "Grenzen"
+            unit: "-"
+          energy:
+            description: "Energie"
+            unit: "-"
+          settlements_infrastructure:
+            description: "Siedlungen und Infrastruktur"
+            unit: "-"
+          nature_landscape:
+            description: "Natur und Landschaft"
+            unit: "-"
+        _source_path:
+          dataset: "app_settings"
+          file: "map_panel_layer_list.json"
+
   # Captions
   captions:
     captions:
-      fields:
+      captions_fields:
         description: "Captions für Datensatzfelder"
         path: "captions/captions_fields.json"
         fields:
@@ -1243,5 +1297,5 @@ resources:
             description: "Eintrag mit Beschriftungstexten"
             unit: "-"
         _source_path:
-          dataset: "captions"
+          dataset: "app_captions"
           file: "captions_fields.json"

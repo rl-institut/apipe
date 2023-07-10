@@ -1232,7 +1232,7 @@ resources:
   # Captions
   captions:
     captions:
-      fields:
+      captions_fields:
         description: "Captions für Datensatzfelder"
         path: "captions/captions_fields.json"
         fields:

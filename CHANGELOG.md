@@ -100,6 +100,7 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Pass time series instead of scalar with efficiency for central heat pump
 - Fix wind+pv_ground default values in panel settings
 - Set all default control values in panel settings
+- Kick biogas shortage
 - Adapt 2045_scenario.yml so that time series with values are used instead of
   empty ts
 - Suppress warning of loosing data in source and comment columns while

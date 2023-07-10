@@ -1,6 +1,5 @@
 'bus': [
     'biomass-shortage',
-    'biogas-shortage',
     'ch4-import',
     'electricity-bev_charging',
     'electricity-large_scale_battery',

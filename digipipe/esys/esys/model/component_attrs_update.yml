@@ -420,15 +420,6 @@ biomass-biogas_plant:
 
 # Bus "biogas":
 
-biogas-shortage:
-  carrier: biogas
-  tech: shortage
-  type: shortage
-  foreign_keys:
-    bus: biogas
-  defaults:
-    output_parameters: "{}"
-
 biogas-biogas_upgrading_plant:
   carrier: biogas
   tech: biogas_upgrading_plant

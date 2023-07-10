@@ -44,7 +44,6 @@ components:
   - biogas-bpchp_central
   - biogas-bpchp_decentral
   - biogas-biogas_upgrading_plant
-  - biogas-shortage
 
 #  - h2-cavern
 #  - h2-demand

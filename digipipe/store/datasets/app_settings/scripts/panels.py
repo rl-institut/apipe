@@ -395,7 +395,7 @@ def add_heat_panel_settings(
     panel_settings.update(
         **dict(
             w_v_1=dict(
-                max=100,
+                max=200,
                 min=50,
                 start=100,
                 step=10,

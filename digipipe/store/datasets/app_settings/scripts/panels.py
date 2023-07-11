@@ -240,10 +240,6 @@ def add_electricity_panel_settings(
     total_demand = (demand_hh_power + demand_cts_power + demand_ind_power).sum()
     feedin_wind_pv_daily_mean = (
         (
-            pv_roof_stats.capacity_net.sum()
-            * tech_data["full_load_hours"]["pv_roof"]["2022"]
-        )
-        + (
             pv_ground_stats.capacity_net.sum()
             * tech_data["full_load_hours"]["pv_ground"]["2022"]
         )

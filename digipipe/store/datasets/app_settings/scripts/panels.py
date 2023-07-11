@@ -247,7 +247,8 @@ def add_electricity_panel_settings(
             wind_stats.capacity_net.sum()
             * tech_data["full_load_hours"]["wind"]["2022"]
         )
-    ) / 365
+    ) / 365  # Daily in MWh
+
     panel_settings.update(
         **dict(
             s_v_1=dict(
@@ -297,14 +298,16 @@ def add_electricity_panel_settings(
                 ),
             ),
             s_s_g_1=dict(
-                max=round(feedin_wind_pv_daily_mean / 10),
+                max=round(
+                    0.5 * feedin_wind_pv_daily_mean
+                ),  # value for 50 % (cf. s_s_g_3)
                 min=0,
                 start=round(storage_large_stats.storage_capacity.sum()),
-                step=0.1,
+                step=50,
                 status_quo=round(storage_large_stats.storage_capacity.sum()),
             ),
             s_s_g_3=dict(
-                max=10,
+                max=50,
                 min=0,
                 start=round(
                     storage_large_stats.storage_capacity.sum()
@@ -312,7 +315,7 @@ def add_electricity_panel_settings(
                     * 100,
                     1,
                 ),
-                step=0.25,
+                step=1,
                 status_quo=round(
                     storage_large_stats.storage_capacity.sum()
                     / feedin_wind_pv_daily_mean

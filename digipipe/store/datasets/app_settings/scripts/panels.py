@@ -375,7 +375,8 @@ def add_heat_panel_settings(
                 start=round(heat_pump_share.loc[2022] * 100),
                 step=5,
                 status_quo=round(heat_pump_share.loc[2022] * 100),
-                future_scenario=0,  # Todo: Insert cen heating structure targets
+                # TODO: Insert cen heating structure targets
+                # future_scenario=0,
             ),
             w_z_wp_3=dict(
                 max=100,
@@ -383,7 +384,8 @@ def add_heat_panel_settings(
                 start=round(heat_pump_share.loc[2022] * 100),
                 step=5,
                 status_quo=round(heat_pump_share.loc[2022] * 100),
-                future_scenario=0,  # Todo: Insert cen heating structure targets
+                # TODO: Insert cen heating structure targets
+                # future_scenario=0,
             ),
         )
     )
@@ -485,16 +487,16 @@ def add_traffic_panel_settings(
                 min=0,
                 start=0,  # TODO
                 step=5,
-                status_quo=0,  # TODO
-                future_scenario=0,  # TODO
+                # status_quo=0,  # TODO
+                # future_scenario=0,  # TODO
             ),
             v_iv_3=dict(
                 max=100,
                 min=0,
                 start=0,  # TODO
                 step=5,
-                status_quo=0,  # TODO
-                future_scenario=0,  # TODO
+                # status_quo=0,  # TODO
+                # future_scenario=0,  # TODO
             ),
         )
     )

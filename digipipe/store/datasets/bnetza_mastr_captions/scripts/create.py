@@ -17,6 +17,7 @@ def process() -> None:
                 naming_dict[v] = replace_umlaut(
                     re.sub("([a-z])([A-Z])", "\g<1> \g<2>", k)
                 )
+    naming_dict.update(snakemake.params.additional_captions)
 
     naming_dict = {
         "datasets_caption_map": {

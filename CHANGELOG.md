@@ -109,6 +109,8 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Suppress warning of loosing data in source and comment columns while
   unstacking if they are empty
 - Change max. installable PV roof capacity in panel settings
+- Fix panel settings for large batteries
+- Add additional captions to MaStR captions
 
 ### Removed
 

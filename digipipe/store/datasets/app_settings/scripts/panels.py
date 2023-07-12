@@ -1,3 +1,5 @@
+import math
+
 import geopandas as gpd
 import pandas as pd
 
@@ -240,10 +242,6 @@ def add_electricity_panel_settings(
     total_demand = (demand_hh_power + demand_cts_power + demand_ind_power).sum()
     feedin_wind_pv_daily_mean = (
         (
-            pv_roof_stats.capacity_net.sum()
-            * tech_data["full_load_hours"]["pv_roof"]["2022"]
-        )
-        + (
             pv_ground_stats.capacity_net.sum()
             * tech_data["full_load_hours"]["pv_ground"]["2022"]
         )
@@ -251,7 +249,8 @@ def add_electricity_panel_settings(
             wind_stats.capacity_net.sum()
             * tech_data["full_load_hours"]["wind"]["2022"]
         )
-    ) / 365
+    ) / 365  # Daily in MWh
+
     panel_settings.update(
         **dict(
             s_v_1=dict(
@@ -301,27 +300,33 @@ def add_electricity_panel_settings(
                 ),
             ),
             s_s_g_1=dict(
-                max=round(feedin_wind_pv_daily_mean / 10),
+                max=50,
                 min=0,
-                start=round(storage_large_stats.storage_capacity.sum()),
-                step=0.1,
-                status_quo=round(storage_large_stats.storage_capacity.sum()),
+                start=math.ceil(
+                    storage_large_stats.storage_capacity.sum()
+                    / feedin_wind_pv_daily_mean
+                    * 100,
+                ),
+                step=1,
+                status_quo=math.ceil(
+                    storage_large_stats.storage_capacity.sum()
+                    / feedin_wind_pv_daily_mean
+                    * 100,
+                ),
             ),
             s_s_g_3=dict(
-                max=10,
+                max=50,
                 min=0,
-                start=round(
+                start=math.ceil(
                     storage_large_stats.storage_capacity.sum()
                     / feedin_wind_pv_daily_mean
                     * 100,
-                    1,
                 ),
-                step=0.25,
-                status_quo=round(
+                step=1,
+                status_quo=math.ceil(
                     storage_large_stats.storage_capacity.sum()
                     / feedin_wind_pv_daily_mean
                     * 100,
-                    1,
                 ),
             ),
         )
@@ -376,7 +381,8 @@ def add_heat_panel_settings(
                 start=round(heat_pump_share.loc[2022] * 100),
                 step=5,
                 status_quo=round(heat_pump_share.loc[2022] * 100),
-                future_scenario=0,  # Todo: Insert cen heating structure targets
+                # TODO: Insert cen heating structure targets
+                # future_scenario=0,
             ),
             w_z_wp_3=dict(
                 max=100,
@@ -384,7 +390,8 @@ def add_heat_panel_settings(
                 start=round(heat_pump_share.loc[2022] * 100),
                 step=5,
                 status_quo=round(heat_pump_share.loc[2022] * 100),
-                future_scenario=0,  # Todo: Insert cen heating structure targets
+                # TODO: Insert cen heating structure targets
+                # future_scenario=0,
             ),
         )
     )
@@ -394,7 +401,7 @@ def add_heat_panel_settings(
     panel_settings.update(
         **dict(
             w_v_1=dict(
-                max=100,
+                max=200,
                 min=50,
                 start=100,
                 step=10,
@@ -486,16 +493,16 @@ def add_traffic_panel_settings(
                 min=0,
                 start=0,  # TODO
                 step=5,
-                status_quo=0,  # TODO
-                future_scenario=0,  # TODO
+                # status_quo=0,  # TODO
+                # future_scenario=0,  # TODO
             ),
             v_iv_3=dict(
                 max=100,
                 min=0,
                 start=0,  # TODO
                 step=5,
-                status_quo=0,  # TODO
-                future_scenario=0,  # TODO
+                # status_quo=0,  # TODO
+                # future_scenario=0,  # TODO
             ),
         )
     )

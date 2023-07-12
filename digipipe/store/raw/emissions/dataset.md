@@ -23,12 +23,45 @@ Hier Beschreibungstext
 
 ### Sektor Energiewirtschaft (CRF 1.A.1 + 1.B)
 
+###### CRF 1.A.1
+
+EnbG: Emissionen aus europäischem Emissionshandel
+
+###### CRF 1.B
+
+EnbG: Emissionen aus europäischem Emissionshandel
+
 ### Sektor Industrie (CRF 1.A.2 + 2)
+
+###### CRF 1.A.2
+
+EnbG: Energienutzung nach Ennergieträgern
+
+###### CRF 2 Prozessemissionen
+
+EnbG: in Industrie beschäftigte Personen
 
 ### Sektor Verkehr (CRF 1.A.3)
 
+EnbG:
+
+* Zugelassene Kraftfahrzeuge
+* gewichtet mit durchschn. Fahrleistung und spez. CO2 Emission pro km und Fahrzeugklasse
+
 ### Sektor Sonstige Energie (insbes. Gebäude) (CRF 1.A.4 + 1.A.5)
+
+EnbG: Wärmebedarf aus Energiesystem
 
 ### Sektor Landwirtschaft (CRF 3)
 
+###### CRF 3.A - Landwirtschaft – Fermentation
+
+EnbG: Viehbestände
+
+###### CRF 3.B-J:
+
+EnbG: landwirtschaftlich genutzte Fläche
+
 ### Sektor Abfall und Abwasser (CRF 5)
+
+EnbG: Bevölkerung ABW

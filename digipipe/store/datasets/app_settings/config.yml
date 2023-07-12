@@ -191,14 +191,14 @@ panel_settings_templates:
       start: none
       step: none
       status_quo: none
-      future_scenario: none
+      # future_scenario: none
     w_z_wp_3:
       max: none
       min: none
       start: none
       step: none
       status_quo: none
-      future_scenario: none
+      # future_scenario: none
     w_v_1:
       max: none
       min: none
@@ -254,12 +254,12 @@ panel_settings_templates:
       min: none
       start: none
       step: none
-      status_quo: none
-      future_scenario: none
+      # status_quo: none
+      # future_scenario: none
     v_iv_3:
       max: none
       min: none
       start: none
       step: none
-      status_quo: none
-      future_scenario: none
+      # status_quo: none
+      # future_scenario: none

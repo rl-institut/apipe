@@ -338,7 +338,10 @@ rule heating_structure_hh_cts:
             "TN-Strom_buildings_heating_demand_by_carrier_reformatted.csv",
         demand_future_T45=get_abs_dataset_path(
             "preprocessed","bmwk_long_term_scenarios") / "data" /
-            "T45-Strom_buildings_heating_demand_by_carrier_reformatted.csv"
+            "T45-Strom_buildings_heating_demand_by_carrier_reformatted.csv",
+        rel_capacities_biomass_dec=get_abs_dataset_path(
+            "preprocessed","dbfz_biomass_capacity_rel") / "data" /
+            "dbfz_biomass_capacity_rel_decentral.csv"
     output:
         # heating_structure_cen=(
         #     #DATASET_PATH / "demand_{sector}_heat_structure_cen.csv"
@@ -405,8 +408,62 @@ rule heating_structure_hh_cts:
             "electricity_heat_pump": "heat_pump"})
         demand_dec = demand_dec.reset_index().groupby(["year", "carrier"]).sum()
 
+        # Reset index
+        demand_dec.reset_index(inplace=True)
+
+        # Read relative capacities
+        rel_capacities_biomass_dec = pd.read_csv(
+            input.rel_capacities_biomass_dec, index_col="year"
+        )
+        rel_capacities_biomass_dec.reset_index(inplace=True)
+
+        # Get years from config
+        years = config["heating_structure"].get("years")
+
+        # Get relative demand per conversion technology
+        # In the following, it is assumed for simplification that the
+        # distribution over the capacity corresponds to that of the energy
+        # amount. For this to be the case, the full load hours of all
+        # conversion plants would have to be the same, but in reality they are
+        # not.
+        for year in years:
+            demand_rel_biomass = demand_dec.loc[
+                demand_dec["carrier"].eq("biomass")
+                & demand_dec["year"].eq(year),
+                "demand_rel",
+            ]
+            rel_capacities_biomass_dec.loc[
+                rel_capacities_biomass_dec["year"] == year, "capacity_rel"
+            ] *= demand_rel_biomass.values[0]
+
+        # Rename column "capacity_rel" to "demand_rel"
+        rel_capacities_biomass_dec.rename(
+            {"capacity_rel": "demand_rel"}, axis=1, inplace=True
+        )
+
+        # Merge Dataframe with relative capacities with the one with relative
+        # demands
+        demand_dec_updated = pd.concat(
+            [demand_dec, rel_capacities_biomass_dec], ignore_index=True
+        )
+
+        # Drop redundant entry fro biomass
+        demand_dec_updated.drop(
+            demand_dec_updated[
+                demand_dec_updated["carrier"] == "biomass"
+            ].index,
+            inplace=True,
+        )
+
+        # Sort by year
+        demand_dec_updated.sort_values(
+            by=["year"], inplace=True, ignore_index=True
+        )
+
         # Dump heating structure (for esys)
-        demand_dec.to_csv(output.heating_structure_esys_dec)
+        demand_dec_updated.to_csv(
+            output.heating_structure_esys_dec, index=False
+        )
 
         # TODO: Central heating structure, cf. config -> district_heating
 

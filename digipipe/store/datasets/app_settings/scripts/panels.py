@@ -1,3 +1,5 @@
+import math
+
 import geopandas as gpd
 import pandas as pd
 
@@ -298,29 +300,33 @@ def add_electricity_panel_settings(
                 ),
             ),
             s_s_g_1=dict(
-                max=round(
-                    0.5 * feedin_wind_pv_daily_mean
-                ),  # value for 50 % (cf. s_s_g_3)
+                max=50,
                 min=0,
-                start=round(storage_large_stats.storage_capacity.sum()),
-                step=50,
-                status_quo=round(storage_large_stats.storage_capacity.sum()),
+                start=math.ceil(
+                    storage_large_stats.storage_capacity.sum()
+                    / feedin_wind_pv_daily_mean
+                    * 100,
+                ),
+                step=1,
+                status_quo=math.ceil(
+                    storage_large_stats.storage_capacity.sum()
+                    / feedin_wind_pv_daily_mean
+                    * 100,
+                ),
             ),
             s_s_g_3=dict(
                 max=50,
                 min=0,
-                start=round(
+                start=math.ceil(
                     storage_large_stats.storage_capacity.sum()
                     / feedin_wind_pv_daily_mean
                     * 100,
-                    1,
                 ),
                 step=1,
-                status_quo=round(
+                status_quo=math.ceil(
                     storage_large_stats.storage_capacity.sum()
                     / feedin_wind_pv_daily_mean
                     * 100,
-                    1,
                 ),
             ),
         )

@@ -72,11 +72,11 @@ rule create:
                     [all_shares_biomass_cap, share_biomass_cap]
                 )
 
-        # Save the file
-        if supply == "central":
-            all_shares_biomass_cap.to_csv(output.output_cen, index=False)
-        elif supply == "decentral":
-            all_shares_biomass_cap.to_csv(output.output_dec, index=False)
-        else:
-            raise ValueError("Please provide either 'central' or 'decentral'"
-                             "with 'supply'")
+            # Save the file
+            if supply == "central":
+                all_shares_biomass_cap.to_csv(output.output_cen, index=False)
+            elif supply == "decentral":
+                all_shares_biomass_cap.to_csv(output.output_dec, index=False)
+            else:
+                raise ValueError("Please provide either 'central' or 'decentral'"
+                                 "with 'supply'")

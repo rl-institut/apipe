@@ -117,6 +117,13 @@ Die Beheizungsstruktur für 2020 und 2045 wird den
 [BMWK Langfristszenarien](../../preprocessed/bmwk_long_term_scenarios/dataset.md)
 entnommen (Gebäude: Haushalte und GHD Energiebedarf) und für 2022 interpoliert.
 Hierbei wird nach Technologien für dezentrale sowie Fernwärme unterschieden.
+Für die Biomasse wird der relative Energiebedarf mit Hilfe von Anteilen der
+installierten Leistung von spezifischen Biomasse-Konversionsanlagen
+[dbfz_biomasss_capacity_rel](../../preprocessed/dbfz_biomasss_capacity_rel/dataset.md)
+je Technologie aufgelöst. Der Vereinfachung halber wird angenommen, dass die
+relative installierte Leistung der relativen Energiemenge entspricht. Dazu
+müssten die Volllaststunden aller Konversionsanlagen gleich sein, was aber in
+der Realität nicht der Fall ist.
 
 ## Ergebnisdaten
 

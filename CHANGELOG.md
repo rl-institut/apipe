@@ -111,6 +111,7 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Change max. installable PV roof capacity in panel settings
 - Fix panel settings for large batteries
 - Add additional captions to MaStR captions
+- Use LTS version of OSM
 
 ### Removed
 

@@ -61,6 +61,9 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Add captions to app datapackage (here: MaStR, heat, potentialarea_wind)
 - Add mapping of time series data in datasets to empty time series according to
   the mapping provided in map_ts.yml
+- Add dataset: dbfz_biomass_heat_capacities
+- Add the calculation of relative demand of biomass conversion technologies via
+  their relative capacities
 
 ### Changed
 
@@ -112,6 +115,8 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Fix panel settings for large batteries
 - Add additional captions to MaStR captions
 - Use LTS version of OSM
+- Replace the relative demand of biomass with the relative demand of each
+  biomass conversion technology
 
 ### Removed
 

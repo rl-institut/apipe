@@ -1,142 +1,6 @@
 # 'Raw' Datasets 
 
 ------------------------------
-## Energiedaten Sachsen-Anhalt
-
-Datensätze zur Energie- und Wasserversorgung des Statistischen Landesamtes
-Sachsen-Anhalt.
-
-### Daten
-
-Stromverbrauch der Industriebetriebe nach Kreisen 2003-2021 in MWh
-- [Quelle](https://statistik.sachsen-anhalt.de/themen/wirtschaftsbereiche/energie-und-wasserversorgung/tabellen-energieverwendung#c206986)
-
-**Dataset: `raw/stala_st_energy`**
-
-??? metadata "Metadata"
-    ```json
-    {
-        "Datenquellen": {
-            "Stromverbrauch der Industriebetriebe nach Kreisen": "https://statistik.sachsen-anhalt.de/themen/wirtschaftsbereiche/energie-und-wasserversorgung/tabellen-energieverwendung#c206986"
-        }
-    }
-    ```
-
-------------------------------
-## sEEnergies Pan-European Thermal Atlas 5.2 (Peta5)
-
-Wärmebedarf für Europa 2015 in GJ (1ha Auflösung) für
-- Haushalte: Raumwärme und Warmwasser
-- GHD: Raumwärme, Warmwasser und Prozesswärme
-
-Die Daten können auf der
-[Projektseite](https://s-eenergies-open-data-euf.hub.arcgis.com)
-eingesehen werden.
-
-### Haushalte
-
-Abgerufen mittels
-
-```commandline
-wget -O Peta5_0_1_HD_res.zip https://arcgis.com/sharing/rest/content/items/d7d18b63250240a49eb81db972aa573e/data
-```
-
-### GHD und Industrie
-
-Abgerufen mittels
-
-```commandline
-wget -O Peta5_0_1_HD_ser.zip https://arcgis.com/sharing/rest/content/items/52ff5e02111142459ed5c2fe3d80b3a0/data
-```
-
-**Dataset: `raw/seenergies_peta5`**
-
-??? metadata "Metadata"
-    ```json
-    {
-        "Quellen": {
-            "project": "https://www.seenergies.eu/peta5/",
-            "data residential sector": "https://s-eenergies-open-data-euf.hub.arcgis.com/maps/d7d18b63250240a49eb81db972aa573e/about",
-            "data service sector": "https://s-eenergies-open-data-euf.hub.arcgis.com/maps/52ff5e02111142459ed5c2fe3d80b3a0/about"
-        }
-    }
-    ```
-
-------------------------------
-## BMWK Langfristszenarien
-
-Langfristszenarien des Bundesministerium für Wirtschaft und Klimaschutz, Daten
-auf Deutschlandebene.
-
-Die Daten wurden über den
-[Szenario Explorer](https://langfristszenarien.de/enertile-explorer-de/szenario-explorer/)
-abgerufen.
-
-### Verwendete Szenarien
-
-- **T45-Strom:** Stromfokussiertes Szenario aus den T45-Szenarien aus 2023, die
-  Wege zur Treibhausgasneutralität bis 2045 unter Einhaltung aktueller
-  politischer Vorgaben erreichen. Die Daten dieses Szenarios werden als
-  Grundlage für das Zielszenario in der Region verwendet.
-- **TN-Strom:** Stromfokussiertes Szenario aus den TN-Szenarien aus 2021, die
-  unterschiedliche Pfade für Deutschland mit dem Ziel treibhausgasneutral bis
-  2050 zu werden. Die Daten dieses Szenarios werden als Grundlage für den
-  Status quo verwendet.
-
-### Daten
-
-#### T45-Strom
-
-| Datensatz                                      | Quelle                                                                                                                    | Datei                                                     |
-|------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------|
-| Gebäude: Haushalte und GHD Energiebedarf       | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/51944/21559a9532131c061668bf0751e519e3)                 | `T45-Strom_buildings_heating_demand_by_carrier.csv`       |
-| Gebäude: Anzahl der Heizungen nach Technologie | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/51944/21559a9532131c061668bf0751e519e3)                 | `T45-Strom_buildings_heating_structure_by_technology.csv` |
-| GHD Energieträger                              | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/52700/c6980ea467bb26a922d34617b4fd4798)                 | `T45-Strom_cts_demand.csv`                                |
-| Haushalte Energieträger                        | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/52700/c6980ea467bb26a922d34617b4fd4798)                 | `T45-Strom_hh_demand.csv`                                 |
-| Industrie Energiebedarf                        | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/52612/9de48084ac2d54c418daaf02a6ee26e0)                 | `T45-Strom_ind_demand.csv`                                |
-| Stromsystem Deutschland Leistung               | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/48766/5c11999a03c547e04e73d61e4b5fc633)                 | `T45-Strom_electricity_installed_power.csv`               |
-
-#### TN-Strom
-
-| Datensatz                                      | Quelle                                                                                                    | Datei                                                    |
-|------------------------------------------------|-----------------------------------------------------------------------------------------------------------|----------------------------------------------------------|
-| Gebäude: Haushalte und GHD Energiebedarf       | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/8198/698cee83d667a2f44fdea7e78ee799a2)  | `TN-Strom_buildings_heating_demand_by_carrier.csv`       |
-| Gebäude: Anzahl der Heizungen nach Technologie | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/8198/698cee83d667a2f44fdea7e78ee799a2)  | `TN-Strom_buildings_heating_structure_by_technology.csv` |
-| GHD Energieträger                              | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/8660/ae5a14ff0c320cbd31c5eeff2ede54ba)  | `TN-Strom_cts_demand.csv`                                |
-| Haushalte Energieträger                        | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/8660/ae5a14ff0c320cbd31c5eeff2ede54ba)  | `TN-Strom_hh_demand.csv`                                 |
-| Industrie Energiebedarf                        | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/29085/084bd7f45f40d31fd53341e6a94f532c) | `TN-Strom_ind_demand.csv`                                |
-
-**Dataset: `raw/bmwk_long_term_scenarios`**
-
-??? metadata "Metadata"
-    ```json
-    {
-        "Datenquellen": {
-            "Hauptseite": "https://langfristszenarien.de/enertile-explorer-de/szenario-explorer/"
-        }
-    }
-    ```
-
-------------------------------
-## AGEB – Anwendungsbilanzen für die Endenergiesektoren 2011 bis 2021
-
-Detaillierte Anwendungsbilanzen der Endenergiesektoren für 2020 und 2021 sowie
-zusammenfassende Zeitreihen zum Endenergieverbrauch nach Energieträgern und
-Anwendungszwecken für Jahre von 2011 bis 2021 der AG Energiebilanzen.
-
-**Dataset: `raw/ageb_energy_balance`**
-
-??? metadata "Metadata"
-    ```json
-    {
-        "Quellen": {
-            "Website": "https://ag-energiebilanzen.de/daten-und-fakten/anwendungsbilanzen/",
-            "File": "https://ag-energiebilanzen.de/wp-content/uploads/2023/01/AGEB_21p2_V3_20221222.pdf"
-        }
-    }
-    ```
-
-------------------------------
 ## DemandRegio
 
 Regionalisierte Bevölkerungsprognose, Haushalte sowie Strom- und Gasbedarfe
@@ -353,47 +217,122 @@ x=temporal.disagg_temporal_industry(
     ```
 
 ------------------------------
-## Sozialversicherungspflichtig Beschäftigte und Betriebe
+## Bevölkerungsprognose Sachsen-Anhalt
 
-Gemeindedaten der sozialversicherungspflichtig Beschäftigten am 30.06.2022 nach
-Wohn- und Arbeitsort - Deutschland, Länder, Kreise und Gemeinden (Jahreszahlen)
-der Bundesagentur für Arbeit.
+Bevölkerungsprognose je Gemeinde bis 2035 des Statistischen Landesamtes
+Sachsen-Anhalt. Stand: 2021
 
-**Dataset: `raw/ba_employment`**
-
-??? metadata "Metadata"
-    ```json
-    {
-        "Quellen": {
-            "Website": "https://statistik.arbeitsagentur.de/SiteGlobals/Forms/Suche/Einzelheftsuche_Formular.html?nn=15024&topic_f=beschaeftigung-sozbe-gemband",
-            "File": "https://statistik.arbeitsagentur.de/Statistikdaten/Detail/202206/iiia6/beschaeftigung-sozbe-gemband/gemband-dlk-0-202206-zip.zip?__blob=publicationFile&v=2}"
-        }
-    }
-    ```
-
-------------------------------
-## Geodaten PV- und Windflächenrechner
-
-Geodaten aus dem
-[PV- und Windflächenrechner](https://www.agora-energiewende.de/service/pv-und-windflaechenrechner/).
-
-Mehr Informationen:
-- [Begleitdokument](https://zenodo.org/record/6794558)
-- [Geodaten Potenzialflächen](https://zenodo.org/record/6728382)
-
-Enthält
-- Geodaten
-- Metadaten
-- App-Datapackage
-
-**Dataset: `raw/rli_pv_wfr`**
+**Dataset: `raw/stala_st_pop_prog`**
 
 ??? metadata "Metadata"
     ```json
     {
-        "Quellen": {
-            "Begleitdokument": "https://zenodo.org/record/6794558",
-            "Geodaten": "https://zenodo.org/record/6728382"
+        "name": "stala_st_pop_prog",
+        "title": "Regionalisierte Bev\u00f6lkerungsprognose",
+        "id": "stala_st_pop_prog",
+        "description": "Prognostizierter Bev\u00f6lkerungsstand in den Gemeinden, kreisfreien St\u00e4dten und Landkreisen nach Prognosejahr und Geschlecht",
+        "language": [
+            "de-DE"
+        ],
+        "subject": [],
+        "keywords": [
+            "Bev\u00f6lkerungsprognose",
+            "population"
+        ],
+        "publicationDate": null,
+        "context": {
+            "homepage": "https://abw.rl-institut.de",
+            "documentation": "https://digiplan.readthedocs.io",
+            "sourceCode": "https://github.com/rl-institut/digipipe/",
+            "contact": "https://reiner-lemoine-institut.de/ueber-uns/kontakt/",
+            "grantNo": "None",
+            "fundingAgency": "https://www.region-gestalten.bund.de",
+            "fundingAgencyLogo": "https://www.region-gestalten.bund.de/Region/SiteGlobals/Frontend/Images/logo.svg",
+            "publisherLogo": "https://reiner-lemoine-institut.de//wp-content/uploads/2015/09/rlilogo.png"
+        },
+        "spatial": {
+            "location": "Sachsen-Anhalt",
+            "extent": "Sachsen-Anhalt",
+            "resolution": ""
+        },
+        "temporal": {
+            "referenceDate": null,
+            "timeseries": [
+                {
+                    "start": "2019",
+                    "end": "2035",
+                    "resolution": "1 year",
+                    "alignment": null,
+                    "aggregationType": "sum"
+                }
+            ]
+        },
+        "sources": [
+            {
+                "title": "1_Internettabelle_7RBP_nach_Prognosejahr_Geschlecht_alle_Ebenen",
+                "description": "Prognostizierter Bev\u00f6lkerungsstand in den Gemeinden, kreisfreien St\u00e4dten und Landkreisen nach Prognosejahr und Geschlecht",
+                "path": "statistik.sachsen-anhalt.de/themen/bevoelkerung-mikrozensus-freiwillige-haushaltserhebungen/bevoelkerung/bevoelkerungsprognose-und-haushalteprognose/#c312231",
+                "licenses": [
+                    {
+                        "name": "DL-DE-BY-2.0",
+                        "title": "Data licence Germany \u2013 attribution \u2013 Version 2.0",
+                        "path": "https://www.govdata.de/dl-de/by-2-0",
+                        "instruction": "The data and meta-data provided may, for commercial and non-commercial use, in particular be copied, printed, presented, altered, processed and transmitted to third parties; be merged with own data and with the data of others and be combined to form new and independent datasets; be integrated in internal and external business processes, products and applications in public and non-public electronic networks.",
+                        "attribution": "\u00a9 2023 Landesportal Sachsen-Anhalt "
+                    }
+                ]
+            }
+        ],
+        "contributors": [
+            {
+                "title": "hedwiglieselotte",
+                "email": "hedwig.bartels@rl-institut.de",
+                "date": "2023-03-28",
+                "object": "metadata",
+                "comment": "create metadata"
+            }
+        ],
+        "resources": [
+            {
+                "profile": "tabular-data-resource",
+                "name": "1_Internettabelle_7RBP_nach_Prognosejahr_Geschlecht_alle_Ebenen",
+                "path": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Bevoelkerung/Tabellen/Bevoelkerungsprognose/1_Internettabelle_7RBP_nach_Prognosejahr_Geschlecht_alle_Ebenen.xlsx",
+                "format": "xlxs",
+                "encoding": "",
+                "schema": {
+                    "fields": [],
+                    "primaryKey": [],
+                    "foreignKeys": []
+                },
+                "dialect": {
+                    "delimiter": "",
+                    "decimalSeparator": "."
+                }
+            }
+        ],
+        "@id": [],
+        "@context": "https://raw.githubusercontent.com/OpenEnergyPlatform/oemetadata/develop/metadata/latest/context.json",
+        "review": {
+            "path": "",
+            "badge": ""
+        },
+        "metaMetadata": {
+            "metadataVersion": "OEP-1.5.2",
+            "metadataLicense": {
+                "name": "CC0-1.0",
+                "title": "Creative Commons Zero v1.0 Universal",
+                "path": "https://creativecommons.org/publicdomain/zero/1.0/"
+            }
+        },
+        "_comment": {
+            "metadata": "Metadata documentation and explanation (https://github.com/OpenEnergyPlatform/oemetadata)",
+            "dates": "Dates and time must follow the ISO8601 including time zone (YYYY-MM-DD or YYYY-MM-DDThh:mm:ss\u00b1hh)",
+            "units": "Use a space between numbers and units (100 m)",
+            "languages": "Languages must follow the IETF (BCP47) format (en-GB, en-US, de-DE)",
+            "licenses": "License name must follow the SPDX License List (https://spdx.org/licenses/)",
+            "review": "Following the OEP Data Review (https://github.com/OpenEnergyPlatform/data-preprocessing/blob/master/data-review/manual/review_manual.md)",
+            "null": "If not applicable use: null",
+            "todo": "If a value is not yet available, use: todo"
         }
     }
     ```
@@ -539,239 +478,56 @@ befindlichen Strom- und Gasanlagen erfasst.
     ```
 
 ------------------------------
-## Technologiedaten
+## BMWK Langfristszenarien
 
-### Jahresvolllaststunden
+Langfristszenarien des Bundesministerium für Wirtschaft und Klimaschutz, Daten
+auf Deutschlandebene.
 
-Anhand typischer heutiger und prognostizierter Werte für Sachsen-Anhalt werden
-folgende Jahresvolllaststunden angenommen:
+Die Daten wurden über den
+[Szenario Explorer](https://langfristszenarien.de/enertile-explorer-de/szenario-explorer/)
+abgerufen.
 
-| Technologie     | Jahr | Volllaststunden | Quelle(n) für Annahme                                                                                                                                                                                                                                                                                       | Anmerkung                                                      |
-|-----------------|------|----------------:|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------|
-| Windenergie     | 2022 |            1800 | [foederal-erneuerbar](https://www.foederal-erneuerbar.de/landesinfo/bundesland/ST/kategorie/wind/auswahl/811-durchschnittliche_ja/#goto_811)                                                                                                                                                                |                                                                |
-|                 | 2045 |            2300 | [PV- und Windflächenrechner](https://zenodo.org/record/6794558)                                                                                                                                                                                                                                             |                                                                |
-| Freiflächen-PV  | 2022 |             980 | [foederal-erneuerbar](https://www.foederal-erneuerbar.de/landesinfo/bundesland/ST/kategorie/solar/auswahl/813-durchschnittliche_ja/#goto_813), [ISE](https://www.ise.fraunhofer.de/content/dam/ise/de/documents/publications/studies/aktuelle-fakten-zur-photovoltaik-in-deutschland.pdf)                   |                                                                |
-|                 | 2045 |             980 | [PV- und Windflächenrechner](https://zenodo.org/record/6794558), [Ariadne Szenarienreport](https://ariadneprojekt.de/media/2022/02/Ariadne_Szenarienreport_Oktober2021_corr0222_lowres.pdf)                                                                                                                 |                                                                |
-| Aufdach-PV      | 2022 |             910 | [foederal-erneuerbar](https://www.foederal-erneuerbar.de/landesinfo/bundesland/ST/kategorie/solar/auswahl/813-durchschnittliche_ja/#goto_813), [ISE](https://www.ise.fraunhofer.de/content/dam/ise/de/documents/publications/studies/aktuelle-fakten-zur-photovoltaik-in-deutschland.pdf)                   |                                                                |
-|                 | 2045 |             910 | [Ariadne Szenarienreport](https://ariadneprojekt.de/media/2022/02/Ariadne_Szenarienreport_Oktober2021_corr0222_lowres.pdf)                                                                                                                                                                                  |                                                                |
-| Laufwasserkraft | 2022 |            3800 | [foederal-erneuerbar](https://www.foederal-erneuerbar.de/landesinfo/bundesland/ST/kategorie/wasser/auswahl/840-durchschnittliche_ja/#goto_840)                                                                                                                                                              |                                                                |
-|                 | 2045 |            3800 | [foederal-erneuerbar](https://www.foederal-erneuerbar.de/landesinfo/bundesland/ST/kategorie/wasser/auswahl/840-durchschnittliche_ja/#goto_840)                                                                                                                                                              |                                                                |
-| Bioenergie      | 2022 |            6000 | [foederal-erneuerbar](https://www.foederal-erneuerbar.de/landesinfo/bundesland/ST/kategorie/bioenergie/auswahl/814-durchschnittliche_ja/#goto_814), [ISE](https://www.ise.fraunhofer.de/content/dam/ise/de/documents/publications/studies/DE2018_ISE_Studie_Stromgestehungskosten_Erneuerbare_Energien.pdf) | Bioenergie-Stromerzeugung (ohne<br/>biogenen Teil des Abfalls) |
-|                 |      |                 |                                                                                                                                                                                                                                                                                                             |                                                                |
+### Verwendete Szenarien
 
-Datei: `technology_data.json` -> `full_load_hours`
+- **T45-Strom:** Stromfokussiertes Szenario aus den T45-Szenarien aus 2023, die
+  Wege zur Treibhausgasneutralität bis 2045 unter Einhaltung aktueller
+  politischer Vorgaben erreichen. Die Daten dieses Szenarios werden als
+  Grundlage für das Zielszenario in der Region verwendet.
+- **TN-Strom:** Stromfokussiertes Szenario aus den TN-Szenarien aus 2021, die
+  unterschiedliche Pfade für Deutschland mit dem Ziel treibhausgasneutral bis
+  2050 zu werden. Die Daten dieses Szenarios werden als Grundlage für den
+  Status quo verwendet.
 
-TBD: Generalisieren - automatische Generierung anhand von Global Wind Atlas /
-Global Solar Atlas.
+### Daten
 
-### Leistungsdichte
+#### T45-Strom
 
-Installierbare Leistung pro Fläche / spezifischer Flächenbedarf:
-- Windenergie: 21 MW/km²
-- PV-Freiflächenanlagen: 100 MW/km²
-- PV-Aufdachanlagen: 140 MW/km²
-- Solarthermie: ? MW/km²
+| Datensatz                                      | Quelle                                                                                                                    | Datei                                                     |
+|------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------|
+| Gebäude: Haushalte und GHD Energiebedarf       | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/51944/21559a9532131c061668bf0751e519e3)                 | `T45-Strom_buildings_heating_demand_by_carrier.csv`       |
+| Gebäude: Anzahl der Heizungen nach Technologie | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/51944/21559a9532131c061668bf0751e519e3)                 | `T45-Strom_buildings_heating_structure_by_technology.csv` |
+| GHD Energieträger                              | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/52700/c6980ea467bb26a922d34617b4fd4798)                 | `T45-Strom_cts_demand.csv`                                |
+| Haushalte Energieträger                        | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/52700/c6980ea467bb26a922d34617b4fd4798)                 | `T45-Strom_hh_demand.csv`                                 |
+| Industrie Energiebedarf                        | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/52612/9de48084ac2d54c418daaf02a6ee26e0)                 | `T45-Strom_ind_demand.csv`                                |
+| Stromsystem Deutschland Leistung               | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/48766/5c11999a03c547e04e73d61e4b5fc633)                 | `T45-Strom_electricity_installed_power.csv`               |
 
-Quelle: [PV- und Windflächenrechner](https://zenodo.org/record/6794558)
+#### TN-Strom
 
-Datei: `technology_data.json` -> `power_density`
+| Datensatz                                      | Quelle                                                                                                    | Datei                                                    |
+|------------------------------------------------|-----------------------------------------------------------------------------------------------------------|----------------------------------------------------------|
+| Gebäude: Haushalte und GHD Energiebedarf       | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/8198/698cee83d667a2f44fdea7e78ee799a2)  | `TN-Strom_buildings_heating_demand_by_carrier.csv`       |
+| Gebäude: Anzahl der Heizungen nach Technologie | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/8198/698cee83d667a2f44fdea7e78ee799a2)  | `TN-Strom_buildings_heating_structure_by_technology.csv` |
+| GHD Energieträger                              | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/8660/ae5a14ff0c320cbd31c5eeff2ede54ba)  | `TN-Strom_cts_demand.csv`                                |
+| Haushalte Energieträger                        | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/8660/ae5a14ff0c320cbd31c5eeff2ede54ba)  | `TN-Strom_hh_demand.csv`                                 |
+| Industrie Energiebedarf                        | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/29085/084bd7f45f40d31fd53341e6a94f532c) | `TN-Strom_ind_demand.csv`                                |
 
-### Kosten und Wirkungsgrade
-
-Datei: `raw_costs_efficiencies.csv`
-
-**Dataset: `raw/technology_data`**
-
-??? metadata "Metadata"
-    ```json
-    {
-        "Datenquellen": {
-            "FLH": "",
-            "spec_area": "",
-            "emissions": "https://ens.dk/en/our-services/projections-and-models/technology-data"
-        }
-    }
-    ```
-
-------------------------------
-## Temperatur
-
-Stündliche Mittelwerte der Luft- und Erdbodentemperatur des Deutschen
-Wetterdienstes
-([Climate Data Center](https://opendata.dwd.de/climate_environment/CDC/observations_germany/climate/hourly/))
-für das Jahr 2011 je Gemeinde in der Region ABW, vorverarbeitet im Projekt
-[WindNODE](https://windnode-abw.readthedocs.io/en/latest/energy_system_model.html#energy-demand-today).
-
-Werte
-- `temp_amb`: Lufttemperatur in 2 m Höhe
-- `temp_soil`: Erdbodentemperatur in 1 m Tiefe
-
-Verwendete Stationen
-- Wittenberg
-- Köthen
-- Jessnitz
-- Seehausen
-- Holzdorf
-
-Die Zuordnung der Stationsmesswerte zu Gemeinden erfolgte über die jeweils
-nächstgelegene Wetterstation.
-
-**Dataset: `raw/dwd_temperature`**
+**Dataset: `raw/bmwk_long_term_scenarios`**
 
 ??? metadata "Metadata"
     ```json
     {
         "Datenquellen": {
-            "Open Data Bereich des Climate Data Center des DWD": "https://www.dwd.de/DE/leistungen/cdc/climate-data-center.html",
-            "Datensatz Lufttemperatur": "https://opendata.dwd.de/climate_environment/CDC/observations_germany/climate/hourly/air_temperature/historical/",
-            "Datensatz Bodentemperatur": "https://opendata.dwd.de/climate_environment/CDC/observations_germany/climate/hourly/soil_temperature/historical/"
-        }
-    }
-    ```
-
-------------------------------
-## Regionalplan Anhalt-Bitterfeld-Wittenberg
-
-Geodatensätze aus Teilplänen Wind 2018 und 2027 der Regionalen
-Planungsgemeinschaft Anhalt-Bitterfeld-Wittenberg.
-
-### Sachlicher Teilplan Wind 2018
-
-Geodaten aus rechtskräftigem
-[Sachlichen Teilplan Wind 2018](https://www.planungsregion-abw.de/regionalplanung/teilplan-windenergie/teilplan-2018/).
-
-> Im Sachlichen Teilplan "Nutzung der Windenergie in der Planungsregion
-> Anhalt-Bitterfeld-Wittenberg" vom 30.05.2018 werden 22 Vorranggebiete für die
-> Nutzung der Windenergie mit der Wirkung von Eignungsgebieten festgelegt. Sie
-> dienen der raumordnerischen Steuerung der Errichtung von raumbedeutsamen
-> Windenergieanlagen in Konzentrationszonen.
->
-> Die oberste Landesentwicklungsbehörde hat am 01.08.2018 die Genehmigung
-> erteilt. Mit Bekanntmachung der Genehmigung tritt der Sachliche Teilplan in
-> Kraft.
-
-Dateien
-- Vorrang-/Eignungsgebiete: `stp_2018_vreg.gpkg`
-  ([Quelle](https://gis.planungsregion-abw.de/geoserver/stp_wind2018/ows?SERVICE=WFS&REQUEST=GetCapabilities))
-
-### Sachlicher Teilplan Wind 2027
-
-Geodaten aus Planentwurf des
-[Sachlichen Teilplan Wind 2027](https://www.planungsregion-abw.de/regionalplanung/teilplan-windenergie/teilplan-2027/).
-
-> Die Regionalversammlung hat am 03.03.2023 beschlossen, den Sachlichen
-> Teilplan "Windenergie 2027 in der Planungsregion Anhalt-Bitterfeld-Wittenberg"
-> aufzustellen und mit der Bekanntgabe der Allgemeinen Planungsabsicht die
-> beabsichtigten Auswahlkriterien und mögliche Gebietskulisse der Vorranggebiete
-> für die Nutzung der Windenergie bzw. für Repowering von Windenergieanlagen
-> vorzustellen.
-
-Dateien
-- Suchräume: `stp_2027_suchraum.gpkg` (Quelle: RPG ABW)
-- Planabsicht Vorranggebiete: `stp_2027_ideen_vr.gpkg` (Quelle: RPG ABW)
-- Planabsicht Repoweringgebiete: `stp_2027_ideen_repower.gpkg` (Quelle: RPG ABW)
-
-**Dataset: `raw/rpg_abw_regional_plan`**
-
-??? metadata "Metadata"
-    ```json
-    {
-        "Quellen": {
-            "Sachlicher Teilplan Wind 2018": "https://www.planungsregion-abw.de/regionalplanung/teilplan-windenergie/teilplan-2018/",
-            "Geodaten Sachlicher Teilplan Wind 2018": "https://gis.planungsregion-abw.de/geoserver/stp_wind2018/ows?SERVICE=WFS&REQUEST=GetCapabilities",
-            "Sachlicher Teilplan Wind 2027": "https://www.planungsregion-abw.de/regionalplanung/teilplan-windenergie/teilplan-2027/"
-        }
-    }
-    ```
-
-------------------------------
-## Regionalstatistik (GENESIS)
-
-Enthält folgende Datensätze der statistischen Ämter des Bundes und der Länder:
-
-### Energieverwendung der Betriebe im Verarbeitenden Gewerbe (43531-01-02-4)
-
-Jahreserhebung ü. die Energieverwendung der Betriebe im verarbeitendem Gewerbe.
-
-Der Datensatz umfasst:
-- Betriebe des Verarbeitenden Gewerbes sowie des Bergbaus
-und der Gewinnung von Steinen und Erden von Unternehmen des
-Produzierenden Gewerbes mit im Allgemeinen 20 und mehr
-Beschäftigten.
-- Betriebe des Verarbeitenden Gewerbes sowie des Bergbaus
-und  der Gewinnung von Steinen und Erden mit im Allgemeinen
-20 und mehr Beschäftigten von Unternehmen der übrigen
-Wirtschaftsbereiche.
-Die Berichterstattung schließt Verarbeitende Betriebe des
-Handwerks ein.
-Bei 7 Wirtschaftszweigen gilt eine Abschneidegrenze von 10
-Beschäftigten. Die Merkmalswerte beziehen sich auf den
-gesamten Betrieb, schließen damit die nicht produzierenden
-Betriebsteile mit ein.
-Maßgebend für die Zuordnung ist ab 2008 die „Klassifikation
-der Wirtschaftszweige, Ausgabe 2008 (WZ 2008)“, und zwar
-die Abschnitte B und C.
-
-- Datei: `43531-01-02-4.xlsx`
-- Stand: 2021
-
-### Betriebe, tätige Personen, Bruttoentgelte (42111-01-04-5)
-
-Jahreserhebung ü. Betriebe, tätige Personen und Bruttoentgelte der Betriebe im
-verarbeitendem Gewerbe.
-
-Der Datensatz umfasst:
-- Sämtliche Betriebe des Wirtschaftsbereiches Verarbeitendes
-Gewerbe sowie Bergbau und Gewinnung von Steinen und Erden,
-wenn diese Betriebe zu Unternehmen des Bereiches
-Verarbeitendes Gewerbe sowie Bergbau und Gewinnung von
-Steinen und Erden gehören und in diesen Unternehmen
-mindestens 20 Personen tätig sind;
-- die Betriebe des Wirtschaftsbereiches Verarbeitendes
-Gewerbe sowie Bergbau und Gewinnung von Steinen und Erden
-mit mindestens 20 tätigen Personen, sofern diese Betriebe
-zu Unternehmen gehören, deren wirtschaftlicher Schwerpunkt
-außerhalb des Bereiches Verarbeitendes Gewerbe sowie
-Bergbau und Gewinnung von Steinen und Erden liegt.
-Bei 7 kleinbetrieblich strukturierten Branchen gilt eine
-untere Erfassungsgrenze von 10 tätigen Personen.
-Die Auswahl erfolgt jeweils nach dem Beschäftigtenstand Ende
-September des Vorjahres. Die ausgewiesene Beschäftigtenzahl
-betrifft dagegen die von Ende September des Berichtsjahres.
-Die Merkmalswerte beziehen sich auf den gesamten Betrieb,
-schließen damit die nicht produzierenden Betriebsteile mit
-ein.
-Maßgebend für die Zuordnung ist ab 2009 die „Klassifikation
-der Wirtschaftszweige, Ausgabe 2008 (WZ 2008)“, und zwar
-die Abschnitte B und C.
-
-- Datei: `42111-01-04-5.xlsx`
-- Stand: 30.09.2021
-
-### Gebäude mit Wohnraum nach Heizungsart (31211-04-01-5-B)
-
-Zensus 2011: Gebäude mit Wohnraum nach Heizungsart
-
-- Datei: `31211-04-01-5-B.xlsx`
-- Stand: 09.05.2011
-
-### Gebäude mit Wohnraum nach Heizungsart (31231-02-01-5)
-
-Bestand an Wohngebäuden und Wohnungen in Wohn- und Nichtwohngebäuden -
-Fortschreibung auf Basis der endgültigen Ergebnisse der Gebäude- und
-Wohnungszählung 2011 (Zensus 2011).
-
-- Datei: `31231-02-01-5.xlsx`
-- Stand: 31.12.2021
-
-**Dataset: `raw/regiostat`**
-
-??? metadata "Metadata"
-    ```json
-    {
-        "Datenquellen": {
-            "43531-01-02-4": "https://www.regionalstatistik.de/genesis//online?operation=table&code=43531-01-02-4",
-            "42111-01-04-5": "https://www.regionalstatistik.de/genesis//online?operation=table&code=42111-01-04-5"
+            "Hauptseite": "https://langfristszenarien.de/enertile-explorer-de/szenario-explorer/"
         }
     }
     ```
@@ -925,6 +681,33 @@ mit Spalten
     ```
 
 ------------------------------
+## Geodaten PV- und Windflächenrechner
+
+Geodaten aus dem
+[PV- und Windflächenrechner](https://www.agora-energiewende.de/service/pv-und-windflaechenrechner/).
+
+Mehr Informationen:
+- [Begleitdokument](https://zenodo.org/record/6794558)
+- [Geodaten Potenzialflächen](https://zenodo.org/record/6728382)
+
+Enthält
+- Geodaten
+- Metadaten
+- App-Datapackage
+
+**Dataset: `raw/rli_pv_wfr`**
+
+??? metadata "Metadata"
+    ```json
+    {
+        "Quellen": {
+            "Begleitdokument": "https://zenodo.org/record/6794558",
+            "Geodaten": "https://zenodo.org/record/6728382"
+        }
+    }
+    ```
+
+------------------------------
 ## Lokale Verwaltungseinheiten
 
 Lokale Verwaltungseinheiten (LAUs) von Eurostat, mit NUTS kompatibel. Diese LAU
@@ -944,29 +727,121 @@ Europäischen Union.
     ```
 
 ------------------------------
-## Bevölkerungsprognose Sachsen-Anhalt
+## Regionalstatistik (GENESIS)
 
-Bevölkerungsprognose je Gemeinde bis 2035 des Statistischen Landesamtes
-Sachsen-Anhalt. Stand: 2021
+Enthält folgende Datensätze der statistischen Ämter des Bundes und der Länder:
 
-**Dataset: `raw/stala_st_pop_prog`**
+### Energieverwendung der Betriebe im Verarbeitenden Gewerbe (43531-01-02-4)
+
+Jahreserhebung ü. die Energieverwendung der Betriebe im verarbeitendem Gewerbe.
+
+Der Datensatz umfasst:
+- Betriebe des Verarbeitenden Gewerbes sowie des Bergbaus
+und der Gewinnung von Steinen und Erden von Unternehmen des
+Produzierenden Gewerbes mit im Allgemeinen 20 und mehr
+Beschäftigten.
+- Betriebe des Verarbeitenden Gewerbes sowie des Bergbaus
+und  der Gewinnung von Steinen und Erden mit im Allgemeinen
+20 und mehr Beschäftigten von Unternehmen der übrigen
+Wirtschaftsbereiche.
+Die Berichterstattung schließt Verarbeitende Betriebe des
+Handwerks ein.
+Bei 7 Wirtschaftszweigen gilt eine Abschneidegrenze von 10
+Beschäftigten. Die Merkmalswerte beziehen sich auf den
+gesamten Betrieb, schließen damit die nicht produzierenden
+Betriebsteile mit ein.
+Maßgebend für die Zuordnung ist ab 2008 die „Klassifikation
+der Wirtschaftszweige, Ausgabe 2008 (WZ 2008)“, und zwar
+die Abschnitte B und C.
+
+- Datei: `43531-01-02-4.xlsx`
+- Stand: 2021
+
+### Betriebe, tätige Personen, Bruttoentgelte (42111-01-04-5)
+
+Jahreserhebung ü. Betriebe, tätige Personen und Bruttoentgelte der Betriebe im
+verarbeitendem Gewerbe.
+
+Der Datensatz umfasst:
+- Sämtliche Betriebe des Wirtschaftsbereiches Verarbeitendes
+Gewerbe sowie Bergbau und Gewinnung von Steinen und Erden,
+wenn diese Betriebe zu Unternehmen des Bereiches
+Verarbeitendes Gewerbe sowie Bergbau und Gewinnung von
+Steinen und Erden gehören und in diesen Unternehmen
+mindestens 20 Personen tätig sind;
+- die Betriebe des Wirtschaftsbereiches Verarbeitendes
+Gewerbe sowie Bergbau und Gewinnung von Steinen und Erden
+mit mindestens 20 tätigen Personen, sofern diese Betriebe
+zu Unternehmen gehören, deren wirtschaftlicher Schwerpunkt
+außerhalb des Bereiches Verarbeitendes Gewerbe sowie
+Bergbau und Gewinnung von Steinen und Erden liegt.
+Bei 7 kleinbetrieblich strukturierten Branchen gilt eine
+untere Erfassungsgrenze von 10 tätigen Personen.
+Die Auswahl erfolgt jeweils nach dem Beschäftigtenstand Ende
+September des Vorjahres. Die ausgewiesene Beschäftigtenzahl
+betrifft dagegen die von Ende September des Berichtsjahres.
+Die Merkmalswerte beziehen sich auf den gesamten Betrieb,
+schließen damit die nicht produzierenden Betriebsteile mit
+ein.
+Maßgebend für die Zuordnung ist ab 2009 die „Klassifikation
+der Wirtschaftszweige, Ausgabe 2008 (WZ 2008)“, und zwar
+die Abschnitte B und C.
+
+- Datei: `42111-01-04-5.xlsx`
+- Stand: 30.09.2021
+
+### Gebäude mit Wohnraum nach Heizungsart (31211-04-01-5-B)
+
+Zensus 2011: Gebäude mit Wohnraum nach Heizungsart
+
+- Datei: `31211-04-01-5-B.xlsx`
+- Stand: 09.05.2011
+
+### Gebäude mit Wohnraum nach Heizungsart (31231-02-01-5)
+
+Bestand an Wohngebäuden und Wohnungen in Wohn- und Nichtwohngebäuden -
+Fortschreibung auf Basis der endgültigen Ergebnisse der Gebäude- und
+Wohnungszählung 2011 (Zensus 2011).
+
+- Datei: `31231-02-01-5.xlsx`
+- Stand: 31.12.2021
+
+**Dataset: `raw/regiostat`**
 
 ??? metadata "Metadata"
     ```json
     {
-        "name": "stala_st_pop_prog",
-        "title": "Regionalisierte Bev\u00f6lkerungsprognose",
-        "id": "stala_st_pop_prog",
-        "description": "Prognostizierter Bev\u00f6lkerungsstand in den Gemeinden, kreisfreien St\u00e4dten und Landkreisen nach Prognosejahr und Geschlecht",
+        "Datenquellen": {
+            "43531-01-02-4": "https://www.regionalstatistik.de/genesis//online?operation=table&code=43531-01-02-4",
+            "42111-01-04-5": "https://www.regionalstatistik.de/genesis//online?operation=table&code=42111-01-04-5"
+        }
+    }
+    ```
+
+------------------------------
+## Verwaltungsgebiete Deutschlands
+
+Verwaltungsgebiete Deutschlands (Verwaltungsgebiete 1:250 000).
+
+**Dataset: `raw/bkg_vg250`**
+
+??? metadata "Metadata"
+    ```json
+    {
+        "name": "bkg_vg250",
+        "title": "Adminstrative areas of Germany",
+        "id": "bkg_vb250",
+        "description": "Geopackage with administative areas of Germany - Verwaltungsgebiete 1:250 000",
         "language": [
+            "en-GB",
             "de-DE"
         ],
-        "subject": [],
+        "subject": null,
         "keywords": [
-            "Bev\u00f6lkerungsprognose",
-            "population"
+            "adminstrative areas",
+            "Verwaltungsgebiete"
         ],
-        "publicationDate": null,
+        "publicationDate": "2022-01-01",
         "context": {
             "homepage": "https://abw.rl-institut.de",
             "documentation": "https://digiplan.readthedocs.io",
@@ -978,34 +853,26 @@ Sachsen-Anhalt. Stand: 2021
             "publisherLogo": "https://reiner-lemoine-institut.de//wp-content/uploads/2015/09/rlilogo.png"
         },
         "spatial": {
-            "location": "Sachsen-Anhalt",
-            "extent": "Sachsen-Anhalt",
-            "resolution": ""
+            "location": "Germany",
+            "extent": "Germany",
+            "resolution": "1:250 000"
         },
         "temporal": {
-            "referenceDate": null,
-            "timeseries": [
-                {
-                    "start": "2019",
-                    "end": "2035",
-                    "resolution": "1 year",
-                    "alignment": null,
-                    "aggregationType": "sum"
-                }
-            ]
+            "referenceDate": "2022-01-01",
+            "timeseries": null
         },
         "sources": [
             {
-                "title": "1_Internettabelle_7RBP_nach_Prognosejahr_Geschlecht_alle_Ebenen",
-                "description": "Prognostizierter Bev\u00f6lkerungsstand in den Gemeinden, kreisfreien St\u00e4dten und Landkreisen nach Prognosejahr und Geschlecht",
-                "path": "statistik.sachsen-anhalt.de/themen/bevoelkerung-mikrozensus-freiwillige-haushaltserhebungen/bevoelkerung/bevoelkerungsprognose-und-haushalteprognose/#c312231",
+                "title": "Bundesamt f\u00fcr Kartographie und Geod\u00e4sie - Verwaltungsgebiete 1:250 000 VG250 (Ebenen)",
+                "description": "Dieser Datensatz stellt die Verwaltungsgebiete 1:250 000 (VG250) mit Stand 01.01. f\u00fcr das Gebiet der Bundesrepublik Deutschland bereit.",
+                "path": "https://gdz.bkg.bund.de/index.php/default/digitale-geodaten/verwaltungsgebiete/verwaltungsgebiete-1-250-000-stand-01-01-vg250-01-01.html",
                 "licenses": [
                     {
                         "name": "DL-DE-BY-2.0",
-                        "title": "Data licence Germany \u2013 attribution \u2013 Version 2.0",
-                        "path": "https://www.govdata.de/dl-de/by-2-0",
-                        "instruction": "The data and meta-data provided may, for commercial and non-commercial use, in particular be copied, printed, presented, altered, processed and transmitted to third parties; be merged with own data and with the data of others and be combined to form new and independent datasets; be integrated in internal and external business processes, products and applications in public and non-public electronic networks.",
-                        "attribution": "\u00a9 2023 Landesportal Sachsen-Anhalt "
+                        "title": "Open Data Datenlizenz Deutschland \u2013 Namensnennung \u2013 Version 2.0",
+                        "path": "http://www.govdata.de/dl-de/by-2-0",
+                        "instruction": "The data and meta-data provided may, for commercial and non-commercial use, in particular be copied, printed, presented, altered, processed and transmitted to third parties; be merged with own data and with the data of others and be combined to form new and independent datasets;be integrated in internal and external business processes, products and applications in public and non-public electronic networks.",
+                        "attribution": " \u00a9 GeoBasis-DE / BKG - 2022"
                     }
                 ]
             }
@@ -1014,18 +881,18 @@ Sachsen-Anhalt. Stand: 2021
             {
                 "title": "hedwiglieselotte",
                 "email": "hedwig.bartels@rl-institut.de",
-                "date": "2023-03-28",
+                "date": "2023-03-23",
                 "object": "metadata",
                 "comment": "create metadata"
             }
         ],
         "resources": [
             {
-                "profile": "tabular-data-resource",
-                "name": "1_Internettabelle_7RBP_nach_Prognosejahr_Geschlecht_alle_Ebenen",
-                "path": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Bevoelkerung/Tabellen/Bevoelkerungsprognose/1_Internettabelle_7RBP_nach_Prognosejahr_Geschlecht_alle_Ebenen.xlsx",
-                "format": "xlxs",
-                "encoding": "",
+                "profile": null,
+                "name": null,
+                "path": null,
+                "format": null,
+                "encoding": null,
                 "schema": {
                     "fields": [],
                     "primaryKey": [],
@@ -1037,7 +904,7 @@ Sachsen-Anhalt. Stand: 2021
                 }
             }
         ],
-        "@id": [],
+        "@id": null,
         "@context": "https://raw.githubusercontent.com/OpenEnergyPlatform/oemetadata/develop/metadata/latest/context.json",
         "review": {
             "path": "",
@@ -1060,6 +927,274 @@ Sachsen-Anhalt. Stand: 2021
             "review": "Following the OEP Data Review (https://github.com/OpenEnergyPlatform/data-preprocessing/blob/master/data-review/manual/review_manual.md)",
             "null": "If not applicable use: null",
             "todo": "If a value is not yet available, use: todo"
+        }
+    }
+    ```
+
+------------------------------
+## Regionalplan Anhalt-Bitterfeld-Wittenberg
+
+Geodatensätze aus Teilplänen Wind 2018 und 2027 der Regionalen
+Planungsgemeinschaft Anhalt-Bitterfeld-Wittenberg.
+
+### Sachlicher Teilplan Wind 2018
+
+Geodaten aus rechtskräftigem
+[Sachlichen Teilplan Wind 2018](https://www.planungsregion-abw.de/regionalplanung/teilplan-windenergie/teilplan-2018/).
+
+> Im Sachlichen Teilplan "Nutzung der Windenergie in der Planungsregion
+> Anhalt-Bitterfeld-Wittenberg" vom 30.05.2018 werden 22 Vorranggebiete für die
+> Nutzung der Windenergie mit der Wirkung von Eignungsgebieten festgelegt. Sie
+> dienen der raumordnerischen Steuerung der Errichtung von raumbedeutsamen
+> Windenergieanlagen in Konzentrationszonen.
+>
+> Die oberste Landesentwicklungsbehörde hat am 01.08.2018 die Genehmigung
+> erteilt. Mit Bekanntmachung der Genehmigung tritt der Sachliche Teilplan in
+> Kraft.
+
+Dateien
+- Vorrang-/Eignungsgebiete: `stp_2018_vreg.gpkg`
+  ([Quelle](https://gis.planungsregion-abw.de/geoserver/stp_wind2018/ows?SERVICE=WFS&REQUEST=GetCapabilities))
+
+### Sachlicher Teilplan Wind 2027
+
+Geodaten aus Planentwurf des
+[Sachlichen Teilplan Wind 2027](https://www.planungsregion-abw.de/regionalplanung/teilplan-windenergie/teilplan-2027/).
+
+> Die Regionalversammlung hat am 03.03.2023 beschlossen, den Sachlichen
+> Teilplan "Windenergie 2027 in der Planungsregion Anhalt-Bitterfeld-Wittenberg"
+> aufzustellen und mit der Bekanntgabe der Allgemeinen Planungsabsicht die
+> beabsichtigten Auswahlkriterien und mögliche Gebietskulisse der Vorranggebiete
+> für die Nutzung der Windenergie bzw. für Repowering von Windenergieanlagen
+> vorzustellen.
+
+Dateien
+- Suchräume: `stp_2027_suchraum.gpkg` (Quelle: RPG ABW)
+- Planabsicht Vorranggebiete: `stp_2027_ideen_vr.gpkg` (Quelle: RPG ABW)
+- Planabsicht Repoweringgebiete: `stp_2027_ideen_repower.gpkg` (Quelle: RPG ABW)
+
+**Dataset: `raw/rpg_abw_regional_plan`**
+
+??? metadata "Metadata"
+    ```json
+    {
+        "Quellen": {
+            "Sachlicher Teilplan Wind 2018": "https://www.planungsregion-abw.de/regionalplanung/teilplan-windenergie/teilplan-2018/",
+            "Geodaten Sachlicher Teilplan Wind 2018": "https://gis.planungsregion-abw.de/geoserver/stp_wind2018/ows?SERVICE=WFS&REQUEST=GetCapabilities",
+            "Sachlicher Teilplan Wind 2027": "https://www.planungsregion-abw.de/regionalplanung/teilplan-windenergie/teilplan-2027/"
+        }
+    }
+    ```
+
+------------------------------
+## Emissionen
+
+Emissionen für die Jahre 1990 und 2019 für Sachsen-Anhalt (aus
+[THG-Bericht 2021](https://lau.sachsen-anhalt.de/fileadmin/Bibliothek/Politik_und_Verwaltung/MLU/LAU/Wir_ueber_uns/Publikationen/Fachberichte/Dateien/221014_THG-Bericht.pdf))
+und disaggregiert für die Region ABW.
+
+Datei: `emissions.csv`, Felder:
+- `sector`: Sektor
+- `cat`: Kategorie ("*" = alle)
+- `subcat`: Unterkategorie ("*" = alle)
+- `name`: Bezeichner
+- `st`: Emissionen Sachsen-Anhalt in kt CO2-Äquivalent
+- `abw`: Emissionen Region ABW in kt CO2-Äquivalent
+
+`sector`, `cat` und `subcat` folgen der Nomenklatur des Common Reporting Formats
+(CRF) nach [KSG Anlage 1](https://www.gesetze-im-internet.de/ksg/anlage_1.html).
+[Grafik hierzu](https://expertenrat-klima.de/content/uploads/2023/05/ERK2023_Pruefbericht-Emissionsdaten-des-Jahres-2022.pdf)
+(Abb. 2 auf S. 30).
+
+### Disaggregation
+
+Hier Beschreibungstext
+
+#### Sektor Energiewirtschaft (CRF 1.A.1 + 1.B)
+
+####### CRF 1.A.1
+
+EnbG: Emissionen aus europäischem Emissionshandel
+
+####### CRF 1.B
+
+EnbG: Emissionen aus europäischem Emissionshandel
+
+#### Sektor Industrie (CRF 1.A.2 + 2)
+
+####### CRF 1.A.2
+
+EnbG: Energienutzung nach Ennergieträgern
+
+####### CRF 2 Prozessemissionen
+
+EnbG: in Industrie beschäftigte Personen
+
+#### Sektor Verkehr (CRF 1.A.3)
+
+EnbG:
+
+* Zugelassene Kraftfahrzeuge
+* gewichtet mit durchschn. Fahrleistung und spez. CO2 Emission pro km und Fahrzeugklasse
+
+#### Sektor Sonstige Energie (insbes. Gebäude) (CRF 1.A.4 + 1.A.5)
+
+EnbG: Wärmebedarf aus Energiesystem
+
+#### Sektor Landwirtschaft (CRF 3)
+
+####### CRF 3.A - Landwirtschaft – Fermentation
+
+EnbG: Viehbestände
+
+####### CRF 3.B-J:
+
+EnbG: landwirtschaftlich genutzte Fläche
+
+#### Sektor Abfall und Abwasser (CRF 5)
+
+EnbG: Bevölkerung ABW
+
+**Dataset: `raw/emissions`**
+
+??? metadata "Metadata"
+    ```json
+    {
+        "Daten Sachsen-Anhalt": "https://lau.sachsen-anhalt.de/fileadmin/Bibliothek/Politik_und_Verwaltung/MLU/LAU/Wir_ueber_uns/Publikationen/Fachberichte/Dateien/221014_THG-Bericht.pdf",
+        "Datens\u00e4tze Desaggregation": {
+            "Industrie": ""
+        }
+    }
+    ```
+
+------------------------------
+## sEEnergies Pan-European Thermal Atlas 5.2 (Peta5)
+
+Wärmebedarf für Europa 2015 in GJ (1ha Auflösung) für
+- Haushalte: Raumwärme und Warmwasser
+- GHD: Raumwärme, Warmwasser und Prozesswärme
+
+Die Daten können auf der
+[Projektseite](https://s-eenergies-open-data-euf.hub.arcgis.com)
+eingesehen werden.
+
+### Haushalte
+
+Abgerufen mittels
+
+```commandline
+wget -O Peta5_0_1_HD_res.zip https://arcgis.com/sharing/rest/content/items/d7d18b63250240a49eb81db972aa573e/data
+```
+
+### GHD und Industrie
+
+Abgerufen mittels
+
+```commandline
+wget -O Peta5_0_1_HD_ser.zip https://arcgis.com/sharing/rest/content/items/52ff5e02111142459ed5c2fe3d80b3a0/data
+```
+
+**Dataset: `raw/seenergies_peta5`**
+
+??? metadata "Metadata"
+    ```json
+    {
+        "Quellen": {
+            "project": "https://www.seenergies.eu/peta5/",
+            "data residential sector": "https://s-eenergies-open-data-euf.hub.arcgis.com/maps/d7d18b63250240a49eb81db972aa573e/about",
+            "data service sector": "https://s-eenergies-open-data-euf.hub.arcgis.com/maps/52ff5e02111142459ed5c2fe3d80b3a0/about"
+        }
+    }
+    ```
+
+------------------------------
+## Installierte Leistungen von Biomasse-Konversionstechnologien
+
+Die installierten Leistungen in MW wird im Szenario 80 % Transformationspfad
+und 2,6 Mio. ha Anbauflächen im Jahr 2020 und 2050 der Tabelle 13 im
+Dokument ["Technoökonomische Analyse und Transformationspfade des energetischen Biomassepotentials (TATBIO)"](../dbfz_biomass_heat_capacities/metadata.json)
+für die folgenden Konversionsanlagen von Biomasse entnommen:
+
+- Biomethan-Blockheizkraftwerk
+- Holzhackschnitzelkessel Sektor Industrie
+- Pelletkessel Sektor GHD
+- Holzhackschnitzelkessel Sektor GHD
+- Scheitholzvergaserkessel
+- Pelletkessel Sektor Gebäude
+- Biogasanlage + Blockheizkraftwerk
+- Biomethan Gas- und Dampfkombikraftwerk
+- Klärschlammfaulung + Blockheizkraftwerk
+- Papier-Zellstoff-KWK
+- Holzvergaser + Blockheizkraftwerk
+- Mikro-Holzgas-Blockheizkraftwerk
+
+Die Konversionstechnologien sind in der Spalte "technology" gelistet, während
+sich ihre installierten Leistungen für die beiden Projektionsjahre in den
+Spalten "capacity_[MW]_2020" und "capacity_[MW]_2050" befinden.
+
+In den Spalten "decentral" und "central" wird mit "x" angegeben, ob jeweils ein
+dezentraler und zentraler Einsatz der Konversionsanlage Stand der Technik ist.
+
+In der Spalte "carrier" wird analog zur Konvention der Namensgebung im
+Energiesystem (siehe [esys.md](../../../../docs/sections/esys.md)) der
+jeweilige in die Konversionsanlage eintretende Energieträger notiert.
+Diese werden Abbildung 3 des Dokuments entommen. Der Energieträger Schwarzlauge
+wird vereinfachend dem Energieträger feste Biomasse bzw. Holz zugeordnet.
+Klärgas und Holzgas werden vereinfachend Biogas zugeordnet.
+
+In der Spalte "tech" findet die Zuordnung zu der Technologie anhand der im
+Energiesystem verwendeten Komponenten (siehe
+[esys.md](../../../../docs/sections/esys.md)) statt.
+
+**Dataset: `raw/dbfz_biomass_heat_capacities`**
+
+??? metadata "Metadata"
+    ```json
+    {
+        "Quellen": {
+            "Titel": "Techno\u00f6konomische Analyse und Transformationspfade des energetischen Biomassepotentials (TATBIO)",
+            "Datei": "https://www.ufz.de/export/data/2/231891_technooekonomische-analyse-und-transformationspfade-des-energetischen-biomassepotentials(1).pdf",
+            "Datum": "08.05.2019",
+            "Autor": "DBFZ Deutsches Biomasseforschungszentrum gemeinn\u00fctzige GmbH",
+            "Seiten": "6 und 54"
+        }
+    }
+    ```
+
+------------------------------
+## AGEB – Anwendungsbilanzen für die Endenergiesektoren 2011 bis 2021
+
+Detaillierte Anwendungsbilanzen der Endenergiesektoren für 2020 und 2021 sowie
+zusammenfassende Zeitreihen zum Endenergieverbrauch nach Energieträgern und
+Anwendungszwecken für Jahre von 2011 bis 2021 der AG Energiebilanzen.
+
+**Dataset: `raw/ageb_energy_balance`**
+
+??? metadata "Metadata"
+    ```json
+    {
+        "Quellen": {
+            "Website": "https://ag-energiebilanzen.de/daten-und-fakten/anwendungsbilanzen/",
+            "File": "https://ag-energiebilanzen.de/wp-content/uploads/2023/01/AGEB_21p2_V3_20221222.pdf"
+        }
+    }
+    ```
+
+------------------------------
+## Sozialversicherungspflichtig Beschäftigte und Betriebe
+
+Gemeindedaten der sozialversicherungspflichtig Beschäftigten am 30.06.2022 nach
+Wohn- und Arbeitsort - Deutschland, Länder, Kreise und Gemeinden (Jahreszahlen)
+der Bundesagentur für Arbeit.
+
+**Dataset: `raw/ba_employment`**
+
+??? metadata "Metadata"
+    ```json
+    {
+        "Quellen": {
+            "Website": "https://statistik.arbeitsagentur.de/SiteGlobals/Forms/Suche/Einzelheftsuche_Formular.html?nn=15024&topic_f=beschaeftigung-sozbe-gemband",
+            "File": "https://statistik.arbeitsagentur.de/Statistikdaten/Detail/202206/iiia6/beschaeftigung-sozbe-gemband/gemband-dlk-0-202206-zip.zip?__blob=publicationFile&v=2}"
         }
     }
     ```
@@ -1186,11 +1321,90 @@ Einwohnerzahl nach Gemeinden des Statistischen Bundesamts.
     ```
 
 ------------------------------
+## Energiedaten Sachsen-Anhalt
+
+Datensätze zur Energie- und Wasserversorgung des Statistischen Landesamtes
+Sachsen-Anhalt.
+
+### Daten
+
+Stromverbrauch der Industriebetriebe nach Kreisen 2003-2021 in MWh
+- [Quelle](https://statistik.sachsen-anhalt.de/themen/wirtschaftsbereiche/energie-und-wasserversorgung/tabellen-energieverwendung#c206986)
+
+**Dataset: `raw/stala_st_energy`**
+
+??? metadata "Metadata"
+    ```json
+    {
+        "Datenquellen": {
+            "Stromverbrauch der Industriebetriebe nach Kreisen": "https://statistik.sachsen-anhalt.de/themen/wirtschaftsbereiche/energie-und-wasserversorgung/tabellen-energieverwendung#c206986"
+        }
+    }
+    ```
+
+------------------------------
+## Technologiedaten
+
+### Jahresvolllaststunden
+
+Anhand typischer heutiger und prognostizierter Werte für Sachsen-Anhalt werden
+folgende Jahresvolllaststunden angenommen:
+
+| Technologie     | Jahr | Volllaststunden | Quelle(n) für Annahme                                                                                                                                                                                                                                                                                       | Anmerkung                                                      |
+|-----------------|------|----------------:|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------|
+| Windenergie     | 2022 |            1800 | [foederal-erneuerbar](https://www.foederal-erneuerbar.de/landesinfo/bundesland/ST/kategorie/wind/auswahl/811-durchschnittliche_ja/#goto_811)                                                                                                                                                                |                                                                |
+|                 | 2045 |            2300 | [PV- und Windflächenrechner](https://zenodo.org/record/6794558)                                                                                                                                                                                                                                             |                                                                |
+| Freiflächen-PV  | 2022 |             980 | [foederal-erneuerbar](https://www.foederal-erneuerbar.de/landesinfo/bundesland/ST/kategorie/solar/auswahl/813-durchschnittliche_ja/#goto_813), [ISE](https://www.ise.fraunhofer.de/content/dam/ise/de/documents/publications/studies/aktuelle-fakten-zur-photovoltaik-in-deutschland.pdf)                   |                                                                |
+|                 | 2045 |             980 | [PV- und Windflächenrechner](https://zenodo.org/record/6794558), [Ariadne Szenarienreport](https://ariadneprojekt.de/media/2022/02/Ariadne_Szenarienreport_Oktober2021_corr0222_lowres.pdf)                                                                                                                 |                                                                |
+| Aufdach-PV      | 2022 |             910 | [foederal-erneuerbar](https://www.foederal-erneuerbar.de/landesinfo/bundesland/ST/kategorie/solar/auswahl/813-durchschnittliche_ja/#goto_813), [ISE](https://www.ise.fraunhofer.de/content/dam/ise/de/documents/publications/studies/aktuelle-fakten-zur-photovoltaik-in-deutschland.pdf)                   |                                                                |
+|                 | 2045 |             910 | [Ariadne Szenarienreport](https://ariadneprojekt.de/media/2022/02/Ariadne_Szenarienreport_Oktober2021_corr0222_lowres.pdf)                                                                                                                                                                                  |                                                                |
+| Laufwasserkraft | 2022 |            3800 | [foederal-erneuerbar](https://www.foederal-erneuerbar.de/landesinfo/bundesland/ST/kategorie/wasser/auswahl/840-durchschnittliche_ja/#goto_840)                                                                                                                                                              |                                                                |
+|                 | 2045 |            3800 | [foederal-erneuerbar](https://www.foederal-erneuerbar.de/landesinfo/bundesland/ST/kategorie/wasser/auswahl/840-durchschnittliche_ja/#goto_840)                                                                                                                                                              |                                                                |
+| Bioenergie      | 2022 |            6000 | [foederal-erneuerbar](https://www.foederal-erneuerbar.de/landesinfo/bundesland/ST/kategorie/bioenergie/auswahl/814-durchschnittliche_ja/#goto_814), [ISE](https://www.ise.fraunhofer.de/content/dam/ise/de/documents/publications/studies/DE2018_ISE_Studie_Stromgestehungskosten_Erneuerbare_Energien.pdf) | Bioenergie-Stromerzeugung (ohne<br/>biogenen Teil des Abfalls) |
+|                 |      |                 |                                                                                                                                                                                                                                                                                                             |                                                                |
+
+Datei: `technology_data.json` -> `full_load_hours`
+
+TBD: Generalisieren - automatische Generierung anhand von Global Wind Atlas /
+Global Solar Atlas.
+
+### Leistungsdichte
+
+Installierbare Leistung pro Fläche / spezifischer Flächenbedarf:
+- Windenergie: 21 MW/km²
+- PV-Freiflächenanlagen: 100 MW/km²
+- PV-Aufdachanlagen: 140 MW/km²
+- Solarthermie: ? MW/km²
+
+Quelle: [PV- und Windflächenrechner](https://zenodo.org/record/6794558)
+
+Datei: `technology_data.json` -> `power_density`
+
+### Kosten und Wirkungsgrade
+
+Datei: `raw_costs_efficiencies.csv`
+
+**Dataset: `raw/technology_data`**
+
+??? metadata "Metadata"
+    ```json
+    {
+        "Datenquellen": {
+            "FLH": "",
+            "spec_area": "",
+            "emissions": "https://ens.dk/en/our-services/projections-and-models/technology-data"
+        }
+    }
+    ```
+
+------------------------------
 ## OpenStreetMap
 
 OpenStreetMap Datenauszug Deutschland.
 
 Quelle: https://download.geofabrik.de/europe/germany-230101.osm.pbf
+
+Ist nicht Teil des Eingangsdaten-Packages - manueller Download erforderlich.
 
 **Dataset: `raw/osm`**
 
@@ -1578,195 +1792,37 @@ Quellen
     ```
 
 ------------------------------
-## Verwaltungsgebiete Deutschlands
+## Temperatur
 
-Verwaltungsgebiete Deutschlands (Verwaltungsgebiete 1:250 000).
+Stündliche Mittelwerte der Luft- und Erdbodentemperatur des Deutschen
+Wetterdienstes
+([Climate Data Center](https://opendata.dwd.de/climate_environment/CDC/observations_germany/climate/hourly/))
+für das Jahr 2011 je Gemeinde in der Region ABW, vorverarbeitet im Projekt
+[WindNODE](https://windnode-abw.readthedocs.io/en/latest/energy_system_model.html#energy-demand-today).
 
-**Dataset: `raw/bkg_vg250`**
+Werte
+- `temp_amb`: Lufttemperatur in 2 m Höhe
+- `temp_soil`: Erdbodentemperatur in 1 m Tiefe
 
-??? metadata "Metadata"
-    ```json
-    {
-        "name": "bkg_vg250",
-        "title": "Adminstrative areas of Germany",
-        "id": "bkg_vb250",
-        "description": "Geopackage with administative areas of Germany - Verwaltungsgebiete 1:250 000",
-        "language": [
-            "en-GB",
-            "de-DE"
-        ],
-        "subject": null,
-        "keywords": [
-            "adminstrative areas",
-            "Verwaltungsgebiete"
-        ],
-        "publicationDate": "2022-01-01",
-        "context": {
-            "homepage": "https://abw.rl-institut.de",
-            "documentation": "https://digiplan.readthedocs.io",
-            "sourceCode": "https://github.com/rl-institut/digipipe/",
-            "contact": "https://reiner-lemoine-institut.de/ueber-uns/kontakt/",
-            "grantNo": "None",
-            "fundingAgency": "https://www.region-gestalten.bund.de",
-            "fundingAgencyLogo": "https://www.region-gestalten.bund.de/Region/SiteGlobals/Frontend/Images/logo.svg",
-            "publisherLogo": "https://reiner-lemoine-institut.de//wp-content/uploads/2015/09/rlilogo.png"
-        },
-        "spatial": {
-            "location": "Germany",
-            "extent": "Germany",
-            "resolution": "1:250 000"
-        },
-        "temporal": {
-            "referenceDate": "2022-01-01",
-            "timeseries": null
-        },
-        "sources": [
-            {
-                "title": "Bundesamt f\u00fcr Kartographie und Geod\u00e4sie - Verwaltungsgebiete 1:250 000 VG250 (Ebenen)",
-                "description": "Dieser Datensatz stellt die Verwaltungsgebiete 1:250 000 (VG250) mit Stand 01.01. f\u00fcr das Gebiet der Bundesrepublik Deutschland bereit.",
-                "path": "https://gdz.bkg.bund.de/index.php/default/digitale-geodaten/verwaltungsgebiete/verwaltungsgebiete-1-250-000-stand-01-01-vg250-01-01.html",
-                "licenses": [
-                    {
-                        "name": "DL-DE-BY-2.0",
-                        "title": "Open Data Datenlizenz Deutschland \u2013 Namensnennung \u2013 Version 2.0",
-                        "path": "http://www.govdata.de/dl-de/by-2-0",
-                        "instruction": "The data and meta-data provided may, for commercial and non-commercial use, in particular be copied, printed, presented, altered, processed and transmitted to third parties; be merged with own data and with the data of others and be combined to form new and independent datasets;be integrated in internal and external business processes, products and applications in public and non-public electronic networks.",
-                        "attribution": " \u00a9 GeoBasis-DE / BKG - 2022"
-                    }
-                ]
-            }
-        ],
-        "contributors": [
-            {
-                "title": "hedwiglieselotte",
-                "email": "hedwig.bartels@rl-institut.de",
-                "date": "2023-03-23",
-                "object": "metadata",
-                "comment": "create metadata"
-            }
-        ],
-        "resources": [
-            {
-                "profile": null,
-                "name": null,
-                "path": null,
-                "format": null,
-                "encoding": null,
-                "schema": {
-                    "fields": [],
-                    "primaryKey": [],
-                    "foreignKeys": []
-                },
-                "dialect": {
-                    "delimiter": "",
-                    "decimalSeparator": "."
-                }
-            }
-        ],
-        "@id": null,
-        "@context": "https://raw.githubusercontent.com/OpenEnergyPlatform/oemetadata/develop/metadata/latest/context.json",
-        "review": {
-            "path": "",
-            "badge": ""
-        },
-        "metaMetadata": {
-            "metadataVersion": "OEP-1.5.2",
-            "metadataLicense": {
-                "name": "CC0-1.0",
-                "title": "Creative Commons Zero v1.0 Universal",
-                "path": "https://creativecommons.org/publicdomain/zero/1.0/"
-            }
-        },
-        "_comment": {
-            "metadata": "Metadata documentation and explanation (https://github.com/OpenEnergyPlatform/oemetadata)",
-            "dates": "Dates and time must follow the ISO8601 including time zone (YYYY-MM-DD or YYYY-MM-DDThh:mm:ss\u00b1hh)",
-            "units": "Use a space between numbers and units (100 m)",
-            "languages": "Languages must follow the IETF (BCP47) format (en-GB, en-US, de-DE)",
-            "licenses": "License name must follow the SPDX License List (https://spdx.org/licenses/)",
-            "review": "Following the OEP Data Review (https://github.com/OpenEnergyPlatform/data-preprocessing/blob/master/data-review/manual/review_manual.md)",
-            "null": "If not applicable use: null",
-            "todo": "If a value is not yet available, use: todo"
-        }
-    }
-    ```
+Verwendete Stationen
+- Wittenberg
+- Köthen
+- Jessnitz
+- Seehausen
+- Holzdorf
 
-------------------------------
-## Emissionen
+Die Zuordnung der Stationsmesswerte zu Gemeinden erfolgte über die jeweils
+nächstgelegene Wetterstation.
 
-Emissionen für die Jahre 1990 und 2019 für Sachsen-Anhalt (aus
-[THG-Bericht 2021](https://lau.sachsen-anhalt.de/fileadmin/Bibliothek/Politik_und_Verwaltung/MLU/LAU/Wir_ueber_uns/Publikationen/Fachberichte/Dateien/221014_THG-Bericht.pdf))
-und disaggregiert für die Region ABW.
-
-Datei: `emissions.csv`, Felder:
-- `sector`: Sektor
-- `cat`: Kategorie ("*" = alle)
-- `subcat`: Unterkategorie ("*" = alle)
-- `name`: Bezeichner
-- `st`: Emissionen Sachsen-Anhalt in kt CO2-Äquivalent
-- `abw`: Emissionen Region ABW in kt CO2-Äquivalent
-
-`sector`, `cat` und `subcat` folgen der Nomenklatur des Common Reporting Formats
-(CRF) nach [KSG Anlage 1](https://www.gesetze-im-internet.de/ksg/anlage_1.html).
-[Grafik hierzu](https://expertenrat-klima.de/content/uploads/2023/05/ERK2023_Pruefbericht-Emissionsdaten-des-Jahres-2022.pdf)
-(Abb. 2 auf S. 30).
-
-### Disaggregation
-
-Hier Beschreibungstext
-
-#### Sektor Energiewirtschaft (CRF 1.A.1 + 1.B)
-
-####### CRF 1.A.1
-
-EnbG: Emissionen aus europäischem Emissionshandel
-
-####### CRF 1.B
-
-EnbG: Emissionen aus europäischem Emissionshandel
-
-#### Sektor Industrie (CRF 1.A.2 + 2)
-
-####### CRF 1.A.2
-
-EnbG: Energienutzung nach Ennergieträgern
-
-####### CRF 2 Prozessemissionen
-
-EnbG: in Industrie beschäftigte Personen
-
-#### Sektor Verkehr (CRF 1.A.3)
-
-EnbG:
-
-* Zugelassene Kraftfahrzeuge
-* gewichtet mit durchschn. Fahrleistung und spez. CO2 Emission pro km und Fahrzeugklasse
-
-#### Sektor Sonstige Energie (insbes. Gebäude) (CRF 1.A.4 + 1.A.5)
-
-EnbG: Wärmebedarf aus Energiesystem
-
-#### Sektor Landwirtschaft (CRF 3)
-
-####### CRF 3.A - Landwirtschaft – Fermentation
-
-EnbG: Viehbestände
-
-####### CRF 3.B-J:
-
-EnbG: landwirtschaftlich genutzte Fläche
-
-#### Sektor Abfall und Abwasser (CRF 5)
-
-EnbG: Bevölkerung ABW
-
-**Dataset: `raw/emissions`**
+**Dataset: `raw/dwd_temperature`**
 
 ??? metadata "Metadata"
     ```json
     {
-        "Daten Sachsen-Anhalt": "https://lau.sachsen-anhalt.de/fileadmin/Bibliothek/Politik_und_Verwaltung/MLU/LAU/Wir_ueber_uns/Publikationen/Fachberichte/Dateien/221014_THG-Bericht.pdf",
-        "Datens\u00e4tze Desaggregation": {
-            "Industrie": ""
+        "Datenquellen": {
+            "Open Data Bereich des Climate Data Center des DWD": "https://www.dwd.de/DE/leistungen/cdc/climate-data-center.html",
+            "Datensatz Lufttemperatur": "https://opendata.dwd.de/climate_environment/CDC/observations_germany/climate/hourly/air_temperature/historical/",
+            "Datensatz Bodentemperatur": "https://opendata.dwd.de/climate_environment/CDC/observations_germany/climate/hourly/soil_temperature/historical/"
         }
     }
     ```

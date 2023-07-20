@@ -19,12 +19,22 @@ Datei: `emissions.csv`, Felder:
 
 ## Disaggregation
 
-Hier Beschreibungstext
+Anhand unterschiedlicher Kriterien und Datenquellen wurde näherungsweise von den vorliegenden Emissionen für Sachsen-Anhalt für 1990 und 2019 auf die Region ABW disaggregiert.
 
 ### Sektor Energiewirtschaft (CRF 1.A.1 + 1.B)
+Aus der Liste der Emissionshandelspflichtigen Anlagen wurden jene Daten zu Anlagen extrahiert, welche sich in Sachsen-Anhalt befinden und als Angabe "Energieumwandlung >= 50 MW FWL" (Haupttätigkeit nach TEHG) haben.
+Die Summe der angegebenen Emissionen (t CO2 Äq) jener Anlagen, welche in der Region AWB liegen, wurde in Relation zu der Summe der Emissionen aus den Anlagen in Gesamt-ST gesetzt. Dieser Anteil wurde auf die im THG-Bericht angegebene Emissionsmenge im Sektor "Energiewirtschaft" angelegt und so für ABW näherungsweise disaggregiert.
+
+Hinweis: Für das Jahr 1990 wurde aufgrund mangelnder Daten auf die ältesten verfügbaren Daten (2005-2007) aus der Anlagenliste zurückgegriffen.
+
+Quelle: [Emissionshandelspflichtigen Anlagen in Deutschland (bis 2020)](https://www.dehst.de/SharedDocs/downloads/DE/anlagenlisten/2020.pdf?__blob=publicationFile&v=3)
 
 ### Sektor Industrie (CRF 1.A.2 + 2)
+Hierfür wurde der Energieverbrauch der Industriebetriebe in AWB mit dem Gesamtenergieverbrauch aller Industriebetriebe in Sachsen-Anhalt in Relation gesetzt.
 
+Quellen:
+- [Emissionsfaktor für Stromerzeugung (UBA)](https://www.umweltbundesamt.de/sites/default/files/medien/479/bilder/dateien/entwicklung_der_spezifischen_emissionen_des_deutschen_strommix_1990-2020_und_erste_schaetzungen_2021.pdf)
+- [Energieverbrauch der Industriebetriebe in Sachsen-Anhalt nach ausgewählten Energieträgern und Kreisen](https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Energie/Tabellen/Energieverwendung/Energieverbrauch_nach_Kreisen_ab_dem_Jahr_2010.xlsx)
 ### Sektor Verkehr (CRF 1.A.3)
 
 ### Sektor Sonstige Energie (insbes. Gebäude) (CRF 1.A.4 + 1.A.5)

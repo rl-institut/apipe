@@ -30,6 +30,7 @@ abgerufen.
 | Haushalte Energieträger                        | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/52700/c6980ea467bb26a922d34617b4fd4798)                 | `T45-Strom_hh_demand.csv`                                 |
 | Industrie Energiebedarf                        | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/52612/9de48084ac2d54c418daaf02a6ee26e0)                 | `T45-Strom_ind_demand.csv`                                |
 | Stromsystem Deutschland Leistung               | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/48766/5c11999a03c547e04e73d61e4b5fc633)                 | `T45-Strom_electricity_installed_power.csv`               |
+| Erzeugung Wärmenetze Deutschland T45           | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/49949/cf898070daec6a4e613dc889927a5feb)                 | `T45-Strom_Generation_Heatgrids_Germany.csv`              |
 
 ### TN-Strom
 

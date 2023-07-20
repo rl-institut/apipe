@@ -9,6 +9,7 @@ files_extract:
     "T45-Strom_buildings_heating_structure_by_technology.csv",
     "T45-Strom_cts_demand.csv",
     "T45-Strom_electricity_installed_power.csv",
+    "T45-Strom_Generation_Heatgrids_Germany.csv",
     "T45-Strom_hh_demand.csv",
     "T45-Strom_ind_demand.csv",
     "TN-Strom_buildings_heating_demand_by_carrier.csv",
@@ -36,6 +37,10 @@ rename_columns:
     {"Jahr / Year": "year",
      "Technologie / Technology": "technology",
      "Leistung in GW /  Capacity in GW": "capacity"}
+  T45-Strom_Generation_Heatgrids_Germany:
+    {"Jahr / Year": "year",
+     "Technologie / Technology": "technology",
+     "Erzeugung in TWh / Generation in TWh": "generation"}
   T45-Strom_hh_demand:
     {"Jahr / Year": "year",
      "Energiebedarf in TWh / Energy Demand in TWh": "demand",
@@ -67,9 +72,11 @@ rename_columns:
 
 # New names for carriers and technologies
 rename_entries:
-  {'Andere': 'other',
+  {'Abfall KWK': 'waste_chp',
+   'Andere': 'other',
    'Andere Fossile': 'other_fossil_fuel',
    'Andere fossile': 'other_fossil_fuel',
+   'Andere fossile KWK': 'other_fossil_fuel_chp',
    'BHKW': 'chp_small',
    'Biobenzin': 'biopetrol',
    'Biodiesel': 'biodiesel',
@@ -77,16 +84,21 @@ rename_entries:
    'Biokraftstoffe': 'biofuels',
    'Biomasse': 'biomass',
    'Biomasse, fest': 'biomass',
+   'Biomasse KWK': 'biomass_chp',
    'Biotreibstoffe': 'biofuels',
    'Braunkohle': 'lignite',
    'EE-Methan': 'renewable_methane',
+   'Elektrokessel': 'electricity_direct_heating',
    'Erdgas': 'natural_gas',
    'Fernwärme': 'district_heating',
    'Fossile': 'fossil_fuel',
    'Gas': 'natural_gas',
    'Gas-Heizkessel': 'gas_boiler',
+   'Gas Heizkessel': 'gas_boiler',
+   'Gas KWK': 'methane_chp',
    'Geothermie': 'geothermal',
    'Gichtgas': 'blast_furnace_gas',
+   'Großwärmepumpen': 'heat_pump',
    'Hackschnitzel': 'woodchip',
    'Hackschnitzel-Heizkessel': 'woodchip_boiler',
    'Hackschnitzel-Heizungen': 'woodchip_boiler',
@@ -124,6 +136,8 @@ rename_entries:
    'WP-Umgebungswärme': 'ambient_heat_heat_pump',
    'Wasserkraft': 'hydro',
    'Wasserstoff': 'hydrogen',
+   'Wasserstoff Kessel': 'hydrogen_boiler',
+   'Wasserstoff KWK': 'hydrogen_chp',
    'Wind an Land': 'wind_onshore',
    'Wind auf See': 'sind_offshore',
    'Wärmenetzanschlüsse': 'district_heating_connection',

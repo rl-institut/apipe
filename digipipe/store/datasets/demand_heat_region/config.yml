@@ -103,3 +103,28 @@ heating_structure:
       18:      # Wittenberg
         {"": 0},
       19: {}}
+
+# Aggregation of carriers used in technologies generating central heat
+# in 2022 and 2045
+carrier_to_agg:
+  2022:
+    other_fossil_fuel_chp: "methane"
+    waste_chp: "biomass"
+    biomass_chp: "biomass"
+    electricity_direct_heating: "electricity_direct_heating"
+    gas_boiler: "methane"
+    methane_chp: "methane"
+    heat_pump: "heat_pump"
+    solar_thermal: "solar_thermal"
+    hydrogen_chp: "hydrogen"
+    hydrogen_boiler: "hydrogen"
+  2045:
+    waste_chp: "biomass"
+    biomass_chp: "biomass"
+    electricity_direct_heating: "electricity_direct_heating"
+    gas_boiler: "methane"
+    methane_chp: "biomass"
+    heat_pump: "heat_pump"
+    solar_thermal: "solar_thermal"
+    hydrogen_chp: "biomass"
+    hydrogen_boiler: "hydrogen"

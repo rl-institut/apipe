@@ -33,17 +33,16 @@ EnbG: Emissionen aus europäischem Emissionshandel
 ###### CRF 1.B
 EnbG: Emissionen aus europäischem Emissionshandel
 
-### Sektor Industrie (CRF 1.A.2 + 2)
+### Sektor Industrie (CRF 1.A.2)
+EnbG: Energienutzung nach Energieträgern
+
 Hierfür wurde der Energieverbrauch der Industriebetriebe in AWB mit dem Gesamtenergieverbrauch aller Industriebetriebe in Sachsen-Anhalt in Relation gesetzt.
 
 Quellen:
 - [Emissionsfaktor für Stromerzeugung (UBA)](https://www.umweltbundesamt.de/sites/default/files/medien/479/bilder/dateien/entwicklung_der_spezifischen_emissionen_des_deutschen_strommix_1990-2020_und_erste_schaetzungen_2021.pdf)
 - [Energieverbrauch der Industriebetriebe in Sachsen-Anhalt nach ausgewählten Energieträgern und Kreisen](https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Energie/Tabellen/Energieverwendung/Energieverbrauch_nach_Kreisen_ab_dem_Jahr_2010.xlsx)
 
-###### CRF 1.A.2
-EnbG: Energienutzung nach Energieträgern
-
-###### CRF 2 Prozessemissionen
+### Sektor Prozessemissionen (CRF 2)
 EnbG: Emissionen aus europäischem Emissionshandel
 
 ### Sektor Verkehr (CRF 1.A.3)

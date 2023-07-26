@@ -1,3 +1,5 @@
+import math
+
 import geopandas as gpd
 import pandas as pd
 
@@ -62,7 +64,7 @@ def add_electricity_panel_settings(
     wind_area_stats: pd.DataFrame,
     pv_ground_stats: pd.DataFrame,
     pv_ground_area_stats: pd.DataFrame,
-    pv_ground_area_shares: dict,
+    # pv_ground_area_shares: dict,
     pv_roof_stats: pd.DataFrame,
     pv_roof_area_stats: pd.DataFrame,
     pv_roof_area_deploy_stats: pd.DataFrame,
@@ -78,6 +80,22 @@ def add_electricity_panel_settings(
 ) -> PanelSettings:
 
     # Wind energy
+    wind_search_area_start = round(
+        wind_stats.capacity_net.sum()
+        / (
+            wind_area_stats[
+                [
+                    "stp_2027_search_area_forest_area",
+                    "stp_2027_search_area_open_area",
+                ]
+            ]
+            .sum()
+            .sum()
+            * tech_data["power_density"]["wind"]
+        )
+        * 100
+    )
+
     panel_settings.update(
         **dict(
             s_w_1=dict(
@@ -97,13 +115,49 @@ def add_electricity_panel_settings(
             ),
             s_w_3=dict(start=True),
             s_w_4=dict(start=False),
-            s_w_4_1=dict(start=False),
+            s_w_4_1=dict(start=True),
             s_w_4_2=dict(start=False),
             s_w_5=dict(start=False),
+            s_w_5_1=dict(
+                max=100,
+                min=0,
+                # Use theoretical values as start
+                # to meet the SQ capacity for sake of UX
+                start=wind_search_area_start,
+                step=5,
+            ),
+            s_w_5_2=dict(
+                max=100,
+                min=0,
+                # Use theoretical values as start
+                # to meet the SQ capacity for sake of UX
+                start=wind_search_area_start,
+                step=5,
+            ),
         )
     )
 
     # PV ground and roof
+    pv_ground_search_area_start = round(
+        pv_ground_stats.capacity_net.sum()
+        / (
+            pv_ground_area_stats.sum().sum()
+            * tech_data["power_density"]["pv_ground"]
+        )
+        * 100
+    )
+    pv_roof_capacity_max = (
+        pv_roof_area_stats[
+            [
+                f"installable_power_{orient}"
+                for orient in ["south", "east", "west", "flat"]
+            ]
+        ]
+        .sum()
+        .sum()
+        * 0.5
+    )  # Max. 50% of all roofs except for north-oriented
+
     panel_settings.update(
         **dict(
             s_pv_ff_1=dict(
@@ -118,23 +172,23 @@ def add_electricity_panel_settings(
                 future_scenario=round(pv_ground_targets["target_power_total"]),
             ),
             s_pv_ff_3=dict(
-                max=pv_ground_area_shares["road_railway"] * 100,
+                max=100,
                 min=0,
-                start=0,
-                step=0.25,
+                # Use theoretical values as start
+                # to meet the SQ capacity for sake of UX
+                start=pv_ground_search_area_start,
+                step=5,
             ),
             s_pv_ff_4=dict(
-                max=pv_ground_area_shares["agri"] * 100,
+                max=100,
                 min=0,
-                start=0,
+                # Use theoretical values as start
+                # to meet the SQ capacity for sake of UX
+                start=pv_ground_search_area_start,
                 step=5,
             ),
             s_pv_d_1=dict(
-                max=round(
-                    # max. 30 % of all roofs
-                    pv_roof_area_stats.installable_power_total.sum()
-                    * 0.3
-                ),
+                max=round(pv_roof_capacity_max),
                 min=0,
                 start=round(pv_roof_stats.capacity_net.sum()),
                 step=10,
@@ -188,10 +242,6 @@ def add_electricity_panel_settings(
     total_demand = (demand_hh_power + demand_cts_power + demand_ind_power).sum()
     feedin_wind_pv_daily_mean = (
         (
-            pv_roof_stats.capacity_net.sum()
-            * tech_data["full_load_hours"]["pv_roof"]["2022"]
-        )
-        + (
             pv_ground_stats.capacity_net.sum()
             * tech_data["full_load_hours"]["pv_ground"]["2022"]
         )
@@ -199,7 +249,8 @@ def add_electricity_panel_settings(
             wind_stats.capacity_net.sum()
             * tech_data["full_load_hours"]["wind"]["2022"]
         )
-    ) / 365
+    ) / 365  # Daily in MWh
+
     panel_settings.update(
         **dict(
             s_v_1=dict(
@@ -249,27 +300,33 @@ def add_electricity_panel_settings(
                 ),
             ),
             s_s_g_1=dict(
-                max=round(feedin_wind_pv_daily_mean / 10),
+                max=50,
                 min=0,
-                start=round(storage_large_stats.storage_capacity.sum()),
-                step=0.1,
-                status_quo=round(storage_large_stats.storage_capacity.sum()),
+                start=math.ceil(
+                    storage_large_stats.storage_capacity.sum()
+                    / feedin_wind_pv_daily_mean
+                    * 100,
+                ),
+                step=1,
+                status_quo=math.ceil(
+                    storage_large_stats.storage_capacity.sum()
+                    / feedin_wind_pv_daily_mean
+                    * 100,
+                ),
             ),
             s_s_g_3=dict(
-                max=10,
+                max=50,
                 min=0,
-                start=round(
+                start=math.ceil(
                     storage_large_stats.storage_capacity.sum()
                     / feedin_wind_pv_daily_mean
                     * 100,
-                    1,
                 ),
-                step=0.25,
-                status_quo=round(
+                step=1,
+                status_quo=math.ceil(
                     storage_large_stats.storage_capacity.sum()
                     / feedin_wind_pv_daily_mean
                     * 100,
-                    1,
                 ),
             ),
         )
@@ -324,7 +381,8 @@ def add_heat_panel_settings(
                 start=round(heat_pump_share.loc[2022] * 100),
                 step=5,
                 status_quo=round(heat_pump_share.loc[2022] * 100),
-                future_scenario=0,  # Todo: Insert cen heating structure targets
+                # TODO: Insert cen heating structure targets
+                # future_scenario=0,
             ),
             w_z_wp_3=dict(
                 max=100,
@@ -332,7 +390,8 @@ def add_heat_panel_settings(
                 start=round(heat_pump_share.loc[2022] * 100),
                 step=5,
                 status_quo=round(heat_pump_share.loc[2022] * 100),
-                future_scenario=0,  # Todo: Insert cen heating structure targets
+                # TODO: Insert cen heating structure targets
+                # future_scenario=0,
             ),
         )
     )
@@ -342,7 +401,7 @@ def add_heat_panel_settings(
     panel_settings.update(
         **dict(
             w_v_1=dict(
-                max=100,
+                max=200,
                 min=50,
                 start=100,
                 step=10,
@@ -434,16 +493,16 @@ def add_traffic_panel_settings(
                 min=0,
                 start=0,  # TODO
                 step=5,
-                status_quo=0,  # TODO
-                future_scenario=0,  # TODO
+                # status_quo=0,  # TODO
+                # future_scenario=0,  # TODO
             ),
             v_iv_3=dict(
                 max=100,
                 min=0,
                 start=0,  # TODO
                 step=5,
-                status_quo=0,  # TODO
-                future_scenario=0,  # TODO
+                # status_quo=0,  # TODO
+                # future_scenario=0,  # TODO
             ),
         )
     )

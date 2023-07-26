@@ -57,6 +57,10 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Add dataset: osm (Germany)
 - Add dataset: osm_buildings and add stats on ground areas
 - Add mapping of costs and efficiencies from store/raw to store/datasets
+- Add dataset: emissions
+- Add captions to app datapackage (here: MaStR, heat, potentialarea_wind)
+- Add mapping of time series data in datasets to empty time series according to
+  the mapping provided in map_ts.yml
 - Add deletion of all data in store/datasets/esys_raw/data
 
 ### Changed
@@ -96,6 +100,19 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
   default_scalars.csv instead of default_costs_efficiencies.csv
 - Default variable_costs are passed with input_parameters for storages
 - Pass time series instead of scalar with efficiency for central heat pump
+- Fix wind+pv_ground default values in panel settings
+- Set all default control values in panel settings
+- Kick biogas shortage
+- Rename dataset captions to app_captions
+- Move app settings to datasets and include in app datapackage
+- Adapt 2045_scenario.yml so that time series with values are used instead of
+  empty ts
+- Suppress warning of loosing data in source and comment columns while
+  unstacking if they are empty
+- Change max. installable PV roof capacity in panel settings
+- Fix panel settings for large batteries
+- Add additional captions to MaStR captions
+- Use LTS version of OSM
 - Fix clean rule
 
 ### Removed
@@ -104,3 +121,5 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - sphinx from poetry environment
 - Remove dataset: osm_forest
 - Obsolete targets from rule all
+- Merge dataset costs_efficiencies into technology_data
+- Merge dataset costs_efficiencies into technology_data

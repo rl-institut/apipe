@@ -253,6 +253,19 @@ Raw dataset: [technology_data](../../raw/technology_data/dataset.md)
 
 
 ------------------------------
+## Emissionen
+
+Emissionen für Sachsen-Anhalt und die Region, aggregiert nach Sektoren der
+CRF-Nomenklatur.
+
+Datei `emissions.json` enthält Chartdaten.
+
+Raw dataset: [emissions](../../raw/emissions/dataset.md)
+
+**Dataset: `datasets/emissions_region`**
+
+
+------------------------------
 ## Geodaten PV- und Windflächenrechner
 
 Geodaten aus dem
@@ -264,6 +277,17 @@ Preprocessed dataset:
 [rli_pv_windflaechenrechner](../../preprocessed/rli_pv_wfr/dataset.md)
 
 **Dataset: `datasets/rli_pv_wfr_region`**
+
+
+------------------------------
+## Captions
+
+Beschriftungen für WebApp.
+
+Dateien:
+- Felder: `captions_fields.json`
+
+**Dataset: `datasets/app_captions`**
 
 
 ------------------------------
@@ -291,6 +315,35 @@ Zusätzlich erfolgt eine statistische Auswertung der installierten Leistung in
 `bnetza_mastr_combustion_stats_muns.csv`.
 
 **Dataset: `datasets/bnetza_mastr_combustion_region`**
+
+
+------------------------------
+## Settings für App
+
+Einstellungen für die App.
+
+### Layerliste (rechtes Panel)
+
+- Konfiguration: [config.yml](config.yml) -> `map_panel_layer_list`
+- Ergebnisfile: `map_panel_layer_list.json`
+- Wird manuell in die App eingepflegt (s. [map_config.py](https://github.com/rl-institut-private/digiplan/blob/dev/digiplan/map/map_config.py))
+
+### Settings panels
+
+- Konfiguration des Templates: [config.yml](config.yml) -> `panel_settings_templates`
+- Ergebnisfiles:
+  - `energy_settings_panel.json`
+  - `heat_settings_panel.json`
+  - `traffic_settings_panel.json`
+- Werden in die App eingelesen
+
+**TODO**: Parametrierung der Slider & Switches beschreiben
+
+- `s_pv_d_1`: Installierbare Leistung PV-Aufdachanlagen.
+  Max. 50 % aller Dächer von nicht-denkmalgeschützten Gebäuden mit Ausrichtung
+  Süden, Osten, Westen und Flachdächern.
+
+**Dataset: `datasets/app_settings`**
 
 
 ------------------------------

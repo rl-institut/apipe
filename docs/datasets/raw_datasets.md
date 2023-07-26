@@ -399,23 +399,6 @@ Enthält
     ```
 
 ------------------------------
-## Costs and efficiencies of components
-
-Cost and efficiencies of components gathered from various sources.
-
-**Dataset: `raw/costs_efficiencies`**
-
-??? metadata "Metadata"
-    ```json
-    {
-        "Originale Datenquelle": [
-            "https://ens.dk/en/our-services/projections-and-models/technology-data",
-            "TBD"
-        ]
-    }
-    ```
-
-------------------------------
 ## Erzeugungsanlagen aus Marktstammdatenregister
 
 Ereugungsanlagen aus dem Markstammdatenregister, das mit dem Tool
@@ -558,9 +541,7 @@ befindlichen Strom- und Gasanlagen erfasst.
 ------------------------------
 ## Technologiedaten
 
-Allgemeine Technologiedaten, Datei: `technology_data.json`
-
-### Jahresvolllaststunden (`full_load_hours`)
+### Jahresvolllaststunden
 
 Anhand typischer heutiger und prognostizierter Werte für Sachsen-Anhalt werden
 folgende Jahresvolllaststunden angenommen:
@@ -578,10 +559,12 @@ folgende Jahresvolllaststunden angenommen:
 | Bioenergie      | 2022 |            6000 | [foederal-erneuerbar](https://www.foederal-erneuerbar.de/landesinfo/bundesland/ST/kategorie/bioenergie/auswahl/814-durchschnittliche_ja/#goto_814), [ISE](https://www.ise.fraunhofer.de/content/dam/ise/de/documents/publications/studies/DE2018_ISE_Studie_Stromgestehungskosten_Erneuerbare_Energien.pdf) | Bioenergie-Stromerzeugung (ohne<br/>biogenen Teil des Abfalls) |
 |                 |      |                 |                                                                                                                                                                                                                                                                                                             |                                                                |
 
+Datei: `technology_data.json` -> `full_load_hours`
+
 TBD: Generalisieren - automatische Generierung anhand von Global Wind Atlas /
 Global Solar Atlas.
 
-### Leistungsdichte (`power_density`)
+### Leistungsdichte
 
 Installierbare Leistung pro Fläche / spezifischer Flächenbedarf:
 - Windenergie: 21 MW/km²
@@ -589,11 +572,13 @@ Installierbare Leistung pro Fläche / spezifischer Flächenbedarf:
 - PV-Aufdachanlagen: 140 MW/km²
 - Solarthermie: ? MW/km²
 
-Quelle: [PV- und Windflächenrechner](https://zenodo.org/record/6794558).
+Quelle: [PV- und Windflächenrechner](https://zenodo.org/record/6794558)
 
-### Kosten, Emissionen und Wirkungsgrade
+Datei: `technology_data.json` -> `power_density`
 
-Siehe Datensatz [costs_efficiencies](../costs_efficiencies/dataset.md).
+### Kosten und Wirkungsgrade
+
+Datei: `raw_costs_efficiencies.csv`
 
 **Dataset: `raw/technology_data`**
 
@@ -602,7 +587,8 @@ Siehe Datensatz [costs_efficiencies](../costs_efficiencies/dataset.md).
     {
         "Datenquellen": {
             "FLH": "",
-            "spec_area": ""
+            "spec_area": "",
+            "emissions": "https://ens.dk/en/our-services/projections-and-models/technology-data"
         }
     }
     ```
@@ -1204,6 +1190,8 @@ Einwohnerzahl nach Gemeinden des Statistischen Bundesamts.
 
 OpenStreetMap Datenauszug Deutschland.
 
+Quelle: https://download.geofabrik.de/europe/germany-230101.osm.pbf
+
 **Dataset: `raw/osm`**
 
 ??? metadata "Metadata"
@@ -1246,7 +1234,7 @@ OpenStreetMap Datenauszug Deutschland.
             {
                 "title": "OpenStreetMap Data Extracts (Geofabrik)",
                 "description": "Full data extract of OpenStreetMap data",
-                "path": "https://download.geofabrik.de/europe/germany-230630.osm.pbf",
+                "path": "https://download.geofabrik.de/europe/germany-230101.osm.pbf",
                 "licenses": [
                     {
                         "name": "ODbL-1.0",
@@ -1698,6 +1686,87 @@ Verwaltungsgebiete Deutschlands (Verwaltungsgebiete 1:250 000).
             "review": "Following the OEP Data Review (https://github.com/OpenEnergyPlatform/data-preprocessing/blob/master/data-review/manual/review_manual.md)",
             "null": "If not applicable use: null",
             "todo": "If a value is not yet available, use: todo"
+        }
+    }
+    ```
+
+------------------------------
+## Emissionen
+
+Emissionen für die Jahre 1990 und 2019 für Sachsen-Anhalt (aus
+[THG-Bericht 2021](https://lau.sachsen-anhalt.de/fileadmin/Bibliothek/Politik_und_Verwaltung/MLU/LAU/Wir_ueber_uns/Publikationen/Fachberichte/Dateien/221014_THG-Bericht.pdf))
+und disaggregiert für die Region ABW.
+
+Datei: `emissions.csv`, Felder:
+- `sector`: Sektor
+- `cat`: Kategorie ("*" = alle)
+- `subcat`: Unterkategorie ("*" = alle)
+- `name`: Bezeichner
+- `st`: Emissionen Sachsen-Anhalt in kt CO2-Äquivalent
+- `abw`: Emissionen Region ABW in kt CO2-Äquivalent
+
+`sector`, `cat` und `subcat` folgen der Nomenklatur des Common Reporting Formats
+(CRF) nach [KSG Anlage 1](https://www.gesetze-im-internet.de/ksg/anlage_1.html).
+[Grafik hierzu](https://expertenrat-klima.de/content/uploads/2023/05/ERK2023_Pruefbericht-Emissionsdaten-des-Jahres-2022.pdf)
+(Abb. 2 auf S. 30).
+
+### Disaggregation
+
+Hier Beschreibungstext
+
+#### Sektor Energiewirtschaft (CRF 1.A.1 + 1.B)
+
+####### CRF 1.A.1
+
+EnbG: Emissionen aus europäischem Emissionshandel
+
+####### CRF 1.B
+
+EnbG: Emissionen aus europäischem Emissionshandel
+
+#### Sektor Industrie (CRF 1.A.2 + 2)
+
+####### CRF 1.A.2
+
+EnbG: Energienutzung nach Ennergieträgern
+
+####### CRF 2 Prozessemissionen
+
+EnbG: in Industrie beschäftigte Personen
+
+#### Sektor Verkehr (CRF 1.A.3)
+
+EnbG:
+
+* Zugelassene Kraftfahrzeuge
+* gewichtet mit durchschn. Fahrleistung und spez. CO2 Emission pro km und Fahrzeugklasse
+
+#### Sektor Sonstige Energie (insbes. Gebäude) (CRF 1.A.4 + 1.A.5)
+
+EnbG: Wärmebedarf aus Energiesystem
+
+#### Sektor Landwirtschaft (CRF 3)
+
+####### CRF 3.A - Landwirtschaft – Fermentation
+
+EnbG: Viehbestände
+
+####### CRF 3.B-J:
+
+EnbG: landwirtschaftlich genutzte Fläche
+
+#### Sektor Abfall und Abwasser (CRF 5)
+
+EnbG: Bevölkerung ABW
+
+**Dataset: `raw/emissions`**
+
+??? metadata "Metadata"
+    ```json
+    {
+        "Daten Sachsen-Anhalt": "https://lau.sachsen-anhalt.de/fileadmin/Bibliothek/Politik_und_Verwaltung/MLU/LAU/Wir_ueber_uns/Publikationen/Fachberichte/Dateien/221014_THG-Bericht.pdf",
+        "Datens\u00e4tze Desaggregation": {
+            "Industrie": ""
         }
     }
     ```

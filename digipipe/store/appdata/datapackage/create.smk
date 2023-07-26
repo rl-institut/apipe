@@ -5,46 +5,12 @@ Note: To include the file in the main workflow, it must be added to the respecti
 """
 import json
 import shutil
-from typing import Tuple
 
 from digipipe.store.utils import get_abs_dataset_path
+from digipipe.store.appdata.datapackage.scripts.create import collect_files
 
 DATASET_PATH = get_abs_dataset_path("appdata", "datapackage", data_dir=True)
-
-def collect_files() -> Tuple[list, list]:
-    """Collect paths of source and target files for app datapackage
-
-    Returns
-    -------
-    list
-        Paths to original info layer files in store
-    """
-    source_files = []
-    target_files = []
-
-    for cat in config["resources"].keys():
-        print(f"Processing {cat} ...")
-        for subcat in config["resources"][cat].keys():
-            print(f"  Processing {subcat} ...")
-            for item, data in config["resources"][cat][subcat].items():
-                print(f"  Processing {item} ...")
-                source_file = (
-                    get_abs_dataset_path(
-                        "datasets",
-                        data["_source_path"].get("dataset"),
-                        data_dir=True
-                    ) / data["_source_path"].get("file")
-                )
-                target_file = DATASET_PATH / data.get("path")
-                if not target_file in target_files:
-                    source_files.append(source_file)
-                    target_files.append(target_file)
-                else:
-                    print("    Target file already collected, skipping...")
-
-    return source_files, target_files
-
-DATAPACKAGE_FILES = collect_files()
+DATAPACKAGE_FILES = collect_files(config, DATASET_PATH)
 
 rule copy_files:
     """

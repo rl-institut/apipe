@@ -28,6 +28,7 @@ rule create:
     output:
         outfile=DATASET_PATH / "data" / "bnetza_mastr_attribute_captions.json",
     params:
-        mastr_configs=get_mastr_configs()
+        mastr_configs=get_mastr_configs(),
+        additional_captions=config["additional_captions"]
     script:
         DATASET_PATH / "scripts" / "create.py"

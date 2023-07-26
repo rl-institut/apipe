@@ -152,8 +152,10 @@ digipipe/store/datasets/*/data/*
 digipipe/store/appdata/esys/*
 digipipe/store/appdata/*/data/*
 !digipipe/store/appdata/*/data/.gitkeep
+!digipipe/store/appdata/datapackage/data/captions/.gitkeep
 !digipipe/store/appdata/datapackage/data/geodata/.gitkeep
 !digipipe/store/appdata/datapackage/data/scalars/.gitkeep
+!digipipe/store/appdata/datapackage/data/settings/.gitkeep
 !digipipe/store/appdata/datapackage/data/sequences/.gitkeep
 !digipipe/store/appdata/*/.gitkeep
 

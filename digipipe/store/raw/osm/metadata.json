@@ -36,7 +36,7 @@
     {
       "title": "OpenStreetMap Data Extracts (Geofabrik)",
       "description": "Full data extract of OpenStreetMap data",
-      "path": "https://download.geofabrik.de/europe/germany-230630.osm.pbf",
+      "path": "https://download.geofabrik.de/europe/germany-230101.osm.pbf",
       "licenses": [
         {
           "name": "ODbL-1.0",

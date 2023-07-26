@@ -17,10 +17,10 @@ rule convert:
     """
     Convert OSM pbf file while filtering for all requested tags. All attributes are retained.
     """
-    input: get_abs_dataset_path("raw", "osm") / "data" / "germany-230630.osm.pbf"
-    output: DATASET_PATH / "germany-230630_filtered.osm.gpkg"
+    input: get_abs_dataset_path("raw", "osm") / "data" / "germany-230101.osm.pbf"
+    output: DATASET_PATH / "germany-230101_filtered.osm.gpkg"
     params:
-        temp_file=DATASET_PATH / "germany-230630_filtered.osm.pbf",
+        temp_file=DATASET_PATH / "germany-230101_filtered.osm.pbf",
         tags=create_tag_string_osmium(config["tags"])
     shell:
         """

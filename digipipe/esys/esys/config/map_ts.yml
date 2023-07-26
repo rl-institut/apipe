@@ -1,0 +1,76 @@
+load: {
+  "electricity-demand_hh-profile": {
+      "dataset": "demand_electricity_region",
+      "file": "demand_hh_power_timeseries.csv",
+  },
+  "electricity-demand_cts-profile": {
+    "dataset": "demand_electricity_region",
+    "file": "demand_cts_power_timeseries.csv",
+  },
+  "electricity-demand_ind-profile": {
+    "dataset": "demand_electricity_region",
+    "file": "demand_ind_power_timeseries.csv",
+  },
+  "heat_central-demand_hh-profile": {
+    "dataset": "demand_heat_region",
+    "file": "demand_hh_heat_timeseries.csv",
+  },
+  "heat_central-demand_cts-profile": {
+    "dataset": "demand_heat_region",
+    "file": "demand_cts_heat_timeseries.csv",
+  },
+  "heat_central-demand_ind-profile": {
+    "dataset": "demand_heat_region",
+    "file": "demand_ind_heat_timeseries.csv",
+  },
+  "heat_decentral-demand_hh-profile": {
+    "dataset": "demand_heat_region",
+    "file": "demand_hh_heat_timeseries.csv",
+  },
+  "heat_decentral-demand_cts-profile": {
+    "dataset": "demand_heat_region",
+    "file": "demand_cts_heat_timeseries.csv",
+  },
+  "heat_decentral-demand_ind-profile": {
+    "dataset": "demand_heat_region",
+    "file": "demand_ind_heat_timeseries.csv",
+  },
+}
+
+feedin: {
+  "hydro-ror-profile": {
+    "dataset": "renewable_feedin",
+    "file": "ror_feedin_timeseries.csv",
+  },
+  "wind-onshore-profile": {
+    "dataset": "renewable_feedin",
+    "file": "wind_feedin_timeseries.csv",
+  },
+  "solar-pv_ground-profile": {
+    "dataset": "renewable_feedin",
+    "file": "pv_feedin_timeseries.csv",
+  },
+  "solar-pv_rooftop-profile": {
+    "dataset": "renewable_feedin",
+    "file": "pv_feedin_timeseries.csv",
+  },
+  "electricity-bev_charging-profile": {
+    "dataset": "renewable_feedin",
+    "file": "pv_feedin_timeseries.csv",
+  },
+  "solar-thermalcollector_central-profile": {
+    "dataset": "renewable_feedin",
+    "file": "st_feedin_timeseries.csv",
+  },
+  "solar-thermalcollector_decentral-profile": {
+    "dataset": "renewable_feedin",
+    "file": "st_feedin_timeseries.csv",
+  },
+}
+
+efficiencies: {
+  "efficiency-profile": {
+    "dataset": "heatpump_cop",
+    "file": "heatpump_cop_timeseries.csv",
+  },
+}

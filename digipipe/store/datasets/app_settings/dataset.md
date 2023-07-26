@@ -18,3 +18,7 @@ Einstellungen für die App.
 - Werden in die App eingelesen
 
 **TODO**: Parametrierung der Slider & Switches beschreiben
+
+- `s_pv_d_1`: Installierbare Leistung PV-Aufdachanlagen.
+  Max. 50 % aller Dächer von nicht-denkmalgeschützten Gebäuden mit Ausrichtung
+  Süden, Osten, Westen und Flachdächern.

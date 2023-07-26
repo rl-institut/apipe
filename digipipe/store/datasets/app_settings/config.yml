@@ -55,9 +55,9 @@ panel_settings_templates:
       max: none
       min: none
       start: none
+      step: none
       status_quo: none
       future_scenario: none
-      step: none
     s_w_3:
       start: none
     s_w_4:
@@ -68,13 +68,23 @@ panel_settings_templates:
       start: none
     s_w_5:
       start: none
+    s_w_5_1:
+      max: none
+      min: none
+      start: none
+      step: none
+    s_w_5_2:
+      max: none
+      min: none
+      start: none
+      step: none
     s_pv_ff_1:
       max: none
       min: none
       start: none
+      step: none
       status_quo: none
       future_scenario: none
-      step: none
     s_pv_ff_3:
       max: none
       min: none
@@ -89,9 +99,9 @@ panel_settings_templates:
       max: none
       min: none
       start: none
+      step: none
       status_quo: none
       future_scenario: none
-      step: none
     s_pv_d_3:
       max: none
       min: none
@@ -102,49 +112,49 @@ panel_settings_templates:
       max: none
       min: none
       start: none
-      status_quo: none
       step: none
+      status_quo: none
     s_h_1:
       max: none
       min: none
       start: none
-      status_quo: none
       step: none
+      status_quo: none
       disable: none
     s_v_1:
       max: none
       min: none
       start: none
+      step: none
       status_quo: none
       future_scenario: none
-      step: none
     s_v_3:
       max: none
       min: none
       start: none
+      step: none
       status_quo: none
       future_scenario: none
-      step: none
     s_v_4:
       max: none
       min: none
       start: none
+      step: none
       status_quo: none
       future_scenario: none
-      step: none
     s_v_5:
       max: none
       min: none
       start: none
+      step: none
       status_quo: none
       future_scenario: none
-      step: none
     s_s_g_1:
       max: none
       min: none
       start: none
-      status_quo: none
       step: none
+      status_quo: none
     s_s_g_3:
       max: none
       min: none
@@ -157,9 +167,9 @@ panel_settings_templates:
       max: none
       min: none
       start: none
+      step: none
       status_quo: none
       future_scenario: none
-      step: none
     w_d_wp_3:
       max: none
       min: none
@@ -179,44 +189,44 @@ panel_settings_templates:
       max: none
       min: none
       start: none
-      status_quo: none
-      future_scenario: none
       step: none
+      status_quo: none
+      # future_scenario: none
     w_z_wp_3:
       max: none
       min: none
       start: none
-      status_quo: none
-      future_scenario: none
       step: none
+      status_quo: none
+      # future_scenario: none
     w_v_1:
       max: none
       min: none
       start: none
+      step: none
       status_quo: none
       future_scenario: none
-      step: none
     w_v_3:
       max: none
       min: none
       start: none
+      step: none
       status_quo: none
       future_scenario: none
-      step: none
     w_v_4:
       max: none
       min: none
       start: none
+      step: none
       status_quo: none
       future_scenario: none
-      step: none
     w_v_5:
       max: none
       min: none
       start: none
+      step: none
       status_quo: none
       future_scenario: none
-      step: none
     w_d_s_1:
       max: none
       min: none
@@ -243,13 +253,13 @@ panel_settings_templates:
       max: none
       min: none
       start: none
-      status_quo: none
-      future_scenario: none
       step: none
+      # status_quo: none
+      # future_scenario: none
     v_iv_3:
       max: none
       min: none
       start: none
-      status_quo: none
-      future_scenario: none
       step: none
+      # status_quo: none
+      # future_scenario: none

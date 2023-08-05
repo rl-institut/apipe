@@ -16,7 +16,7 @@ Datei: `emissions.csv`, Felder:
 (Abb. 2 auf S. 30).
 
 ## Disaggregation
-Anhand unterschiedlicher Kriterien und Datenquellen wurde näherungsweise von den vorliegenden Emissionen für Sachsen-Anhalt für 1990 und 2019 auf die Region ABW disaggregiert. Je Sektor sind hier die **energiebestimmenden Größen (EnbG)** angegeben, sowie die Herangehensweise zur jeweiligen Berechnung.
+Anhand unterschiedlicher Kriterien und Datenquellen wurde näherungsweise von den vorliegenden Emissionen für Sachsen-Anhalt für 1990 und 2019 auf die Region ABW disaggregiert. Je Sektor sind hier die gewählten **energiebestimmenden Größen (EnbG)** angegeben, sowie die Herangehensweise zur jeweiligen Berechnung.
 
 ### Sektor Energiewirtschaft (CRF 1.A.1 + 1.B)
 Aus der Liste der [Emissionshandelspflichtigen Anlagen](https://www.dehst.de/SharedDocs/downloads/DE/anlagenlisten/2013-2020/2020.pdf?__blob=publicationFile&v=3) wurden jene Daten zu Anlagen extrahiert, welche sich in Sachsen-Anhalt befinden und als Bezeichnung "Energieumwandlung >= 50 MW FWL" oder "Energieumwandlung 20–50 MW FWL" (Haupttätigkeit nach TEHG) aufweisen.
@@ -26,22 +26,19 @@ Hinweise:
 - Aufgrund mangelnder Daten wurde für das Jahr 1990 auf die ältesten verfügbaren Daten (2005-2007) aus der Anlagenliste zurückgegriffen.
 - Energiewirtschaftlich relevante Anlagen unter 20 MW FWL sind in der Anlagenliste nicht erfasst und konnten somit nicht berücksichtigt werden.
 
+Quellen:
+- [Emissionshandelspflichtige Anlagen in Deutschland 2020 (Stand 03.05.2021)](https://www.dehst.de/SharedDocs/downloads/DE/anlagenlisten/2013-2020/2020.pdf?__blob=publicationFile&v=3)
+- [Treibhausgasemissionen in Sachsen-Anhalt 2018 (Stand 12.05.2021)](https://lau.sachsen-anhalt.de/fileadmin/Bibliothek/Politik_und_Verwaltung/MLU/LAU/Wir_ueber_uns/Publikationen/Fachberichte/Dateien/THG_Bericht_2018.pdf)
 
 ###### CRF 1.A.1
 Energiewirtschaft (Umwandlungsbereich): umfasst die öffentliche Elektrizitäts- und Wärmeversorgung sowie Raffinerien.
 
 EnbG: Emissionen aus europäischem Emissionshandel
 
-
 ###### CRF 1.B
 Diffuse Emissionen aus Brennstoffen: Diese Kategorie beinhaltet flüchtige Emissionen aus der Gewinnung, Verarbeitung und Verteilung von Brennstoffen. Die wichtigsten Quellen sind die Verteilung von Erdgas, aber auch Emissionen aus Förderung und Abfackelung, die Extraktion und Umwandlung von Braunkohle, Emissionen aus der Raffination von Erdöl sowie Emissionen aus der Lagerung und Verteilung von Mineralölprodukten.
 
 EnbG: Emissionen aus europäischem Emissionshandel
-
-Quellen:
-- [Emissionshandelspflichtige Anlagen in Deutschland 2020 (Stand 03.05.2021)](https://www.dehst.de/SharedDocs/downloads/DE/anlagenlisten/2013-2020/2020.pdf?__blob=publicationFile&v=3)
-- [Treibhausgasemissionen in Sachsen-Anhalt 2018 (Stand 12.05.2021)](https://lau.sachsen-anhalt.de/fileadmin/Bibliothek/Politik_und_Verwaltung/MLU/LAU/Wir_ueber_uns/Publikationen/Fachberichte/Dateien/THG_Bericht_2018.pdf)
-
 
 ### Sektor Industrie (CRF 1.A.2)
 Dieser Sektor umfasst sämtliche energiebedingten Emissionen durch Verarbeitendes Gewerbe.
@@ -57,6 +54,9 @@ Quellen:
 - [BISKO Bilanzierungs-Systematik Kommunal (Aktualisierung 11/2019)](https://www.ifeu.de/fileadmin/uploads/BISKO_Methodenpapier_kurz_ifeu_Nov19.pdf)
 
 ### Sektor Prozessemissionen (CRF 2)
+Dieser Sektor umfasst sämtliche Emissionen, welche durch diverse Industriprozesse anfallen. Konkreter sind das Emissionen aus: Herstellung mineralischer Produkte, chemischer Industrie, Herstellung von Metallen, übrigen Prozessen und Produktverwendungen. (CRF 2.A-H)
+Zur Disaggregierung wurde erneut die [Liste der Emissionshandelspflichtigen Anlagen](https://www.dehst.de/SharedDocs/downloads/DE/anlagenlisten/2013-2020/2020.pdf?__blob=publicationFile&v=3) herangezogen. In diesem Fall wurde allerdings der Anteil aller Anlagen, welche nicht der Energiewirtschaft zugerechnet werden, zur Bestimmung des Anteils von AWB an ST gewählt.
+
 EnbG: Emissionen aus europäischem Emissionshandel
 
 ### Sektor Verkehr (CRF 1.A.3)

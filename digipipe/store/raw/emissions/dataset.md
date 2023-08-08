@@ -1,4 +1,4 @@
-# Emissionen
+![grafik](https://github.com/rl-institut-private/digipipe/assets/124676703/18483769-145b-44ca-8607-0da8088ff452)# Emissionen
 Emissionen für die Jahre 1990 und 2019 für Sachsen-Anhalt (aus
 [THG-Bericht 2021](https://lau.sachsen-anhalt.de/fileadmin/Bibliothek/Politik_und_Verwaltung/MLU/LAU/Wir_ueber_uns/Publikationen/Fachberichte/Dateien/221014_THG-Bericht.pdf)) und disaggregiert für die Region ABW.
 
@@ -60,10 +60,22 @@ Zur Disaggregierung wurde erneut die [Liste der Emissionshandelspflichtigen Anla
 EnbG: Emissionen aus europäischem Emissionshandel
 
 ### Sektor Verkehr (CRF 1.A.3)
+Dieser Sekotr umfasst Emissionen aus dem Straßenverkehr, dem zivilen Luftverkehr, aus dem Schiffsverkehr, verbrennungsbedingte Emissionen aus dem Schienenverkehr sowie Emissionen des übrigen Verkehrs und weitere Quellen zur Bereitstellung der im Verkehr verbrauchten Energie.
+Die Verbrennung von Mineralölprodukten im Straßenverkehr spielt die größte Rolle und macht weit über 90 % der sektoralen Emissionen aus.
+Daher wird zur Disaggreagation der motorisierte Straßenverkehr über zugelassene Kraftfahrzeuge mit durchschnittlichen Fahrleistungen und spezifischer Emissionen pro Kilometer und Fahrzeugklasse herangezogen.
+
+Zunächst wird aus [Verkehr in Kilometern (VK) ZeitreiheJahre 2014 - 2022](https://www.kba.de/DE/Statistik/Kraftverkehr/VerkehrKilometer/vk_inlaenderfahrleistung/vk_inlaenderfahrleistung_node.html;jsessionid=DD419FD0604C0BCC72A9E4533BB0319F.live21324) und [Umweltfreundlich mobil! Ein ökologischer Verkehrsartenvergleich für den Personen- und Güterverkehr in Deutschland)](https://www.umweltbundesamt.de/sites/default/files/medien/5750/publikationen/2021_fb_umweltfreundlich_mobil_bf.pdf) ein durchschnittlicher CO2-Emissionswert pro Jahr und Fahrzeugklasse ermittelt. Dieser wird dann mit den zugelassenen Fahrzeugen der entsprechenden Fahrzeugklassen aus [Kraftfahrzeugbestand nach Kraftfahrzeugarten - Stichtag 01.01. - regionale Tiefe: Kreise und krfr. Städte (bis 01.01.2019)](https://www-genesis.destatis.de/genesis//online?operation=table&code=46251-0001&bypass=true&levelindex=0&levelid=1691405772899#abreadcrumb) einmal für ganz Sachsen-Anhalt und einmal ABW multipliziert. Daraus kann dann ein Verhältnis gewonnen werden, dass den prozentualen Anteil der Verkehrsemissionen von ABW kommt. 
+Dieser prozentuale Anteil wird auf die Verkehrsemissionen aus dem [THG-Bericht 2021](https://lau.sachsen-anhalt.de/fileadmin/Bibliothek/Politik_und_Verwaltung/MLU/LAU/Wir_ueber_uns/Publikationen/Fachberichte/Dateien/221014_THG-Bericht.pdf)) .
+
 
 EnbG:
 * Zugelassene Kraftfahrzeuge
 * gewichtet mit durchschn. Fahrleistung und spez. CO2 Emission pro km und Fahrzeugklasse
+
+Quellen:
+- [Kraftfahrzeugbestand nach Kraftfahrzeugarten - Stichtag 01.01. - regionale Tiefe: Kreise und krfr. Städte (bis 01.01.2019)](https://www-genesis.destatis.de/genesis//online?operation=table&code=46251-0001&bypass=true&levelindex=0&levelid=1691405772899#abreadcrumb)
+- [Umweltfreundlich mobil! Ein ökologischer Verkehrsartenvergleich für den Personen- und Güterverkehr in Deutschland)](https://www.umweltbundesamt.de/sites/default/files/medien/5750/publikationen/2021_fb_umweltfreundlich_mobil_bf.pdf)
+- [Verkehr in Kilometern (VK) ZeitreiheJahre 2014 - 2022](https://www.kba.de/DE/Statistik/Kraftverkehr/VerkehrKilometer/vk_inlaenderfahrleistung/vk_inlaenderfahrleistung_node.html;jsessionid=DD419FD0604C0BCC72A9E4533BB0319F.live21324)
 
 ### Sektor Sonstige Energie (insbes. Gebäude) (CRF 1.A.4 + 1.A.5)
 

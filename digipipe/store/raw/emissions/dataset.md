@@ -1,4 +1,4 @@
-![grafik](https://github.com/rl-institut-private/digipipe/assets/124676703/18483769-145b-44ca-8607-0da8088ff452)# Emissionen
+# Emissionen
 Emissionen für die Jahre 1990 und 2019 für Sachsen-Anhalt (aus
 [THG-Bericht 2021](https://lau.sachsen-anhalt.de/fileadmin/Bibliothek/Politik_und_Verwaltung/MLU/LAU/Wir_ueber_uns/Publikationen/Fachberichte/Dateien/221014_THG-Bericht.pdf)) und disaggregiert für die Region ABW.
 
@@ -65,8 +65,10 @@ Die Verbrennung von Mineralölprodukten im Straßenverkehr spielt die größte R
 Daher wird zur Disaggreagation der motorisierte Straßenverkehr über zugelassene Kraftfahrzeuge mit durchschnittlichen Fahrleistungen und spezifischer Emissionen pro Kilometer und Fahrzeugklasse herangezogen.
 
 Zunächst wird aus [Verkehr in Kilometern (VK) ZeitreiheJahre 2014 - 2022](https://www.kba.de/DE/Statistik/Kraftverkehr/VerkehrKilometer/vk_inlaenderfahrleistung/vk_inlaenderfahrleistung_node.html;jsessionid=DD419FD0604C0BCC72A9E4533BB0319F.live21324) und [Umweltfreundlich mobil! Ein ökologischer Verkehrsartenvergleich für den Personen- und Güterverkehr in Deutschland)](https://www.umweltbundesamt.de/sites/default/files/medien/5750/publikationen/2021_fb_umweltfreundlich_mobil_bf.pdf) ein durchschnittlicher CO2-Emissionswert pro Jahr und Fahrzeugklasse ermittelt. Dieser wird dann mit den zugelassenen Fahrzeugen der entsprechenden Fahrzeugklassen aus [Kraftfahrzeugbestand nach Kraftfahrzeugarten - Stichtag 01.01. - regionale Tiefe: Kreise und krfr. Städte (bis 01.01.2019)](https://www-genesis.destatis.de/genesis//online?operation=table&code=46251-0001&bypass=true&levelindex=0&levelid=1691405772899#abreadcrumb) einmal für ganz Sachsen-Anhalt und einmal ABW multipliziert. Daraus kann dann ein Verhältnis gewonnen werden, dass den prozentualen Anteil der Verkehrsemissionen von ABW kommt. 
-Dieser prozentuale Anteil wird auf die Verkehrsemissionen aus dem [THG-Bericht 2021](https://lau.sachsen-anhalt.de/fileadmin/Bibliothek/Politik_und_Verwaltung/MLU/LAU/Wir_ueber_uns/Publikationen/Fachberichte/Dateien/221014_THG-Bericht.pdf)) .
+Dieser prozentuale Anteil wird auf die Verkehrsemissionen aus dem [THG-Bericht 2021](https://lau.sachsen-anhalt.de/fileadmin/Bibliothek/Politik_und_Verwaltung/MLU/LAU/Wir_ueber_uns/Publikationen/Fachberichte/Dateien/221014_THG-Bericht.pdf) angewednet.
 
+Hinweise:
+- Die Datenlage für die zugelassenen Fahrzeuge, gefahrenen Kilometer und Emissionen pro km sind nicht spezifisch für 1990 sondern nur für einzelne Jahre der frühen 1990er verfügbar. Daher ist der Emissionswert für 1990 it einer höheren Unsicherheit behaftet.
 
 EnbG:
 * Zugelassene Kraftfahrzeuge
@@ -79,18 +81,68 @@ Quellen:
 
 ### Sektor Sonstige Energie (insbes. Gebäude) (CRF 1.A.4 + 1.A.5)
 
+Dieser Sektor umfasst den durch Energieumwaldnung nicht bereits abgedeckten Energiebedarf. Das sind vor allem Feuerungsanlagen von kleinen Einzelraumfeuerungen (z. B. Kaminöfen) bis hin zu immissionsschutzrechtlich genehmigungsbedürftigen Anlagen mit einer Nennwärmeleistung von mehreren Megawatt.
+Zur Disaggreagtion wurde daher der Wärmebedarf von ABW im Verhältnis zum Wärmebedarf von gesamt Sachsen Anhalt gewählt. Der Wärmevedarf umfasst Raumwärme, Warmwasser und Kochen und wird aus Daten aus dem  Pipeline-Datensatz demand_heat_region generiert, mehr Details siehe dort.
+
+Ergebnis: 17,46 % des Bedarfs in Sachsen-Anhalt entfällt auf ABW.
+Dieser Wert wird mit den Emissionen auf den [THG-Bericht 2021](https://lau.sachsen-anhalt.de/fileadmin/Bibliothek/Politik_und_Verwaltung/MLU/LAU/Wir_ueber_uns/Publikationen/Fachberichte/Dateien/221014_THG-Bericht.pdf) angewednet.
+
+Code
+```
+# Sektor HH
+heat_hh_dist_states = gpd.read_file("demand_heat_zonal_stats-res-bkg_vg250_federal_states.gpkg")
+heat_hh_demand_st = float(heat_hh_dist_states.loc[heat_hh_dist_states.nuts == "DEE"].heat_demand)
+heat_hh_demand_abw = gpd.read_file("demand_heat_zonal_stats-res-bkg_vg250_muns_region.gpkg").heat_demand.sum()
+
+# Sektor GHD
+heat_cts_dist_states = gpd.read_file("demand_heat_zonal_stats-ser-bkg_vg250_federal_states.gpkg")
+heat_cts_demand_st = float(heat_cts_dist_states.loc[heat_cts_dist_states.nuts == "DEE"].heat_demand)
+heat_cts_demand_abw = gpd.read_file("demand_heat_zonal_stats-ser-bkg_vg250_muns_region.gpkg").heat_demand.sum()
+
+# Anteil ABW an ST
+heat_share = (heat_hh_demand_abw + heat_cts_demand_abw) / (heat_hh_demand_st + heat_cts_demand_st)
+```
+
 EnbG: Wärmebedarf aus Energiesystem
 
+
 ### Sektor Landwirtschaft (CRF 3)
+Der Sektor umfasst Emissionen aus der Viehwirtschaft und der Bewirtschaftung von Böden. 
+Daher werden zunächst die Emissionsunterkategorien 3.A-J aus dem [THG-Bericht 2021](https://lau.sachsen-anhalt.de/fileadmin/Bibliothek/Politik_und_Verwaltung/MLU/LAU/Wir_ueber_uns/Publikationen/Fachberichte/Dateien/221014_THG-Bericht.pdf) Viehwirtschaft oder der Bewirtschaftung von Böden zugeordnet. Danach werden diese getrennt nach den Viehbeständen bzw. der landwirtschaftlich genutzen Fläche disaggreiert.
+
 
 ###### CRF 3.A - Landwirtschaft – Fermentation
+Emission durch Fermentation (CRF 3.A) entseht durch Verdauungsprozesse in der Viehwirtschaft. Deswegen kann der Anteil ABWs an diesen Emissionen durch die Viehbestände aus [Viehbestand der landwirtschaftlichen Betriebe in Großvieheinheiten (GV) nach Jahren und Kreisen)](https://statistik.sachsen-anhalt.de/themen/wirtschaftsbereiche/land-und-forstwirtschaft-fischerei/tabellen-viehwirtschaft-und-tierische-erzeugnisse#c234218) abgeschätzt werden.
+
+Hinweise:
+- Die Viehbestände für 1990 sind nicht bekannt, es wird stattdessen auf die Viehbestände von 1996 zurückggegriffen.
 
 EnbG: Viehbestände
 
+
+Quellen:
+- [Viehbestand der landwirtschaftlichen Betriebe in Großvieheinheiten (GV) nach Jahren und Kreisen)](https://statistik.sachsen-anhalt.de/themen/wirtschaftsbereiche/land-und-forstwirtschaft-fischerei/tabellen-viehwirtschaft-und-tierische-erzeugnisse#c234218)
+
 ###### CRF 3.B-J:
+Die Unterkategorien 3.C-J ist eine Proportionalität der Emissionen und der landwirtschafltich genutzen Fläche zu erwarten. Unterkategorie 2.B "Wirtschaftsdüngerausbringung (ohne Gärreste)" ist allerdings ein Grenzfall, da er aus Abfällen der Tierhaltung produziert wird und schon dabei Treibhausgase entstehen, diese aber nicht vor Ort eingesetzt werden müssen, sondern auf beliebigen landwirtschafltichen Flächen eingesetzt werden kann. Daher wird hier auch diese Unterkategorie der Landnutzung zugeordnet.
+Die Anteile der landwirtschaftlich genutzen Fläche von ABW in Sachsen-Anhalt sind der Tabelle Flaeche_nach_Kultuarten_nach_Jahren_und_Kreisen](https://statistik.sachsen-anhalt.de/themen/wirtschaftsbereiche/land-und-forstwirtschaft-fischerei/tabellen-bodennutzung-und-anbau) zu entnehmen.
+Dieses Verhältnis kann auf die Emissionen aus dem [THG-Bericht 2021](https://lau.sachsen-anhalt.de/fileadmin/Bibliothek/Politik_und_Verwaltung/MLU/LAU/Wir_ueber_uns/Publikationen/Fachberichte/Dateien/221014_THG-Bericht.pdf) angewendet werdsen.
+
+Hinweis: 
+- die Flächenntuzungsadaten gehen nicht bis  1990 zurück, ändern sich über die Jahre aber nur marginal, sodass hier auch nicht von großen Abweichungen auszugehen ist.
 
 EnbG: landwirtschaftlich genutzte Fläche
 
+
+Quellen:
+- [Flaeche_nach_Kultuarten_nach_Jahren_und_Kreisen](https://statistik.sachsen-anhalt.de/themen/wirtschaftsbereiche/land-und-forstwirtschaft-fischerei/tabellen-bodennutzung-und-anbau)
+
 ### Sektor Abfall und Abwasser (CRF 5)
+Dieser Sektor besteht vor allem aus Emissionen aus Abfalldeponien, welche der Zersetzung organischer Materialien in Deponien entstehen.
+Es wird angenommen, dass der Abfall aus Produktionsprozessen gegenüber den Abfällen aus Konsum vernachlässigbar sind, weswegen eine Disaggregation auf Grundlage der Bevölkerung von ABW vorgenommen wird.
 
 EnbG: Bevölkerung ABW
+
+Quellen:
+- [Bevölkerung nach Geschlecht in den Gemeinden](https://genesis.sachsen-anhalt.de/genesis//online?operation=table&code=12411-0001&bypass=true&levelindex=0&levelid=1691507280245#abreadcrumb)
+

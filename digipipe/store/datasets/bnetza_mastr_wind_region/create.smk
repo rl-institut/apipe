@@ -80,3 +80,40 @@ rule create_capacity_change_per_year:
             int
         )
         df_capacity_over_time.to_csv(output[0])
+
+
+rule create_capacity_change_per_year_cumulative:
+    """
+    Create stats on temporal change (per year) of cumulative total installed capacity and cumulative number of units
+    """
+    input:
+        agg_region=DATASET_PATH / "data" / "bnetza_mastr_wind_agg_region.gpkg",
+    output:
+        DATASET_PATH
+        / "data"
+        / "bnetza_mastr_wind_capacity_change_per_year_cumulative.csv",
+    run:
+        df = gpd.read_file(input.agg_region)
+        df["commissioning_date"] = pd.to_datetime(df["commissioning_date"])
+
+        # Create a new column "year" containing the year information from "commissioning_date"
+        df["year"] = df["commissioning_date"].dt.year
+
+        # Calculate the cumulative total installed capacity per year
+        df_capacity_over_time = (
+            df.groupby("year")["capacity_net"]
+            .sum()
+            .cumsum()  # Apply cumulative sum
+            .reset_index()
+        )
+
+        # Calculate the cumulative number of units per year
+        df_units_cumulative = (
+            df.groupby("year")["unit_count"].sum().cumsum().reset_index()
+        )
+        # Merge the two DataFrames based on the "year" column
+        df_combined = df_capacity_over_time.merge(
+            df_units_cumulative, on="year"
+        )
+        df_combined["year"] = df_combined["year"].astype(int)
+        df_combined.to_csv(output[0], index=False)

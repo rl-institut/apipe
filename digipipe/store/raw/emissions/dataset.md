@@ -30,12 +30,12 @@ Quellen:
 - [Emissionshandelspflichtige Anlagen in Deutschland 2020 (Stand 03.05.2021)](https://www.dehst.de/SharedDocs/downloads/DE/anlagenlisten/2013-2020/2020.pdf?__blob=publicationFile&v=3)
 - [Treibhausgasemissionen in Sachsen-Anhalt 2018 (Stand 12.05.2021)](https://lau.sachsen-anhalt.de/fileadmin/Bibliothek/Politik_und_Verwaltung/MLU/LAU/Wir_ueber_uns/Publikationen/Fachberichte/Dateien/THG_Bericht_2018.pdf)
 
-###### CRF 1.A.1
+##### CRF 1.A.1
 Energiewirtschaft (Umwandlungsbereich): umfasst die öffentliche Elektrizitäts- und Wärmeversorgung sowie Raffinerien.
 
 EnbG: Emissionen aus europäischem Emissionshandel
 
-###### CRF 1.B
+##### CRF 1.B
 Diffuse Emissionen aus Brennstoffen: Diese Kategorie beinhaltet flüchtige Emissionen aus der Gewinnung, Verarbeitung und Verteilung von Brennstoffen. Die wichtigsten Quellen sind die Verteilung von Erdgas, aber auch Emissionen aus Förderung und Abfackelung, die Extraktion und Umwandlung von Braunkohle, Emissionen aus der Raffination von Erdöl sowie Emissionen aus der Lagerung und Verteilung von Mineralölprodukten.
 
 EnbG: Emissionen aus europäischem Emissionshandel
@@ -64,7 +64,7 @@ Dieser Sekotr umfasst Emissionen aus dem Straßenverkehr, dem zivilen Luftverkeh
 Die Verbrennung von Mineralölprodukten im Straßenverkehr spielt die größte Rolle und macht weit über 90 % der sektoralen Emissionen aus.
 Daher wird zur Disaggreagation der motorisierte Straßenverkehr über zugelassene Kraftfahrzeuge mit durchschnittlichen Fahrleistungen und spezifischer Emissionen pro Kilometer und Fahrzeugklasse herangezogen.
 
-Zunächst wird aus [Verkehr in Kilometern (VK) ZeitreiheJahre 2014 - 2022](https://www.kba.de/DE/Statistik/Kraftverkehr/VerkehrKilometer/vk_inlaenderfahrleistung/vk_inlaenderfahrleistung_node.html;jsessionid=DD419FD0604C0BCC72A9E4533BB0319F.live21324) und [Umweltfreundlich mobil! Ein ökologischer Verkehrsartenvergleich für den Personen- und Güterverkehr in Deutschland)](https://www.umweltbundesamt.de/sites/default/files/medien/5750/publikationen/2021_fb_umweltfreundlich_mobil_bf.pdf) ein durchschnittlicher CO2-Emissionswert pro Jahr und Fahrzeugklasse ermittelt. Dieser wird dann mit den zugelassenen Fahrzeugen der entsprechenden Fahrzeugklassen aus [Kraftfahrzeugbestand nach Kraftfahrzeugarten - Stichtag 01.01. - regionale Tiefe: Kreise und krfr. Städte (bis 01.01.2019)](https://www-genesis.destatis.de/genesis//online?operation=table&code=46251-0001&bypass=true&levelindex=0&levelid=1691405772899#abreadcrumb) einmal für ganz Sachsen-Anhalt und einmal ABW multipliziert. Daraus kann dann ein Verhältnis gewonnen werden, dass den prozentualen Anteil der Verkehrsemissionen von ABW kommt. 
+Zunächst wird aus [Verkehr in Kilometern (VK) ZeitreiheJahre 2014 - 2022](https://www.kba.de/DE/Statistik/Kraftverkehr/VerkehrKilometer/vk_inlaenderfahrleistung/vk_inlaenderfahrleistung_node.html;jsessionid=DD419FD0604C0BCC72A9E4533BB0319F.live21324) und [Umweltfreundlich mobil! Ein ökologischer Verkehrsartenvergleich für den Personen- und Güterverkehr in Deutschland)](https://www.umweltbundesamt.de/sites/default/files/medien/5750/publikationen/2021_fb_umweltfreundlich_mobil_bf.pdf) ein durchschnittlicher CO2-Emissionswert pro Jahr und Fahrzeugklasse ermittelt. Dieser wird dann mit den zugelassenen Fahrzeugen der entsprechenden Fahrzeugklassen aus [Kraftfahrzeugbestand nach Kraftfahrzeugarten - Stichtag 01.01. - regionale Tiefe: Kreise und krfr. Städte (bis 01.01.2019)](https://www-genesis.destatis.de/genesis//online?operation=table&code=46251-0001&bypass=true&levelindex=0&levelid=1691405772899#abreadcrumb) einmal für ganz Sachsen-Anhalt und einmal ABW multipliziert. Daraus kann dann ein Verhältnis gewonnen werden, dass den prozentualen Anteil der Verkehrsemissionen von ABW kommt.
 Dieser prozentuale Anteil wird auf die Verkehrsemissionen aus dem [THG-Bericht 2021](https://lau.sachsen-anhalt.de/fileadmin/Bibliothek/Politik_und_Verwaltung/MLU/LAU/Wir_ueber_uns/Publikationen/Fachberichte/Dateien/221014_THG-Bericht.pdf) angewednet.
 
 Hinweise:
@@ -107,11 +107,11 @@ EnbG: Wärmebedarf aus Energiesystem
 
 
 ### Sektor Landwirtschaft (CRF 3)
-Der Sektor umfasst Emissionen aus der Viehwirtschaft und der Bewirtschaftung von Böden. 
+Der Sektor umfasst Emissionen aus der Viehwirtschaft und der Bewirtschaftung von Böden.
 Daher werden zunächst die Emissionsunterkategorien 3.A-J aus dem [THG-Bericht 2021](https://lau.sachsen-anhalt.de/fileadmin/Bibliothek/Politik_und_Verwaltung/MLU/LAU/Wir_ueber_uns/Publikationen/Fachberichte/Dateien/221014_THG-Bericht.pdf) Viehwirtschaft oder der Bewirtschaftung von Böden zugeordnet. Danach werden diese getrennt nach den Viehbeständen bzw. der landwirtschaftlich genutzen Fläche disaggreiert.
 
 
-###### CRF 3.A - Landwirtschaft – Fermentation
+##### CRF 3.A - Landwirtschaft – Fermentation
 Emission durch Fermentation (CRF 3.A) entseht durch Verdauungsprozesse in der Viehwirtschaft. Deswegen kann der Anteil ABWs an diesen Emissionen durch die Viehbestände aus [Viehbestand der landwirtschaftlichen Betriebe in Großvieheinheiten (GV) nach Jahren und Kreisen)](https://statistik.sachsen-anhalt.de/themen/wirtschaftsbereiche/land-und-forstwirtschaft-fischerei/tabellen-viehwirtschaft-und-tierische-erzeugnisse#c234218) abgeschätzt werden.
 
 Hinweise:
@@ -123,12 +123,12 @@ EnbG: Viehbestände
 Quellen:
 - [Viehbestand der landwirtschaftlichen Betriebe in Großvieheinheiten (GV) nach Jahren und Kreisen)](https://statistik.sachsen-anhalt.de/themen/wirtschaftsbereiche/land-und-forstwirtschaft-fischerei/tabellen-viehwirtschaft-und-tierische-erzeugnisse#c234218)
 
-###### CRF 3.B-J:
+##### CRF 3.B-J:
 Die Unterkategorien 3.C-J ist eine Proportionalität der Emissionen und der landwirtschafltich genutzen Fläche zu erwarten. Unterkategorie 2.B "Wirtschaftsdüngerausbringung (ohne Gärreste)" ist allerdings ein Grenzfall, da er aus Abfällen der Tierhaltung produziert wird und schon dabei Treibhausgase entstehen, diese aber nicht vor Ort eingesetzt werden müssen, sondern auf beliebigen landwirtschafltichen Flächen eingesetzt werden kann. Daher wird hier auch diese Unterkategorie der Landnutzung zugeordnet.
 Die Anteile der landwirtschaftlich genutzen Fläche von ABW in Sachsen-Anhalt sind der Tabelle Flaeche_nach_Kultuarten_nach_Jahren_und_Kreisen](https://statistik.sachsen-anhalt.de/themen/wirtschaftsbereiche/land-und-forstwirtschaft-fischerei/tabellen-bodennutzung-und-anbau) zu entnehmen.
 Dieses Verhältnis kann auf die Emissionen aus dem [THG-Bericht 2021](https://lau.sachsen-anhalt.de/fileadmin/Bibliothek/Politik_und_Verwaltung/MLU/LAU/Wir_ueber_uns/Publikationen/Fachberichte/Dateien/221014_THG-Bericht.pdf) angewendet werdsen.
 
-Hinweis: 
+Hinweis:
 - die Flächenntuzungsadaten gehen nicht bis  1990 zurück, ändern sich über die Jahre aber nur marginal, sodass hier auch nicht von großen Abweichungen auszugehen ist.
 
 EnbG: landwirtschaftlich genutzte Fläche
@@ -145,4 +145,3 @@ EnbG: Bevölkerung ABW
 
 Quellen:
 - [Bevölkerung nach Geschlecht in den Gemeinden](https://genesis.sachsen-anhalt.de/genesis//online?operation=table&code=12411-0001&bypass=true&levelindex=0&levelid=1691507280245#abreadcrumb)
-

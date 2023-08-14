@@ -59,47 +59,20 @@ rule create_power_stats_muns:
         units.to_csv(output[0])
 
 
-rule create_capacity_change_per_year:
+rule create_development_over_time:
     """
-    Create stats on temporal change (per year) of total installed capacity and number of units
-    """
-    input:
-        agg_region=DATASET_PATH / "data" / "bnetza_mastr_wind_agg_region.gpkg",
-    output:
-        DATASET_PATH / "data" / "bnetza_mastr_wind_capacity_change_per_year.csv",
-    run:
-        df = gpd.read_file(input.agg_region)
-        df["commissioning_date"] = pd.to_datetime(df["commissioning_date"])
-        df_capacity_over_time = (
-            df.groupby(df["commissioning_date"].dt.year)["capacity_net"]
-            .sum()
-            .reset_index()
-        )
-        df_capacity_over_time.columns = ["year", "capacity_net"]
-        df_capacity_over_time["year"] = df_capacity_over_time["year"].astype(
-            int
-        )
-        df_capacity_over_time.to_csv(output[0])
-
-
-rule create_capacity_change_per_year_cumulative:
-    """
-    Create stats on temporal change (per year) of cumulative total installed capacity and cumulative number of units
+    Create stats on development (per year) of cumulative total installed capacity and cumulative number of units
     """
     input:
         agg_region=DATASET_PATH / "data" / "bnetza_mastr_wind_agg_region.gpkg",
     output:
-        DATASET_PATH
-        / "data"
-        / "bnetza_mastr_wind_capacity_change_per_year_cumulative.csv",
+        DATASET_PATH / "data" / "bnetza_mastr_wind_development_over_time.csv",
     run:
         df = gpd.read_file(input.agg_region)
         df["commissioning_date"] = pd.to_datetime(df["commissioning_date"])
 
-        # Create a new column "year" containing the year information from "commissioning_date"
         df["year"] = df["commissioning_date"].dt.year
 
-        # Calculate the cumulative total installed capacity per year
         df_capacity_over_time = (
             df.groupby("year")["capacity_net"]
             .sum()
@@ -107,11 +80,9 @@ rule create_capacity_change_per_year_cumulative:
             .reset_index()
         )
 
-        # Calculate the cumulative number of units per year
         df_units_cumulative = (
             df.groupby("year")["unit_count"].sum().cumsum().reset_index()
         )
-        # Merge the two DataFrames based on the "year" column
         df_combined = df_capacity_over_time.merge(
             df_units_cumulative, on="year"
         )

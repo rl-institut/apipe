@@ -66,9 +66,9 @@ rule create_power_stats_muns:
         units.to_csv(output[0])
 
 
-rule create_capacity_change_per_year:
+rule create_development_over_time:
     """
-    Create stats on temporal change (per year) of newly installed capacity
+    Create stats on development (per year) of cumulative total installed capacity and cumulative number of units
     """
     input:
         agg_region=DATASET_PATH
@@ -77,17 +77,25 @@ rule create_capacity_change_per_year:
     output:
         DATASET_PATH
         / "data"
-        / "bnetza_mastr_pv_ground_capacity_change_per_year.csv",
+        / "bnetza_mastr_pv_ground_development_over_time.csv",
     run:
         df = gpd.read_file(input.agg_region)
         df["commissioning_date"] = pd.to_datetime(df["commissioning_date"])
+
+        df["year"] = df["commissioning_date"].dt.year
+
         df_capacity_over_time = (
-            df.groupby(df["commissioning_date"].dt.year)["capacity_net"]
+            df.groupby("year")["capacity_net"]
             .sum()
+            .cumsum()  # Apply cumulative sum
             .reset_index()
         )
-        df_capacity_over_time.columns = ["year", "capacity_net"]
-        df_capacity_over_time["year"] = df_capacity_over_time["year"].astype(
-            int
+
+        df_units_cumulative = (
+            df.groupby("year")["unit_count"].sum().cumsum().reset_index()
         )
-        df_capacity_over_time.to_csv(output[0])
+        df_combined = df_capacity_over_time.merge(
+            df_units_cumulative, on="year"
+        )
+        df_combined["year"] = df_combined["year"].astype(int)
+        df_combined.to_csv(output[0], index=False)

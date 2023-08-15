@@ -342,6 +342,22 @@ resources:
         _source_path:
           dataset: "bnetza_mastr_pv_ground_region"
           file: "bnetza_mastr_pv_ground_stats_muns.csv"
+      solar-pv_ground_development_over_time:
+        description: "Veränderung (pro Jahr) der installierten Gesamtleistung und der Anzahl"
+        path: "scalars/bnetza_mastr_pv_ground_development_over_time.csv"
+        fields:
+          year:
+            description: "Jahr"
+            unit: "-"
+          capacity_net:
+            description: "Nennleistung"
+            unit: "MW"
+          unit_count:
+            description: "Anzahl"
+            unit: "-"
+        _source_path:
+          dataset: "bnetza_mastr_pv_ground_region"
+          file: "bnetza_mastr_pv_ground_development_over_time.csv"
       solar-pv_rooftop:
         description: "PV-Aufdachanlagen: Installierte Leistung und Anzahl"
         path: "scalars/bnetza_mastr_pv_roof_stats_muns.csv"
@@ -358,6 +374,22 @@ resources:
         _source_path:
           dataset: "bnetza_mastr_pv_roof_region"
           file: "bnetza_mastr_pv_roof_stats_muns.csv"
+      solar-pv_rooftop_development_over_time:
+        description: "Veränderung (pro Jahr) der installierten Gesamtleistung und der Anzahl"
+        path: "scalars/bnetza_mastr_pv_roof_development_over_time.csv"
+        fields:
+          year:
+            description: "Jahr"
+            unit: "-"
+          capacity_net:
+            description: "Nennleistung"
+            unit: "MW"
+          unit_count:
+            description: "Anzahl"
+            unit: "-"
+        _source_path:
+          dataset: "bnetza_mastr_pv_roof_region"
+          file: "bnetza_mastr_pv_roof_development_over_time.csv"
       storage:
         description: "Batteriespeicher gesamt: Installierte Leistung und Anzahl"
         path: "scalars/bnetza_mastr_storage_stats_muns.csv"
@@ -450,6 +482,22 @@ resources:
         _source_path:
           dataset: "bnetza_mastr_wind_region"
           file: "bnetza_mastr_wind_stats_muns.csv"
+      wind-onshore_development_over_time:
+        description: "Veränderung (pro Jahr) der installierten Gesamtleistung und der Anzahl"
+        path: "scalars/bnetza_mastr_wind_development_over_time.csv"
+        fields:
+          year:
+            description: "Jahr"
+            unit: "-"
+          capacity_net:
+            description: "Nennleistung"
+            unit: "MW"
+          unit_count:
+            description: "Anzahl"
+            unit: "-"
+        _source_path:
+          dataset: "bnetza_mastr_wind_region"
+          file: "bnetza_mastr_wind_development_over_time.csv"
       technology_data:
         description: "Volllaststunden je Technologie und Jahr"
         path: "scalars/technology_data.json"

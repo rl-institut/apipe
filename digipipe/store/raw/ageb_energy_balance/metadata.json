@@ -14,64 +14,46 @@
     "language": [
         "de-DE"
     ],
-    "subject": [
-        {
-            "name": null,
-            "path": null
-        }
-    ],
+    "subject": null, 
+  
     "keywords": [
         "Endenergiesektoren",
         "Anwendungsbilanzen",
       "energy-balance",
     ],
-    "publicationDate": null,
+    "publicationDate": "2022-12-01",
     "context": {
-        "homepage": null,
-        "documentation": null,
-        "sourceCode": null,
-        "contact": null,
-        "grantNo": null,
-        "fundingAgency": null,
-        "fundingAgencyLogo": null,
-        "publisherLogo": null
+        "homepage": "https://abw.rl-institut.de",
+        "documentation": "https://digiplan.readthedocs.io",
+        "sourceCode": "https://github.com/rl-institut/digipipe/",
+        "contact": "https://reiner-lemoine-institut.de/ueber-uns/kontakt/",
+        "grantNo": "None",
+        "fundingAgency": "https://www.region-gestalten.bund.de",
+        "fundingAgencyLogo": "https://www.region-gestalten.bund.de/Region/SiteGlobals/Frontend/Images/logo.svg",
+        "publisherLogo": "https://reiner-lemoine-institut.de//wp-content/uploads/2015/09/rlilogo.png"
     },
-    "spatial": {
-        "location": null,
-        "extent": null,
+     "spatial": {
+        "location": "Germany",
+        "extent": "Germany",
         "resolution": null
     },
     "temporal": {
-        "referenceDate": null,
-        "timeseries": [
-            {
-                "start": null,
-                "end": null,
-                "resolution": null,
-                "alignment": null,
-                "aggregationType": null
-            },
-            {
-                "start": null,
-                "end": null,
-                "resolution": null,
-                "alignment": null,
-                "aggregationType": null
-            }
-        ]
+        "referenceDate": "2022-12-01",
+        "timeseries": null,
     },
     "sources": [
         {
-            "title": null,
-            "description": null,
-            "path": null,
+            "title": "AGEB – Anwendungsbilanzen für die Endenergiesektoren 2011 bis 2021",
+            "description": "Detaillierte Anwendungsbilanzen der Endenergiesektoren für 2020 und 2021 sowie zusammenfassende Zeitreihen zum Endenergieverbrauch 
+  nach Energieträgern und Anwendungszwecken für Jahre von 2011 bis 2021",,
+            "path": https://ag-energiebilanzen.de/wp-content/uploads/2023/01/AGEB_21p2_V3_20221222.pdf,
             "licenses": [
                 {
-                    "name": null,
-                    "title": null,
-                    "path": null,
-                    "instruction": null,
-                    "attribution": null
+                    "name": "todo",
+                    "title": "todo,
+                    "path": "todo",
+                    "instruction": "todo",
+                    "attribution": "todo",
                 }
             ]
         },
@@ -101,11 +83,11 @@
     ],
     "contributors": [
         {
-            "title": null,
-            "email": null,
-            "date": null,
-            "object": null,
-            "comment": null
+            "title": aaronschilling,
+            "email": Aaron.Schilling@rl-institut.de,
+            "date": 2023-08-15,
+            "object": "metadata",
+            "comment": "create metadata"
         }
     ],
     "resources": [
@@ -180,10 +162,10 @@
         }
     ],
     "@id": null,
-    "@context": null,
+    "@context": "https://raw.githubusercontent.com/OpenEnergyPlatform/oemetadata/develop/metadata/latest/context.json",
     "review": {
-        "path": null,
-        "badge": null
+        "path": "",
+        "badge": ""
     },
     "metaMetadata": {
         "metadataVersion": "OEP-1.5.2",

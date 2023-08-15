@@ -45,25 +45,25 @@
         {
             "title": "Gemeindedaten der sozialversicherungspflichtig Beschäftigten nach Wohn- und Arbeitsort",
             "description": "Zahl der soziaversicherungspflichtig Beschäftigten nach: Wohnort, Personengruppen, Arbeitsort, Wohnort gleich Arbeitsort, Einpendeler, Auspendler, Zahl der Betriebe",
-                "path": "https://www.marktstammdatenregister.de/MaStR/Datendownload",
+                "path": "https://statistik.arbeitsagentur.de/SiteGlobals/Forms/Suche/Einzelheftsuche_Formular.html?nn=15024&topic_f=beschaeftigung-sozbe-gemband",
             "licenses": [
                 {
-                    "name": "DL-DE-BY-2.0",
-                    "title": "Open Data Datenlizenz Deutschland – Namensnennung – Version 2.0",
-                    "path": "http://www.govdata.de/dl-de/by-2-0",
-                    "instruction": "The data and meta-data provided may, for commercial and non-commercial use, in particular be copied, printed, presented, altered, processed and transmitted to third parties; be merged with own data and with the data of others and be combined to form new and independent datasets;be integrated in internal and external business processes, products and applications in public and non-public electronic networks.",
-                    "attribution": "© Marktstammdatenregister 2023"
+                    "name": null,
+                    "title": null,
+                    "path": "https://statistik.arbeitsagentur.de/DE/Statischer-Content/Servicebereich-Navigation/Bezugsbedingungen.html?nn=6654",
+                    "instruction": "Sie können Informationen speichern, (auch auszugsweise) mit Quellenangabe weitergeben, vervielfältigen und verbreiten. Die Inhalte dürfen nicht verändert oder verfälscht werden. Eigene Berechnungen sind erlaubt, jedoch als solche kenntlich zu machen. Im Falle einer Zugänglichmachung im Internet soll dies in Form einer Verlinkung auf die Homepage der Statistik der Bundesagentur für Arbeit erfolgen. Die Nutzung der Inhalte für gewerbliche Zwecke, ausgenommen Presse, Rundfunk und Fernsehen und wissenschaftliche Publikationen, bedarf der Genehmigung durch die Statistik der Bundesagentur für Arbeit.",
+                    "attribution": "© Statistik der Bundesagentur für Arbeit"
                 }
             ]
         }
     ],
     "licenses": [
         {
-           "name": "DL-DE-BY-2.0",
-            "title": "Open Data Datenlizenz Deutschland – Namensnennung – Version 2.0?" ,
-            "path": "http://www.govdata.de/dl-de/by-2-0",
-            "instruction": "The data and meta-data provided may, for commercial and non-commercial use, in particular be copied, printed, presented, altered, processed and transmitted to third parties; be merged with own data and with the data of others and be combined to form new and independent datasets;be integrated in internal and external business processes, products and applications in public and non-public electronic networks.",
-            "attribution": "© Marktstammdatenregister 2023"
+            "name": null,
+            "title": null,
+            "path": "https://statistik.arbeitsagentur.de/DE/Statischer-Content/Servicebereich-Navigation/Bezugsbedingungen.html?nn=6654",
+            "instruction": "Sie können Informationen speichern, (auch auszugsweise) mit Quellenangabe weitergeben, vervielfältigen und verbreiten. Die Inhalte dürfen nicht verändert oder verfälscht werden. Eigene Berechnungen sind erlaubt, jedoch als solche kenntlich zu machen. Im Falle einer Zugänglichmachung im Internet soll dies in Form einer Verlinkung auf die Homepage der Statistik der Bundesagentur für Arbeit erfolgen. Die Nutzung der Inhalte für gewerbliche Zwecke, ausgenommen Presse, Rundfunk und Fernsehen und wissenschaftliche Publikationen, bedarf der Genehmigung durch die Statistik der Bundesagentur für Arbeit.",
+            "attribution": "© Statistik der Bundesagentur für Arbeit"
         }
     ],
     "contributors": [

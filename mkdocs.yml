@@ -33,7 +33,7 @@ plugins:
   - same-dir
   - exclude:
       glob:
-        - digipipe/store/*
+        - digipipe/esys/*
         - digipipe/config/*
         - README.md
         - CHANGELOG.md
@@ -43,6 +43,7 @@ plugins:
         - "*.py"
         - "*.pyc"
         - "*.gpkg"
+        - "*.zip"
       regex:
         - '.*\.(tmp|bin|tar)$'
 

@@ -44,6 +44,7 @@ plugins:
         - "*.pyc"
         - "*.gpkg"
         - "*.zip"
+        - "*.csv"
       regex:
         - '.*\.(tmp|bin|tar)$'
 

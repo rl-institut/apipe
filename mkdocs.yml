@@ -29,6 +29,9 @@ plugins:
       lang:
         - en
         - de
+  - exclude-search:
+      exclude:
+        - digipipe/*
   - include-markdown
   - same-dir
   - exclude:

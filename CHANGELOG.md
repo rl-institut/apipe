@@ -112,6 +112,8 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Fix panel settings for large batteries
 - Add additional captions to MaStR captions
 - Use LTS version of OSM
+- The unstacking of time series in esys was fixed so that warning is given if
+  there is at least one value in columns 'source' or 'comment'
 - Minor fix applied reformatting with black
 
 ### Removed

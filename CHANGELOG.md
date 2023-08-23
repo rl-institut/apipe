@@ -114,6 +114,7 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Use LTS version of OSM
 - The unstacking of time series in esys was fixed so that warning is given if
   there is at least one value in columns 'source' or 'comment'
+- Minor fix applied reformatting with black
 
 ### Removed
 

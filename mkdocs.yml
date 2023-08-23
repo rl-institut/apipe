@@ -9,14 +9,18 @@ nav:
   - Digipipe: index.md
   - Hintergrund: docs/sections/background.md
   - Szenarien: docs/sections/scenarios.md
+  - Energiesystem: docs/sections/esys.md
   - Daten:
       - Raw: docs/datasets/raw_datasets.md
       - Preprocessed: docs/datasets/preprocessed_datasets.md
       - Datasets: docs/datasets/datasets_datasets.md
+      - Appdata: docs/datasets/appdata_datasets.md
+      - Regionale Datensätze: docs/datasets/region_specific_datasets.md
   - Developer Docs (en):
       - Installation: docs/sections/installation.md
       - Data pipeline: docs/sections/data.md
       - Workflow: docs/sections/workflow.md
+      - Build the energy system: docs/sections/esys_dev.md
       - Repo structure: docs/sections/structure.md
       - Docs: docs/sections/docs.md
 
@@ -25,11 +29,14 @@ plugins:
       lang:
         - en
         - de
+  - exclude-search:
+      exclude:
+        - digipipe/*
   - include-markdown
   - same-dir
   - exclude:
       glob:
-        - digipipe/store/*
+        - digipipe/esys/*
         - digipipe/config/*
         - README.md
         - CHANGELOG.md
@@ -39,6 +46,8 @@ plugins:
         - "*.py"
         - "*.pyc"
         - "*.gpkg"
+        - "*.zip"
+        - "*.csv"
       regex:
         - '.*\.(tmp|bin|tar)$'
 

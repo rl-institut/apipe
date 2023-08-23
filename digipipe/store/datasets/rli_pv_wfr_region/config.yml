@@ -1,0 +1,34 @@
+##############################################################################
+# This file holds configuration parameters for the creation of this dataset. #
+##############################################################################
+
+# Files to be clipped to region
+files_clip:
+  [
+    "air_traffic_control_system.gpkg",
+    "aviation.gpkg",
+    "biosphere_reserve.gpkg",
+    "drinking_water_protection_area.gpkg",
+    "fauna_flora_habitat.gpkg",
+    "floodplain.gpkg",
+    "forest.gpkg",
+    "grid.gpkg",
+    "industry.gpkg",
+    "landscape_protection_area.gpkg",
+    "less_favoured_areas_agricultural.gpkg",
+    "military.gpkg",
+    "national_park.gpkg",
+    "nature_conservation_area.gpkg",
+    "potentialarea_pv_agriculture_lfa-off.gpkg",
+    "potentialarea_pv_road_railway.gpkg",
+    "railway.gpkg",
+    "road.gpkg",
+    "road_railway-500m.gpkg",
+    "settlement-0m.gpkg",
+    "slope.gpkg",
+    "soil_quality_high.gpkg",
+    "soil_quality_low.gpkg",
+    "special_protection_area.gpkg",
+    "water.gpkg",
+    "wetland_ramsar.gpkg"
+  ]

@@ -1,0 +1,39 @@
+##############################################################################
+# This file holds configuration parameters for the creation of this dataset. #
+##############################################################################
+
+# Demand industry: Excel file
+demand_ind:
+  excel_file:
+    sheet_name: "43531-01-02-4"
+    usecols: "A:B, C:J"
+    skiprows: 4
+    nrows: 540
+    names:
+      [
+        "lau_code",
+        "name",
+        "total",
+        "lignite",
+        "fuel_oil",
+        "natural_gas",
+        "renewables",
+        "electrical_energy",
+        "heat",
+        "other"
+      ]
+
+# Employment industry: Excel file
+employment_ind:
+  excel_file:
+    sheet_name: "42111-01-04-5"
+    usecols: "A:B, C:D"
+    skiprows: 2
+    nrows: 13922
+    names:
+      [
+        "ags",
+        "name",
+        "companies_ind",
+        "employees_ind"
+      ]

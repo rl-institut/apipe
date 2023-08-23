@@ -9,5 +9,6 @@ layers:
     "vg250_krs",
     "vg250_lan",
     "vg250_rbz",
-    "vg250_vwg"
+    "vg250_vwg",
+    "vg250_sta"
   ]

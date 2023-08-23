@@ -1,0 +1,85 @@
+,Color
+PV ground,#e2c319
+PV rooftop,#ebd34e
+Heat cen. solar thermal collector,#84741d
+Heat dec. solar thermal collector,#a59124
+Wind on,#19c5e5
+Hydro reservoir,#4a19e5
+Hydro ROR,#6d19e5
+H2 GT,#75CCF0
+CH4 GT,#71EFA4
+
+Large-scale battery,#b41de6
+Large-scale battery out,#b41de6
+Large-scale battery in,#b41de6
+Small-scale battery,#c453eb
+Small-scale battery out,#c453eb
+Small-scale battery in,#c453eb
+
+H2 cavern,#19e5c0
+BEV,#e55c19
+
+El. shortage,#DADADA
+Curtailment,#DADADA
+
+El. demand hh,#3e89f4
+El. demand cts,#3e89f4
+El. demand ind,#3e89f4
+El. export,#737a8c
+El. import,#737a8c
+BEV charging,#e55c19
+
+CH4 central CCGT,#c0e519
+CH4 decentral CCGT,#daee78
+H2 central CCGT,#13acac
+H2 decentral CCGT,#7dc8c7
+Wood central CHP,#92583f
+Wood decentral CHP,#a48070
+Biogas central CHP,#b7cbb2
+Biogas decentral CHP,#cfdccb
+CH4 central CHP,#128E10
+CH4 decentral CHP,#74B465
+H2 central CHP,#0F8A8A
+H2 decentral CHP,#73B0AF
+
+Heat cen. demand hh,#ff0800
+Heat cen. demand cts,#ff0800
+Heat cen. demand ind,#ff0800
+Heat cen. storage in,#e2c319
+Heat cen. storage,#e2c319
+Heat cen. storage out,#e2c319
+Heat dec. demand hh,#f2740a
+Heat dec. demand cts,#f2740a
+Heat dec. demand ind,#f2740a
+Heat dec. storage out,#e2c319
+Heat dec. storage in,#e2c319
+Heat dec. storage,#e2c319
+
+CH4 boiler,#e5194d
+Heat pump (DH),#9912A1
+Heat pump (domestic),#f288e3
+res. PtH,#e58a19
+
+Electrolyzer,#15B2BC
+CH4,#bcf927
+
+Other,#7f7f7f
+
+CH4 import,#cfcfcf
+H2 import,#3B5054
+H2 demand,#00fed0
+
+Wind off,#73baec
+Biomass,#2ca02c
+Biogas plant,#7ec073
+Biomass shortage,#DBDBDB
+Biogas,#55844d
+Biogas upgrading plant,#8cac85
+Biogas shortage,#DBDBDB
+Wood,#754632
+Wood shortage,#DBDBDB
+Hard coal,black
+Lignite,saddlebrown
+Lignite shortage,#DBDBDB
+Oil,#9467bd
+Nuclear ST,pink

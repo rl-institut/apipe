@@ -37,6 +37,11 @@ module stala_st_pop_prog:
     config: config["store"]["preprocessed"]["stala_st_pop_prog"]
 use rule * from stala_st_pop_prog as preprocessed_stala_st_pop_prog_*
 
+module stala_st_energy:
+    snakefile: "stala_st_energy/create.smk"
+    config: config["store"]["preprocessed"]["stala_st_energy"]
+use rule * from stala_st_energy as preprocessed_stala_st_energy_*
+
 module demandregio:
     snakefile: "demandregio/create.smk"
     config: config["store"]["preprocessed"]["demandregio"]
@@ -51,3 +56,43 @@ module bmwk_long_term_scenarios:
     snakefile: "bmwk_long_term_scenarios/create.smk"
     config: config["store"]["preprocessed"]["bmwk_long_term_scenarios"]
 use rule * from bmwk_long_term_scenarios as preprocessed_bmwk_long_term_scenarios_ *
+
+module seenergies_peta5:
+    snakefile: "seenergies_peta5/create.smk"
+    config: config["store"]["preprocessed"]["seenergies_peta5"]
+use rule * from seenergies_peta5 as preprocessed_seenergies_peta5_ *
+
+module ageb_energy_balance:
+    snakefile: "ageb_energy_balance/create.smk"
+    config: config["store"]["preprocessed"]["ageb_energy_balance"]
+use rule * from ageb_energy_balance as preprocessed_ageb_energy_balance_ *
+
+module dwd_temperature:
+    snakefile: "dwd_temperature/create.smk"
+    config: config["store"]["preprocessed"]["dwd_temperature"]
+use rule * from dwd_temperature as preprocessed_dwd_temperature_ *
+
+module regiostat:
+    snakefile: "regiostat/create.smk"
+    config: config["store"]["preprocessed"]["regiostat"]
+use rule * from regiostat as preprocessed_regiostat_ *
+
+module eurostat_lau:
+    snakefile: "eurostat_lau/create.smk"
+    config: config["store"]["preprocessed"]["eurostat_lau"]
+use rule * from eurostat_lau as preprocessed_eurostat_lau_ *
+
+module rpg_abw_regional_plan:
+    snakefile: "rpg_abw_regional_plan/create.smk"
+    config: config["store"]["preprocessed"]["rpg_abw_regional_plan"]
+use rule * from rpg_abw_regional_plan as preprocessed_rpg_abw_regional_plan_ *
+
+module rli_pv_wfr:
+    snakefile: "rli_pv_wfr/create.smk"
+    config: config["store"]["preprocessed"]["rli_pv_wfr"]
+use rule * from rli_pv_wfr as preprocessed_rli_pv_wfr_ *
+
+module rpg_abw_pv_roof_potential:
+    snakefile: "rpg_abw_pv_roof_potential/create.smk"
+    config: config["store"]["preprocessed"]["rpg_abw_pv_roof_potential"]
+use rule * from rpg_abw_pv_roof_potential as preprocessed_rpg_abw_pv_roof_potential_ *

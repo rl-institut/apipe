@@ -13,34 +13,25 @@ from digipipe.config import GLOBAL_CONFIG
 config = GLOBAL_CONFIG
 config.update(load_dataset_configs())
 
-# include store modules
+# Path to esys appdata
+APPDATA_ESYS_PATH = get_abs_dataset_path("appdata", "esys")
+
+# Include store modules
 include: "../store/preprocessed/module.smk"
 include: "../store/datasets/module.smk"
+include: "../store/appdata/module.smk"
+
+# Include esys snakefiles
+include: "../esys/Snakefile"
+
 
 # ===== RULES =====
 
 rule all:
     input:
-        forests=rules.datasets_osm_forest_extract_tags.output,
-        muns=rules.datasets_bkg_vg250_muns_region_create.output,
-        districts=rules.datasets_bkg_vg250_districts_region_create.output,
-        region=rules.datasets_bkg_vg250_region_create.output,
-        wind=rules.datasets_bnetza_mastr_wind_region_create.output,
-        pv_ground=rules.datasets_bnetza_mastr_pv_ground_region_create.output,
-        pv_roof=rules.datasets_bnetza_mastr_pv_roof_region_create.output,
-        biomass=rules.datasets_bnetza_mastr_biomass_region_create.output,
-        hydro=rules.datasets_bnetza_mastr_hydro_region_create.output,
-        combustion=rules.datasets_bnetza_mastr_combustion_region_create.output,
-        mastr_names=rules.datasets_bnetza_mastr_captions_create.output,
-        gsgk=rules.datasets_bnetza_mastr_gsgk_region_create.output,
-        storage=rules.datasets_bnetza_mastr_storage_region_create.output,
-        population=rules.datasets_population_region_create.output,
-        demand_hh_ts=rules.datasets_demand_electricity_region_hh_normalize_timeseries.output,
-        demand_hh_con=rules.datasets_demand_electricity_region_hh_merge_demand_years.output,
-        demand_cts_ts=rules.datasets_demand_electricity_region_cts_normalize_timeseries.output,
-        demand_cts_con=rules.datasets_demand_electricity_region_cts_merge_demand_years.output,
-        demand_ind_ts=rules.datasets_demand_electricity_region_ind_normalize_timeseries.output,
-        demand_ind_con=rules.datasets_demand_electricity_region_ind_merge_demand_years.output,
+        app_datapackage=rules.appdata_datapackage_create_datapackage.output,
+        esys_appdata=rules.make_esys_appdata.output
+
     # run:
     #     print("CONFIG MAIN:")
     #     print(config)
@@ -63,6 +54,12 @@ rule clean:
         """
         rm -f {params.preprocessed}
         rm -f {params.datasets}
+
+        # Check if there are subdirectories in appdata esys dir
+        if [ "$(find {APPDATA_ESYS_PATH} -mindepth 1 -type d)" ]; then
+          rm -r {APPDATA_ESYS_PATH}/*
+        fi
+        echo "Removed all preprocessed data in directories: preprocessed, datasets and appdata."
         """
 
 

@@ -40,10 +40,83 @@ def cleanse(
     return units
 
 
+def apply_manual_corrections(
+    units_df: pd.DataFrame,
+    units_correction_df: pd.DataFrame,
+) -> pd.DataFrame:
+    """Correct units using manual correction dataset
+
+    Parameters
+    ----------
+    units_df : pd.DataFrame
+        Units from MaStR
+    units_correction_df : pd.DataFrame
+        Correction data
+    Returns
+    -------
+    pd.DataFrame
+        Corrected units
+    """
+    for attr in units_correction_df.wrong_attr.unique():
+        # Correct site type (roof- or ground-mounted)
+        if attr == "site_type":
+            units_correction_site_df = units_correction_df.copy().loc[
+                units_correction_df.wrong_attr == "site_type"
+            ][["correction"]]
+            units_df.loc[
+                units_correction_site_df.index, "Lage"
+            ] = units_correction_site_df["correction"]
+            print(
+                f"Applied {len(units_correction_site_df)} "
+                f"corrections for column: {attr}"
+            )
+        # Correct geometry
+        elif attr == "geometry":
+            units_correction_geom_df = units_correction_df.copy()
+            units_correction_geom_df[["x", "y"]] = (
+                units_correction_geom_df.loc[
+                    (units_correction_geom_df.wrong_attr == "geometry")
+                    & (units_correction_geom_df.correction != "None")
+                ]
+                .correction.str.split(",", expand=True)
+                .astype(float)
+            )
+            units_correction_geom_df = gpd.GeoDataFrame(
+                units_correction_geom_df,
+                geometry=gpd.points_from_xy(
+                    units_correction_geom_df.x,
+                    units_correction_geom_df.y,
+                    crs=3035,
+                ),
+                crs=3035,
+            ).to_crs(4326)
+            units_correction_geom_df = units_correction_geom_df.loc[
+                ~units_correction_geom_df.geometry.is_empty
+            ]
+            units_correction_geom_df = units_correction_geom_df.assign(
+                lon=units_correction_geom_df.geometry.x,
+                lat=units_correction_geom_df.geometry.y,
+            )
+            units_df.loc[
+                units_correction_geom_df.index, ["Laengengrad", "Breitengrad"]
+            ] = units_correction_geom_df[["lon", "lat"]]
+            print(
+                f"Applied {len(units_correction_geom_df)} "
+                f"corrections for column: {attr}"
+            )
+        # If attribute does not exist
+        else:
+            raise NotImplementedError(
+                f"Correction of PV roof for attribute '{attr}' is not supported"
+            )
+    return units_df.reset_index()
+
+
 def add_voltage_level(
     units_df: pd.DataFrame,
     locations_path: str,
     gridconn_path: str,
+    drop_location_id: bool = True,
 ) -> pd.DataFrame:
     """Add voltage level to units from MaStR using locations and grid
     connection points.
@@ -56,6 +129,8 @@ def add_voltage_level(
         Path to MaStR locations file
     gridconn_path : str
         Path to MaStR grid connection points file
+    drop_location_id : bool
+        Drop location id in the end
 
     Returns
     -------
@@ -91,11 +166,13 @@ def add_voltage_level(
     )
 
     # Drop unnecessary columns
+    cols = (
+        ["mastr_location_id", "mastr_location_id2"]
+        if drop_location_id
+        else ["mastr_location_id2"]
+    )
     units_df.drop(
-        columns=[
-            "mastr_location_id",
-            "mastr_location_id2",
-        ],
+        columns=cols,
         inplace=True,
     )
 
@@ -355,3 +432,45 @@ def geocode_units_wo_geometry(
     )
 
     return units_with_inferred_geom_gdf, units_with_inferred_geom_agg_gdf
+
+
+def create_stats_per_municipality(
+    units_df: pd.DataFrame,
+    muns: gpd.GeoDataFrame,
+    column: str,
+) -> pd.DataFrame:
+    """
+    Create statistics on units per municipality for one column.
+    Municipalities with no data in `column` are set to 0.
+
+    Parameters
+    ----------
+    units_df : pd.DataFrame
+        Units
+    muns : gpd.GeoDataFrame
+        Municipalities
+    column : str
+        Column in units_df used for aggregation
+
+    Returns
+    -------
+    pd.DataFrame
+        Units, aggregated per municipality
+    """
+
+    units_df = units_df[["municipality_id", column]]
+    units_df = (
+        units_df.groupby("municipality_id")
+        .agg(
+            column=(column, "sum"),
+            count=(column, "count"),
+        )
+        .rename(columns={"column": column})
+    )
+
+    units_df = units_df.reindex(muns.id, fill_value=0).rename(
+        columns={"id": "municipality_id"}
+    )
+    units_df.index.name = "municipality_id"
+
+    return units_df

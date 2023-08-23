@@ -8,6 +8,128 @@ files_extract:
     "T45-Strom_buildings_heating_demand_by_carrier.csv",
     "T45-Strom_buildings_heating_structure_by_technology.csv",
     "T45-Strom_cts_demand.csv",
+    "T45-Strom_electricity_installed_power.csv",
     "T45-Strom_hh_demand.csv",
-    "T45-Strom_ind_demand.csv"
+    "T45-Strom_ind_demand.csv",
+    "TN-Strom_buildings_heating_demand_by_carrier.csv",
+    "TN-Strom_buildings_heating_structure_by_technology.csv",
+    "TN-Strom_cts_demand.csv",
+    "TN-Strom_hh_demand.csv",
+    "TN-Strom_ind_demand.csv",
   ]
+
+# New column names
+rename_columns:
+  T45-Strom_buildings_heating_demand_by_carrier:
+    {" Jahr / Year": "year",
+     "Energiebedarf in TWh / Energy Demand in TWh": "demand",
+     "Energieträger / Energy Carrier": "carrier"}
+  T45-Strom_buildings_heating_structure_by_technology:
+    {"Jahr / Year": "year",
+     "Anzahl der Heizungen in Mio. / Number of heaters in mil.": "heating_units_count",
+     "Typ / type": "heating_technology"}
+  T45-Strom_cts_demand:
+    {"Jahr / Year": "year",
+     "Energiebedarf in TWh / Energy Demand in TWh": "demand",
+     "Energieträger / Energy Carrier": "carrier"}
+  T45-Strom_electricity_installed_power:
+    {"Jahr / Year": "year",
+     "Technologie / Technology": "technology",
+     "Leistung in GW /  Capacity in GW": "capacity"}
+  T45-Strom_hh_demand:
+    {"Jahr / Year": "year",
+     "Energiebedarf in TWh / Energy Demand in TWh": "demand",
+     "Energieträger / Energy Carrier": "carrier"}
+  T45-Strom_ind_demand:
+    {"Jahr / Year": "year",
+     "Energiebedarf in TWh / Energy Demand in TWh": "demand",
+     "Energieträger / Energy Carrier": "carrier"}
+  TN-Strom_buildings_heating_demand_by_carrier:
+    {"Jahr": "year",
+     "Energiebedarf in TWh": "demand",
+     "Typ": "carrier"}
+  TN-Strom_buildings_heating_structure_by_technology:
+    {"Jahr": "year",
+     "Anlagen in Mio.": "heating_units_count",
+     "Typ": "heating_technology"}
+  TN-Strom_cts_demand:
+    {"Jahr": "year",
+     "TWh": "demand",
+     "Typ": "carrier"}
+  TN-Strom_hh_demand:
+    {"Jahr": "year",
+     "TWh": "demand",
+     "Typ": "carrier"}
+  TN-Strom_ind_demand:
+    {"Jahr": "year",
+     "TWh": "demand",
+     "Energy Carrier": "carrier"}
+
+# New names for carriers and technologies
+rename_entries:
+  {"Fernwärme": "district_heating",
+   "Nah- und Fernwärme": "district_heating",
+   "Heizöl": "fuel_oil",
+   "Methan": "methane",
+   "Gas": "natural_gas",
+   "Erdgas": "natural_gas",
+   "Solarthermie": "solar_thermal",
+   "Solarthermie Hzg. u. TW": "solar_thermal",
+   "Strom Hilfsenergie": "electricity_auxiliary",
+   "Strom Wärmepumpe": "electricity_heat_pump",
+   "WP-Strom": "electricity_heat_pump",
+   "Strom direktelektrisch": "electricity_direct_heating",
+   "Strom direkt": "electricity_direct_heating",
+   "Umweltwärme Wärmepumpe": "ambient_heat_heat_pump",
+   "WP-Umgebungswärme": "ambient_heat_heat_pump",
+   "feste biogene Stoffe": "biomass",
+   "Gas-Heizkessel": "gas_boiler",
+   "Hackschnitzel-Heizkessel": "woodchip_boiler",
+   "Hackschnitzel-Heizungen": "woodchip_boiler",
+   "Hybrid-Wärmepumpen": "hybrid_heat_pump",
+   "Pellet-Heizkessel": "pellet_boiler",
+   "Strom-Direktheizungen": "electric_boiler",
+   "Wärmenetze": "district_heating_connection",
+   "Wärmenetzanschlüsse": "district_heating_connection",
+   "Wärmepumpen": "heat_pump",
+   "Öl-Heizkessel": "fuel_oil_boiler",
+   "Biobenzin": "biopetrol",
+   "Biodiesel": "biodiesel",
+   "Mineralöle": "mineral_oil",
+   "Strom": "electricity",
+   "Fossile": "fossil_fuel",
+   "Andere Fossile": "other_fossil_fuel",
+   "Andere fossile": "other_fossil_fuel",
+   "Biogas": "biogas",
+   "Biomasse, fest": "biomass",
+   "Biomasse": "biomass",
+   "Biotreibstoffe": "biofuels",
+   "Biokraftstoffe": "biofuels",
+   "Braunkohle": "lignite",
+   "Kohle": "lignite",
+   "EE-Methan": "renewable_methane",
+   "Geothermie": "geothermal",
+   "Gichtgas": "blast_furnace_gas",
+   "Hackschnitzel": "woodchip",
+   "Kokereigas, Stadtgas, LPG, Raffineriegas": "coke_illuminating_refinery_gas_lpg",
+   "Koks": "coke",
+   "Müll, erneuerbar": "waste_renewable",
+   "Müll, nicht erneuerbar": "waste_non-renewable",
+   "Müll nicht erneuerbar": "waste_non-renewable",
+   "Pellets": "pellet",
+   "Pflanzenöl": "plant_oil",
+   "Solarenergie": "solar_energy",
+   "Steinkohle": "black_coal",
+   "Umgebungswärme": "ambient_heat",
+   "Umgebungswärme, Boden": "ambient_heat_soil",
+   "Umgebungswärme, Luft": "ambient_heat_air",
+   "Wasserstoff": "hydrogen",
+   "Übrige Erneuerbare": "other_renewables",
+   "Übrige, erneuerbar": "other_renewables",
+   "BHKW": "chp_small",
+   "PtG": "ptg",
+   "PV": "pv",
+   "Wasserkraft": "hydro",
+   "Wind an Land": "wind_onshore",
+   "Wind auf See": "sind_offshore",
+   "Andere": "other"}

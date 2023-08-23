@@ -1,5 +1,6 @@
 import os
 import json
+import re
 
 
 def generate_dataset_mds():
@@ -18,7 +19,7 @@ def generate_dataset_mds():
     source_dir = "digipipe/store"
     target_dir = "docs/datasets"
 
-    categories = ["raw", "preprocessed", "datasets"]
+    categories = ["raw", "preprocessed", "datasets", "appdata"]
 
     for category in categories:
         category_dir = os.path.join(source_dir, category)
@@ -35,10 +36,30 @@ def generate_dataset_mds():
                 for file in files:
                     if file == "dataset.md":
                         dataset_md_file = os.path.join(root, file)
-                        # Write the content of the dataset.md file
+                        # Write the content of the dataset.md file with replacements
                         with open(dataset_md_file, "r") as dataset_file:
                             md_file.write("\n------------------------------\n")
                             for line in dataset_file:
+                                line = re.sub(
+                                    r"\(\.\./\.\./",
+                                    "(../../digipipe/store/",
+                                    line,
+                                )
+                                line = re.sub(
+                                    r"\(config.yml\)",
+                                    f"(../../digipipe/store/{category}/{os.path.basename(root)}/config.yml)",
+                                    line,
+                                )
+                                line = re.sub(
+                                    r"\(\.\./([a-zA-Z])",
+                                    fr"(../../digipipe/store/{category}/\1",
+                                    line,
+                                )
+                                line = re.sub(
+                                    r"\(\.\./\.\./\.\./\.\./\.\./docs/sections/",
+                                    "(../sections/",
+                                    line,
+                                )
                                 if line.startswith("#"):
                                     line = "#" + line  # Add '#' to the line
                                 md_file.write(line)

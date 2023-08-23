@@ -1,4 +1,4 @@
 # Landkreise
 
 Landkreise der Region aus Geodaten der Verwaltungsgebiete extrahiert und
-gefiltert.
+nach Landmasse gefiltert (Geofaktor 4 = "mit Struktur Land").

@@ -57,6 +57,7 @@ oemoflex = { git = "https://git@github.com/rl-institut/oemoflex", tag = "0.0.1"}
 ruff = "^0.0.257"
 types-pyyaml = "^6.0.12.9"
 pyxlsb = "^1.0.10"
+tabula-py = "^2.7.0"
 requests = "^2.30.0"
 types-requests = "^2.30.0.0"
 mkdocs = "^1.4.3"
@@ -64,7 +65,8 @@ mkdocs-material = "^9.1.12"
 mkdocs-include-markdown-plugin = "^4.0.4"
 mkdocs-same-dir = "^0.1.2"
 mkdocs-exclude = "^1.0.2"
-
+mkdocs-exclude-search = "^0.6.5"
+boto3 = "1.26.125"
 
 [tool.poetry.dev-dependencies]
 m2r2 = "^0.3.3"

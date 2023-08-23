@@ -61,6 +61,7 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Add captions to app datapackage (here: MaStR, heat, potentialarea_wind)
 - Add mapping of time series data in datasets to empty time series according to
   the mapping provided in map_ts.yml
+- Add build configuration for readthedocs
 
 ### Changed
 

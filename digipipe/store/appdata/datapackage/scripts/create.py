@@ -33,11 +33,14 @@ def collect_files(
             print(f"  Processing {subcat} ...")
             for item, data in config["resources"][cat][subcat].items():
                 print(f"  Processing {item} ...")
-                source_file = get_abs_dataset_path(
-                    "datasets",
-                    data["_source_path"].get("dataset"),
-                    data_dir=True,
-                ) / data["_source_path"].get("file")
+                source_file = (
+                    get_abs_dataset_path(
+                        "datasets",
+                        data["_source_path"].get("dataset"),
+                        data_dir=True,
+                    )
+                    / data["_source_path"].get("file")
+                )
                 target_file = dataset_path / data.get("path")
                 if target_file not in target_files:
                     source_files.append(source_file)

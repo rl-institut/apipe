@@ -373,7 +373,10 @@ technische Weiterentwicklung von 25 % angenommen
 
 Beide separat erstelle Zeitreihen werden anhand der heutigen Marktdurchdringung
 gewichtet und in eine mittlere Zeitreihe für Wärmepumpen überführt. Im Jahr
-XXXX betrug der Anteil der kleinen ASHP und GSHP laut jeweils 50 % [Source].
+2022 wurden 87 % ASHP und 13 % GSHP abgesetzt nach
+[BWP](https://www.waermepumpe.de/fileadmin/user_upload/waermepumpe/05_Presse/01_Pressemitteilungen/BWP_Branchenstudie_2023_DRUCK.pdf),
+über die letzten 10 Jahre beträgt das Verhältnis ca. 80:20.
+Für 2045 wird daher ein Anteil von 80 % ASHP und 20 % GSHP angenommen.
 
 Verwendet Datensätze
 - [dwd_temperature](../../preprocessed/dwd_temperature/dataset.md)
@@ -536,6 +539,11 @@ Die Beheizungsstruktur für 2020 und 2045 wird den
 [BMWK Langfristszenarien](../../preprocessed/bmwk_long_term_scenarios/dataset.md)
 entnommen (Gebäude: Haushalte und GHD Energiebedarf) und für 2022 interpoliert.
 Hierbei wird nach Technologien für dezentrale sowie Fernwärme unterschieden.
+Für die Biomasse wird der relative Energiebedarf mit Hilfe von Anteilen der
+installierten Leistung von spezifischen Biomasse-Konversionsanlagen
+[dbfz_biomasss_capacity_rel](../../preprocessed/dbfz_biomasss_capacity_rel/dataset.md)
+je Technologie aufgelöst. Der Vereinfachung halber wird angenommen, dass die
+relative installierte Leistung der relativen Energiemenge entspricht.
 
 ### Ergebnisdaten
 
@@ -555,9 +563,11 @@ Hierbei wird nach Technologien für dezentrale sowie Fernwärme unterschieden.
 - GHD: Zeitreihen: `demand_ind_heat_timeseries.csv`
 
 - Beheizungsstruktur dezentral (informativ): `demand_heat_structure_dec.csv`
+- Beheizungsstruktur zentral (informativ): `demand_heat_structure_cen.csv`
 - Beheizungsstruktur dezentral für Weiterverwendung im Energiesystem:
   `demand_heat_structure_esys_dec.csv`
-- Beheizungsstruktur Fernwärme für Weiterverwendung im Energiesystem: **TBD**
+- Beheizungsstruktur Fernwärme für Weiterverwendung im Energiesystem:
+  `demand_heat_structure_esys_cen.csv`
 
 **Dataset: `datasets/demand_heat_region`**
 

@@ -81,20 +81,22 @@ abgerufen.
 - **TN-Strom:** Stromfokussiertes Szenario aus den TN-Szenarien aus 2021, die
   unterschiedliche Pfade für Deutschland mit dem Ziel treibhausgasneutral bis
   2050 zu werden. Die Daten dieses Szenarios werden als Grundlage für den
-  Status quo verwendet.
+  Status quo verwendet (Ausnahme: Erzeugung Wärmenetze, hier wurden manuell
+  Daten für 2021 ergänzt).
 
 ### Daten
 
 #### T45-Strom
 
-| Datensatz                                      | Quelle                                                                                                                    | Datei                                                     |
-|------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------|
-| Gebäude: Haushalte und GHD Energiebedarf       | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/51944/21559a9532131c061668bf0751e519e3)                 | `T45-Strom_buildings_heating_demand_by_carrier.csv`       |
-| Gebäude: Anzahl der Heizungen nach Technologie | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/51944/21559a9532131c061668bf0751e519e3)                 | `T45-Strom_buildings_heating_structure_by_technology.csv` |
-| GHD Energieträger                              | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/52700/c6980ea467bb26a922d34617b4fd4798)                 | `T45-Strom_cts_demand.csv`                                |
-| Haushalte Energieträger                        | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/52700/c6980ea467bb26a922d34617b4fd4798)                 | `T45-Strom_hh_demand.csv`                                 |
-| Industrie Energiebedarf                        | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/52612/9de48084ac2d54c418daaf02a6ee26e0)                 | `T45-Strom_ind_demand.csv`                                |
-| Stromsystem Deutschland Leistung               | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/48766/5c11999a03c547e04e73d61e4b5fc633)                 | `T45-Strom_electricity_installed_power.csv`               |
+| Datensatz                                      | Quelle                                                                                                                                                                                                                                                               | Datei                                                     |
+|------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------|
+| Gebäude: Haushalte und GHD Energiebedarf       | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/51944/21559a9532131c061668bf0751e519e3)                                                                                                                                                            | `T45-Strom_buildings_heating_demand_by_carrier.csv`       |
+| Gebäude: Anzahl der Heizungen nach Technologie | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/51944/21559a9532131c061668bf0751e519e3)                                                                                                                                                            | `T45-Strom_buildings_heating_structure_by_technology.csv` |
+| GHD Energieträger                              | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/52700/c6980ea467bb26a922d34617b4fd4798)                                                                                                                                                            | `T45-Strom_cts_demand.csv`                                |
+| Haushalte Energieträger                        | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/52700/c6980ea467bb26a922d34617b4fd4798)                                                                                                                                                            | `T45-Strom_hh_demand.csv`                                 |
+| Industrie Energiebedarf                        | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/52612/9de48084ac2d54c418daaf02a6ee26e0)                                                                                                                                                            | `T45-Strom_ind_demand.csv`                                |
+| Stromsystem Deutschland Leistung               | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/48766/5c11999a03c547e04e73d61e4b5fc633)                                                                                                                                                            | `T45-Strom_electricity_installed_power.csv`               |
+| Erzeugung Wärmenetze Deutschland               | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/49949/cf898070daec6a4e613dc889927a5feb), [Link2](https://static.agora-energiewende.de/fileadmin/Projekte/2022/2022-11_DE_Large_Scale_Heatpumps/A-EW_293_Rollout_Grosswaermepumpen_WEB.pdf) (S. 37) | `T45-Strom_Generation_Heatgrids_Germany.csv`              |
 
 #### TN-Strom
 
@@ -1192,6 +1194,8 @@ OpenStreetMap Datenauszug Deutschland.
 
 Quelle: https://download.geofabrik.de/europe/germany-230101.osm.pbf
 
+Ist nicht Teil des Eingangsdaten-Packages - manueller Download erforderlich.
+
 **Dataset: `raw/osm`**
 
 ??? metadata "Metadata"
@@ -1305,6 +1309,61 @@ Quelle: https://download.geofabrik.de/europe/germany-230101.osm.pbf
             "review": "Following the OEP Data Review (https://github.com/OpenEnergyPlatform/data-preprocessing/blob/master/data-review/manual/review_manual.md)",
             "null": "If not applicable use: null",
             "todo": "If a value is not yet available, use: todo"
+        }
+    }
+    ```
+
+------------------------------
+## Installierte Leistungen von Biomasse-Konversionstechnologien
+
+Die installierten Leistungen in MW wird im Szenario 80 % Transformationspfad
+und 2,6 Mio. ha Anbauflächen im Jahr 2020 und 2050 der Tabelle 13 im
+Dokument
+["Technoökonomische Analyse und Transformationspfade des energetischen Biomassepotentials (TATBIO)"](../dbfz_biomass_heat_capacities/metadata.json)
+für die folgenden Konversionsanlagen von Biomasse entnommen:
+
+- Biomethan-Blockheizkraftwerk
+- Holzhackschnitzelkessel Sektor Industrie
+- Pelletkessel Sektor GHD
+- Holzhackschnitzelkessel Sektor GHD
+- Scheitholzvergaserkessel
+- Pelletkessel Sektor Gebäude
+- Biogasanlage + Blockheizkraftwerk
+- Biomethan Gas- und Dampfkombikraftwerk
+- Klärschlammfaulung + Blockheizkraftwerk
+- Papier-Zellstoff-KWK
+- Holzvergaser + Blockheizkraftwerk
+- Mikro-Holzgas-Blockheizkraftwerk
+
+Die Konversionstechnologien sind in der Spalte "technology" gelistet, während
+sich ihre installierten Leistungen für die beiden Projektionsjahre in den
+Spalten "capacity_[MW]_2020" und "capacity_[MW]_2050" befinden.
+
+In den Spalten "decentral" und "central" wird mit "x" angegeben, ob jeweils ein
+dezentraler und zentraler Einsatz der Konversionsanlage Stand der Technik ist.
+
+In der Spalte "carrier" wird analog zur Konvention der Namensgebung im
+Energiesystem (siehe [esys.md](../../../../docs/sections/esys.md)) der
+jeweilige in die Konversionsanlage eintretende Energieträger notiert.
+Diese werden Abbildung 3 des Dokuments entommen. Der Energieträger Schwarzlauge
+wird vereinfachend dem Energieträger feste Biomasse bzw. Holz zugeordnet.
+Klärgas und Holzgas werden vereinfachend Biogas zugeordnet.
+
+In der Spalte "tech" findet die Zuordnung zu der Technologie anhand der im
+Energiesystem verwendeten Komponenten (siehe
+[esys.md](../../../../docs/sections/esys.md)) statt.
+
+**Dataset: `raw/dbfz_biomass_heat_capacities`**
+
+??? metadata "Metadata"
+    ```json
+    {
+        "Quellen": {
+            "Titel": "Techno\u00f6konomische Analyse und Transformationspfade des energetischen Biomassepotentials (TATBIO)",
+            "Datei": "https://www.ufz.de/export/data/2/231891_technooekonomische-analyse-und-transformationspfade-des-energetischen-biomassepotentials(1).pdf",
+            "Datum": "08.05.2019",
+            "Autor": "DBFZ Deutsches Biomasseforschungszentrum gemeinn\u00fctzige GmbH",
+            "Seiten": "6 und 54"
         }
     }
     ```

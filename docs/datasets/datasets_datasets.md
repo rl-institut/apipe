@@ -458,8 +458,9 @@ Raw dataset: [technology_data](../../raw/technology_data/dataset.md)
 **Dataset: `datasets/technology_data`**
 
 
-------------------------------
-## Region
+Beide separat erstelle Zeitreihen werden anhand der heutigen Marktdurchdringung
+gewichtet und in eine mittlere Zeitreihe für Wärmepumpen überführt. Im Jahr
+XXXX betrug der Anteil der kleinen ASHP und GSHP laut jeweils 50 % [Source].
 
 Region aus Geodaten der Landkreise zusammengeführt.
 

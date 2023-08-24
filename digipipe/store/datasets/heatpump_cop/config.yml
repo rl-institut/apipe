@@ -6,8 +6,8 @@
 heatpumps:
   technology:
     # Market shares
-    share_ASHP: 0.5
-    share_GSHP: 0.5
+    share_ASHP: 0.8
+    share_GSHP: 0.2
   params:
     heating_temp: 40
     quality_grade_ASHP: 0.4

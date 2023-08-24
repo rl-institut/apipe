@@ -119,6 +119,7 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Minor fix applied reformatting with black
 - Only use operating units from mastr for municipality stats and temporal
   development
+- Heat pump ASHP/GSHP split fixed
 
 ### Removed
 

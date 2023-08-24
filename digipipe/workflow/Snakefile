@@ -55,7 +55,7 @@ rule clean:
         ),
     shell:
         """
-        for paths in "${params.preprocessed}" "${params.datasets}"; do
+        for paths in "{params.preprocessed}" "{params.datasets}"; do
             # Delete subdirs in dirs
             for DIR_PATH in $paths; do
                 # Check if there are subdirs in the dir path

@@ -67,6 +67,7 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Add dataset: dbfz_biomass_heat_capacities
 - Add the calculation of relative demand of biomass conversion technologies via
   their relative capacities
+- Add deletion of all data in store/datasets/esys_raw/data
 
 ### Changed
 
@@ -126,6 +127,7 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Heat pump ASHP/GSHP split fixed
 - Replace the relative demand of biomass with the relative demand of each
   biomass conversion technology
+- Fix clean rule
 
 ### Removed
 

@@ -100,5 +100,7 @@ rule create_development_over_time:
         df_combined = df_capacity_over_time.merge(
             df_units_cumulative, on="year"
         )
+        df_combined["capacity_net"] = df_combined[
+            "capacity_net"].div(1e3).round(1)
         df_combined["year"] = df_combined["year"].astype(int)
         df_combined.to_csv(output[0], index=False)

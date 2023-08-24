@@ -68,7 +68,8 @@ rule create_power_stats_muns:
 
 rule create_development_over_time:
     """
-    Create stats on development (per year) of cumulative total installed capacity and cumulative number of units
+    Create stats on development (per year) of cumulative total installed
+    capacity and cumulative number of operating units
     """
     input:
         agg_region=DATASET_PATH
@@ -78,6 +79,7 @@ rule create_development_over_time:
         DATASET_PATH / "data" / "bnetza_mastr_pv_roof_development_over_time.csv",
     run:
         df = gpd.read_file(input.agg_region)
+        df = df.loc[df["status"] == "In Betrieb"]
         df["commissioning_date"] = pd.to_datetime(df["commissioning_date"])
 
         df["year"] = df["commissioning_date"].dt.year

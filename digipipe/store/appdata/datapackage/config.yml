@@ -263,7 +263,7 @@ resources:
     scalars:
       #units:
       biomass:
-        description: "Biomasseanlagen: Installierte Leistung und Anzahl"
+        description: "Biomasseanlagen: Installierte Leistung und Anzahl (in Betrieb)"
         path: "scalars/bnetza_mastr_biomass_stats_muns.csv"
         fields:
           municipality_id:
@@ -279,7 +279,7 @@ resources:
           dataset: "bnetza_mastr_biomass_region"
           file: "bnetza_mastr_biomass_stats_muns.csv"
       combustion:
-        description: "Verbrennungskraftwerke: Installierte Leistung und Anzahl"
+        description: "Verbrennungskraftwerke: Installierte Leistung und Anzahl (in Betrieb)"
         path: "scalars/bnetza_mastr_combustion_stats_muns.csv"
         fields:
           municipality_id:
@@ -295,7 +295,7 @@ resources:
           dataset: "bnetza_mastr_combustion_region"
           file: "bnetza_mastr_combustion_stats_muns.csv"
       gsgk:
-        description: "Geo- oder Solarthermie-, Grubengas- und Klärschlamm-Anlagen: Installierte Leistung und Anzahl"
+        description: "Geo- oder Solarthermie-, Grubengas- und Klärschlamm-Anlagen: Installierte Leistung und Anzahl (in Betrieb)"
         path: "scalars/bnetza_mastr_gsgk_stats_muns.csv"
         fields:
           municipality_id:
@@ -311,7 +311,7 @@ resources:
           dataset: "bnetza_mastr_gsgk_region"
           file: "bnetza_mastr_gsgk_stats_muns.csv"
       hydro-ror:
-        description: "Wasserkraftanlagen: Installierte Leistung und Anzahl"
+        description: "Wasserkraftanlagen: Installierte Leistung und Anzahl (in Betrieb)"
         path: "scalars/bnetza_mastr_hydro_stats_muns.csv"
         fields:
           municipality_id:
@@ -327,7 +327,7 @@ resources:
           dataset: "bnetza_mastr_hydro_region"
           file: "bnetza_mastr_hydro_stats_muns.csv"
       solar-pv_ground:
-        description: "PV-Freiflächenanlagen: Installierte Leistung und Anzahl"
+        description: "PV-Freiflächenanlagen: Installierte Leistung und Anzahl (in Betrieb)"
         path: "scalars/bnetza_mastr_pv_ground_stats_muns.csv"
         fields:
           municipality_id:
@@ -343,7 +343,7 @@ resources:
           dataset: "bnetza_mastr_pv_ground_region"
           file: "bnetza_mastr_pv_ground_stats_muns.csv"
       solar-pv_ground_development_over_time:
-        description: "Veränderung (pro Jahr) der installierten Gesamtleistung und der Anzahl"
+        description: "Veränderung (pro Jahr) der installierten Gesamtleistung und der Anzahl (in Betrieb)"
         path: "scalars/bnetza_mastr_pv_ground_development_over_time.csv"
         fields:
           year:
@@ -359,7 +359,7 @@ resources:
           dataset: "bnetza_mastr_pv_ground_region"
           file: "bnetza_mastr_pv_ground_development_over_time.csv"
       solar-pv_rooftop:
-        description: "PV-Aufdachanlagen: Installierte Leistung und Anzahl"
+        description: "PV-Aufdachanlagen: Installierte Leistung und Anzahl (in Betrieb)"
         path: "scalars/bnetza_mastr_pv_roof_stats_muns.csv"
         fields:
           municipality_id:
@@ -375,7 +375,7 @@ resources:
           dataset: "bnetza_mastr_pv_roof_region"
           file: "bnetza_mastr_pv_roof_stats_muns.csv"
       solar-pv_rooftop_development_over_time:
-        description: "Veränderung (pro Jahr) der installierten Gesamtleistung und der Anzahl"
+        description: "Veränderung (pro Jahr) der installierten Gesamtleistung und der Anzahl (in Betrieb)"
         path: "scalars/bnetza_mastr_pv_roof_development_over_time.csv"
         fields:
           year:
@@ -391,7 +391,7 @@ resources:
           dataset: "bnetza_mastr_pv_roof_region"
           file: "bnetza_mastr_pv_roof_development_over_time.csv"
       storage:
-        description: "Batteriespeicher gesamt: Installierte Leistung und Anzahl"
+        description: "Batteriespeicher gesamt: Installierte Leistung und Anzahl (in Betrieb)"
         path: "scalars/bnetza_mastr_storage_stats_muns.csv"
         fields:
           municipality_id:
@@ -407,7 +407,7 @@ resources:
           dataset: "bnetza_mastr_storage_region"
           file: "bnetza_mastr_storage_stats_muns.csv"
       storage_large:
-        description: "Batteriespeicher groß (>=100 kWh): Installierte Leistung und Anzahl"
+        description: "Batteriespeicher groß (>=100 kWh): Installierte Leistung und Anzahl (in Betrieb)"
         path: "scalars/bnetza_mastr_storage_large_stats_muns.csv"
         fields:
           municipality_id:
@@ -423,7 +423,7 @@ resources:
           dataset: "bnetza_mastr_storage_region"
           file: "bnetza_mastr_storage_large_stats_muns.csv"
       storage_small:
-        description: "Batteriespeicher klein (<100 kWh): Installierte Leistung und Anzahl"
+        description: "Batteriespeicher klein (<100 kWh): Installierte Leistung und Anzahl (in Betrieb)"
         path: "scalars/bnetza_mastr_storage_small_stats_muns.csv"
         fields:
           municipality_id:
@@ -439,7 +439,7 @@ resources:
           dataset: "bnetza_mastr_storage_region"
           file: "bnetza_mastr_storage_small_stats_muns.csv"
       storage_pv_roof:
-        description: "Spezifische Kapazität und Leistung von Batteriespeichern, die PV-Aufdachanlagen zugeordnet sind"
+        description: "Spezifische Kapazität und Leistung von Batteriespeichern, die PV-Aufdachanlagen zugeordnet sind (in Betrieb)"
         path: "scalars/bnetza_mastr_storage_pv_roof.json"
         fields:
           pv_roof_share:
@@ -467,7 +467,7 @@ resources:
           dataset: "bnetza_mastr_storage_region"
           file: "bnetza_mastr_storage_pv_roof.json"
       wind-onshore:
-        description: "Windenergieanlagen: Installierte Leistung und Anzahl"
+        description: "Windenergieanlagen: Installierte Leistung und Anzahl (in Betrieb)"
         path: "scalars/bnetza_mastr_wind_stats_muns.csv"
         fields:
           municipality_id:
@@ -483,7 +483,7 @@ resources:
           dataset: "bnetza_mastr_wind_region"
           file: "bnetza_mastr_wind_stats_muns.csv"
       wind-onshore_development_over_time:
-        description: "Veränderung (pro Jahr) der installierten Gesamtleistung und der Anzahl"
+        description: "Veränderung (pro Jahr) der installierten Gesamtleistung und der Anzahl (in Betrieb)"
         path: "scalars/bnetza_mastr_wind_development_over_time.csv"
         fields:
           year:
@@ -604,56 +604,56 @@ resources:
     geodata:
       # Generation units
       bnetza_mastr_biomass_agg_region:
-        description: "Biomasseanlagen"
+        description: "Biomasseanlagen (In Betrieb oder geplant)"
         path: "geodata/bnetza_mastr_biomass_agg_region.gpkg"
         fields: [ ]
         _source_path:
           dataset: "bnetza_mastr_biomass_region"
           file: "bnetza_mastr_biomass_agg_region.gpkg"
       bnetza_mastr_combustion_agg_region:
-        description: "Verbrennungskraftwerke"
+        description: "Verbrennungskraftwerke (In Betrieb oder geplant)"
         path: "geodata/bnetza_mastr_combustion_agg_region.gpkg"
         fields: [ ]
         _source_path:
           dataset: "bnetza_mastr_combustion_region"
           file: "bnetza_mastr_combustion_agg_region.gpkg"
       bnetza_mastr_gsgk_agg_region:
-        description: "Geo- oder Solarthermie-, Grubengas- und Klärschlamm-Anlagen"
+        description: "Geo- oder Solarthermie-, Grubengas- und Klärschlamm-Anlagen (In Betrieb oder geplant)"
         path: "geodata/bnetza_mastr_gsgk_agg_region.gpkg"
         fields: [ ]
         _source_path:
           dataset: "bnetza_mastr_gsgk_region"
           file: "bnetza_mastr_gsgk_agg_region.gpkg"
       bnetza_mastr_hydro_agg_region:
-        description: "Wasserkraftanlagen"
+        description: "Wasserkraftanlagen (In Betrieb oder geplant)"
         path: "geodata/bnetza_mastr_hydro_agg_region.gpkg"
         fields: [ ]
         _source_path:
           dataset: "bnetza_mastr_hydro_region"
           file: "bnetza_mastr_hydro_agg_region.gpkg"
       bnetza_mastr_pv_ground_agg_region:
-        description: "PV-Freiflächenanlagen"
+        description: "PV-Freiflächenanlagen (In Betrieb oder geplant)"
         path: "geodata/bnetza_mastr_pv_ground_agg_region.gpkg"
         fields: [ ]
         _source_path:
           dataset: "bnetza_mastr_pv_ground_region"
           file: "bnetza_mastr_pv_ground_agg_region.gpkg"
       bnetza_mastr_pv_roof_agg_region:
-        description: "PV-Aufdachanlagen"
+        description: "PV-Aufdachanlagen (In Betrieb oder geplant)"
         path: "geodata/bnetza_mastr_pv_roof_agg_region.gpkg"
         fields: [ ]
         _source_path:
           dataset: "bnetza_mastr_pv_roof_region"
           file: "bnetza_mastr_pv_roof_agg_region.gpkg"
       bnetza_mastr_storage_agg_region:
-        description: "Batteriespeicher"
+        description: "Batteriespeicher (In Betrieb oder geplant)"
         path: "geodata/bnetza_mastr_storage_agg_region.gpkg"
         fields: [ ]
         _source_path:
           dataset: "bnetza_mastr_storage_region"
           file: "bnetza_mastr_storage_agg_region.gpkg"
       bnetza_mastr_wind_agg_region:
-        description: "Windenergieanlagen"
+        description: "Windenergieanlagen (In Betrieb oder geplant)"
         path: "geodata/bnetza_mastr_wind_agg_region.gpkg"
         fields: [ ]
         _source_path:

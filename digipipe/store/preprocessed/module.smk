@@ -96,3 +96,8 @@ module rpg_abw_pv_roof_potential:
     snakefile: "rpg_abw_pv_roof_potential/create.smk"
     config: config["store"]["preprocessed"]["rpg_abw_pv_roof_potential"]
 use rule * from rpg_abw_pv_roof_potential as preprocessed_rpg_abw_pv_roof_potential_ *
+
+module dbfz_biomass_capacity_rel:
+    snakefile: "dbfz_biomass_capacity_rel/create.smk"
+    config: config["store"]["preprocessed"]["dbfz_biomass_capacity_rel"]
+use rule * from dbfz_biomass_capacity_rel as preprocessed_dbfz_biomass_capacity_rel_ *

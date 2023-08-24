@@ -64,6 +64,9 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Add build configuration for readthedocs
 - Add creation of stats of development over time for bnetza_mastr_wind_region,
   bnetza_mastr_pv_ground_region, bnetza_mastr_pv_roof_region
+- Add dataset: dbfz_biomass_heat_capacities
+- Add the calculation of relative demand of biomass conversion technologies via
+  their relative capacities
 
 ### Changed
 
@@ -121,6 +124,8 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Only use operating units from mastr for municipality stats and temporal
   development
 - Heat pump ASHP/GSHP split fixed
+- Replace the relative demand of biomass with the relative demand of each
+  biomass conversion technology
 
 ### Removed
 

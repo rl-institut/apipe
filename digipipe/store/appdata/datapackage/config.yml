@@ -860,7 +860,7 @@ resources:
 
       # Heating structure
       heating_structure_decentral:
-        description: "Beheizungsstruktur (energetische Anteile)"
+        description: "Beheizungsstruktur dezentral (energetische Anteile)"
         path: "scalars/demand_heat_structure_esys_dec.csv"
         fields:
           year:
@@ -875,7 +875,22 @@ resources:
         _source_path:
           dataset: "demand_heat_region"
           file: "demand_heat_structure_esys_dec.csv"
-      #heating_structure_central: "TBD"
+      heating_structure_central:
+        description: "Beheizungsstruktur Fernwärme (energetische Anteile)"
+        path: "scalars/demand_heat_structure_esys_cen.csv"
+        fields:
+          year:
+            description: "Jahr"
+            unit: "-"
+          carrier:
+            description: "Energieträger"
+            unit: "-"
+          demand_rel:
+            description: "Relativer Bedarf"
+            unit: "-"
+        _source_path:
+          dataset: "demand_heat_region"
+          file: "demand_heat_structure_esys_cen.csv"
 
     sequences:
       # Electricity demand profiles

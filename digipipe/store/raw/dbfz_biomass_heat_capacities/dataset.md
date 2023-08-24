@@ -2,7 +2,8 @@
 
 Die installierten Leistungen in MW wird im Szenario 80 % Transformationspfad
 und 2,6 Mio. ha Anbauflächen im Jahr 2020 und 2050 der Tabelle 13 im
-Dokument ["Technoökonomische Analyse und Transformationspfade des energetischen Biomassepotentials (TATBIO)"](../dbfz_biomass_heat_capacities/metadata.json)
+Dokument
+["Technoökonomische Analyse und Transformationspfade des energetischen Biomassepotentials (TATBIO)"](../dbfz_biomass_heat_capacities/metadata.json)
 für die folgenden Konversionsanlagen von Biomasse entnommen:
 
 - Biomethan-Blockheizkraftwerk

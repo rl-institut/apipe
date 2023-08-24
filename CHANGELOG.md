@@ -117,6 +117,8 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - The unstacking of time series in esys was fixed so that warning is given if
   there is at least one value in columns 'source' or 'comment'
 - Minor fix applied reformatting with black
+- Only use operating units from mastr for municipality stats and temporal
+  development
 
 ### Removed
 

@@ -121,9 +121,7 @@ Für die Biomasse wird der relative Energiebedarf mit Hilfe von Anteilen der
 installierten Leistung von spezifischen Biomasse-Konversionsanlagen
 [dbfz_biomasss_capacity_rel](../../preprocessed/dbfz_biomasss_capacity_rel/dataset.md)
 je Technologie aufgelöst. Der Vereinfachung halber wird angenommen, dass die
-relative installierte Leistung der relativen Energiemenge entspricht. Dazu
-müssten die Volllaststunden aller Konversionsanlagen gleich sein, was aber in
-der Realität nicht der Fall ist.
+relative installierte Leistung der relativen Energiemenge entspricht.
 
 ## Ergebnisdaten
 
@@ -143,6 +141,8 @@ der Realität nicht der Fall ist.
 - GHD: Zeitreihen: `demand_ind_heat_timeseries.csv`
 
 - Beheizungsstruktur dezentral (informativ): `demand_heat_structure_dec.csv`
+- Beheizungsstruktur zentral (informativ): `demand_heat_structure_cen.csv`
 - Beheizungsstruktur dezentral für Weiterverwendung im Energiesystem:
   `demand_heat_structure_esys_dec.csv`
-- Beheizungsstruktur Fernwärme für Weiterverwendung im Energiesystem: **TBD**
+- Beheizungsstruktur Fernwärme für Weiterverwendung im Energiesystem:
+  `demand_heat_structure_esys_cen.csv`

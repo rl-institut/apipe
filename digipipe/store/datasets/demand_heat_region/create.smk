@@ -475,10 +475,10 @@ rule heating_structure_hh_cts:
                 index_col="year",
             )
 
-            # Change year 2025 to 2022 neglecting changes in generation
+            # Change year 2021 to 2022 neglecting changes in generation
             # structure during that period
             heat_gen_cen_T45.loc[
-                heat_gen_cen_T45["year"] == 2025, "year"
+                heat_gen_cen_T45["year"] == 2021, "year"
             ] = 2022
 
             rel_demand_cen = pd.DataFrame()

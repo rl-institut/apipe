@@ -62,6 +62,8 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Add mapping of time series data in datasets to empty time series according to
   the mapping provided in map_ts.yml
 - Add build configuration for readthedocs
+- Add creation of stats of development over time for bnetza_mastr_wind_region,
+  bnetza_mastr_pv_ground_region, bnetza_mastr_pv_roof_region
 
 ### Changed
 
@@ -113,6 +115,12 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Fix panel settings for large batteries
 - Add additional captions to MaStR captions
 - Use LTS version of OSM
+- The unstacking of time series in esys was fixed so that warning is given if
+  there is at least one value in columns 'source' or 'comment'
+- Minor fix applied reformatting with black
+- Only use operating units from mastr for municipality stats and temporal
+  development
+- Heat pump ASHP/GSHP split fixed
 
 ### Removed
 

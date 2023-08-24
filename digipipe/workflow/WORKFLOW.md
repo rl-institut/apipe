@@ -30,7 +30,10 @@ but without actually really doing anything) by typing
 
 To clean all produced data, use
 
-    snakemake -j1 -p clean
+    snakemake -j1 clean
+
+This involves preprocessed data in directories: preprocessed, datasets and
+appdata.
 
 ## Pipeline visualization / DAG
 

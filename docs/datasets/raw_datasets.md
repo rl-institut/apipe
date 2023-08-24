@@ -81,21 +81,22 @@ abgerufen.
 - **TN-Strom:** Stromfokussiertes Szenario aus den TN-Szenarien aus 2021, die
   unterschiedliche Pfade für Deutschland mit dem Ziel treibhausgasneutral bis
   2050 zu werden. Die Daten dieses Szenarios werden als Grundlage für den
-  Status quo verwendet.
+  Status quo verwendet (Ausnahme: Erzeugung Wärmenetze, hier wurden manuell
+  Daten für 2021 ergänzt).
 
 ### Daten
 
 #### T45-Strom
 
-| Datensatz                                      | Quelle                                                                                                                    | Datei                                                     |
-|------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------|
-| Gebäude: Haushalte und GHD Energiebedarf       | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/51944/21559a9532131c061668bf0751e519e3)                 | `T45-Strom_buildings_heating_demand_by_carrier.csv`       |
-| Gebäude: Anzahl der Heizungen nach Technologie | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/51944/21559a9532131c061668bf0751e519e3)                 | `T45-Strom_buildings_heating_structure_by_technology.csv` |
-| GHD Energieträger                              | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/52700/c6980ea467bb26a922d34617b4fd4798)                 | `T45-Strom_cts_demand.csv`                                |
-| Haushalte Energieträger                        | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/52700/c6980ea467bb26a922d34617b4fd4798)                 | `T45-Strom_hh_demand.csv`                                 |
-| Industrie Energiebedarf                        | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/52612/9de48084ac2d54c418daaf02a6ee26e0)                 | `T45-Strom_ind_demand.csv`                                |
-| Stromsystem Deutschland Leistung               | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/48766/5c11999a03c547e04e73d61e4b5fc633)                 | `T45-Strom_electricity_installed_power.csv`               |
-| Erzeugung Wärmenetze Deutschland T45           | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/49949/cf898070daec6a4e613dc889927a5feb)                 | `T45-Strom_Generation_Heatgrids_Germany.csv`              |
+| Datensatz                                      | Quelle                                                                                                                                                                                                                                                               | Datei                                                     |
+|------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------|
+| Gebäude: Haushalte und GHD Energiebedarf       | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/51944/21559a9532131c061668bf0751e519e3)                                                                                                                                                            | `T45-Strom_buildings_heating_demand_by_carrier.csv`       |
+| Gebäude: Anzahl der Heizungen nach Technologie | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/51944/21559a9532131c061668bf0751e519e3)                                                                                                                                                            | `T45-Strom_buildings_heating_structure_by_technology.csv` |
+| GHD Energieträger                              | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/52700/c6980ea467bb26a922d34617b4fd4798)                                                                                                                                                            | `T45-Strom_cts_demand.csv`                                |
+| Haushalte Energieträger                        | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/52700/c6980ea467bb26a922d34617b4fd4798)                                                                                                                                                            | `T45-Strom_hh_demand.csv`                                 |
+| Industrie Energiebedarf                        | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/52612/9de48084ac2d54c418daaf02a6ee26e0)                                                                                                                                                            | `T45-Strom_ind_demand.csv`                                |
+| Stromsystem Deutschland Leistung               | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/48766/5c11999a03c547e04e73d61e4b5fc633)                                                                                                                                                            | `T45-Strom_electricity_installed_power.csv`               |
+| Erzeugung Wärmenetze Deutschland               | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/49949/cf898070daec6a4e613dc889927a5feb), [Link2](https://static.agora-energiewende.de/fileadmin/Projekte/2022/2022-11_DE_Large_Scale_Heatpumps/A-EW_293_Rollout_Grosswaermepumpen_WEB.pdf) (S. 37) | `T45-Strom_Generation_Heatgrids_Germany.csv`              |
 
 #### TN-Strom
 
@@ -1317,7 +1318,8 @@ Ist nicht Teil des Eingangsdaten-Packages - manueller Download erforderlich.
 
 Die installierten Leistungen in MW wird im Szenario 80 % Transformationspfad
 und 2,6 Mio. ha Anbauflächen im Jahr 2020 und 2050 der Tabelle 13 im
-Dokument ["Technoökonomische Analyse und Transformationspfade des energetischen Biomassepotentials (TATBIO)"](../dbfz_biomass_heat_capacities/metadata.json)
+Dokument
+["Technoökonomische Analyse und Transformationspfade des energetischen Biomassepotentials (TATBIO)"](../dbfz_biomass_heat_capacities/metadata.json)
 für die folgenden Konversionsanlagen von Biomasse entnommen:
 
 - Biomethan-Blockheizkraftwerk

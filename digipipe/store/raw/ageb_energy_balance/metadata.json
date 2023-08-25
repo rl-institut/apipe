@@ -11,7 +11,7 @@
     "keywords": [
         "Endenergiesektoren",
         "Anwendungsbilanzen",
-      "energy-balance",
+        "energy-balance",
     ],
     "publicationDate": "2022-12-01",
     "context": {
@@ -37,7 +37,7 @@
         {
             "title": "AGEB – Anwendungsbilanzen für die Endenergiesektoren 2011 bis 2021",
             "description": "Detaillierte Anwendungsbilanzen der Endenergiesektoren für 2020 und 2021 sowie zusammenfassende Zeitreihen zum Endenergieverbrauch nach Energieträgern und Anwendungszwecken für Jahre von 2011 bis 2021",
-            "path": "https://ag-energiebilanzen.de/wp-content/uploads/2023/01/AGEB_21p2_V3_20221222.pdf", "https://ag-energiebilanzen.de/daten-und-fakten/anwendungsbilanzen/", 
+            "path": "https://ag-energiebilanzen.de/daten-und-fakten/anwendungsbilanzen/", 
             "licenses": [
                 {
                     "name": "todo",

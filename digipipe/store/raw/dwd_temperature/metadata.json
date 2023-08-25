@@ -55,6 +55,15 @@
      ]
   }
  ],
+ "licenses": [
+        {
+            "name": "GeoNutzV",
+            "title": "Verordnung zur Festlegung der Nutzungsbestimmungen für die Bereitstellung von Geodaten des Bundes",
+            "path": "https://www.gesetze-im-internet.de/geonutzv/GeoNutzV.pdf",
+            "instruction": "Alle frei zugänglichen Geodaten und Geodatendienste dürfen entsprechend der Verordnung zur Festlegung der Nutzungsbestimmungen für die Bereitstellung von Geodaten des Bundes (GeoNutzV) unter Beigabe eines Quellenvermerks ohne Einschränkungen weiterverwendet werden.",
+            "attribution": " © Deutscher Wetterdienst"
+        }
+    ],
  "contributors": [
     {
         "title": "aaronschilling",

@@ -29,11 +29,14 @@ plugins:
       lang:
         - en
         - de
+  - exclude-search:
+      exclude:
+        - digipipe/*
   - include-markdown
   - same-dir
   - exclude:
       glob:
-        - digipipe/store/*
+        - digipipe/esys/*
         - digipipe/config/*
         - README.md
         - CHANGELOG.md
@@ -43,6 +46,8 @@ plugins:
         - "*.py"
         - "*.pyc"
         - "*.gpkg"
+        - "*.zip"
+        - "*.csv"
       regex:
         - '.*\.(tmp|bin|tar)$'
 

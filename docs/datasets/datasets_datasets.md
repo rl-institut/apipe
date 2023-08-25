@@ -353,8 +353,6 @@ Hierbei wird nach Technologien für dezentrale sowie Fernwärme unterschieden.
   `demand_heat_structure_esys_dec.csv`
 - Beheizungsstruktur Fernwärme für Weiterverwendung im Energiesystem: **TBD**
 
-**Dataset: `datasets/demand_heat_region`**
-
 
 ------------------------------
 ## Wärmepumpen COP
@@ -383,7 +381,10 @@ technische Weiterentwicklung von 25 % angenommen
 
 Beide separat erstelle Zeitreihen werden anhand der heutigen Marktdurchdringung
 gewichtet und in eine mittlere Zeitreihe für Wärmepumpen überführt. Im Jahr
-XXXX betrug der Anteil der kleinen ASHP und GSHP laut jeweils 50 % [Source].
+2022 wurden 87 % ASHP und 13 % GSHP abgesetzt nach
+[BWP](https://www.waermepumpe.de/fileadmin/user_upload/waermepumpe/05_Presse/01_Pressemitteilungen/BWP_Branchenstudie_2023_DRUCK.pdf),
+über die letzten 10 Jahre beträgt das Verhältnis ca. 80:20.
+Für 2045 wird daher ein Anteil von 80 % ASHP und 20 % GSHP angenommen.
 
 Verwendet Datensätze
 - [dwd_temperature](../../preprocessed/dwd_temperature/dataset.md)
@@ -584,9 +585,6 @@ Schritte:
 - Flächensumme berechnen -> `osm_buildings_ground_area_region.gpkg`,
   `osm_buildings_ground_area_country.gpkg`
 - Regionalen Anteil berechnen -> `osm_buildings_ground_area_share_region.json`
-
-**Achtung:** Konvertierungs- und Extraktionsprozess benötigt ~15 GB
-Speicherplatz und kann viel Zeit in Anspruch nehmen.
 
 **Dataset: `datasets/osm_buildings`**
 

@@ -30,12 +30,12 @@ Quellen:
 - [Emissionshandelspflichtige Anlagen in Deutschland 2020 (Stand 03.05.2021)](https://www.dehst.de/SharedDocs/downloads/DE/anlagenlisten/2013-2020/2020.pdf?__blob=publicationFile&v=3)
 - [Treibhausgasemissionen in Sachsen-Anhalt 2018 (Stand 12.05.2021)](https://lau.sachsen-anhalt.de/fileadmin/Bibliothek/Politik_und_Verwaltung/MLU/LAU/Wir_ueber_uns/Publikationen/Fachberichte/Dateien/THG_Bericht_2018.pdf)
 
-##### CRF 1.A.1
+#### CRF 1.A.1
 Energiewirtschaft (Umwandlungsbereich): umfasst die öffentliche Elektrizitäts- und Wärmeversorgung sowie Raffinerien.
 
 EnbG: Emissionen aus europäischem Emissionshandel
 
-##### CRF 1.B
+#### CRF 1.B
 Diffuse Emissionen aus Brennstoffen: Diese Kategorie beinhaltet flüchtige Emissionen aus der Gewinnung, Verarbeitung und Verteilung von Brennstoffen. Die wichtigsten Quellen sind die Verteilung von Erdgas, aber auch Emissionen aus Förderung und Abfackelung, die Extraktion und Umwandlung von Braunkohle, Emissionen aus der Raffination von Erdöl sowie Emissionen aus der Lagerung und Verteilung von Mineralölprodukten.
 
 EnbG: Emissionen aus europäischem Emissionshandel
@@ -60,7 +60,7 @@ Zur Disaggregierung wurde erneut die [Liste der Emissionshandelspflichtigen Anla
 EnbG: Emissionen aus europäischem Emissionshandel
 
 ### Sektor Verkehr (CRF 1.A.3)
-Dieser Sekotr umfasst Emissionen aus dem Straßenverkehr, dem zivilen Luftverkehr, aus dem Schiffsverkehr, verbrennungsbedingte Emissionen aus dem Schienenverkehr sowie Emissionen des übrigen Verkehrs und weitere Quellen zur Bereitstellung der im Verkehr verbrauchten Energie.
+Dieser Sektor umfasst Emissionen aus dem Straßenverkehr, dem zivilen Luftverkehr, aus dem Schiffsverkehr, verbrennungsbedingte Emissionen aus dem Schienenverkehr sowie Emissionen des übrigen Verkehrs und weitere Quellen zur Bereitstellung der im Verkehr verbrauchten Energie.
 Die Verbrennung von Mineralölprodukten im Straßenverkehr spielt die größte Rolle und macht weit über 90 % der sektoralen Emissionen aus.
 Daher wird zur Disaggreagation der motorisierte Straßenverkehr über zugelassene Kraftfahrzeuge mit durchschnittlichen Fahrleistungen und spezifischer Emissionen pro Kilometer und Fahrzeugklasse herangezogen.
 
@@ -105,7 +105,6 @@ heat_share = (heat_hh_demand_abw + heat_cts_demand_abw) / (heat_hh_demand_st + h
 
 EnbG: Wärmebedarf aus Energiesystem
 
-
 ### Sektor Landwirtschaft (CRF 3)
 Der Sektor umfasst Emissionen aus der Viehwirtschaft und der Bewirtschaftung von Böden.
 Daher werden zunächst die Emissionsunterkategorien 3.A-J aus dem [THG-Bericht 2021](https://lau.sachsen-anhalt.de/fileadmin/Bibliothek/Politik_und_Verwaltung/MLU/LAU/Wir_ueber_uns/Publikationen/Fachberichte/Dateien/221014_THG-Bericht.pdf) Viehwirtschaft oder der Bewirtschaftung von Böden zugeordnet. Danach werden diese getrennt nach den Viehbeständen bzw. der landwirtschaftlich genutzen Fläche disaggreiert.
@@ -132,7 +131,6 @@ Hinweis:
 - die Flächenntuzungsadaten gehen nicht bis  1990 zurück, ändern sich über die Jahre aber nur marginal, sodass hier auch nicht von großen Abweichungen auszugehen ist.
 
 EnbG: landwirtschaftlich genutzte Fläche
-
 
 Quellen:
 - [Flaeche_nach_Kultuarten_nach_Jahren_und_Kreisen](https://statistik.sachsen-anhalt.de/themen/wirtschaftsbereiche/land-und-forstwirtschaft-fischerei/tabellen-bodennutzung-und-anbau)

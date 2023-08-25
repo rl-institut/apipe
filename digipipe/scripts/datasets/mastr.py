@@ -438,6 +438,7 @@ def create_stats_per_municipality(
     units_df: pd.DataFrame,
     muns: gpd.GeoDataFrame,
     column: str,
+    only_operating_units: bool = True,
 ) -> pd.DataFrame:
     """
     Create statistics on units per municipality for one column.
@@ -451,12 +452,18 @@ def create_stats_per_municipality(
         Municipalities
     column : str
         Column in units_df used for aggregation
+    only_operating_units : bool
+        Use only units which are operating, no planned or decommissioned.
+        Defaults to true.
 
     Returns
     -------
     pd.DataFrame
         Units, aggregated per municipality
     """
+
+    if only_operating_units is True:
+        units_df = units_df.loc[units_df["status"] == "In Betrieb"]
 
     units_df = units_df[["municipality_id", column]]
     units_df = (

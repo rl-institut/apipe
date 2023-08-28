@@ -55,4 +55,5 @@ To trigger a check manually, execute:
 
 ## Runtime and resources
 
-**TBD**
+**Warning:** Conversion and extraction process needs ~50 GB disk space and may
+take a lot of time!

@@ -12,7 +12,7 @@ Stromverbrauch der Industriebetriebe nach Kreisen 2003-2021 in MWh
 - Datei: `power_demand_industry_st_districts.csv`
 
 Raw dataset:
-[stala_st_energy](../../raw/stala_st_energy/dataset.md)
+[stala_st_energy](../../digipipe/store/raw/stala_st_energy/dataset.md)
 
 **Dataset: `preprocessed/stala_st_energy`**
 
@@ -42,7 +42,7 @@ Langfristszenarien des Bundesministerium für Wirtschaft und Klimaschutz, Daten
 auf Landesebene, extrahiert.
 
 Raw dataset:
-[bmwk_long_term_scenarios](../../raw/bmwk_long_term_scenarios/dataset.md)
+[bmwk_long_term_scenarios](../../digipipe/store/raw/bmwk_long_term_scenarios/dataset.md)
 
 **Dataset: `preprocessed/bmwk_long_term_scenarios`**
 
@@ -74,7 +74,7 @@ Handel, Dienstleistungen (GHD) und Industrie für mehrere Zieljahre.
 ------------------------------
 ## OpenStreetMap gefiltert
 
-OSM data nach bestimmten Tags (s. [config.yml](config.yml) -> `tags`) gefiltert,
+OSM data nach bestimmten Tags (s. [config.yml](../../digipipe/store/preprocessed/osm_filtered/config.yml) -> `tags`) gefiltert,
 zu LAEA Europe (EPSG:3035) umprojiziert und in ein Geopackage konvertiert.
 
 **Achtung:** Konvertierungs- und Extraktionsprozess benötigt ~50 GB
@@ -102,7 +102,7 @@ Geodaten aus dem
 extrahiert.
 
 Raw dataset:
-[rli_pv_windflaechenrechner](../../raw/rli_pv_wfr/dataset.md)
+[rli_pv_windflaechenrechner](../../digipipe/store/raw/rli_pv_wfr/dataset.md)
 
 **Dataset: `preprocessed/rli_pv_wfr`**
 
@@ -121,7 +121,7 @@ Erzeugungsanlagen aus dem MaStR für ausgewählte Technologien.
 Stündliche Mittelwerte der Luft- und Erdbodentemperatur für die Region ABW,
 Mittelwert für alle Gemeinden.
 
-Verwendet: [dwd_temperature](../../raw/dwd_temperature/dataset.md)
+Verwendet: [dwd_temperature](../../digipipe/store/raw/dwd_temperature/dataset.md)
 
 **Dataset: `preprocessed/dwd_temperature`**
 
@@ -131,9 +131,9 @@ Verwendet: [dwd_temperature](../../raw/dwd_temperature/dataset.md)
 
 Vorverarbeitete Datensätze aus Teilplänen Wind der Regionalen
 Planungsgemeinschaft Anhalt-Bitterfeld-Wittenberg aus
-[rpg_abw_regional_plan](../../raw/rpg_abw_regional_plan/dataset.md).
+[rpg_abw_regional_plan](../../digipipe/store/raw/rpg_abw_regional_plan/dataset.md).
 
-In der [config.yml](config.yml) können Einstellungen vorgenommen werden.
+In der [config.yml](../../digipipe/store/preprocessed/rpg_abw_regional_plan/config.yml) können Einstellungen vorgenommen werden.
 
 **Dataset: `preprocessed/rpg_abw_regional_plan`**
 
@@ -142,7 +142,7 @@ In der [config.yml](config.yml) können Einstellungen vorgenommen werden.
 ## Regionalstatistik (GENESIS)
 
 Enthält Datensätze der statistischen Ämter des Bundes und der Länder aus
-[regiostat](../../raw/regiostat/dataset.md).
+[regiostat](../../digipipe/store/raw/regiostat/dataset.md).
 
 ### Energieverwendung der Betriebe im Verarbeitenden Gewerbe (43531-01-02-4)
 
@@ -184,7 +184,7 @@ Bevölkerungsprognose je Gemeinde bis 2035 des Statistischen Landesamtes
 Sachsen-Anhalt, extrahiert und konvertiert.
 
 Raw dataset:
-[stala_st_pop_prog](../../raw/stala_st_pop_prog/dataset.md)
+[stala_st_pop_prog](../../digipipe/store/raw/stala_st_pop_prog/dataset.md)
 
 **Dataset: `preprocessed/stala_st_pop_prog`**
 
@@ -205,7 +205,7 @@ Abschätzung der installierten Leistung und des Ertrags von PV-Aufdachanlagen in
 Anhalt-Bitterfeld-Wittenberg der Regionalen Planungsgemeinschaft, reprojizert.
 
 Raw dataset:
-[rpg_abw_pv_roof_potential](../../raw/rpg_abw_pv_roof_potential/dataset.md)
+[rpg_abw_pv_roof_potential](../../digipipe/store/raw/rpg_abw_pv_roof_potential/dataset.md)
 
 **Dataset: `preprocessed/rpg_abw_pv_roof_potential`**
 
@@ -226,14 +226,14 @@ Berechnung der Anteile der installierten Leistung an der gesamten installierten
 Leistung der Biomasse-Konversionsanlagen.
 
 Die installierten Leistungen werden
-[dbfz_biomass_heat_capacities](../../raw/dbfz_biomass_heat_capacities/dataset.md)
+[dbfz_biomass_heat_capacities](../../digipipe/store/raw/dbfz_biomass_heat_capacities/dataset.md)
 entnommen. Sie werden nach Energieträger (Biogas, Methan oder Holz) und
 Technologie (BHKW (bpchp), Turbine mit Kondensationsentnahme (extchp) oder
 Ofen (oven)) zusammengefasst. Anschließend wird der Anteil der installierten
 Leistung an der gesamten installierten Leistung der Biomasse-Konversionsanlagen
 berechnet. Der Einfachheit halber werden die Projektionen für 2050 dem Jahr
 2045 und die für 2020 dem Jahr 2022 zugeordnet. Der Energieträger und die
-Technologie (vgl. [dbfz_biomass_heat_capacities](../../raw/dbfz_biomass_heat_capacities/dataset.md))
+Technologie (vgl. [dbfz_biomass_heat_capacities](../../digipipe/store/raw/dbfz_biomass_heat_capacities/dataset.md))
 werden in einer Spalte zusammengefasst.
 
 **Dataset: `preprocessed/dbfz_biomass_capacity_rel`**

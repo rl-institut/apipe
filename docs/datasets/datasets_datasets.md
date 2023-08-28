@@ -17,9 +17,9 @@ jeweils typische Kennwerte enthält (u.a. Anzahl Anlagen, Gesamtleistung).
 
 Jede Anlage wird anhand ihrer Lokation einer Gemeinde (Attribut
 `municipality_id`, vgl.
-[bkg_vg250_muns_region](../../datasets/bkg_vg250_muns_region/dataset.md)) und
+[bkg_vg250_muns_region](../../digipipe/store/datasets/bkg_vg250_muns_region/dataset.md)) und
 einem Landkreis (Attribut `district_id`, vgl.
-[bkg_vg250_muns_region](../../datasets/bkg_vg250_districts_region/dataset.md))
+[bkg_vg250_muns_region](../../digipipe/store/datasets/bkg_vg250_districts_region/dataset.md))
 zugeordnet.
 
 Zusätzlich erfolgt eine statistische Auswertung der installierten Leistung in
@@ -29,7 +29,7 @@ Zusätzlich erfolgt eine statistische Auswertung der installierten Leistung in
 
 Einige Anlagen sind hinsichtlich Ihrer geografischen Lage oder Typs fehlerhaft.
 Anhand des Datensatzes
-[bnetza_mastr_correction_region](../../raw/bnetza_mastr_correction_region/dataset.md)
+[bnetza_mastr_correction_region](../../digipipe/store/raw/bnetza_mastr_correction_region/dataset.md)
 wird für diese Anlagen eine Datenkorrektur vorgenommen.
 
 **Dataset: `datasets/bnetza_mastr_pv_roof_region`**
@@ -51,9 +51,9 @@ jeweils typische Kennwerte enthält (u.a. Anzahl Anlagen, Gesamtleistung).
 
 Jede Anlage wird anhand ihrer Lokation einer Gemeinde (Attribut
 `municipality_id`, vgl.
-[bkg_vg250_muns_region](../../datasets/bkg_vg250_muns_region/dataset.md)) und
+[bkg_vg250_muns_region](../../digipipe/store/datasets/bkg_vg250_muns_region/dataset.md)) und
 einem Landkreis (Attribut `district_id`, vgl.
-[bkg_vg250_muns_region](../../datasets/bkg_vg250_districts_region/dataset.md))
+[bkg_vg250_muns_region](../../digipipe/store/datasets/bkg_vg250_districts_region/dataset.md))
 zugeordnet.
 
 Zusätzlich erfolgt eine statistische Auswertung der installierten Leistung in
@@ -88,8 +88,8 @@ Gesamtanzahl sozialversicherungspflichtig Beschäftigte und Betriebsstätten
 je Gemeinde für die Region.
 
 Raw datasets:
-[ba_employment](../../raw/ba_employment/dataset.md),
-[regiostat](../../raw/regiostat/dataset.md)
+[ba_employment](../../digipipe/store/raw/ba_employment/dataset.md),
+[regiostat](../../digipipe/store/raw/regiostat/dataset.md)
 
 **Dataset: `datasets/employment_region`**
 
@@ -109,22 +109,22 @@ Nettostrombedarfe und -zeitreihen für Haushalte, GHD und Industrie je Gemeinde.
 
 Die Berechnung der regionalen Prognosewerte je Verbrauchssektor erfolgt anhand
 landesweiter Prognosen aus den
-[BMWK Langfristszenarien](../../preprocessed/bmwk_long_term_scenarios/dataset.md).
+[BMWK Langfristszenarien](../../digipipe/store/preprocessed/bmwk_long_term_scenarios/dataset.md).
 
 ### Haushalte
 
 - Jährlicher Strombedarf je Gemeinde in MWh aus
-  [DemandRegio](../../preprocessed/demandregio/dataset.md), von Landkreis- auf
+  [DemandRegio](../../digipipe/store/preprocessed/demandregio/dataset.md), von Landkreis- auf
   Gemeindeebene disaggregiert anhand von Bevölkerungsprognosen
-  ([STALA ST](../../preprocessed/stala_st_pop_prog/dataset.md)).
+  ([STALA ST](../../digipipe/store/preprocessed/stala_st_pop_prog/dataset.md)).
 - Prognosewerte für 2045 werden durch lineare Skalierung mittels Reduktion des
   Strombedarfs (ohne Wärmegewinnung) aus
-  [BMWK Langfristszenarien](../../preprocessed/bmwk_long_term_scenarios/dataset.md)
+  [BMWK Langfristszenarien](../../digipipe/store/preprocessed/bmwk_long_term_scenarios/dataset.md)
   berechnet. Hierbei wird das Szenario "TN-Strom" als Grundlage für den Status
   quo verwendet und Werte für 2022 interpoliert. Die Zielwerte werden dem
   Szenario "T45-Strom" entnommen.
 - Gemittelte, normierte Strombedarfszeitreihe (auf 1 MWh) aus
-  [DemandRegio](../../preprocessed/demandregio/dataset.md)-Daten von 2022, die
+  [DemandRegio](../../digipipe/store/preprocessed/demandregio/dataset.md)-Daten von 2022, die
   für alle Zielszenarien und Aggregationsebenen verwendet wird, da die Basis
   SLP-Profile sind und Differenzen zwischen verschiedenen Jahren nur aufgrund
   der Lage von Wochenenden und Feiertagen bestehen. Diese werden daher
@@ -133,18 +133,18 @@ landesweiter Prognosen aus den
 ### GHD
 
 - Jährlicher Strombedarf je Gemeinde in MWh aus
-  [DemandRegio](../../preprocessed/demandregio/dataset.md), von Landkreis- auf
+  [DemandRegio](../../digipipe/store/preprocessed/demandregio/dataset.md), von Landkreis- auf
   Gemeindeebene disaggregiert anhand von sozialversicherungspflichtig
   Beschäftigten im Jahr 2022
-  ([BA für Arbeit](../../preprocessed/ba_employment/dataset.md)).
+  ([BA für Arbeit](../../digipipe/store/preprocessed/ba_employment/dataset.md)).
 - Prognosewerte für 2045 werden durch lineare Skalierung mittels Reduktion des
   Strombedarfs (ohne Wärmegewinnung) aus
-  [BMWK Langfristszenarien](../../preprocessed/bmwk_long_term_scenarios/dataset.md)
+  [BMWK Langfristszenarien](../../digipipe/store/preprocessed/bmwk_long_term_scenarios/dataset.md)
   berechnet. Hierbei wird das Szenario "TN-Strom" als Grundlage für den Status
   quo verwendet und Werte für 2022 interpoliert. Die Zielwerte werden dem
   Szenario "T45-Strom" entnommen.
 - Gemittelte, normierte Strombedarfszeitreihe (auf 1 MWh) aus
-  [DemandRegio](../../preprocessed/demandregio/dataset.md)-Daten von 2022, die
+  [DemandRegio](../../digipipe/store/preprocessed/demandregio/dataset.md)-Daten von 2022, die
   für alle Zielszenarien und Aggregationsebenen verwendet wird. Basis bilden
   sowohl SLP- als auch branchenspezifische Profile. Aufgrund der geringen
   Differenzen zwischen den Landkreisen werden diese gemittelt. Differenzen
@@ -154,18 +154,18 @@ landesweiter Prognosen aus den
 ### Industrie
 
 - Jährlicher Strombedarf je Gemeinde in MWh. Hierfür stehen 2 Datensätze zur
-  Verfügung - welcher verwendet wird, kann in der [Konfiguration](config.yml)
+  Verfügung - welcher verwendet wird, kann in der [Konfiguration](../../digipipe/store/datasets/demand_electricity_region/config.yml)
   via `ind_electricity_demand_source` eingestellt werden:
-  - [DemandRegio](../../preprocessed/demandregio/dataset.md): Werte für alle
+  - [DemandRegio](../../digipipe/store/preprocessed/demandregio/dataset.md): Werte für alle
     Landkreise in Deutschland.
-  - [STALA ST](../../preprocessed/stala_st_energy/dataset.md) (Standard):
+  - [STALA ST](../../digipipe/store/preprocessed/stala_st_energy/dataset.md) (Standard):
     Genauere Werte, jedoch nur für Sachsen-Anhalt verfügbar.
 - Die Desaggregation von Landkreis- auf Gemeindeebene erfolgt anhand der
   Beschäftigten im verarbeitenden Gewerbe im Jahr 2022
-  ([Regionalstatistik](../../preprocessed/regiostat/dataset.md)).
+  ([Regionalstatistik](../../digipipe/store/preprocessed/regiostat/dataset.md)).
 - Prognosewerte für 2045 werden durch lineare Skalierung mittels Reduktion des
   industriellen Gesamtenergiebedarfs aus
-  [BMWK Langfristszenarien](../../preprocessed/bmwk_long_term_scenarios/dataset.md)
+  [BMWK Langfristszenarien](../../digipipe/store/preprocessed/bmwk_long_term_scenarios/dataset.md)
   berechnet. Im Unterschied zu Haushalten und GHD liegen die Daten für den
   Wärme- und Stromanteil nicht getrennt vor, sodass auf den
   Gesamtenergiebedarf zurückgegriffen wird.
@@ -173,7 +173,7 @@ landesweiter Prognosen aus den
   Werte für 2022 interpoliert. Die Zielwerte werden dem Szenario "T45-Strom"
   entnommen.
 - Gemittelte, normierte Strombedarfszeitreihe (auf 1 MWh) aus
-  [DemandRegio](../../preprocessed/demandregio/dataset.md)-Daten von 2022, die
+  [DemandRegio](../../digipipe/store/preprocessed/demandregio/dataset.md)-Daten von 2022, die
   für alle Zielszenarien und Aggregationsebenen verwendet wird. Basis bilden
   sowohl SLP- als auch branchenspezifische Profile. Aufgrund der geringen
   Differenzen zwischen den Landkreisen werden diese gemittelt. Differenzen
@@ -199,9 +199,9 @@ jeweils typische Kennwerte enthält (u.a. Anzahl Anlagen, Gesamtleistung).
 
 Jede Anlage wird anhand ihrer Lokation einer Gemeinde (Attribut
 `municipality_id`, vgl.
-[bkg_vg250_muns_region](../../datasets/bkg_vg250_muns_region/dataset.md)) und
+[bkg_vg250_muns_region](../../digipipe/store/datasets/bkg_vg250_muns_region/dataset.md)) und
 einem Landkreis (Attribut `district_id`, vgl.
-[bkg_vg250_muns_region](../../datasets/bkg_vg250_districts_region/dataset.md))
+[bkg_vg250_muns_region](../../digipipe/store/datasets/bkg_vg250_districts_region/dataset.md))
 zugeordnet.
 
 Zusätzlich erfolgt eine statistische Auswertung der installierten Leistung in
@@ -222,8 +222,8 @@ gefiltert (Geofaktor 4 = "mit Struktur Land").
 ------------------------------
 ## OpenStreetMap Gebäude
 
-OSM Gebäude aus [osm_filtered](../../preprocessed/osm_filtered/dataset.md)
-mittels OGR extrahieren und nach Tags (s. [config.yml](config.yml)) filtern.
+OSM Gebäude aus [osm_filtered](../../digipipe/store/preprocessed/osm_filtered/dataset.md)
+mittels OGR extrahieren und nach Tags (s. [config.yml](../../digipipe/store/datasets/osm_buildings/config.yml)) filtern.
 
 Ziel ist die Ermittlung des regionalen Anteils Gebäudegrundflächen an der
 gesamten Gebäudegrundfläche in Deutschland.
@@ -247,7 +247,7 @@ Speicherplatz und kann viel Zeit in Anspruch nehmen.
 
 Allgemeine Technologiedaten.
 
-Raw dataset: [technology_data](../../raw/technology_data/dataset.md)
+Raw dataset: [technology_data](../../digipipe/store/raw/technology_data/dataset.md)
 
 **Dataset: `datasets/technology_data`**
 
@@ -260,7 +260,7 @@ CRF-Nomenklatur.
 
 Datei `emissions.json` enthält Chartdaten.
 
-Raw dataset: [emissions](../../raw/emissions/dataset.md)
+Raw dataset: [emissions](../../digipipe/store/raw/emissions/dataset.md)
 
 **Dataset: `datasets/emissions_region`**
 
@@ -274,7 +274,7 @@ extrahiert, zu LAEA Europe (EPSG:3035) umprojiziert und auf die Regionsgrenzen
 zugeschnitten.
 
 Preprocessed dataset:
-[rli_pv_windflaechenrechner](../../preprocessed/rli_pv_wfr/dataset.md)
+[rli_pv_windflaechenrechner](../../digipipe/store/preprocessed/rli_pv_wfr/dataset.md)
 
 **Dataset: `datasets/rli_pv_wfr_region`**
 
@@ -306,9 +306,9 @@ jeweils typische Kennwerte enthält (u.a. Anzahl Anlagen, Gesamtleistung).
 
 Jede Anlage wird anhand ihrer Lokation einer Gemeinde (Attribut
 `municipality_id`, vgl.
-[bkg_vg250_muns_region](../../datasets/bkg_vg250_muns_region/dataset.md)) und
+[bkg_vg250_muns_region](../../digipipe/store/datasets/bkg_vg250_muns_region/dataset.md)) und
 einem Landkreis (Attribut `district_id`, vgl.
-[bkg_vg250_muns_region](../../datasets/bkg_vg250_districts_region/dataset.md))
+[bkg_vg250_muns_region](../../digipipe/store/datasets/bkg_vg250_districts_region/dataset.md))
 zugeordnet.
 
 Zusätzlich erfolgt eine statistische Auswertung der installierten Leistung in
@@ -324,13 +324,13 @@ Einstellungen für die App.
 
 ### Layerliste (rechtes Panel)
 
-- Konfiguration: [config.yml](config.yml) -> `map_panel_layer_list`
+- Konfiguration: [config.yml](../../digipipe/store/datasets/app_settings/config.yml) -> `map_panel_layer_list`
 - Ergebnisfile: `map_panel_layer_list.json`
 - Wird manuell in die App eingepflegt (s. [map_config.py](https://github.com/rl-institut-private/digiplan/blob/dev/digiplan/map/map_config.py))
 
 ### Settings panels
 
-- Konfiguration des Templates: [config.yml](config.yml) -> `panel_settings_templates`
+- Konfiguration des Templates: [config.yml](../../digipipe/store/datasets/app_settings/config.yml) -> `panel_settings_templates`
 - Ergebnisfiles:
   - `energy_settings_panel.json`
   - `heat_settings_panel.json`
@@ -379,7 +379,7 @@ gewichtet und in eine mittlere Zeitreihe für Wärmepumpen überführt. Im Jahr
 Für 2045 wird daher ein Anteil von 80 % ASHP und 20 % GSHP angenommen.
 
 Verwendet Datensätze
-- [dwd_temperature](../../preprocessed/dwd_temperature/dataset.md)
+- [dwd_temperature](../../digipipe/store/preprocessed/dwd_temperature/dataset.md)
 
 **Dataset: `datasets/heatpump_cop`**
 
@@ -401,9 +401,9 @@ jeweils typische Kennwerte enthält (u.a. Anzahl Anlagen, Gesamtleistung).
 
 Jede Anlage wird anhand ihrer Lokation einer Gemeinde (Attribut
 `municipality_id`, vgl.
-[bkg_vg250_muns_region](../../datasets/bkg_vg250_muns_region/dataset.md)) und
+[bkg_vg250_muns_region](../../digipipe/store/datasets/bkg_vg250_muns_region/dataset.md)) und
 einem Landkreis (Attribut `district_id`, vgl.
-[bkg_vg250_muns_region](../../datasets/bkg_vg250_districts_region/dataset.md))
+[bkg_vg250_muns_region](../../digipipe/store/datasets/bkg_vg250_districts_region/dataset.md))
 zugeordnet.
 
 Zusätzlich erfolgt eine statistische Auswertung der installierten Leistung in
@@ -413,7 +413,7 @@ Zusätzlich erfolgt eine statistische Auswertung der installierten Leistung in
 
 Einige Anlagen sind hinsichtlich Ihrer geografischen Lage oder Typs fehlerhaft.
 Anhand des Datensatzes
-[bnetza_mastr_correction_region](../../raw/bnetza_mastr_correction_region/dataset.md)
+[bnetza_mastr_correction_region](../../digipipe/store/raw/bnetza_mastr_correction_region/dataset.md)
 wird für diese Anlagen eine Datenkorrektur vorgenommen.
 
 **Dataset: `datasets/bnetza_mastr_pv_ground_region`**
@@ -429,26 +429,26 @@ für Haushalte, GHD und Industrie je Gemeinde.
 
 Die Berechnung der regionalen Prognosewerte je Verbrauchssektor erfolgt anhand
 landesweiter Prognosen aus den
-[BMWK Langfristszenarien](../../preprocessed/bmwk_long_term_scenarios/dataset.md).
+[BMWK Langfristszenarien](../../digipipe/store/preprocessed/bmwk_long_term_scenarios/dataset.md).
 
 #### Haushalte
 
 - Jährlicher Wärmebedarf je Gemeinde in MWh: Bundeswert aus
-  [AG Energiebilanzen](../../preprocessed/ageb_energy_balance/dataset.md)
+  [AG Energiebilanzen](../../digipipe/store/preprocessed/ageb_energy_balance/dataset.md)
   2021 für Raumwärme, Warmwasser und Prozesswärme, desaggregiert auf Gemeinden
   mittels Wärmebedarfs-Rasterdaten aus 2015 (Wärmebedarfsdichte 1ha) aus
-  [Peta5](../../raw/seenergies_peta5/dataset.md).
+  [Peta5](../../digipipe/store/raw/seenergies_peta5/dataset.md).
   Anm.: Die Desaggregation könnte alternativ über Zensus "Gebäude mit Wohnraum
   nach Heizungsart" (31231-02-01-5, s.
-  [regiostat](../../raw/regiostat/dataset.md) erfolgen)
+  [regiostat](../../digipipe/store/raw/regiostat/dataset.md) erfolgen)
 - Prognosewerte für 2045 werden durch lineare Skalierung mittels Reduktion der
   Gebäudewärmebedarfe aus
-  [BMWK Langfristszenarien](../../preprocessed/bmwk_long_term_scenarios/dataset.md)
+  [BMWK Langfristszenarien](../../digipipe/store/preprocessed/bmwk_long_term_scenarios/dataset.md)
   berechnet. Hierbei wird das Szenario "TN-Strom" als Grundlage für den Status
   quo verwendet und Werte für 2022 interpoliert. Die Zielwerte werden dem
   Szenario "T45-Strom" entnommen.
 - Gemittelte, normierte Gasbedarfszeitreihe (auf 1 MWh) aus
-  [DemandRegio](../../preprocessed/demandregio/dataset.md)-Daten von 2022 die
+  [DemandRegio](../../digipipe/store/preprocessed/demandregio/dataset.md)-Daten von 2022 die
   für alle Zielszenarien und Aggregationsebenen verwendet wird, da die Basis
   SLP-Profile sind und Differenzen zwischen verschiedenen Jahren nur aufgrund
   der Lage von Wochenenden und Feiertagen bestehen. Diese werden daher
@@ -457,18 +457,18 @@ landesweiter Prognosen aus den
 #### GHD
 
 - Jährlicher Wärmebedarf je Gemeinde in MWh: Bundeswert aus
-  [AG Energiebilanzen](../../preprocessed/ageb_energy_balance/dataset.md)
+  [AG Energiebilanzen](../../digipipe/store/preprocessed/ageb_energy_balance/dataset.md)
   2021 für Raumwärme, Warmwasser und Prozesswärme, desaggregiert auf Gemeinden
   mittels Wärmebedarfs-Rasterdaten aus 2015 (Wärmebedarfsdichte 1ha) aus
-  [Peta5](../../raw/seenergies_peta5/dataset.md)
+  [Peta5](../../digipipe/store/raw/seenergies_peta5/dataset.md)
 - Prognosewerte für 2045 werden durch lineare Skalierung mittels Reduktion der
   Gebäudewärmebedarfe aus
-  [BMWK Langfristszenarien](../../preprocessed/bmwk_long_term_scenarios/dataset.md)
+  [BMWK Langfristszenarien](../../digipipe/store/preprocessed/bmwk_long_term_scenarios/dataset.md)
   berechnet. Hierbei wird das Szenario "TN-Strom" als Grundlage für den Status
   quo verwendet und Werte für 2022 interpoliert. Die Zielwerte werden dem
   Szenario "T45-Strom" entnommen.
 - Gemittelte, normierte Gasbedarfszeitreihe (auf 1 MWh) aus
-  [DemandRegio](../../preprocessed/demandregio/dataset.md)-Daten von 2022 die
+  [DemandRegio](../../digipipe/store/preprocessed/demandregio/dataset.md)-Daten von 2022 die
   für alle Zielszenarien und Aggregationsebenen verwendet wird, da die Basis
   SLP-Profile sind und Differenzen zwischen verschiedenen Jahren nur aufgrund
   der Lage von Wochenenden und Feiertagen bestehen. Diese werden daher
@@ -477,16 +477,16 @@ landesweiter Prognosen aus den
 #### Industrie
 
 - Jährlicher Wärmebedarf je Gemeinde in MWh: Bundeswert aus
-  [AG Energiebilanzen](../../preprocessed/ageb_energy_balance/dataset.md)
+  [AG Energiebilanzen](../../digipipe/store/preprocessed/ageb_energy_balance/dataset.md)
   2021 für Raumwärme, Warmwasser und Prozesswärme. Die Desaggregation auf
   Landkreisebene erfolgt anhand des Gesamtenergiebedarfs im verarbeitenden
-  Gewerbe aus [Regionalstatistik](../../preprocessed/regiostat/dataset.md).
+  Gewerbe aus [Regionalstatistik](../../digipipe/store/preprocessed/regiostat/dataset.md).
   Die anschließende Desaggregation auf Gemeindeebene wird mittels
   Beschäftigtenzahlen im verarbeitenden Gewerbe in 2022 aus
-  [Regionalstatistik](../../preprocessed/regiostat/dataset.md) vorgenommen.
+  [Regionalstatistik](../../digipipe/store/preprocessed/regiostat/dataset.md) vorgenommen.
 - Prognosewerte für 2045 werden durch lineare Skalierung mittels Reduktion des
   industriellen Gesamtenergiebedarfs aus
-  [BMWK Langfristszenarien](../../preprocessed/bmwk_long_term_scenarios/dataset.md)
+  [BMWK Langfristszenarien](../../digipipe/store/preprocessed/bmwk_long_term_scenarios/dataset.md)
   berechnet. Im Unterschied zu Haushalten und GHD liegen die Daten für den
   Wärme- und Stromanteil nicht getrennt vor, sodass auf den
   Gesamtenergiebedarf zurückgegriffen wird.
@@ -494,7 +494,7 @@ landesweiter Prognosen aus den
   Werte für 2022 interpoliert. Die Zielwerte werden dem Szenario "T45-Strom"
   entnommen.
 - Gemittelte, normierte Gasbedarfszeitreihe (auf 1 MWh) aus
-  [DemandRegio](../../preprocessed/demandregio/dataset.md)-Daten von 2022 die
+  [DemandRegio](../../digipipe/store/preprocessed/demandregio/dataset.md)-Daten von 2022 die
   für alle Zielszenarien und Aggregationsebenen verwendet wird, da die Basis
   SLP-Profile sind und Differenzen zwischen verschiedenen Jahren nur aufgrund
   der Lage von Wochenenden und Feiertagen bestehen. Diese werden daher
@@ -528,7 +528,7 @@ Wärme-Endenergie) je Bedarfssektor:
 | Köthen            |      0,07 | 0,07 |      0,21 |
 | Wittenberg        |      0,15 | 0,15 |      0,01 |
 
-Die Fernwärmeanteile können in der [config.yml](config.yml) im Abschnitt
+Die Fernwärmeanteile können in der [config.yml](../../digipipe/store/datasets/demand_heat_region/config.yml) im Abschnitt
 `district_heating_share` für jeden Sektor separat angepasst werden. Es wird
 vereinfachend angenommen, dass der Anteil an Fernwärme für alle
 Szenarien/Zieljahre gleich bleibt.
@@ -536,12 +536,12 @@ Szenarien/Zieljahre gleich bleibt.
 ### Beheizungsstruktur
 
 Die Beheizungsstruktur für 2020 und 2045 wird den
-[BMWK Langfristszenarien](../../preprocessed/bmwk_long_term_scenarios/dataset.md)
+[BMWK Langfristszenarien](../../digipipe/store/preprocessed/bmwk_long_term_scenarios/dataset.md)
 entnommen (Gebäude: Haushalte und GHD Energiebedarf) und für 2022 interpoliert.
 Hierbei wird nach Technologien für dezentrale sowie Fernwärme unterschieden.
 Für die Biomasse wird der relative Energiebedarf mit Hilfe von Anteilen der
 installierten Leistung von spezifischen Biomasse-Konversionsanlagen
-[dbfz_biomasss_capacity_rel](../../preprocessed/dbfz_biomasss_capacity_rel/dataset.md)
+[dbfz_biomasss_capacity_rel](../../digipipe/store/preprocessed/dbfz_biomasss_capacity_rel/dataset.md)
 je Technologie aufgelöst. Der Vereinfachung halber wird angenommen, dass die
 relative installierte Leistung der relativen Energiemenge entspricht.
 
@@ -578,7 +578,7 @@ relative installierte Leistung der relativen Energiemenge entspricht.
 Potenzialgebiete für die Errichtung von Windenergieanlagen, basierend auf den
 Teilplänen Wind der Regionalen Planungsgemeinschaft Anhalt-Bitterfeld-Wittenberg
 aus
-[rpg_abw_regional_plan](../../preprocessed/rpg_abw_regional_plan/dataset.md).
+[rpg_abw_regional_plan](../../digipipe/store/preprocessed/rpg_abw_regional_plan/dataset.md).
 
 Dateien:
 - STP Wind 2018 - Vorrang-/Eignungsgebiete:
@@ -599,7 +599,7 @@ Die Flächen werden mit den Gemeindegrenzen verschnitten und den Gemeinden
 zugeordnet. Je Gemeinde und obigem Flächentyp/Datei wird eine Flächensumme (in
 km²) berechnet, siehe `potentialarea_wind_area_stats_muns.csv`. Die Gemeinden
 werden über den Schlüssel `municipality_id` (vgl.
-[bkg_vg250_muns_region](../../datasets/bkg_vg250_muns_region/dataset.md))
+[bkg_vg250_muns_region](../../digipipe/store/datasets/bkg_vg250_muns_region/dataset.md))
 identifiziert.
 
 **Dataset: `datasets/potentialarea_wind_region`**
@@ -621,9 +621,9 @@ jeweils typische Kennwerte enthält (u.a. Anzahl Anlagen, Gesamtleistung).
 
 Jede Anlage wird anhand ihrer Lokation einer Gemeinde (Attribut
 `municipality_id`, vgl.
-[bkg_vg250_muns_region](../../datasets/bkg_vg250_muns_region/dataset.md)) und
+[bkg_vg250_muns_region](../../digipipe/store/datasets/bkg_vg250_muns_region/dataset.md)) und
 einem Landkreis (Attribut `district_id`, vgl.
-[bkg_vg250_muns_region](../../datasets/bkg_vg250_districts_region/dataset.md))
+[bkg_vg250_muns_region](../../digipipe/store/datasets/bkg_vg250_districts_region/dataset.md))
 zugeordnet.
 
 Zusätzlich erfolgt eine statistische Auswertung der installierten Leistung in
@@ -658,9 +658,9 @@ jeweils typische Kennwerte enthält (u.a. Anzahl Anlagen, Gesamtleistung).
 
 Jede Anlage wird anhand ihrer Lokation einer Gemeinde (Attribut
 `municipality_id`, vgl.
-[bkg_vg250_muns_region](../../datasets/bkg_vg250_muns_region/dataset.md)) und
+[bkg_vg250_muns_region](../../digipipe/store/datasets/bkg_vg250_muns_region/dataset.md)) und
 einem Landkreis (Attribut `district_id`, vgl.
-[bkg_vg250_muns_region](../../datasets/bkg_vg250_districts_region/dataset.md))
+[bkg_vg250_muns_region](../../digipipe/store/datasets/bkg_vg250_districts_region/dataset.md))
 zugeordnet.
 
 Zusätzlich erfolgt eine statistische Auswertung der installierten Leistung in
@@ -674,7 +674,7 @@ Zusätzlich erfolgt eine statistische Auswertung der installierten Leistung in
 
 Abschätzung der installierten Leistung und des Ertrags von PV-Aufdachanlagen in
 Anhalt-Bitterfeld-Wittenberg der Regionalen Planungsgemeinschaft aus Datensatz
-[rpg_abw_pv_roof_potential](../../raw/rpg_abw_pv_roof_potential/dataset.md).
+[rpg_abw_pv_roof_potential](../../digipipe/store/raw/rpg_abw_pv_roof_potential/dataset.md).
 
 Die Gebäudezentroide werden mit den Gemeindegrenzen verschnitten und den
 Gemeinden zugeordnet. Ergebnisdaten:
@@ -690,18 +690,18 @@ Anlagenleistung an der theoretisch installierbaren Leistung (bei
   `potentialarea_pv_roof_wo_historic_deployment_stats_muns.csv`
 
 Die Gemeinden werden über den Schlüssel `municipality_id` (vgl.
-[bkg_vg250_muns_region](../../datasets/bkg_vg250_muns_region/dataset.md))
+[bkg_vg250_muns_region](../../digipipe/store/datasets/bkg_vg250_muns_region/dataset.md))
 identifiziert.
 
 ### Ausbauziele
 
 Es werden PV-Ausbauziele für die Region berechnet, indem die Bundesziele aus den
-[BMWK Langfristszenarien](../../preprocessed/bmwk_long_term_scenarios/dataset.md)
+[BMWK Langfristszenarien](../../digipipe/store/preprocessed/bmwk_long_term_scenarios/dataset.md)
 i.H.v. 428 GW
 ([§4 EEG 2023](https://www.gesetze-im-internet.de/eeg_2014/__4.html): 400 GW)
 anhand der Gebäudegrundflächen disaggregiert werden. Hierzu wird der Anteil der
 Gebäudegrundflächen in der Region an der bundesweiten Gebäudegrundflächen
-berechnet (s. Datensatz [osm_buildings](../osm_buildings/dataset.md)) und die
+berechnet (s. Datensatz [osm_buildings](../../digipipe/store/datasets/osm_buildings/dataset.md)) und die
 Ziele linear skaliert. Da in den o.g. Ausbauzielen nicht zwischen Freiflächen-
 und Aufdach-PV unterschieden wird, wird ein Verhältnis von 50:50 angenommen,
 d.h. bundesweit 214 GW auf Aufdach-PV entfallen.
@@ -720,13 +720,13 @@ EinwohnerInnen je Gemeinde: Historische Daten und Prognosen
 ### Historische Daten bis 2022
 
 Statistisches Bundesamt (Raw dataset:
-[destatis_gv](../../raw/destatis_gv/dataset.md))
+[destatis_gv](../../digipipe/store/raw/destatis_gv/dataset.md))
 
 ### Prognosen bis 2035
 
 Statistisches Landesamt Sachsen-Anhalt (Raw dataset:
-[stala_st_pop_prog](../../raw/stala_st_pop_prog/dataset.md)). Deaktivieren
-mittels entfernen der Zieljahre in [config.yml](config.yml) im Abschnitt
+[stala_st_pop_prog](../../digipipe/store/raw/stala_st_pop_prog/dataset.md)). Deaktivieren
+mittels entfernen der Zieljahre in [config.yml](../../digipipe/store/datasets/population_region/config.yml) im Abschnitt
 `prognosis_fstate_munlevel`.
 
 Kann für andere Regionen auch durch DemandRegio (s.u.) ersetzt werden, die
@@ -734,21 +734,21 @@ tatsächliche regionale Auflösung wird dadurch reduziert.
 
 ### Prognosen bis 2045
 
-DemandRegio (Raw dataset: [demandregio](../../raw/demandregio/dataset.md))
+DemandRegio (Raw dataset: [demandregio](../../digipipe/store/raw/demandregio/dataset.md))
 basierend auf der
 [14. koordinierten Bevölkerungsvorausberechnung](https://www.destatis.de/DE/Themen/Gesellschaft-Umwelt/Bevoelkerung/Bevoelkerungsvorausberechnung/aktualisierung-bevoelkerungsvorausberechnung.html)
 der Statistischen Ämter von Bund und Ländern. Diese Daten liegen auf
 Landkreisebene vor, daher erfolgt eine gleichmäßige Skalierung der
 dazugehörigen Gemeinden auf den jeweiligen Prognosewert.
 
-Deaktivieren mittels entfernen der Zieljahre in [config.yml](config.yml) im
+Deaktivieren mittels entfernen der Zieljahre in [config.yml](../../digipipe/store/datasets/population_region/config.yml) im
 Abschnitt `prognosis_germany_districtlevel`.
 
 ### Extrapolation
 
 Über 2045 hinaus wird lineare Extrapolation auf Basis der letzten beiden
 Prognosejahre unterstützt. Um diese zu aktivieren, müssen lediglich Zieljahre
-in die [config.yml](config.yml) im Abschnitt `extrapolation` eingetragen werden.
+in die [config.yml](../../digipipe/store/datasets/population_region/config.yml) im Abschnitt `extrapolation` eingetragen werden.
 
 **Dataset: `datasets/population_region`**
 
@@ -772,9 +772,9 @@ jeweils typische Kennwerte enthält (u.a. Anzahl Anlagen, Gesamtleistung).
 
 Jede Anlage wird anhand ihrer Lokation einer Gemeinde (Attribut
 `municipality_id`, vgl.
-[bkg_vg250_muns_region](../../datasets/bkg_vg250_muns_region/dataset.md)) und
+[bkg_vg250_muns_region](../../digipipe/store/datasets/bkg_vg250_muns_region/dataset.md)) und
 einem Landkreis (Attribut `district_id`, vgl.
-[bkg_vg250_muns_region](../../datasets/bkg_vg250_districts_region/dataset.md))
+[bkg_vg250_muns_region](../../digipipe/store/datasets/bkg_vg250_districts_region/dataset.md))
 zugeordnet.
 
 Weiterhin erfolgt eine Auswertung der installierten Gesamtleistung je Gemeinde:
@@ -788,7 +788,7 @@ Leistung von PV-Aufdachanlagen), aggregiert für gesamte Region, für folgende
 Randbedingungen:
 - Alle PV-Anlagen: `all_storages`
 - PV-Anlagen mit 2..20 kWp sowie Batteriespeicher <20 kWh und <20 kW (kann in
-  [config.yml](config.yml) unter `home_storages` konfiguriert werden):
+  [config.yml](../../digipipe/store/datasets/bnetza_mastr_storage_region/config.yml) unter `home_storages` konfiguriert werden):
   `home_storages`
 
 **Dataset: `datasets/bnetza_mastr_storage_region`**
@@ -798,10 +798,10 @@ Randbedingungen:
 ## EE-Einspeisezeitreihen
 
 Einspeisezeitreihen für Erneuerbare Energien. Als Wetterjahr wird 2011
-verwendet, siehe [Szenarien](../../../../docs/sections/scenarios.md).
+verwendet, siehe [Szenarien](../../digipipe/store/../../docs/sections/scenarios.md).
 
 Raw dataset mit methodischer Beschreibung:
-[renewables.ninja_feedin](../../raw/renewables.ninja_feedin/dataset.md)
+[renewables.ninja_feedin](../../digipipe/store/raw/renewables.ninja_feedin/dataset.md)
 
 ### Einspeisezeitreihen
 
@@ -822,7 +822,7 @@ Zeitreihe normiert auf Summe=1 für
 
 Potenzialgebiete für die Errichtung von PV-Freiflächenanlagen aus dem
 [PV- und Windflächenrechner](https://www.agora-energiewende.de/service/pv-und-windflaechenrechner/)
-(s. Datensatz [rli_pv_wfr](../../raw/rli_pv_wfr/dataset.md)).
+(s. Datensatz [rli_pv_wfr](../../digipipe/store/raw/rli_pv_wfr/dataset.md)).
 
 Die Potenzialflächen bilden jene Flächen ab, die für die Nutzung durch
 Freiflächen-Photovoltaikanlagen grundsätzlich zur Verfügung stehen. Sie
@@ -845,7 +845,7 @@ Die Flächen werden mit den Gemeindegrenzen verschnitten und den Gemeinden
 zugeordnet. Je Gemeinde und obigem Flächentyp/Datei wird eine Flächensumme (in
 km²) berechnet, siehe `potentialarea_pv_ground_area_stats_muns.csv`. Die
 Gemeinden werden über den Schlüssel `municipality_id` (vgl.
-[bkg_vg250_muns_region](../../datasets/bkg_vg250_muns_region/dataset.md))
+[bkg_vg250_muns_region](../../digipipe/store/datasets/bkg_vg250_muns_region/dataset.md))
 identifiziert.
 
 Des Weiteren werden die Flächenanteile der verfügbaren Potenzialgebiete - deren
@@ -856,12 +856,12 @@ gegenüber den gesamten Potenzialgebiete (für die Parametrierung der Regler) na
 ### Ausbauziele
 
 Es werden PV-Ausbauziele für die Region berechnet, indem die Bundesziele aus den
-[BMWK Langfristszenarien](../../preprocessed/bmwk_long_term_scenarios/dataset.md)
+[BMWK Langfristszenarien](../../digipipe/store/preprocessed/bmwk_long_term_scenarios/dataset.md)
 i.H.v. 428 GW
 ([§4 EEG 2023](https://www.gesetze-im-internet.de/eeg_2014/__4.html): 400 GW)
 anhand der regional verfügbaren Potenzialflächen disaggregiert werden. Hierzu
 wird der Anteil der Flächensumme der beiden o.g. Flächentypen an den bundesweit
-verfügbaren Flächen (Datensatz [rli_pv_wfr](../../raw/rli_pv_wfr/dataset.md))
+verfügbaren Flächen (Datensatz [rli_pv_wfr](../../digipipe/store/raw/rli_pv_wfr/dataset.md))
 berechnet. Da in den o.g. Ausbauzielen nicht zwischen Freiflächen- und
 Aufdach-PV unterschieden wird, wird ein Verhältnis von 50:50 angenommen, d.h.
 bundesweit 214 GW auf Freiflächen-PV entfallen.

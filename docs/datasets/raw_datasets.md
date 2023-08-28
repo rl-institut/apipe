@@ -783,7 +783,7 @@ Wohnungszählung 2011 (Zensus 2011).
 
 Überprüfung und manuelle Datenkorrektur der Photovoltaikanlagen aus dem
 prozessierten Marktstammdatenregister (Datensatz:
-[bnetza_mastr](../bnetza_mastr/dataset.md)).
+[bnetza_mastr](../../digipipe/store/raw/bnetza_mastr/dataset.md)).
 
 ### Plausibiltätsprüfung
 
@@ -1319,7 +1319,7 @@ Ist nicht Teil des Eingangsdaten-Packages - manueller Download erforderlich.
 Die installierten Leistungen in MW wird im Szenario 80 % Transformationspfad
 und 2,6 Mio. ha Anbauflächen im Jahr 2020 und 2050 der Tabelle 13 im
 Dokument
-["Technoökonomische Analyse und Transformationspfade des energetischen Biomassepotentials (TATBIO)"](../dbfz_biomass_heat_capacities/metadata.json)
+["Technoökonomische Analyse und Transformationspfade des energetischen Biomassepotentials (TATBIO)"](../../digipipe/store/raw/dbfz_biomass_heat_capacities/metadata.json)
 für die folgenden Konversionsanlagen von Biomasse entnommen:
 
 - Biomethan-Blockheizkraftwerk
@@ -1343,7 +1343,7 @@ In den Spalten "decentral" und "central" wird mit "x" angegeben, ob jeweils ein
 dezentraler und zentraler Einsatz der Konversionsanlage Stand der Technik ist.
 
 In der Spalte "carrier" wird analog zur Konvention der Namensgebung im
-Energiesystem (siehe [esys.md](../../../../docs/sections/esys.md)) der
+Energiesystem (siehe [esys.md](../../digipipe/store/../../docs/sections/esys.md)) der
 jeweilige in die Konversionsanlage eintretende Energieträger notiert.
 Diese werden Abbildung 3 des Dokuments entommen. Der Energieträger Schwarzlauge
 wird vereinfachend dem Energieträger feste Biomasse bzw. Holz zugeordnet.
@@ -1351,7 +1351,7 @@ Klärgas und Holzgas werden vereinfachend Biogas zugeordnet.
 
 In der Spalte "tech" findet die Zuordnung zu der Technologie anhand der im
 Energiesystem verwendeten Komponenten (siehe
-[esys.md](../../../../docs/sections/esys.md)) statt.
+[esys.md](../../digipipe/store/../../docs/sections/esys.md)) statt.
 
 **Dataset: `raw/dbfz_biomass_heat_capacities`**
 
@@ -1373,12 +1373,12 @@ Energiesystem verwendeten Komponenten (siehe
 
 Einspeisezeitreihen für Erneuerbare Energien, normiert auf 1 MW bzw. 1 p.u.
 Als Wetterjahr wird 2011 verwendet, siehe
-[Szenarien](../../../../docs/sections/scenarios.md).
+[Szenarien](../../digipipe/store/../../docs/sections/scenarios.md).
 
 ### Windenergie
 
 Stündlich aufgelöste Zeitreihe der Windenergie Einspeisung über 1 Jahr auf Basis
-von [MaStR](../bnetza_mastr/dataset.md) und
+von [MaStR](../../digipipe/store/raw/bnetza_mastr/dataset.md) und
 [renewables.ninja](http://renewables.ninja).
 Auf einen Auflösung auf Gemeindeebene wird verzichtet, da die Differenz der
 Produktion der Gemeinden nach renewables.ninja <5 % beträgt.
@@ -1392,7 +1392,7 @@ Nabenhöhe und Turbinentyp erforderlich.
 
 Hierfür wird aus den Zentroiden der Gemeinden ein räumlicher Mittelwert
 anhand des Datensatzes
-[bkg_vg250_muns_region](../../datasets/bkg_vg250_muns_region/dataset.md)
+[bkg_vg250_muns_region](../../digipipe/store/datasets/bkg_vg250_muns_region/dataset.md)
 (`bkg_vg250_muns_region.gpkg`) gebildet:
 
 ```
@@ -1421,7 +1421,7 @@ Wird auf 1 MW gesetzt/normiert.
 ##### Nabenhöhe
 
 Aus dem Datensatz
-[bnetza_mastr_wind_region](../../datasets/bnetza_mastr_wind_region/dataset.md)
+[bnetza_mastr_wind_region](../../digipipe/store/datasets/bnetza_mastr_wind_region/dataset.md)
 (`bnetza_mastr_wind_agg_abw.gpkg`) wird ein Mittelwer von 100 m abgeleitet.
 
 ```
@@ -1554,7 +1554,7 @@ Zukunftsszenarien verwendet.
 #### PV-Anlage (2022)
 
 Stündlich aufgelöste Zeitreihe der Photovoltaikeinspeisung über 1 Jahr auf Basis
-von [MaStR](../bnetza_mastr/dataset.md) und
+von [MaStR](../../digipipe/store/raw/bnetza_mastr/dataset.md) und
 [renewables.ninja](http://renewables.ninja).
 Wie bei der Windeinspeisung wird auf eine Auflsöung auf Gemeindeebene aufgrund
 geringer regionaler Abweichungen verzichtet.
@@ -1752,9 +1752,10 @@ Verwaltungsgebiete Deutschlands (Verwaltungsgebiete 1:250 000).
 ------------------------------
 ## Emissionen
 
-Emissionen für die Jahre 1990 und 2019 für Sachsen-Anhalt (aus
-[THG-Bericht 2021](https://lau.sachsen-anhalt.de/fileadmin/Bibliothek/Politik_und_Verwaltung/MLU/LAU/Wir_ueber_uns/Publikationen/Fachberichte/Dateien/221014_THG-Bericht.pdf))
-und disaggregiert für die Region ABW.
+Emissionen für die Jahre 1990 und 2019 für Sachsen-Anhalt und disaggregiert für
+die Region Anhalt-Bitterfeld-Wittenberg (ABW). Die Grundlage hierfür ist der
+[THG-Bericht 2021](https://lau.sachsen-anhalt.de/fileadmin/Bibliothek/Politik_und_Verwaltung/MLU/LAU/Wir_ueber_uns/Publikationen/Fachberichte/Dateien/221014_THG-Bericht.pdf)
+Sachsen-Anhalt (ST).
 
 Datei: `emissions.csv`, Felder:
 - `sector`: Sektor
@@ -1771,52 +1772,210 @@ Datei: `emissions.csv`, Felder:
 
 ### Disaggregation
 
-Hier Beschreibungstext
+Anhand unterschiedlicher Kriterien und Datenquellen wurde näherungsweise von den
+vorliegenden Emissionen für Sachsen-Anhalt für 1990 und 2019 auf die Region ABW
+disaggregiert. Je Sektor sind hier die gewählten
+**energiebestimmenden Größen (EnbG)** angegeben, sowie die Herangehensweise zur
+jeweiligen Berechnung.
 
 #### Sektor Energiewirtschaft (CRF 1.A.1 + 1.B)
 
-####### CRF 1.A.1
+Aus der Liste der
+[Emissionshandelspflichtigen Anlagen](https://www.dehst.de/SharedDocs/downloads/DE/anlagenlisten/2013-2020/2020.pdf?__blob=publicationFile&v=3)
+wurden jene Daten zu Anlagen extrahiert, welche sich in Sachsen-Anhalt befinden
+und als Bezeichnung "Energieumwandlung >= 50 MW FWL" oder "Energieumwandlung
+20–50 MW FWL" (Haupttätigkeit nach TEHG) aufweisen.
+Die Summe der angegebenen Emissionen (t CO2 Äq) jener Anlagen, welche in der
+Region ABW liegen, wurde in Relation zu der Summe der Emissionen aus den Anlagen
+in Gesamt-ST gesetzt. Dieser Anteil wurde auf die im THG-Bericht angegebene
+Emissionsmenge im Sektor "Energiewirtschaft (1.A.1)" sowie "Prozessemissionen
+(1.B)" angelegt und so für ABW näherungsweise disaggregiert.
+
+Hinweise:
+- Aufgrund mangelnder Daten wurde für das Jahr 1990 auf die neuesten verfügbaren
+  Daten (2005-2007) aus der Anlagenliste zurückgegriffen.
+- Energiewirtschaftlich relevante Anlagen unter 20 MW FWL sind in der
+  Anlagenliste nicht erfasst und konnten somit nicht berücksichtigt werden.
+
+Quellen:
+- [Emissionshandelspflichtige Anlagen in Deutschland 2020 (Stand 03.05.2021)](https://www.dehst.de/SharedDocs/downloads/DE/anlagenlisten/2013-2020/2020.pdf?__blob=publicationFile&v=3)
+- [Treibhausgasemissionen in Sachsen-Anhalt 2018 (Stand 12.05.2021)](https://lau.sachsen-anhalt.de/fileadmin/Bibliothek/Politik_und_Verwaltung/MLU/LAU/Wir_ueber_uns/Publikationen/Fachberichte/Dateien/THG_Bericht_2018.pdf)
+
+##### CRF 1.A.1
+
+Energiewirtschaft (Umwandlungsbereich): umfasst die öffentliche Elektrizitäts-
+und Wärmeversorgung sowie Raffinerien.
 
 EnbG: Emissionen aus europäischem Emissionshandel
 
-####### CRF 1.B
+##### CRF 1.B
+
+Diffuse Emissionen aus Brennstoffen: Diese Kategorie beinhaltet flüchtige
+Emissionen aus der Gewinnung, Verarbeitung und Verteilung von Brennstoffen. Die
+wichtigsten Quellen sind die Verteilung von Erdgas, aber auch Emissionen aus
+Förderung und Abfackelung, die Extraktion und Umwandlung von Braunkohle,
+Emissionen aus der Raffination von Erdöl sowie Emissionen aus der Lagerung und
+Verteilung von Mineralölprodukten.
 
 EnbG: Emissionen aus europäischem Emissionshandel
 
-#### Sektor Industrie (CRF 1.A.2 + 2)
+#### Sektor Industrie (CRF 1.A.2)
 
-####### CRF 1.A.2
+Dieser Sektor umfasst sämtliche energiebedingten Emissionen durch verarbeitendes
+Gewerbe.
 
-EnbG: Energienutzung nach Ennergieträgern
+Zur Disaggregierung wurde der Energieverbrauch der Industriebetriebe in ABW mit
+dem Gesamtenergieverbrauch aller Industriebetriebe in Sachsen-Anhalt in Relation
+gesetzt. Dabei wurde eine Differenzierung hinsichtlich der
+Energieträgerzusammensetzung von ABW im Vergleich zu ST durchgeführt und anhand
+von Emissionsfaktoren berechnet.
 
-####### CRF 2 Prozessemissionen
+EnbG: Energieverbrauch nach Energieträgern
 
-EnbG: in Industrie beschäftigte Personen
+Quellen:
+- [Energieverbrauch der Industriebetriebe in Sachsen-Anhalt nach ausgewählten Energieträgern und Kreisen](https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Energie/Tabellen/Energieverwendung/Energieverbrauch_nach_Kreisen_ab_dem_Jahr_2010.xlsx)
+- [Emissionsfaktor für Stromerzeugung (UBA)](https://www.umweltbundesamt.de/sites/default/files/medien/479/bilder/dateien/entwicklung_der_spezifischen_emissionen_des_deutschen_strommix_1990-2020_und_erste_schaetzungen_2021.pdf)
+- [BISKO Bilanzierungs-Systematik Kommunal (Aktualisierung 11/2019)](https://www.ifeu.de/fileadmin/uploads/BISKO_Methodenpapier_kurz_ifeu_Nov19.pdf)
+
+#### Sektor Prozessemissionen (CRF 2)
+
+Dieser Sektor umfasst sämtliche Emissionen, welche durch Industrieprozesse
+anfallen. Dies sind Emissionen aus: Herstellung mineralischer Produkte,
+chemischer Industrie, Herstellung von Metallen, übrigen Prozessen und
+Produktverwendungen (CRF 2.A-H).
+Zur Disaggregierung wurde erneut die
+[Liste der Emissionshandelspflichtigen Anlagen](https://www.dehst.de/SharedDocs/downloads/DE/anlagenlisten/2013-2020/2020.pdf?__blob=publicationFile&v=3)
+herangezogen. Anders als im Sektor Energiewirtschaft (s.o.) wurde jedoch der
+Anteil aller Anlagen, welche nicht der Energiewirtschaft zugerechnet werden, zur
+Bestimmung des Anteils von ABW an ST gewählt.
+
+EnbG: Emissionen aus europäischem Emissionshandel
 
 #### Sektor Verkehr (CRF 1.A.3)
 
-EnbG:
+Dieser Sektor umfasst Emissionen aus dem Straßenverkehr, dem zivilen
+Luftverkehr, aus dem Schiffsverkehr, verbrennungsbedingte Emissionen aus dem
+Schienenverkehr sowie Emissionen des übrigen Verkehrs und weitere Quellen zur
+Bereitstellung der im Verkehr verbrauchten Energie. Die Verbrennung von
+Mineralölprodukten im Straßenverkehr spielt die größte Rolle und macht weit über
+90 % der sektoralen Emissionen aus. Daher wird zur Disaggreagation der
+motorisierte Straßenverkehr über zugelassene Kraftfahrzeuge mit
+durchschnittlichen Fahrleistungen und spezifischer Emissionen pro Kilometer und
+Fahrzeugklasse herangezogen.
 
-* Zugelassene Kraftfahrzeuge
-* gewichtet mit durchschn. Fahrleistung und spez. CO2 Emission pro km und Fahrzeugklasse
+Hierfür wird zunächst aus
+[Verkehr in Kilometern (VK) ZeitreiheJahre 2014 - 2022](https://www.kba.de/DE/Statistik/Kraftverkehr/VerkehrKilometer/vk_inlaenderfahrleistung/vk_inlaenderfahrleistung_node.html;jsessionid=DD419FD0604C0BCC72A9E4533BB0319F.live21324)
+und
+[Umweltfreundlich mobil! Ein ökologischer Verkehrsartenvergleich für den Personen- und Güterverkehr in Deutschland)](https://www.umweltbundesamt.de/sites/default/files/medien/5750/publikationen/2021_fb_umweltfreundlich_mobil_bf.pdf)
+ein durchschnittlicher Emissionswert pro Jahr und Fahrzeugklasse ermittelt.
+Dieser wird mit den zugelassenen Fahrzeugen der entsprechenden Fahrzeugklassen
+aus
+[Kraftfahrzeugbestand nach Kraftfahrzeugarten - Stichtag 01.01. - regionale Tiefe: Kreise und krfr. Städte (bis 01.01.2019)](https://www-genesis.destatis.de/genesis//online?operation=table&code=46251-0001&bypass=true&levelindex=0&levelid=1691405772899#abreadcrumb)
+einerseits für ganz Sachsen-Anhalt und andererseits ABW multipliziert. Daraus
+wird ein Verhältnis der Verkehrsemissionen in ABW zu ST gewonnen.
+
+Hinweise:
+- Die Datenlage für die zugelassenen Fahrzeuge, gefahrenen Kilometer und
+  Emissionen pro km sind nicht spezifisch für 1990 sondern nur für einzelne
+  Jahre der frühen 1990er verfügbar. Daher ist der Emissionswert für 1990 mit
+  einer höheren Unsicherheit behaftet.
+
+EnbG:
+- Zugelassene Kraftfahrzeuge
+- Durchschnittliche Fahrleistung und spez. CO2 Emission pro km und
+  Fahrzeugklasse
+
+Quellen:
+- [Kraftfahrzeugbestand nach Kraftfahrzeugarten - Stichtag 01.01. - regionale Tiefe: Kreise und krfr. Städte (bis 01.01.2019)](https://www-genesis.destatis.de/genesis//online?operation=table&code=46251-0001&bypass=true&levelindex=0&levelid=1691405772899#abreadcrumb)
+- [Umweltfreundlich mobil! Ein ökologischer Verkehrsartenvergleich für den Personen- und Güterverkehr in Deutschland)](https://www.umweltbundesamt.de/sites/default/files/medien/5750/publikationen/2021_fb_umweltfreundlich_mobil_bf.pdf)
+- [Verkehr in Kilometern (VK) ZeitreiheJahre 2014 - 2022](https://www.kba.de/DE/Statistik/Kraftverkehr/VerkehrKilometer/vk_inlaenderfahrleistung/vk_inlaenderfahrleistung_node.html;jsessionid=DD419FD0604C0BCC72A9E4533BB0319F.live21324)
 
 #### Sektor Sonstige Energie (insbes. Gebäude) (CRF 1.A.4 + 1.A.5)
+
+Dieser Sektor umfasst den durch Energieumwandlung nicht bereits abgedeckten
+Energiebedarf. Das sind vor allem kleine Einzelfeuerungsanlagen bis hin zu
+immissionsschutzrechtlich genehmigungsbedürftigen Anlagen mit einer
+Nennwärmeleistung von mehreren Megawatt. Zur Disaggreagtion wurde daher der
+Wärmebedarf von ABW im Verhältnis zum Wärmebedarf von gesamt Sachsen Anhalt
+gewählt. Der Wärmevedarf umfasst Raumwärme, Warmwasser sowie Kochen und wird aus
+Daten aus dem Pipeline-Datensatz
+[demand_heat_region](../../digipipe/store/datasets/demand_heat_region/dataset.md) generiert.
+
+Ergebnis: 17,46 % des Bedarfs in Sachsen-Anhalt entfällt auf ABW.
+
+Code
+```
+## Sektor HH
+heat_hh_dist_states = gpd.read_file("demand_heat_zonal_stats-res-bkg_vg250_federal_states.gpkg")
+heat_hh_demand_st = float(heat_hh_dist_states.loc[heat_hh_dist_states.nuts == "DEE"].heat_demand)
+heat_hh_demand_abw = gpd.read_file("demand_heat_zonal_stats-res-bkg_vg250_muns_region.gpkg").heat_demand.sum()
+
+## Sektor GHD
+heat_cts_dist_states = gpd.read_file("demand_heat_zonal_stats-ser-bkg_vg250_federal_states.gpkg")
+heat_cts_demand_st = float(heat_cts_dist_states.loc[heat_cts_dist_states.nuts == "DEE"].heat_demand)
+heat_cts_demand_abw = gpd.read_file("demand_heat_zonal_stats-ser-bkg_vg250_muns_region.gpkg").heat_demand.sum()
+
+## Anteil ABW an ST
+heat_share = (heat_hh_demand_abw + heat_cts_demand_abw) / (heat_hh_demand_st + heat_cts_demand_st)
+```
 
 EnbG: Wärmebedarf aus Energiesystem
 
 #### Sektor Landwirtschaft (CRF 3)
 
-####### CRF 3.A - Landwirtschaft – Fermentation
+Der Sektor umfasst Emissionen aus der Viehwirtschaft und der Bewirtschaftung von
+Böden. Daher werden zunächst die Emissionsunterkategorien 3.A-J der
+Viehwirtschaft oder der Bewirtschaftung von Böden zugeordnet. Anschließend
+werden diese getrennt nach den Viehbeständen bzw. der landwirtschaftlich
+genutzen Fläche disaggreiert.
+
+##### CRF 3.A - Landwirtschaft – Fermentation
+
+Emissionen durch Fermentation (CRF 3.A) entstehen vorrangig durch
+Verdauungsprozesse in der Viehwirtschaft. Deswegen wird der Anteil ABWs an
+diesen Emissionen durch die Viehbestände abgeschätzt.
+
+Hinweise:
+- Die Viehbestände für 1990 sind nicht bekannt, es wird stattdessen auf die
+  Viehbestände von 1996 zurückggegriffen.
 
 EnbG: Viehbestände
 
-####### CRF 3.B-J:
+Quellen:
+- [Viehbestand der landwirtschaftlichen Betriebe in Großvieheinheiten (GV) nach Jahren und Kreisen)](https://statistik.sachsen-anhalt.de/themen/wirtschaftsbereiche/land-und-forstwirtschaft-fischerei/tabellen-viehwirtschaft-und-tierische-erzeugnisse#c234218)
 
-EnbG: landwirtschaftlich genutzte Fläche
+###### CRF 3.B-J
+
+In den Unterkategorien 3.C-J ist eine Proportionalität der Emissionen und der
+landwirtschafltich genutzen Fläche zu erwarten. Unterkategorie 2.B
+"Wirtschaftsdüngerausbringung (ohne Gärreste)" ist allerdings ein Grenzfall, da
+er aus Abfällen der Tierhaltung produziert wird und bereits hierbei
+Treibhausgase entstehen, diese aber nicht vor Ort eingesetzt werden müssen,
+sondern auf beliebigen landwirtschafltichen Flächen eingesetzt werden kann.
+Daher wird hier auch diese Unterkategorie der Landnutzung zugeordnet.
+
+Hinweis:
+- die Flächenntuzungsdaten gehen nicht bis 1990 zurück, ändern sich über die
+  Jahre aber nur marginal, sodass hier nur von geringen Abweichungen auszugehen
+  ist.
+
+EnbG: Landwirtschaftlich genutzte Fläche
+
+Quellen:
+- [Flaeche_nach_Kultuarten_nach_Jahren_und_Kreisen](https://statistik.sachsen-anhalt.de/themen/wirtschaftsbereiche/land-und-forstwirtschaft-fischerei/tabellen-bodennutzung-und-anbau)
 
 #### Sektor Abfall und Abwasser (CRF 5)
 
-EnbG: Bevölkerung ABW
+Dieser Sektor besteht vor allem aus Emissionen aus Abfalldeponien, welche der
+Zersetzung organischer Materialien in Deponien entstehen. Es wird angenommen,
+dass der Abfall aus Produktionsprozessen gegenüber den Abfällen aus Konsum
+vernachlässigbar sind, weswegen eine Disaggregation auf Grundlage der
+Bevölkerung von ABW vorgenommen wird.
+
+EnbG: Bevölkerung
+
+Quellen:
+- [Bevölkerung nach Geschlecht in den Gemeinden](https://genesis.sachsen-anhalt.de/genesis//online?operation=table&code=12411-0001&bypass=true&levelindex=0&levelid=1691507280245#abreadcrumb)
 
 **Dataset: `raw/emissions`**
 

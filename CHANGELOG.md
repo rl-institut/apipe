@@ -68,6 +68,7 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Add the calculation of relative demand of biomass conversion technologies via
   their relative capacities
 - Add deletion of all data in store/datasets/esys_raw/data
+- Add notes on OSM download and run resources
 
 ### Changed
 

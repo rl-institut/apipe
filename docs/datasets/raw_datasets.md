@@ -1,255 +1,23 @@
 # 'Raw' Datasets 
 
 ------------------------------
-## EE-Einspeisezeitreihen
+## Energiedaten Sachsen-Anhalt
 
-Einspeisezeitreihen für Erneuerbare Energien, normiert auf 1 MW bzw. 1 p.u.
-Als Wetterjahr wird 2011 verwendet, siehe
-[Szenarien](../../../../docs/sections/scenarios.md).
+Datensätze zur Energie- und Wasserversorgung des Statistischen Landesamtes
+Sachsen-Anhalt.
 
-### Windenergie
+### Daten
 
-Stündlich aufgelöste Zeitreihe der Windenergie Einspeisung über 1 Jahr auf Basis
-von [MaStR](../bnetza_mastr/dataset.md) und
-[renewables.ninja](http://renewables.ninja).
-Auf einen Auflösung auf Gemeindeebene wird verzichtet, da die Differenz der
-Produktion der Gemeinden nach renewables.ninja <5 % beträgt.
+Stromverbrauch der Industriebetriebe nach Kreisen 2003-2021 in MWh
+- [Quelle](https://statistik.sachsen-anhalt.de/themen/wirtschaftsbereiche/energie-und-wasserversorgung/tabellen-energieverwendung#c206986)
 
-#### Windenergieanlage (2022)
-
-Für renewables.ninja sind Position (lat, lon), Nennleistung (capacity),
-Nabenhöhe und Turbinentyp erforderlich.
-
-##### Position
-
-Hierfür wird aus den Zentroiden der Gemeinden ein räumlicher Mittelwert
-anhand des Datensatzes
-[bkg_vg250_muns_region](../../datasets/bkg_vg250_muns_region/dataset.md)
-(`bkg_vg250_muns_region.gpkg`) gebildet:
-
-```
-import geopandas as gpd
-import os.path
-
-def get_position(gdf):
-    df = gpd.read_file(gdf)
-    points_of_muns = df["geometry"].centroid
-    points_of_muns_crs = points_of_muns.to_crs(4326)
-    point_df = [
-        points_of_muns_crs.y.sum()/len(points_of_muns),
-        points_of_muns_crs.x.sum()/len(points_of_muns)
-    ]
-    return point_df
-
-data_folder = os.path.join("your_data_folder")
-muns_gpkg = os.path.join(data_folder, "bkg_vg250_muns_region.gpkg")
-center_position = get_position(muns_gpkg)
-```
-
-##### Nennleistung
-
-Wird auf 1 MW gesetzt/normiert.
-
-##### Nabenhöhe
-
-Aus dem Datensatz
-[bnetza_mastr_wind_region](../../datasets/bnetza_mastr_wind_region/dataset.md)
-(`bnetza_mastr_wind_agg_abw.gpkg`) wird ein Mittelwer von 100 m abgeleitet.
-
-```
-import geopandas as gpd
-
-df = gpd.read_file("bnetza_mastr_wind_agg_abw.gpkg")
-height = df[["hub_height"]].mean()
-```
-
-##### Turbinentyp
-
-Annahme: Innerhalb eines Herstellers sind Leistungskurven sehr ähnlich.
-Daher werden zwei größten Hersteller mit jeweiligen häufigsten Turbinentyp
-ausgewählt - diese sind Enercon und Vestas mit ca. 70 % und ca. 30%.
-
-```
-import geopandas as gpd
-
-df = gpd.read_file("bnetza_mastr_wind_agg_abw.gpkg")
-manufacturers = df[
-    ["manufacturer_name", "status"]
-].groupby("manufacturer_name").count().sort_values(
-    by="status", ascending=False
-)
-```
-
-Häufigste Turbinentypen sind *Enercon E-70* und *Vestas V80*. Daher werden
-*Enercon E70 2000* und *Vestas V80 2000* in renewables.ninja ausgewählt.
-
-```
-man_1 = manufacturers.index[0]
-man_2 = manufacturers.index[1]
-
-type_1 = df[
-    ["manufacturer_name", "type_name", "status"]
-].where(df["manufacturer_name"] == man_1).groupby(
-    "type_name").count().sort_values(by="status", ascending=False)
-
-type_2 = df[
-    ["manufacturer_name", "type_name", "status"]
-].where(df["manufacturer_name"] == man_2).groupby(
-    "type_name").count().sort_values(by="status", ascending=False)
-```
-
-#### Raw Data von [renewables.ninja](http://renewables.ninja) API
-
-Es werden zwei Zeitreihen für oben beschriebenen Vergleichsanlagen berechnet:
-
-```
-import json
-import requests
-import pandas as pd
-import geopandas as gpd
-
-def change_wpt(position, capacity, height, turbine):
-    args = {
-        'lat': 51.8000,  # 51.5000-52.0000
-        'lon': 12.2000,  # 11.8000-13.1500
-        'date_from': '2011-01-01',
-        'date_to': '2011-12-31',
-        'capacity': 1000.0,
-        'height': 100,
-        'turbine': 'Vestas V164 7000',
-        'format': 'json',
-        'local_time': 'true',
-        'raw': 'false',
-    }
-
-    args['capacity'] = capacity
-    args['height'] = height
-    args['lat'] = position[0]
-    args['lon'] = position[1]
-    args['turbine'] = turbine
-
-    return args
-
-def get_df(args):
-    token = 'Please get your own'
-    api_base = 'https://www.renewables.ninja/api/'
-
-    s = requests.session()
-    # Send token header with each request
-    s.headers = {'Authorization': 'Token ' + token}
-
-    url = api_base + 'data/wind'
-
-    r = s.get(url, params=args)
-
-    parsed_response = json.loads(r.text)
-    df = pd.read_json(
-    json.dumps(parsed_response['data']),orient='index')
-    metadata = parsed_response['metadata']
-    return df
-
-enercon_production = get_df(change_wpt(
-    position,
-    capacity=1,
-    height=df[["hub_height"]].mean(),
-    turbine=enercon)
-)
-
-vestas_production = get_df(change_wpt(
-    position,
-    capacity=1000,
-    height=df[["hub_height"]].mean(),
-    turbine=vestas)
-)
-```
-
-#### Gewichtung und Skalierung der Zeitreihen
-
-Um die Charakteristika der beiden o.g. Anlagentypen zu berücksichtigen, erfolgt
-eine gewichtete Summierung der Zeitreihen anhand der berechneten Häufigkeit.
-
-#### Zukunftsszenarien
-
-Analog zu dem oben beschriebenen Vorgehen wird eine separate Zeitreihe für
-zukünftige WEA berechnet. Hierbei wird eine Enercon E126 6500 mit einer
-Nabenhöhe von 159 m angenommen
-([PV- und Windflächenrechner](https://zenodo.org/record/6794558)).
-
-Da die Zeitreihe sich nur marginal von der obigen Status-quo-Zeitreihe
-unterscheidet, wird letztere sowohl für den Status quo als auch die
-Zukunftsszenarien verwendet.
-
-- Einspeisezeitreihe: `wind_feedin_timeseries.csv`
-
-### Freiflächen-Photovoltaik
-
-#### PV-Anlage (2022)
-
-Stündlich aufgelöste Zeitreihe der Photovoltaikeinspeisung über 1 Jahr auf Basis
-von [MaStR](../bnetza_mastr/dataset.md) und
-[renewables.ninja](http://renewables.ninja).
-Wie bei der Windeinspeisung wird auf eine Auflsöung auf Gemeindeebene aufgrund
-geringer regionaler Abweichungen verzichtet.
-
-Für die Generierung der Zeitreihe über
-[renewables.ninja](http://renewables.ninja)
-wird eine Position(lat, lon), Nennleistung (capacity), Verluste (system_loss)
-Nachführung (tracking), Neigung (tilt) und der Azimutwinkel (azim) benötigt.
-
-Als Position wird analog zur Windenergieanlage der räumlicher Mittelwert
-verwendet. Laut MaStR werden lediglich 13 Anlagen nachgeführt (0,01 % der
-Kapazität), die Nachführung wird daher vernachlässigt. Die Neigung ist aus MaStR
-nicht bekannt, es dominieren jedoch Anlagen auf Freiflächen sowie Flachdächern
-im landwirtschaftlichen Kontext. Nach
-[Ariadne Szenarienreport](https://ariadneprojekt.de/media/2022/02/Ariadne_Szenarienreport_Oktober2021_corr0222_lowres.pdf)
-wird diese mit 30° angenommen.
-Die Nennleistung Wird auf 1 MW gesetzt/normiert.
-
-#### Zukunftsszenarien
-
-Die Status-quo-Zeitreihe wird sowohl für den Status quo als auch die
-Zukunftsszenarien verwendet.
-
-- Einspeisezeitreihe: `pv_feedin_timeseries.csv`
-
-### Solarthermie
-
-- Einspeisezeitreihe: `st_feedin_timeseries.csv` (Kopie von
-  PV-Einspeisezeitreihe)
-
-### Laufwasserkraft
-
-Hier wird eine konstante Einspeisung angenommen.
-
-- Einspeisezeitreihe: `ror_feedin_timeseries.csv`
-
-**Dataset: `raw/renewables.ninja_feedin`**
+**Dataset: `raw/stala_st_energy`**
 
 ??? metadata "Metadata"
     ```json
     {
-        "Quellen": {
-            "renewables.ninja": "https://www.renewables.ninja/about",
-            "Marktstammdatenregister": "siehe dataset bnetza_mastr"
-        }
-    }
-    ```
-
-------------------------------
-## AGEB – Anwendungsbilanzen für die Endenergiesektoren 2011 bis 2021
-
-Detaillierte Anwendungsbilanzen der Endenergiesektoren für 2020 und 2021 sowie
-zusammenfassende Zeitreihen zum Endenergieverbrauch nach Energieträgern und
-Anwendungszwecken für Jahre von 2011 bis 2021 der AG Energiebilanzen.
-
-**Dataset: `raw/ageb_energy_balance`**
-
-??? metadata "Metadata"
-    ```json
-    {
-        "Quellen": {
-            "Website": "https://ag-energiebilanzen.de/daten-und-fakten/anwendungsbilanzen/",
-            "File": "https://ag-energiebilanzen.de/wp-content/uploads/2023/01/AGEB_21p2_V3_20221222.pdf"
+        "Datenquellen": {
+            "Stromverbrauch der Industriebetriebe nach Kreisen": "https://statistik.sachsen-anhalt.de/themen/wirtschaftsbereiche/energie-und-wasserversorgung/tabellen-energieverwendung#c206986"
         }
     }
     ```
@@ -290,6 +58,82 @@ wget -O Peta5_0_1_HD_ser.zip https://arcgis.com/sharing/rest/content/items/52ff5
             "project": "https://www.seenergies.eu/peta5/",
             "data residential sector": "https://s-eenergies-open-data-euf.hub.arcgis.com/maps/d7d18b63250240a49eb81db972aa573e/about",
             "data service sector": "https://s-eenergies-open-data-euf.hub.arcgis.com/maps/52ff5e02111142459ed5c2fe3d80b3a0/about"
+        }
+    }
+    ```
+
+------------------------------
+## BMWK Langfristszenarien
+
+Langfristszenarien des Bundesministerium für Wirtschaft und Klimaschutz, Daten
+auf Deutschlandebene.
+
+Die Daten wurden über den
+[Szenario Explorer](https://langfristszenarien.de/enertile-explorer-de/szenario-explorer/)
+abgerufen.
+
+### Verwendete Szenarien
+
+- **T45-Strom:** Stromfokussiertes Szenario aus den T45-Szenarien aus 2023, die
+  Wege zur Treibhausgasneutralität bis 2045 unter Einhaltung aktueller
+  politischer Vorgaben erreichen. Die Daten dieses Szenarios werden als
+  Grundlage für das Zielszenario in der Region verwendet.
+- **TN-Strom:** Stromfokussiertes Szenario aus den TN-Szenarien aus 2021, die
+  unterschiedliche Pfade für Deutschland mit dem Ziel treibhausgasneutral bis
+  2050 zu werden. Die Daten dieses Szenarios werden als Grundlage für den
+  Status quo verwendet (Ausnahme: Erzeugung Wärmenetze, hier wurden manuell
+  Daten für 2021 ergänzt).
+
+### Daten
+
+#### T45-Strom
+
+| Datensatz                                      | Quelle                                                                                                                                                                                                                                                               | Datei                                                     |
+|------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------|
+| Gebäude: Haushalte und GHD Energiebedarf       | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/51944/21559a9532131c061668bf0751e519e3)                                                                                                                                                            | `T45-Strom_buildings_heating_demand_by_carrier.csv`       |
+| Gebäude: Anzahl der Heizungen nach Technologie | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/51944/21559a9532131c061668bf0751e519e3)                                                                                                                                                            | `T45-Strom_buildings_heating_structure_by_technology.csv` |
+| GHD Energieträger                              | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/52700/c6980ea467bb26a922d34617b4fd4798)                                                                                                                                                            | `T45-Strom_cts_demand.csv`                                |
+| Haushalte Energieträger                        | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/52700/c6980ea467bb26a922d34617b4fd4798)                                                                                                                                                            | `T45-Strom_hh_demand.csv`                                 |
+| Industrie Energiebedarf                        | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/52612/9de48084ac2d54c418daaf02a6ee26e0)                                                                                                                                                            | `T45-Strom_ind_demand.csv`                                |
+| Stromsystem Deutschland Leistung               | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/48766/5c11999a03c547e04e73d61e4b5fc633)                                                                                                                                                            | `T45-Strom_electricity_installed_power.csv`               |
+| Erzeugung Wärmenetze Deutschland               | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/49949/cf898070daec6a4e613dc889927a5feb), [Link2](https://static.agora-energiewende.de/fileadmin/Projekte/2022/2022-11_DE_Large_Scale_Heatpumps/A-EW_293_Rollout_Grosswaermepumpen_WEB.pdf) (S. 37) | `T45-Strom_Generation_Heatgrids_Germany.csv`              |
+
+#### TN-Strom
+
+| Datensatz                                      | Quelle                                                                                                    | Datei                                                    |
+|------------------------------------------------|-----------------------------------------------------------------------------------------------------------|----------------------------------------------------------|
+| Gebäude: Haushalte und GHD Energiebedarf       | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/8198/698cee83d667a2f44fdea7e78ee799a2)  | `TN-Strom_buildings_heating_demand_by_carrier.csv`       |
+| Gebäude: Anzahl der Heizungen nach Technologie | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/8198/698cee83d667a2f44fdea7e78ee799a2)  | `TN-Strom_buildings_heating_structure_by_technology.csv` |
+| GHD Energieträger                              | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/8660/ae5a14ff0c320cbd31c5eeff2ede54ba)  | `TN-Strom_cts_demand.csv`                                |
+| Haushalte Energieträger                        | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/8660/ae5a14ff0c320cbd31c5eeff2ede54ba)  | `TN-Strom_hh_demand.csv`                                 |
+| Industrie Energiebedarf                        | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/29085/084bd7f45f40d31fd53341e6a94f532c) | `TN-Strom_ind_demand.csv`                                |
+
+**Dataset: `raw/bmwk_long_term_scenarios`**
+
+??? metadata "Metadata"
+    ```json
+    {
+        "Datenquellen": {
+            "Hauptseite": "https://langfristszenarien.de/enertile-explorer-de/szenario-explorer/"
+        }
+    }
+    ```
+
+------------------------------
+## AGEB – Anwendungsbilanzen für die Endenergiesektoren 2011 bis 2021
+
+Detaillierte Anwendungsbilanzen der Endenergiesektoren für 2020 und 2021 sowie
+zusammenfassende Zeitreihen zum Endenergieverbrauch nach Energieträgern und
+Anwendungszwecken für Jahre von 2011 bis 2021 der AG Energiebilanzen.
+
+**Dataset: `raw/ageb_energy_balance`**
+
+??? metadata "Metadata"
+    ```json
+    {
+        "Quellen": {
+            "Website": "https://ag-energiebilanzen.de/daten-und-fakten/anwendungsbilanzen/",
+            "File": "https://ag-energiebilanzen.de/wp-content/uploads/2023/01/AGEB_21p2_V3_20221222.pdf"
         }
     }
     ```
@@ -511,20 +355,20 @@ x=temporal.disagg_temporal_industry(
     ```
 
 ------------------------------
-## Lokale Verwaltungseinheiten
+## Sozialversicherungspflichtig Beschäftigte und Betriebe
 
-Lokale Verwaltungseinheiten (LAUs) von Eurostat, mit NUTS kompatibel. Diese LAU
-sind die Bausteine der NUTS und umfassen die Gemeinden und Kommunen der
-Europäischen Union.
+Gemeindedaten der sozialversicherungspflichtig Beschäftigten am 30.06.2022 nach
+Wohn- und Arbeitsort - Deutschland, Länder, Kreise und Gemeinden (Jahreszahlen)
+der Bundesagentur für Arbeit.
 
-**Dataset: `raw/eurostat_lau`**
+**Dataset: `raw/ba_employment`**
 
 ??? metadata "Metadata"
     ```json
     {
-        "Datenquellen": {
-            "Hauptseite": "https://ec.europa.eu/eurostat/de/web/nuts/local-administrative-units",
-            "Daten": "https://ec.europa.eu/eurostat/documents/345175/501971/EU-27-LAU-2022-NUTS-2021.xlsx"
+        "Quellen": {
+            "Website": "https://statistik.arbeitsagentur.de/SiteGlobals/Forms/Suche/Einzelheftsuche_Formular.html?nn=15024&topic_f=beschaeftigung-sozbe-gemband",
+            "File": "https://statistik.arbeitsagentur.de/Statistikdaten/Detail/202206/iiia6/beschaeftigung-sozbe-gemband/gemband-dlk-0-202206-zip.zip?__blob=publicationFile&v=2}"
         }
     }
     ```
@@ -552,444 +396,6 @@ Enthält
         "Quellen": {
             "Begleitdokument": "https://zenodo.org/record/6794558",
             "Geodaten": "https://zenodo.org/record/6728382"
-        }
-    }
-    ```
-
-------------------------------
-## BMWK Langfristszenarien
-
-Langfristszenarien des Bundesministerium für Wirtschaft und Klimaschutz, Daten
-auf Deutschlandebene.
-
-Die Daten wurden über den
-[Szenario Explorer](https://langfristszenarien.de/enertile-explorer-de/szenario-explorer/)
-abgerufen.
-
-### Verwendete Szenarien
-
-- **T45-Strom:** Stromfokussiertes Szenario aus den T45-Szenarien aus 2023, die
-  Wege zur Treibhausgasneutralität bis 2045 unter Einhaltung aktueller
-  politischer Vorgaben erreichen. Die Daten dieses Szenarios werden als
-  Grundlage für das Zielszenario in der Region verwendet.
-- **TN-Strom:** Stromfokussiertes Szenario aus den TN-Szenarien aus 2021, die
-  unterschiedliche Pfade für Deutschland mit dem Ziel treibhausgasneutral bis
-  2050 zu werden. Die Daten dieses Szenarios werden als Grundlage für den
-  Status quo verwendet.
-
-### Daten
-
-#### T45-Strom
-
-| Datensatz                                      | Quelle                                                                                                                    | Datei                                                     |
-|------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------|
-| Gebäude: Haushalte und GHD Energiebedarf       | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/51944/21559a9532131c061668bf0751e519e3)                 | `T45-Strom_buildings_heating_demand_by_carrier.csv`       |
-| Gebäude: Anzahl der Heizungen nach Technologie | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/51944/21559a9532131c061668bf0751e519e3)                 | `T45-Strom_buildings_heating_structure_by_technology.csv` |
-| GHD Energieträger                              | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/52700/c6980ea467bb26a922d34617b4fd4798)                 | `T45-Strom_cts_demand.csv`                                |
-| Haushalte Energieträger                        | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/52700/c6980ea467bb26a922d34617b4fd4798)                 | `T45-Strom_hh_demand.csv`                                 |
-| Industrie Energiebedarf                        | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/52612/9de48084ac2d54c418daaf02a6ee26e0)                 | `T45-Strom_ind_demand.csv`                                |
-| Stromsystem Deutschland Leistung               | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/48766/5c11999a03c547e04e73d61e4b5fc633)                 | `T45-Strom_electricity_installed_power.csv`               |
-
-#### TN-Strom
-
-| Datensatz                                      | Quelle                                                                                                    | Datei                                                    |
-|------------------------------------------------|-----------------------------------------------------------------------------------------------------------|----------------------------------------------------------|
-| Gebäude: Haushalte und GHD Energiebedarf       | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/8198/698cee83d667a2f44fdea7e78ee799a2)  | `TN-Strom_buildings_heating_demand_by_carrier.csv`       |
-| Gebäude: Anzahl der Heizungen nach Technologie | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/8198/698cee83d667a2f44fdea7e78ee799a2)  | `TN-Strom_buildings_heating_structure_by_technology.csv` |
-| GHD Energieträger                              | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/8660/ae5a14ff0c320cbd31c5eeff2ede54ba)  | `TN-Strom_cts_demand.csv`                                |
-| Haushalte Energieträger                        | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/8660/ae5a14ff0c320cbd31c5eeff2ede54ba)  | `TN-Strom_hh_demand.csv`                                 |
-| Industrie Energiebedarf                        | [Link](https://enertile-explorer.isi.fraunhofer.de:8443/open-view/29085/084bd7f45f40d31fd53341e6a94f532c) | `TN-Strom_ind_demand.csv`                                |
-
-**Dataset: `raw/bmwk_long_term_scenarios`**
-
-??? metadata "Metadata"
-    ```json
-    {
-        "Datenquellen": {
-            "Hauptseite": "https://langfristszenarien.de/enertile-explorer-de/szenario-explorer/"
-        }
-    }
-    ```
-
-------------------------------
-## OpenStreetMap
-
-OpenStreetMap Datenauszug Deutschland.
-
-**Dataset: `raw/osm`**
-
-??? metadata "Metadata"
-    ```json
-    {
-        "name": "openstreetmap",
-        "title": "",
-        "id": "openstreetmap",
-        "description": "OpenStreetMap extract",
-        "language": [
-            "de-DE",
-            "en-GB"
-        ],
-        "subject": [],
-        "keywords": [
-            "openstreetmap",
-            "osm"
-        ],
-        "publicationDate": "2023-06-30",
-        "context": {
-            "homepage": "https://abw.rl-institut.de",
-            "documentation": "https://digiplan.readthedocs.io",
-            "sourceCode": "https://github.com/rl-institut/digipipe/",
-            "contact": "https://reiner-lemoine-institut.de/ueber-uns/kontakt/",
-            "grantNo": "None",
-            "fundingAgency": "https://www.region-gestalten.bund.de",
-            "fundingAgencyLogo": "https://www.region-gestalten.bund.de/Region/SiteGlobals/Frontend/Images/logo.svg",
-            "publisherLogo": "https://reiner-lemoine-institut.de//wp-content/uploads/2015/09/rlilogo.png"
-        },
-        "spatial": {
-            "location": "Germany",
-            "extent": "Germany",
-            "resolution": ""
-        },
-        "temporal": {
-            "referenceDate": "2023-06-30",
-            "timeseries": []
-        },
-        "sources": [
-            {
-                "title": "OpenStreetMap Data Extracts (Geofabrik)",
-                "description": "Full data extract of OpenStreetMap data",
-                "path": "https://download.geofabrik.de/europe/germany-230630.osm.pbf",
-                "licenses": [
-                    {
-                        "name": "ODbL-1.0",
-                        "title": "Open Data Commons Open Database License 1.0",
-                        "path": "https://opendatacommons.org/licenses/odbl/1.0/",
-                        "instruction": "You are free: To Share, To Create, To Adapt; As long as you: Attribute, Share-Alike, Keep open!",
-                        "attribution": "\u00a9 OpenStreetMap contributors"
-                    }
-                ]
-            }
-        ],
-        "licenses": [
-            {
-                "name": "ODbL-1.0",
-                "title": "Open Data Commons Open Database License 1.0",
-                "path": "https://opendatacommons.org/licenses/odbl/1.0/",
-                "instruction": "You are free: To Share, To Create, To Adapt; As long as you: Attribute, Share-Alike, Keep open!",
-                "attribution": "\u00a9 OpenStreetMap contributors"
-            }
-        ],
-        "contributors": [
-            {
-                "title": "nesnoj",
-                "email": "jonathan.amme@rl-institut.de",
-                "date": "2023-06-30",
-                "object": "metadata",
-                "comment": "Create metadata"
-            }
-        ],
-        "resources": [
-            {
-                "profile": "tabular-data-resource",
-                "name": "model_draft.openstreetmap",
-                "path": "",
-                "format": "csv",
-                "encoding": "UTF-8",
-                "schema": {
-                    "fields": [],
-                    "primaryKey": [],
-                    "foreignKeys": []
-                },
-                "dialect": {
-                    "delimiter": "",
-                    "decimalSeparator": ""
-                }
-            }
-        ],
-        "@id": null,
-        "@context": "https://raw.githubusercontent.com/OpenEnergyPlatform/oemetadata/develop/metadata/latest/context.json",
-        "review": {
-            "path": "",
-            "badge": ""
-        },
-        "metaMetadata": {
-            "metadataVersion": "oemetadata_v1.5.1",
-            "metadataLicense": {
-                "name": "CC0-1.0",
-                "title": "Creative Commons Zero v1.0 Universal",
-                "path": "https://creativecommons.org/publicdomain/zero/1.0/"
-            }
-        },
-        "_comment": {
-            "metadata": "Metadata documentation and explanation (https://github.com/OpenEnergyPlatform/oemetadata)",
-            "dates": "Dates and time must follow the ISO8601 including time zone (YYYY-MM-DD or YYYY-MM-DDThh:mm:ss\u00b1hh)",
-            "units": "Use a space between numbers and units (100 m)",
-            "languages": "Languages must follow the IETF (BCP47) format (en-GB, en-US, de-DE)",
-            "licenses": "License name must follow the SPDX License List (https://spdx.org/licenses/)",
-            "review": "Following the OEP Data Review (https://github.com/OpenEnergyPlatform/data-preprocessing/blob/master/data-review/manual/review_manual.md)",
-            "null": "If not applicable use: null",
-            "todo": "If a value is not yet available, use: todo"
-        }
-    }
-    ```
-
-------------------------------
-## Marktstammdatenregister Datenkorrektur PV
-
-Überprüfung und manuelle Datenkorrektur der Photovoltaikanlagen aus dem
-prozessierten Marktstammdatenregister (Datensatz:
-[bnetza_mastr](../bnetza_mastr/dataset.md)).
-
-### Plausibiltätsprüfung
-
-Um grobe Fehler herauszufiltern wird überprüft, ob
-- Anlage in Betrieb ist (status = "In Betrieb"),
-- Anlage Strom produziert,
-- Brutto- und Nettokapazität plausibel sind und
-- die Kategorisierung, d.h. Zuordnung eine PV-Anlage zu Freifläche oder Dach,
-  plausibel ist (manuelle, visuelle Prüfung von geolokalisierten
-  PV-Aufdachanlagen anhand von
-  [Orthofotos](https://www.geodatenportal.sachsen-anhalt.de/wss/service/ST_LVermGeo_DOP_WMS_OpenData/guest))
-
-### Dateien
-
-- Korrektur Freiflächenanlagen `bnetza_mastr_pv_ground_region_correction.ods`
-- Korrektur Aufdachanlagen `bnetza_mastr_pv_roof_region_correction.ods`
-
-mit Spalten
-- _mastr_id_: ID aus dem MaStR
-- _reason_: Fehler (wrong_type, wrong_position)
-- _wrong_attr_: Fehlerhaftes Attribut
-- _correction_: Korrigierter Attributwert (None, wenn Korrektur nicht möglich).
-  Korrigierte Geometrien liegen in EPSG:3035 vor.
-
-**Dataset: `raw/bnetza_mastr_correction_region`**
-
-??? metadata "Metadata"
-    ```json
-    {
-        "name": "bnetza_mastr_correction",
-        "title": "Marktstammdatenregisterdaten - Manuelle Korrektur",
-        "id": "bnetza_mastr",
-        "description": "Daten aus dem Marktstammdatenregister der Bundesnetzagentur",
-        "language": [
-            "en-GB",
-            "de-DE"
-        ],
-        "subject": null,
-        "keywords": [
-            "Markstammdatenregister",
-            "openmastr",
-            "mastr"
-        ],
-        "publicationDate": "2022-12-19",
-        "context": {
-            "homepage": "https://abw.rl-institut.de",
-            "documentation": "https://digiplan.readthedocs.io",
-            "sourceCode": "https://github.com/rl-institut/digipipe/",
-            "contact": "https://reiner-lemoine-institut.de/ueber-uns/kontakt/",
-            "grantNo": "None",
-            "fundingAgency": "https://www.region-gestalten.bund.de",
-            "fundingAgencyLogo": "https://www.region-gestalten.bund.de/Region/SiteGlobals/Frontend/Images/logo.svg",
-            "publisherLogo": "https://reiner-lemoine-institut.de//wp-content/uploads/2015/09/rlilogo.png"
-        },
-        "spatial": {
-            "location": "Germany",
-            "extent": "Germany",
-            "resolution": null
-        },
-        "temporal": {
-            "referenceDate": "2022-12-19",
-            "timeseries": null
-        },
-        "sources": [
-            {
-                "title": "Marktstammdatenregister",
-                "description": "Marktstammdatenregister der Bundesnetzagentur Deutschland",
-                "path": "https://www.marktstammdatenregister.de/MaStR/Datendownload",
-                "licenses": [
-                    {
-                        "name": "DL-DE-BY-2.0",
-                        "title": "Open Data Datenlizenz Deutschland \u2013 Namensnennung \u2013 Version 2.0",
-                        "path": "http://www.govdata.de/dl-de/by-2-0",
-                        "instruction": "The data and meta-data provided may, for commercial and non-commercial use, in particular be copied, printed, presented, altered, processed and transmitted to third parties; be merged with own data and with the data of others and be combined to form new and independent datasets;be integrated in internal and external business processes, products and applications in public and non-public electronic networks.",
-                        "attribution": "\u00a9 Marktstammdatenregister 2023"
-                    }
-                ]
-            }
-        ],
-        "licenses": [
-            {
-                "name": "DL-DE-BY-2.0",
-                "title": "Open Data Datenlizenz Deutschland \u2013 Namensnennung \u2013 Version 2.0?",
-                "path": "http://www.govdata.de/dl-de/by-2-0",
-                "instruction": "The data and meta-data provided may, for commercial and non-commercial use, in particular be copied, printed, presented, altered, processed and transmitted to third parties; be merged with own data and with the data of others and be combined to form new and independent datasets;be integrated in internal and external business processes, products and applications in public and non-public electronic networks.",
-                "attribution": "\u00a9 Marktstammdatenregister 2023"
-            }
-        ],
-        "contributors": [
-            {
-                "title": "hedwiglieselotte",
-                "email": "hedwig.bartels@rl-institut.de",
-                "date": "2023-03-28",
-                "object": "metadata",
-                "comment": "Create metadata"
-            }
-        ],
-        "resources": [
-            {
-                "profile": null,
-                "name": null,
-                "path": null,
-                "format": null,
-                "encoding": null,
-                "schema": {
-                    "fields": [],
-                    "primaryKey": [],
-                    "foreignKeys": []
-                },
-                "dialect": {
-                    "delimiter": "",
-                    "decimalSeparator": "."
-                }
-            }
-        ],
-        "@id": null,
-        "@context": "https://raw.githubusercontent.com/OpenEnergyPlatform/oemetadata/develop/metadata/latest/context.json",
-        "review": {
-            "path": "",
-            "badge": ""
-        },
-        "metaMetadata": {
-            "metadataVersion": "OEP-1.5.2",
-            "metadataLicense": {
-                "name": "CC0-1.0",
-                "title": "Creative Commons Zero v1.0 Universal",
-                "path": "https://creativecommons.org/publicdomain/zero/1.0/"
-            }
-        },
-        "_comment": {
-            "metadata": "Metadata documentation and explanation (https://github.com/OpenEnergyPlatform/oemetadata)",
-            "dates": "Dates and time must follow the ISO8601 including time zone (YYYY-MM-DD or YYYY-MM-DDThh:mm:ss\u00b1hh)",
-            "units": "Use a space between numbers and units (100 m)",
-            "languages": "Languages must follow the IETF (BCP47) format (en-GB, en-US, de-DE)",
-            "licenses": "License name must follow the SPDX License List (https://spdx.org/licenses/)",
-            "review": "Following the OEP Data Review (https://github.com/OpenEnergyPlatform/data-preprocessing/blob/master/data-review/manual/review_manual.md)",
-            "null": "If not applicable use: null",
-            "todo": "If a value is not yet available, use: todo"
-        }
-    }
-    ```
-
-------------------------------
-## Verwaltungsgebiete Deutschlands
-
-Verwaltungsgebiete Deutschlands (Verwaltungsgebiete 1:250 000).
-
-**Dataset: `raw/bkg_vg250`**
-
-??? metadata "Metadata"
-    ```json
-    {
-        "name": "bkg_vg250",
-        "title": "Adminstrative areas of Germany",
-        "id": "bkg_vb250",
-        "description": "Geopackage with administative areas of Germany - Verwaltungsgebiete 1:250 000",
-        "language": [
-            "en-GB",
-            "de-DE"
-        ],
-        "subject": null,
-        "keywords": [
-            "adminstrative areas",
-            "Verwaltungsgebiete"
-        ],
-        "publicationDate": "2022-01-01",
-        "context": {
-            "homepage": "https://abw.rl-institut.de",
-            "documentation": "https://digiplan.readthedocs.io",
-            "sourceCode": "https://github.com/rl-institut/digipipe/",
-            "contact": "https://reiner-lemoine-institut.de/ueber-uns/kontakt/",
-            "grantNo": "None",
-            "fundingAgency": "https://www.region-gestalten.bund.de",
-            "fundingAgencyLogo": "https://www.region-gestalten.bund.de/Region/SiteGlobals/Frontend/Images/logo.svg",
-            "publisherLogo": "https://reiner-lemoine-institut.de//wp-content/uploads/2015/09/rlilogo.png"
-        },
-        "spatial": {
-            "location": "Germany",
-            "extent": "Germany",
-            "resolution": "1:250 000"
-        },
-        "temporal": {
-            "referenceDate": "2022-01-01",
-            "timeseries": null
-        },
-        "sources": [
-            {
-                "title": "Bundesamt f\u00fcr Kartographie und Geod\u00e4sie - Verwaltungsgebiete 1:250 000 VG250 (Ebenen)",
-                "description": "Dieser Datensatz stellt die Verwaltungsgebiete 1:250 000 (VG250) mit Stand 01.01. f\u00fcr das Gebiet der Bundesrepublik Deutschland bereit.",
-                "path": "https://gdz.bkg.bund.de/index.php/default/digitale-geodaten/verwaltungsgebiete/verwaltungsgebiete-1-250-000-stand-01-01-vg250-01-01.html",
-                "licenses": [
-                    {
-                        "name": "DL-DE-BY-2.0",
-                        "title": "Open Data Datenlizenz Deutschland \u2013 Namensnennung \u2013 Version 2.0",
-                        "path": "http://www.govdata.de/dl-de/by-2-0",
-                        "instruction": "The data and meta-data provided may, for commercial and non-commercial use, in particular be copied, printed, presented, altered, processed and transmitted to third parties; be merged with own data and with the data of others and be combined to form new and independent datasets;be integrated in internal and external business processes, products and applications in public and non-public electronic networks.",
-                        "attribution": " \u00a9 GeoBasis-DE / BKG - 2022"
-                    }
-                ]
-            }
-        ],
-        "contributors": [
-            {
-                "title": "hedwiglieselotte",
-                "email": "hedwig.bartels@rl-institut.de",
-                "date": "2023-03-23",
-                "object": "metadata",
-                "comment": "create metadata"
-            }
-        ],
-        "resources": [
-            {
-                "profile": null,
-                "name": null,
-                "path": null,
-                "format": null,
-                "encoding": null,
-                "schema": {
-                    "fields": [],
-                    "primaryKey": [],
-                    "foreignKeys": []
-                },
-                "dialect": {
-                    "delimiter": "",
-                    "decimalSeparator": "."
-                }
-            }
-        ],
-        "@id": null,
-        "@context": "https://raw.githubusercontent.com/OpenEnergyPlatform/oemetadata/develop/metadata/latest/context.json",
-        "review": {
-            "path": "",
-            "badge": ""
-        },
-        "metaMetadata": {
-            "metadataVersion": "OEP-1.5.2",
-            "metadataLicense": {
-                "name": "CC0-1.0",
-                "title": "Creative Commons Zero v1.0 Universal",
-                "path": "https://creativecommons.org/publicdomain/zero/1.0/"
-            }
-        },
-        "_comment": {
-            "metadata": "Metadata documentation and explanation (https://github.com/OpenEnergyPlatform/oemetadata)",
-            "dates": "Dates and time must follow the ISO8601 including time zone (YYYY-MM-DD or YYYY-MM-DDThh:mm:ss\u00b1hh)",
-            "units": "Use a space between numbers and units (100 m)",
-            "languages": "Languages must follow the IETF (BCP47) format (en-GB, en-US, de-DE)",
-            "licenses": "License name must follow the SPDX License List (https://spdx.org/licenses/)",
-            "review": "Following the OEP Data Review (https://github.com/OpenEnergyPlatform/data-preprocessing/blob/master/data-review/manual/review_manual.md)",
-            "null": "If not applicable use: null",
-            "todo": "If a value is not yet available, use: todo"
         }
     }
     ```
@@ -1135,10 +541,139 @@ befindlichen Strom- und Gasanlagen erfasst.
     ```
 
 ------------------------------
+## Technologiedaten
+
+### Jahresvolllaststunden
+
+Anhand typischer heutiger und prognostizierter Werte für Sachsen-Anhalt werden
+folgende Jahresvolllaststunden angenommen:
+
+| Technologie     | Jahr | Volllaststunden | Quelle(n) für Annahme                                                                                                                                                                                                                                                                                       | Anmerkung                                                      |
+|-----------------|------|----------------:|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------|
+| Windenergie     | 2022 |            1800 | [foederal-erneuerbar](https://www.foederal-erneuerbar.de/landesinfo/bundesland/ST/kategorie/wind/auswahl/811-durchschnittliche_ja/#goto_811)                                                                                                                                                                |                                                                |
+|                 | 2045 |            2300 | [PV- und Windflächenrechner](https://zenodo.org/record/6794558)                                                                                                                                                                                                                                             |                                                                |
+| Freiflächen-PV  | 2022 |             980 | [foederal-erneuerbar](https://www.foederal-erneuerbar.de/landesinfo/bundesland/ST/kategorie/solar/auswahl/813-durchschnittliche_ja/#goto_813), [ISE](https://www.ise.fraunhofer.de/content/dam/ise/de/documents/publications/studies/aktuelle-fakten-zur-photovoltaik-in-deutschland.pdf)                   |                                                                |
+|                 | 2045 |             980 | [PV- und Windflächenrechner](https://zenodo.org/record/6794558), [Ariadne Szenarienreport](https://ariadneprojekt.de/media/2022/02/Ariadne_Szenarienreport_Oktober2021_corr0222_lowres.pdf)                                                                                                                 |                                                                |
+| Aufdach-PV      | 2022 |             910 | [foederal-erneuerbar](https://www.foederal-erneuerbar.de/landesinfo/bundesland/ST/kategorie/solar/auswahl/813-durchschnittliche_ja/#goto_813), [ISE](https://www.ise.fraunhofer.de/content/dam/ise/de/documents/publications/studies/aktuelle-fakten-zur-photovoltaik-in-deutschland.pdf)                   |                                                                |
+|                 | 2045 |             910 | [Ariadne Szenarienreport](https://ariadneprojekt.de/media/2022/02/Ariadne_Szenarienreport_Oktober2021_corr0222_lowres.pdf)                                                                                                                                                                                  |                                                                |
+| Laufwasserkraft | 2022 |            3800 | [foederal-erneuerbar](https://www.foederal-erneuerbar.de/landesinfo/bundesland/ST/kategorie/wasser/auswahl/840-durchschnittliche_ja/#goto_840)                                                                                                                                                              |                                                                |
+|                 | 2045 |            3800 | [foederal-erneuerbar](https://www.foederal-erneuerbar.de/landesinfo/bundesland/ST/kategorie/wasser/auswahl/840-durchschnittliche_ja/#goto_840)                                                                                                                                                              |                                                                |
+| Bioenergie      | 2022 |            6000 | [foederal-erneuerbar](https://www.foederal-erneuerbar.de/landesinfo/bundesland/ST/kategorie/bioenergie/auswahl/814-durchschnittliche_ja/#goto_814), [ISE](https://www.ise.fraunhofer.de/content/dam/ise/de/documents/publications/studies/DE2018_ISE_Studie_Stromgestehungskosten_Erneuerbare_Energien.pdf) | Bioenergie-Stromerzeugung (ohne<br/>biogenen Teil des Abfalls) |
+|                 |      |                 |                                                                                                                                                                                                                                                                                                             |                                                                |
+
+Datei: `technology_data.json` -> `full_load_hours`
+
+TBD: Generalisieren - automatische Generierung anhand von Global Wind Atlas /
+Global Solar Atlas.
+
+### Leistungsdichte
+
+Installierbare Leistung pro Fläche / spezifischer Flächenbedarf:
+- Windenergie: 21 MW/km²
+- PV-Freiflächenanlagen: 100 MW/km²
+- PV-Aufdachanlagen: 140 MW/km²
+- Solarthermie: ? MW/km²
+
+Quelle: [PV- und Windflächenrechner](https://zenodo.org/record/6794558)
+
+Datei: `technology_data.json` -> `power_density`
+
+### Kosten und Wirkungsgrade
+
+Datei: `raw_costs_efficiencies.csv`
+
+**Dataset: `raw/technology_data`**
+
+??? metadata "Metadata"
+    ```json
+    {
+        "Datenquellen": {
+            "FLH": "",
+            "spec_area": "",
+            "emissions": "https://ens.dk/en/our-services/projections-and-models/technology-data"
+        }
+    }
+    ```
+
+------------------------------
+## Temperatur
+
+Stündliche Mittelwerte der Luft- und Erdbodentemperatur des Deutschen
+Wetterdienstes
+([Climate Data Center](https://opendata.dwd.de/climate_environment/CDC/observations_germany/climate/hourly/))
+für das Jahr 2011 je Gemeinde in der Region ABW, vorverarbeitet im Projekt
+[WindNODE](https://windnode-abw.readthedocs.io/en/latest/energy_system_model.html#energy-demand-today).
+
+Werte
+- `temp_amb`: Lufttemperatur in 2 m Höhe
+- `temp_soil`: Erdbodentemperatur in 1 m Tiefe
+
+Verwendete Stationen
+- Wittenberg
+- Köthen
+- Jessnitz
+- Seehausen
+- Holzdorf
+
+Die Zuordnung der Stationsmesswerte zu Gemeinden erfolgte über die jeweils
+nächstgelegene Wetterstation.
+
+**Dataset: `raw/dwd_temperature`**
+
+??? metadata "Metadata"
+    ```json
+    {
+        "Datenquellen": {
+            "Open Data Bereich des Climate Data Center des DWD": "https://www.dwd.de/DE/leistungen/cdc/climate-data-center.html",
+            "Datensatz Lufttemperatur": "https://opendata.dwd.de/climate_environment/CDC/observations_germany/climate/hourly/air_temperature/historical/",
+            "Datensatz Bodentemperatur": "https://opendata.dwd.de/climate_environment/CDC/observations_germany/climate/hourly/soil_temperature/historical/"
+        }
+    }
+    ```
+
+------------------------------
 ## Regionalplan Anhalt-Bitterfeld-Wittenberg
 
 Geodatensätze aus Teilplänen Wind 2018 und 2027 der Regionalen
 Planungsgemeinschaft Anhalt-Bitterfeld-Wittenberg.
+
+### Sachlicher Teilplan Wind 2018
+
+Geodaten aus rechtskräftigem
+[Sachlichen Teilplan Wind 2018](https://www.planungsregion-abw.de/regionalplanung/teilplan-windenergie/teilplan-2018/).
+
+> Im Sachlichen Teilplan "Nutzung der Windenergie in der Planungsregion
+> Anhalt-Bitterfeld-Wittenberg" vom 30.05.2018 werden 22 Vorranggebiete für die
+> Nutzung der Windenergie mit der Wirkung von Eignungsgebieten festgelegt. Sie
+> dienen der raumordnerischen Steuerung der Errichtung von raumbedeutsamen
+> Windenergieanlagen in Konzentrationszonen.
+>
+> Die oberste Landesentwicklungsbehörde hat am 01.08.2018 die Genehmigung
+> erteilt. Mit Bekanntmachung der Genehmigung tritt der Sachliche Teilplan in
+> Kraft.
+
+Dateien
+- Vorrang-/Eignungsgebiete: `stp_2018_vreg.gpkg`
+  ([Quelle](https://gis.planungsregion-abw.de/geoserver/stp_wind2018/ows?SERVICE=WFS&REQUEST=GetCapabilities))
+
+### Sachlicher Teilplan Wind 2027
+
+Geodaten aus Planentwurf des
+[Sachlichen Teilplan Wind 2027](https://www.planungsregion-abw.de/regionalplanung/teilplan-windenergie/teilplan-2027/).
+
+> Die Regionalversammlung hat am 03.03.2023 beschlossen, den Sachlichen
+> Teilplan "Windenergie 2027 in der Planungsregion Anhalt-Bitterfeld-Wittenberg"
+> aufzustellen und mit der Bekanntgabe der Allgemeinen Planungsabsicht die
+> beabsichtigten Auswahlkriterien und mögliche Gebietskulisse der Vorranggebiete
+> für die Nutzung der Windenergie bzw. für Repowering von Windenergieanlagen
+> vorzustellen.
+
+Dateien
+- Suchräume: `stp_2027_suchraum.gpkg` (Quelle: RPG ABW)
+- Planabsicht Vorranggebiete: `stp_2027_ideen_vr.gpkg` (Quelle: RPG ABW)
+- Planabsicht Repoweringgebiete: `stp_2027_ideen_repower.gpkg` (Quelle: RPG ABW)
+
+**Dataset: `raw/rpg_abw_regional_plan`**
 
 ??? metadata "Metadata"
     ```json
@@ -1152,34 +687,153 @@ Planungsgemeinschaft Anhalt-Bitterfeld-Wittenberg.
     ```
 
 ------------------------------
-## Bevölkerung
+## Regionalstatistik (GENESIS)
 
-Einwohnerzahl nach Gemeinden des Statistischen Bundesamts.
+Enthält folgende Datensätze der statistischen Ämter des Bundes und der Länder:
 
-**Dataset: `raw/destatis_gv`**
+### Energieverwendung der Betriebe im Verarbeitenden Gewerbe (43531-01-02-4)
+
+Jahreserhebung ü. die Energieverwendung der Betriebe im verarbeitendem Gewerbe.
+
+Der Datensatz umfasst:
+- Betriebe des Verarbeitenden Gewerbes sowie des Bergbaus
+und der Gewinnung von Steinen und Erden von Unternehmen des
+Produzierenden Gewerbes mit im Allgemeinen 20 und mehr
+Beschäftigten.
+- Betriebe des Verarbeitenden Gewerbes sowie des Bergbaus
+und  der Gewinnung von Steinen und Erden mit im Allgemeinen
+20 und mehr Beschäftigten von Unternehmen der übrigen
+Wirtschaftsbereiche.
+Die Berichterstattung schließt Verarbeitende Betriebe des
+Handwerks ein.
+Bei 7 Wirtschaftszweigen gilt eine Abschneidegrenze von 10
+Beschäftigten. Die Merkmalswerte beziehen sich auf den
+gesamten Betrieb, schließen damit die nicht produzierenden
+Betriebsteile mit ein.
+Maßgebend für die Zuordnung ist ab 2008 die „Klassifikation
+der Wirtschaftszweige, Ausgabe 2008 (WZ 2008)“, und zwar
+die Abschnitte B und C.
+
+- Datei: `43531-01-02-4.xlsx`
+- Stand: 2021
+
+### Betriebe, tätige Personen, Bruttoentgelte (42111-01-04-5)
+
+Jahreserhebung ü. Betriebe, tätige Personen und Bruttoentgelte der Betriebe im
+verarbeitendem Gewerbe.
+
+Der Datensatz umfasst:
+- Sämtliche Betriebe des Wirtschaftsbereiches Verarbeitendes
+Gewerbe sowie Bergbau und Gewinnung von Steinen und Erden,
+wenn diese Betriebe zu Unternehmen des Bereiches
+Verarbeitendes Gewerbe sowie Bergbau und Gewinnung von
+Steinen und Erden gehören und in diesen Unternehmen
+mindestens 20 Personen tätig sind;
+- die Betriebe des Wirtschaftsbereiches Verarbeitendes
+Gewerbe sowie Bergbau und Gewinnung von Steinen und Erden
+mit mindestens 20 tätigen Personen, sofern diese Betriebe
+zu Unternehmen gehören, deren wirtschaftlicher Schwerpunkt
+außerhalb des Bereiches Verarbeitendes Gewerbe sowie
+Bergbau und Gewinnung von Steinen und Erden liegt.
+Bei 7 kleinbetrieblich strukturierten Branchen gilt eine
+untere Erfassungsgrenze von 10 tätigen Personen.
+Die Auswahl erfolgt jeweils nach dem Beschäftigtenstand Ende
+September des Vorjahres. Die ausgewiesene Beschäftigtenzahl
+betrifft dagegen die von Ende September des Berichtsjahres.
+Die Merkmalswerte beziehen sich auf den gesamten Betrieb,
+schließen damit die nicht produzierenden Betriebsteile mit
+ein.
+Maßgebend für die Zuordnung ist ab 2009 die „Klassifikation
+der Wirtschaftszweige, Ausgabe 2008 (WZ 2008)“, und zwar
+die Abschnitte B und C.
+
+- Datei: `42111-01-04-5.xlsx`
+- Stand: 30.09.2021
+
+### Gebäude mit Wohnraum nach Heizungsart (31211-04-01-5-B)
+
+Zensus 2011: Gebäude mit Wohnraum nach Heizungsart
+
+- Datei: `31211-04-01-5-B.xlsx`
+- Stand: 09.05.2011
+
+### Gebäude mit Wohnraum nach Heizungsart (31231-02-01-5)
+
+Bestand an Wohngebäuden und Wohnungen in Wohn- und Nichtwohngebäuden -
+Fortschreibung auf Basis der endgültigen Ergebnisse der Gebäude- und
+Wohnungszählung 2011 (Zensus 2011).
+
+- Datei: `31231-02-01-5.xlsx`
+- Stand: 31.12.2021
+
+**Dataset: `raw/regiostat`**
 
 ??? metadata "Metadata"
     ```json
     {
-        "name": "destatis_gv",
-        "title": "Adminstratives Gemeinndeverzeichnis",
-        "id": "destatis_gv",
-        "description": "Alle politisch selbst\u00e4ndigen Gemeinden mit ausgew\u00e4hlten Merkmalen am 31.12.2022 ",
+        "Datenquellen": {
+            "43531-01-02-4": "https://www.regionalstatistik.de/genesis//online?operation=table&code=43531-01-02-4",
+            "42111-01-04-5": "https://www.regionalstatistik.de/genesis//online?operation=table&code=42111-01-04-5"
+        }
+    }
+    ```
+
+------------------------------
+## Marktstammdatenregister Datenkorrektur PV
+
+Überprüfung und manuelle Datenkorrektur der Photovoltaikanlagen aus dem
+prozessierten Marktstammdatenregister (Datensatz:
+[bnetza_mastr](../../digipipe/store/raw/bnetza_mastr/dataset.md)).
+
+### Plausibiltätsprüfung
+
+Um grobe Fehler herauszufiltern wird überprüft, ob
+- Anlage in Betrieb ist (status = "In Betrieb"),
+- Anlage Strom produziert,
+- Brutto- und Nettokapazität plausibel sind und
+- die Kategorisierung, d.h. Zuordnung eine PV-Anlage zu Freifläche oder Dach,
+  plausibel ist (manuelle, visuelle Prüfung von geolokalisierten
+  PV-Aufdachanlagen anhand von
+  [Orthofotos](https://www.geodatenportal.sachsen-anhalt.de/wss/service/ST_LVermGeo_DOP_WMS_OpenData/guest))
+
+### Dateien
+
+- Korrektur Freiflächenanlagen `bnetza_mastr_pv_ground_region_correction.ods`
+- Korrektur Aufdachanlagen `bnetza_mastr_pv_roof_region_correction.ods`
+
+mit Spalten
+- _mastr_id_: ID aus dem MaStR
+- _reason_: Fehler (wrong_type, wrong_position)
+- _wrong_attr_: Fehlerhaftes Attribut
+- _correction_: Korrigierter Attributwert (None, wenn Korrektur nicht möglich).
+  Korrigierte Geometrien liegen in EPSG:3035 vor.
+
+**Dataset: `raw/bnetza_mastr_correction_region`**
+
+??? metadata "Metadata"
+    ```json
+    {
+        "name": "bnetza_mastr_correction",
+        "title": "Marktstammdatenregisterdaten - Manuelle Korrektur",
+        "id": "bnetza_mastr",
+        "description": "Daten aus dem Marktstammdatenregister der Bundesnetzagentur",
         "language": [
+            "en-GB",
             "de-DE"
         ],
         "subject": null,
         "keywords": [
-            "destatis",
-            "gemeindeverzeichnis"
+            "Markstammdatenregister",
+            "openmastr",
+            "mastr"
         ],
-        "publicationDate": "2023-01-12",
+        "publicationDate": "2022-12-19",
         "context": {
             "homepage": "https://abw.rl-institut.de",
             "documentation": "https://digiplan.readthedocs.io",
             "sourceCode": "https://github.com/rl-institut/digipipe/",
             "contact": "https://reiner-lemoine-institut.de/ueber-uns/kontakt/",
-            "grantNo": null,
+            "grantNo": "None",
             "fundingAgency": "https://www.region-gestalten.bund.de",
             "fundingAgencyLogo": "https://www.region-gestalten.bund.de/Region/SiteGlobals/Frontend/Images/logo.svg",
             "publisherLogo": "https://reiner-lemoine-institut.de//wp-content/uploads/2015/09/rlilogo.png"
@@ -1187,24 +841,24 @@ Einwohnerzahl nach Gemeinden des Statistischen Bundesamts.
         "spatial": {
             "location": "Germany",
             "extent": "Germany",
-            "resolution": ""
+            "resolution": null
         },
         "temporal": {
-            "referenceDate": "2022-02-14",
+            "referenceDate": "2022-12-19",
             "timeseries": null
         },
         "sources": [
             {
-                "title": "Statistisches Bundesamt",
-                "description": "Alle politisch selbst\u00e4ndigen Gemeineden mit ausgew\u00e4hlten Merkmalen am 31.12.2022 (4.Quartal)",
-                "path": "https://www.destatis.de/DE/Themen/Laender-Regionen/Regionales/Gemeindeverzeichnis/Administrativ/Archiv/GVAuszugQ/AuszugGV4QAktuell.html",
+                "title": "Marktstammdatenregister",
+                "description": "Marktstammdatenregister der Bundesnetzagentur Deutschland",
+                "path": "https://www.marktstammdatenregister.de/MaStR/Datendownload",
                 "licenses": [
                     {
                         "name": "DL-DE-BY-2.0",
-                        "title": "Data licence Germany \u2013 attribution \u2013 version 2.0",
-                        "path": "https://www.govdata.de/dl-de/by-2-0",
-                        "instruction": "The data and meta-data provided may, for commercial and non-commercial use, in particular be copied, printed, presented, altered, processed and transmitted to third parties; be merged with own data and with the data of others and be combined to form new and independent datasets; be integrated in internal and external business processes, products and applications in public and non-public electronic networks.",
-                        "attribution": "\u00a9 Statistisches Bundesamt (Destatis), 2023"
+                        "title": "Open Data Datenlizenz Deutschland \u2013 Namensnennung \u2013 Version 2.0",
+                        "path": "http://www.govdata.de/dl-de/by-2-0",
+                        "instruction": "The data and meta-data provided may, for commercial and non-commercial use, in particular be copied, printed, presented, altered, processed and transmitted to third parties; be merged with own data and with the data of others and be combined to form new and independent datasets;be integrated in internal and external business processes, products and applications in public and non-public electronic networks.",
+                        "attribution": "\u00a9 Marktstammdatenregister 2023"
                     }
                 ]
             }
@@ -1212,10 +866,10 @@ Einwohnerzahl nach Gemeinden des Statistischen Bundesamts.
         "licenses": [
             {
                 "name": "DL-DE-BY-2.0",
-                "title": "Data licence Germany \u2013 attribution \u2013 version 2.0",
-                "path": "https://www.govdata.de/dl-de/by-2-0",
-                "instruction": "The data and meta-data provided may, for commercial and non-commercial use, in particular be copied, printed, presented, altered, processed and transmitted to third parties; be merged with own data and with the data of others and be combined to form new and independent datasets; be integrated in internal and external business processes, products and applications in public and non-public electronic networks.",
-                "attribution": "\u00a9 Statistisches Bundesamt (Destatis), 2023"
+                "title": "Open Data Datenlizenz Deutschland \u2013 Namensnennung \u2013 Version 2.0?",
+                "path": "http://www.govdata.de/dl-de/by-2-0",
+                "instruction": "The data and meta-data provided may, for commercial and non-commercial use, in particular be copied, printed, presented, altered, processed and transmitted to third parties; be merged with own data and with the data of others and be combined to form new and independent datasets;be integrated in internal and external business processes, products and applications in public and non-public electronic networks.",
+                "attribution": "\u00a9 Marktstammdatenregister 2023"
             }
         ],
         "contributors": [
@@ -1224,7 +878,7 @@ Einwohnerzahl nach Gemeinden des Statistischen Bundesamts.
                 "email": "hedwig.bartels@rl-institut.de",
                 "date": "2023-03-28",
                 "object": "metadata",
-                "comment": "create metadata"
+                "comment": "Create metadata"
             }
         ],
         "resources": [
@@ -1236,7 +890,7 @@ Einwohnerzahl nach Gemeinden des Statistischen Bundesamts.
                 "encoding": null,
                 "schema": {
                     "fields": [],
-                    "primaryKey": null,
+                    "primaryKey": [],
                     "foreignKeys": []
                 },
                 "dialect": {
@@ -1268,6 +922,25 @@ Einwohnerzahl nach Gemeinden des Statistischen Bundesamts.
             "review": "Following the OEP Data Review (https://github.com/OpenEnergyPlatform/data-preprocessing/blob/master/data-review/manual/review_manual.md)",
             "null": "If not applicable use: null",
             "todo": "If a value is not yet available, use: todo"
+        }
+    }
+    ```
+
+------------------------------
+## Lokale Verwaltungseinheiten
+
+Lokale Verwaltungseinheiten (LAUs) von Eurostat, mit NUTS kompatibel. Diese LAU
+sind die Bausteine der NUTS und umfassen die Gemeinden und Kommunen der
+Europäischen Union.
+
+**Dataset: `raw/eurostat_lau`**
+
+??? metadata "Metadata"
+    ```json
+    {
+        "Datenquellen": {
+            "Hauptseite": "https://ec.europa.eu/eurostat/de/web/nuts/local-administrative-units",
+            "Daten": "https://ec.europa.eu/eurostat/documents/345175/501971/EU-27-LAU-2022-NUTS-2021.xlsx"
         }
     }
     ```
@@ -1394,182 +1067,538 @@ Sachsen-Anhalt. Stand: 2021
     ```
 
 ------------------------------
-## Sozialversicherungspflichtig Beschäftigte und Betriebe
+## Bevölkerung
 
-Gemeindedaten der sozialversicherungspflichtig Beschäftigten am 30.06.2022 nach
-Wohn- und Arbeitsort - Deutschland, Länder, Kreise und Gemeinden (Jahreszahlen)
-der Bundesagentur für Arbeit.
+Einwohnerzahl nach Gemeinden des Statistischen Bundesamts.
 
-**Dataset: `raw/ba_employment`**
+**Dataset: `raw/destatis_gv`**
 
 ??? metadata "Metadata"
     ```json
     {
-        "Quellen": {
-            "Website": "https://statistik.arbeitsagentur.de/SiteGlobals/Forms/Suche/Einzelheftsuche_Formular.html?nn=15024&topic_f=beschaeftigung-sozbe-gemband",
-            "File": "https://statistik.arbeitsagentur.de/Statistikdaten/Detail/202206/iiia6/beschaeftigung-sozbe-gemband/gemband-dlk-0-202206-zip.zip?__blob=publicationFile&v=2}"
+        "name": "destatis_gv",
+        "title": "Adminstratives Gemeinndeverzeichnis",
+        "id": "destatis_gv",
+        "description": "Alle politisch selbst\u00e4ndigen Gemeinden mit ausgew\u00e4hlten Merkmalen am 31.12.2022 ",
+        "language": [
+            "de-DE"
+        ],
+        "subject": null,
+        "keywords": [
+            "destatis",
+            "gemeindeverzeichnis"
+        ],
+        "publicationDate": "2023-01-12",
+        "context": {
+            "homepage": "https://abw.rl-institut.de",
+            "documentation": "https://digiplan.readthedocs.io",
+            "sourceCode": "https://github.com/rl-institut/digipipe/",
+            "contact": "https://reiner-lemoine-institut.de/ueber-uns/kontakt/",
+            "grantNo": null,
+            "fundingAgency": "https://www.region-gestalten.bund.de",
+            "fundingAgencyLogo": "https://www.region-gestalten.bund.de/Region/SiteGlobals/Frontend/Images/logo.svg",
+            "publisherLogo": "https://reiner-lemoine-institut.de//wp-content/uploads/2015/09/rlilogo.png"
+        },
+        "spatial": {
+            "location": "Germany",
+            "extent": "Germany",
+            "resolution": ""
+        },
+        "temporal": {
+            "referenceDate": "2022-02-14",
+            "timeseries": null
+        },
+        "sources": [
+            {
+                "title": "Statistisches Bundesamt",
+                "description": "Alle politisch selbst\u00e4ndigen Gemeineden mit ausgew\u00e4hlten Merkmalen am 31.12.2022 (4.Quartal)",
+                "path": "https://www.destatis.de/DE/Themen/Laender-Regionen/Regionales/Gemeindeverzeichnis/Administrativ/Archiv/GVAuszugQ/AuszugGV4QAktuell.html",
+                "licenses": [
+                    {
+                        "name": "DL-DE-BY-2.0",
+                        "title": "Data licence Germany \u2013 attribution \u2013 version 2.0",
+                        "path": "https://www.govdata.de/dl-de/by-2-0",
+                        "instruction": "The data and meta-data provided may, for commercial and non-commercial use, in particular be copied, printed, presented, altered, processed and transmitted to third parties; be merged with own data and with the data of others and be combined to form new and independent datasets; be integrated in internal and external business processes, products and applications in public and non-public electronic networks.",
+                        "attribution": "\u00a9 Statistisches Bundesamt (Destatis), 2023"
+                    }
+                ]
+            }
+        ],
+        "licenses": [
+            {
+                "name": "DL-DE-BY-2.0",
+                "title": "Data licence Germany \u2013 attribution \u2013 version 2.0",
+                "path": "https://www.govdata.de/dl-de/by-2-0",
+                "instruction": "The data and meta-data provided may, for commercial and non-commercial use, in particular be copied, printed, presented, altered, processed and transmitted to third parties; be merged with own data and with the data of others and be combined to form new and independent datasets; be integrated in internal and external business processes, products and applications in public and non-public electronic networks.",
+                "attribution": "\u00a9 Statistisches Bundesamt (Destatis), 2023"
+            }
+        ],
+        "contributors": [
+            {
+                "title": "hedwiglieselotte",
+                "email": "hedwig.bartels@rl-institut.de",
+                "date": "2023-03-28",
+                "object": "metadata",
+                "comment": "create metadata"
+            }
+        ],
+        "resources": [
+            {
+                "profile": null,
+                "name": null,
+                "path": null,
+                "format": null,
+                "encoding": null,
+                "schema": {
+                    "fields": [],
+                    "primaryKey": null,
+                    "foreignKeys": []
+                },
+                "dialect": {
+                    "delimiter": "",
+                    "decimalSeparator": "."
+                }
+            }
+        ],
+        "@id": null,
+        "@context": "https://raw.githubusercontent.com/OpenEnergyPlatform/oemetadata/develop/metadata/latest/context.json",
+        "review": {
+            "path": "",
+            "badge": ""
+        },
+        "metaMetadata": {
+            "metadataVersion": "OEP-1.5.2",
+            "metadataLicense": {
+                "name": "CC0-1.0",
+                "title": "Creative Commons Zero v1.0 Universal",
+                "path": "https://creativecommons.org/publicdomain/zero/1.0/"
+            }
+        },
+        "_comment": {
+            "metadata": "Metadata documentation and explanation (https://github.com/OpenEnergyPlatform/oemetadata)",
+            "dates": "Dates and time must follow the ISO8601 including time zone (YYYY-MM-DD or YYYY-MM-DDThh:mm:ss\u00b1hh)",
+            "units": "Use a space between numbers and units (100 m)",
+            "languages": "Languages must follow the IETF (BCP47) format (en-GB, en-US, de-DE)",
+            "licenses": "License name must follow the SPDX License List (https://spdx.org/licenses/)",
+            "review": "Following the OEP Data Review (https://github.com/OpenEnergyPlatform/data-preprocessing/blob/master/data-review/manual/review_manual.md)",
+            "null": "If not applicable use: null",
+            "todo": "If a value is not yet available, use: todo"
         }
     }
     ```
 
 ------------------------------
-## Emissionen
-Emissionen für die Jahre 1990 und 2019 für Sachsen-Anhalt (aus
-[THG-Bericht 2021](https://lau.sachsen-anhalt.de/fileadmin/Bibliothek/Politik_und_Verwaltung/MLU/LAU/Wir_ueber_uns/Publikationen/Fachberichte/Dateien/221014_THG-Bericht.pdf)) und disaggregiert für die Region ABW.
+## OpenStreetMap
 
-Datei: `emissions.csv`, Felder:
-- `sector`: Sektor
-- `cat`: Kategorie ("*" = alle)
-- `subcat`: Unterkategorie ("*" = alle)
-- `name`: Bezeichner
-- `st`: Emissionen Sachsen-Anhalt in kt CO2-Äquivalent
-- `abw`: Emissionen Region ABW in kt CO2-Äquivalent
+OpenStreetMap Datenauszug Deutschland.
 
-`sector`, `cat` und `subcat` folgen der Nomenklatur des Common Reporting Formats
-(CRF) nach [KSG Anlage 1](https://www.gesetze-im-internet.de/ksg/anlage_1.html).
-[Grafik hierzu](https://expertenrat-klima.de/content/uploads/2023/05/ERK2023_Pruefbericht-Emissionsdaten-des-Jahres-2022.pdf)
-(Abb. 2 auf S. 30).
+Quelle: https://download.geofabrik.de/europe/germany-230101.osm.pbf
 
-### Disaggregation
-Anhand unterschiedlicher Kriterien und Datenquellen wurde näherungsweise von den vorliegenden Emissionen für Sachsen-Anhalt für 1990 und 2019 auf die Region ABW disaggregiert. Je Sektor sind hier die gewählten **energiebestimmenden Größen (EnbG)** angegeben, sowie die Herangehensweise zur jeweiligen Berechnung.
+Ist nicht Teil des Eingangsdaten-Packages - manueller Download erforderlich.
 
-#### Sektor Energiewirtschaft (CRF 1.A.1 + 1.B)
-Aus der Liste der [Emissionshandelspflichtigen Anlagen](https://www.dehst.de/SharedDocs/downloads/DE/anlagenlisten/2013-2020/2020.pdf?__blob=publicationFile&v=3) wurden jene Daten zu Anlagen extrahiert, welche sich in Sachsen-Anhalt befinden und als Bezeichnung "Energieumwandlung >= 50 MW FWL" oder "Energieumwandlung 20–50 MW FWL" (Haupttätigkeit nach TEHG) aufweisen.
-Die Summe der angegebenen Emissionen (t CO2 Äq) jener Anlagen, welche in der Region ABW liegen, wurde in Relation zu der Summe der Emissionen aus den Anlagen in Gesamt-ST gesetzt. Dieser Anteil wurde auf die im THG-Bericht angegebene Emissionsmenge im Sektor "Energiewirtschaft (1.A.1)" sowie "Prozessemissionen (1.B)" angelegt und so für ABW näherungsweise disaggregiert.
-
-Hinweise:
-- Aufgrund mangelnder Daten wurde für das Jahr 1990 auf die ältesten verfügbaren Daten (2005-2007) aus der Anlagenliste zurückgegriffen.
-- Energiewirtschaftlich relevante Anlagen unter 20 MW FWL sind in der Anlagenliste nicht erfasst und konnten somit nicht berücksichtigt werden.
-
-Quellen:
-- [Emissionshandelspflichtige Anlagen in Deutschland 2020 (Stand 03.05.2021)](https://www.dehst.de/SharedDocs/downloads/DE/anlagenlisten/2013-2020/2020.pdf?__blob=publicationFile&v=3)
-- [Treibhausgasemissionen in Sachsen-Anhalt 2018 (Stand 12.05.2021)](https://lau.sachsen-anhalt.de/fileadmin/Bibliothek/Politik_und_Verwaltung/MLU/LAU/Wir_ueber_uns/Publikationen/Fachberichte/Dateien/THG_Bericht_2018.pdf)
-
-###### CRF 1.A.1
-Energiewirtschaft (Umwandlungsbereich): umfasst die öffentliche Elektrizitäts- und Wärmeversorgung sowie Raffinerien.
-
-EnbG: Emissionen aus europäischem Emissionshandel
-
-###### CRF 1.B
-Diffuse Emissionen aus Brennstoffen: Diese Kategorie beinhaltet flüchtige Emissionen aus der Gewinnung, Verarbeitung und Verteilung von Brennstoffen. Die wichtigsten Quellen sind die Verteilung von Erdgas, aber auch Emissionen aus Förderung und Abfackelung, die Extraktion und Umwandlung von Braunkohle, Emissionen aus der Raffination von Erdöl sowie Emissionen aus der Lagerung und Verteilung von Mineralölprodukten.
-
-EnbG: Emissionen aus europäischem Emissionshandel
-
-#### Sektor Industrie (CRF 1.A.2)
-Dieser Sektor umfasst sämtliche energiebedingten Emissionen durch Verarbeitendes Gewerbe.
-
-Zur Disaggregierung wurde der Energieverbrauch der Industriebetriebe in ABW mit dem Gesamtenergieverbrauch aller Industriebetriebe in Sachsen-Anhalt in Relation gesetzt.
-Dabei wurde eine Differenzierung hinsichtlich der Energieträgerzusammensetzung von ABW im Vergleich zu ST durchgeführt und anhand etablierter Emissionsfaktoren berechnet.
-
-EnbG: Energieverbrauch nach Energieträgern
-
-Quellen:
-- [Energieverbrauch der Industriebetriebe in Sachsen-Anhalt nach ausgewählten Energieträgern und Kreisen](https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Energie/Tabellen/Energieverwendung/Energieverbrauch_nach_Kreisen_ab_dem_Jahr_2010.xlsx)
-- [Emissionsfaktor für Stromerzeugung (UBA)](https://www.umweltbundesamt.de/sites/default/files/medien/479/bilder/dateien/entwicklung_der_spezifischen_emissionen_des_deutschen_strommix_1990-2020_und_erste_schaetzungen_2021.pdf)
-- [BISKO Bilanzierungs-Systematik Kommunal (Aktualisierung 11/2019)](https://www.ifeu.de/fileadmin/uploads/BISKO_Methodenpapier_kurz_ifeu_Nov19.pdf)
-
-#### Sektor Prozessemissionen (CRF 2)
-Dieser Sektor umfasst sämtliche Emissionen, welche durch diverse Industriprozesse anfallen. Konkreter sind das Emissionen aus: Herstellung mineralischer Produkte, chemischer Industrie, Herstellung von Metallen, übrigen Prozessen und Produktverwendungen. (CRF 2.A-H)
-Zur Disaggregierung wurde erneut die [Liste der Emissionshandelspflichtigen Anlagen](https://www.dehst.de/SharedDocs/downloads/DE/anlagenlisten/2013-2020/2020.pdf?__blob=publicationFile&v=3) herangezogen. In diesem Fall wurde allerdings der Anteil aller Anlagen, welche nicht der Energiewirtschaft zugerechnet werden, zur Bestimmung des Anteils von AWB an ST gewählt.
-
-EnbG: Emissionen aus europäischem Emissionshandel
-
-#### Sektor Verkehr (CRF 1.A.3)
-Dieser Sekotr umfasst Emissionen aus dem Straßenverkehr, dem zivilen Luftverkehr, aus dem Schiffsverkehr, verbrennungsbedingte Emissionen aus dem Schienenverkehr sowie Emissionen des übrigen Verkehrs und weitere Quellen zur Bereitstellung der im Verkehr verbrauchten Energie.
-Die Verbrennung von Mineralölprodukten im Straßenverkehr spielt die größte Rolle und macht weit über 90 % der sektoralen Emissionen aus.
-Daher wird zur Disaggreagation der motorisierte Straßenverkehr über zugelassene Kraftfahrzeuge mit durchschnittlichen Fahrleistungen und spezifischer Emissionen pro Kilometer und Fahrzeugklasse herangezogen.
-
-Zunächst wird aus [Verkehr in Kilometern (VK) ZeitreiheJahre 2014 - 2022](https://www.kba.de/DE/Statistik/Kraftverkehr/VerkehrKilometer/vk_inlaenderfahrleistung/vk_inlaenderfahrleistung_node.html;jsessionid=DD419FD0604C0BCC72A9E4533BB0319F.live21324) und [Umweltfreundlich mobil! Ein ökologischer Verkehrsartenvergleich für den Personen- und Güterverkehr in Deutschland)](https://www.umweltbundesamt.de/sites/default/files/medien/5750/publikationen/2021_fb_umweltfreundlich_mobil_bf.pdf) ein durchschnittlicher CO2-Emissionswert pro Jahr und Fahrzeugklasse ermittelt. Dieser wird dann mit den zugelassenen Fahrzeugen der entsprechenden Fahrzeugklassen aus [Kraftfahrzeugbestand nach Kraftfahrzeugarten - Stichtag 01.01. - regionale Tiefe: Kreise und krfr. Städte (bis 01.01.2019)](https://www-genesis.destatis.de/genesis//online?operation=table&code=46251-0001&bypass=true&levelindex=0&levelid=1691405772899#abreadcrumb) einmal für ganz Sachsen-Anhalt und einmal ABW multipliziert. Daraus kann dann ein Verhältnis gewonnen werden, dass den prozentualen Anteil der Verkehrsemissionen von ABW kommt. 
-Dieser prozentuale Anteil wird auf die Verkehrsemissionen aus dem [THG-Bericht 2021](https://lau.sachsen-anhalt.de/fileadmin/Bibliothek/Politik_und_Verwaltung/MLU/LAU/Wir_ueber_uns/Publikationen/Fachberichte/Dateien/221014_THG-Bericht.pdf) angewednet.
-
-Hinweise:
-- Die Datenlage für die zugelassenen Fahrzeuge, gefahrenen Kilometer und Emissionen pro km sind nicht spezifisch für 1990 sondern nur für einzelne Jahre der frühen 1990er verfügbar. Daher ist der Emissionswert für 1990 it einer höheren Unsicherheit behaftet.
-
-EnbG:
-* Zugelassene Kraftfahrzeuge
-* gewichtet mit durchschn. Fahrleistung und spez. CO2 Emission pro km und Fahrzeugklasse
-
-Quellen:
-- [Kraftfahrzeugbestand nach Kraftfahrzeugarten - Stichtag 01.01. - regionale Tiefe: Kreise und krfr. Städte (bis 01.01.2019)](https://www-genesis.destatis.de/genesis//online?operation=table&code=46251-0001&bypass=true&levelindex=0&levelid=1691405772899#abreadcrumb)
-- [Umweltfreundlich mobil! Ein ökologischer Verkehrsartenvergleich für den Personen- und Güterverkehr in Deutschland)](https://www.umweltbundesamt.de/sites/default/files/medien/5750/publikationen/2021_fb_umweltfreundlich_mobil_bf.pdf)
-- [Verkehr in Kilometern (VK) ZeitreiheJahre 2014 - 2022](https://www.kba.de/DE/Statistik/Kraftverkehr/VerkehrKilometer/vk_inlaenderfahrleistung/vk_inlaenderfahrleistung_node.html;jsessionid=DD419FD0604C0BCC72A9E4533BB0319F.live21324)
-
-#### Sektor Sonstige Energie (insbes. Gebäude) (CRF 1.A.4 + 1.A.5)
-
-Dieser Sektor umfasst den durch Energieumwaldnung nicht bereits abgedeckten Energiebedarf. Das sind vor allem Feuerungsanlagen von kleinen Einzelraumfeuerungen (z. B. Kaminöfen) bis hin zu immissionsschutzrechtlich genehmigungsbedürftigen Anlagen mit einer Nennwärmeleistung von mehreren Megawatt.
-Zur Disaggreagtion wurde daher der Wärmebedarf von ABW im Verhältnis zum Wärmebedarf von gesamt Sachsen Anhalt gewählt. Der Wärmevedarf umfasst Raumwärme, Warmwasser und Kochen und wird aus Daten aus dem  Pipeline-Datensatz demand_heat_region generiert, mehr Details siehe dort.
-
-Ergebnis: 17,46 % des Bedarfs in Sachsen-Anhalt entfällt auf ABW.
-Dieser Wert wird mit den Emissionen auf den [THG-Bericht 2021](https://lau.sachsen-anhalt.de/fileadmin/Bibliothek/Politik_und_Verwaltung/MLU/LAU/Wir_ueber_uns/Publikationen/Fachberichte/Dateien/221014_THG-Bericht.pdf) angewednet.
-
-Code
-```
-## Sektor HH
-heat_hh_dist_states = gpd.read_file("demand_heat_zonal_stats-res-bkg_vg250_federal_states.gpkg")
-heat_hh_demand_st = float(heat_hh_dist_states.loc[heat_hh_dist_states.nuts == "DEE"].heat_demand)
-heat_hh_demand_abw = gpd.read_file("demand_heat_zonal_stats-res-bkg_vg250_muns_region.gpkg").heat_demand.sum()
-
-## Sektor GHD
-heat_cts_dist_states = gpd.read_file("demand_heat_zonal_stats-ser-bkg_vg250_federal_states.gpkg")
-heat_cts_demand_st = float(heat_cts_dist_states.loc[heat_cts_dist_states.nuts == "DEE"].heat_demand)
-heat_cts_demand_abw = gpd.read_file("demand_heat_zonal_stats-ser-bkg_vg250_muns_region.gpkg").heat_demand.sum()
-
-## Anteil ABW an ST
-heat_share = (heat_hh_demand_abw + heat_cts_demand_abw) / (heat_hh_demand_st + heat_cts_demand_st)
-```
-
-EnbG: Wärmebedarf aus Energiesystem
-
-
-#### Sektor Landwirtschaft (CRF 3)
-Der Sektor umfasst Emissionen aus der Viehwirtschaft und der Bewirtschaftung von Böden. 
-Daher werden zunächst die Emissionsunterkategorien 3.A-J aus dem [THG-Bericht 2021](https://lau.sachsen-anhalt.de/fileadmin/Bibliothek/Politik_und_Verwaltung/MLU/LAU/Wir_ueber_uns/Publikationen/Fachberichte/Dateien/221014_THG-Bericht.pdf) Viehwirtschaft oder der Bewirtschaftung von Böden zugeordnet. Danach werden diese getrennt nach den Viehbeständen bzw. der landwirtschaftlich genutzen Fläche disaggreiert.
-
-
-###### CRF 3.A - Landwirtschaft – Fermentation
-Emission durch Fermentation (CRF 3.A) entseht durch Verdauungsprozesse in der Viehwirtschaft. Deswegen kann der Anteil ABWs an diesen Emissionen durch die Viehbestände aus [Viehbestand der landwirtschaftlichen Betriebe in Großvieheinheiten (GV) nach Jahren und Kreisen)](https://statistik.sachsen-anhalt.de/themen/wirtschaftsbereiche/land-und-forstwirtschaft-fischerei/tabellen-viehwirtschaft-und-tierische-erzeugnisse#c234218) abgeschätzt werden.
-
-Hinweise:
-- Die Viehbestände für 1990 sind nicht bekannt, es wird stattdessen auf die Viehbestände von 1996 zurückggegriffen.
-
-EnbG: Viehbestände
-
-
-Quellen:
-- [Viehbestand der landwirtschaftlichen Betriebe in Großvieheinheiten (GV) nach Jahren und Kreisen)](https://statistik.sachsen-anhalt.de/themen/wirtschaftsbereiche/land-und-forstwirtschaft-fischerei/tabellen-viehwirtschaft-und-tierische-erzeugnisse#c234218)
-
-###### CRF 3.B-J:
-Die Unterkategorien 3.C-J ist eine Proportionalität der Emissionen und der landwirtschafltich genutzen Fläche zu erwarten. Unterkategorie 2.B "Wirtschaftsdüngerausbringung (ohne Gärreste)" ist allerdings ein Grenzfall, da er aus Abfällen der Tierhaltung produziert wird und schon dabei Treibhausgase entstehen, diese aber nicht vor Ort eingesetzt werden müssen, sondern auf beliebigen landwirtschafltichen Flächen eingesetzt werden kann. Daher wird hier auch diese Unterkategorie der Landnutzung zugeordnet.
-Die Anteile der landwirtschaftlich genutzen Fläche von ABW in Sachsen-Anhalt sind der Tabelle Flaeche_nach_Kultuarten_nach_Jahren_und_Kreisen](https://statistik.sachsen-anhalt.de/themen/wirtschaftsbereiche/land-und-forstwirtschaft-fischerei/tabellen-bodennutzung-und-anbau) zu entnehmen.
-Dieses Verhältnis kann auf die Emissionen aus dem [THG-Bericht 2021](https://lau.sachsen-anhalt.de/fileadmin/Bibliothek/Politik_und_Verwaltung/MLU/LAU/Wir_ueber_uns/Publikationen/Fachberichte/Dateien/221014_THG-Bericht.pdf) angewendet werdsen.
-
-Hinweis: 
-- die Flächenntuzungsadaten gehen nicht bis  1990 zurück, ändern sich über die Jahre aber nur marginal, sodass hier auch nicht von großen Abweichungen auszugehen ist.
-
-EnbG: landwirtschaftlich genutzte Fläche
-
-
-Quellen:
-- [Flaeche_nach_Kultuarten_nach_Jahren_und_Kreisen](https://statistik.sachsen-anhalt.de/themen/wirtschaftsbereiche/land-und-forstwirtschaft-fischerei/tabellen-bodennutzung-und-anbau)
-
-#### Sektor Abfall und Abwasser (CRF 5)
-Dieser Sektor besteht vor allem aus Emissionen aus Abfalldeponien, welche der Zersetzung organischer Materialien in Deponien entstehen.
-Es wird angenommen, dass der Abfall aus Produktionsprozessen gegenüber den Abfällen aus Konsum vernachlässigbar sind, weswegen eine Disaggregation auf Grundlage der Bevölkerung von ABW vorgenommen wird.
-
-EnbG: Bevölkerung ABW
-
-Quellen:
-- [Bevölkerung nach Geschlecht in den Gemeinden](https://genesis.sachsen-anhalt.de/genesis//online?operation=table&code=12411-0001&bypass=true&levelindex=0&levelid=1691507280245#abreadcrumb)
-
-
-**Dataset: `raw/emissions`**
+**Dataset: `raw/osm`**
 
 ??? metadata "Metadata"
     ```json
     {
-        "Daten Sachsen-Anhalt": "https://lau.sachsen-anhalt.de/fileadmin/Bibliothek/Politik_und_Verwaltung/MLU/LAU/Wir_ueber_uns/Publikationen/Fachberichte/Dateien/221014_THG-Bericht.pdf",
-        "Datens\u00e4tze Desaggregation": {
-            "Industrie": ""
+        "name": "openstreetmap",
+        "title": "",
+        "id": "openstreetmap",
+        "description": "OpenStreetMap extract",
+        "language": [
+            "de-DE",
+            "en-GB"
+        ],
+        "subject": [],
+        "keywords": [
+            "openstreetmap",
+            "osm"
+        ],
+        "publicationDate": "2023-06-30",
+        "context": {
+            "homepage": "https://abw.rl-institut.de",
+            "documentation": "https://digiplan.readthedocs.io",
+            "sourceCode": "https://github.com/rl-institut/digipipe/",
+            "contact": "https://reiner-lemoine-institut.de/ueber-uns/kontakt/",
+            "grantNo": "None",
+            "fundingAgency": "https://www.region-gestalten.bund.de",
+            "fundingAgencyLogo": "https://www.region-gestalten.bund.de/Region/SiteGlobals/Frontend/Images/logo.svg",
+            "publisherLogo": "https://reiner-lemoine-institut.de//wp-content/uploads/2015/09/rlilogo.png"
+        },
+        "spatial": {
+            "location": "Germany",
+            "extent": "Germany",
+            "resolution": ""
+        },
+        "temporal": {
+            "referenceDate": "2023-06-30",
+            "timeseries": []
+        },
+        "sources": [
+            {
+                "title": "OpenStreetMap Data Extracts (Geofabrik)",
+                "description": "Full data extract of OpenStreetMap data",
+                "path": "https://download.geofabrik.de/europe/germany-230101.osm.pbf",
+                "licenses": [
+                    {
+                        "name": "ODbL-1.0",
+                        "title": "Open Data Commons Open Database License 1.0",
+                        "path": "https://opendatacommons.org/licenses/odbl/1.0/",
+                        "instruction": "You are free: To Share, To Create, To Adapt; As long as you: Attribute, Share-Alike, Keep open!",
+                        "attribution": "\u00a9 OpenStreetMap contributors"
+                    }
+                ]
+            }
+        ],
+        "licenses": [
+            {
+                "name": "ODbL-1.0",
+                "title": "Open Data Commons Open Database License 1.0",
+                "path": "https://opendatacommons.org/licenses/odbl/1.0/",
+                "instruction": "You are free: To Share, To Create, To Adapt; As long as you: Attribute, Share-Alike, Keep open!",
+                "attribution": "\u00a9 OpenStreetMap contributors"
+            }
+        ],
+        "contributors": [
+            {
+                "title": "nesnoj",
+                "email": "jonathan.amme@rl-institut.de",
+                "date": "2023-06-30",
+                "object": "metadata",
+                "comment": "Create metadata"
+            }
+        ],
+        "resources": [
+            {
+                "profile": "tabular-data-resource",
+                "name": "model_draft.openstreetmap",
+                "path": "",
+                "format": "csv",
+                "encoding": "UTF-8",
+                "schema": {
+                    "fields": [],
+                    "primaryKey": [],
+                    "foreignKeys": []
+                },
+                "dialect": {
+                    "delimiter": "",
+                    "decimalSeparator": ""
+                }
+            }
+        ],
+        "@id": null,
+        "@context": "https://raw.githubusercontent.com/OpenEnergyPlatform/oemetadata/develop/metadata/latest/context.json",
+        "review": {
+            "path": "",
+            "badge": ""
+        },
+        "metaMetadata": {
+            "metadataVersion": "oemetadata_v1.5.1",
+            "metadataLicense": {
+                "name": "CC0-1.0",
+                "title": "Creative Commons Zero v1.0 Universal",
+                "path": "https://creativecommons.org/publicdomain/zero/1.0/"
+            }
+        },
+        "_comment": {
+            "metadata": "Metadata documentation and explanation (https://github.com/OpenEnergyPlatform/oemetadata)",
+            "dates": "Dates and time must follow the ISO8601 including time zone (YYYY-MM-DD or YYYY-MM-DDThh:mm:ss\u00b1hh)",
+            "units": "Use a space between numbers and units (100 m)",
+            "languages": "Languages must follow the IETF (BCP47) format (en-GB, en-US, de-DE)",
+            "licenses": "License name must follow the SPDX License List (https://spdx.org/licenses/)",
+            "review": "Following the OEP Data Review (https://github.com/OpenEnergyPlatform/data-preprocessing/blob/master/data-review/manual/review_manual.md)",
+            "null": "If not applicable use: null",
+            "todo": "If a value is not yet available, use: todo"
+        }
+    }
+    ```
+
+------------------------------
+## Installierte Leistungen von Biomasse-Konversionstechnologien
+
+Die installierten Leistungen in MW wird im Szenario 80 % Transformationspfad
+und 2,6 Mio. ha Anbauflächen im Jahr 2020 und 2050 der Tabelle 13 im
+Dokument
+["Technoökonomische Analyse und Transformationspfade des energetischen Biomassepotentials (TATBIO)"](../../digipipe/store/raw/dbfz_biomass_heat_capacities/metadata.json)
+für die folgenden Konversionsanlagen von Biomasse entnommen:
+
+- Biomethan-Blockheizkraftwerk
+- Holzhackschnitzelkessel Sektor Industrie
+- Pelletkessel Sektor GHD
+- Holzhackschnitzelkessel Sektor GHD
+- Scheitholzvergaserkessel
+- Pelletkessel Sektor Gebäude
+- Biogasanlage + Blockheizkraftwerk
+- Biomethan Gas- und Dampfkombikraftwerk
+- Klärschlammfaulung + Blockheizkraftwerk
+- Papier-Zellstoff-KWK
+- Holzvergaser + Blockheizkraftwerk
+- Mikro-Holzgas-Blockheizkraftwerk
+
+Die Konversionstechnologien sind in der Spalte "technology" gelistet, während
+sich ihre installierten Leistungen für die beiden Projektionsjahre in den
+Spalten "capacity_[MW]_2020" und "capacity_[MW]_2050" befinden.
+
+In den Spalten "decentral" und "central" wird mit "x" angegeben, ob jeweils ein
+dezentraler und zentraler Einsatz der Konversionsanlage Stand der Technik ist.
+
+In der Spalte "carrier" wird analog zur Konvention der Namensgebung im
+Energiesystem (siehe [esys.md](../../digipipe/store/../../docs/sections/esys.md)) der
+jeweilige in die Konversionsanlage eintretende Energieträger notiert.
+Diese werden Abbildung 3 des Dokuments entommen. Der Energieträger Schwarzlauge
+wird vereinfachend dem Energieträger feste Biomasse bzw. Holz zugeordnet.
+Klärgas und Holzgas werden vereinfachend Biogas zugeordnet.
+
+In der Spalte "tech" findet die Zuordnung zu der Technologie anhand der im
+Energiesystem verwendeten Komponenten (siehe
+[esys.md](../../digipipe/store/../../docs/sections/esys.md)) statt.
+
+**Dataset: `raw/dbfz_biomass_heat_capacities`**
+
+??? metadata "Metadata"
+    ```json
+    {
+        "Quellen": {
+            "Titel": "Techno\u00f6konomische Analyse und Transformationspfade des energetischen Biomassepotentials (TATBIO)",
+            "Datei": "https://www.ufz.de/export/data/2/231891_technooekonomische-analyse-und-transformationspfade-des-energetischen-biomassepotentials(1).pdf",
+            "Datum": "08.05.2019",
+            "Autor": "DBFZ Deutsches Biomasseforschungszentrum gemeinn\u00fctzige GmbH",
+            "Seiten": "6 und 54"
+        }
+    }
+    ```
+
+------------------------------
+## EE-Einspeisezeitreihen
+
+Einspeisezeitreihen für Erneuerbare Energien, normiert auf 1 MW bzw. 1 p.u.
+Als Wetterjahr wird 2011 verwendet, siehe
+[Szenarien](../../digipipe/store/../../docs/sections/scenarios.md).
+
+### Windenergie
+
+Stündlich aufgelöste Zeitreihe der Windenergie Einspeisung über 1 Jahr auf Basis
+von [MaStR](../../digipipe/store/raw/bnetza_mastr/dataset.md) und
+[renewables.ninja](http://renewables.ninja).
+Auf einen Auflösung auf Gemeindeebene wird verzichtet, da die Differenz der
+Produktion der Gemeinden nach renewables.ninja <5 % beträgt.
+
+#### Windenergieanlage (2022)
+
+Für renewables.ninja sind Position (lat, lon), Nennleistung (capacity),
+Nabenhöhe und Turbinentyp erforderlich.
+
+##### Position
+
+Hierfür wird aus den Zentroiden der Gemeinden ein räumlicher Mittelwert
+anhand des Datensatzes
+[bkg_vg250_muns_region](../../digipipe/store/datasets/bkg_vg250_muns_region/dataset.md)
+(`bkg_vg250_muns_region.gpkg`) gebildet:
+
+```
+import geopandas as gpd
+import os.path
+
+def get_position(gdf):
+    df = gpd.read_file(gdf)
+    points_of_muns = df["geometry"].centroid
+    points_of_muns_crs = points_of_muns.to_crs(4326)
+    point_df = [
+        points_of_muns_crs.y.sum()/len(points_of_muns),
+        points_of_muns_crs.x.sum()/len(points_of_muns)
+    ]
+    return point_df
+
+data_folder = os.path.join("your_data_folder")
+muns_gpkg = os.path.join(data_folder, "bkg_vg250_muns_region.gpkg")
+center_position = get_position(muns_gpkg)
+```
+
+##### Nennleistung
+
+Wird auf 1 MW gesetzt/normiert.
+
+##### Nabenhöhe
+
+Aus dem Datensatz
+[bnetza_mastr_wind_region](../../digipipe/store/datasets/bnetza_mastr_wind_region/dataset.md)
+(`bnetza_mastr_wind_agg_abw.gpkg`) wird ein Mittelwer von 100 m abgeleitet.
+
+```
+import geopandas as gpd
+
+df = gpd.read_file("bnetza_mastr_wind_agg_abw.gpkg")
+height = df[["hub_height"]].mean()
+```
+
+##### Turbinentyp
+
+Annahme: Innerhalb eines Herstellers sind Leistungskurven sehr ähnlich.
+Daher werden zwei größten Hersteller mit jeweiligen häufigsten Turbinentyp
+ausgewählt - diese sind Enercon und Vestas mit ca. 70 % und ca. 30%.
+
+```
+import geopandas as gpd
+
+df = gpd.read_file("bnetza_mastr_wind_agg_abw.gpkg")
+manufacturers = df[
+    ["manufacturer_name", "status"]
+].groupby("manufacturer_name").count().sort_values(
+    by="status", ascending=False
+)
+```
+
+Häufigste Turbinentypen sind *Enercon E-70* und *Vestas V80*. Daher werden
+*Enercon E70 2000* und *Vestas V80 2000* in renewables.ninja ausgewählt.
+
+```
+man_1 = manufacturers.index[0]
+man_2 = manufacturers.index[1]
+
+type_1 = df[
+    ["manufacturer_name", "type_name", "status"]
+].where(df["manufacturer_name"] == man_1).groupby(
+    "type_name").count().sort_values(by="status", ascending=False)
+
+type_2 = df[
+    ["manufacturer_name", "type_name", "status"]
+].where(df["manufacturer_name"] == man_2).groupby(
+    "type_name").count().sort_values(by="status", ascending=False)
+```
+
+#### Raw Data von [renewables.ninja](http://renewables.ninja) API
+
+Es werden zwei Zeitreihen für oben beschriebenen Vergleichsanlagen berechnet:
+
+```
+import json
+import requests
+import pandas as pd
+import geopandas as gpd
+
+def change_wpt(position, capacity, height, turbine):
+    args = {
+        'lat': 51.8000,  # 51.5000-52.0000
+        'lon': 12.2000,  # 11.8000-13.1500
+        'date_from': '2011-01-01',
+        'date_to': '2011-12-31',
+        'capacity': 1000.0,
+        'height': 100,
+        'turbine': 'Vestas V164 7000',
+        'format': 'json',
+        'local_time': 'true',
+        'raw': 'false',
+    }
+
+    args['capacity'] = capacity
+    args['height'] = height
+    args['lat'] = position[0]
+    args['lon'] = position[1]
+    args['turbine'] = turbine
+
+    return args
+
+def get_df(args):
+    token = 'Please get your own'
+    api_base = 'https://www.renewables.ninja/api/'
+
+    s = requests.session()
+    # Send token header with each request
+    s.headers = {'Authorization': 'Token ' + token}
+
+    url = api_base + 'data/wind'
+
+    r = s.get(url, params=args)
+
+    parsed_response = json.loads(r.text)
+    df = pd.read_json(
+    json.dumps(parsed_response['data']),orient='index')
+    metadata = parsed_response['metadata']
+    return df
+
+enercon_production = get_df(change_wpt(
+    position,
+    capacity=1,
+    height=df[["hub_height"]].mean(),
+    turbine=enercon)
+)
+
+vestas_production = get_df(change_wpt(
+    position,
+    capacity=1000,
+    height=df[["hub_height"]].mean(),
+    turbine=vestas)
+)
+```
+
+#### Gewichtung und Skalierung der Zeitreihen
+
+Um die Charakteristika der beiden o.g. Anlagentypen zu berücksichtigen, erfolgt
+eine gewichtete Summierung der Zeitreihen anhand der berechneten Häufigkeit.
+
+#### Zukunftsszenarien
+
+Analog zu dem oben beschriebenen Vorgehen wird eine separate Zeitreihe für
+zukünftige WEA berechnet. Hierbei wird eine Enercon E126 6500 mit einer
+Nabenhöhe von 159 m angenommen
+([PV- und Windflächenrechner](https://zenodo.org/record/6794558)).
+
+Da die Zeitreihe sich nur marginal von der obigen Status-quo-Zeitreihe
+unterscheidet, wird letztere sowohl für den Status quo als auch die
+Zukunftsszenarien verwendet.
+
+- Einspeisezeitreihe: `wind_feedin_timeseries.csv`
+
+### Freiflächen-Photovoltaik
+
+#### PV-Anlage (2022)
+
+Stündlich aufgelöste Zeitreihe der Photovoltaikeinspeisung über 1 Jahr auf Basis
+von [MaStR](../../digipipe/store/raw/bnetza_mastr/dataset.md) und
+[renewables.ninja](http://renewables.ninja).
+Wie bei der Windeinspeisung wird auf eine Auflsöung auf Gemeindeebene aufgrund
+geringer regionaler Abweichungen verzichtet.
+
+Für die Generierung der Zeitreihe über
+[renewables.ninja](http://renewables.ninja)
+wird eine Position(lat, lon), Nennleistung (capacity), Verluste (system_loss)
+Nachführung (tracking), Neigung (tilt) und der Azimutwinkel (azim) benötigt.
+
+Als Position wird analog zur Windenergieanlage der räumlicher Mittelwert
+verwendet. Laut MaStR werden lediglich 13 Anlagen nachgeführt (0,01 % der
+Kapazität), die Nachführung wird daher vernachlässigt. Die Neigung ist aus MaStR
+nicht bekannt, es dominieren jedoch Anlagen auf Freiflächen sowie Flachdächern
+im landwirtschaftlichen Kontext. Nach
+[Ariadne Szenarienreport](https://ariadneprojekt.de/media/2022/02/Ariadne_Szenarienreport_Oktober2021_corr0222_lowres.pdf)
+wird diese mit 30° angenommen.
+Die Nennleistung Wird auf 1 MW gesetzt/normiert.
+
+#### Zukunftsszenarien
+
+Die Status-quo-Zeitreihe wird sowohl für den Status quo als auch die
+Zukunftsszenarien verwendet.
+
+- Einspeisezeitreihe: `pv_feedin_timeseries.csv`
+
+### Solarthermie
+
+- Einspeisezeitreihe: `st_feedin_timeseries.csv` (Kopie von
+  PV-Einspeisezeitreihe)
+
+### Laufwasserkraft
+
+Hier wird eine konstante Einspeisung angenommen.
+
+- Einspeisezeitreihe: `ror_feedin_timeseries.csv`
+
+**Dataset: `raw/renewables.ninja_feedin`**
+
+??? metadata "Metadata"
+    ```json
+    {
+        "Quellen": {
+            "renewables.ninja": "https://www.renewables.ninja/about",
+            "Marktstammdatenregister": "siehe dataset bnetza_mastr"
         }
     }
     ```
@@ -1608,206 +1637,354 @@ Quellen
     ```
 
 ------------------------------
-## Energiedaten Sachsen-Anhalt
+## Verwaltungsgebiete Deutschlands
 
-Datensätze zur Energie- und Wasserversorgung des Statistischen Landesamtes
-Sachsen-Anhalt.
+Verwaltungsgebiete Deutschlands (Verwaltungsgebiete 1:250 000).
 
-### Daten
-
-Stromverbrauch der Industriebetriebe nach Kreisen 2003-2021 in MWh
-- [Quelle](https://statistik.sachsen-anhalt.de/themen/wirtschaftsbereiche/energie-und-wasserversorgung/tabellen-energieverwendung#c206986)
-
-**Dataset: `raw/stala_st_energy`**
+**Dataset: `raw/bkg_vg250`**
 
 ??? metadata "Metadata"
     ```json
     {
-        "Datenquellen": {
-            "Stromverbrauch der Industriebetriebe nach Kreisen": "https://statistik.sachsen-anhalt.de/themen/wirtschaftsbereiche/energie-und-wasserversorgung/tabellen-energieverwendung#c206986"
+        "name": "bkg_vg250",
+        "title": "Adminstrative areas of Germany",
+        "id": "bkg_vb250",
+        "description": "Geopackage with administative areas of Germany - Verwaltungsgebiete 1:250 000",
+        "language": [
+            "en-GB",
+            "de-DE"
+        ],
+        "subject": null,
+        "keywords": [
+            "adminstrative areas",
+            "Verwaltungsgebiete"
+        ],
+        "publicationDate": "2022-01-01",
+        "context": {
+            "homepage": "https://abw.rl-institut.de",
+            "documentation": "https://digiplan.readthedocs.io",
+            "sourceCode": "https://github.com/rl-institut/digipipe/",
+            "contact": "https://reiner-lemoine-institut.de/ueber-uns/kontakt/",
+            "grantNo": "None",
+            "fundingAgency": "https://www.region-gestalten.bund.de",
+            "fundingAgencyLogo": "https://www.region-gestalten.bund.de/Region/SiteGlobals/Frontend/Images/logo.svg",
+            "publisherLogo": "https://reiner-lemoine-institut.de//wp-content/uploads/2015/09/rlilogo.png"
+        },
+        "spatial": {
+            "location": "Germany",
+            "extent": "Germany",
+            "resolution": "1:250 000"
+        },
+        "temporal": {
+            "referenceDate": "2022-01-01",
+            "timeseries": null
+        },
+        "sources": [
+            {
+                "title": "Bundesamt f\u00fcr Kartographie und Geod\u00e4sie - Verwaltungsgebiete 1:250 000 VG250 (Ebenen)",
+                "description": "Dieser Datensatz stellt die Verwaltungsgebiete 1:250 000 (VG250) mit Stand 01.01. f\u00fcr das Gebiet der Bundesrepublik Deutschland bereit.",
+                "path": "https://gdz.bkg.bund.de/index.php/default/digitale-geodaten/verwaltungsgebiete/verwaltungsgebiete-1-250-000-stand-01-01-vg250-01-01.html",
+                "licenses": [
+                    {
+                        "name": "DL-DE-BY-2.0",
+                        "title": "Open Data Datenlizenz Deutschland \u2013 Namensnennung \u2013 Version 2.0",
+                        "path": "http://www.govdata.de/dl-de/by-2-0",
+                        "instruction": "The data and meta-data provided may, for commercial and non-commercial use, in particular be copied, printed, presented, altered, processed and transmitted to third parties; be merged with own data and with the data of others and be combined to form new and independent datasets;be integrated in internal and external business processes, products and applications in public and non-public electronic networks.",
+                        "attribution": " \u00a9 GeoBasis-DE / BKG - 2022"
+                    }
+                ]
+            }
+        ],
+        "contributors": [
+            {
+                "title": "hedwiglieselotte",
+                "email": "hedwig.bartels@rl-institut.de",
+                "date": "2023-03-23",
+                "object": "metadata",
+                "comment": "create metadata"
+            }
+        ],
+        "resources": [
+            {
+                "profile": null,
+                "name": null,
+                "path": null,
+                "format": null,
+                "encoding": null,
+                "schema": {
+                    "fields": [],
+                    "primaryKey": [],
+                    "foreignKeys": []
+                },
+                "dialect": {
+                    "delimiter": "",
+                    "decimalSeparator": "."
+                }
+            }
+        ],
+        "@id": null,
+        "@context": "https://raw.githubusercontent.com/OpenEnergyPlatform/oemetadata/develop/metadata/latest/context.json",
+        "review": {
+            "path": "",
+            "badge": ""
+        },
+        "metaMetadata": {
+            "metadataVersion": "OEP-1.5.2",
+            "metadataLicense": {
+                "name": "CC0-1.0",
+                "title": "Creative Commons Zero v1.0 Universal",
+                "path": "https://creativecommons.org/publicdomain/zero/1.0/"
+            }
+        },
+        "_comment": {
+            "metadata": "Metadata documentation and explanation (https://github.com/OpenEnergyPlatform/oemetadata)",
+            "dates": "Dates and time must follow the ISO8601 including time zone (YYYY-MM-DD or YYYY-MM-DDThh:mm:ss\u00b1hh)",
+            "units": "Use a space between numbers and units (100 m)",
+            "languages": "Languages must follow the IETF (BCP47) format (en-GB, en-US, de-DE)",
+            "licenses": "License name must follow the SPDX License List (https://spdx.org/licenses/)",
+            "review": "Following the OEP Data Review (https://github.com/OpenEnergyPlatform/data-preprocessing/blob/master/data-review/manual/review_manual.md)",
+            "null": "If not applicable use: null",
+            "todo": "If a value is not yet available, use: todo"
         }
     }
     ```
 
 ------------------------------
-## Regionalstatistik (GENESIS)
+## Emissionen
 
-Enthält folgende Datensätze der statistischen Ämter des Bundes und der Länder:
+Emissionen für die Jahre 1990 und 2019 für Sachsen-Anhalt und disaggregiert für
+die Region Anhalt-Bitterfeld-Wittenberg (ABW). Die Grundlage hierfür ist der
+[THG-Bericht 2021](https://lau.sachsen-anhalt.de/fileadmin/Bibliothek/Politik_und_Verwaltung/MLU/LAU/Wir_ueber_uns/Publikationen/Fachberichte/Dateien/221014_THG-Bericht.pdf)
+Sachsen-Anhalt (ST).
 
-### Energieverwendung der Betriebe im Verarbeitenden Gewerbe (43531-01-02-4)
+Datei: `emissions.csv`, Felder:
+- `sector`: Sektor
+- `cat`: Kategorie ("*" = alle)
+- `subcat`: Unterkategorie ("*" = alle)
+- `name`: Bezeichner
+- `st`: Emissionen Sachsen-Anhalt in kt CO2-Äquivalent
+- `abw`: Emissionen Region ABW in kt CO2-Äquivalent
 
-Jahreserhebung ü. die Energieverwendung der Betriebe im verarbeitendem Gewerbe.
+`sector`, `cat` und `subcat` folgen der Nomenklatur des Common Reporting Formats
+(CRF) nach [KSG Anlage 1](https://www.gesetze-im-internet.de/ksg/anlage_1.html).
+[Grafik hierzu](https://expertenrat-klima.de/content/uploads/2023/05/ERK2023_Pruefbericht-Emissionsdaten-des-Jahres-2022.pdf)
+(Abb. 2 auf S. 30).
 
-Der Datensatz umfasst:
-- Betriebe des Verarbeitenden Gewerbes sowie des Bergbaus
-und der Gewinnung von Steinen und Erden von Unternehmen des
-Produzierenden Gewerbes mit im Allgemeinen 20 und mehr
-Beschäftigten.
-- Betriebe des Verarbeitenden Gewerbes sowie des Bergbaus
-und  der Gewinnung von Steinen und Erden mit im Allgemeinen
-20 und mehr Beschäftigten von Unternehmen der übrigen
-Wirtschaftsbereiche.
-Die Berichterstattung schließt Verarbeitende Betriebe des
-Handwerks ein.
-Bei 7 Wirtschaftszweigen gilt eine Abschneidegrenze von 10
-Beschäftigten. Die Merkmalswerte beziehen sich auf den
-gesamten Betrieb, schließen damit die nicht produzierenden
-Betriebsteile mit ein.
-Maßgebend für die Zuordnung ist ab 2008 die „Klassifikation
-der Wirtschaftszweige, Ausgabe 2008 (WZ 2008)“, und zwar
-die Abschnitte B und C.
+### Disaggregation
 
-- Datei: `43531-01-02-4.xlsx`
-- Stand: 2021
+Anhand unterschiedlicher Kriterien und Datenquellen wurde näherungsweise von den
+vorliegenden Emissionen für Sachsen-Anhalt für 1990 und 2019 auf die Region ABW
+disaggregiert. Je Sektor sind hier die gewählten
+**energiebestimmenden Größen (EnbG)** angegeben, sowie die Herangehensweise zur
+jeweiligen Berechnung.
 
-### Betriebe, tätige Personen, Bruttoentgelte (42111-01-04-5)
+#### Sektor Energiewirtschaft (CRF 1.A.1 + 1.B)
 
-Jahreserhebung ü. Betriebe, tätige Personen und Bruttoentgelte der Betriebe im
-verarbeitendem Gewerbe.
+Aus der Liste der
+[Emissionshandelspflichtigen Anlagen](https://www.dehst.de/SharedDocs/downloads/DE/anlagenlisten/2013-2020/2020.pdf?__blob=publicationFile&v=3)
+wurden jene Daten zu Anlagen extrahiert, welche sich in Sachsen-Anhalt befinden
+und als Bezeichnung "Energieumwandlung >= 50 MW FWL" oder "Energieumwandlung
+20–50 MW FWL" (Haupttätigkeit nach TEHG) aufweisen.
+Die Summe der angegebenen Emissionen (t CO2 Äq) jener Anlagen, welche in der
+Region ABW liegen, wurde in Relation zu der Summe der Emissionen aus den Anlagen
+in Gesamt-ST gesetzt. Dieser Anteil wurde auf die im THG-Bericht angegebene
+Emissionsmenge im Sektor "Energiewirtschaft (1.A.1)" sowie "Prozessemissionen
+(1.B)" angelegt und so für ABW näherungsweise disaggregiert.
 
-Der Datensatz umfasst:
-- Sämtliche Betriebe des Wirtschaftsbereiches Verarbeitendes
-Gewerbe sowie Bergbau und Gewinnung von Steinen und Erden,
-wenn diese Betriebe zu Unternehmen des Bereiches
-Verarbeitendes Gewerbe sowie Bergbau und Gewinnung von
-Steinen und Erden gehören und in diesen Unternehmen
-mindestens 20 Personen tätig sind;
-- die Betriebe des Wirtschaftsbereiches Verarbeitendes
-Gewerbe sowie Bergbau und Gewinnung von Steinen und Erden
-mit mindestens 20 tätigen Personen, sofern diese Betriebe
-zu Unternehmen gehören, deren wirtschaftlicher Schwerpunkt
-außerhalb des Bereiches Verarbeitendes Gewerbe sowie
-Bergbau und Gewinnung von Steinen und Erden liegt.
-Bei 7 kleinbetrieblich strukturierten Branchen gilt eine
-untere Erfassungsgrenze von 10 tätigen Personen.
-Die Auswahl erfolgt jeweils nach dem Beschäftigtenstand Ende
-September des Vorjahres. Die ausgewiesene Beschäftigtenzahl
-betrifft dagegen die von Ende September des Berichtsjahres.
-Die Merkmalswerte beziehen sich auf den gesamten Betrieb,
-schließen damit die nicht produzierenden Betriebsteile mit
-ein.
-Maßgebend für die Zuordnung ist ab 2009 die „Klassifikation
-der Wirtschaftszweige, Ausgabe 2008 (WZ 2008)“, und zwar
-die Abschnitte B und C.
+Hinweise:
+- Aufgrund mangelnder Daten wurde für das Jahr 1990 auf die neuesten verfügbaren
+  Daten (2005-2007) aus der Anlagenliste zurückgegriffen.
+- Energiewirtschaftlich relevante Anlagen unter 20 MW FWL sind in der
+  Anlagenliste nicht erfasst und konnten somit nicht berücksichtigt werden.
 
-- Datei: `42111-01-04-5.xlsx`
-- Stand: 30.09.2021
+Quellen:
+- [Emissionshandelspflichtige Anlagen in Deutschland 2020 (Stand 03.05.2021)](https://www.dehst.de/SharedDocs/downloads/DE/anlagenlisten/2013-2020/2020.pdf?__blob=publicationFile&v=3)
+- [Treibhausgasemissionen in Sachsen-Anhalt 2018 (Stand 12.05.2021)](https://lau.sachsen-anhalt.de/fileadmin/Bibliothek/Politik_und_Verwaltung/MLU/LAU/Wir_ueber_uns/Publikationen/Fachberichte/Dateien/THG_Bericht_2018.pdf)
 
-### Gebäude mit Wohnraum nach Heizungsart (31211-04-01-5-B)
+##### CRF 1.A.1
 
-Zensus 2011: Gebäude mit Wohnraum nach Heizungsart
+Energiewirtschaft (Umwandlungsbereich): umfasst die öffentliche Elektrizitäts-
+und Wärmeversorgung sowie Raffinerien.
 
-- Datei: `31211-04-01-5-B.xlsx`
-- Stand: 09.05.2011
+EnbG: Emissionen aus europäischem Emissionshandel
 
-### Gebäude mit Wohnraum nach Heizungsart (31231-02-01-5)
+##### CRF 1.B
 
-Bestand an Wohngebäuden und Wohnungen in Wohn- und Nichtwohngebäuden -
-Fortschreibung auf Basis der endgültigen Ergebnisse der Gebäude- und
-Wohnungszählung 2011 (Zensus 2011).
+Diffuse Emissionen aus Brennstoffen: Diese Kategorie beinhaltet flüchtige
+Emissionen aus der Gewinnung, Verarbeitung und Verteilung von Brennstoffen. Die
+wichtigsten Quellen sind die Verteilung von Erdgas, aber auch Emissionen aus
+Förderung und Abfackelung, die Extraktion und Umwandlung von Braunkohle,
+Emissionen aus der Raffination von Erdöl sowie Emissionen aus der Lagerung und
+Verteilung von Mineralölprodukten.
 
-- Datei: `31231-02-01-5.xlsx`
-- Stand: 31.12.2021
+EnbG: Emissionen aus europäischem Emissionshandel
 
-**Dataset: `raw/regiostat`**
+#### Sektor Industrie (CRF 1.A.2)
+
+Dieser Sektor umfasst sämtliche energiebedingten Emissionen durch verarbeitendes
+Gewerbe.
+
+Zur Disaggregierung wurde der Energieverbrauch der Industriebetriebe in ABW mit
+dem Gesamtenergieverbrauch aller Industriebetriebe in Sachsen-Anhalt in Relation
+gesetzt. Dabei wurde eine Differenzierung hinsichtlich der
+Energieträgerzusammensetzung von ABW im Vergleich zu ST durchgeführt und anhand
+von Emissionsfaktoren berechnet.
+
+EnbG: Energieverbrauch nach Energieträgern
+
+Quellen:
+- [Energieverbrauch der Industriebetriebe in Sachsen-Anhalt nach ausgewählten Energieträgern und Kreisen](https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Energie/Tabellen/Energieverwendung/Energieverbrauch_nach_Kreisen_ab_dem_Jahr_2010.xlsx)
+- [Emissionsfaktor für Stromerzeugung (UBA)](https://www.umweltbundesamt.de/sites/default/files/medien/479/bilder/dateien/entwicklung_der_spezifischen_emissionen_des_deutschen_strommix_1990-2020_und_erste_schaetzungen_2021.pdf)
+- [BISKO Bilanzierungs-Systematik Kommunal (Aktualisierung 11/2019)](https://www.ifeu.de/fileadmin/uploads/BISKO_Methodenpapier_kurz_ifeu_Nov19.pdf)
+
+#### Sektor Prozessemissionen (CRF 2)
+
+Dieser Sektor umfasst sämtliche Emissionen, welche durch Industrieprozesse
+anfallen. Dies sind Emissionen aus: Herstellung mineralischer Produkte,
+chemischer Industrie, Herstellung von Metallen, übrigen Prozessen und
+Produktverwendungen (CRF 2.A-H).
+Zur Disaggregierung wurde erneut die
+[Liste der Emissionshandelspflichtigen Anlagen](https://www.dehst.de/SharedDocs/downloads/DE/anlagenlisten/2013-2020/2020.pdf?__blob=publicationFile&v=3)
+herangezogen. Anders als im Sektor Energiewirtschaft (s.o.) wurde jedoch der
+Anteil aller Anlagen, welche nicht der Energiewirtschaft zugerechnet werden, zur
+Bestimmung des Anteils von ABW an ST gewählt.
+
+EnbG: Emissionen aus europäischem Emissionshandel
+
+#### Sektor Verkehr (CRF 1.A.3)
+
+Dieser Sektor umfasst Emissionen aus dem Straßenverkehr, dem zivilen
+Luftverkehr, aus dem Schiffsverkehr, verbrennungsbedingte Emissionen aus dem
+Schienenverkehr sowie Emissionen des übrigen Verkehrs und weitere Quellen zur
+Bereitstellung der im Verkehr verbrauchten Energie. Die Verbrennung von
+Mineralölprodukten im Straßenverkehr spielt die größte Rolle und macht weit über
+90 % der sektoralen Emissionen aus. Daher wird zur Disaggreagation der
+motorisierte Straßenverkehr über zugelassene Kraftfahrzeuge mit
+durchschnittlichen Fahrleistungen und spezifischer Emissionen pro Kilometer und
+Fahrzeugklasse herangezogen.
+
+Hierfür wird zunächst aus
+[Verkehr in Kilometern (VK) ZeitreiheJahre 2014 - 2022](https://www.kba.de/DE/Statistik/Kraftverkehr/VerkehrKilometer/vk_inlaenderfahrleistung/vk_inlaenderfahrleistung_node.html;jsessionid=DD419FD0604C0BCC72A9E4533BB0319F.live21324)
+und
+[Umweltfreundlich mobil! Ein ökologischer Verkehrsartenvergleich für den Personen- und Güterverkehr in Deutschland)](https://www.umweltbundesamt.de/sites/default/files/medien/5750/publikationen/2021_fb_umweltfreundlich_mobil_bf.pdf)
+ein durchschnittlicher Emissionswert pro Jahr und Fahrzeugklasse ermittelt.
+Dieser wird mit den zugelassenen Fahrzeugen der entsprechenden Fahrzeugklassen
+aus
+[Kraftfahrzeugbestand nach Kraftfahrzeugarten - Stichtag 01.01. - regionale Tiefe: Kreise und krfr. Städte (bis 01.01.2019)](https://www-genesis.destatis.de/genesis//online?operation=table&code=46251-0001&bypass=true&levelindex=0&levelid=1691405772899#abreadcrumb)
+einerseits für ganz Sachsen-Anhalt und andererseits ABW multipliziert. Daraus
+wird ein Verhältnis der Verkehrsemissionen in ABW zu ST gewonnen.
+
+Hinweise:
+- Die Datenlage für die zugelassenen Fahrzeuge, gefahrenen Kilometer und
+  Emissionen pro km sind nicht spezifisch für 1990 sondern nur für einzelne
+  Jahre der frühen 1990er verfügbar. Daher ist der Emissionswert für 1990 mit
+  einer höheren Unsicherheit behaftet.
+
+EnbG:
+- Zugelassene Kraftfahrzeuge
+- Durchschnittliche Fahrleistung und spez. CO2 Emission pro km und
+  Fahrzeugklasse
+
+Quellen:
+- [Kraftfahrzeugbestand nach Kraftfahrzeugarten - Stichtag 01.01. - regionale Tiefe: Kreise und krfr. Städte (bis 01.01.2019)](https://www-genesis.destatis.de/genesis//online?operation=table&code=46251-0001&bypass=true&levelindex=0&levelid=1691405772899#abreadcrumb)
+- [Umweltfreundlich mobil! Ein ökologischer Verkehrsartenvergleich für den Personen- und Güterverkehr in Deutschland)](https://www.umweltbundesamt.de/sites/default/files/medien/5750/publikationen/2021_fb_umweltfreundlich_mobil_bf.pdf)
+- [Verkehr in Kilometern (VK) ZeitreiheJahre 2014 - 2022](https://www.kba.de/DE/Statistik/Kraftverkehr/VerkehrKilometer/vk_inlaenderfahrleistung/vk_inlaenderfahrleistung_node.html;jsessionid=DD419FD0604C0BCC72A9E4533BB0319F.live21324)
+
+#### Sektor Sonstige Energie (insbes. Gebäude) (CRF 1.A.4 + 1.A.5)
+
+Dieser Sektor umfasst den durch Energieumwandlung nicht bereits abgedeckten
+Energiebedarf. Das sind vor allem kleine Einzelfeuerungsanlagen bis hin zu
+immissionsschutzrechtlich genehmigungsbedürftigen Anlagen mit einer
+Nennwärmeleistung von mehreren Megawatt. Zur Disaggreagtion wurde daher der
+Wärmebedarf von ABW im Verhältnis zum Wärmebedarf von gesamt Sachsen Anhalt
+gewählt. Der Wärmevedarf umfasst Raumwärme, Warmwasser sowie Kochen und wird aus
+Daten aus dem Pipeline-Datensatz
+[demand_heat_region](../../digipipe/store/datasets/demand_heat_region/dataset.md) generiert.
+
+Ergebnis: 17,46 % des Bedarfs in Sachsen-Anhalt entfällt auf ABW.
+
+Code
+```
+## Sektor HH
+heat_hh_dist_states = gpd.read_file("demand_heat_zonal_stats-res-bkg_vg250_federal_states.gpkg")
+heat_hh_demand_st = float(heat_hh_dist_states.loc[heat_hh_dist_states.nuts == "DEE"].heat_demand)
+heat_hh_demand_abw = gpd.read_file("demand_heat_zonal_stats-res-bkg_vg250_muns_region.gpkg").heat_demand.sum()
+
+## Sektor GHD
+heat_cts_dist_states = gpd.read_file("demand_heat_zonal_stats-ser-bkg_vg250_federal_states.gpkg")
+heat_cts_demand_st = float(heat_cts_dist_states.loc[heat_cts_dist_states.nuts == "DEE"].heat_demand)
+heat_cts_demand_abw = gpd.read_file("demand_heat_zonal_stats-ser-bkg_vg250_muns_region.gpkg").heat_demand.sum()
+
+## Anteil ABW an ST
+heat_share = (heat_hh_demand_abw + heat_cts_demand_abw) / (heat_hh_demand_st + heat_cts_demand_st)
+```
+
+EnbG: Wärmebedarf aus Energiesystem
+
+#### Sektor Landwirtschaft (CRF 3)
+
+Der Sektor umfasst Emissionen aus der Viehwirtschaft und der Bewirtschaftung von
+Böden. Daher werden zunächst die Emissionsunterkategorien 3.A-J der
+Viehwirtschaft oder der Bewirtschaftung von Böden zugeordnet. Anschließend
+werden diese getrennt nach den Viehbeständen bzw. der landwirtschaftlich
+genutzen Fläche disaggreiert.
+
+##### CRF 3.A - Landwirtschaft – Fermentation
+
+Emissionen durch Fermentation (CRF 3.A) entstehen vorrangig durch
+Verdauungsprozesse in der Viehwirtschaft. Deswegen wird der Anteil ABWs an
+diesen Emissionen durch die Viehbestände abgeschätzt.
+
+Hinweise:
+- Die Viehbestände für 1990 sind nicht bekannt, es wird stattdessen auf die
+  Viehbestände von 1996 zurückggegriffen.
+
+EnbG: Viehbestände
+
+Quellen:
+- [Viehbestand der landwirtschaftlichen Betriebe in Großvieheinheiten (GV) nach Jahren und Kreisen)](https://statistik.sachsen-anhalt.de/themen/wirtschaftsbereiche/land-und-forstwirtschaft-fischerei/tabellen-viehwirtschaft-und-tierische-erzeugnisse#c234218)
+
+###### CRF 3.B-J
+
+In den Unterkategorien 3.C-J ist eine Proportionalität der Emissionen und der
+landwirtschafltich genutzen Fläche zu erwarten. Unterkategorie 2.B
+"Wirtschaftsdüngerausbringung (ohne Gärreste)" ist allerdings ein Grenzfall, da
+er aus Abfällen der Tierhaltung produziert wird und bereits hierbei
+Treibhausgase entstehen, diese aber nicht vor Ort eingesetzt werden müssen,
+sondern auf beliebigen landwirtschafltichen Flächen eingesetzt werden kann.
+Daher wird hier auch diese Unterkategorie der Landnutzung zugeordnet.
+
+Hinweis:
+- die Flächenntuzungsdaten gehen nicht bis 1990 zurück, ändern sich über die
+  Jahre aber nur marginal, sodass hier nur von geringen Abweichungen auszugehen
+  ist.
+
+EnbG: Landwirtschaftlich genutzte Fläche
+
+Quellen:
+- [Flaeche_nach_Kultuarten_nach_Jahren_und_Kreisen](https://statistik.sachsen-anhalt.de/themen/wirtschaftsbereiche/land-und-forstwirtschaft-fischerei/tabellen-bodennutzung-und-anbau)
+
+#### Sektor Abfall und Abwasser (CRF 5)
+
+Dieser Sektor besteht vor allem aus Emissionen aus Abfalldeponien, welche der
+Zersetzung organischer Materialien in Deponien entstehen. Es wird angenommen,
+dass der Abfall aus Produktionsprozessen gegenüber den Abfällen aus Konsum
+vernachlässigbar sind, weswegen eine Disaggregation auf Grundlage der
+Bevölkerung von ABW vorgenommen wird.
+
+EnbG: Bevölkerung
+
+Quellen:
+- [Bevölkerung nach Geschlecht in den Gemeinden](https://genesis.sachsen-anhalt.de/genesis//online?operation=table&code=12411-0001&bypass=true&levelindex=0&levelid=1691507280245#abreadcrumb)
+
+**Dataset: `raw/emissions`**
 
 ??? metadata "Metadata"
     ```json
     {
-        "Datenquellen": {
-            "43531-01-02-4": "https://www.regionalstatistik.de/genesis//online?operation=table&code=43531-01-02-4",
-            "42111-01-04-5": "https://www.regionalstatistik.de/genesis//online?operation=table&code=42111-01-04-5"
-        }
-    }
-    ```
-
-------------------------------
-## Temperatur
-
-Stündliche Mittelwerte der Luft- und Erdbodentemperatur des Deutschen
-Wetterdienstes
-([Climate Data Center](https://opendata.dwd.de/climate_environment/CDC/observations_germany/climate/hourly/))
-für das Jahr 2011 je Gemeinde in der Region ABW, vorverarbeitet im Projekt
-[WindNODE](https://windnode-abw.readthedocs.io/en/latest/energy_system_model.html#energy-demand-today).
-
-Werte
-- `temp_amb`: Lufttemperatur in 2 m Höhe
-- `temp_soil`: Erdbodentemperatur in 1 m Tiefe
-
-Verwendete Stationen
-- Wittenberg
-- Köthen
-- Jessnitz
-- Seehausen
-- Holzdorf
-
-Die Zuordnung der Stationsmesswerte zu Gemeinden erfolgte über die jeweils
-nächstgelegene Wetterstation.
-
-**Dataset: `raw/dwd_temperature`**
-
-??? metadata "Metadata"
-    ```json
-    {
-        "Datenquellen": {
-            "Open Data Bereich des Climate Data Center des DWD": "https://www.dwd.de/DE/leistungen/cdc/climate-data-center.html",
-            "Datensatz Lufttemperatur": "https://opendata.dwd.de/climate_environment/CDC/observations_germany/climate/hourly/air_temperature/historical/",
-            "Datensatz Bodentemperatur": "https://opendata.dwd.de/climate_environment/CDC/observations_germany/climate/hourly/soil_temperature/historical/"
-        }
-    }
-    ```
-
-------------------------------
-## Technologiedaten
-
-### Jahresvolllaststunden
-
-Anhand typischer heutiger und prognostizierter Werte für Sachsen-Anhalt werden
-folgende Jahresvolllaststunden angenommen:
-
-| Technologie     | Jahr | Volllaststunden | Quelle(n) für Annahme                                                                                                                                                                                                                                                                                       | Anmerkung                                                      |
-|-----------------|------|----------------:|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------|
-| Windenergie     | 2022 |            1800 | [foederal-erneuerbar](https://www.foederal-erneuerbar.de/landesinfo/bundesland/ST/kategorie/wind/auswahl/811-durchschnittliche_ja/#goto_811)                                                                                                                                                                |                                                                |
-|                 | 2045 |            2300 | [PV- und Windflächenrechner](https://zenodo.org/record/6794558)                                                                                                                                                                                                                                             |                                                                |
-| Freiflächen-PV  | 2022 |             980 | [foederal-erneuerbar](https://www.foederal-erneuerbar.de/landesinfo/bundesland/ST/kategorie/solar/auswahl/813-durchschnittliche_ja/#goto_813), [ISE](https://www.ise.fraunhofer.de/content/dam/ise/de/documents/publications/studies/aktuelle-fakten-zur-photovoltaik-in-deutschland.pdf)                   |                                                                |
-|                 | 2045 |             980 | [PV- und Windflächenrechner](https://zenodo.org/record/6794558), [Ariadne Szenarienreport](https://ariadneprojekt.de/media/2022/02/Ariadne_Szenarienreport_Oktober2021_corr0222_lowres.pdf)                                                                                                                 |                                                                |
-| Aufdach-PV      | 2022 |             910 | [foederal-erneuerbar](https://www.foederal-erneuerbar.de/landesinfo/bundesland/ST/kategorie/solar/auswahl/813-durchschnittliche_ja/#goto_813), [ISE](https://www.ise.fraunhofer.de/content/dam/ise/de/documents/publications/studies/aktuelle-fakten-zur-photovoltaik-in-deutschland.pdf)                   |                                                                |
-|                 | 2045 |             910 | [Ariadne Szenarienreport](https://ariadneprojekt.de/media/2022/02/Ariadne_Szenarienreport_Oktober2021_corr0222_lowres.pdf)                                                                                                                                                                                  |                                                                |
-| Laufwasserkraft | 2022 |            3800 | [foederal-erneuerbar](https://www.foederal-erneuerbar.de/landesinfo/bundesland/ST/kategorie/wasser/auswahl/840-durchschnittliche_ja/#goto_840)                                                                                                                                                              |                                                                |
-|                 | 2045 |            3800 | [foederal-erneuerbar](https://www.foederal-erneuerbar.de/landesinfo/bundesland/ST/kategorie/wasser/auswahl/840-durchschnittliche_ja/#goto_840)                                                                                                                                                              |                                                                |
-| Bioenergie      | 2022 |            6000 | [foederal-erneuerbar](https://www.foederal-erneuerbar.de/landesinfo/bundesland/ST/kategorie/bioenergie/auswahl/814-durchschnittliche_ja/#goto_814), [ISE](https://www.ise.fraunhofer.de/content/dam/ise/de/documents/publications/studies/DE2018_ISE_Studie_Stromgestehungskosten_Erneuerbare_Energien.pdf) | Bioenergie-Stromerzeugung (ohne<br/>biogenen Teil des Abfalls) |
-|                 |      |                 |                                                                                                                                                                                                                                                                                                             |                                                                |
-
-Datei: `technology_data.json` -> `full_load_hours`
-
-TBD: Generalisieren - automatische Generierung anhand von Global Wind Atlas /
-Global Solar Atlas.
-
-### Leistungsdichte
-
-Installierbare Leistung pro Fläche / spezifischer Flächenbedarf:
-- Windenergie: 21 MW/km²
-- PV-Freiflächenanlagen: 100 MW/km²
-- PV-Aufdachanlagen: 140 MW/km²
-- Solarthermie: ? MW/km²
-
-Quelle: [PV- und Windflächenrechner](https://zenodo.org/record/6794558)
-
-Datei: `technology_data.json` -> `power_density`
-
-### Kosten und Wirkungsgrade
-
-Datei: `raw_costs_efficiencies.csv`
-
-**Dataset: `raw/technology_data`**
-
-??? metadata "Metadata"
-    ```json
-    {
-        "Datenquellen": {
-            "FLH": "",
-            "spec_area": "",
-            "emissions": "https://ens.dk/en/our-services/projections-and-models/technology-data"
+        "Daten Sachsen-Anhalt": "https://lau.sachsen-anhalt.de/fileadmin/Bibliothek/Politik_und_Verwaltung/MLU/LAU/Wir_ueber_uns/Publikationen/Fachberichte/Dateien/221014_THG-Bericht.pdf",
+        "Datens\u00e4tze Desaggregation": {
+            "Industrie": ""
         }
     }
     ```

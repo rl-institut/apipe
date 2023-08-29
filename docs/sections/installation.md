@@ -41,7 +41,7 @@ Notes:
 
 ## Contributing to digipipe
 
-You can write [issues](https://github.com/rl-institut-private/digipipe/issues>)
+You can write [issues](https://github.com/rl-institut/digipipe/issues)
 to announce bugs or to propose enhancements.
 
 If you want to participate in the development of digipipe, please make sure you

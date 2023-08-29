@@ -7,6 +7,7 @@ Enthält folgende Datensätze der statistischen Ämter des Bundes und der Lände
 Jahreserhebung ü. die Energieverwendung der Betriebe im verarbeitendem Gewerbe.
 
 Der Datensatz umfasst:
+
 - Betriebe des Verarbeitenden Gewerbes sowie des Bergbaus
 und der Gewinnung von Steinen und Erden von Unternehmen des
 Produzierenden Gewerbes mit im Allgemeinen 20 und mehr
@@ -34,6 +35,7 @@ Jahreserhebung ü. Betriebe, tätige Personen und Bruttoentgelte der Betriebe im
 verarbeitendem Gewerbe.
 
 Der Datensatz umfasst:
+
 - Sämtliche Betriebe des Wirtschaftsbereiches Verarbeitendes
 Gewerbe sowie Bergbau und Gewinnung von Steinen und Erden,
 wenn diese Betriebe zu Unternehmen des Bereiches

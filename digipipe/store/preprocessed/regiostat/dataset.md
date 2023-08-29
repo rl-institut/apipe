@@ -8,6 +8,7 @@ Enthält Datensätze der statistischen Ämter des Bundes und der Länder aus
 Jahreserhebung ü. die Energieverwendung der Betriebe im verarbeitendem Gewerbe.
 
 Änderungen:
+
 - Dateiformat konvertiert
 - Bundesland-, Kreis und Gemeindewerte extrahiert
 - Energie in TWh konvertiert
@@ -18,5 +19,6 @@ Jahreserhebung ü. Betriebe, tätige Personen und Bruttoentgelte der Betriebe im
 verarbeitendem Gewerbe.
 
 Änderungen:
+
 - Dateiformat konvertiert
 - Bundesland-, Kreis und Gemeindewerte extrahiert

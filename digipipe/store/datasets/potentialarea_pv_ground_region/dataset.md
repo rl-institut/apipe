@@ -16,6 +16,7 @@ h und i berücksichtigt (für Details zur Methodik siehe
 Windflächenrechner).
 
 Dateien:
+
 - Freiflächen-PV auf Acker- und Grünlandflächen mit geringer Bodengüte (Soil
   Quality Rating (SQR) < 40): `potentialarea_pv_agriculture_lfa-off_region.gpkg`
 - Potenzialflächen für Freiflächen-PV entlang von Bundesautobahnen und
@@ -51,6 +52,7 @@ bundesweit 214 GW auf Freiflächen-PV entfallen.
 Es ergeben sich folgende Flächen- und Leistungsanteile:
 
 Gesamt: 0.38 % (819 MW)
+
 - Entlang von BAB und Schienenwegen: 0.13 % (278 MW)
 - Acker- und Grünlandflächen mit geringer Bodengüte: 0.25 % (541 MW)
 

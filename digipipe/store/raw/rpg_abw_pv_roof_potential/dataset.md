@@ -12,7 +12,8 @@ installierbare Leistung bestimmt und mittels der Globalstrahlung und typischer
 technischer Parameter für jedes Gebäude und jede Dachflächenorientierung
 potenzielle Erträge berechnet.
 
-Quellen
+Quellen:
+
 - [Hauptseite](https://www.planungsregion-abw.de/geodaten/)
 - [Geodaten](https://gis-entwicklung2.planungsregion-abw.de/geoserver/wfs?SERVICE=WFS&REQUEST=GetCapabilities)
 - [Anwendung](https://ris.planungsregion-abw.de/mapbender/application/pv_dachflaechenpot_rpg_abw)

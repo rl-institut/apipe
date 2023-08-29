@@ -2,7 +2,8 @@
 
 Von der App benötigte Daten in JSON `datapackage_app.json`.
 
-Generelle Struktur
+Generelle Struktur:
+
 - `<KATEGORIE>`
   - `<DATENTYP>` (`scalars`, `sequences` oder `geodata`)
     - `<DATENSATZNAME>`
@@ -14,6 +15,7 @@ Generelle Struktur
         - `file`: Datei
 
 Kategorien bzw. Inhalt `resources`:
+
 - `base_data`: Basisdaten
 - `production`: Energiebereitstellung
 - `demand`: Energiebedarf

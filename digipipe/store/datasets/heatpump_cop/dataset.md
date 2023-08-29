@@ -9,7 +9,8 @@ Details zur Berechnungsmethodik können der Dokumentation von
 [oemof.thermal](https://oemof-thermal.readthedocs.io/en/latest/compression_heat_pumps_and_chillers.html)
 entnommen werden.
 
-Annahmen
+Annahmen:
+
 - Vorlauftemperatur: 40 °C
 - Gütegrad / Quality grade: 0.4 (nach
   [VDE](https://www.energiedialog2050.info/wp-content/uploads/simple-file-list/VDE_ST_ETG_Warmemarkt_RZ-web.pdf))
@@ -29,5 +30,6 @@ gewichtet und in eine mittlere Zeitreihe für Wärmepumpen überführt. Im Jahr
 über die letzten 10 Jahre beträgt das Verhältnis ca. 80:20.
 Für 2045 wird daher ein Anteil von 80 % ASHP und 20 % GSHP angenommen.
 
-Verwendet Datensätze
+Verwendet Datensätze:
+
 - [dwd_temperature](../../preprocessed/dwd_temperature/dataset.md)

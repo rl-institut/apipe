@@ -7,9 +7,10 @@ First, clone via SSH using
     git clone git@github.com:rl-institut-private/digipipe.git /local/path/to/digipipe/
 
 Prerequisite:
-* _conda_ ([Anaconda](https://docs.anaconda.com/anaconda/install/)
+
+- _conda_ ([Anaconda](https://docs.anaconda.com/anaconda/install/)
 /[Miniconda](https://conda.io/en/latest/miniconda.html))
-* `python <https://www.python.org/downloads/>`_
+- `python <https://www.python.org/downloads/>`_
 
 Enter repo folder. Set up a conda environment and activate it with:
 
@@ -34,6 +35,7 @@ Some additional system packages are required, install them by
     sudo apt install gdal-bin python3-gdal libspatialindex-dev imagemagick osmium-tool graphviz graphviz-dev
 
 Notes:
+
 - Make sure you have GDAL>=3.0 as older versions will not work.
 - `imagemagick` is optional and only required for report creation
 

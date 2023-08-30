@@ -155,12 +155,6 @@ panel_settings_templates:
       start: none
       step: none
       status_quo: none
-    s_s_g_3:
-      max: none
-      min: none
-      start: none
-      step: none
-      status_quo: none
 
   heat_settings_panel:
     w_d_wp_1:
@@ -186,13 +180,6 @@ panel_settings_templates:
       start: none
       step: none
     w_z_wp_1:
-      max: none
-      min: none
-      start: none
-      step: none
-      status_quo: none
-      # future_scenario: none
-    w_z_wp_3:
       max: none
       min: none
       start: none
@@ -232,17 +219,7 @@ panel_settings_templates:
       min: none
       start: none
       step: none
-    w_d_s_3:
-      max: none
-      min: none
-      start: none
-      step: none
     w_z_s_1:
-      max: none
-      min: none
-      start: none
-      step: none
-    w_z_s_3:
       max: none
       min: none
       start: none

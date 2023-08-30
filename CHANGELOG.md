@@ -138,3 +138,4 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Obsolete targets from rule all
 - Merge dataset costs_efficiencies into technology_data
 - Merge dataset costs_efficiencies into technology_data
+- Remove values for redundant subsliders from app datapackage

@@ -314,21 +314,6 @@ def add_electricity_panel_settings(
                     * 100,
                 ),
             ),
-            s_s_g_3=dict(
-                max=50,
-                min=0,
-                start=math.ceil(
-                    storage_large_stats.storage_capacity.sum()
-                    / feedin_wind_pv_daily_mean
-                    * 100,
-                ),
-                step=1,
-                status_quo=math.ceil(
-                    storage_large_stats.storage_capacity.sum()
-                    / feedin_wind_pv_daily_mean
-                    * 100,
-                ),
-            ),
         )
     )
 
@@ -376,15 +361,6 @@ def add_heat_panel_settings(
                 step=5,
             ),
             w_z_wp_1=dict(
-                max=100,
-                min=0,
-                start=round(heat_pump_share.loc[2022] * 100),
-                step=5,
-                status_quo=round(heat_pump_share.loc[2022] * 100),
-                # TODO: Insert cen heating structure targets
-                # future_scenario=0,
-            ),
-            w_z_wp_3=dict(
                 max=100,
                 min=0,
                 start=round(heat_pump_share.loc[2022] * 100),
@@ -458,19 +434,7 @@ def add_heat_panel_settings(
                 start=100,
                 step=5,
             ),
-            w_d_s_3=dict(
-                max=200,
-                min=25,
-                start=100,
-                step=5,
-            ),
             w_z_s_1=dict(
-                max=200,
-                min=25,
-                start=100,
-                step=5,
-            ),
-            w_z_s_3=dict(
                 max=200,
                 min=25,
                 start=100,

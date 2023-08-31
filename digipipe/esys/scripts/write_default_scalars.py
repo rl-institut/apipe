@@ -77,9 +77,6 @@ def get_var_value_and_comment(which):
     elif which == "variable_costs":
         var_value = '{"variable_costs": 1e-7}'
         comment = "Own assumption to prevent hidden curtailment"
-    elif which == "excess_costs":
-        var_value = 0
-        comment = "No export of this carrier"
     elif which == "emissions_not_modeled":
         var_value = 0
         comment = "No fossils in 2045 in the modelled sectors."

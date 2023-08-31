@@ -90,13 +90,6 @@ write_default_scalars:
     "which": "empty_dict",
     "var_unit": "None",
   }
-  marginal_cost_shortage: {
-    "var_name": "marginal_cost",
-    "type": shortage,
-    "tech": None,
-    "which": "high_costs",
-    "var_unit": "EUR/MWh",
-  }
   marginal_cost_volatile: {
     "var_name": "marginal_cost",
     "type": volatile,

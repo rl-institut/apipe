@@ -3,7 +3,6 @@
     'biomass-excess',
     'biogas-excess',
     'ch4-import',
-    'ch4-excess',
     'electricity-bev_charging',
     'electricity-large_scale_battery',
     'electricity-small_scale_battery',

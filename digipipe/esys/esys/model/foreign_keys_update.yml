@@ -27,7 +27,6 @@
     'wood-import',
     'wood-excess',
     'lignite-import',
-    'lignite-excess',
     'solar-pv_ground',
     'solar-pv_rooftop',
     'solar-thermalcollector_central',

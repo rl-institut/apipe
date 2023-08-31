@@ -323,51 +323,55 @@ def add_electricity_panel_settings(
 def add_heat_panel_settings(
     panel_settings: PanelSettings,
     heating_structure_decentral: pd.DataFrame,
+    heating_structure_central: pd.DataFrame,
     demand_hh_heat: pd.DataFrame,
     demand_cts_heat: pd.DataFrame,
     demand_ind_heat: pd.DataFrame,
 ) -> PanelSettings:
 
     # Supply
-    heat_pump_share = heating_structure_decentral.loc[
+    heat_pump_share_dec = heating_structure_decentral.loc[
         heating_structure_decentral.carrier == "heat_pump"
     ].demand_rel
+    heat_pump_share_cen = heating_structure_central.loc[
+        heating_structure_central.carrier == "heat_pump"
+    ].demand_rel
+
     panel_settings.update(
         **dict(
             w_d_wp_1=dict(
                 max=100,
                 min=0,
-                start=round(heat_pump_share.loc[2022] * 100),
+                start=round(heat_pump_share_dec.loc[2022] * 100),
                 step=5,
-                status_quo=round(heat_pump_share.loc[2022] * 100),
-                future_scenario=round(heat_pump_share.loc[2045] * 100),
+                status_quo=round(heat_pump_share_dec.loc[2022] * 100),
+                future_scenario=round(heat_pump_share_dec.loc[2045] * 100),
             ),
             w_d_wp_3=dict(
                 max=100,
                 min=0,
-                start=round(heat_pump_share.loc[2022] * 100),
+                start=round(heat_pump_share_dec.loc[2022] * 100),
                 step=5,
             ),
             w_d_wp_4=dict(
                 max=100,
                 min=0,
-                start=round(heat_pump_share.loc[2022] * 100),
+                start=round(heat_pump_share_dec.loc[2022] * 100),
                 step=5,
             ),
             w_d_wp_5=dict(
                 max=100,
                 min=0,
-                start=round(heat_pump_share.loc[2022] * 100),
+                start=round(heat_pump_share_dec.loc[2022] * 100),
                 step=5,
             ),
             w_z_wp_1=dict(
                 max=100,
                 min=0,
-                start=round(heat_pump_share.loc[2022] * 100),
+                start=round(heat_pump_share_cen.loc[2022] * 100),
                 step=5,
-                status_quo=round(heat_pump_share.loc[2022] * 100),
-                # TODO: Insert cen heating structure targets
-                # future_scenario=0,
+                status_quo=round(heat_pump_share_cen.loc[2022] * 100),
+                future_scenario=round(heat_pump_share_cen.loc[2045] * 100),
             ),
         )
     )

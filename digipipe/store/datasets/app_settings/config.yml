@@ -185,7 +185,7 @@ panel_settings_templates:
       start: none
       step: none
       status_quo: none
-      # future_scenario: none
+      future_scenario: none
     w_v_1:
       max: none
       min: none

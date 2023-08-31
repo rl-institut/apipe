@@ -52,7 +52,6 @@ solar-thermalcollector_central: Heat cen. solar thermal collector
 solar-thermalcollector_decentral: Heat dec. solar thermal collector
 wind-onshore: Wind on
 wood-import: Wood Import
-wood-excess: Wood excess
 wood-extchp_central: Wood central CHP
 wood-extchp_decentral: Wood decentral CHP
 lignite-import: Lignite Import

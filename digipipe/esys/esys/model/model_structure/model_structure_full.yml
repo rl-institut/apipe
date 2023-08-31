@@ -60,7 +60,6 @@ components:
   - wood-extchp_central
   - wood-extchp_decentral
   - wood-import
-  - wood-excess
 
   - lignite-import
   - lignite-oven

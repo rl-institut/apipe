@@ -51,7 +51,6 @@ lignite-import: Braunkohle Import
 nuclear-st: Kernkraftwerk
 hard coal: Steinkohle
 wood: Holz
-wood-excess: Holz Überschuss
 wood-extchp_central: Holz zentrale KWK
 wood-extchp_decentral: Holz dezentrale KWK
 wood-import: Holz Import

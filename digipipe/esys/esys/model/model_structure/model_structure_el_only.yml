@@ -25,7 +25,6 @@ components:
   - ch4-import
   - ch4-gt
 
-  - biomass-excess
   - biomass-biogas_plant
   - biogas-excess
   - biogas-biogas_upgrading_plant

@@ -40,7 +40,6 @@ components:
 
   - biomass-biogas_plant
   - biomass-import
-  - biomass-excess
 
   - biogas-excess
   - biogas-bpchp_central

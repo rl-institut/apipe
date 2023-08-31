@@ -65,6 +65,9 @@ def get_var_value_and_comment(which):
     elif which == "empty":
         var_value = np.nan
         comment = "Empty"
+    elif which == "high_capacity":
+        var_value = 100000000
+        comment = "No limit for import"
     elif which == "false":
         var_value = False
         comment = "Empty"

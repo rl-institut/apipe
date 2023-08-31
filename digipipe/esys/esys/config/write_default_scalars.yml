@@ -38,7 +38,7 @@ write_default_scalars:
     "var_name": "capacity",
     "type": shortage,
     "tech": None,
-    "which": "empty",
+    "which": "high_capacity",
     "var_unit": "MW",
   }
   capacity_excess: {

@@ -28,6 +28,7 @@
     'heat_decentral-storage',
     'heat_decentral-excess',
     'wood-import',
+    'wood-excess',
     'lignite-import',
     'lignite-excess',
     'solar-pv_ground',

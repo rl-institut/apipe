@@ -444,7 +444,7 @@ lignite-excess:
 
 # Bus "biomass":
 
-biomass-shortage:
+biomass-import:
   carrier: biomass
   tech: import
   type: shortage

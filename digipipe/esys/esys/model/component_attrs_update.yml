@@ -387,6 +387,15 @@ ch4-import:
   defaults:
     output_parameters: "{}"
 
+ch4-excess:
+  carrier: ch4
+  tech: excess
+  type: excess
+  foreign_keys:
+    bus: ch4
+  defaults:
+    output_parameters: "{}"
+
 
 
 # Bus "wood":

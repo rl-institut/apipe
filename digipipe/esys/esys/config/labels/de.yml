@@ -13,6 +13,7 @@ ch4-extchp_central: CH4 zentrale GUD
 ch4-extchp_decentral: CH4 dezentrale GUD
 ch4-gt: CH4 GT
 ch4-import: CH4 Import
+ch4-excess: CH4 Überschuss
 electricity-bev_charging: BEV
 electricity-demand_hh: Strombedarf HH
 electricity-demand_cts: Strombedarf GHD

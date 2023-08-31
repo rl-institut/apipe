@@ -97,6 +97,13 @@ write_default_scalars:
     "which": "zeros",
     "var_unit": "EUR/MWh",
   }
+  marginal_cost_excess: {
+    "var_name": "marginal_cost",
+    "type": excess,
+    "tech": excess,
+    "which": "excess_costs",
+    "var_unit": "EUR/MWh",
+  }
   storage_capacity: {
     "var_name": "storage_capacity",
     "type": None,

@@ -130,6 +130,7 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
   biomass conversion technology
 - Fix clean rule
 - Update raw datapackage URL
+- Restrict snakemake version to v7.32.0
 
 ### Removed
 

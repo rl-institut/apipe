@@ -339,40 +339,45 @@ def add_heat_panel_settings(
 
     panel_settings.update(
         **dict(
-            w_d_wp_1=dict(
-                max=100,
-                min=0,
-                start=round(heat_pump_share_dec.loc[2022] * 100),
-                step=5,
-                status_quo=round(heat_pump_share_dec.loc[2022] * 100),
-                future_scenario=round(heat_pump_share_dec.loc[2045] * 100),
-            ),
-            w_d_wp_3=dict(
-                max=100,
-                min=0,
-                start=round(heat_pump_share_dec.loc[2022] * 100),
-                step=5,
-            ),
-            w_d_wp_4=dict(
-                max=100,
-                min=0,
-                start=round(heat_pump_share_dec.loc[2022] * 100),
-                step=5,
-            ),
-            w_d_wp_5=dict(
-                max=100,
-                min=0,
-                start=round(heat_pump_share_dec.loc[2022] * 100),
-                step=5,
-            ),
-            w_z_wp_1=dict(
-                max=100,
-                min=0,
-                start=round(heat_pump_share_cen.loc[2022] * 100),
-                step=5,
-                status_quo=round(heat_pump_share_cen.loc[2022] * 100),
-                future_scenario=round(heat_pump_share_cen.loc[2045] * 100),
-            ),
+            w_d_wp_1={
+                "max": 100,
+                "min": 0,
+                "from-min": 50,
+                "start": round(heat_pump_share_dec.loc[2022] * 100),
+                "step": 5,
+                "status_quo": round(heat_pump_share_dec.loc[2022] * 100),
+                "future_scenario": round(heat_pump_share_dec.loc[2045] * 100),
+            },
+            w_d_wp_3={
+                "max": 100,
+                "min": 0,
+                "from-min": 50,
+                "start": round(heat_pump_share_dec.loc[2022] * 100),
+                "step": 5,
+            },
+            w_d_wp_4={
+                "max": 100,
+                "min": 0,
+                "from-min": 50,
+                "start": round(heat_pump_share_dec.loc[2022] * 100),
+                "step": 5,
+            },
+            w_d_wp_5={
+                "max": 100,
+                "min": 0,
+                "from-min": 50,
+                "start": round(heat_pump_share_dec.loc[2022] * 100),
+                "step": 5,
+            },
+            w_z_wp_1={
+                "max": 100,
+                "min": 0,
+                "from-min": 50,
+                "start": round(heat_pump_share_cen.loc[2022] * 100),
+                "step": 5,
+                "status_quo": round(heat_pump_share_cen.loc[2022] * 100),
+                "future_scenario": round(heat_pump_share_cen.loc[2045] * 100),
+            },
         )
     )
 

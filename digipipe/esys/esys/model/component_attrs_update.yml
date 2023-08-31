@@ -435,6 +435,15 @@ biomass-shortage:
   defaults:
     output_parameters: "{}"
 
+biomass-excess:
+  carrier: biomass
+  tech: excess
+  type: excess
+  foreign_keys:
+    bus: biomass
+  defaults:
+    output_parameters: "{}"
+
 biomass-biogas_plant:
   carrier: biomass
   tech: biogas_plant

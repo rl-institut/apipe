@@ -26,6 +26,7 @@ components:
   - ch4-excess
   - ch4-gt
 
+  - biomass-excess
   - biomass-biogas_plant
   - biogas-biogas_upgrading_plant
 #  - h2-cavern

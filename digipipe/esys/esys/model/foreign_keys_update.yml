@@ -1,5 +1,6 @@
 'bus': [
     'biomass-import',
+    'biomass-excess',
     'ch4-import',
     'ch4-excess',
     'electricity-bev_charging',

@@ -1,5 +1,6 @@
 # oil: Oil  Raises error as "oil" is in "boiler" -> duplicate mappings
 biomass: Biomass
+biomass-excess: Biomass excess
 biomass-biogas_plant: Biogas plant
 biomass-import: Biomass Import
 biogas: Biogas

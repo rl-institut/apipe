@@ -18,7 +18,7 @@ folgende Jahresvolllaststunden angenommen:
 | Bioenergie      | 2022 |            6000 | [foederal-erneuerbar](https://www.foederal-erneuerbar.de/landesinfo/bundesland/ST/kategorie/bioenergie/auswahl/814-durchschnittliche_ja/#goto_814), [ISE](https://www.ise.fraunhofer.de/content/dam/ise/de/documents/publications/studies/DE2018_ISE_Studie_Stromgestehungskosten_Erneuerbare_Energien.pdf) | Bioenergie-Stromerzeugung (ohne<br/>biogenen Teil des Abfalls) |
 |                 |      |                 |                                                                                                                                                                                                                                                                                                             |                                                                |
 
-Datei: `technology_data.json` -> `full_load_hours`
+Datei: `technology_data.json` --> `full_load_hours`
 
 TBD: Generalisieren - automatische Generierung anhand von Global Wind Atlas /
 Global Solar Atlas.
@@ -33,7 +33,7 @@ Installierbare Leistung pro Fläche / spezifischer Flächenbedarf:
 
 Quelle: [PV- und Windflächenrechner](https://zenodo.org/record/6794558)
 
-Datei: `technology_data.json` -> `power_density`
+Datei: `technology_data.json` --> `power_density`
 
 ## Kosten und Wirkungsgrade
 

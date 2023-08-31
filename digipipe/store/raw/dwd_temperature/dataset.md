@@ -6,11 +6,13 @@ Wetterdienstes
 für das Jahr 2011 je Gemeinde in der Region ABW, vorverarbeitet im Projekt
 [WindNODE](https://windnode-abw.readthedocs.io/en/latest/energy_system_model.html#energy-demand-today).
 
-Werte
+Werte:
+
 - `temp_amb`: Lufttemperatur in 2 m Höhe
 - `temp_soil`: Erdbodentemperatur in 1 m Tiefe
 
-Verwendete Stationen
+Verwendete Stationen:
+
 - Wittenberg
 - Köthen
 - Jessnitz

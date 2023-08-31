@@ -22,6 +22,7 @@ einem Landkreis (Attribut `district_id`, vgl.
 zugeordnet.
 
 Weiterhin erfolgt eine Auswertung der installierten Gesamtleistung je Gemeinde:
+
 - Alle Speicher: `bnetza_mastr_storage_stats_muns.csv`
 - Großspeicher (>=100 kWh): `bnetza_mastr_storage_large_stats_muns.csv`
 - Kleinspeicher (<100 kWh): `bnetza_mastr_storage_small_stats_muns.csv`
@@ -30,6 +31,7 @@ Weiterhin erfolgt eine Auswertung der installierten Gesamtleistung je Gemeinde:
 sowie spezifische Nennleistung der Speicher (bezogen auf die installierte
 Leistung von PV-Aufdachanlagen), aggregiert für gesamte Region, für folgende
 Randbedingungen:
+
 - Alle PV-Anlagen: `all_storages`
 - PV-Anlagen mit 2..20 kWp sowie Batteriespeicher <20 kWh und <20 kW (kann in
   [config.yml](config.yml) unter `home_storages` konfiguriert werden):

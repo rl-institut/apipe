@@ -6,6 +6,7 @@ die Region Anhalt-Bitterfeld-Wittenberg (ABW). Die Grundlage hierfür ist der
 Sachsen-Anhalt (ST).
 
 Datei: `emissions.csv`, Felder:
+
 - `sector`: Sektor
 - `cat`: Kategorie ("*" = alle)
 - `subcat`: Unterkategorie ("*" = alle)
@@ -40,12 +41,14 @@ Emissionsmenge im Sektor "Energiewirtschaft (1.A.1)" sowie "Prozessemissionen
 (1.B)" angelegt und so für ABW näherungsweise disaggregiert.
 
 Hinweise:
+
 - Aufgrund mangelnder Daten wurde für das Jahr 1990 auf die neuesten verfügbaren
   Daten (2005-2007) aus der Anlagenliste zurückgegriffen.
 - Energiewirtschaftlich relevante Anlagen unter 20 MW FWL sind in der
   Anlagenliste nicht erfasst und konnten somit nicht berücksichtigt werden.
 
 Quellen:
+
 - [Emissionshandelspflichtige Anlagen in Deutschland 2020 (Stand 03.05.2021)](https://www.dehst.de/SharedDocs/downloads/DE/anlagenlisten/2013-2020/2020.pdf?__blob=publicationFile&v=3)
 - [Treibhausgasemissionen in Sachsen-Anhalt 2018 (Stand 12.05.2021)](https://lau.sachsen-anhalt.de/fileadmin/Bibliothek/Politik_und_Verwaltung/MLU/LAU/Wir_ueber_uns/Publikationen/Fachberichte/Dateien/THG_Bericht_2018.pdf)
 
@@ -81,6 +84,7 @@ von Emissionsfaktoren berechnet.
 EnbG: Energieverbrauch nach Energieträgern
 
 Quellen:
+
 - [Energieverbrauch der Industriebetriebe in Sachsen-Anhalt nach ausgewählten Energieträgern und Kreisen](https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Energie/Tabellen/Energieverwendung/Energieverbrauch_nach_Kreisen_ab_dem_Jahr_2010.xlsx)
 - [Emissionsfaktor für Stromerzeugung (UBA)](https://www.umweltbundesamt.de/sites/default/files/medien/479/bilder/dateien/entwicklung_der_spezifischen_emissionen_des_deutschen_strommix_1990-2020_und_erste_schaetzungen_2021.pdf)
 - [BISKO Bilanzierungs-Systematik Kommunal (Aktualisierung 11/2019)](https://www.ifeu.de/fileadmin/uploads/BISKO_Methodenpapier_kurz_ifeu_Nov19.pdf)
@@ -123,17 +127,20 @@ einerseits für ganz Sachsen-Anhalt und andererseits ABW multipliziert. Daraus
 wird ein Verhältnis der Verkehrsemissionen in ABW zu ST gewonnen.
 
 Hinweise:
+
 - Die Datenlage für die zugelassenen Fahrzeuge, gefahrenen Kilometer und
   Emissionen pro km sind nicht spezifisch für 1990 sondern nur für einzelne
   Jahre der frühen 1990er verfügbar. Daher ist der Emissionswert für 1990 mit
   einer höheren Unsicherheit behaftet.
 
 EnbG:
+
 - Zugelassene Kraftfahrzeuge
 - Durchschnittliche Fahrleistung und spez. CO2 Emission pro km und
   Fahrzeugklasse
 
 Quellen:
+
 - [Kraftfahrzeugbestand nach Kraftfahrzeugarten - Stichtag 01.01. - regionale Tiefe: Kreise und krfr. Städte (bis 01.01.2019)](https://www-genesis.destatis.de/genesis//online?operation=table&code=46251-0001&bypass=true&levelindex=0&levelid=1691405772899#abreadcrumb)
 - [Umweltfreundlich mobil! Ein ökologischer Verkehrsartenvergleich für den Personen- und Güterverkehr in Deutschland)](https://www.umweltbundesamt.de/sites/default/files/medien/5750/publikationen/2021_fb_umweltfreundlich_mobil_bf.pdf)
 - [Verkehr in Kilometern (VK) ZeitreiheJahre 2014 - 2022](https://www.kba.de/DE/Statistik/Kraftverkehr/VerkehrKilometer/vk_inlaenderfahrleistung/vk_inlaenderfahrleistung_node.html;jsessionid=DD419FD0604C0BCC72A9E4533BB0319F.live21324)
@@ -183,13 +190,15 @@ Emissionen durch Fermentation (CRF 3.A) entstehen vorrangig durch
 Verdauungsprozesse in der Viehwirtschaft. Deswegen wird der Anteil ABWs an
 diesen Emissionen durch die Viehbestände abgeschätzt.
 
-Hinweise:
+Hinweis:
+
 - Die Viehbestände für 1990 sind nicht bekannt, es wird stattdessen auf die
   Viehbestände von 1996 zurückggegriffen.
 
 EnbG: Viehbestände
 
-Quellen:
+Quelle:
+
 - [Viehbestand der landwirtschaftlichen Betriebe in Großvieheinheiten (GV) nach Jahren und Kreisen)](https://statistik.sachsen-anhalt.de/themen/wirtschaftsbereiche/land-und-forstwirtschaft-fischerei/tabellen-viehwirtschaft-und-tierische-erzeugnisse#c234218)
 
 ##### CRF 3.B-J
@@ -203,13 +212,15 @@ sondern auf beliebigen landwirtschafltichen Flächen eingesetzt werden kann.
 Daher wird hier auch diese Unterkategorie der Landnutzung zugeordnet.
 
 Hinweis:
+
 - die Flächenntuzungsdaten gehen nicht bis 1990 zurück, ändern sich über die
   Jahre aber nur marginal, sodass hier nur von geringen Abweichungen auszugehen
   ist.
 
 EnbG: Landwirtschaftlich genutzte Fläche
 
-Quellen:
+Quelle:
+
 - [Flaeche_nach_Kultuarten_nach_Jahren_und_Kreisen](https://statistik.sachsen-anhalt.de/themen/wirtschaftsbereiche/land-und-forstwirtschaft-fischerei/tabellen-bodennutzung-und-anbau)
 
 ### Sektor Abfall und Abwasser (CRF 5)
@@ -222,5 +233,6 @@ Bevölkerung von ABW vorgenommen wird.
 
 EnbG: Bevölkerung
 
-Quellen:
+Quelle:
+
 - [Bevölkerung nach Geschlecht in den Gemeinden](https://genesis.sachsen-anhalt.de/genesis//online?operation=table&code=12411-0001&bypass=true&levelindex=0&levelid=1691507280245#abreadcrumb)

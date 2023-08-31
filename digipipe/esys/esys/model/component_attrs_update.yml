@@ -422,6 +422,15 @@ lignite-import:
   defaults:
     output_parameters: "{}"
 
+lignite-excess:
+  carrier: lignite
+  tech: excess
+  type: excess
+  foreign_keys:
+    bus: lignite
+  defaults:
+    output_parameters: "{}"
+
 
 
 # Bus "biomass":

@@ -65,6 +65,7 @@ components:
   - wood-import
 
   - lignite-import
+  - lignite-excess
   - lignite-oven
 
   - heat_central-demand_hh

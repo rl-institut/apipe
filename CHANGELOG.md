@@ -129,6 +129,7 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Replace the relative demand of biomass with the relative demand of each
   biomass conversion technology
 - Fix clean rule
+- Update raw datapackage URL
 
 ### Removed
 

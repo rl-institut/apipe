@@ -8,8 +8,8 @@ To download, extract and copy a current set of raw data into `store/raw`, type
 
     snakemake -j<NUMBER_OF_CPU_CORES> update_raw
 
-A zip file from the specified URL
-([Wolke](https://wolke.rl-institut.de/s/w8WKwXT3f9ZzZQJ/download))
+A zip file from a prespecified
+[URL](https://wolke.rl-institut.de/s/aN2ccptGtFsFiDs/download)
 is downloaded and unzipped to `store/temp/`. The raw data files are copied to
 the corresponding folders in `store/raw/`.
 A prompt asks if an already existing file should be updated. Confirm with "y"

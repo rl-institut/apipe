@@ -43,6 +43,7 @@ components:
   - biomass-import
   - biomass-excess
 
+  - biogas-excess
   - biogas-bpchp_central
   - biogas-bpchp_decentral
   - biogas-biogas_upgrading_plant

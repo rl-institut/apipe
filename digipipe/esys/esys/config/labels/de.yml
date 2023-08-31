@@ -4,6 +4,7 @@ biomass-excess: Biomasse Überschuss
 biomass-biogas_plant: Biogasanlage
 biomass-import: Biomasse Import
 biogas: Biogas
+biogas-excess: Biogas Überschuss
 biogas-biogas_upgrading_plant: Biogas-Aufbereitungsanlage
 biogas-bpchp_central: Biogas zentrale KWK
 biogas-bpchp_decentral: Biogas dezentrale KWK

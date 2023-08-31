@@ -52,7 +52,7 @@ write_default_scalars:
     "var_name": "amount",
     "type": None,
     "tech": None,
-    "which": "empty",
+    "which": "zeros",
     "var_unit": "MWh/a",
   }
   capacity_potential: {

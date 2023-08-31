@@ -58,6 +58,7 @@ rule create_panel_settings:
         storage_pv_roof=rules.datasets_bnetza_mastr_storage_region_create_storage_pv_roof_stats.output,
 
         heating_structure_decentral=rules.datasets_demand_heat_region_heating_structure_hh_cts.output.heating_structure_esys_dec,
+        heating_structure_central=rules.datasets_demand_heat_region_heating_structure_hh_cts.output.heating_structure_esys_cen,
         demand_hh_heat=get_abs_dataset_path("datasets", "demand_heat_region") / "data" / "demand_hh_heat_demand.csv",
         demand_cts_heat=get_abs_dataset_path("datasets", "demand_heat_region") / "data" / "demand_cts_heat_demand.csv",
         demand_ind_heat=get_abs_dataset_path("datasets", "demand_heat_region") / "data" / "demand_ind_heat_demand.csv",
@@ -103,6 +104,7 @@ rule create_panel_settings:
         panel_settings_heat = add_heat_panel_settings(
             panel_settings_heat,
             heating_structure_decentral=pd.read_csv(input.heating_structure_decentral, index_col="year"),
+            heating_structure_central=pd.read_csv(input.heating_structure_central, index_col="year"),
             demand_hh_heat=pd.read_csv(input.demand_hh_heat, index_col="municipality_id"),
             demand_cts_heat=pd.read_csv(input.demand_cts_heat, index_col="municipality_id"),
             demand_ind_heat=pd.read_csv(input.demand_ind_heat, index_col="municipality_id"),

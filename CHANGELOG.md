@@ -131,6 +131,8 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Fix clean rule
 - Update raw datapackage URL
 - Restrict snakemake version to v7.32.0
+- Add central heat pump targets to slider
+- Restrict heat pump sliders to not move under 50%
 
 ### Removed
 

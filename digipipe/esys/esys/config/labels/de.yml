@@ -38,10 +38,12 @@ heat_central-demand_hh: zen. Wärmebedarf HH
 heat_central-demand_cts: zen. Wärmebedarf GHD
 heat_central-demand_ind: zen. Wärmebedarf I
 heat_central-storage: zen. Wärmespeicher
+heat_central-excess: zen. Wärmeüberschuss
 heat_decentral-demand_hh: dez. Wärmebedarf HH
 heat_decentral-demand_cts: dez. Wärmebedarf GHD
 heat_decentral-demand_ind: dez. Wärmebedarf I
 heat_decentral-storage: dez. Wärmespeicher
+heat_decentral-excess: dez. Wärmeüberschuss
 hydro-reservoir: Reservoir
 hydro-ror: Laufwasserkraft
 lignite: Braunkohle

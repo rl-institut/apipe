@@ -264,6 +264,16 @@ heat_central-storage:
     input_parameters: "{}"
     output_parameters: "{}"
 
+heat_central-excess:
+  carrier: heat_central
+  tech: excess
+  type: excess
+  foreign_keys:
+    bus: heat_central
+  defaults:
+    marginal_cost: 0
+    input_parameters: "{}"
+
 
 
 # Bus "decentral heat":
@@ -353,6 +363,16 @@ heat_decentral-storage:
   defaults:
     input_parameters: "{}"
     output_parameters: "{}"
+
+heat_decentral-excess:
+  carrier: heat_decentral
+  tech: excess
+  type: excess
+  foreign_keys:
+    bus: heat_decentral
+  defaults:
+    marginal_cost: 0
+    input_parameters: "{}"
 
 
 

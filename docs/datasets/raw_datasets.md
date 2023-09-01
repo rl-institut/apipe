@@ -577,6 +577,7 @@ Global Solar Atlas.
 ### Leistungsdichte
 
 Installierbare Leistung pro Fläche / spezifischer Flächenbedarf:
+
 - Windenergie: 21 MW/km²
 - PV-Freiflächenanlagen: 100 MW/km²
 - PV-Aufdachanlagen: 140 MW/km²
@@ -585,6 +586,25 @@ Installierbare Leistung pro Fläche / spezifischer Flächenbedarf:
 Quelle: [PV- und Windflächenrechner](https://zenodo.org/record/6794558)
 
 Datei: `technology_data.json` --> `power_density`
+
+### Nennleistung Windenergieanlage
+
+Als Zukunftsanlage für 2045 wird eine Enercon E126 6500 (6,5 MW) angenommen.
+Diese wird für die Berechnung der Anlagenanzahl in den Ergebnissen
+verwendet.
+
+Datei: `technology_data.json` --> `nominal_power_per_unit`
+
+### Batterien
+
+- Kleinbatterien/Heimspeicher: Nennkapazität je installierter PV-Peakleistung
+  und Speichernennleistung je installierter Speichernennkapazität aus
+  [bnetza_mastr](../../digipipe/store/digipipe/store/raw/bnetza_mastr/dataset.md) und
+  [HTW](https://solar.htw-berlin.de/wp-content/uploads/HTW-Stromspeicher-Inspektion-2023.pdf).
+- Großbatterien: Speichernennleistung je installierter Speichernennkapazität
+  aus [bnetza_mastr](../../digipipe/store/digipipe/store/raw/bnetza_mastr/dataset.md).
+
+Datei: `technology_data.json` --> `batteries`
 
 ### Kosten und Wirkungsgrade
 

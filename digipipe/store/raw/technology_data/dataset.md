@@ -35,6 +35,14 @@ Quelle: [PV- und Windflächenrechner](https://zenodo.org/record/6794558)
 
 Datei: `technology_data.json` --> `power_density`
 
+## Nennleistung je Anlage
+
+Wind: Als Zukunftsanlage für 2045 wird eine Enercon E126 6500 (6,5 MW)
+angenommen. Diese wird für die Berechnung der Anlagenanzahl in den Ergebnissen
+verwendet.
+
+Datei: `technology_data.json` --> `nominal_power_per_unit`
+
 ## Kosten und Wirkungsgrade
 
 Datei: `raw_costs_efficiencies.csv`

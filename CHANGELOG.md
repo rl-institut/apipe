@@ -69,6 +69,7 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
   their relative capacities
 - Add deletion of all data in store/datasets/esys_raw/data
 - Add notes on OSM download and run resources
+- Add nominal power per wind turbine for 2045
 
 ### Changed
 

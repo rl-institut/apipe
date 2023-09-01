@@ -538,6 +538,18 @@ resources:
             wind:
               description: "Nennleistung je Anlage"
               unit: "MW/Anlage"
+          batteries:
+            large:
+              nominal_power_per_storage_capacity:
+                description: "Speichernennleistung je Speicherkapazität"
+                unit: "kW/kWh"
+            small:
+              nominal_power_per_storage_capacity:
+                description: "Speichernennleistung je Speicherkapazität"
+                unit: "kW/kWh"
+              storage_capacity_per_pv_power:
+                description: "Speicherkapazität je Nennleistung der PV-Anlage"
+                unit: "kWh/kWp"
         _source_path:
           dataset: "technology_data"
           file: "technology_data.json"

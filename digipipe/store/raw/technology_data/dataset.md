@@ -270,22 +270,22 @@ Keine  direkten Werte vorhanden, daher Modellierung anhand der wood stove Werte
 
 efficiency: 
 
-Differenz der Energie zwischen Holz und Kohle liegt im Heizwert des Brennstoffs. Daher wird die Effizienz der wood stove mit Faktor des Verhältnisses der Heizwerte multipliziert.
-Daten für Heizwerte von BMWK [11](https://www.bmwk.de/Redaktion/DE/Artikel/Energie/energiedaten-gesamtausgabe.html) und [12](https://books.google.de/books?id=n0fVYjrHAlwC&pg=PA58#v=onepage&q&f=false) ergibt einen Faktor von 4/3
+  Differenz der Energie zwischen Holz und Kohle liegt im Heizwert des Brennstoffs. Daher wird die Effizienz der wood stove mit Faktor des Verhältnisses der Heizwerte multipliziert.
+  Daten für Heizwerte von BMWK [11](https://www.bmwk.de/Redaktion/DE/Artikel/Energie/energiedaten-gesamtausgabe.html) und [12](https://books.google.de/books?id=n0fVYjrHAlwC&pg=PA58#v=onepage&q&f=false)      ergibt einen Faktor von 4/3
 
 fixom_cost: 
 
-Bestehen großteils aus Brennstoffkosten. Änderung zu wood stove  besteht aus Heizwert (gewonnene Energie pro kg) und Preisdiff pro Kilogramm
+  Bestehen großteils aus Brennstoffkosten. Änderung zu wood stove  besteht aus Heizwert (gewonnene Energie pro kg) und Preisdiff pro Kilogramm
 
-Preise aus brikett-rekord.com [13]
+  Preise aus brikett-rekord.com [13]
 
 lifetime: 
 
-identisch wie wood stove
+  identisch wie wood stove
 
-marginal-cost: identisch wie wood stove
+  marginal-cost: identisch wie wood stove
 
-Aus den Annahmen folgt, dass die Investkosten ignoriert werden können.
+  Aus den Annahmen folgt, dass die Investkosten ignoriert werden können.
 
 #### pv_ground
 

@@ -54,9 +54,9 @@
  ],
  "resources": [
     {
-        "profile": null
-        "name": null
-        "path": null
+        "profile": null,
+        "name": null,
+        "path": null,
         "encoding": null,
         "schema": {
             "fields": [],

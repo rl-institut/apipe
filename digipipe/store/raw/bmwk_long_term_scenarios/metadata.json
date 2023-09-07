@@ -4,14 +4,14 @@
     "id": "bmwk_long_term_scenarios",
     "description": "Langfristszenarien des Bundesministerium für Wirtschaft und Klimaschutz, Daten auf Deutschlandebene.",
     "language": [
-        "de-DE", 
+        "de-DE"
     ],
     "subject": null,
     "keywords": [
         "BMWK",
         "Langfristszenario",
         "T45-Strom",
-        "TN-Strom",
+        "TN-Strom"
     ],
     "publicationDate": null,
     "context": {

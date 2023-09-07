@@ -138,7 +138,7 @@ def add_electricity_panel_settings(
     )
 
     # PV ground and roof
-    pv_ground_search_area_start = round(
+    pv_ground_search_area_start = math.ceil(
         pv_ground_stats.capacity_net.sum()
         / (
             pv_ground_area_stats.sum().sum()
@@ -161,7 +161,7 @@ def add_electricity_panel_settings(
     panel_settings.update(
         **dict(
             s_pv_ff_1=dict(
-                max=round(
+                max=math.ceil(
                     pv_ground_area_stats.sum().sum()
                     * tech_data["power_density"]["pv_ground"]
                 ),

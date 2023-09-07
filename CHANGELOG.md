@@ -135,6 +135,8 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Restrict snakemake version to v7.32.0
 - Add central heat pump targets to slider
 - Restrict heat pump sliders to not move under 50%
+- Fix pv ground slider values to prevent app to alter SQ value from panel
+  settings
 
 ### Removed
 

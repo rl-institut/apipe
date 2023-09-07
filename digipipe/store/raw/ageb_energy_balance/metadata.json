@@ -30,7 +30,7 @@
      },
  "temporal": {
      "referenceDate": "2022-12-01",
-     "timeseries": null,
+     "timeseries": null
  },
  "sources": [
    {

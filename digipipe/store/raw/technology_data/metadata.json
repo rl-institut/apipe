@@ -33,7 +33,8 @@
  },
  "temporal": {
     "referenceDate": null,
-    "timeseries" :null
+    "timeseries" : null
+ },
  "sources": [
     {
      "title": "Technologiedaten",

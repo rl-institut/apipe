@@ -1,28 +1,27 @@
 {
-    "name": "ageb_energy_balance",
-    "title": "AGEB – Anwendungsbilanzen für die Endenergiesektoren 2011 bis 2021",
-    "id": "ageb_energy_balance",
-    "description": "Detaillierte Anwendungsbilanzen der Endenergiesektoren für 2020 und 2021 sowie zusammenfassende Zeitreihen zum Endenergieverbrauch nach Energieträgern und Anwendungszwecken für Jahre von 2011 bis 2021",
-    "language": [
-        "de-DE" 
-      ],
-    "subject": "null", 
-  
-    "keywords": [
-        "Endenergiesektoren",
-        "Anwendungsbilanzen",
-        "energy-balance",
+ "name": "ageb_energy_balance",
+ "title": "AGEB – Anwendungsbilanzen für die Endenergiesektoren 2011 bis 2021",
+ "id": "ageb_energy_balance",
+ "description": "Detaillierte Anwendungsbilanzen der Endenergiesektoren für 2020 und 2021 sowie zusammenfassende Zeitreihen zum Endenergieverbrauch nach Energieträgern und Anwendungszwecken für Jahre von 2011 bis 2021",
+ "language": [
+    "de-DE"
     ],
-    "publicationDate": "2022-12-01",
-    "context": {
-        "homepage": "https://abw.rl-institut.de",
-        "documentation": "https://digiplan.readthedocs.io",
-        "sourceCode": "https://github.com/rl-institut/digipipe/",
-        "contact": "https://reiner-lemoine-institut.de/ueber-uns/kontakt/",
-        "grantNo": "None",
-        "fundingAgency": "https://www.region-gestalten.bund.de",
-        "fundingAgencyLogo": "https://www.region-gestalten.bund.de/Region/SiteGlobals/Frontend/Images/logo.svg",
-        "publisherLogo": "https://reiner-lemoine-institut.de//wp-content/uploads/2015/09/rlilogo.png"
+ "subject": "null", 
+ "keywords": [
+     "Endenergiesektoren",
+     "Anwendungsbilanzen",
+     "energy-balance",
+     ],
+ "publicationDate": "2022-12-01",
+ "context": {
+     "homepage": "https://abw.rl-institut.de",
+     "documentation": "https://digiplan.readthedocs.io",
+     "sourceCode": "https://github.com/rl-institut/digipipe/",
+     "contact": "https://reiner-lemoine-institut.de/ueber-uns/kontakt/",
+     "grantNo": "None",
+     "fundingAgency": "https://www.region-gestalten.bund.de",
+     "fundingAgencyLogo": "https://www.region-gestalten.bund.de/Region/SiteGlobals/Frontend/Images/logo.svg",
+     "publisherLogo": "https://reiner-lemoine-institut.de//wp-content/uploads/2015/09/rlilogo.png"
     },
      "spatial": {
         "location": "Germany",

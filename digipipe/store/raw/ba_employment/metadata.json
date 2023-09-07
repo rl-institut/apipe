@@ -45,7 +45,7 @@
         {
             "title": "Gemeindedaten der sozialversicherungspflichtig Beschäftigten nach Wohn- und Arbeitsort",
             "description": "Zahl der soziaversicherungspflichtig Beschäftigten nach: Wohnort, Personengruppen, Arbeitsort, Wohnort gleich Arbeitsort, Einpendeler, Auspendler, Zahl der Betriebe",
-                "path": "https://statistik.arbeitsagentur.de/SiteGlobals/Forms/Suche/Einzelheftsuche_Formular.html?nn=15024&topic_f=beschaeftigung-sozbe-gemband",
+            "path": "https://statistik.arbeitsagentur.de/SiteGlobals/Forms/Suche/Einzelheftsuche_Formular.html?nn=15024&topic_f=beschaeftigung-sozbe-gemband",
             "licenses": [
                 {
                     "name": null,

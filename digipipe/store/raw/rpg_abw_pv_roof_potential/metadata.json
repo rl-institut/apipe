@@ -35,7 +35,7 @@
         
     "sources": [
         {
-            "title": "rpg_abw_pv_roof_potential",
+            "title": "Dachflächenpotenzial PV-Aufdachanlagen in ABW",
             "description": "Abschätzung der installierten Leistung und des Ertrags von PV-Aufdachanlagen in Anhalt-Bitterfeld-Wittenberg der Regionalen Planungsgemeinschaft.",
             "path": "https://www.planungsregion-abw.de/geodaten/",
             "licenses": [

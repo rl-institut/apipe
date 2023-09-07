@@ -93,65 +93,12 @@
             "format": null,
             "encoding": null,
             "schema": {
-                "fields": [
-                    {
-                        "name": null,
-                        "description": null,
-                        "type": null,
-                        "unit": null,
-                        "isAbout": [
-                            {
-                                "name": null,
-                                "path": null
-                            }
-                        ],
-                        "valueReference": [
-                            {
-                                "value": null,
-                                "name": null,
-                                "path": null
-                            }
-                        ]
-                    },
-                    {
-                        "name": null,
-                        "description": null,
-                        "type": null,
-                        "unit": null,
-                        "isAbout": [
-                            {
-                                "name": null,
-                                "path": null
-                            }
-                        ],
-                        "valueReference": [
-                            {
-                                "value": null,
-                                "name": null,
-                                "path": null
-                            }
-                        ]
-                    }
-                ],
-                "primaryKey": [
-                    null
-                ],
-                "foreignKeys": [
-                    {
-                        "fields": [
-                            null
-                        ],
-                        "reference": {
-                            "resource": null,
-                            "fields": [
-                                null
-                            ]
-                        }
-                    }
-                ]
+                "fields": [],
+                "primaryKey": [],
+                "foreignKeys": []
             },
             "dialect": {
-                "delimiter": null,
+                "delimiter": "",
                 "decimalSeparator": "."
             }
         }

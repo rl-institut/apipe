@@ -41,7 +41,7 @@
         
     "sources": [
         {
-            "title": "rpg_abw_regional_plan",
+            "title": "Regionalplan Anhalt-Bitterfeld-Wittenberg",
             "description": "Geodatensätze aus Teilplänen Wind 2018 und 2027 der Regionalen Planungsgemeinschaft Anhalt-Bitterfeld-Wittenberg.",
             "path": ["https://www.planungsregion-abw.de/regionalplanung/teilplan-windenergie/teilplan-2018/", "https://www.planungsregion-abw.de/regionalplanung/teilplan-windenergie/teilplan-2027/"]
             "licenses": [

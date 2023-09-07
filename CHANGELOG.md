@@ -74,6 +74,7 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Exchange *Test_scenario* with *2045_scenario* in *digipipe/esys/scenarios*
 - Split each demand per sector in *esys*
 - File .gitignore again includes ignoring of esys appdata
+- update metadate in store_raw
 
 ### Removed
 

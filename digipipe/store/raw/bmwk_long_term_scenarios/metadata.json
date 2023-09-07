@@ -1,10 +1,4 @@
 {
-  "Datenquellen": {
-    "Hauptseite": "https://langfristszenarien.de/enertile-explorer-de/szenario-explorer/"
-  }
-}
-
-{
     "name": "bmwk_long_term_scenarios",
     "title": "BMWK Langfristszenarien",
     "id": "bmwk_long_term_scenarios",
@@ -59,15 +53,7 @@
             "title": "BMWK Langfristszenarien",
             "description": "Langfristszenarien des Bundesministerium für Wirtschaft und Klimaschutz, Daten auf Deutschlandebene.",
             "path": "https://langfristszenarien.de/enertile-explorer-de/szenario-explorer/",
-            "licenses": [
-                {
-                    "name": null,
-                    "title": null,
-                    "path": null,
-                    "instruction": null,
-                    "attribution": null
-                }
-            ]
+            "licenses": null
         },
         {
             "title": null,

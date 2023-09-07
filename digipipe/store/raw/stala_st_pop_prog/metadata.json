@@ -57,12 +57,12 @@
  ],
  "contributors": [
     {
-        "title": "hedwiglieselotte",
-        "email": "hedwig.bartels@rl-institut.de",
-        "date": "2023-03-28",
-        "object": "metadata",
-        "comment": "create metadata"
-    }
+         "title": "aaronschilling",
+         "email": "Aaron.Schilling@rl-institut.de",
+         "date": "2023-09-07",
+         "object": "metadata",
+         "comment": "create metadata"
+       }
  ],
  "resources": [
     {

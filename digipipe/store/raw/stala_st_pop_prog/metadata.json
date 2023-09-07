@@ -65,23 +65,23 @@
        }
  ],
  "resources": [
-    {
-        "profile": "tabular-data-resource",
-        "name": "1_Internettabelle_7RBP_nach_Prognosejahr_Geschlecht_alle_Ebenen",
-        "path": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Bevoelkerung/Tabellen/Bevoelkerungsprognose/1_Internettabelle_7RBP_nach_Prognosejahr_Geschlecht_alle_Ebenen.xlsx",
-        "format": "xlxs",
-        "encoding": "",
-        "schema": {
-            "fields": [],
-            "primaryKey": [],
-            "foreignKeys": []
-        },
-        "dialect": {
-            "delimiter": "",
-            "decimalSeparator": "."
+        {
+            "profile": null,
+            "name": null,
+            "path": null,
+            "format": null,
+            "encoding": null,
+            "schema": {
+                "fields": [],
+                "primaryKey": [],
+                "foreignKeys": []
+            },
+            "dialect": {
+                "delimiter": "",
+                "decimalSeparator": "."
+            }
         }
-    }
- ],
+    ],
  "@id": [],
  "@context": "https://raw.githubusercontent.com/OpenEnergyPlatform/oemetadata/develop/metadata/latest/context.json",
  "review": {

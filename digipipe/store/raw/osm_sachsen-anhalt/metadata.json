@@ -74,23 +74,23 @@
     }
   ],
   "resources": [
-    {
-      "profile": "tabular-data-resource",
-      "name": "model_draft.openstreetmap",
-      "path": "",
-      "format": "csv",
-      "encoding": "UTF-8",
-      "schema": {
-        "fields": [],
-        "primaryKey": [],
-        "foreignKeys": []
-      },
-    "dialect": {
-        "delimiter": "",
-        "decimalSeparator": ""
-      }
-    }
-  ],
+        {
+            "profile": null,
+            "name": null,
+            "path": null,
+            "format": null,
+            "encoding": null,
+            "schema": {
+                "fields": [],
+                "primaryKey": [],
+                "foreignKeys": []
+            },
+            "dialect": {
+                "delimiter": "",
+                "decimalSeparator": "."
+            }
+        }
+    ],
   "@id": null,
   "@context": "https://raw.githubusercontent.com/OpenEnergyPlatform/oemetadata/develop/metadata/latest/context.json",
   "review": {

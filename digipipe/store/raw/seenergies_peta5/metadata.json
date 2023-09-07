@@ -1,11 +1,4 @@
 {
-  "Quellen": {
-    "project": "https://www.seenergies.eu/peta5/",
-    "data residential sector": "https://s-eenergies-open-data-euf.hub.arcgis.com/maps/d7d18b63250240a49eb81db972aa573e/about",
-    "data service sector": "https://s-eenergies-open-data-euf.hub.arcgis.com/maps/52ff5e02111142459ed5c2fe3d80b3a0/about"
-  }
-}
-{
     "name": "seenergies_peta5",
     "title": "sEEnergies Pan-European Thermal Atlas 5.2 (Peta5)",
     "id": "seenergies_peta5",

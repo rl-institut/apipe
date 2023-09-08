@@ -1,11 +1,4 @@
 {
-    "Quellen": {
-        "Sachlicher Teilplan Wind 2018": "https://www.planungsregion-abw.de/regionalplanung/teilplan-windenergie/teilplan-2018/",
-        "Geodaten Sachlicher Teilplan Wind 2018": "https://gis.planungsregion-abw.de/geoserver/stp_wind2018/ows?SERVICE=WFS&REQUEST=GetCapabilities",
-        "Sachlicher Teilplan Wind 2027": "https://www.planungsregion-abw.de/regionalplanung/teilplan-windenergie/teilplan-2027/"
-    }
-}
-{
     "name": "rpg_abw_regional_plan",
     "title": "Regionalplan Anhalt-Bitterfeld-Wittenberg",
     "id": "rpg_abw_regional_plan",
@@ -17,9 +10,9 @@
     "keywords": [
         "Geodatensätze",
         "Teilpläne",
-        "PLanungsgemeinschaft",
+        "PLanungsgemeinschaft"
     ],
-    "publicationDate": "2018-05-30"
+    "publicationDate": "2018-05-30",
     "context": {
        "homepage": "https://abw.rl-institut.de",
         "documentation": "https://digiplan.readthedocs.io",
@@ -38,12 +31,12 @@
     "temporal": {
         "referenceDate": "2023-03-03",
         "timeseries": null
-        
+    },
     "sources": [
         {
             "title": "Regionalplan Anhalt-Bitterfeld-Wittenberg",
             "description": "Geodatensätze aus Teilplänen Wind 2018 und 2027 der Regionalen Planungsgemeinschaft Anhalt-Bitterfeld-Wittenberg.",
-            "path": ["https://www.planungsregion-abw.de/regionalplanung/teilplan-windenergie/teilplan-2018/", "https://www.planungsregion-abw.de/regionalplanung/teilplan-windenergie/teilplan-2027/"]
+            "path": ["https://www.planungsregion-abw.de/regionalplanung/teilplan-windenergie/teilplan-2018/", "https://www.planungsregion-abw.de/regionalplanung/teilplan-windenergie/teilplan-2027/"],
             "licenses": [
                 {
                     "name": "DL-DE-BY-2.0",

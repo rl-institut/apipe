@@ -10,7 +10,7 @@
     "keywords": [
         "Energiedaten",
         "Energieversorgung",
-        "Wasserversorgung",
+        "Wasserversorgung"
     ],
     "publicationDate": "2022-01-01",
     "context": {
@@ -35,10 +35,9 @@
                 "start": "2003-01-01T00:00+01",
                 "end": "2021-12-31T23:00+01",
                 "resolution": "1 a",
-                "alignment": "left",
-                
+                "alignment": "left"
     }
-        ]
+        ],
     "sources": [
         {
             "title": "Energiedaten Sachsen-Anhalt",
@@ -116,3 +115,5 @@
         "todo": "If a value is not yet available, use: todo"
     }
 }
+}
+

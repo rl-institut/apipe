@@ -10,7 +10,7 @@
     "keywords": [
         "Verwaltungseinheiten",
         "NUTS",
-        "LAU",
+        "LAU"
     ],
     "publicationDate": "2022-12-15",
     "context": {
@@ -109,3 +109,4 @@
         "todo": "If a value is not yet available, use: todo"
     }
 }
+

@@ -1,13 +1,4 @@
 {
-  "Quellen": {
-    "Titel": "Technoökonomische Analyse und Transformationspfade des energetischen Biomassepotentials (TATBIO)",
-    "Datei": "https://www.ufz.de/export/data/2/231891_technooekonomische-analyse-und-transformationspfade-des-energetischen-biomassepotentials(1).pdf",
-    "Datum": "08.05.2019",
-    "Autor": "DBFZ Deutsches Biomasseforschungszentrum gemeinnützige GmbH",
-    "Seiten": "6 und 54"
-  }
-}
-{
  "name": "dbfz_biomass_heat_capacities",
  "title": "Technoökonomische Analyse und Transformationspfade des energetischen Biomassepotentials (TATBIO)",
  "id": "dbfz_biomass_heat_capacities",

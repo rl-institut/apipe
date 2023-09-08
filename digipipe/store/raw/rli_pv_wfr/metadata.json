@@ -4,7 +4,7 @@
     "id": "rli_pv_wfr",
     "description": "Geodaten aus dem PV- und Windflächenrechner",
     "language": [
-        "de-DE", 
+        "de-DE"
     ],
     "subject": null, 
   
@@ -32,7 +32,7 @@
     },
     "temporal": {
         "referenceDate": "2022-06-05",
-        "timeseries": null,
+        "timeseries": null
     },
     "sources": [
         {
@@ -117,3 +117,4 @@
         "todo": "If a value is not yet available, use: todo"
     }
 }
+

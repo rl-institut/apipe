@@ -4,12 +4,12 @@
  "id": "dwd_temperature",
  "description": "Stündliche Mittelwerte der Luft- und Erdbodentemperatur des Deutschen Wetterdienstes (Climate Data Center) für das Jahr 2011 je Gemeinde in der Region ABW, vorverarbeitet im Projekt WindNODE.",
  "language": [
-    "en-GB",
+    "en-GB"
     ],
  "subject": null,
  "keywords": [
     "Wetter",
-    "Temperatur",
+    "Temperatur"
  ],
  "publicationDate": null,
  "context": {
@@ -25,18 +25,18 @@
  "spatial": {
     "location": "Anhalt-Bitterfeld-Wittenberg",
     "extent": "Germany",
-    "resolution": null,
+    "resolution": null
  },
  "temporal": {
     "referenceDate": "2023-05-23",
-    "timeseries": "timeseries": [
+    "timeseries": [
             {
                 "start": "2011-01-01T00:00+01",
                 "end": "2011-12-31T23:00+01",
                 "resolution": "1 h",
                 "alignment": "left",
                 "aggregationType": null
-            },
+            }
       ]
  },
 "sources": [

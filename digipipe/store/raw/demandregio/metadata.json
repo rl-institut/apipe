@@ -70,7 +70,7 @@
                 "resolution": "1 h",
                 "alignment": null,
                 "aggregationType": "sum"
-            },
+            }
         ]
  },
 "sources": [
@@ -92,7 +92,7 @@
             "path": "https://www.gnu.org/licenses/gpl-3.0.en.html",
             "instruction": "Everyone is permitted to copy and distribute verbatim copies of this license document, but changing it is not allowed",
             "attribution": "© FZJ, TUB, FfE"
-        },
+        }
      ]
   }
  ],

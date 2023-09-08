@@ -32,7 +32,7 @@
     "temporal": {
         "referenceDate": "2022-06-10",
         "timeseries": null
-        
+    },
     "sources": [
         {
             "title": "Dachflächenpotenzial PV-Aufdachanlagen in ABW",

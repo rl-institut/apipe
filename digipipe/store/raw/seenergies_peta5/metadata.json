@@ -32,7 +32,7 @@
     "temporal": {
         "referenceDate": "2022-01-01",
         "timeseries": null
-        
+    },
     "sources": [
         {
             "title": "sEEnergies Pan-European Thermal Atlas 5.2 (Peta5)",

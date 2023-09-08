@@ -38,7 +38,8 @@
                 "resolution": "1 h",
                 "alignment": "left"
             }
-        ],
+        ]
+    },
         "sources": [
             {
                 "title": "renewables.ninja_feedin",
@@ -65,4 +66,54 @@
             }
         ],
         "contributors": [
-          
+            {
+                "title": "aaronschilling",
+                "email": "Aaron.Schilling@rl-institut.de",
+                "date": "2023-09-07",
+                "object": "metadata",
+                "comment": "create metadata"
+            }
+        ],
+        "resources": [
+            {
+                "profile": null,
+                "name": null,
+                "path": null,
+                "format": null,
+                "encoding": null,
+                "schema": {
+                    "fields": [],
+                    "primaryKey": null,
+                    "foreignKeys": []
+                },
+                "dialect": {
+                    "delimiter": "",
+                    "decimalSeparator": "."
+                }
+            }
+        ],
+        "@id": null,
+        "@context": "https://raw.githubusercontent.com/OpenEnergyPlatform/oemetadata/develop/metadata/latest/context.json",
+        "review": {
+            "path": "",
+            "badge": ""
+        },
+        "metaMetadata": {
+            "metadataVersion": "OEP-1.5.2",
+            "metadataLicense": {
+                "name": "CC0-1.0",
+                "title": "Creative Commons Zero v1.0 Universal",
+                "path": "https://creativecommons.org/publicdomain/zero/1.0/"
+            }
+        },
+        "_comment": {
+            "metadata": "Metadata documentation and explanation (https://github.com/OpenEnergyPlatform/oemetadata)",
+            "dates": "Dates and time must follow the ISO8601 including time zone (YYYY-MM-DD or YYYY-MM-DDThh:mm:ss±hh)",
+            "units": "Use a space between numbers and units (100 m)",
+            "languages": "Languages must follow the IETF (BCP47) format (en-GB, en-US, de-DE)",
+            "licenses": "License name must follow the SPDX License List (https://spdx.org/licenses/)",
+            "review": "Following the OEP Data Review (https://github.com/OpenEnergyPlatform/data-preprocessing/blob/master/data-review/manual/review_manual.md)",
+            "null": "If not applicable use: null",
+            "todo": "If a value is not yet available, use: todo"
+        }
+    }

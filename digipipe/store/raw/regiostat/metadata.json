@@ -4,7 +4,7 @@
     "id": "regiostat",
     "description": "Energieverwendung der Betriebe im Verarbeitenden Gewerbe (43531-01-02-4), Betriebe, tätige Personen, Bruttoentgelte (42111-01-04-5), Gebäude mit Wohnraum nach Heizungsart (31211-04-01-5-B), Gebäude mit Wohnraum nach Heizungsart (31231-02-01-5)",
     "language": [
-        "de-DE", 
+        "de-DE"
     ],
     "subject": null, 
   
@@ -15,7 +15,7 @@
         "tätige Personen",
         "Bruttoentgelte",
         "Gebäude",
-        "Heizungsart",
+        "Heizungsart"
     ],
     "publicationDate": null,
     "context": {
@@ -35,13 +35,13 @@
     },
     "temporal": {
         "referenceDate": "2021-01-01",
-        "timeseries": null,
+        "timeseries": null
     },
     "sources": [
         {
             "title": "Regionalstatistik (GENESIS)",
             "description": "Energieverwendung der Betriebe im Verarbeitenden Gewerbe (43531-01-02-4), Betriebe, tätige Personen, Bruttoentgelte (42111-01-04-5), Gebäude mit Wohnraum nach Heizungsart (31211-04-01-5-B), Gebäude mit Wohnraum nach Heizungsart (31231-02-01-5)",
-            "path": ["https://www.regionalstatistik.de/genesis//online?operation=table&code=43531-01-02-4", "https://www.regionalstatistik.de/genesis//online?operation=table&code=42111-01-04-5"]
+            "path": ["https://www.regionalstatistik.de/genesis//online?operation=table&code=43531-01-02-4", "https://www.regionalstatistik.de/genesis//online?operation=table&code=42111-01-04-5"],
             "licenses": [
                 {
                     "name": "DL-DE-BY-2.0",

@@ -7,11 +7,13 @@ from digipipe.scripts.geo import (
     rename_filter_attributes,
     write_geofile,
 )
+from digipipe.config import GLOBAL_CONFIG
 
 
 def process() -> None:
     attrs = snakemake.config["attributes"]
     attrs_filter = snakemake.config["attributes_filter"]
+    attrs_filter["NUTS"] = GLOBAL_CONFIG["global"]["geodata"]["NUTS"]
 
     units = pd.read_csv(
         snakemake.input.units,

@@ -34,8 +34,7 @@ attributes:
 attributes_filter:
   {"Land": "Deutschland",
    "EinheitBetriebsstatus": ["In Betrieb", "In Planung"],
-   "Lage": "Windkraft an Land",
-   "Landkreis": ["Wittenberg", "Anhalt-Bitterfeld", "Dessau-Roßlau"]}
+   "Lage": "Windkraft an Land"}
 
 # Output settings
 layer: bnetza_mastr_wind

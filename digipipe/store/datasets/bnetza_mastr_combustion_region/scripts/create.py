@@ -8,12 +8,13 @@ from digipipe.scripts.geo import (
     write_geofile,
 )
 from digipipe.store.utils import df_merge_string_columns
+from digipipe.config import GLOBAL_CONFIG
 
 
 def process() -> None:
     attrs = snakemake.config["attributes"]
     attrs_filter = snakemake.config["attributes_filter"]
-
+    attrs_filter["NUTS"] = GLOBAL_CONFIG["global"]["geodata"]["NUTS"]
     units = pd.read_csv(
         snakemake.input.units,
         usecols=set(attrs.keys()) | set(attrs_filter.keys()),

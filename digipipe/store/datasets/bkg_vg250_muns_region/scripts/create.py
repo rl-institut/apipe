@@ -7,6 +7,7 @@ from digipipe.scripts.geo import (
     reproject_simplify,
     write_geofile,
 )
+from digipipe.config import GLOBAL_CONFIG
 
 
 def process():
@@ -41,4 +42,7 @@ def process():
 
 if __name__ == "__main__":
     config = snakemake.config
+    config["attributes_filter"]["NUTS"] = GLOBAL_CONFIG["global"]["geodata"][
+        "NUTS"
+    ]
     process()

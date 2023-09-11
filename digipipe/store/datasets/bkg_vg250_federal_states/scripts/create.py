@@ -9,6 +9,7 @@ from digipipe.scripts.geo import (
     reproject_simplify,
     write_geofile,
 )
+from digipipe.config import GLOBAL_CONFIG
 
 
 def process():
@@ -37,5 +38,8 @@ def process():
 if __name__ == "__main__":
     infile = sys.argv[1]
     config = read_config(sys.argv[2])
+    config["attributes_filter"]["NUTS"] = GLOBAL_CONFIG["global"]["geodata"][
+        "NUTS"
+    ]
     outfile = sys.argv[3]
     process()

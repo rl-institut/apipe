@@ -9,5 +9,4 @@ attributes:
    "GEN": "name",
    "geometry": "geometry"}
 attributes_filter:
-  {"GF": 4,
-   "NUTS": ["DEE01", "DEE05", "DEE0E"]}
+  {"GF": 4}

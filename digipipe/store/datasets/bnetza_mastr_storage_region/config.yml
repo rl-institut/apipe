@@ -29,8 +29,7 @@ unit_attributes:
    "NetzbetreiberpruefungStatus": "validated_by_system_operator"}
 unit_attributes_filter:
   {"Land": "Deutschland",
-   "EinheitBetriebsstatus": ["In Betrieb", "In Planung"],
-   "Landkreis": ["Wittenberg", "Anhalt-Bitterfeld", "Dessau-Roßlau"]}
+   "EinheitBetriebsstatus": ["In Betrieb", "In Planung"]}
 
 plant_attributes:
   {"VerknuepfteEinheit": "unit_mastr_id",

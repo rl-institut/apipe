@@ -7,22 +7,26 @@ from digipipe.scripts.geo import (
     rename_filter_attributes,
     write_geofile,
 )
+from digipipe.config import GLOBAL_CONFIG
 
 
 def process() -> None:
+    unit_attrs = snakemake.config["unit_attributes"]
+    unit_attrs_filter = snakemake.config["unit_attributes_filter"]
+    unit_attrs_filter["NUTS"] = GLOBAL_CONFIG["global"]["geodata"]["NUTS"]
     # Read units
     units = pd.read_csv(
         snakemake.input.units,
         usecols=(
-            set(snakemake.config["unit_attributes"].keys())
-            | set(snakemake.config["unit_attributes_filter"].keys())
+            set(unit_attrs.keys())
+            | set(unit_attrs_filter["unit_attributes_filter"].keys())
         ),
         dtype={"Postleitzahl": str},
     )
     units = rename_filter_attributes(
         gdf=units,
-        attrs_filter_by_values=snakemake.config["unit_attributes_filter"],
-        attrs_mapping=snakemake.config["unit_attributes"],
+        attrs_filter_by_values=unit_attrs_filter,
+        attrs_mapping=unit_attrs,
     ).set_index("mastr_id")
 
     # Read plants (for storage capacity)

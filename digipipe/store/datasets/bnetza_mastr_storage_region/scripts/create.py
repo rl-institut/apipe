@@ -7,20 +7,24 @@ from digipipe.scripts.geo import (
     rename_filter_attributes,
     write_geofile,
 )
+from digipipe.store.utils import (
+    get_names_from_nuts,
+    PATH_TO_REGION_DISTRICTS_GPKG,
+)
 from digipipe.config import GLOBAL_CONFIG
 
 
 def process() -> None:
     unit_attrs = snakemake.config["unit_attributes"]
     unit_attrs_filter = snakemake.config["unit_attributes_filter"]
-    unit_attrs_filter["NUTS"] = GLOBAL_CONFIG["global"]["geodata"]["NUTS"]
+    unit_attrs_filter["Landkreis"] = get_names_from_nuts(
+        PATH_TO_REGION_DISTRICTS_GPKG,
+        GLOBAL_CONFIG["global"]["geodata"]["NUTS"],
+    )
     # Read units
     units = pd.read_csv(
         snakemake.input.units,
-        usecols=(
-            set(unit_attrs.keys())
-            | set(unit_attrs_filter["unit_attributes_filter"].keys())
-        ),
+        usecols=(set(unit_attrs.keys()) | set(unit_attrs_filter.keys())),
         dtype={"Postleitzahl": str},
     )
     units = rename_filter_attributes(

@@ -7,13 +7,21 @@ from digipipe.scripts.geo import (
     rename_filter_attributes,
     write_geofile,
 )
+from digipipe.store.utils import (
+    get_names_from_nuts,
+    PATH_TO_REGION_DISTRICTS_GPKG,
+)
 from digipipe.config import GLOBAL_CONFIG
 
 
 def process() -> None:
     attrs = snakemake.config["attributes"]
     attrs_filter = snakemake.config["attributes_filter"]
-    attrs_filter["NUTS"] = GLOBAL_CONFIG["global"]["geodata"]["NUTS"]
+    attrs_filter["Landkreis"] = get_names_from_nuts(
+        PATH_TO_REGION_DISTRICTS_GPKG,
+        GLOBAL_CONFIG["global"]["geodata"]["NUTS"],
+    )
+
     units = pd.read_csv(
         snakemake.input.units,
         usecols=set(attrs.keys()) | set(attrs_filter.keys()),

@@ -7,6 +7,7 @@ import os
 from pathlib import Path
 
 import pandas as pd
+import geopandas as gpd
 
 from digipipe import store
 
@@ -105,6 +106,33 @@ PATH_TO_REGION_DISTRICTS_GPKG = (
     )
     / "bkg_vg250_districts_region.gpkg"
 )
+
+
+def get_names_from_nuts(gpkg: gpd.GeoDataFrame, regions_nuts: list) -> list:
+    """
+    Extract region names from a GeoPackage file for specified NUTS codes.
+
+    This function reads a GeoPackage file using GeoPandas, filters the
+    data to select rows where the 'nuts' column matches the provided NUTS
+    codes, and returns a list of region names from the 'name' column
+
+    Parameters
+    ----------
+    gpkg : gpd.GeoDataFrame
+        A GeoDataFrame representing geographical data from the GeoPackage file.
+    regions_nuts : list
+        A list of NUTS codes to filter the data by
+
+    Returns
+    -------
+    list
+        A list of region names corresponding to the provided NUTS codes
+
+    """
+    gdf = gpd.read_file(gpkg)
+    filtered_gdf = gdf[gdf["nuts"].isin(regions_nuts)]
+    regions_names = filtered_gdf["name"].tolist()
+    return regions_names
 
 
 def df_merge_string_columns(

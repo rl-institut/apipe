@@ -72,9 +72,7 @@ rule create_development_over_time:
     capacity and cumulative number of operating units
     """
     input:
-        agg_region=DATASET_PATH
-        / "data"
-        / "bnetza_mastr_pv_ground_region.gpkg",
+        agg_region=DATASET_PATH / "data" / "bnetza_mastr_pv_ground_region.gpkg",
     output:
         DATASET_PATH
         / "data"
@@ -94,13 +92,16 @@ rule create_development_over_time:
         )
 
         df_units_cumulative = (
-            df.groupby("year").agg(
-                unit_count=("mastr_id", "count")).cumsum().reset_index()
+            df.groupby("year")
+            .agg(unit_count=("mastr_id", "count"))
+            .cumsum()
+            .reset_index()
         )
         df_combined = df_capacity_over_time.merge(
             df_units_cumulative, on="year"
         )
-        df_combined["capacity_net"] = df_combined[
-            "capacity_net"].div(1e3).round(1)
+        df_combined["capacity_net"] = (
+            df_combined["capacity_net"].div(1e3).round(1)
+        )
         df_combined["year"] = df_combined["year"].astype(int)
         df_combined.to_csv(output[0], index=False)

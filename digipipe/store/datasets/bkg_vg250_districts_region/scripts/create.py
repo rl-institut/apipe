@@ -2,6 +2,7 @@ import sys
 
 import geopandas as gpd
 
+from digipipe.config import GLOBAL_CONFIG
 from digipipe.scripts.config import read_config
 from digipipe.scripts.geo import (
     convert_to_multipolygon,
@@ -9,7 +10,6 @@ from digipipe.scripts.geo import (
     reproject_simplify,
     write_geofile,
 )
-from digipipe.config import GLOBAL_CONFIG
 
 
 def process():

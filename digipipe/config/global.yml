@@ -11,8 +11,8 @@ geodata:
   geocoder:
     user_agent: "geocoder"
     interval_sec: 1
-  # Define NUTS3 codes for region of interest 
-  nuts: 
+  # Define NUTS3 codes for region of interest
+  nuts:
     - "DEE01"
     - "DEE05"
     - "DEE0E"

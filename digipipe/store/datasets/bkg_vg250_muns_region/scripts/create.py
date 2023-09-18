@@ -1,5 +1,6 @@
 import geopandas as gpd
 
+from digipipe.config import GLOBAL_CONFIG
 from digipipe.scripts.geo import (
     convert_to_multipolygon,
     overlay,
@@ -7,7 +8,6 @@ from digipipe.scripts.geo import (
     reproject_simplify,
     write_geofile,
 )
-from digipipe.config import GLOBAL_CONFIG
 
 
 def process():

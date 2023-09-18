@@ -1,6 +1,7 @@
 import geopandas as gpd
 import pandas as pd
 
+from digipipe.config import GLOBAL_CONFIG
 from digipipe.scripts.datasets import mastr
 from digipipe.scripts.geo import (
     overlay,
@@ -8,11 +9,10 @@ from digipipe.scripts.geo import (
     write_geofile,
 )
 from digipipe.store.utils import (
+    PATH_TO_REGION_DISTRICTS_GPKG,
     df_merge_string_columns,
     get_names_from_nuts,
-    PATH_TO_REGION_DISTRICTS_GPKG,
 )
-from digipipe.config import GLOBAL_CONFIG
 
 
 def process() -> None:

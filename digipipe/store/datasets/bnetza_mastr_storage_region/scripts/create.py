@@ -19,7 +19,7 @@ def process() -> None:
     unit_attrs_filter = snakemake.config["unit_attributes_filter"]
     unit_attrs_filter["Landkreis"] = get_names_from_nuts(
         PATH_TO_REGION_DISTRICTS_GPKG,
-        GLOBAL_CONFIG["global"]["geodata"]["NUTS"],
+        GLOBAL_CONFIG["global"]["geodata"]["nuts"],
     )
     # Read units
     units = pd.read_csv(

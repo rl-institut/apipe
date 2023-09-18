@@ -11,9 +11,9 @@ geodata:
   geocoder:
     user_agent: "geocoder"
     interval_sec: 1
-  NUTS: 
-    - "DEE01"
-    - "DEE05"
-    - "DEE0E"
+  # Define NUTS3 codes for region of interest 
+  nuts: 
+    - "DE409"
+    - "DE40C"
 input_data:
   download_url: "https://wolke.rl-institut.de/s/aN2ccptGtFsFiDs/download"

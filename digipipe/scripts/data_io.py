@@ -75,6 +75,8 @@ def copy_files(src_path: str, dest_path: str) -> None:
                 dst_file = os.path.join(dst_dir, file)
                 if not os.path.isfile(dst_file):
                     files_to_copy.append(file)
+                if file == ".gitkeep":
+                    continue
                 else:
                     print(f"\n'{file}' already exists in '{d}/data'.")
                     overwrite_file = input("Do you want to update it? (y/n) ")
@@ -87,6 +89,7 @@ def copy_files(src_path: str, dest_path: str) -> None:
                         print(f"'{file}' updated.")
                     else:
                         continue
+
             for file in files_to_copy:
                 src_file = os.path.join(src_dir, file)
                 dst_file = os.path.join(dst_dir, file)

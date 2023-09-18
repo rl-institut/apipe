@@ -43,6 +43,6 @@ def process():
 if __name__ == "__main__":
     config = snakemake.config
     config["attributes_filter"]["NUTS"] = GLOBAL_CONFIG["global"]["geodata"][
-        "NUTS"
+        "nuts"
     ]
     process()

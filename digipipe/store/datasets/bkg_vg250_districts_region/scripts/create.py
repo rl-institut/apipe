@@ -39,7 +39,7 @@ if __name__ == "__main__":
     infile = sys.argv[1]
     config = read_config(sys.argv[2])
     config["attributes_filter"]["NUTS"] = GLOBAL_CONFIG["global"]["geodata"][
-        "NUTS"
+        "nuts"
     ]
     outfile = sys.argv[3]
     process()

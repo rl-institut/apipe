@@ -71,6 +71,7 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Add notes on OSM download and run resources
 - Add nominal power per wind turbine for 2045
 - Add technology data for batteries
+- Add definition of relevant regions (NUTS3) in global configuration file 
 
 ### Changed
 
@@ -135,6 +136,8 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Restrict snakemake version to v7.32.0
 - Add central heat pump targets to slider
 - Restrict heat pump sliders to not move under 50%
+- Adapt existing dataset rules to use the global region definition (NUTS3)
+
 
 ### Removed
 

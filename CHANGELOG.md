@@ -137,6 +137,7 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Restrict heat pump sliders to not move under 50%
 - Fix pv ground slider values to prevent app to alter SQ value from panel
   settings
+- Fix PV roof slider values
 
 ### Removed
 

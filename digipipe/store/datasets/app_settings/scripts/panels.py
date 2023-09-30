@@ -146,17 +146,32 @@ def add_electricity_panel_settings(
         )
         * 100
     )
+    pv_roof_used_start = (
+        pv_roof_area_deploy_stats.capacity_net.sum()
+        / pv_roof_area_deploy_stats.installable_power.sum()
+        * 100
+    )
     pv_roof_capacity_max = (
         pv_roof_area_stats[
             [
                 f"installable_power_{orient}"
-                for orient in ["south", "east", "west", "flat"]
+                for orient in ["south", "north", "east", "west", "flat"]
             ]
         ]
         .sum()
         .sum()
-        * 0.5
-    )  # Max. 50% of all roofs except for north-oriented
+    )
+    # Check if PV roof potential for current used share setting is smaller
+    # than actual installed capacity (which leads to too small startup value).
+    # If so, correct value by using installed capacity.
+    # The reason for this mismatch are differences in installed and installable
+    # (RPG dataset) capacities.
+    if (pv_roof_capacity_max * math.ceil(pv_roof_used_start) / 100) < round(
+        pv_roof_stats.capacity_net.sum()
+    ):
+        pv_roof_used_start = math.ceil(
+            pv_roof_stats.capacity_net.sum() / pv_roof_capacity_max * 100
+        )
 
     panel_settings.update(
         **dict(
@@ -188,7 +203,7 @@ def add_electricity_panel_settings(
                 step=5,
             ),
             s_pv_d_1=dict(
-                max=round(pv_roof_capacity_max),
+                max=round(pv_roof_capacity_max * pv_roof_used_start / 100),
                 min=0,
                 start=round(pv_roof_stats.capacity_net.sum()),
                 step=10,
@@ -198,17 +213,9 @@ def add_electricity_panel_settings(
             s_pv_d_3=dict(
                 max=50,
                 min=0,
-                start=round(
-                    pv_roof_area_deploy_stats.capacity_net.sum()
-                    / pv_roof_area_deploy_stats.installable_power.sum()
-                    * 100
-                ),
+                start=round(pv_roof_used_start),
                 step=5,
-                status_quo=round(
-                    pv_roof_area_deploy_stats.capacity_net.sum()
-                    / pv_roof_area_deploy_stats.installable_power.sum()
-                    * 100
-                ),
+                status_quo=round(pv_roof_used_start),
             ),
             s_pv_d_4=dict(
                 max=100,

@@ -179,7 +179,7 @@ Es werden für jedes Szenario jeder Wert aus 8 Komponenten zusammengesetzt.
 Diese sind die Kombinationen aus:
 - Sole-Umwelt
 - Einfamilienhaus-Mehrfamilienhaus (fast alle WP in Einfamilienhäsuern!)
-- Altbau-Neubau 
+- Altbau-Neubau
 
 Es wird das gemittelte Verhätnis Deutschlandweit der letzten 20 Jahre angenommen (BBSR; Bundesamt für Bauwesen und Raumordnung)
 
@@ -268,18 +268,18 @@ Auch die Datenlage für die Kohleheizung sehr schlecht ist, die Daten werden dah
 
 Keine  direkten Werte vorhanden, daher Modellierung anhand der wood stove Werte
 
-efficiency: 
+efficiency:
 
   Differenz der Energie zwischen Holz und Kohle liegt im Heizwert des Brennstoffs. Daher wird die Effizienz der wood stove mit Faktor des Verhältnisses der Heizwerte multipliziert.
   Daten für Heizwerte von BMWK [11](https://www.bmwk.de/Redaktion/DE/Artikel/Energie/energiedaten-gesamtausgabe.html) und [12](https://books.google.de/books?id=n0fVYjrHAlwC&pg=PA58#v=onepage&q&f=false)      ergibt einen Faktor von 4/3
 
-fixom_cost: 
+fixom_cost:
 
   Bestehen großteils aus Brennstoffkosten. Änderung zu wood stove  besteht aus Heizwert (gewonnene Energie pro kg) und Preisdiff pro Kilogramm
 
   Preise aus brikett-rekord.com [13]
 
-lifetime: 
+lifetime:
 
   identisch wie wood stove
 
@@ -393,7 +393,7 @@ Berechnungen siehe "wood_oven_script" im Code Anhang
 Moser (EnBW), Frank Richert (Wolf), Ingo Rieger (Bosch), Egbert Tippelt (Viessmann), André Jacob
 (BWP), Johanna Otting (BWP), Björn Schreinermacher (BWP)(2023): "Branchenstudie 2023: Marktentwicklung – Prognose –Handlungsempfehlungen", Bundesverband Wärmepumpe (BWP) e. V.
 
-[6] Statistisches Landesamt Sachsen-Anhalt: "GENESIS-Tabelle: 31121-0006, Statistik der Baufertigstellungen", von https://genesis.sachsen-anhalt.de/genesis//online?operation=table&code=31121-0006&bypass=true&levelindex=0&levelid=1682324189765#abreadcrumb, Stand: 11.04.2023 
+[6] Statistisches Landesamt Sachsen-Anhalt: "GENESIS-Tabelle: 31121-0006, Statistik der Baufertigstellungen", von https://genesis.sachsen-anhalt.de/genesis//online?operation=table&code=31121-0006&bypass=true&levelindex=0&levelid=1682324189765#abreadcrumb, Stand: 11.04.2023
 
 [7] Statista Research Department(2021): "Struktur des Wohnungsbaus nach Neubau und Sanierung in Deutschland in den Jahren 2001 bis 2020", von https://de.statista.com/statistik/daten/studie/202207/umfrage/struktur-des-wohnungsbaus-nach-art-der-bauleistung-in-deutschland/, Stand: 03.04.2023 12:26:20
 

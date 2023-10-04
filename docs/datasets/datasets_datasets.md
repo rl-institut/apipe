@@ -1,10 +1,9 @@
 # 'Datasets' Datasets 
 
 ------------------------------
-## Photovoltaik-Aufdachanlagen
+## Verbrennungskraftwerke
 
-Photovoltaik-Aufdachanlagen in der Region aus MaStR-Registerdaten als
-Geopackage.
+Verbrennungskraftwerke in der Region aus MaStR-Registerdaten als Geopackage.
 Es werden alle Anlagen berücksichtigt, die in Betrieb sind oder sich in
 Planung befinden. Anlagen mit Geokoordinaten werden georeferenziert
 übernommen, für Anlagen die keine Koordinaten aufweisen (üblicherweise <=30
@@ -23,16 +22,43 @@ einem Landkreis (Attribut `district_id`, vgl.
 zugeordnet.
 
 Zusätzlich erfolgt eine statistische Auswertung der installierten Leistung in
-`bnetza_mastr_pv_roof_stats_muns.csv`.
+`bnetza_mastr_combustion_stats_muns.csv`.
 
-### Datenkorrektur
+**Dataset: `datasets/bnetza_mastr_combustion_region`**
 
-Einige Anlagen sind hinsichtlich Ihrer geografischen Lage oder Typs fehlerhaft.
-Anhand des Datensatzes
-[bnetza_mastr_correction_region](../../raw/bnetza_mastr_correction_region/dataset.md)
-wird für diese Anlagen eine Datenkorrektur vorgenommen.
 
-**Dataset: `datasets/bnetza_mastr_pv_roof_region`**
+------------------------------
+## EE-Einspeisezeitreihen
+
+Einspeisezeitreihen für Erneuerbare Energien. Als Wetterjahr wird 2011
+verwendet, siehe [Szenarien](../../../../docs/sections/scenarios.md).
+
+Raw dataset mit methodischer Beschreibung:
+[renewables.ninja_feedin](../../raw/renewables.ninja_feedin/dataset.md)
+
+### Einspeisezeitreihen
+
+Zeitreihe normiert auf Summe=1 für
+
+- Windenergie: `wind_feedin_timeseries.csv`
+- Photovoltaik: `pv_feedin_timeseries.csv`
+- Solarthermie: `st_feedin_timeseries.csv`
+- Laufwasserkraft: `ror_feedin_timeseries.csv`
+
+### Jahresvolllaststunden
+
+Heutige bzw. prognostizierte Jahresvolllaststunden: `full_load_hours.json`
+
+**Dataset: `datasets/renewable_feedin`**
+
+
+------------------------------
+## Bundesländer
+
+Bundesländergrenzen aus Geodaten der Verwaltungsgebiete extrahiert und nach
+Landmasse gefiltert (Geofaktor 4 = "mit Struktur Land").
+
+**Dataset: `datasets/bkg_vg250_federal_states`**
 
 
 ------------------------------
@@ -63,6 +89,51 @@ Zusätzlich erfolgt eine statistische Auswertung der installierten Leistung in
 
 
 ------------------------------
+## Region
+
+Region aus Geodaten der Landkreise zusammengeführt.
+
+**Dataset: `datasets/bkg_vg250_region`**
+
+
+------------------------------
+## Potenzialgebiete PV-Freiflächen
+
+Potenzialgebiete für die Errichtung von PV-Freiflächenanlagen aus dem
+[PV- und Windflächenrechner](https://www.agora-energiewende.de/service/pv-und-windflaechenrechner/)
+(s. Datensatz [rli_pv_wfr](../../raw/rli_pv_wfr/dataset.md)).
+
+Die Potenzialflächen bilden jene Flächen ab, die für die Nutzung durch
+Freiflächen-Photovoltaikanlagen grundsätzlich zur Verfügung stehen. Sie
+orientieren sich an der aktuellen Förderkulisse und wurden anhand des
+Flächenumfangs sowie den verfügbaren Geodaten ausgewählt: Von den in §37 EEG
+2021 definierten Flächen werden Flächen nach §37 Absatz 1 Nummer 2 Buchstaben c,
+h und i berücksichtigt (für Details zur Methodik siehe
+[methodisches Begleitdokument](https://zenodo.org/record/6794558) zum PV- und
+Windflächenrechner).
+
+Dateien:
+- Freiflächen-PV auf Acker- und Grünlandflächen mit geringer Bodengüte (Soil
+  Quality Rating (SQR) < 40): `potentialarea_pv_agriculture_lfa-off_region.gpkg`
+- Potenzialflächen für Freiflächen-PV entlang von Bundesautobahnen und
+  Schienenwegen (500m-Streifen): `potentialarea_pv_road_railway_region.gpkg`
+
+Die Flächen werden mit den Gemeindegrenzen verschnitten und den Gemeinden
+zugeordnet. Je Gemeinde und obigem Flächentyp/Datei wird eine Flächensumme (in
+km²) berechnet, siehe `potentialarea_pv_ground_area_stats_muns.csv`. Die
+Gemeinden werden über den Schlüssel `municipality_id` (vgl.
+[bkg_vg250_muns_region](../../datasets/bkg_vg250_muns_region/dataset.md))
+identifiziert.
+
+Des Weiteren werden die Flächenanteile der verfügbaren Potenzialgebiete - deren
+Nutzung nur eingeschränkt möglich ist (z.B. durch Naturschutzgebieten etc.) -
+gegenüber den gesamten Potenzialgebiete (für die Parametrierung der Regler) nach
+`potentialarea_pv_ground_area_shares.json` exportiert.
+
+**Dataset: `datasets/potentialarea_pv_ground_region`**
+
+
+------------------------------
 ## Landkreise
 
 Landkreise der Region aus Geodaten der Verwaltungsgebiete extrahiert und
@@ -72,30 +143,193 @@ nach Landmasse gefiltert (Geofaktor 4 = "mit Struktur Land").
 
 
 ------------------------------
-## Bezeichner und Namen aus MaStR
+## Geodaten PV- und Windflächenrechner
 
-Bezeichner und Namen aus MaStR als Mapping <NAME_IN_GEODATEN> ->
-<NAME_IN_MASTR> wobei CamelCase aus <NAME_IN_MASTR> in Leerzeichen konvertiert
-werden.
+Geodaten aus dem
+[PV- und Windflächenrechner](https://www.agora-energiewende.de/service/pv-und-windflaechenrechner/),
+extrahiert, zu LAEA Europe (EPSG:3035) umprojiziert und auf die Regionsgrenzen
+zugeschnitten.
 
-**Dataset: `datasets/bnetza_mastr_captions`**
+Preprocessed dataset:
+[rli_pv_windflaechenrechner](../../preprocessed/rli_pv_wfr/dataset.md)
 
-
-------------------------------
-## Sozialversicherungspflichtig Beschäftigte und Betriebe
-
-Gesamtanzahl sozialversicherungspflichtig Beschäftigte und Betriebsstätten
-je Gemeinde für die Region.
-
-**Dataset: `datasets/employment_region`**
+**Dataset: `datasets/rli_pv_wfr_region`**
 
 
 ------------------------------
-## Region
+## Wärmepumpen COP
 
-Region aus Geodaten der Landkreise zusammengeführt.
+Zeitreihe für die Leistungszahl / Coefficient of performance (COP) für
+Wärmepumpen. Berücksichtigt werden Luftwärmepumpen (ASHP) und Erdwärmepumpen
+(GSHP). Der COP wird mit Hilfe von Zeitreihen der Umgebungstemperatur (ASHP)
+bzw. der Bodentemperatur (GSHP) für jeden Zeitschritt berechnet.
 
-**Dataset: `datasets/bkg_vg250_region`**
+Details zur Berechnungsmethodik können der Dokumentation von
+[oemof.thermal](https://oemof-thermal.readthedocs.io/en/latest/compression_heat_pumps_and_chillers.html)
+entnommen werden.
+
+Annahmen
+- Vorlauftemperatur: 40 °C
+- Gütegrad / Quality grade: 0.4 (nach
+  [VDE](https://www.energiedialog2050.info/wp-content/uploads/simple-file-list/VDE_ST_ETG_Warmemarkt_RZ-web.pdf))
+- Vereisungsverluste bei ASHP: 20 % bei <2 °C
+
+Daraus ergibt sich eine mittlere Jahresarbeitszahl (JAZ) von 3,3 für ASHP und
+4,3 für GSHP, die mit typischen Werten für 2019
+([AEW](https://static.agora-energiewende.de/fileadmin/Projekte/2022/2022-04_DE_Scaling_up_heat_pumps/A-EW_273_Waermepumpen_WEB.pdf))
+übereinstimmen. Für das Zukunftsszenario wird ferner ein Effizienzgewinn durch
+technische Weiterentwicklung von 25 % angenommen
+[ewi](https://www.ewi.uni-koeln.de/cms/wp-content/uploads/2015/12/2014_06_24_ENDBER_P7570_Energiereferenzprognose-GESAMT-FIN-IA.pdf).
+
+Beide separat erstelle Zeitreihen werden anhand der heutigen Marktdurchdringung
+gewichtet und in eine mittlere Zeitreihe für Wärmepumpen überführt. Im Jahr
+XXXX betrug der Anteil der kleinen ASHP und GSHP laut jeweils 50 % [Source].
+
+Verwendet Datensätze
+- [dwd_temperature](../../preprocessed/dwd_temperature/dataset.md)
+
+**Dataset: `datasets/heatpump_cop`**
+
+
+------------------------------
+## Gemeinden
+
+Gemeinden der Region aus Geodaten der Verwaltungsgebiete extrahiert und
+nach Landmasse gefiltert (Geofaktor 4 = "mit Struktur Land").
+
+**Dataset: `datasets/bkg_vg250_muns_region`**
+
+
+------------------------------
+## Potenzialgebiete Windenergie
+
+Potenzialgebiete für die Errichtung von Windenergieanlagen, basierend auf den
+Teilplänen Wind der Regionalen Planungsgemeinschaft Anhalt-Bitterfeld-Wittenberg
+aus
+[rpg_abw_regional_plan](../../preprocessed/rpg_abw_regional_plan/dataset.md).
+
+Dateien:
+- STP Wind 2018 - Vorrang-/Eignungsgebiete:
+  `potentialarea_wind_stp_2018_vreg.gpkg`
+- STP Wind 2027 - Planabsicht Vorranggebiete:
+  `potentialarea_wind_stp_2027_vr.gpkg`
+- STP Wind 2027 - Planabsicht Repoweringgebiete:
+  `potentialarea_wind_stp_2027_repowering.gpkg`
+- STP Wind 2027 - Suchraum Wald:
+  `potentialarea_wind_stp_2027_search_area_forest_area.gpkg`
+- STP Wind 2027 - Suchraum Offenland:
+  `potentialarea_wind_stp_2027_search_area_open_area.gpkg`
+
+Die darin verwendeten Attributtexte werden in die Datei
+`potentialarea_wind_attribute_captions.json` exportiert.
+
+Die Flächen werden mit den Gemeindegrenzen verschnitten und den Gemeinden
+zugeordnet. Je Gemeinde und obigem Flächentyp/Datei wird eine Flächensumme (in
+km²) berechnet, siehe `potentialarea_wind_area_stats_muns.csv`. Die Gemeinden
+werden über den Schlüssel `municipality_id` (vgl.
+[bkg_vg250_muns_region](../../datasets/bkg_vg250_muns_region/dataset.md))
+identifiziert.
+
+**Dataset: `datasets/potentialarea_wind_region`**
+
+
+------------------------------
+## Staat
+
+Staatsgrenze aus Geodaten der Verwaltungsgebiete extrahiert und nach Landmasse
+gefiltert (Geofaktor 4 = "mit Struktur Land").
+
+**Dataset: `datasets/bkg_vg250_state`**
+
+
+------------------------------
+## Bevölkerungsentwicklung
+
+EinwohnerInnen je Gemeinde: Historische Daten und Prognosen
+
+### Historische Daten bis 2022
+
+Statistisches Bundesamt (Raw dataset:
+[destatis_gv](../../raw/destatis_gv/dataset.md))
+
+### Prognosen bis 2035
+
+Statistisches Landesamt Sachsen-Anhalt (Raw dataset:
+[stala_st_pop_prog](../../raw/stala_st_pop_prog/dataset.md)). Deaktivieren
+mittels entfernen der Zieljahre in [config.yml](config.yml) im Abschnitt
+`prognosis_fstate_munlevel`.
+
+Kann für andere Regionen auch durch DemandRegio (s.u.) ersetzt werden, die
+tatsächliche regionale Auflösung wird dadurch reduziert.
+
+### Prognosen bis 2045
+
+DemandRegio (Raw dataset: [demandregio](../../raw/demandregio/dataset.md))
+basierend auf der
+[14. koordinierten Bevölkerungsvorausberechnung](https://www.destatis.de/DE/Themen/Gesellschaft-Umwelt/Bevoelkerung/Bevoelkerungsvorausberechnung/aktualisierung-bevoelkerungsvorausberechnung.html)
+der Statistischen Ämter von Bund und Ländern. Diese Daten liegen auf
+Landkreisebene vor, daher erfolgt eine gleichmäßige Skalierung der
+dazugehörigen Gemeinden auf den jeweiligen Prognosewert.
+
+Deaktivieren mittels entfernen der Zieljahre in [config.yml](config.yml) im
+Abschnitt `prognosis_germany_districtlevel`.
+
+### Extrapolation
+
+Über 2045 hinaus wird lineare Extrapolation auf Basis der letzten beiden
+Prognosejahre unterstützt. Um diese zu aktivieren, müssen lediglich Zieljahre
+in die [config.yml](config.yml) im Abschnitt `extrapolation` eingetragen werden.
+
+**Dataset: `datasets/population_region`**
+
+
+------------------------------
+## Dachflächenpotenzial PV-Aufdachanlagen in ABW
+
+Abschätzung der installierten Leistung und des Ertrags von PV-Aufdachanlagen in
+Anhalt-Bitterfeld-Wittenberg der Regionalen Planungsgemeinschaft aus Datensatz
+[rpg_abw_pv_roof_potential](../../raw/rpg_abw_pv_roof_potential/dataset.md).
+
+Die Gebäudezentroide werden mit den Gemeindegrenzen verschnitten und den
+Gemeinden zugeordnet, siehe `potentialarea_pv_roof_area_stats_muns.csv`.
+
+Des Weiteren wird je Gemeinde der relative Anteil der bereits installierten
+Anlagenleistung an der theoretisch installierbaren Leistung (bei
+100% Dachnutzung) berechnet und in
+`potentialarea_pv_roof_deployment_stats_muns.csv` geschrieben.
+
+Die Gemeinden werden über den Schlüssel `municipality_id` (vgl.
+[bkg_vg250_muns_region](../../datasets/bkg_vg250_muns_region/dataset.md))
+identifiziert.
+
+**Dataset: `datasets/potentialarea_pv_roof_region`**
+
+
+------------------------------
+## Windenergieanlagen
+
+Windenergieanlagen in der Region aus MaStR-Registerdaten als Geopackage.
+Es werden alle Anlagen berücksichtigt, die in Betrieb sind oder sich in
+Planung befinden. Anlagen mit Geokoordinaten werden georeferenziert
+übernommen, für Anlagen die keine Koordinaten aufweisen (üblicherweise <=30
+kW Nennleistung) erfolgt ein Geocoding anhand von PLZ und Ort, um eine
+ungefähre Position bereit zu stellen.
+
+Neben einem anlagenscharfen Datensatz wird ein weiterer Datensatz erzeugt,
+der alle Anlagen mit approximierter Position je Position zusammenfasst und
+jeweils typische Kennwerte enthält (u.a. Anzahl Anlagen, Gesamtleistung).
+
+Jede Anlage wird anhand ihrer Lokation einer Gemeinde (Attribut
+`municipality_id`, vgl.
+[bkg_vg250_muns_region](../../datasets/bkg_vg250_muns_region/dataset.md)) und
+einem Landkreis (Attribut `district_id`, vgl.
+[bkg_vg250_muns_region](../../datasets/bkg_vg250_districts_region/dataset.md))
+zugeordnet.
+
+Zusätzlich erfolgt eine statistische Auswertung der installierten Leistung in
+`bnetza_mastr_wind_stats_muns.csv`.
+
+**Dataset: `datasets/bnetza_mastr_wind_region`**
 
 
 ------------------------------
@@ -180,83 +414,6 @@ landesweiter Prognosen aus den
 
 
 ------------------------------
-## Windenergieanlagen
-
-Windenergieanlagen in der Region aus MaStR-Registerdaten als Geopackage.
-Es werden alle Anlagen berücksichtigt, die in Betrieb sind oder sich in
-Planung befinden. Anlagen mit Geokoordinaten werden georeferenziert
-übernommen, für Anlagen die keine Koordinaten aufweisen (üblicherweise <=30
-kW Nennleistung) erfolgt ein Geocoding anhand von PLZ und Ort, um eine
-ungefähre Position bereit zu stellen.
-
-Neben einem anlagenscharfen Datensatz wird ein weiterer Datensatz erzeugt,
-der alle Anlagen mit approximierter Position je Position zusammenfasst und
-jeweils typische Kennwerte enthält (u.a. Anzahl Anlagen, Gesamtleistung).
-
-Jede Anlage wird anhand ihrer Lokation einer Gemeinde (Attribut
-`municipality_id`, vgl.
-[bkg_vg250_muns_region](../../datasets/bkg_vg250_muns_region/dataset.md)) und
-einem Landkreis (Attribut `district_id`, vgl.
-[bkg_vg250_muns_region](../../datasets/bkg_vg250_districts_region/dataset.md))
-zugeordnet.
-
-Zusätzlich erfolgt eine statistische Auswertung der installierten Leistung in
-`bnetza_mastr_wind_stats_muns.csv`.
-
-**Dataset: `datasets/bnetza_mastr_wind_region`**
-
-
-------------------------------
-## Staat
-
-Staatsgrenze aus Geodaten der Verwaltungsgebiete extrahiert und nach Landmasse
-gefiltert (Geofaktor 4 = "mit Struktur Land").
-
-**Dataset: `datasets/bkg_vg250_state`**
-
-
-------------------------------
-## Geodaten PV- und Windflächenrechner
-
-Geodaten aus dem
-[PV- und Windflächenrechner](https://www.agora-energiewende.de/service/pv-und-windflaechenrechner/),
-extrahiert, zu LAEA Europe (EPSG:3035) umprojiziert und auf die Regionsgrenzen
-zugeschnitten.
-
-Preprocessed dataset:
-[rli_pv_windflaechenrechner](../../preprocessed/rli_pv_wfr/dataset.md)
-
-**Dataset: `datasets/rli_pv_wfr_region`**
-
-
-------------------------------
-## Verbrennungskraftwerke
-
-Verbrennungskraftwerke in der Region aus MaStR-Registerdaten als Geopackage.
-Es werden alle Anlagen berücksichtigt, die in Betrieb sind oder sich in
-Planung befinden. Anlagen mit Geokoordinaten werden georeferenziert
-übernommen, für Anlagen die keine Koordinaten aufweisen (üblicherweise <=30
-kW Nennleistung) erfolgt ein Geocoding anhand von PLZ und Ort, um eine
-ungefähre Position bereit zu stellen.
-
-Neben einem anlagenscharfen Datensatz wird ein weiterer Datensatz erzeugt,
-der alle Anlagen mit approximierter Position je Position zusammenfasst und
-jeweils typische Kennwerte enthält (u.a. Anzahl Anlagen, Gesamtleistung).
-
-Jede Anlage wird anhand ihrer Lokation einer Gemeinde (Attribut
-`municipality_id`, vgl.
-[bkg_vg250_muns_region](../../datasets/bkg_vg250_muns_region/dataset.md)) und
-einem Landkreis (Attribut `district_id`, vgl.
-[bkg_vg250_muns_region](../../datasets/bkg_vg250_districts_region/dataset.md))
-zugeordnet.
-
-Zusätzlich erfolgt eine statistische Auswertung der installierten Leistung in
-`bnetza_mastr_combustion_stats_muns.csv`.
-
-**Dataset: `datasets/bnetza_mastr_combustion_region`**
-
-
-------------------------------
 ## OpenStreetMap - Wälder
 
 Waldflächen aus OpenStreetMap, Daten extrahiert anhand von spezifischen Tags.
@@ -265,45 +422,10 @@ Waldflächen aus OpenStreetMap, Daten extrahiert anhand von spezifischen Tags.
 
 
 ------------------------------
-## Wärmepumpen COP
+## Geo- oder Solarthermie-, Grubengas- und Klärschlamm-Anlagen
 
-Zeitreihe für die Leistungszahl / Coefficient of performance (COP) für
-Wärmepumpen. Berücksichtigt werden Luftwärmepumpen (ASHP) und Erdwärmepumpen
-(GSHP). Der COP wird mit Hilfe von Zeitreihen der Umgebungstemperatur (ASHP)
-bzw. der Bodentemperatur (GSHP) für jeden Zeitschritt berechnet.
-
-Details zur Berechnungsmethodik können der Dokumentation von
-[oemof.thermal](https://oemof-thermal.readthedocs.io/en/latest/compression_heat_pumps_and_chillers.html)
-entnommen werden.
-
-Annahmen
-- Vorlauftemperatur: 40 °C
-- Gütegrad / Quality grade: 0.4 (nach
-  [VDE](https://www.energiedialog2050.info/wp-content/uploads/simple-file-list/VDE_ST_ETG_Warmemarkt_RZ-web.pdf))
-- Vereisungsverluste bei ASHP: 20 % bei <2 °C
-
-Daraus ergibt sich eine mittlere Jahresarbeitszahl (JAZ) von 3,3 für ASHP und
-4,3 für GSHP, die mit typischen Werten für 2019
-([AEW](https://static.agora-energiewende.de/fileadmin/Projekte/2022/2022-04_DE_Scaling_up_heat_pumps/A-EW_273_Waermepumpen_WEB.pdf))
-übereinstimmen. Für das Zukunftsszenario wird ferner ein Effizienzgewinn durch
-technische Weiterentwicklung von 25 % angenommen
-[ewi](https://www.ewi.uni-koeln.de/cms/wp-content/uploads/2015/12/2014_06_24_ENDBER_P7570_Energiereferenzprognose-GESAMT-FIN-IA.pdf).
-
-Beide separat erstelle Zeitreihen werden anhand der heutigen Marktdurchdringung
-gewichtet und in eine mittlere Zeitreihe für Wärmepumpen überführt. Im Jahr
-XXXX betrug der Anteil der kleinen ASHP und GSHP laut jeweils 50 % [Source].
-
-Verwendet Datensätze
-- [dwd_temperature](../../preprocessed/dwd_temperature/dataset.md)
-
-**Dataset: `datasets/heatpump_cop`**
-
-
-------------------------------
-## Photovoltaik-Freiflächenanlagen
-
-Photovoltaik-Freiflächenanlagen in der Region aus MaStR-Registerdaten als
-Geopackage.
+Anlagen der Geo- oder Solarthermie, Grubengas und Klärschlamm in der Region
+aus MaStR-Registerdaten als Geopackage.
 Es werden alle Anlagen berücksichtigt, die in Betrieb sind oder sich in
 Planung befinden. Anlagen mit Geokoordinaten werden georeferenziert
 übernommen, für Anlagen die keine Koordinaten aufweisen (üblicherweise <=30
@@ -322,16 +444,9 @@ einem Landkreis (Attribut `district_id`, vgl.
 zugeordnet.
 
 Zusätzlich erfolgt eine statistische Auswertung der installierten Leistung in
-`bnetza_mastr_pv_ground_stats_muns.csv`.
+`bnetza_mastr_gsgk_stats_muns.csv`.
 
-### Datenkorrektur
-
-Einige Anlagen sind hinsichtlich Ihrer geografischen Lage oder Typs fehlerhaft.
-Anhand des Datensatzes
-[bnetza_mastr_correction_region](../../raw/bnetza_mastr_correction_region/dataset.md)
-wird für diese Anlagen eine Datenkorrektur vorgenommen.
-
-**Dataset: `datasets/bnetza_mastr_pv_ground_region`**
+**Dataset: `datasets/bnetza_mastr_gsgk_region`**
 
 
 ------------------------------
@@ -353,7 +468,6 @@ landesweiter Prognosen aus den
   2021 für Raumwärme, Warmwasser und Prozesswärme, desaggregiert auf Gemeinden
   mittels Wärmebedarfs-Rasterdaten aus 2015 (Wärmebedarfsdichte 1ha) aus
   [Peta5](../../raw/seenergies_peta5/dataset.md)
-- TODO: Mittels Zensus 31231-02-01-5
 - Prognosewerte für 2045 werden durch lineare Skalierung mittels Reduktion der
   Gebäudewärmebedarfe aus
   [BMWK Langfristszenarien](../../preprocessed/bmwk_long_term_scenarios/dataset.md)
@@ -479,36 +593,39 @@ Hierbei wird nach Technologien für dezentrale sowie Fernwärme unterschieden.
 
 
 ------------------------------
-## Potenzialgebiete Windenergie
+## Speicheranlagen
 
-Potenzialgebiete für die Errichtung von Windenergieanlagen, basierend auf den
-Teilplänen Wind der Regionalen Planungsgemeinschaft Anhalt-Bitterfeld-Wittenberg
-aus
-[rpg_abw_regional_plan](../../preprocessed/rpg_abw_regional_plan/dataset.md).
+Speicheranlagen in der Region aus MaStR-Registerdaten als Geopackage.
+Es werden alle Anlagen berücksichtigt, die in Betrieb sind oder sich in
+Planung befinden. Anlagen mit Geokoordinaten werden georeferenziert
+übernommen, für Anlagen die keine Koordinaten aufweisen (üblicherweise <=30
+kW Nennleistung) erfolgt ein Geocoding anhand von PLZ und Ort, um eine
+ungefähre Position bereit zu stellen.
 
-Dateien:
-- STP Wind 2018 - Vorrang-/Eignungsgebiete:
-  `potentialarea_wind_stp_2018_vreg.gpkg`
-- STP Wind 2027 - Planabsicht Vorranggebiete:
-  `potentialarea_wind_stp_2027_vr.gpkg`
-- STP Wind 2027 - Planabsicht Repoweringgebiete:
-  `potentialarea_wind_stp_2027_repowering.gpkg`
-- STP Wind 2027 - Suchraum Wald:
-  `potentialarea_wind_stp_2027_search_area_forest_area.gpkg`
-- STP Wind 2027 - Suchraum Offenland:
-  `potentialarea_wind_stp_2027_search_area_open_area.gpkg`
+Neben einem anlagenscharfen Datensatz wird ein weiterer Datensatz erzeugt,
+der alle Anlagen mit approximierter Position je Position zusammenfasst und
+jeweils typische Kennwerte enthält (u.a. Anzahl Anlagen, Gesamtleistung).
 
-Die darin verwendeten Attributtexte werden in die Datei
-`potentialarea_wind_attribute_captions.json` exportiert.
+Jede Anlage wird anhand ihrer Lokation einer Gemeinde (Attribut
+`municipality_id`, vgl.
+[bkg_vg250_muns_region](../../datasets/bkg_vg250_muns_region/dataset.md)) und
+einem Landkreis (Attribut `district_id`, vgl.
+[bkg_vg250_muns_region](../../datasets/bkg_vg250_districts_region/dataset.md))
+zugeordnet.
 
-Die Flächen werden mit den Gemeindegrenzen verschnitten und den Gemeinden
-zugeordnet. Je Gemeinde und obigem Flächentyp/Datei wird eine Flächensumme (in
-km²) berechnet, siehe `potentialarea_wind_area_stats_muns.csv`. Die Gemeinden
-werden über den Schlüssel `municipality_id` (vgl.
-[bkg_vg250_muns_region](../../datasets/bkg_vg250_muns_region/dataset.md))
-identifiziert.
+Zusätzlich erfolgt eine statistische Auswertung der installierten Leistung in
+`bnetza_mastr_storage_stats_muns.csv`.
 
-**Dataset: `datasets/potentialarea_wind_region`**
+**Dataset: `datasets/bnetza_mastr_storage_region`**
+
+
+------------------------------
+## Sozialversicherungspflichtig Beschäftigte und Betriebe
+
+Gesamtanzahl sozialversicherungspflichtig Beschäftigte und Betriebsstätten
+je Gemeinde für die Region.
+
+**Dataset: `datasets/employment_region`**
 
 
 ------------------------------
@@ -539,19 +656,20 @@ Zusätzlich erfolgt eine statistische Auswertung der installierten Leistung in
 
 
 ------------------------------
-## Bundesländer
+## Bezeichner und Namen aus MaStR
 
-Bundesländergrenzen aus Geodaten der Verwaltungsgebiete extrahiert und nach
-Landmasse gefiltert (Geofaktor 4 = "mit Struktur Land").
+Bezeichner und Namen aus MaStR als Mapping <NAME_IN_GEODATEN> ->
+<NAME_IN_MASTR> wobei CamelCase aus <NAME_IN_MASTR> in Leerzeichen konvertiert
+werden.
 
-**Dataset: `datasets/bkg_vg250_federal_states`**
+**Dataset: `datasets/bnetza_mastr_captions`**
 
 
 ------------------------------
-## Geo- oder Solarthermie-, Grubengas- und Klärschlamm-Anlagen
+## Photovoltaik-Aufdachanlagen
 
-Anlagen der Geo- oder Solarthermie, Grubengas und Klärschlamm in der Region
-aus MaStR-Registerdaten als Geopackage.
+Photovoltaik-Aufdachanlagen in der Region aus MaStR-Registerdaten als
+Geopackage.
 Es werden alle Anlagen berücksichtigt, die in Betrieb sind oder sich in
 Planung befinden. Anlagen mit Geokoordinaten werden georeferenziert
 übernommen, für Anlagen die keine Koordinaten aufweisen (üblicherweise <=30
@@ -570,78 +688,23 @@ einem Landkreis (Attribut `district_id`, vgl.
 zugeordnet.
 
 Zusätzlich erfolgt eine statistische Auswertung der installierten Leistung in
-`bnetza_mastr_gsgk_stats_muns.csv`.
+`bnetza_mastr_pv_roof_stats_muns.csv`.
 
-**Dataset: `datasets/bnetza_mastr_gsgk_region`**
+### Datenkorrektur
 
+Einige Anlagen sind hinsichtlich Ihrer geografischen Lage oder Typs fehlerhaft.
+Anhand des Datensatzes
+[bnetza_mastr_correction_region](../../raw/bnetza_mastr_correction_region/dataset.md)
+wird für diese Anlagen eine Datenkorrektur vorgenommen.
 
-------------------------------
-## Dachflächenpotenzial PV-Aufdachanlagen in ABW
-
-Abschätzung der installierten Leistung und des Ertrags von PV-Aufdachanlagen in
-Anhalt-Bitterfeld-Wittenberg der Regionalen Planungsgemeinschaft aus Datensatz
-[rpg_abw_pv_roof_potential](../../raw/rpg_abw_pv_roof_potential/dataset.md).
-
-Die Gebäudezentroide werden mit den Gemeindegrenzen verschnitten und den
-Gemeinden zugeordnet, siehe `potentialarea_pv_roof_area_stats_muns.csv`.
-
-Des Weiteren wird je Gemeinde der relative Anteil der bereits installierten
-Anlagenleistung an der theoretisch installierbaren Leistung (bei
-100% Dachnutzung) berechnet und in
-`potentialarea_pv_roof_deployment_stats_muns.csv` geschrieben.
-
-Die Gemeinden werden über den Schlüssel `municipality_id` (vgl.
-[bkg_vg250_muns_region](../../datasets/bkg_vg250_muns_region/dataset.md))
-identifiziert.
-
-**Dataset: `datasets/potentialarea_pv_roof_region`**
+**Dataset: `datasets/bnetza_mastr_pv_roof_region`**
 
 
 ------------------------------
-## Bevölkerungsentwicklung
+## Photovoltaik-Freiflächenanlagen
 
-EinwohnerInnen je Gemeinde: Historische Daten und Prognosen
-
-### Historische Daten bis 2022
-
-Statistisches Bundesamt (Raw dataset:
-[destatis_gv](../../raw/destatis_gv/dataset.md))
-
-### Prognosen bis 2035
-
-Statistisches Landesamt Sachsen-Anhalt (Raw dataset:
-[stala_st_pop_prog](../../raw/stala_st_pop_prog/dataset.md)). Deaktivieren
-mittels entfernen der Zieljahre in [config.yml](config.yml) im Abschnitt
-`prognosis_fstate_munlevel`.
-
-Kann für andere Regionen auch durch DemandRegio (s.u.) ersetzt werden, die
-tatsächliche regionale Auflösung wird dadurch reduziert.
-
-### Prognosen bis 2045
-
-DemandRegio (Raw dataset: [demandregio](../../raw/demandregio/dataset.md))
-basierend auf der
-[14. koordinierten Bevölkerungsvorausberechnung](https://www.destatis.de/DE/Themen/Gesellschaft-Umwelt/Bevoelkerung/Bevoelkerungsvorausberechnung/aktualisierung-bevoelkerungsvorausberechnung.html)
-der Statistischen Ämter von Bund und Ländern. Diese Daten liegen auf
-Landkreisebene vor, daher erfolgt eine gleichmäßige Skalierung der
-dazugehörigen Gemeinden auf den jeweiligen Prognosewert.
-
-Deaktivieren mittels entfernen der Zieljahre in [config.yml](config.yml) im
-Abschnitt `prognosis_germany_districtlevel`.
-
-### Extrapolation
-
-Über 2045 hinaus wird lineare Extrapolation auf Basis der letzten beiden
-Prognosejahre unterstützt. Um diese zu aktivieren, müssen lediglich Zieljahre
-in die [config.yml](config.yml) im Abschnitt `extrapolation` eingetragen werden.
-
-**Dataset: `datasets/population_region`**
-
-
-------------------------------
-## Speicheranlagen
-
-Speicheranlagen in der Region aus MaStR-Registerdaten als Geopackage.
+Photovoltaik-Freiflächenanlagen in der Region aus MaStR-Registerdaten als
+Geopackage.
 Es werden alle Anlagen berücksichtigt, die in Betrieb sind oder sich in
 Planung befinden. Anlagen mit Geokoordinaten werden georeferenziert
 übernommen, für Anlagen die keine Koordinaten aufweisen (üblicherweise <=30
@@ -660,78 +723,14 @@ einem Landkreis (Attribut `district_id`, vgl.
 zugeordnet.
 
 Zusätzlich erfolgt eine statistische Auswertung der installierten Leistung in
-`bnetza_mastr_storage_stats_muns.csv`.
+`bnetza_mastr_pv_ground_stats_muns.csv`.
 
-**Dataset: `datasets/bnetza_mastr_storage_region`**
+### Datenkorrektur
 
+Einige Anlagen sind hinsichtlich Ihrer geografischen Lage oder Typs fehlerhaft.
+Anhand des Datensatzes
+[bnetza_mastr_correction_region](../../raw/bnetza_mastr_correction_region/dataset.md)
+wird für diese Anlagen eine Datenkorrektur vorgenommen.
 
-------------------------------
-## EE-Einspeisezeitreihen
-
-Einspeisezeitreihen für Erneuerbare Energien. Als Wetterjahr wird 2011
-verwendet, siehe [Szenarien](../../../../docs/sections/scenarios.md).
-
-Raw dataset mit methodischer Beschreibung:
-[renewables.ninja_feedin](../../raw/renewables.ninja_feedin/dataset.md)
-
-### Einspeisezeitreihen
-
-Zeitreihe normiert auf Summe=1 für
-
-- Windenergie: `wind_feedin_timeseries.csv`
-- Photovoltaik: `pv_feedin_timeseries.csv`
-- Solarthermie: `st_feedin_timeseries.csv`
-- Laufwasserkraft: `ror_feedin_timeseries.csv`
-
-### Jahresvolllaststunden
-
-Heutige bzw. prognostizierte Jahresvolllaststunden: `full_load_hours.json`
-
-**Dataset: `datasets/renewable_feedin`**
-
-
-------------------------------
-## Potenzialgebiete PV-Freiflächen
-
-Potenzialgebiete für die Errichtung von PV-Freiflächenanlagen aus dem
-[PV- und Windflächenrechner](https://www.agora-energiewende.de/service/pv-und-windflaechenrechner/)
-(s. Datensatz [rli_pv_wfr](../../raw/rli_pv_wfr/dataset.md)).
-
-Die Potenzialflächen bilden jene Flächen ab, die für die Nutzung durch
-Freiflächen-Photovoltaikanlagen grundsätzlich zur Verfügung stehen. Sie
-orientieren sich an der aktuellen Förderkulisse und wurden anhand des
-Flächenumfangs sowie den verfügbaren Geodaten ausgewählt: Von den in §37 EEG
-2021 definierten Flächen werden Flächen nach §37 Absatz 1 Nummer 2 Buchstaben c,
-h und i berücksichtigt (für Details zur Methodik siehe
-[methodisches Begleitdokument](https://zenodo.org/record/6794558) zum PV- und
-Windflächenrechner).
-
-Dateien:
-- Freiflächen-PV auf Acker- und Grünlandflächen mit geringer Bodengüte (Soil
-  Quality Rating (SQR) < 40): `potentialarea_pv_agriculture_lfa-off_region.gpkg`
-- Potenzialflächen für Freiflächen-PV entlang von Bundesautobahnen und
-  Schienenwegen (500m-Streifen): `potentialarea_pv_road_railway_region.gpkg`
-
-Die Flächen werden mit den Gemeindegrenzen verschnitten und den Gemeinden
-zugeordnet. Je Gemeinde und obigem Flächentyp/Datei wird eine Flächensumme (in
-km²) berechnet, siehe `potentialarea_pv_ground_area_stats_muns.csv`. Die
-Gemeinden werden über den Schlüssel `municipality_id` (vgl.
-[bkg_vg250_muns_region](../../datasets/bkg_vg250_muns_region/dataset.md))
-identifiziert.
-
-Des Weiteren werden die Flächenanteile der verfügbaren Potenzialgebiete - deren
-Nutzung nur eingeschränkt möglich ist (z.B. durch Naturschutzgebieten etc.) -
-gegenüber den gesamten Potenzialgebiete (für die Parametrierung der Regler) nach
-`potentialarea_pv_ground_area_shares.json` exportiert.
-
-**Dataset: `datasets/potentialarea_pv_ground_region`**
-
-
-------------------------------
-## Gemeinden
-
-Gemeinden der Region aus Geodaten der Verwaltungsgebiete extrahiert und
-nach Landmasse gefiltert (Geofaktor 4 = "mit Struktur Land").
-
-**Dataset: `datasets/bkg_vg250_muns_region`**
+**Dataset: `datasets/bnetza_mastr_pv_ground_region`**
 

@@ -6,8 +6,8 @@
     "language": [
         "de-DE"
     ],
-    "subject": null, 
-  
+    "subject": null,
+
     "keywords": [
         "Geodaten",
         "PV-Flächenrechner",
@@ -38,7 +38,7 @@
         {
             "title": "Geodaten PV- und Windflächenrechner",
             "description": "Geodaten aus dem PV- und Windflächenrechner",
-            "path": "https://zenodo.org/record/6728382", 
+            "path": "https://zenodo.org/record/6728382",
             "licenses": null
         },
         {

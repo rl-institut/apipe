@@ -71,6 +71,7 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Add notes on OSM download and run resources
 - Add nominal power per wind turbine for 2045
 - Add technology data for batteries
+- Add technology data for thermal storages
 
 ### Changed
 

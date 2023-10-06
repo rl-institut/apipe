@@ -139,6 +139,7 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Fix pv ground slider values to prevent app to alter SQ value from panel
   settings
 - Fix PV roof slider values
+- Add HP share slider from-max values to prevent 100 % HP share
 
 ### Removed
 

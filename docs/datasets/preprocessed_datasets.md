@@ -1,39 +1,50 @@
 # 'Preprocessed' Datasets 
 
 ------------------------------
-## Energiedaten Sachsen-Anhalt
+## Lokale Verwaltungseinheiten
 
-Datensätze zur Energie- und Wasserversorgung des Statistischen Landesamtes
-Sachsen-Anhalt, extrahiert und konvertiert.
+Lokale Verwaltungseinheiten (LAUs) von Eurostat, mit NUTS kompatibel. Diese
+LAUs sind die Bausteine der NUTS und umfassen die Gemeinden und Kommunen der
+Europäischen Union.
 
-### Daten
+Daten aus Excel extrahiert und in CSV exportiert.
 
-Stromverbrauch der Industriebetriebe nach Kreisen 2003-2021 in MWh
+**Dataset: `preprocessed/eurostat_lau`**
 
-- Datei: `power_demand_industry_st_districts.csv`
-
-Raw dataset:
-[stala_st_energy](../../digipipe/store/raw/stala_st_energy/dataset.md)
-
-**Dataset: `preprocessed/stala_st_energy`**
-
-??? metadata "Metadata"
-    ```json
-    {
-        "Datenquellen": {
-            "Stromverbrauch der Industriebetriebe nach Kreisen": "https://statistik.sachsen-anhalt.de/themen/wirtschaftsbereiche/energie-und-wasserversorgung/tabellen-energieverwendung#c206986"
-        }
-    }
-    ```
 
 ------------------------------
-## sEEnergies Pan-European Thermal Atlas 5.2 (Peta5)
+## Bevölkerungsprognose Sachsen-Anhalt
 
-Wärmebedarf (extrahiert) für Europa 2015 in GJ (1ha Auflösung) für
-- Haushalte: Raumwärme und Warmwasser
-- GHD: Raumwärme, Warmwasser und Prozesswärme
+Bevölkerungsprognose je Gemeinde bis 2035 des Statistischen Landesamtes
+Sachsen-Anhalt, extrahiert und konvertiert.
 
-**Dataset: `preprocessed/seenergies_peta5`**
+Raw dataset:
+[stala_st_pop_prog](../../digipipe/store/raw/stala_st_pop_prog/dataset.md)
+
+**Dataset: `preprocessed/stala_st_pop_prog`**
+
+
+------------------------------
+## Dachflächenpotenzial PV-Aufdachanlagen in ABW
+
+Abschätzung der installierten Leistung und des Ertrags von PV-Aufdachanlagen in
+Anhalt-Bitterfeld-Wittenberg der Regionalen Planungsgemeinschaft, reprojizert.
+
+Raw dataset:
+[rpg_abw_pv_roof_potential](../../digipipe/store/raw/rpg_abw_pv_roof_potential/dataset.md)
+
+**Dataset: `preprocessed/rpg_abw_pv_roof_potential`**
+
+
+------------------------------
+## Temperatur
+
+Stündliche Mittelwerte der Luft- und Erdbodentemperatur für die Region ABW,
+Mittelwert für alle Gemeinden.
+
+Verwendet: [dwd_temperature](../../digipipe/store/raw/dwd_temperature/dataset.md)
+
+**Dataset: `preprocessed/dwd_temperature`**
 
 
 ------------------------------
@@ -43,7 +54,7 @@ Langfristszenarien des Bundesministerium für Wirtschaft und Klimaschutz, Daten
 auf Landesebene, extrahiert.
 
 Raw dataset:
-[bmwk_long_term_scenarios](../../raw/bmwk_long_term_scenarios/dataset.md)
+[bmwk_long_term_scenarios](../../digipipe/store/raw/bmwk_long_term_scenarios/dataset.md)
 
 **Dataset: `preprocessed/bmwk_long_term_scenarios`**
 
@@ -61,22 +72,24 @@ Aus PDF extrahierte Tabellenwerte für Haushalte, GHD und Industrie.
 
 
 ------------------------------
-## DemandRegio
+## sEEnergies Pan-European Thermal Atlas 5.2 (Peta5)
 
-Regionalisierte Bevölkerungsprognose sowie Strom-, Wärme und Gasbedarf auf
-Landkreisebene, extrahiert.
+Wärmebedarf (extrahiert) für Europa 2015 in GJ (1ha Auflösung) für
 
-Enthält Jahresverbräuche und Zeitreihen für die Sektoren Haushalte, Gewerbe,
-Handel, Dienstleistungen (GHD) und Industrie für mehrere Zieljahre.
+- Haushalte: Raumwärme und Warmwasser
+- GHD: Raumwärme, Warmwasser und Prozesswärme
 
-**Dataset: `preprocessed/demandregio`**
+**Dataset: `preprocessed/seenergies_peta5`**
 
 
 ------------------------------
 ## OpenStreetMap gefiltert
 
-OSM data nach bestimmten tags gefiltert, zu LAEA Europe (EPSG:3035) umprojiziert
-und in ein Geopackage konvertiert.
+OSM data nach bestimmten Tags (s. [config.yml](../../digipipe/store/preprocessed/osm_filtered/config.yml) --> `tags`) gefiltert,
+zu LAEA Europe (EPSG:3035) umprojiziert und in ein Geopackage konvertiert.
+
+**Achtung:** Konvertierungs- und Extraktionsprozess benötigt ~50 GB
+Speicherplatz und kann viel Zeit in Anspruch nehmen.
 
 **Dataset: `preprocessed/osm_filtered`**
 
@@ -93,47 +106,12 @@ Anzahl Beschäftigte und Betriebe extrahiert und in CSV konvertiert.
 
 
 ------------------------------
-## Geodaten PV- und Windflächenrechner
+## Bevölkerung
 
-Geodaten aus dem
-[PV- und Windflächenrechner](https://www.agora-energiewende.de/service/pv-und-windflaechenrechner/),
-extrahiert.
+Einwohnerzahl nach Gemeinden des Statistischen Bundesamts für die Jahre
+2010, 2015, 2020, 2021, 2022.
 
-Raw dataset:
-[rli_pv_windflaechenrechner](../../raw/rli_pv_wfr/dataset.md)
-
-**Dataset: `preprocessed/rli_pv_wfr`**
-
-
-------------------------------
-## Erzeugungsanlagen aus Marktstammdatenregister
-
-Erzeugungsanlagen aus dem MaStR für ausgewählte Technologien.
-
-**Dataset: `preprocessed/bnetza_mastr`**
-
-
-------------------------------
-## Temperatur
-
-Stündliche Mittelwerte der Luft- und Erdbodentemperatur für die Region ABW,
-Mittelwert für alle Gemeinden.
-
-Verwendet: [dwd_temperature](../../raw/dwd_temperature/dataset.md)
-
-**Dataset: `preprocessed/dwd_temperature`**
-
-
-------------------------------
-## Regionalplan Anhalt-Bitterfeld-Wittenberg
-
-Vorverarbeitete Datensätze aus Teilplänen Wind der Regionalen
-Planungsgemeinschaft Anhalt-Bitterfeld-Wittenberg aus
-[rpg_abw_regional_plan](../../raw/rpg_abw_regional_plan/dataset.md).
-
-In der [config.yml](config.yml) können Einstellungen vorgenommen werden.
-
-**Dataset: `preprocessed/rpg_abw_regional_plan`**
+**Dataset: `preprocessed/destatis_gv`**
 
 
 ------------------------------
@@ -166,57 +144,73 @@ verarbeitendem Gewerbe.
 
 
 ------------------------------
-## Lokale Verwaltungseinheiten
+## Geodaten PV- und Windflächenrechner
 
-Lokale Verwaltungseinheiten (LAUs) von Eurostat, mit NUTS kompatibel. Diese
-LAUs sind die Bausteine der NUTS und umfassen die Gemeinden und Kommunen der
-Europäischen Union.
+Geodaten aus dem [PV- und Windflächenrechner](https://www.agora-energiewende.de/service/pv-und-windflaechenrechner/),
+extrahiert.
 
-Daten aus Excel extrahiert und in CSV exportiert.
+Raw dataset:
+[rli_pv_windflaechenrechner](../../digipipe/store/raw/rli_pv_wfr/dataset.md)
 
-**Dataset: `preprocessed/eurostat_lau`**
+**Dataset: `preprocessed/rli_pv_wfr`**
 
 
 ------------------------------
-## Bevölkerungsprognose Sachsen-Anhalt
+## Regionalplan Anhalt-Bitterfeld-Wittenberg
 
-Bevölkerungsprognose je Gemeinde bis 2035 des Statistischen Landesamtes
+Vorverarbeitete Datensätze aus Teilplänen Wind der Regionalen
+Planungsgemeinschaft Anhalt-Bitterfeld-Wittenberg aus
+[rpg_abw_regional_plan](../../digipipe/store/raw/rpg_abw_regional_plan/dataset.md).
+
+In der [config.yml](../../digipipe/store/preprocessed/rpg_abw_regional_plan/config.yml) können Einstellungen vorgenommen werden.
+
+**Dataset: `preprocessed/rpg_abw_regional_plan`**
+
+
+------------------------------
+## Erzeugungsanlagen aus Marktstammdatenregister
+
+Erzeugungsanlagen aus dem MaStR für ausgewählte Technologien.
+
+**Dataset: `preprocessed/bnetza_mastr`**
+
+
+------------------------------
+## Energiedaten Sachsen-Anhalt
+
+Datensätze zur Energie- und Wasserversorgung des Statistischen Landesamtes
 Sachsen-Anhalt, extrahiert und konvertiert.
 
-Raw dataset:
-[stala_st_pop_prog](../../digipipe/store/raw/stala_st_pop_prog/dataset.md)
+### Daten
 
-**Dataset: `preprocessed/stala_st_pop_prog`**
+Stromverbrauch der Industriebetriebe nach Kreisen 2003-2021 in MWh
 
-
-------------------------------
-## Bevölkerung
-
-Einwohnerzahl nach Gemeinden des Statistischen Bundesamts für die Jahre
-2010, 2015, 2020, 2021, 2022.
-
-**Dataset: `preprocessed/destatis_gv`**
-
-
-------------------------------
-## Dachflächenpotenzial PV-Aufdachanlagen in ABW
-
-Abschätzung der installierten Leistung und des Ertrags von PV-Aufdachanlagen in
-Anhalt-Bitterfeld-Wittenberg der Regionalen Planungsgemeinschaft, reprojizert.
+- Datei: `power_demand_industry_st_districts.csv`
 
 Raw dataset:
-[rpg_abw_pv_roof_potential](../../raw/rpg_abw_pv_roof_potential/dataset.md)
+[stala_st_energy](../../digipipe/store/raw/stala_st_energy/dataset.md)
 
-**Dataset: `preprocessed/rpg_abw_pv_roof_potential`**
+**Dataset: `preprocessed/stala_st_energy`**
 
+??? metadata "Metadata"
+    ```json
+    {
+        "Datenquellen": {
+            "Stromverbrauch der Industriebetriebe nach Kreisen": "https://statistik.sachsen-anhalt.de/themen/wirtschaftsbereiche/energie-und-wasserversorgung/tabellen-energieverwendung#c206986"
+        }
+    }
+    ```
 
 ------------------------------
-## Administative areas of Germany
+## DemandRegio
 
-Geodata of administrative areas (Verwaltungsgebiete 1:250 000) extracted,
-reprojected to LAEA Europe(EPSG:3035) and converted to Geopackage.
+Regionalisierte Bevölkerungsprognose sowie Strom-, Wärme und Gasbedarf auf
+Landkreisebene, extrahiert.
 
-**Dataset: `preprocessed/bkg_vg250`**
+Enthält Jahresverbräuche und Zeitreihen für die Sektoren Haushalte, Gewerbe,
+Handel, Dienstleistungen (GHD) und Industrie für mehrere Zieljahre.
+
+**Dataset: `preprocessed/demandregio`**
 
 
 ------------------------------
@@ -237,4 +231,13 @@ Technologie (vgl. [dbfz_biomass_heat_capacities](../../digipipe/store/raw/dbfz_b
 werden in einer Spalte zusammengefasst.
 
 **Dataset: `preprocessed/dbfz_biomass_capacity_rel`**
+
+
+------------------------------
+## Administative areas of Germany
+
+Geodata of administrative areas (Verwaltungsgebiete 1:250 000) extracted,
+reprojected to LAEA Europe(EPSG:3035) and converted to Geopackage.
+
+**Dataset: `preprocessed/bkg_vg250`**
 

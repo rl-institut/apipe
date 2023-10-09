@@ -1,4 +1,4 @@
-name: digipipe
+name: digipipe_bkg_test
 channels:
   - conda-forge
 dependencies:

@@ -141,6 +141,7 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Fix PV roof slider values
 - Add HP share slider from-max values to prevent 100 % HP share
 - Updated technology_data dataset.md and metadata
+- Update metadate in store_raw
 
 ### Removed
 

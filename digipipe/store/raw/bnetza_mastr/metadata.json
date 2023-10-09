@@ -37,7 +37,7 @@
         {
             "title": "Marktstammdatenregister",
             "description": "Marktstammdatenregister der Bundesnetzagentur Deutschland",
-                "path": "https://www.marktstammdatenregister.de/MaStR/Datendownload",
+            "path": "https://www.marktstammdatenregister.de/MaStR/Datendownload",
             "licenses": [
                 {
                     "name": "DL-DE-BY-2.0",

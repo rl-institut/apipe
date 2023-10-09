@@ -1,6 +1,150 @@
 {
-  "Quellen": {
-    "Originales Tool": "https://github.com/DemandRegioTeam/disaggregator/",
-    "Modifiziertes Tool": "https://github.com/nesnoj/disaggregator/"
+ "name": "demandregio",
+ "title": "DemandRegio",
+ "id": "demandregio",
+ "description": "Regionalisierte Bevölkerungsprognose, Haushalte sowie Strom- und Gasbedarfe inkl. Zeitreihen auf Landkreisebene.",
+ "language": [
+    "en-GB",
+    "de-DE"
+    ],
+ "subject": null,
+ "keywords": [
+    "Bevölkerung",
+    "Bevölkerungsprognose",
+    "Strombedarf",
+    "Gasbedarf",
+    "Haushalte",
+    "disaggregator",
+    "disaggregation"
+ ],
+ "publicationDate": "2020-09-30",
+ "context": {
+    "homepage": "https://abw.rl-institut.de",
+    "documentation": "https://digiplan.readthedocs.io",
+    "sourceCode": "https://github.com/rl-institut/digipipe/",
+    "contact": "https://reiner-lemoine-institut.de/ueber-uns/kontakt/",
+    "grantNo": "None",
+    "fundingAgency": "https://www.region-gestalten.bund.de",
+    "fundingAgencyLogo": "https://www.region-gestalten.bund.de/Region/SiteGlobals/Frontend/Images/logo.svg",
+    "publisherLogo": "https://reiner-lemoine-institut.de//wp-content/uploads/2015/09/rlilogo.png"
+ },
+ "spatial": {
+    "location": "Germany",
+    "extent": "Germany",
+    "resolution": "NUTS-3"
+ },
+ "temporal": {
+    "referenceDate": "2022-01-01",
+    "timeseries": [
+             {
+                "start": "2022-01-01T00:00+01",
+                "end": "2022-12-31T23:00+01",
+                "resolution": "1 h",
+                "alignment": null,
+                "aggregationType": "sum"
+            },
+            {
+                "start": "2035-01-01T00:00+01",
+                "end": "2035-12-31T23:00+01",
+                "resolution": "1 h",
+                "alignment": null,
+                "aggregationType": "sum"
+            },
+            {
+                "start": "2045-01-01T00:00+01",
+                "end": "2045-12-31T23:00+01",
+                "resolution": "1 h",
+                "alignment": null,
+                "aggregationType": "sum"
+            },
+            {
+                "start": "2011-01-01T00:00+01",
+                "end": "2011-12-31T23:00+01",
+                "resolution": "1 h",
+                "alignment": null,
+                "aggregationType": "sum"
+            },
+            {
+                "start": "2022-01-01T00:00+01",
+                "end": "2022-12-31T23:00+01",
+                "resolution": "1 h",
+                "alignment": null,
+                "aggregationType": "sum"
+            }
+        ]
+ },
+"sources": [
+  {
+    "title": "DemandRegio",
+    "description": "Regionalisierte Bevölkerungsprognose, Haushalte sowie Strom- und Gasbedarfe inkl. Zeitreihen auf Landkreisebene.",
+    "path": "https://github.com/nesnoj/disaggregator/",
+    "licenses": [
+        {
+            "name": "CC BY 4.0 DE",
+            "title": "Creative Commons Namensnennung 4.0 Deutschland",
+            "path": "https://creativecommons.org/licenses/by/4.0/deed.de",
+            "instruction": "Sie müssen angemessene Urheber- und Rechteangaben machen, einen Link zur Lizenz beifügen und angeben, ob Änderungen vorgenommen wurden. Diese Angaben dürfen in jeder angemessenen Art und Weise gemacht werden, allerdings nicht so, dass der Eindruck entsteht, der Lizenzgeber unterstütze gerade Sie oder Ihre Nutzung besonders.",
+            "attribution": "© FZJ, TUB, FfE"
+        },
+        {
+            "name": "GNU FDL" ,
+            "title": "GNU General Public License v3.0",
+            "path": "https://www.gnu.org/licenses/gpl-3.0.en.html",
+            "instruction": "Everyone is permitted to copy and distribute verbatim copies of this license document, but changing it is not allowed",
+            "attribution": "© FZJ, TUB, FfE"
+        }
+     ]
   }
+ ],
+ "contributors": [
+        {
+            "title": "aaronschilling",
+            "email": "Aaron.Schilling@rl-institut.de",
+            "date": "2023-08-15",
+            "object": "metadata",
+            "comment": "create metadata"
+    }
+ ],
+ "resources": [
+    {
+      "profile": null,
+      "name": null,
+      "path": null,
+      "format": null,
+      "encoding": null,
+      "schema": {
+          "fields": [],
+          "primaryKey": [],
+          "foreignKeys": []
+     },
+    "dialect": {
+        "delimiter": "",
+        "decimalSeparator": "."
+     }
+    }
+ ],
+  "@id": null,
+  "@context": "https://raw.githubusercontent.com/OpenEnergyPlatform/oemetadata/develop/metadata/latest/context.json",
+  "review": {
+        "path": "",
+        "badge": ""
+    },
+  "metaMetadata": {
+    "metadataVersion": "OEP-1.5.2",
+    "metadataLicense": {
+        "name": "CC0-1.0",
+        "title": "Creative Commons Zero v1.0 Universal",
+        "path": "https://creativecommons.org/publicdomain/zero/1.0/"
+      }
+  },
+  "_comment": {
+      "metadata": "Metadata documentation and explanation (https://github.com/OpenEnergyPlatform/oemetadata)",
+      "dates": "Dates and time must follow the ISO8601 including time zone (YYYY-MM-DD or YYYY-MM-DDThh:mm:ss±hh)",
+      "units": "Use a space between numbers and units (100 m)",
+      "languages": "Languages must follow the IETF (BCP47) format (en-GB, en-US, de-DE)",
+      "licenses": "License name must follow the SPDX License List (https://spdx.org/licenses/)",
+      "review": "Following the OEP Data Review (https://github.com/OpenEnergyPlatform/data-preprocessing/blob/master/data-review/manual/review_manual.md)",
+      "null": "If not applicable use: null",
+      "todo": "If a value is not yet available, use: todo"
+    }
 }

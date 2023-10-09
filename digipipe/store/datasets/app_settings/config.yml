@@ -161,6 +161,7 @@ panel_settings_templates:
       max: none
       min: none
       from-min: none
+      from-max: none
       start: none
       step: none
       status_quo: none
@@ -169,24 +170,28 @@ panel_settings_templates:
       max: none
       min: none
       from-min: none
+      from-max: none
       start: none
       step: none
     w_d_wp_4:
       max: none
       min: none
       from-min: none
+      from-max: none
       start: none
       step: none
     w_d_wp_5:
       max: none
       min: none
       from-min: none
+      from-max: none
       start: none
       step: none
     w_z_wp_1:
       max: none
       min: none
       from-min: none
+      from-max: none
       start: none
       step: none
       status_quo: none

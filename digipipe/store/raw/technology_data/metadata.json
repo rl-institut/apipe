@@ -37,11 +37,29 @@
  },
  "sources": [
     {
-     "title": "Technologiedaten",
+     "title": "Föderal Erneuerbar",
      "description": "Jahresvollaststunden, Leistungsdichte, Nennleistung, Kosten und Effizienzen von energieumwandlungs Technologien",
+     "path": "https://www.foederal-erneuerbar.de",
+     "licenses": null
+    },
+    {
+     "title": "PV- und Windflächenrechner",
+     "description": "Der Photovoltaik- und Windflächenrechner - Methoden und Daten",
+     "path": "https://zenodo.org/record/6794558",
+     "licenses": null
+    },
+    {
+     "title": "Ariadne Szenarienreport",
+     "description": "Ariadne Szenarienreport",
+     "path": "https://ariadneprojekt.de/media/2022/02/Ariadne_Szenarienreport_Oktober2021_corr0222_lowres.pdf",
+     "licenses": null
+    },
+    {
+     "title": "Technologiedaten",
+     "description": "Kosten und Effizienzen von Energieumwandlungtechnologien",
      "path": "https://ens.dk/en/our-services/projections-and-models/technology-data",
      "licenses": null
-   }
+    }
  ],
  "contributors": [
     {

@@ -55,6 +55,17 @@ Datei: `technology_data.json` --> `nominal_power_per_unit`
 
 Datei: `technology_data.json` --> `batteries`
 
+## Warmwasserspeicher
+
+- Kleinwärmespeicher (dezentral): Speichernennleistung je installierter
+  Speichernennkapazität aus
+  [DEA](https://ens.dk/en/our-services/projections-and-models/technology-data/technology-data-energy-storage)
+- Großwärmespeicher (Fernwärme): Speichernennleistung je installierter
+  Speichernennkapazität aus
+  [DEA](https://ens.dk/en/our-services/projections-and-models/technology-data/technology-data-energy-storage)
+
+Datei: `technology_data.json` --> `hot_water_storages`
+
 ## Kosten und Wirkungsgrade
 
 Datei: `raw_costs_efficiencies.csv`

@@ -14,7 +14,3 @@ Zeitreihe normiert auf Summe=1 für
 - Photovoltaik: `pv_feedin_timeseries.csv`
 - Solarthermie: `st_feedin_timeseries.csv`
 - Laufwasserkraft: `ror_feedin_timeseries.csv`
-
-## Jahresvolllaststunden
-
-Heutige bzw. prognostizierte Jahresvolllaststunden: `full_load_hours.json`

@@ -15,8 +15,8 @@ rule create:
     input:
         temperature=rules.preprocessed_dwd_temperature_create.output
     output:
-        cop_ashp=DATASET_PATH / "data" / "heatpump_cop_ashp.csv",
-        cop_gshp=DATASET_PATH / "data" / "heatpump_cop_gshp.csv"
+        cop_ashp=DATASET_PATH / "data" / "heatpump_cop_ashp_timeseries.csv",
+        cop_gshp=DATASET_PATH / "data" / "heatpump_cop_gshp_timeseries.csv"
     script:
         DATASET_PATH / "scripts" / "create.py"
 
@@ -25,7 +25,7 @@ rule merge:
     Create one heatpump COP timeseries by weighting both COP timeseries
     """
     input: rules.datasets_heatpump_cop_create.output
-    output: DATASET_PATH / "data" / "heatpump_cop.csv"
+    output: DATASET_PATH / "data" / "heatpump_cop_timeseries.csv"
     run:
         tech = config["heatpumps"].get("technology")
         cop = pd.concat(

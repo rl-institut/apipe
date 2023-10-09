@@ -8,6 +8,8 @@ import json
 import geopandas as gpd
 import numpy as np
 import pandas as pd
+from pathlib import Path
+from digipipe.scripts.data_io import load_json
 from digipipe.scripts.geo import clip_raster, raster_zonal_stats
 from digipipe.store.utils import (
     get_abs_dataset_path,
@@ -336,74 +338,358 @@ rule heating_structure_hh_cts:
             "TN-Strom_buildings_heating_demand_by_carrier_reformatted.csv",
         demand_future_T45=get_abs_dataset_path(
             "preprocessed","bmwk_long_term_scenarios") / "data" /
-            "T45-Strom_buildings_heating_demand_by_carrier_reformatted.csv"
+            "T45-Strom_buildings_heating_demand_by_carrier_reformatted.csv",
+        rel_capacities_biomass_dec=get_abs_dataset_path(
+            "preprocessed","dbfz_biomass_capacity_rel") / "data" /
+            "dbfz_biomass_capacity_rel_decentral.csv",
+        generation_cen_TN45=get_abs_dataset_path(
+            "preprocessed","bmwk_long_term_scenarios") / "data" /
+            "T45-Strom_Generation_Heatgrids_Germany_reformatted.csv",
+        rel_capacities_biomass_cen=get_abs_dataset_path(
+            "preprocessed","dbfz_biomass_capacity_rel") / "data" /
+            "dbfz_biomass_capacity_rel_central.csv"
     output:
-        # heating_structure_cen=(
-        #     #DATASET_PATH / "demand_{sector}_heat_structure_cen.csv"
-        #     DATASET_PATH / "demand_heat_structure_cen.csv"
-        # ),
+        heating_structure_cen=(
+            #DATASET_PATH / "demand_{sector}_heat_structure_cen.csv"
+            DATASET_PATH / "demand_heat_structure_cen.csv"
+        ),
+        heating_structure_esys_cen=(
+            DATASET_PATH/ "demand_heat_structure_esys_cen.csv"
+        ),
         heating_structure_dec=(
             #DATASET_PATH / "demand_{sector}_heat_structure_dec.csv"
             DATASET_PATH / "demand_heat_structure_dec.csv"
         ),
         heating_structure_esys_dec=(
-            # DATASET_PATH / "demand_{sector}_heat_structure_esys_dec.csv"
             DATASET_PATH/ "demand_heat_structure_esys_dec.csv"
         )
     run:
-        # Get data from future scenarios
-        demand_future_T45 = pd.read_csv(
-            input.demand_future_T45)#.set_index(["year", "carrier"])
-        demand_future_TN = pd.read_csv(
-            input.demand_future_TN)#.set_index(["year", "carrier"])
+        def get_demand_dec():
+            # Get data from future scenarios
+            demand_future_T45 = pd.read_csv(
+                input.demand_future_T45
+            )  # .set_index(["year", "carrier"])
+            demand_future_TN = pd.read_csv(
+                input.demand_future_TN
+            )  # .set_index(["year", "carrier"])
 
-        # Interpolate for base year
-        demand_future = pd.concat(
-            [demand_future_TN.loc[demand_future_TN.year == 2020],
-             demand_future_T45], axis=0
-        )
-        demand_future = demand_future.set_index(["year", "carrier"]).append(
-            pd.DataFrame(
-                index=pd.MultiIndex.from_product(
-                    [[2022], demand_future.carrier.unique(), [np.nan]],
-                    names=demand_future.columns,
+            # Interpolate for base year
+            demand_future = pd.concat(
+                [
+                    demand_future_TN.loc[demand_future_TN.year == 2020],
+                    demand_future_T45,
+                ],
+                axis=0,
+            )
+            demand_future = demand_future.set_index(["year", "carrier"]).append(
+                pd.DataFrame(
+                    index=pd.MultiIndex.from_product(
+                        [[2022], demand_future.carrier.unique(), [np.nan]],
+                        names=demand_future.columns,
+                    )
                 )
             )
-        )
-        demand_future.sort_index(inplace=True)
-        demand_future = demand_future.unstack(level=1).interpolate().stack()
+            demand_future.sort_index(inplace=True)
+            demand_future = demand_future.unstack(level=1).interpolate().stack()
 
-        # Calculate heating structure
-        demand_future = demand_future.loc[
-            config["heating_structure"].get("years")].reset_index()
+            # Calculate heating structure
+            demand_future = demand_future.loc[
+                config["heating_structure"].get("years")
+            ].reset_index()
 
-        demand_total = demand_future[["year", "demand"]].groupby("year").sum()
-        demand_dec = (
-            demand_future.loc[
-                demand_future.carrier != "district_heating"]
-        )
-        # Drop auxiliary power
-        demand_dec = demand_dec.loc[
-            demand_dec.carrier != "electricity_auxiliary"]
-        demand_total_dec = demand_dec[["year", "demand"]].groupby("year").sum()
-        demand_dec = demand_dec.set_index("year").assign(
-            demand_rel=demand_dec.set_index("year").demand.div(
-                demand_total_dec.demand)
-        )
-        demand_dec.drop(columns=["demand"], inplace=True)
+            demand_total = (
+                demand_future[["year", "demand"]].groupby("year").sum()
+            )
+            demand_dec = demand_future.loc[
+                demand_future.carrier != "district_heating"
+            ]
+            # Drop auxiliary power
+            demand_dec = demand_dec.loc[
+                demand_dec.carrier != "electricity_auxiliary"
+            ]
+            demand_total_dec = (
+                demand_dec[["year", "demand"]].groupby("year").sum()
+            )
+            demand_dec = demand_dec.set_index("year").assign(
+                demand_rel=demand_dec.set_index("year").demand.div(
+                    demand_total_dec.demand
+                )
+            )
+            demand_dec.drop(columns=["demand"], inplace=True)
 
-        #demand_total_cen = demand_total - demand_total_dec
+            # demand_total_cen = demand_total - demand_total_dec
+
+            return demand_dec
+
+        def get_demand_dec_esys(demand_dec):
+            # Aggregate heat pump demand
+            demand_dec.carrier = demand_dec.carrier.replace(
+                {
+                    "ambient_heat_heat_pump": "heat_pump",
+                    "electricity_heat_pump": "heat_pump",
+                }
+            )
+            demand_dec = (
+                demand_dec.reset_index().groupby(["year", "carrier"]).sum()
+            )
+
+            # Reset index
+            demand_dec.reset_index(inplace=True)
+
+            # Read relative capacities
+            rel_capacities_biomass_dec = pd.read_csv(
+                input.rel_capacities_biomass_dec, index_col="year"
+            )
+            rel_capacities_biomass_dec.reset_index(inplace=True)
+
+            # Get years from config
+            years = config["heating_structure"].get("years")
+
+            # Get relative demand per conversion technology
+            # In the following, it is assumed for simplification that the
+            # distribution over the capacity corresponds to that of the energy
+            # amount. For this to be the case, the full load hours of all
+            # conversion plants would have to be the same, but in reality they
+            # are not.
+            for year in years:
+                (
+                    rel_capacities_biomass_dec,
+                    demand_dec,
+                ) = get_rel_demand_conv_tech_biomass(
+                    rel_capacities_biomass_dec, demand_dec, year
+                )
+
+            demand_dec_esys = update_rel_demand_with_conv_tech_biomass(
+                rel_capacities_biomass_dec, demand_dec
+            )
+
+            return demand_dec_esys
+
+        def get_demand_cen():
+            # Read central heating generation per technology
+            heat_gen_cen_T45 = pd.read_csv(input.generation_cen_TN45)
+
+            # Read relative capacities
+            rel_capacities_biomass_cen = pd.read_csv(
+                input.rel_capacities_biomass_cen,
+                index_col="year",
+            )
+
+            # Change year 2021 to 2022 neglecting changes in generation
+            # structure during that period
+            heat_gen_cen_T45.loc[
+                heat_gen_cen_T45["year"] == 2021, "year"
+            ] = 2022
+
+            rel_demand_cen = pd.DataFrame()
+            rel_demand_cen_esys = pd.DataFrame()
+
+            for year in config["heating_structure"].get("years"):
+                # Filter data by year
+                heat_gen_cen_T45_year = heat_gen_cen_T45[
+                    heat_gen_cen_T45["year"] == year
+                ]
+
+                # Get all carriers used in technology to aggregate
+                carrier_to_agg = config["carrier_to_agg"][year]
+
+                # Get all unique carriers provided in the values of
+                # carrier_to_agg dict
+                unique_carrier = list(set(carrier_to_agg.values()))
+
+                # Rename values in technology col according to aggregation
+                # convention in carrier_to_agg
+                for index, row in heat_gen_cen_T45_year.iterrows():
+                    if row["technology"] in carrier_to_agg:
+                        heat_gen_cen_T45_year.loc[
+                            index, "technology"
+                        ] = carrier_to_agg[row["technology"]]
+
+                # Aggregate by carrier / technology according to carrier_to_agg
+                heat_gen_cen_T45_year = heat_gen_cen_T45_year.groupby(
+                    "technology"
+                ).agg(
+                    {
+                        "generation": "sum",
+                        "year": "first",
+                    }
+                )
+
+                # Reset the index
+                heat_gen_cen_T45_year.reset_index(inplace=True)
+
+                # Rename column 'technology' to 'carrier' and 'generation' to
+                # 'demand_rel'
+                heat_gen_cen_T45_year.rename(
+                    {"generation": "demand_rel", "technology": "carrier"},
+                    axis=1,
+                    inplace=True,
+                )
+
+                # Get relative demand for all carriers
+                rel_demand_cen_year = get_relative_demand(heat_gen_cen_T45_year)
+                rel_demand_cen_year = order_cols_df(rel_demand_cen_year)
+                rel_demand_cen = pd.concat(
+                    [rel_demand_cen, rel_demand_cen_year], ignore_index=True
+                )
+
+                # Get all unique carriers listed in raw data
+                carriers = list(heat_gen_cen_T45_year["carrier"].unique())
+
+                # Get unknown carriers if raw data contains carriers that are
+                # not in the energy system
+                unknown_carriers = list(set(carriers) - set(unique_carrier))
+
+                # Drop all unknown carriers
+                for unknown_carrier in unknown_carriers:
+                    heat_gen_cen_T45_year.drop(
+                        heat_gen_cen_T45_year[
+                            heat_gen_cen_T45_year["carrier"] == unknown_carrier
+                        ].index,
+                        inplace=True,
+                    )
+
+                rel_demand_cen_esys_year = get_relative_demand(
+                    heat_gen_cen_T45_year
+                )
+                rel_demand_cen_esys_year = order_cols_df(
+                    rel_demand_cen_esys_year
+                )
+                rel_demand_cen_esys = pd.concat(
+                    [rel_demand_cen_esys, rel_demand_cen_esys_year],
+                    ignore_index=True,
+                )
+
+                (
+                    rel_capacities_biomass_cen,
+                    rel_demand_cen_esys,
+                ) = get_rel_demand_conv_tech_biomass(
+                    rel_capacities_biomass_cen, rel_demand_cen_esys, year
+                )
+
+            rel_demand_cen_esys = update_rel_demand_with_conv_tech_biomass(
+                rel_capacities_biomass_cen, rel_demand_cen_esys
+            )
+
+            return rel_demand_cen, rel_demand_cen_esys
+
+        def get_relative_demand(_df):
+            grouped_df = _df.groupby(by=["carrier", "year"]).sum(
+                numeric_only=True
+            )
+
+            # Calculate relative demand from absolute values
+            rel_demand_df = grouped_df.apply(
+                lambda rel_demand_df: rel_demand_df / rel_demand_df.sum()
+            )
+
+            return rel_demand_df
+
+        def order_cols_df(_df):
+            # Drop the index
+            _df.reset_index(inplace=True)
+
+            # Set index on the year to move the column to the front
+            _df.set_index("year", inplace=True)
+            _df.reset_index(inplace=True)
+
+            return _df
+
+        def get_rel_demand_conv_tech_biomass(
+            rel_capacities_biomass, rel_demand, year
+        ):
+            if rel_capacities_biomass.index.name == "year":
+                rel_capacities_biomass.reset_index(inplace=True)
+
+            # Get relative demand of biomass in year
+            rel_demand_biomass = rel_demand.loc[
+                rel_demand["carrier"].eq("biomass")
+                & rel_demand["year"].eq(year),
+                "demand_rel",
+            ]
+
+            # Calculate relative capacities of biomass conversion technologies
+            # with the relative demand of biomass
+            rel_capacities_biomass.loc[
+                rel_capacities_biomass["year"] == year, "capacity_rel"
+            ] *= rel_demand_biomass.values[0]
+
+            return rel_capacities_biomass, rel_demand
+
+        def update_rel_demand_with_conv_tech_biomass(
+            rel_capacities_biomass, rel_demand
+        ):
+            # Rename column "capacity_rel" to "demand_rel"
+            rel_capacities_biomass.rename(
+                {"capacity_rel": "demand_rel"}, axis=1, inplace=True
+            )
+
+            # Merge Dataframe with relative capacities with the one with
+            # relative demands
+            rel_demand_updated = pd.concat(
+                [rel_demand, rel_capacities_biomass], ignore_index=True
+            )
+
+            # Drop redundant entry for biomass
+            rel_demand_updated.drop(
+                rel_demand_updated[
+                    rel_demand_updated["carrier"] == "biomass"
+                ].index,
+                inplace=True,
+            )
+
+            # Sort by year
+            rel_demand_updated.sort_values(
+                by=["year"], inplace=True, ignore_index=True
+            )
+
+            return rel_demand_updated
+
+        # Get relative demand of decentral heat
+        demand_dec = get_demand_dec()
 
         # Dump heating structure (for info)
         demand_dec.to_csv(output.heating_structure_dec)
 
-        # Aggregate heat pump demand
-        demand_dec.carrier = demand_dec.carrier.replace({
-            "ambient_heat_heat_pump": "heat_pump",
-            "electricity_heat_pump": "heat_pump"})
-        demand_dec = demand_dec.reset_index().groupby(["year", "carrier"]).sum()
+        # Get relative demand of decentral heat of esys
+        demand_dec_esys = get_demand_dec_esys(demand_dec)
 
         # Dump heating structure (for esys)
-        demand_dec.to_csv(output.heating_structure_esys_dec)
+        demand_dec_esys.to_csv(output.heating_structure_esys_dec, index=False)
 
-        # TODO: Central heating structure, cf. config -> district_heating
+        # Get relative demand of central heat
+        rel_demand_cen, rel_demand_cen_esys = get_demand_cen()
+
+        # Dump heating structure (for info)
+        rel_demand_cen.to_csv(
+            output.heating_structure_cen,
+            index=False,
+        )
+
+        # Dump heating structure (for esys)
+        rel_demand_cen_esys.to_csv(
+            output.heating_structure_esys_cen,
+            index=False,
+        )
+
+rule create_captions:
+    """
+    Create attribute captions for app
+    """
+    input:
+        demand=rules.datasets_demand_heat_region_heating_structure_hh_cts.output,
+        bmwk_lts=rules.preprocessed_bmwk_long_term_scenarios_create_captions.output[0]
+    output: DATASET_PATH / "demand_heat_region_attribute_captions.json"
+    run:
+        bmwk_lts = load_json(input.bmwk_lts)
+        captions = {
+            "datasets_caption_map": {
+                Path(f).stem: "demand_heat" for f in input.demand
+            },
+            "captions": {
+                "demand_heat":
+                    bmwk_lts["captions"]["bmwk_long_term_scenarios"]
+            }
+        }
+        with open(output[0], "w", encoding="utf8") as f:
+            json.dump(captions, f, indent=4)

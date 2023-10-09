@@ -9,7 +9,8 @@ Details zur Berechnungsmethodik können der Dokumentation von
 [oemof.thermal](https://oemof-thermal.readthedocs.io/en/latest/compression_heat_pumps_and_chillers.html)
 entnommen werden.
 
-Annahmen
+Annahmen:
+
 - Vorlauftemperatur: 40 °C
 - Gütegrad / Quality grade: 0.4 (nach
   [VDE](https://www.energiedialog2050.info/wp-content/uploads/simple-file-list/VDE_ST_ETG_Warmemarkt_RZ-web.pdf))
@@ -24,7 +25,11 @@ technische Weiterentwicklung von 25 % angenommen
 
 Beide separat erstelle Zeitreihen werden anhand der heutigen Marktdurchdringung
 gewichtet und in eine mittlere Zeitreihe für Wärmepumpen überführt. Im Jahr
-XXXX betrug der Anteil der kleinen ASHP und GSHP laut jeweils 50 % [Source].
+2022 wurden 87 % ASHP und 13 % GSHP abgesetzt nach
+[BWP](https://www.waermepumpe.de/fileadmin/user_upload/waermepumpe/05_Presse/01_Pressemitteilungen/BWP_Branchenstudie_2023_DRUCK.pdf),
+über die letzten 10 Jahre beträgt das Verhältnis ca. 80:20.
+Für 2045 wird daher ein Anteil von 80 % ASHP und 20 % GSHP angenommen.
 
-Verwendet Datensätze
+Verwendet Datensätze:
+
 - [dwd_temperature](../../preprocessed/dwd_temperature/dataset.md)

@@ -96,7 +96,7 @@ rule hh_merge_demand_years:
             year=config["hh_electricity_demand"]["years"]
         )
     output:
-        demand = DATASET_PATH / "data" / "demand_hh_power_demand.csv"
+        demand=DATASET_PATH / "data" / "demand_hh_power_demand.csv"
     run:
         merge_demand_multiple_years(
             infiles=input.demand,
@@ -131,10 +131,10 @@ rule cts_disaggregate_demand:
             "preprocessed", "demandregio") / "data" /
             "dr_cts_power_demand_2022.csv",
         demand_future_TN=get_abs_dataset_path(
-            "preprocessed","bmwk_long_term_scenarios"
+            "preprocessed", "bmwk_long_term_scenarios"
             ) / "data" / "TN-Strom_cts_demand_reformatted.csv",
         demand_future_T45=get_abs_dataset_path(
-        "preprocessed","bmwk_long_term_scenarios"
+        "preprocessed", "bmwk_long_term_scenarios"
             ) / "data" / "T45-Strom_cts_demand_reformatted.csv",
         employment=get_abs_dataset_path("datasets", "employment_region") /
                    "data" / "employment.csv",
@@ -181,7 +181,7 @@ rule cts_merge_demand_years:
             year=config["cts_electricity_demand"]["years"]
         )
     output:
-        demand = DATASET_PATH / "data" / "demand_cts_power_demand.csv"
+        demand=DATASET_PATH / "data" / "demand_cts_power_demand.csv"
     run:
         merge_demand_multiple_years(
             infiles=input.demand,
@@ -294,7 +294,7 @@ rule ind_merge_demand_years:
             year=config["ind_electricity_demand"]["years"]
         )
     output:
-        demand = DATASET_PATH / "data" / "demand_ind_power_demand.csv"
+        demand=DATASET_PATH / "data" / "demand_ind_power_demand.csv"
     run:
         merge_demand_multiple_years(
             infiles=input.demand,

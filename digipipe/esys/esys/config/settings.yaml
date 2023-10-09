@@ -47,12 +47,36 @@ create_empty_scalars:
       "region": "ALL",
       "tech": "ALL",
       "type": "ALL",
-      "var_unit": "None",
+      "var_unit": "",
   }
-  drop_default_scalars: True
+  emissions_not_modeled: {
+      "var_name": "emissions_not_modeled",
+      "carrier": "emission",
+      "region": "TOTAL",
+      "tech": "constraint",
+      "type": "limit",
+  }
+  emissions_1990: {
+    "var_name": "emissions_1990",
+    "carrier": "emission",
+    "region": "TOTAL",
+    "tech": "constraint",
+    "type": "limit",
+  }
+  emission_reduction_factor: {
+    "var_name": "emission_reduction_factor",
+    "carrier": "emission",
+    "region": "TOTAL",
+    "tech": "constraint",
+    "type": "limit",
+  }
+  drop_default_scalars: False
 
 create_empty_ts:
   datetime_format: "%Y-%m-%d %H:%M:%S"
   filter_ts: "empty_ts"
   ts_values: "zeros"  # Set to 'zeros' or 'empty'
   overwrite: false
+
+write_costs_efficiencies:
+  delete_default: True

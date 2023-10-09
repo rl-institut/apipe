@@ -10,7 +10,8 @@ in der softwareseitige, jedoch keine methodischen Änderungen vorgenommen wurden
 Der disaggregator basiert auf Daten bis 2017, anschließende Jahre werden
 fortgeschrieben.
 
-Weitere Informationen zum Projekt DemandRegio
+Weitere Informationen zum Projekt DemandRegio:
+
 - [Abschlussbericht](https://www.ffe.de/wp-content/uploads/2020/10/DemandRegio_Abschlussbericht.pdf)
 - [Abschlussworkshop](https://www.tu.berlin/er/forschung/projekte/demandregio-2)
 
@@ -34,7 +35,8 @@ pip install disaggregator@git+https://github.com/nesnoj/disaggregator.git#egg=di
 Bevölkerung (Summe) und Bevölkerung je Haushaltsgröße (1, 2, 3, 4, 5, >5) je
 NUTS3.
 
-Jahre
+Jahre:
+
 - Bevölkerung bis 2017 historische Werte
 - Bevölkerung ab 2018 prognostizierte Werte basierend auf der 14. koordinierten
   Bevölkerungsvorausberechnung der Statistischen Ämter von Bund und Ländern.
@@ -59,7 +61,8 @@ data.households_per_size().to_csv("dr_hh_households_2011.csv")
 
 Bedarfe und SLP-Zeitreihen je NUTS3 mit Bottom-Up-Methode nach Haushaltsgröße.
 
-Jahre
+Jahre:
+
 - 2017: Letzte verfügbare Daten
 - 2022: Status quo, Fortschreibung mit Berücksichtigung Demografie und
   Wanderung
@@ -105,7 +108,8 @@ temporal.disagg_temporal_gas_households(
 
 ### GHD und Industrie: Strom
 
-Bedarfe und Zeitreihen je NUTS3
+Bedarfe und Zeitreihen je NUTS3:
+
 - Bedarfe: Je Wirtschaftszweig (WZ), abzüglich Eigenerzeugung
 - Zeitreihen: Für alle WZ bedarfsgewichtet aggregiert, Einzelprofile basieren
   je nach WZ auf gemessenen oder SLP inkl. Wanderung
@@ -174,7 +178,8 @@ x=temporal.disagg_temporal_gas_CTS(
 
 ### Industrie: Gas
 
-Bedarfe und Zeitreihen je NUTS3
+Bedarfe und Zeitreihen je NUTS3:
+
 - Bedarfe: Je Wirtschaftszweig (WZ), abzüglich Eigenerzeugung
 - Zeitreihen: Für alle WZ bedarfsgewichtet aggregiert, Einzelprofile basieren
   je nach WZ auf gemessenen oder SLP inkl. Wanderung

@@ -22,6 +22,10 @@ biomass:
   balanced:
     True
 
+biogas:
+  balanced:
+    True
+
 #h2:
 #  balanced:
 #    True

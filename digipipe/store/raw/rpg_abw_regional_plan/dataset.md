@@ -18,7 +18,8 @@ Geodaten aus rechtskräftigem
 > erteilt. Mit Bekanntmachung der Genehmigung tritt der Sachliche Teilplan in
 > Kraft.
 
-Dateien
+Dateien:
+
 - Vorrang-/Eignungsgebiete: `stp_2018_vreg.gpkg`
   ([Quelle](https://gis.planungsregion-abw.de/geoserver/stp_wind2018/ows?SERVICE=WFS&REQUEST=GetCapabilities))
 
@@ -34,7 +35,8 @@ Geodaten aus Planentwurf des
 > für die Nutzung der Windenergie bzw. für Repowering von Windenergieanlagen
 > vorzustellen.
 
-Dateien
+Dateien:
+
 - Suchräume: `stp_2027_suchraum.gpkg` (Quelle: RPG ABW)
 - Planabsicht Vorranggebiete: `stp_2027_ideen_vr.gpkg` (Quelle: RPG ABW)
 - Planabsicht Repoweringgebiete: `stp_2027_ideen_repower.gpkg` (Quelle: RPG ABW)

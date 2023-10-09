@@ -7,46 +7,34 @@ busses:
   - ch4
   - electricity
   - biomass
+  - biogas
 #  - h2
 
 components:
-  - biomass-import
-  - biomass-export
-  - biomass-demand_hh
-  - biomass-demand_cts
-  - biomass-demand_ind
-  - biomass-excess
   - biomass-shortage
-  -
   - electricity-import
   - electricity-export
   - electricity-bev_charging
-  - electricity-curtailment
   - electricity-demand_hh
   - electricity-demand_cts
   - electricity-demand_ind
 #  - electricity-electrolyzer
   - electricity-large_scale_battery
-  - electricity-shortage
+  - electricity-small_scale_battery
 
   - ch4-import
-  - ch4-export
-  - ch4-demand_hh
-  - ch4-demand_cts
-  - ch4-demand_ind
-  - ch4-excess
   - ch4-gt
-  - ch4-shortage
 
+  - biomass-biogas_plant
+  - biogas-biogas_upgrading_plant
 #  - h2-cavern
 #  - h2-demand
 #  - h2-excess
-#  - h2-export
 #  - h2-gt
 #  - h2-import
 #  - h2-shortage
 
-  - biomass-fermenter
   - solar-pv_ground
   - solar-pv_rooftop
   - wind-onshore
+  - hydro-ror

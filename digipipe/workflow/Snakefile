@@ -3,6 +3,7 @@ Snakemake file for digipipe
 """
 
 from snakemake.utils import min_version
+
 min_version("6.0")
 
 from digipipe.scripts.config import load_dataset_configs
@@ -15,83 +16,33 @@ config.update(load_dataset_configs())
 
 # Path to esys appdata
 APPDATA_ESYS_PATH = get_abs_dataset_path("appdata", "esys")
+DATASETS_ESYS_PATH = os.path.join(
+    get_abs_dataset_path("datasets", "esys_raw"), "data"
+)
+
 
 # Include store modules
 include: "../store/preprocessed/module.smk"
 include: "../store/datasets/module.smk"
 include: "../store/appdata/module.smk"
-
 # Include esys snakefiles
 include: "../esys/Snakefile"
 
 
 # ===== RULES =====
 
+
 rule all:
     input:
-        forests=rules.datasets_osm_forest_extract_tags.output,
-        muns=rules.datasets_bkg_vg250_muns_region_create.output,
-        districts=rules.datasets_bkg_vg250_districts_region_create.output,
-        region=rules.datasets_bkg_vg250_region_create.output,
-        wind=rules.datasets_bnetza_mastr_wind_region_create.output,
-        wind2=rules.datasets_bnetza_mastr_wind_region_create_power_stats_muns.output,
-        pv_ground=rules.datasets_bnetza_mastr_pv_ground_region_create.output,
-        pv_ground2=rules.datasets_bnetza_mastr_pv_ground_region_create_power_stats_muns.output,
-        pv_roof=rules.datasets_bnetza_mastr_pv_roof_region_create.output,
-        pv_roof2=rules.datasets_bnetza_mastr_pv_roof_region_create_power_stats_muns.output,
-        biomass=rules.datasets_bnetza_mastr_biomass_region_create.output,
-        biomass2=rules.datasets_bnetza_mastr_biomass_region_create_power_stats_muns.output,
-        hydro=rules.datasets_bnetza_mastr_hydro_region_create.output,
-        hydro2=rules.datasets_bnetza_mastr_hydro_region_create_power_stats_muns.output,
-        combustion=rules.datasets_bnetza_mastr_combustion_region_create.output,
-        combustion2=rules.datasets_bnetza_mastr_combustion_region_create_power_stats_muns.output,
-        mastr_names=rules.datasets_bnetza_mastr_captions_create.output,
-        gsgk=rules.datasets_bnetza_mastr_gsgk_region_create.output,
-        gsgk2=rules.datasets_bnetza_mastr_gsgk_region_create_power_stats_muns.output,
-        storage=rules.datasets_bnetza_mastr_storage_region_create.output,
-        storage2=rules.datasets_bnetza_mastr_storage_region_create_power_stats_muns.output,
-        population=rules.datasets_population_region_create.output,
-        demand_hh_ts=rules.datasets_demand_electricity_region_hh_normalize_timeseries.output,
-        demand_hh_con=rules.datasets_demand_electricity_region_hh_merge_demand_years.output,
-        demand_cts_ts=rules.datasets_demand_electricity_region_cts_normalize_timeseries.output,
-        demand_cts_con=rules.datasets_demand_electricity_region_cts_merge_demand_years.output,
-        demand_ind_ts=rules.datasets_demand_electricity_region_ind_normalize_timeseries.output,
-        demand_ind_con=rules.datasets_demand_electricity_region_ind_merge_demand_years.output,
+        app_datapackage=rules.appdata_datapackage_create_datapackage.output,
+        esys_appdata=rules.make_esys_appdata.output,
 
-        # Some temp rules to generate intermediate data
-        x=expand(
-            get_abs_dataset_path("datasets", "demand_heat_region") / "data" / "demand_{sector}_heat_demand_dec.csv",
-            sector=["hh", "cts", "ind"]
-        ),
-        x2=expand(
-            get_abs_dataset_path("datasets","demand_heat_region") / "data" / "demand_{sector}_heat_demand_cen.csv",
-            sector=["hh", "cts", "ind"]
-        ),
-        x3=expand(
-            get_abs_dataset_path("datasets", "demand_heat_region") / "data" / "demand_{sector}_heat_timeseries.csv",
-                sector=["hh", "cts", "ind"]
-        ),
-        x5=get_abs_dataset_path("datasets", "demand_heat_region") / "data" / "demand_heat_structure_dec.csv",
-        x6=get_abs_dataset_path("datasets", "demand_heat_region") / "data" / "demand_heat_structure_esys_dec.csv",
 
-        feedin_wind=expand(
-            get_abs_dataset_path("datasets", "renewable_feedin") / "data" / "{tech}_feedin_timeseries.csv",
-            tech=["wind", "pv", "st","ror"],
-        ),
-        full_load_hours=get_abs_dataset_path("datasets", "renewable_feedin") / "data" / "full_load_hours.json",
-        cop=rules.datasets_heatpump_cop_merge.output,
-        potarea_wind=rules.datasets_potentialarea_wind_region_create_area_stats_muns.output,
-        potarea_wind2=rules.datasets_potentialarea_wind_region_create_captions.output,
-        potarea_pv=rules.datasets_potentialarea_pv_ground_region_create_area_stats_muns.output,
-        potarea_pv2=rules.datasets_potentialarea_pv_ground_region_create_potarea_shares.output,
-        datapackage=rules.appdata_datapackage_create_datapackage.output,
+# run:
+#     print("CONFIG MAIN:")
+#     print(config)
+#     print(workflow.basedir)
 
-        esys_appdata=rules.make_esys_appdata.output
-
-    # run:
-    #     print("CONFIG MAIN:")
-    #     print(config)
-    #     print(workflow.basedir)
 
 rule clean:
     """
@@ -99,21 +50,34 @@ rule clean:
     """
     params:
         preprocessed=expand(
-            get_abs_dataset_path("preprocessed", "{name}", data_dir=True) / "*",
-            name=config.get("store")["preprocessed"].keys()
+            get_abs_dataset_path("preprocessed", "{name}", data_dir=True),
+            name=config.get("store")["preprocessed"].keys(),
         ),
         datasets=expand(
-            get_abs_dataset_path("datasets", "{name}", data_dir=True) / "*",
-            name=config.get("store")["datasets"].keys()
-        )
+            get_abs_dataset_path("datasets", "{name}", data_dir=True),
+            name=config.get("store")["datasets"].keys(),
+        ),
     shell:
         """
-        rm -f {params.preprocessed}
-        rm -f {params.datasets}
-
+        for paths in "{params.preprocessed}" "{params.datasets}"; do
+            # Delete subdirs in dirs
+            for DIR_PATH in $paths; do
+                # Check if there are subdirs in the dir path
+                if [ "$(find "$DIR_PATH" -mindepth 1 -type d)" ]; then
+                    # Remove all files and subdirectories
+                    rm -rf "$DIR_PATH"/*
+                else
+                    # If there are no subdirs, remove all files directly in DIR_PATH
+                    rm -f "$DIR_PATH"/*
+                fi
+            done
+        done
         # Check if there are subdirectories in appdata esys dir
         if [ "$(find {APPDATA_ESYS_PATH} -mindepth 1 -type d)" ]; then
           rm -r {APPDATA_ESYS_PATH}/*
+        fi
+        if [ "$(find {DATASETS_ESYS_PATH} -mindepth 1 -type d)" ]; then
+          rm -r {DATASETS_ESYS_PATH}/*
         fi
         echo "Removed all preprocessed data in directories: preprocessed, datasets and appdata."
         """
@@ -124,9 +88,9 @@ rule download_raw_zip:
     Downloads zipfile from the cloud containing the raw data and stores it in 'store/temp'
     """
     output:
-        raw_zip=get_abs_store_root_path() / "temp" / "raw.zip"
+        raw_zip=get_abs_store_root_path() / "temp" / "raw.zip",
     params:
-        url=config["global"]["input_data"]["download_url"]
+        url=config["global"]["input_data"]["download_url"],
     run:
         try:
             download_file(params.url, output.raw_zip)
@@ -134,21 +98,21 @@ rule download_raw_zip:
             raise RuntimeError(f"Error downloading file from {params.url}: {e}")
 
 
-
 rule update_raw:
     """
     Extracts 'raw.zip' and copies containing folders to 'store/raw'
     """
     input:
-        raw_zip=get_abs_store_root_path() / "temp" / "raw.zip"
+        raw_zip=get_abs_store_root_path() / "temp" / "raw.zip",
     params:
         temp_dir=get_abs_store_root_path() / "temp",
         raw_dir=get_abs_store_root_path() / "raw",
-        temp_raw_dir=get_abs_store_root_path() / "temp" / "store" / "raw"
+        temp_raw_dir=get_abs_store_root_path() / "temp" / "store" / "raw",
     run:
         try:
             extract_zipfile(input.raw_zip, params.temp_dir)
             copy_files(params.temp_raw_dir, params.raw_dir)
             clean_folder(params.temp_dir)
         except Exception as e:
+            clean_folder(params.temp_dir)
             raise RuntimeError(f"Error updating raw data: {e}")

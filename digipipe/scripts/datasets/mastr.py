@@ -116,6 +116,7 @@ def add_voltage_level(
     units_df: pd.DataFrame,
     locations_path: str,
     gridconn_path: str,
+    drop_location_id: bool = True,
 ) -> pd.DataFrame:
     """Add voltage level to units from MaStR using locations and grid
     connection points.
@@ -128,6 +129,8 @@ def add_voltage_level(
         Path to MaStR locations file
     gridconn_path : str
         Path to MaStR grid connection points file
+    drop_location_id : bool
+        Drop location id in the end
 
     Returns
     -------
@@ -163,11 +166,13 @@ def add_voltage_level(
     )
 
     # Drop unnecessary columns
+    cols = (
+        ["mastr_location_id", "mastr_location_id2"]
+        if drop_location_id
+        else ["mastr_location_id2"]
+    )
     units_df.drop(
-        columns=[
-            "mastr_location_id",
-            "mastr_location_id2",
-        ],
+        columns=cols,
         inplace=True,
     )
 
@@ -433,6 +438,7 @@ def create_stats_per_municipality(
     units_df: pd.DataFrame,
     muns: gpd.GeoDataFrame,
     column: str,
+    only_operating_units: bool = True,
 ) -> pd.DataFrame:
     """
     Create statistics on units per municipality for one column.
@@ -446,12 +452,18 @@ def create_stats_per_municipality(
         Municipalities
     column : str
         Column in units_df used for aggregation
+    only_operating_units : bool
+        Use only units which are operating, no planned or decommissioned.
+        Defaults to true.
 
     Returns
     -------
     pd.DataFrame
         Units, aggregated per municipality
     """
+
+    if only_operating_units is True:
+        units_df = units_df.loc[units_df["status"] == "In Betrieb"]
 
     units_df = units_df[["municipality_id", column]]
     units_df = (

@@ -7,6 +7,7 @@ prozessierten Marktstammdatenregister (Datensatz:
 ## Plausibiltätsprüfung
 
 Um grobe Fehler herauszufiltern wird überprüft, ob
+
 - Anlage in Betrieb ist (status = "In Betrieb"),
 - Anlage Strom produziert,
 - Brutto- und Nettokapazität plausibel sind und
@@ -20,7 +21,8 @@ Um grobe Fehler herauszufiltern wird überprüft, ob
 - Korrektur Freiflächenanlagen `bnetza_mastr_pv_ground_region_correction.ods`
 - Korrektur Aufdachanlagen `bnetza_mastr_pv_roof_region_correction.ods`
 
-mit Spalten
+mit Spalten:
+
 - _mastr_id_: ID aus dem MaStR
 - _reason_: Fehler (wrong_type, wrong_position)
 - _wrong_attr_: Fehlerhaftes Attribut

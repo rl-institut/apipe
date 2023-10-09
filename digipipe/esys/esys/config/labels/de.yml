@@ -1,57 +1,61 @@
 # oil: Öl  Raises error as "oil" is in "boiler" -> duplicate mappings
-biomass-gt: Biomass GT
-biomass-st: Biomass DT
 biomass: Biomasse
+biomass-biogas_plant: Biogasanlage
+biomass-shortage: Biomasse Shortage
+biogas: Biogas
+biogas-biogas_upgrading_plant: Biogas-Aufbereitungsanlage
+biogas-bpchp_central: Biogas zentrale KWK
+biogas-bpchp_decentral: Biogas dezentrale KWK
 ch4-boiler: CH4 Boiler
-ch4-bpchp: CH4 KWK (Gegendruck)
-ch4-demand_hh: CH4 Bedarf HH
-ch4-demand_cts: CH4 Bedarf GHD
-ch4-demand_ind: CH4 Bedarf I
-ch4-excess: CH4 Überschuss
-ch4-export: CH4 Export
-ch4-extchp: CH4 KWK (Entnahmekond.)
+ch4-bpchp_central: CH4 zentrale KWK
+ch4-bpchp_decentral: CH4 dezentrale KWK
+ch4-extchp_central: CH4 zentrale GUD
+ch4-extchp_decentral: CH4 dezentrale GUD
 ch4-gt: CH4 GT
 ch4-import: CH4 Import
-ch4-shortage: CH4 Shortage
 electricity-bev_charging: BEV
-electricity-curtailment: Abregelung
 electricity-demand_hh: Strombedarf HH
 electricity-demand_cts: Strombedarf GHD
 electricity-demand_ind: Strombedarf I
 electricity-electrolyzer: Elektrolyse
 electricity-export: Stromexport
-electricity-heatpump_large: Wärmepumpe (groß)
-electricity-heatpump_small: Wärmepumpe (Haushalt)
+electricity-heatpump_central: Wärmepumpe (groß)
+electricity-heatpump_decentral: Wärmepumpe (Haushalt)
 electricity-import: Stromimport
-electricity-liion_battery: Batterie
+electricity-large_scale_battery: Großbatterie
+electricity-small_scale_battery: Kleinbatterie
 electricity-pth: res. PtH
-electricity-shortage: Strom
-h2-bpchp: H2 KWK (Gegendruck)
+h2-bpchp_central: H2 zentrale KWK
+h2-bpchp_decentral: H2 dezentrale KWK
 h2-cavern: H2 Kaverne
 h2-demand: H2 Bedarf
 h2-excess: H2 Überschuss
-h2-export: H2 Export
-h2-gt: H2 GT
-hard coal: Steinkohle
+h2-extchp_central: H2 zentrale GUD
+h2-extchp_decentral: H2 dezentrale GUD
 h2-import: H2 Import
 h2-shortage: H2 Import
 heat_central-demand_hh: zen. Wärmebedarf HH
 heat_central-demand_cts: zen. Wärmebedarf GHD
 heat_central-demand_ind: zen. Wärmebedarf I
-heat_central-excess: zen. Wärmeüberschuss
-heat_central-shortage: zen. Wärme Shortage
 heat_central-storage: zen. Wärmespeicher
 heat_decentral-demand_hh: dez. Wärmebedarf HH
 heat_decentral-demand_cts: dez. Wärmebedarf GHD
 heat_decentral-demand_ind: dez. Wärmebedarf I
-heat_decentral-excess: dez. Wärmeüberschuss
-heat_decentral-shortage: dez. Wärme Shortage
 heat_decentral-storage: dez. Wärmespeicher
 hydro-reservoir: Reservoir
 hydro-ror: Laufwasserkraft
 lignite: Braunkohle
+lignite-shortage: Braunkohle Shortage
 nuclear-st: Kernkraftwerk
+hard coal: Steinkohle
+wood: Holz
+wood-extchp_central: Holz zentrale KWK
+wood-extchp_decentral: Holz dezentrale KWK
+wood-shortage: Holz Shortage
 other: Andere
-solar-pv: PV
+solar-pv_ground: PV Freifläche
+solar-pv_rooftop: PV Aufdach
+solar-thermalcollector_central: zen. Wärme Solarthermiekollektor
+solar-thermalcollector_decentral: dez. Wärme Solarthermiekollektor
 wind-offshore: Wind Offshore
 wind-onshore: Wind Onshore

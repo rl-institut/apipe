@@ -8,6 +8,9 @@ import re
 import geopandas as gpd
 import pandas as pd
 from pathlib import Path
+
+from digipipe.config import GLOBAL_CONFIG
+from digipipe.scripts.data_io import load_json
 from digipipe.scripts.geo import (
     overlay,
     convert_to_multipolygon,
@@ -120,3 +123,96 @@ rule create_potarea_shares:
         # Dump
         with open(output[0], "w", encoding="utf8") as f:
             json.dump(area_dict, f, indent=4)
+
+rule regionalize_state_targets:
+    """
+    Calculate PV ground targets of region
+    """
+    input:
+        potarea_pv_road_railway=get_abs_dataset_path(
+            "preprocessed", "rli_pv_wfr", data_dir=True
+        ) / "potentialarea_pv_road_railway.gpkg",
+        potarea_pv_agri=get_abs_dataset_path(
+            "preprocessed", "rli_pv_wfr", data_dir=True
+        ) / "potentialarea_pv_agriculture_lfa-off.gpkg",
+        potarea_pv_road_railway_region=get_abs_dataset_path(
+            "datasets", "rli_pv_wfr_region", data_dir=True
+        ) / "potentialarea_pv_road_railway_region.gpkg",
+        potarea_pv_agri_region=get_abs_dataset_path(
+            "datasets", "rli_pv_wfr_region", data_dir=True
+        ) / "potentialarea_pv_agriculture_lfa-off_region.gpkg",
+        el_capacity_targets=get_abs_dataset_path(
+            "preprocessed", "bmwk_long_term_scenarios"
+        ) / "data" / "T45-Strom_electricity_installed_power_reformatted.csv",
+        tech_data=get_abs_dataset_path(
+            "datasets", "technology_data", data_dir=True
+        ) / "technology_data.json"
+    output:
+        DATASET_PATH / "potentialarea_pv_ground_regionalized_targets.json"
+    run:
+        potarea_pv_rr = gpd.read_file(input.potarea_pv_road_railway).to_crs(
+            GLOBAL_CONFIG["global"]["geodata"]["crs"]
+        ).area.sum()
+        potarea_pv_agri = gpd.read_file(input.potarea_pv_agri).to_crs(
+            GLOBAL_CONFIG["global"]["geodata"]["crs"]
+        ).area.sum()
+        potarea_pv_rr_region = gpd.read_file(
+            input.potarea_pv_road_railway_region).area.sum()
+        potarea_pv_agri_region = gpd.read_file(
+            input.potarea_pv_agri_region).area.sum()
+        tech_data = load_json(input.tech_data)
+
+        # Power target from longterm scenario
+        targets = pd.read_csv(input.el_capacity_targets, index_col="year")
+        target_cap = targets.loc[
+                         targets.technology == "pv"
+                     ].loc[2045].capacity * 1e3 * config.get("pv_ground_share")
+        targets_region = (
+            target_cap * (
+                (potarea_pv_rr_region + potarea_pv_agri_region) /
+                (potarea_pv_rr + potarea_pv_agri)
+            )
+        )
+
+        with open(output[0], "w", encoding="utf8") as f:
+            json.dump(
+                {
+                    # Power targets (disaggregated)
+                    "target_power_total": round(
+                        target_cap * (
+                            (potarea_pv_rr_region + potarea_pv_agri_region) /
+                            (potarea_pv_rr + potarea_pv_agri)
+                        )
+                    ),
+                    "target_power_road_railway": round(
+                        target_cap * potarea_pv_rr_region / (
+                            potarea_pv_rr + potarea_pv_agri)
+                    ),
+                    "target_power_agri": round(
+                        target_cap * potarea_pv_agri_region / (
+                            potarea_pv_rr + potarea_pv_agri)
+                    ),
+                    # Areas targets (from power targets)
+                    "target_area_total": round(
+                        target_cap * (
+                            (potarea_pv_rr_region + potarea_pv_agri_region) /
+                            (potarea_pv_rr + potarea_pv_agri)
+                        ) / tech_data["power_density"]["pv_ground"]
+                        ,2
+                    ),
+                    "target_area_road_railway": round(
+                        target_cap * potarea_pv_rr_region / (
+                            potarea_pv_rr + potarea_pv_agri
+                        ) / tech_data["power_density"]["pv_ground"]
+                        ,2
+                    ),
+                    "target_area_agri": round(
+                        target_cap * potarea_pv_agri_region / (
+                            potarea_pv_rr + potarea_pv_agri
+                        ) / tech_data["power_density"]["pv_ground"]
+                        ,2
+                    ),
+                },
+                f,
+                indent=4
+            )

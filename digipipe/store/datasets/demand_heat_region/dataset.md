@@ -15,7 +15,10 @@ landesweiter Prognosen aus den
   [AG Energiebilanzen](../../preprocessed/ageb_energy_balance/dataset.md)
   2021 für Raumwärme, Warmwasser und Prozesswärme, desaggregiert auf Gemeinden
   mittels Wärmebedarfs-Rasterdaten aus 2015 (Wärmebedarfsdichte 1ha) aus
-  [Peta5](../../raw/seenergies_peta5/dataset.md)
+  [Peta5](../../raw/seenergies_peta5/dataset.md).
+  Anm.: Die Desaggregation könnte alternativ über Zensus "Gebäude mit Wohnraum
+  nach Heizungsart" (31231-02-01-5, s.
+  [regiostat](../../raw/regiostat/dataset.md) erfolgen)
 - Prognosewerte für 2045 werden durch lineare Skalierung mittels Reduktion der
   Gebäudewärmebedarfe aus
   [BMWK Langfristszenarien](../../preprocessed/bmwk_long_term_scenarios/dataset.md)
@@ -114,6 +117,11 @@ Die Beheizungsstruktur für 2020 und 2045 wird den
 [BMWK Langfristszenarien](../../preprocessed/bmwk_long_term_scenarios/dataset.md)
 entnommen (Gebäude: Haushalte und GHD Energiebedarf) und für 2022 interpoliert.
 Hierbei wird nach Technologien für dezentrale sowie Fernwärme unterschieden.
+Für die Biomasse wird der relative Energiebedarf mit Hilfe von Anteilen der
+installierten Leistung von spezifischen Biomasse-Konversionsanlagen
+[dbfz_biomasss_capacity_rel](../../preprocessed/dbfz_biomass_capacity_rel/dataset.md)
+je Technologie aufgelöst. Der Vereinfachung halber wird angenommen, dass die
+relative installierte Leistung der relativen Energiemenge entspricht.
 
 ## Ergebnisdaten
 
@@ -133,6 +141,8 @@ Hierbei wird nach Technologien für dezentrale sowie Fernwärme unterschieden.
 - GHD: Zeitreihen: `demand_ind_heat_timeseries.csv`
 
 - Beheizungsstruktur dezentral (informativ): `demand_heat_structure_dec.csv`
+- Beheizungsstruktur zentral (informativ): `demand_heat_structure_cen.csv`
 - Beheizungsstruktur dezentral für Weiterverwendung im Energiesystem:
   `demand_heat_structure_esys_dec.csv`
-- Beheizungsstruktur Fernwärme für Weiterverwendung im Energiesystem: **TBD**
+- Beheizungsstruktur Fernwärme für Weiterverwendung im Energiesystem:
+  `demand_heat_structure_esys_cen.csv`

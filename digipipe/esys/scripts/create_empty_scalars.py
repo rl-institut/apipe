@@ -183,6 +183,27 @@ if __name__ == "__main__":
         wacc_dict.update(settings.create_empty_scalars.wacc)
         empty_scalars = add_new_entry_to_scalars(empty_scalars, wacc_dict)
 
+        # Add emission limits
+        emissions_not_modeled = {"scenario_key": scenario_specs["name"]}
+        emissions_not_modeled.update(
+            settings.create_empty_scalars.emissions_not_modeled
+        )
+        empty_scalars = add_new_entry_to_scalars(
+            empty_scalars, emissions_not_modeled
+        )
+
+        emissions_1990 = {"scenario_key": scenario_specs["name"]}
+        emissions_1990.update(settings.create_empty_scalars.emissions_1990)
+        empty_scalars = add_new_entry_to_scalars(empty_scalars, emissions_1990)
+
+        emission_reduction_factor = {"scenario_key": scenario_specs["name"]}
+        emission_reduction_factor.update(
+            settings.create_empty_scalars.emission_reduction_factor
+        )
+        empty_scalars = add_new_entry_to_scalars(
+            empty_scalars, emission_reduction_factor
+        )
+
         empty_scalars = sort_values(empty_scalars)
 
         save_empty_scalars(empty_scalars, destination)

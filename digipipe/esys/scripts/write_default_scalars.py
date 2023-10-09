@@ -8,6 +8,7 @@ new csv file.
 import sys
 
 import numpy as np
+import pandas as pd
 
 from digipipe.esys.esys.config.esys_conf import write_default_scalars
 from digipipe.esys.esys.tools.data_processing import (
@@ -15,6 +16,30 @@ from digipipe.esys.esys.tools.data_processing import (
     load_b3_scalars,
     save_df,
 )
+
+
+def clear_input_parameters_of_storages(_df):
+    """
+    Deletes empty dictionaries from "var_value" where "var_name" is
+    "input_parameters" and "type" is "storage". This allows default values to
+    be written to these fields.
+
+    Parameters
+    ----------
+    _df : pandas.DataFrame
+        DataFrame containing the data.
+
+    Returns
+    -------
+    None
+        This function modifies the "_df" DataFrame in-place.
+
+    """
+    empty_sc_df.loc[
+        (empty_sc_df["var_name"] == "input_parameters")
+        & (empty_sc_df["type"] == "storage"),
+        "var_value",
+    ] = None
 
 
 def get_var_value_and_comment(which):
@@ -49,6 +74,15 @@ def get_var_value_and_comment(which):
     elif which == "empty_dict":
         var_value = "{}"
         comment = "Empty"
+    elif which == "variable_costs":
+        var_value = '{"variable_costs": 1e-7}'
+        comment = "Own assumption to prevent hidden curtailment"
+    elif which == "emissions_not_modeled":
+        var_value = 0
+        comment = "No fossils in 2045 in the modelled sectors."
+    elif which == "emission_reduction_factor":
+        var_value = 1
+        comment = "100 % of GHG reduction in 2045"
     else:
         raise ValueError(
             f"'{which}' is not a valid option. Please provide a valid options. "
@@ -145,6 +179,8 @@ if __name__ == "__main__":
 
     empty_sc_df = load_b3_scalars(path_empty_sc)
 
+    clear_input_parameters_of_storages(empty_sc_df)
+
     write_empty_scalars_dict = write_default_scalars.write_default_scalars
 
     for key, value in write_empty_scalars_dict.items():
@@ -173,7 +209,24 @@ if __name__ == "__main__":
         df_updated, "var_name", var_names_costs_efficiencies
     )
 
+    # Get all already by default set values of costs and efficiencies
+    df_default_costs_efficiencies = df_costs_efficiencies.dropna(
+        subset=["var_value"]
+    )
+
+    # Keep only non default values of costs and efficiencies
+    df_costs_efficiencies = df_costs_efficiencies[
+        df_costs_efficiencies["var_value"].isna()
+    ]
+
+    # Get remaining scalars
     df_scalars = filter_df(df_updated, "var_name", var_names_scalars)
+
+    # Append all values set by default of costs and efficiencies to remaining
+    # scalars
+    df_scalars = pd.concat(
+        [df_scalars, df_default_costs_efficiencies], ignore_index=False
+    )
 
     # Write all attributes attached to costs and efficiencies in separate
     # default_cost_efficiencies.csv file

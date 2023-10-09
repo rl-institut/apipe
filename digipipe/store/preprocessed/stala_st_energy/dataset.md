@@ -6,6 +6,7 @@ Sachsen-Anhalt, extrahiert und konvertiert.
 ## Daten
 
 Stromverbrauch der Industriebetriebe nach Kreisen 2003-2021 in MWh
+
 - Datei: `power_demand_industry_st_districts.csv`
 
 Raw dataset:

@@ -108,7 +108,7 @@ PATH_TO_REGION_DISTRICTS_GPKG = (
 )
 
 
-def get_names_from_nuts(gpkg: gpd.GeoDataFrame, regions_nuts: list) -> list:
+def get_names_from_nuts(gpkg: Path, regions_nuts: list) -> list:
     """
     Extract region names from a GeoPackage file for specified NUTS codes.
 
@@ -118,8 +118,8 @@ def get_names_from_nuts(gpkg: gpd.GeoDataFrame, regions_nuts: list) -> list:
 
     Parameters
     ----------
-    gpkg : gpd.GeoDataFrame
-        A GeoDataFrame representing geographical data from the GeoPackage file.
+    gpkg : pathlib.Path
+        A GeoPackage representing geographical data file.
     regions_nuts : list
         A list of NUTS codes to filter the data by
 

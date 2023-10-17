@@ -2,6 +2,7 @@ import sys
 
 import geopandas as gpd
 
+from digipipe.config import GLOBAL_CONFIG
 from digipipe.scripts.config import read_config
 from digipipe.scripts.geo import (
     convert_to_multipolygon,
@@ -37,5 +38,8 @@ def process():
 if __name__ == "__main__":
     infile = sys.argv[1]
     config = read_config(sys.argv[2])
+    config["attributes_filter"]["NUTS"] = GLOBAL_CONFIG["global"]["geodata"][
+        "nuts"
+    ]
     outfile = sys.argv[3]
     process()

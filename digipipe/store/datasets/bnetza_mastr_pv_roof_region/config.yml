@@ -40,8 +40,7 @@ attributes_filter:
      "Bauliche Anlagen (Hausdach, Gebäude und Fassade)",
      "Bauliche Anlagen (Sonstige)",
      "Steckerfertige Erzeugungsanlage (sog. Plug-In- oder Balkon-PV-Anlage)"
-   ],
-   "Landkreis": ["Wittenberg", "Anhalt-Bitterfeld", "Dessau-Roßlau"]}
+   ]}
 
 # Output settings
 layer: bnetza_mastr_pv_roof

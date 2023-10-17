@@ -1,19 +1,27 @@
 import geopandas as gpd
 import pandas as pd
 
+from digipipe.config import GLOBAL_CONFIG
 from digipipe.scripts.datasets import mastr
 from digipipe.scripts.geo import (
     overlay,
     rename_filter_attributes,
     write_geofile,
 )
-from digipipe.store.utils import df_merge_string_columns
+from digipipe.store.utils import (
+    PATH_TO_REGION_DISTRICTS_GPKG,
+    df_merge_string_columns,
+    get_names_from_nuts,
+)
 
 
 def process() -> None:
     attrs = snakemake.config["attributes"]
     attrs_filter = snakemake.config["attributes_filter"]
-
+    attrs_filter["Landkreis"] = get_names_from_nuts(
+        PATH_TO_REGION_DISTRICTS_GPKG,
+        GLOBAL_CONFIG["global"]["geodata"]["nuts"],
+    )
     units = pd.read_csv(
         snakemake.input.units,
         usecols=set(attrs.keys()) | set(attrs_filter.keys()),

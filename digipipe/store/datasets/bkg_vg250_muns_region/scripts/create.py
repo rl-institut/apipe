@@ -1,5 +1,6 @@
 import geopandas as gpd
 
+from digipipe.config import GLOBAL_CONFIG
 from digipipe.scripts.geo import (
     convert_to_multipolygon,
     overlay,
@@ -41,4 +42,7 @@ def process():
 
 if __name__ == "__main__":
     config = snakemake.config
+    config["attributes_filter"]["NUTS"] = GLOBAL_CONFIG["global"]["geodata"][
+        "nuts"
+    ]
     process()

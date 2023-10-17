@@ -72,6 +72,7 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Add nominal power per wind turbine for 2045
 - Add technology data for batteries
 - Add technology data for thermal storages
+- Add definition of relevant regions (NUTS3) in global configuration file
 
 ### Changed
 
@@ -142,6 +143,8 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Add HP share slider from-max values to prevent 100 % HP share
 - Updated technology_data dataset.md and metadata
 - Update metadate in store_raw
+- Adapt existing dataset rules to use the global region definition (NUTS3)
+
 
 ### Removed
 

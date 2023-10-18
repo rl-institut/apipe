@@ -120,6 +120,7 @@ panel_settings_templates:
       start: none
       step: none
       status_quo: none
+      future_scenario: none
       disable: none
     s_v_1:
       max: none

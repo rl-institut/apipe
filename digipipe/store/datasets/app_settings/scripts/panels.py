@@ -240,6 +240,7 @@ def add_electricity_panel_settings(
                 start=round(hydro_stats.capacity_net.sum()),
                 step=1,
                 status_quo=round(hydro_stats.capacity_net.sum()),
+                future_scenario=round(hydro_stats.capacity_net.sum()),
                 disable=True,
             ),
         )

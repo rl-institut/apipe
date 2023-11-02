@@ -10,7 +10,7 @@ nav:
   - Hintergrund: docs/sections/background.md
   - Szenarien: docs/sections/scenarios.md
   - Energiesystem: docs/sections/esys.md
-  - Daten:
+  - Daten und Methodik:
       - Raw: docs/datasets/raw_datasets.md
       - Preprocessed: docs/datasets/preprocessed_datasets.md
       - Datasets: docs/datasets/datasets_datasets.md

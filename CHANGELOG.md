@@ -73,6 +73,7 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Add technology data for batteries
 - Add technology data for thermal storages
 - Add definition of relevant regions (NUTS3) in global configuration file
+- Add documentation of energy system of ABW
 
 ### Changed
 

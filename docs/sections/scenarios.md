@@ -1,6 +1,16 @@
 # Szenarien
 
-**TBD**
+Als Zielszenario wird ein Szenario für 2045 angenommen. Die Erzeugungs- und
+Verbrauchsstrukturen orientieren sich am vorhandenen Kraftwerkspark und den
+Potenzialen in der Region. Weitere Randbedingungen werden aus den
+[BMWK Langfristszenarien](../datasets/raw_datasets.md#bmwk-langfristszenarien),
+dem EEG 2023 und dem WindBG abgeleitet. Die Topologie des Energiesystems ist
+unter [Energiesystem](../sections/esys.md) beschrieben.
+
+Die auf den Einstellelementen (Slider, Schalter) in der App dargestellten Ziele
+für dieses Szenario sind technologiespezifisch und können der
+[Dokumentation der Settings](../datasets/datasets_datasets.md#settings-für-app)
+entnommen werden.
 
 ## Wetterjahr
 
@@ -12,6 +22,7 @@ Deutschland untersucht. Im Ergebnis zeigte sich das Jahr 2011 als besonders
 geeignet.
 
 Eckpunkte
+
 - Die Winderzeugung ist durchschnittlich
 - Die PV-Erträge sind etwas höher
 - Die Wärmebedarfe etwas geringer, was das Fortschreiten des Klimawandels bis

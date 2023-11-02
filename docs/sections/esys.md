@@ -23,7 +23,7 @@ Wir treffen die folgenden Annahmen und Vereinfachungen:
   verwendet.
 - Biomasse wird unterteilt in: feste, gasförmige und flüssige Biomasse.
 - Zur Abbildung der Biomasse wird vom Status-quo in ABW ausgegangen.
-- Der Status-qup ist das Jahr 2022.
+- Der Status-quo ist das Jahr 2022.
 - Für die Vorhersage zur Entwicklung der Biomasse wird sich auf den Bericht der
   DBFZ gestützt: ["Technoökonomische Analyse und Transformationspfade des
   energetischen Biomassepotentials (TATBIO)"](https://www.bmwk.de/Redaktion/DE/Publikationen/Studien/technooekonomische-analyse-und-transformationspfade-des-energetischen-biomassepotentials.pdf?__blob=publicationFile&v=1).

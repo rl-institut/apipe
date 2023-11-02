@@ -9,7 +9,7 @@ unter [Energiesystem](../sections/esys.md) beschrieben.
 
 Die auf den Einstellelementen (Slider, Schalter) in der App dargestellten Ziele
 für dieses Szenario sind technologiespezifisch und können der
-[Dokumentation der Settings](../datasets/datasets_datasets.md#settings-für-app)
+[Dokumentation der Settings](../datasets/datasets_datasets.md#settings-fur-app)
 entnommen werden.
 
 ## Wetterjahr

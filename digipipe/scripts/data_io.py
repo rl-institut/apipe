@@ -73,22 +73,22 @@ def copy_files(src_path: str, dest_path: str) -> None:
             for file in os.listdir(src_dir):
                 src_file = os.path.join(src_dir, file)
                 dst_file = os.path.join(dst_dir, file)
-                if not os.path.isfile(dst_file):
-                    files_to_copy.append(file)
-                if file == ".gitkeep":
-                    continue
-                else:
+                if os.path.isfile(dst_file):
+                    if file == ".gitkeep":
+                        continue
                     print(f"\n'{file}' already exists in '{d}/data'.")
                     overwrite_file = input("Do you want to update it? (y/n) ")
                     while overwrite_file.lower() not in ["y", "n"]:
                         overwrite_file = input(
-                            "Invalid input. Enter 'y' or 'n': "
+                            """Invalid input. Enter 'y' or 'n': """
                         )
                     if overwrite_file.lower() == "y":
                         shutil.copy(src_file, dst_file)
                         print(f"'{file}' updated.")
                     else:
                         continue
+                else:
+                    files_to_copy.append(file)
 
             for file in files_to_copy:
                 src_file = os.path.join(src_dir, file)

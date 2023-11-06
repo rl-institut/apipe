@@ -8,8 +8,10 @@
 
 # Digipipe
 
+[![Black code style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
+
 Pipeline for data and energy system in the Digiplan project.
 
-The documentation can be found here: https://digipipe.readthedocs.io
-
-Install instructions see [installation.md](docs/sections/installation.md)
+- App: https://github.com/rl-institut/digiplan/
+- Documentation: https://digipipe.readthedocs.io
+- Install instructions: [installation.md](docs/sections/installation.md)

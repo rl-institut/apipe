@@ -1,6 +1,6 @@
-repo_name: rl-institut-private/digipipe
-repo_url: https://github.com/rl-institut-private/digipipe
-site_name: digipipe 0.0.1 dev documentation
+repo_name: rl-institut/digipipe
+repo_url: https://github.com/rl-institut/digipipe
+site_name: digipipe documentation
 site_url: http://127.0.0.1:8000/
 docs_dir: .
 site_dir: ./site

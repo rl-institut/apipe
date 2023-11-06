@@ -864,10 +864,10 @@ Einstellungen für die App.
 
 ### Layerliste (rechtes Panel)
 
-- Konfiguration: [config.yml](../../digipipe/store/datasets/app_settings/config.yml) --> `map_panel_layer_list`
+- Konfiguration: [config.yml](https://github.com/rl-institut/digipipe/blob/main/digipipe/store/datasets/app_settings/config.yml) --> `map_panel_layer_list`
 - Ergebnisfile: `map_panel_layer_list.json`
 - Wird manuell in die App eingepflegt (s.
-  [map_config.py](https://github.com/rl-institut-private/digiplan/blob/dev/digiplan/map/map_config.py))
+  [map_config.py](https://github.com/rl-institut/digiplan/blob/main/digiplan/map/map_config.py))
 
 ### Settings panels
 
@@ -875,9 +875,9 @@ Die im linken Panel aufgeführten Einstellelemente (Slider und Schalter) werden
 hier parametriert.
 
 - Konfiguration des Templates:
-  [config.yml](../../digipipe/store/datasets/app_settings/config.yml) --> `panel_settings_templates`
+  [config.yml](https://github.com/rl-institut/digipipe/blob/main/digipipe/store/datasets/app_settings/config.yml) --> `panel_settings_templates`
 - Parametrierung der Slider und Schalter:
-  [panels.py](scripts/panels.py)
+  [panels.py](https://github.com/rl-institut/digipipe/blob/main/digipipe/store/datasets/app_settings/scripts/panels.py)
 - Ergebnisfiles:
     - `energy_settings_panel.json`
     - `heat_settings_panel.json`

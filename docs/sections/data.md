@@ -2,6 +2,6 @@
    include-markdown "../../digipipe/store/DATASETS.md"
 %}
  
-## Datensätze
+## Datasets
 
-Siehe [Datasets](../datasets/raw_datasets.md)
+See [Datasets](../datasets/raw_datasets.md)

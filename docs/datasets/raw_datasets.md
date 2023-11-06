@@ -51,10 +51,10 @@ Datei: `technology_data.json` --> `nominal_power_per_unit`
 
 - Kleinbatterien/Heimspeicher: Nennkapazität je installierter PV-Peakleistung
   und Speichernennleistung je installierter Speichernennkapazität aus
-  [bnetza_mastr](../../digipipe/store/digipipe/store/raw/bnetza_mastr/dataset.md) und
+  [bnetza_mastr](../../digipipe/store/raw/bnetza_mastr/dataset.md) und
   [HTW](https://solar.htw-berlin.de/wp-content/uploads/HTW-Stromspeicher-Inspektion-2023.pdf).
 - Großbatterien: Speichernennleistung je installierter Speichernennkapazität
-  aus [bnetza_mastr](../../digipipe/store/digipipe/store/raw/bnetza_mastr/dataset.md).
+  aus [bnetza_mastr](../../digipipe/store/raw/bnetza_mastr/dataset.md).
 
 Datei: `technology_data.json` --> `batteries`
 

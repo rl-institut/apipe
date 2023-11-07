@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "digipipe"
-version = "0.0.0"
+version = "1.0.0"
 description = "Pipeline for data and energy system in the Digiplan project."
 authors = [
   "Jonathan Amme <jonathan.amme@rl-institut.de>",

@@ -145,7 +145,7 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Updated technology_data dataset.md and metadata
 - Update metadate in store_raw
 - Adapt existing dataset rules to use the global region definition (NUTS3)
-
+- Update list of region-specific datasets
 
 ### Removed
 

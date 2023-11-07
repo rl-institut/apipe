@@ -16,7 +16,7 @@ nav:
       - Preprocessed: docs/datasets/preprocessed_datasets.md
       - Datasets: docs/datasets/datasets_datasets.md
       - Appdata: docs/datasets/appdata_datasets.md
-      - Regionale Datensätze: docs/datasets/region_specific_datasets.md
+      - Regionsspezifische Datensätze: docs/datasets/region_specific_datasets.md
   - Developer Docs (en):
       - Installation: docs/sections/installation.md
       - Data pipeline: docs/sections/data.md

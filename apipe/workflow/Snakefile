@@ -37,13 +37,6 @@ rule all:
         app_datapackage=rules.appdata_datapackage_create_datapackage.output,
         esys_appdata=rules.make_esys_appdata.output,
 
-
-# run:
-#     print("CONFIG MAIN:")
-#     print(config)
-#     print(workflow.basedir)
-
-
 rule clean:
     """
     Remove all output and temporary files.

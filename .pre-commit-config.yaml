@@ -1,5 +1,3 @@
-# TODO: Find out if something needs to be changed in here in comparison to digiplan
-
 exclude: 'docs|node_modules|vendors|migrations|.git|.tox'
 default_stages: [commit]
 fail_fast: true

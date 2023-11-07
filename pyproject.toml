@@ -1,14 +1,8 @@
 [tool.poetry]
-name = "digipipe"
+name = "apipe"
 version = "1.0.0"
-description = "Pipeline for data and energy system in the Digiplan project."
-authors = [
-  "Jonathan Amme <jonathan.amme@rl-institut.de>",
-  "Marie-Claire Gering <marie-claire.gering@rl-institut.de>",
-  "David Starzl <David.Starzl@rl-institut.de>",
-  "Aaron Schilling <Aaron.Schilling@rl-institut.de>",
-  "Hedwig Bartels <Hedwig.Bartels@rl-institut.de>",
-]
+description = "Pipeline for data and energy system for WAMs."
+authors = ["Jonathan Amme <jonathan.amme@rl-institut.de>"]
 license = 'GNU AGPLv3'
 classifiers = [  # Optional
         # How mature is this project? Common values are
@@ -33,10 +27,10 @@ classifiers = [  # Optional
         "Programming Language :: Python :: 3.10",
 ]
 readme = "README.md"
-repository = "https://github.com/rl-institut/digipipe"
+repository = "https://github.com/rl-institut/apipe"
 
 [tool.poetry.urls]
-"Bug Tracker" = "https://github.com/rl-institut/digipipe/issues"
+"Bug Tracker" = "https://github.com/rl-institut/apipe/issues"
 
 [tool.poetry.dependencies]
 python = ">=3.8,<3.12"

@@ -5,6 +5,9 @@ description = "Pipeline for data and energy system in the Digiplan project."
 authors = [
   "Jonathan Amme <jonathan.amme@rl-institut.de>",
   "Marie-Claire Gering <marie-claire.gering@rl-institut.de>",
+  "David Starzl <David.Starzl@rl-institut.de>",
+  "Aaron Schilling <Aaron.Schilling@rl-institut.de>",
+  "Hedwig Bartels <Hedwig.Bartels@rl-institut.de>",
 ]
 license = 'GNU AGPLv3'
 classifiers = [  # Optional

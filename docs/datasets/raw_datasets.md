@@ -51,10 +51,10 @@ Datei: `technology_data.json` --> `nominal_power_per_unit`
 
 - Kleinbatterien/Heimspeicher: Nennkapazität je installierter PV-Peakleistung
   und Speichernennleistung je installierter Speichernennkapazität aus
-  [bnetza_mastr](../../digipipe/store/raw/bnetza_mastr/dataset.md) und
+  [bnetza_mastr](../../apipe/store/raw/bnetza_mastr/dataset.md) und
   [HTW](https://solar.htw-berlin.de/wp-content/uploads/HTW-Stromspeicher-Inspektion-2023.pdf).
 - Großbatterien: Speichernennleistung je installierter Speichernennkapazität
-  aus [bnetza_mastr](../../digipipe/store/raw/bnetza_mastr/dataset.md).
+  aus [bnetza_mastr](../../apipe/store/raw/bnetza_mastr/dataset.md).
 
 Datei: `technology_data.json` --> `batteries`
 
@@ -1922,7 +1922,7 @@ Quellen:
 Die installierten Leistungen in MW wird im Szenario 80 % Transformationspfad
 und 2,6 Mio. ha Anbauflächen im Jahr 2020 und 2050 der Tabelle 13 im
 Dokument
-["Technoökonomische Analyse und Transformationspfade des energetischen Biomassepotentials (TATBIO)"](../../digipipe/store/raw/dbfz_biomass_heat_capacities/metadata.json)
+["Technoökonomische Analyse und Transformationspfade des energetischen Biomassepotentials (TATBIO)"](../../apipe/store/raw/dbfz_biomass_heat_capacities/metadata.json)
 für die folgenden Konversionsanlagen von Biomasse entnommen:
 
 - Biomethan-Blockheizkraftwerk
@@ -1946,7 +1946,7 @@ In den Spalten "decentral" und "central" wird mit "x" angegeben, ob jeweils ein
 dezentraler und zentraler Einsatz der Konversionsanlage Stand der Technik ist.
 
 In der Spalte "carrier" wird analog zur Konvention der Namensgebung im
-Energiesystem (siehe [esys.md](../../digipipe/store/../../docs/sections/esys.md)) der
+Energiesystem (siehe [esys.md](../../apipe/store/../../docs/sections/esys.md)) der
 jeweilige in die Konversionsanlage eintretende Energieträger notiert.
 Diese werden Abbildung 3 des Dokuments entommen. Der Energieträger Schwarzlauge
 wird vereinfachend dem Energieträger feste Biomasse bzw. Holz zugeordnet.
@@ -1954,7 +1954,7 @@ Klärgas und Holzgas werden vereinfachend Biogas zugeordnet.
 
 In der Spalte "tech" findet die Zuordnung zu der Technologie anhand der im
 Energiesystem verwendeten Komponenten (siehe
-[esys.md](../../digipipe/store/../../docs/sections/esys.md)) statt.
+[esys.md](../../apipe/store/../../docs/sections/esys.md)) statt.
 
 **Dataset: `raw/dbfz_biomass_heat_capacities`**
 
@@ -2363,7 +2363,7 @@ Nennwärmeleistung von mehreren Megawatt. Zur Disaggreagtion wurde daher der
 Wärmebedarf von ABW im Verhältnis zum Wärmebedarf von gesamt Sachsen Anhalt
 gewählt. Der Wärmevedarf umfasst Raumwärme, Warmwasser sowie Kochen und wird aus
 Daten aus dem Pipeline-Datensatz
-[demand_heat_region](../../digipipe/store/datasets/demand_heat_region/dataset.md) generiert.
+[demand_heat_region](../../apipe/store/datasets/demand_heat_region/dataset.md) generiert.
 
 Ergebnis: 17,46 % des Bedarfs in Sachsen-Anhalt entfällt auf ABW.
 
@@ -3656,7 +3656,7 @@ Dateien:
 
 Überprüfung und manuelle Datenkorrektur der Photovoltaikanlagen aus dem
 prozessierten Marktstammdatenregister (Datensatz:
-[bnetza_mastr](../../digipipe/store/raw/bnetza_mastr/dataset.md)).
+[bnetza_mastr](../../apipe/store/raw/bnetza_mastr/dataset.md)).
 
 ### Plausibiltätsprüfung
 
@@ -4573,12 +4573,12 @@ Ist nicht Teil des Eingangsdaten-Packages - manueller Download erforderlich.
 
 Einspeisezeitreihen für Erneuerbare Energien, normiert auf 1 MW bzw. 1 p.u.
 Als Wetterjahr wird 2011 verwendet, siehe
-[Szenarien](../../digipipe/store/../../docs/sections/scenarios.md).
+[Szenarien](../../apipe/store/../../docs/sections/scenarios.md).
 
 ### Windenergie
 
 Stündlich aufgelöste Zeitreihe der Windenergie Einspeisung über 1 Jahr auf Basis
-von [MaStR](../../digipipe/store/raw/bnetza_mastr/dataset.md) und
+von [MaStR](../../apipe/store/raw/bnetza_mastr/dataset.md) und
 [renewables.ninja](http://renewables.ninja).
 Auf einen Auflösung auf Gemeindeebene wird verzichtet, da die Differenz der
 Produktion der Gemeinden nach renewables.ninja <5 % beträgt.
@@ -4592,7 +4592,7 @@ Nabenhöhe und Turbinentyp erforderlich.
 
 Hierfür wird aus den Zentroiden der Gemeinden ein räumlicher Mittelwert
 anhand des Datensatzes
-[bkg_vg250_muns_region](../../digipipe/store/datasets/bkg_vg250_muns_region/dataset.md)
+[bkg_vg250_muns_region](../../apipe/store/datasets/bkg_vg250_muns_region/dataset.md)
 (`bkg_vg250_muns_region.gpkg`) gebildet:
 
 ```
@@ -4621,7 +4621,7 @@ Wird auf 1 MW gesetzt/normiert.
 ##### Nabenhöhe
 
 Aus dem Datensatz
-[bnetza_mastr_wind_region](../../digipipe/store/datasets/bnetza_mastr_wind_region/dataset.md)
+[bnetza_mastr_wind_region](../../apipe/store/datasets/bnetza_mastr_wind_region/dataset.md)
 (`bnetza_mastr_wind_agg_abw.gpkg`) wird ein Mittelwer von 100 m abgeleitet.
 
 ```
@@ -4754,7 +4754,7 @@ Zukunftsszenarien verwendet.
 #### PV-Anlage (2022)
 
 Stündlich aufgelöste Zeitreihe der Photovoltaikeinspeisung über 1 Jahr auf Basis
-von [MaStR](../../digipipe/store/raw/bnetza_mastr/dataset.md) und
+von [MaStR](../../apipe/store/raw/bnetza_mastr/dataset.md) und
 [renewables.ninja](http://renewables.ninja).
 Wie bei der Windeinspeisung wird auf eine Auflsöung auf Gemeindeebene aufgrund
 geringer regionaler Abweichungen verzichtet.

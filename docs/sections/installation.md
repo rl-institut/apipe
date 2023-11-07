@@ -4,7 +4,7 @@
 
 First, clone via SSH using
 
-    git clone git@github.com:rl-institut-private/digipipe.git /local/path/to/digipipe/
+    git clone git@github.com:rl-institut/apipe.git /local/path/to/apipe/
 
 Prerequisite:
 
@@ -16,7 +16,7 @@ Enter repo folder. Set up a conda environment and activate it with:
 
 ```
 conda env create -f environment.yml
-conda activate digipipe
+conda activate apipe
 ```
 
 Install [poetry](https://python-poetry.org/) (python dependency manager used
@@ -39,12 +39,12 @@ Notes:
 - Make sure you have GDAL>=3.0 as older versions will not work.
 - `imagemagick` is optional and only required for report creation
 
-## Contributing to digipipe
+## Contributing to apipe
 
-You can write [issues](https://github.com/rl-institut/digipipe/issues)
+You can write [issues](https://github.com/rl-institut/apipe/issues)
 to announce bugs or to propose enhancements.
 
-If you want to participate in the development of digipipe, please make sure you
+If you want to participate in the development of apipe, please make sure you
 use pre-commit.
 
 You activate it with:

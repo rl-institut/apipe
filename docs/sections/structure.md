@@ -2,7 +2,7 @@
 
 ```
 .
-├── digipipe
+├── apipe
 │   ├── config
 │   │   └── global.yml                          # Global config
 │   ├── logs                                    # Place for log files

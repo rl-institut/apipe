@@ -1,5 +1,5 @@
 {%
-   include-markdown "../../digipipe/store/DATASETS.md"
+   include-markdown "../../apipe/store/DATASETS.md"
 %}
  
 ## Datasets

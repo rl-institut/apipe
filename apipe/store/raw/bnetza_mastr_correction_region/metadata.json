@@ -1,0 +1,112 @@
+{
+    "name": "bnetza_mastr_correction",
+    "title": "Marktstammdatenregisterdaten - Manuelle Korrektur",
+    "id": "bnetza_mastr",
+    "description": "Daten aus dem Marktstammdatenregister der Bundesnetzagentur",
+    "language": [
+    "en-GB",
+    "de-DE"
+    ],
+    "subject": null,
+    "keywords": [
+        "Markstammdatenregister",
+        "openmastr",
+        "mastr"
+    ],
+    "publicationDate": "2022-12-19",
+    "context": {
+        "homepage": "https://abw.rl-institut.de",
+        "documentation": "https://digiplan.readthedocs.io",
+        "sourceCode": "https://github.com/rl-institut/apipe/",
+        "contact": "https://reiner-lemoine-institut.de/ueber-uns/kontakt/",
+        "grantNo": "None",
+        "fundingAgency": "https://www.region-gestalten.bund.de",
+        "fundingAgencyLogo": "https://www.region-gestalten.bund.de/Region/SiteGlobals/Frontend/Images/logo.svg",
+        "publisherLogo": "https://reiner-lemoine-institut.de//wp-content/uploads/2015/09/rlilogo.png"
+    },
+    "spatial": {
+        "location": "Germany",
+        "extent": "Germany",
+        "resolution": null
+    },
+    "temporal": {
+        "referenceDate": "2022-12-19",
+        "timeseries": null
+    },
+    "sources": [
+        {
+            "title": "Marktstammdatenregister",
+            "description": "Marktstammdatenregister der Bundesnetzagentur Deutschland",
+                "path": "https://www.marktstammdatenregister.de/MaStR/Datendownload",
+            "licenses": [
+                {
+                    "name": "DL-DE-BY-2.0",
+                    "title": "Open Data Datenlizenz Deutschland – Namensnennung – Version 2.0",
+                    "path": "http://www.govdata.de/dl-de/by-2-0",
+                    "instruction": "The data and meta-data provided may, for commercial and non-commercial use, in particular be copied, printed, presented, altered, processed and transmitted to third parties; be merged with own data and with the data of others and be combined to form new and independent datasets;be integrated in internal and external business processes, products and applications in public and non-public electronic networks.",
+                    "attribution": "© Marktstammdatenregister 2023"
+                }
+            ]
+        }
+    ],
+    "licenses": [
+        {
+           "name": "DL-DE-BY-2.0",
+            "title": "Open Data Datenlizenz Deutschland – Namensnennung – Version 2.0?" ,
+            "path": "http://www.govdata.de/dl-de/by-2-0",
+            "instruction": "The data and meta-data provided may, for commercial and non-commercial use, in particular be copied, printed, presented, altered, processed and transmitted to third parties; be merged with own data and with the data of others and be combined to form new and independent datasets;be integrated in internal and external business processes, products and applications in public and non-public electronic networks.",
+            "attribution": "© Marktstammdatenregister 2023"
+        }
+    ],
+    "contributors": [
+        {
+            "title": "hedwiglieselotte",
+            "email": "hedwig.bartels@rl-institut.de",
+            "date": "2023-03-28",
+            "object": "metadata",
+            "comment": "Create metadata"
+        }
+    ],
+    "resources": [
+        {
+            "profile": null,
+            "name": null,
+            "path": null,
+            "format": null,
+            "encoding": null,
+            "schema": {
+                "fields": [],
+                "primaryKey": [],
+                "foreignKeys": []
+            },
+            "dialect": {
+                "delimiter": "",
+                "decimalSeparator": "."
+            }
+        }
+    ],
+    "@id": null,
+    "@context": "https://raw.githubusercontent.com/OpenEnergyPlatform/oemetadata/develop/metadata/latest/context.json",
+    "review": {
+        "path": "",
+        "badge": ""
+    },
+    "metaMetadata": {
+        "metadataVersion": "OEP-1.5.2",
+        "metadataLicense": {
+            "name": "CC0-1.0",
+            "title": "Creative Commons Zero v1.0 Universal",
+            "path": "https://creativecommons.org/publicdomain/zero/1.0/"
+        }
+    },
+    "_comment": {
+        "metadata": "Metadata documentation and explanation (https://github.com/OpenEnergyPlatform/oemetadata)",
+        "dates": "Dates and time must follow the ISO8601 including time zone (YYYY-MM-DD or YYYY-MM-DDThh:mm:ss±hh)",
+        "units": "Use a space between numbers and units (100 m)",
+        "languages": "Languages must follow the IETF (BCP47) format (en-GB, en-US, de-DE)",
+        "licenses": "License name must follow the SPDX License List (https://spdx.org/licenses/)",
+        "review": "Following the OEP Data Review (https://github.com/OpenEnergyPlatform/data-preprocessing/blob/master/data-review/manual/review_manual.md)",
+        "null": "If not applicable use: null",
+        "todo": "If a value is not yet available, use: todo"
+    }
+}

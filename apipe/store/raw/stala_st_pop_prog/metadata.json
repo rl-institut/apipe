@@ -1,0 +1,109 @@
+{
+ "name": "stala_st_pop_prog",
+ "title": "Regionalisierte Bevölkerungsprognose",
+ "id": "stala_st_pop_prog",
+ "description": "Prognostizierter Bevölkerungsstand in den Gemeinden, kreisfreien Städten und Landkreisen nach Prognosejahr und Geschlecht",
+ "language": [
+     "de-DE"
+    ],
+ "subject": [],
+ "keywords": [
+     "Bevölkerungsprognose",
+     "population"
+ ],
+ "publicationDate": null,
+ "context": {
+    "homepage": "https://abw.rl-institut.de",
+    "documentation": "https://digiplan.readthedocs.io",
+    "sourceCode": "https://github.com/rl-institut/apipe/",
+    "contact": "https://reiner-lemoine-institut.de/ueber-uns/kontakt/",
+    "grantNo": "None",
+    "fundingAgency": "https://www.region-gestalten.bund.de",
+    "fundingAgencyLogo": "https://www.region-gestalten.bund.de/Region/SiteGlobals/Frontend/Images/logo.svg",
+    "publisherLogo": "https://reiner-lemoine-institut.de//wp-content/uploads/2015/09/rlilogo.png"
+ },
+ "spatial": {
+    "location": "Sachsen-Anhalt",
+    "extent": "Sachsen-Anhalt",
+    "resolution": ""
+ },
+ "temporal": {
+    "referenceDate": null,
+    "timeseries": [
+        {
+         "start": "2019",
+         "end": "2035",
+         "resolution": "1 year",
+         "alignment": null,
+         "aggregationType": "sum"
+        }
+    ]
+ },
+ "sources": [
+    {
+     "title": "1_Internettabelle_7RBP_nach_Prognosejahr_Geschlecht_alle_Ebenen",
+     "description": "Prognostizierter Bevölkerungsstand in den Gemeinden, kreisfreien Städten und Landkreisen nach Prognosejahr und Geschlecht",
+     "path": "statistik.sachsen-anhalt.de/themen/bevoelkerung-mikrozensus-freiwillige-haushaltserhebungen/bevoelkerung/bevoelkerungsprognose-und-haushalteprognose/#c312231",
+     "licenses": [
+        {
+         "name": "DL-DE-BY-2.0",
+         "title": "Data licence Germany – attribution – Version 2.0",
+         "path": "https://www.govdata.de/dl-de/by-2-0",
+         "instruction": "The data and meta-data provided may, for commercial and non-commercial use, in particular be copied, printed, presented, altered, processed and transmitted to third parties; be merged with own data and with the data of others and be combined to form new and independent datasets; be integrated in internal and external business processes, products and applications in public and non-public electronic networks.",
+         "attribution": "© 2023 Landesportal Sachsen-Anhalt "
+        }
+     ]
+   }
+ ],
+ "contributors": [
+    {
+         "title": "aaronschilling",
+         "email": "Aaron.Schilling@rl-institut.de",
+         "date": "2023-09-07",
+         "object": "metadata",
+         "comment": "create metadata"
+       }
+ ],
+ "resources": [
+        {
+            "profile": null,
+            "name": null,
+            "path": null,
+            "format": null,
+            "encoding": null,
+            "schema": {
+                "fields": [],
+                "primaryKey": [],
+                "foreignKeys": []
+            },
+            "dialect": {
+                "delimiter": "",
+                "decimalSeparator": "."
+            }
+        }
+    ],
+ "@id": [],
+ "@context": "https://raw.githubusercontent.com/OpenEnergyPlatform/oemetadata/develop/metadata/latest/context.json",
+ "review": {
+    "path": "",
+    "badge": ""
+ },
+ "metaMetadata": {
+    "metadataVersion": "OEP-1.5.2",
+    "metadataLicense": {
+        "name": "CC0-1.0",
+        "title": "Creative Commons Zero v1.0 Universal",
+        "path": "https://creativecommons.org/publicdomain/zero/1.0/"
+    }
+},
+ "_comment": {
+    "metadata": "Metadata documentation and explanation (https://github.com/OpenEnergyPlatform/oemetadata)",
+    "dates": "Dates and time must follow the ISO8601 including time zone (YYYY-MM-DD or YYYY-MM-DDThh:mm:ss±hh)",
+    "units": "Use a space between numbers and units (100 m)",
+    "languages": "Languages must follow the IETF (BCP47) format (en-GB, en-US, de-DE)",
+    "licenses": "License name must follow the SPDX License List (https://spdx.org/licenses/)",
+    "review": "Following the OEP Data Review (https://github.com/OpenEnergyPlatform/data-preprocessing/blob/master/data-review/manual/review_manual.md)",
+    "null": "If not applicable use: null",
+    "todo": "If a value is not yet available, use: todo"
+  }
+}

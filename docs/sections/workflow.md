@@ -1,3 +1,3 @@
 {%
-   include-markdown "../../digipipe/workflow/WORKFLOW.md"
+   include-markdown "../../apipe/workflow/WORKFLOW.md"
 %}

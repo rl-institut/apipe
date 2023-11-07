@@ -1,0 +1,118 @@
+"""
+Snakemake file for apipe
+"""
+
+from snakemake.utils import min_version
+
+min_version("6.0")
+
+from apipe.scripts.config import load_dataset_configs
+from apipe.scripts.data_io import *
+from apipe.store.utils import get_abs_dataset_path, get_abs_store_root_path
+from apipe.config import GLOBAL_CONFIG
+
+config = GLOBAL_CONFIG
+config.update(load_dataset_configs())
+
+# Path to esys appdata
+APPDATA_ESYS_PATH = get_abs_dataset_path("appdata", "esys")
+DATASETS_ESYS_PATH = os.path.join(
+    get_abs_dataset_path("datasets", "esys_raw"), "data"
+)
+
+
+# Include store modules
+include: "../store/preprocessed/module.smk"
+include: "../store/datasets/module.smk"
+include: "../store/appdata/module.smk"
+# Include esys snakefiles
+include: "../esys/Snakefile"
+
+
+# ===== RULES =====
+
+
+rule all:
+    input:
+        app_datapackage=rules.appdata_datapackage_create_datapackage.output,
+        esys_appdata=rules.make_esys_appdata.output,
+
+
+# run:
+#     print("CONFIG MAIN:")
+#     print(config)
+#     print(workflow.basedir)
+
+
+rule clean:
+    """
+    Remove all output and temporary files.
+    """
+    params:
+        preprocessed=expand(
+            get_abs_dataset_path("preprocessed", "{name}", data_dir=True),
+            name=config.get("store")["preprocessed"].keys(),
+        ),
+        datasets=expand(
+            get_abs_dataset_path("datasets", "{name}", data_dir=True),
+            name=config.get("store")["datasets"].keys(),
+        ),
+    shell:
+        """
+        for paths in "{params.preprocessed}" "{params.datasets}"; do
+            # Delete subdirs in dirs
+            for DIR_PATH in $paths; do
+                # Check if there are subdirs in the dir path
+                if [ "$(find "$DIR_PATH" -mindepth 1 -type d)" ]; then
+                    # Remove all files and subdirectories
+                    rm -rf "$DIR_PATH"/*
+                else
+                    # If there are no subdirs, remove all files directly in DIR_PATH
+                    rm -f "$DIR_PATH"/*
+                fi
+            done
+        done
+        # Check if there are subdirectories in appdata esys dir
+        if [ "$(find {APPDATA_ESYS_PATH} -mindepth 1 -type d)" ]; then
+          rm -r {APPDATA_ESYS_PATH}/*
+        fi
+        if [ "$(find {DATASETS_ESYS_PATH} -mindepth 1 -type d)" ]; then
+          rm -r {DATASETS_ESYS_PATH}/*
+        fi
+        echo "Removed all preprocessed data in directories: preprocessed, datasets and appdata."
+        """
+
+
+rule download_raw_zip:
+    """
+    Downloads zipfile from the cloud containing the raw data and stores it in 'store/temp'
+    """
+    output:
+        raw_zip=get_abs_store_root_path() / "temp" / "raw.zip",
+    params:
+        url=config["global"]["input_data"]["download_url"],
+    run:
+        try:
+            download_file(params.url, output.raw_zip)
+        except Exception as e:
+            raise RuntimeError(f"Error downloading file from {params.url}: {e}")
+
+
+rule update_raw:
+    """
+    Extracts 'raw.zip' and copies containing folders to 'store/raw'
+    """
+    input:
+        raw_zip=get_abs_store_root_path() / "temp" / "raw.zip",
+    params:
+        temp_dir=get_abs_store_root_path() / "temp",
+        raw_dir=get_abs_store_root_path() / "raw",
+        temp_raw_dir=get_abs_store_root_path() / "temp" / "store" / "raw",
+    run:
+        try:
+            extract_zipfile(input.raw_zip, params.temp_dir)
+            copy_files(params.temp_raw_dir, params.raw_dir)
+            clean_folder(params.temp_dir)
+        except Exception as e:
+            clean_folder(params.temp_dir)
+            raise RuntimeError(f"Error updating raw data: {e}")

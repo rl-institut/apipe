@@ -1,3 +1,3 @@
 {%
-   include-markdown "../../digipipe/esys/ESYS.md"
+   include-markdown "../../apipe/esys/ESYS.md"
 %}

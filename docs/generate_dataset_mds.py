@@ -16,7 +16,7 @@ def generate_dataset_mds():
     -------
     None
     """
-    source_dir = "digipipe/store"
+    source_dir = "apipe/store"
     target_dir = "docs/datasets"
 
     categories = ["raw", "preprocessed", "datasets", "appdata"]
@@ -42,17 +42,17 @@ def generate_dataset_mds():
                             for line in dataset_file:
                                 line = re.sub(
                                     r"\(\.\./\.\./",
-                                    "(../../digipipe/store/",
+                                    "(../../apipe/store/",
                                     line,
                                 )
                                 line = re.sub(
                                     r"\(config.yml\)",
-                                    f"(../../digipipe/store/{category}/{os.path.basename(root)}/config.yml)",
+                                    f"(../../apipe/store/{category}/{os.path.basename(root)}/config.yml)",
                                     line,
                                 )
                                 line = re.sub(
                                     r"\(\.\./([a-zA-Z])",
-                                    fr"(../../digipipe/store/{category}/\1",
+                                    fr"(../../apipe/store/{category}/\1",
                                     line,
                                 )
                                 line = re.sub(

@@ -1,12 +1,12 @@
-repo_name: rl-institut/digipipe
-repo_url: https://github.com/rl-institut/digipipe
-site_name: digipipe documentation
+repo_name: rl-institut/apipe
+repo_url: https://github.com/rl-institut/apipe
+site_name: apipe documentation
 site_url: http://127.0.0.1:8000/
 docs_dir: .
 site_dir: ./site
 
 nav:
-  - Digipipe: index.md
+  - apipe: index.md
   - Hintergrund: docs/sections/background.md
   - Szenarien: docs/sections/scenarios.md
   - Energiesystem: docs/sections/esys.md
@@ -32,13 +32,13 @@ plugins:
         - de
   - exclude-search:
       exclude:
-        - digipipe/*
+        - apipe/*
   - include-markdown
   - same-dir
   - exclude:
       glob:
-        - digipipe/esys/*
-        - digipipe/config/*
+        - apipe/esys/*
+        - apipe/config/*
         - README.md
         - CHANGELOG.md
         - "*.tmp"

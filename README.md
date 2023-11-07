@@ -14,3 +14,4 @@ Pipeline for data and energy system for WAMs.
 - App: https://github.com/rl-institut/apipe/
 - Documentation:
 - Install instructions: [installation.md](docs/sections/installation.md)
+- Run instructions: [workflow.md](apipe/workflow/WORKFLOW.md)

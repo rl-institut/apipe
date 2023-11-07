@@ -1,0 +1,6 @@
+mkdocs
+mkdocs-material
+mkdocs-include-markdown-plugin
+mkdocs-same-dir
+mkdocs-exclude
+mkdocs-exclude-search

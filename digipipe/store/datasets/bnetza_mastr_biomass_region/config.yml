@@ -1,0 +1,34 @@
+##############################################################################
+# This file holds configuration parameters for the creation of this dataset. #
+##############################################################################
+
+# Filter settings
+attributes:
+  {"EinheitMastrNummer": "mastr_id",
+   "KwkMastrNummer": "kwk_mastr_id",
+   "EinheitBetriebsstatus": "status",
+   "LokationMastrNummer": "mastr_location_id",
+   "Postleitzahl": "zip_code",
+   "Ort": "city",
+   "Laengengrad": "lon",
+   "Breitengrad": "lat",
+   "Inbetriebnahmedatum": "commissioning_date",
+   "GeplantesInbetriebnahmedatum": "commissioning_date_planned",
+   "DatumEndgueltigeStilllegung": "decommissioning_date",
+   "NameStromerzeugungseinheit": "name",
+   "Nettonennleistung": "capacity_net",
+   "Bruttoleistung": "capacity_gross",
+   "ThermischeNutzleistung": "th_capacity",
+   "Einspeisungsart": "feedin_type",
+   "Technologie": "technology",
+   "Hauptbrennstoff": "fuel",
+   "Biomasseart": "fuel_type",
+   "AusschliesslicheVerwendungBiomasse": "biomass_only",
+   "BiogasInanspruchnahmeFlexiPraemie": "flexibility_bonus",
+   "NetzbetreiberpruefungStatus": "validated_by_system_operator"}
+attributes_filter:
+  {"Land": "Deutschland",
+   "EinheitBetriebsstatus": ["In Betrieb", "In Planung"]}
+
+# Output settings
+layer: bnetza_mastr_biomass

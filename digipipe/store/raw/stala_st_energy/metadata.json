@@ -1,0 +1,118 @@
+{
+    "name": "stala_st_energy",
+    "title": "Energiedaten Sachsen-Anhalt",
+    "id": "stala_st_energy",
+    "description": "Datensätze zur Energie- und Wasserversorgung des Statistischen Landesamtes Sachsen-Anhalt.",
+    "language": [
+        "de-DE"
+    ],
+    "subject": null,
+    "keywords": [
+        "Energiedaten",
+        "Energieversorgung",
+        "Wasserversorgung"
+    ],
+    "publicationDate": "2022-01-01",
+    "context": {
+       "homepage": "https://abw.rl-institut.de",
+        "documentation": "https://digiplan.readthedocs.io",
+        "sourceCode": "https://github.com/rl-institut/digipipe/",
+        "contact": "https://reiner-lemoine-institut.de/ueber-uns/kontakt/",
+        "grantNo": null,
+        "fundingAgency": "https://www.region-gestalten.bund.de",
+        "fundingAgencyLogo": "https://www.region-gestalten.bund.de/Region/SiteGlobals/Frontend/Images/logo.svg",
+        "publisherLogo": "https://reiner-lemoine-institut.de//wp-content/uploads/2015/09/rlilogo.png"
+    },
+    "spatial": {
+        "location": "Sachsen-Anhalt",
+        "extent": "Sachsen-Anhalt",
+        "resolution": "NUTS-3"
+    },
+    "temporal": {
+        "referenceDate": "2022-01-01",
+        "timeseries": [
+            {
+                "start": "2003-01-01T00:00+01",
+                "end": "2021-12-31T23:00+01",
+                "resolution": "1 a",
+                "alignment": "left"
+            }
+        ]
+    },
+    "sources": [
+        {
+            "title": "Energiedaten Sachsen-Anhalt",
+            "description": "Datensätze zur Energie- und Wasserversorgung des Statistischen Landesamtes Sachsen-Anhalt.",
+            "path": "https://statistik.sachsen-anhalt.de/themen/wirtschaftsbereiche/energie-und-wasserversorgung/tabellen-energieverwendung#c206986",
+            "licenses": [
+                {
+                    "name": "DL-DE-BY-2.0",
+                    "title": "Data licence Germany – attribution – version 2.0",
+                    "path": "https://www.govdata.de/dl-de/by-2-0",
+                    "instruction": "The data and meta-data provided may, for commercial and non-commercial use, in particular be copied, printed, presented, altered, processed and transmitted to third parties; be merged with own data and with the data of others and be combined to form new and independent datasets; be integrated in internal and external business processes, products and applications in public and non-public electronic networks.",
+                    "attribution": "© Statistisches Landesamt Sachsen-Anhalt, Halle (Saale)."
+                }
+            ]
+        }
+    ],
+    "licenses": [
+       {
+            "name": "DL-DE-BY-2.0",
+            "title": "Data licence Germany – attribution – version 2.0",
+            "path": "https://www.govdata.de/dl-de/by-2-0",
+            "instruction": "The data and meta-data provided may, for commercial and non-commercial use, in particular be copied, printed, presented, altered, processed and transmitted to third parties; be merged with own data and with the data of others and be combined to form new and independent datasets; be integrated in internal and external business processes, products and applications in public and non-public electronic networks.",
+            "attribution": "© Statistisches Landesamt Sachsen-Anhalt, Halle (Saale)."
+        }
+    ],
+    "contributors": [
+        {
+            "title": "aaronschilling",
+            "email": "Aaron.Schilling@rl-institut.de",
+            "date": "2023-09-07",
+            "object": "metadata",
+            "comment": "create metadata"
+        }
+    ],
+    "resources": [
+        {
+            "profile": null,
+            "name": null,
+            "path": null,
+            "format": null,
+            "encoding": null,
+            "schema": {
+                "fields": [],
+                "primaryKey": null,
+                "foreignKeys": []
+            },
+            "dialect": {
+                "delimiter": "",
+                "decimalSeparator": "."
+            }
+        }
+    ],
+    "@id": null,
+    "@context": "https://raw.githubusercontent.com/OpenEnergyPlatform/oemetadata/develop/metadata/latest/context.json",
+    "review": {
+        "path": "",
+        "badge": ""
+    },
+    "metaMetadata": {
+        "metadataVersion": "OEP-1.5.2",
+        "metadataLicense": {
+            "name": "CC0-1.0",
+            "title": "Creative Commons Zero v1.0 Universal",
+            "path": "https://creativecommons.org/publicdomain/zero/1.0/"
+        }
+    },
+    "_comment": {
+        "metadata": "Metadata documentation and explanation (https://github.com/OpenEnergyPlatform/oemetadata)",
+        "dates": "Dates and time must follow the ISO8601 including time zone (YYYY-MM-DD or YYYY-MM-DDThh:mm:ss±hh)",
+        "units": "Use a space between numbers and units (100 m)",
+        "languages": "Languages must follow the IETF (BCP47) format (en-GB, en-US, de-DE)",
+        "licenses": "License name must follow the SPDX License List (https://spdx.org/licenses/)",
+        "review": "Following the OEP Data Review (https://github.com/OpenEnergyPlatform/data-preprocessing/blob/master/data-review/manual/review_manual.md)",
+        "null": "If not applicable use: null",
+        "todo": "If a value is not yet available, use: todo"
+    }
+}

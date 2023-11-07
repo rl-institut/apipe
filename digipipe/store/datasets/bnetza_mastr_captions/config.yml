@@ -1,0 +1,8 @@
+##############################################################################
+# This file holds configuration parameters for the creation of this dataset. #
+##############################################################################
+
+additional_captions:
+  {"voltage_level": "Spannungsebene",
+   "geometry_approximated": "Standort genähert",
+   "unit_count": "Anzahl Anlagen"}

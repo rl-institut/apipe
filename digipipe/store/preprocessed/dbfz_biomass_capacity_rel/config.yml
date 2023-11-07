@@ -1,0 +1,25 @@
+##############################################################################
+# This file holds configuration parameters for the creation of this dataset. #
+##############################################################################
+
+# Years specified for the projections in the source
+years :
+  [
+    "2020",
+    "2050"
+  ]
+
+# Type of supply: Decentralized and centralized heat supply
+supplies :
+  [
+  "central",
+  "decentral"
+  ]
+
+# For simplicity, the projections for 2050 are assigned to 2045 and those for
+# 2020 to 2022.
+year_mapping :
+  {
+    "2050": "2045",
+    "2020": "2022"
+  }

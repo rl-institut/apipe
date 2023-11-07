@@ -1,0 +1,15 @@
+##############################################################################
+# This file holds configuration parameters for the creation of this dataset. #
+##############################################################################
+
+# Demand industry: Excel file
+electricity_demand_ind:
+  excel_file:
+    sheet_name: "Stromverbr. nach KR und Jahren"
+    usecols: "A:T"
+    skiprows: 2
+    nrows: 15
+
+  # Years to be included (leave empty for all)
+  years:
+    []

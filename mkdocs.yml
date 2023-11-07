@@ -1,0 +1,95 @@
+repo_name: rl-institut/digipipe
+repo_url: https://github.com/rl-institut/digipipe
+site_name: digipipe documentation
+site_url: http://127.0.0.1:8000/
+docs_dir: .
+site_dir: ./site
+
+nav:
+  - Digipipe: index.md
+  - Hintergrund: docs/sections/background.md
+  - Szenarien: docs/sections/scenarios.md
+  - Energiesystem: docs/sections/esys.md
+  - Daten und Methodik:
+      - Überblick: docs/sections/data_overview.md
+      - Raw: docs/datasets/raw_datasets.md
+      - Preprocessed: docs/datasets/preprocessed_datasets.md
+      - Datasets: docs/datasets/datasets_datasets.md
+      - Appdata: docs/datasets/appdata_datasets.md
+      - Regionsspezifische Datensätze: docs/datasets/region_specific_datasets.md
+  - Developer Docs (en):
+      - Installation: docs/sections/installation.md
+      - Data pipeline: docs/sections/data.md
+      - Workflow: docs/sections/workflow.md
+      - Build the energy system: docs/sections/esys_dev.md
+      - Repo structure: docs/sections/structure.md
+      - Docs: docs/sections/docs.md
+
+plugins:
+  - search:
+      lang:
+        - en
+        - de
+  - exclude-search:
+      exclude:
+        - digipipe/*
+  - include-markdown
+  - same-dir
+  - exclude:
+      glob:
+        - digipipe/esys/*
+        - digipipe/config/*
+        - README.md
+        - CHANGELOG.md
+        - "*.tmp"
+        - "*.pdf"
+        - "*.gz"
+        - "*.py"
+        - "*.pyc"
+        - "*.gpkg"
+        - "*.zip"
+        - "*.csv"
+      regex:
+        - '.*\.(tmp|bin|tar)$'
+
+theme:
+  name: material
+  features:
+    - navigation.footer
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.instant
+    - navigation.indexes
+    - navigation.top 
+    - content.code.copy
+    - toc.follow
+    - search.highlight
+    - search.suggestions
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+extra_css:
+  - docs/stylesheets/extra.css
+
+markdown_extensions:
+  - attr_list
+  - md_in_html
+  - pymdownx.smartsymbols:
+      arrows: True
+  - toc:
+      permalink: "#"
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+

@@ -1,0 +1,253 @@
+##############################################################################
+# This file holds configuration parameters for the creation of this dataset. #
+##############################################################################
+
+# Map list for right panel
+map_panel_layer_list:
+  boundaries:
+    [
+      "bkg_vg250_districts_region",
+      "bkg_vg250_muns_region"
+    ]
+  energy:
+    [
+      "bnetza_mastr_wind_agg_region",
+      "bnetza_mastr_pv_ground_agg_region",
+      "bnetza_mastr_pv_roof_agg_region",
+      "bnetza_mastr_biomass_agg_region",
+      "bnetza_mastr_hydro_agg_region",
+      "bnetza_mastr_combustion_agg_region",
+      "bnetza_mastr_gsgk_agg_region",
+      "bnetza_mastr_storage_agg_region"
+    ]
+  settlements_infrastructure:
+    [
+      "settlement-0m_region",
+      "industry_region",
+      "road_region",
+      "railway_region",
+      "road_railway-500m_region",
+      "aviation_region",
+      "air_traffic_control_system_region",
+      "military_region",
+      "grid_region"
+    ]
+  nature_landscape:
+    [
+      "nature_conservation_area_region",
+      "drinking_water_protection_area_region",
+      "fauna_flora_habitat_region",
+      "special_protection_area_region",
+      "biosphere_reserve_region",
+      "forest_region",
+      "water_region",
+      "floodplain_region",
+      "landscape_protection_area_region",
+      "soil_quality_high_region",
+      "soil_quality_low_region",
+      "less_favoured_areas_agricultural_region"
+    ]
+
+# Settings for energy panel
+panel_settings_templates:
+  energy_settings_panel:
+    s_w_1:
+      max: none
+      min: none
+      start: none
+      step: none
+      status_quo: none
+      future_scenario: none
+    s_w_3:
+      start: none
+    s_w_4:
+      start: none
+    s_w_4_1:
+      start: none
+    s_w_4_2:
+      start: none
+    s_w_5:
+      start: none
+    s_w_5_1:
+      max: none
+      min: none
+      start: none
+      step: none
+    s_w_5_2:
+      max: none
+      min: none
+      start: none
+      step: none
+    s_pv_ff_1:
+      max: none
+      min: none
+      start: none
+      step: none
+      status_quo: none
+      future_scenario: none
+    s_pv_ff_3:
+      max: none
+      min: none
+      start: none
+      step: none
+    s_pv_ff_4:
+      max: none
+      min: none
+      start: none
+      step: none
+    s_pv_d_1:
+      max: none
+      min: none
+      start: none
+      step: none
+      status_quo: none
+      future_scenario: none
+    s_pv_d_3:
+      max: none
+      min: none
+      start: none
+      status_quo: none
+      step: none
+    s_pv_d_4:
+      max: none
+      min: none
+      start: none
+      step: none
+      status_quo: none
+    s_h_1:
+      max: none
+      min: none
+      start: none
+      step: none
+      status_quo: none
+      future_scenario: none
+      disable: none
+    s_v_1:
+      max: none
+      min: none
+      start: none
+      step: none
+      status_quo: none
+      future_scenario: none
+    s_v_3:
+      max: none
+      min: none
+      start: none
+      step: none
+      status_quo: none
+      future_scenario: none
+    s_v_4:
+      max: none
+      min: none
+      start: none
+      step: none
+      status_quo: none
+      future_scenario: none
+    s_v_5:
+      max: none
+      min: none
+      start: none
+      step: none
+      status_quo: none
+      future_scenario: none
+    s_s_g_1:
+      max: none
+      min: none
+      start: none
+      step: none
+      status_quo: none
+
+  heat_settings_panel:
+    w_d_wp_1:
+      max: none
+      min: none
+      from-min: none
+      from-max: none
+      start: none
+      step: none
+      status_quo: none
+      future_scenario: none
+    w_d_wp_3:
+      max: none
+      min: none
+      from-min: none
+      from-max: none
+      start: none
+      step: none
+    w_d_wp_4:
+      max: none
+      min: none
+      from-min: none
+      from-max: none
+      start: none
+      step: none
+    w_d_wp_5:
+      max: none
+      min: none
+      from-min: none
+      from-max: none
+      start: none
+      step: none
+    w_z_wp_1:
+      max: none
+      min: none
+      from-min: none
+      from-max: none
+      start: none
+      step: none
+      status_quo: none
+      future_scenario: none
+    w_v_1:
+      max: none
+      min: none
+      start: none
+      step: none
+      status_quo: none
+      future_scenario: none
+    w_v_3:
+      max: none
+      min: none
+      start: none
+      step: none
+      status_quo: none
+      future_scenario: none
+    w_v_4:
+      max: none
+      min: none
+      start: none
+      step: none
+      status_quo: none
+      future_scenario: none
+    w_v_5:
+      max: none
+      min: none
+      start: none
+      step: none
+      status_quo: none
+      future_scenario: none
+    w_d_s_1:
+      max: none
+      min: none
+      start: none
+      step: none
+    w_z_s_1:
+      max: none
+      min: none
+      start: none
+      step: none
+
+  traffic_settings_panel:
+    v_iv_1:
+      max: none
+      min: none
+      start: none
+      step: none
+      # status_quo: none
+      # future_scenario: none
+    v_iv_3:
+      max: none
+      min: none
+      start: none
+      step: none
+      # status_quo: none
+      # future_scenario: none

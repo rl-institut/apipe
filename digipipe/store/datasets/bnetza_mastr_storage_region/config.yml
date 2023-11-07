@@ -1,0 +1,49 @@
+##############################################################################
+# This file holds configuration parameters for the creation of this dataset. #
+##############################################################################
+
+# Threshold to split between large and small battery storages in MWh
+battery_size_threshold: 0.1
+
+# Filter settings
+unit_attributes:
+  {"EinheitMastrNummer": "mastr_id",
+   "EinheitBetriebsstatus": "status",
+   "LokationMastrNummer": "mastr_location_id",
+   "Postleitzahl": "zip_code",
+   "Ort": "city",
+   "Laengengrad": "lon",
+   "Breitengrad": "lat",
+   "Inbetriebnahmedatum": "commissioning_date",
+   "GeplantesInbetriebnahmedatum": "commissioning_date_planned",
+   "DatumEndgueltigeStilllegung": "decommissioning_date",
+   "NameStromerzeugungseinheit": "name",
+   "Bruttoleistung": "capacity_gross",
+   "Nettonennleistung": "capacity_net",
+   "Einspeisungsart": "feedin_type",
+   "Einheittyp": "type",
+   "Batterietechnologie": "battery_technology",
+   "AcDcKoppelung": "ac_dc_coupling",
+   "Pumpspeichertechnologie": "pumped_hydro_technology",
+   "Notstromaggregat": "emergency_generator",
+   "NetzbetreiberpruefungStatus": "validated_by_system_operator"}
+unit_attributes_filter:
+  {"Land": "Deutschland",
+   "EinheitBetriebsstatus": ["In Betrieb", "In Planung"]}
+
+plant_attributes:
+  {"VerknuepfteEinheit": "unit_mastr_id",
+   "MastrNummer": "plant_mastr_id",
+   "NutzbareSpeicherkapazitaet": "storage_capacity"}
+
+# Output settings
+layer: bnetza_mastr_storage
+
+# Filter for PV home storages
+home_storages:
+   only_single_storages: true
+   storage_capacity_thres_max: 30
+   storage_power_thres_max: 30
+   only_single_pv_roof_units: true
+   pv_roof_capacity_thres_min: 2
+   pv_roof_capacity_thres_max: 30

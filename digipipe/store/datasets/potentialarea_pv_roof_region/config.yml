@@ -1,0 +1,8 @@
+##############################################################################
+# This file holds configuration parameters for the creation of this dataset. #
+##############################################################################
+
+# PV targets split: share of pv_roof
+# Caution: when adjusting this value, the pv_ground_share in dataset
+#          potentialarea_pv_ground_region must be adjusted accordingly!
+pv_roof_share: 0.5

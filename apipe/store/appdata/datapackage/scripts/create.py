@@ -28,11 +28,8 @@ def collect_files(
     target_files = []
 
     for cat in config["resources"].keys():
-        print(f"Processing {cat} ...")
         for subcat in config["resources"][cat].keys():
-            print(f"  Processing {subcat} ...")
             for item, data in config["resources"][cat][subcat].items():
-                print(f"  Processing {item} ...")
                 source_file = (
                     get_abs_dataset_path(
                         "datasets",
@@ -46,6 +43,6 @@ def collect_files(
                     source_files.append(source_file)
                     target_files.append(target_file)
                 else:
-                    print("    Target file already collected, skipping...")
+                    pass
 
     return source_files, target_files

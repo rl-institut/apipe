@@ -13,8 +13,8 @@ geodata:
     interval_sec: 1
   # Define NUTS3 codes for region of interest
   nuts:
-    - "DEE01"
-    - "DEE05"
-    - "DEE0E"
+    - "DE409"
+    - "DE40C"
+    - "DE403"
 input_data:
   download_url: "https://wolke.rl-institut.de/s/aN2ccptGtFsFiDs/download"

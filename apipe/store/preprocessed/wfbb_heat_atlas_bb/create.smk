@@ -11,7 +11,7 @@ DATASET_PATH = get_abs_dataset_path(
 
 rule create:
     """
-    Extract data from raw csv, rename columns and save to new CSV
+    Extract data from raw csv, rename columns, clean and save to new CSV
     """
     input:
         get_abs_dataset_path(
@@ -22,8 +22,12 @@ rule create:
         # Load the data
         data = pd.read_csv(input[0], dtype=str)
 
-        rename_dict = config["rename_columns"]
+        # Clean dataframe
+        empty_row_index = data.index[data.isnull().all(axis=1) | (data == '').all(axis=1)][0]
+        data = data.iloc[:empty_row_index]
+        data = data.dropna()
 
+        rename_dict = config["rename_columns"]
         # Iterate through each pair in the renaming dictionary
         for key, value in rename_dict.items():
             if key in data.columns:

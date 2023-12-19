@@ -2,16 +2,6 @@
 # This file holds configuration parameters for the creation of this dataset. #
 ##############################################################################
 
-# # Files to be extracted from raw dataset
-# files_extract:
-#   [
-#       demand_{hh|cts|ind}_heat_demand.csv (2022, 2045 can be done afterwards)
-#       demand_{hh|cts|ind}_heat_demand_cen.csv (2022, 2045 can be done afterwards)
-#       demand_{hh|cts|ind}_heat_demand_dec.csv (2022, 2045 can be done afterwards)
-#       demand_heat_structure_cen.csv, demand_heat_structure_dec.csv (we can do this later)
-#       demand_heat_structure_esys_cen.csv, demand_heat_structure_esys_dec.csv (we can do this later)
-#   ]
-
 # New column names
 rename_columns:
   {

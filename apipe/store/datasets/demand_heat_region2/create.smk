@@ -9,14 +9,15 @@ from apipe.store.utils import (
     get_abs_dataset_path,
     PATH_TO_REGION_MUNICIPALITIES_GPKG
 )
+from apipe.scripts.datasets.demand import demand_prognosis
 DATASET_PATH = get_abs_dataset_path(
     "datasets", "demand_heat_region2", data_dir=True)
 
 # TO DO:
-# - modify rules for also include values of 2045 scenario (factor)
+# - modify rules for also include values of 2045 scenario (reduction factor)
 # - add demand_heat_structure_cen.csv
-# - add demand_heat_structure_esys_cen.csv,
-# - add demand_heat_structure_esys_dec.csv
+# - (add demand_heat_structure_esys_cen.csv)
+# - (add demand_heat_structure_esys_dec.csv)
 
 
 rule heat_demand_build_type:
@@ -26,7 +27,19 @@ rule heat_demand_build_type:
     input:
         preprocessed_wfbb=get_abs_dataset_path(
             "preprocessed", "wfbb_heat_atlas_bb") / "data" / "wfbb_heat_atlas.csv",
-        region_muns=PATH_TO_REGION_MUNICIPALITIES_GPKG
+        region_muns=PATH_TO_REGION_MUNICIPALITIES_GPKG,
+        demand_future_TN=get_abs_dataset_path(
+            "preprocessed", "bmwk_long_term_scenarios") / "data" /
+            "TN-Strom_buildings_heating_demand_by_carrier_reformatted.csv",
+        demand_future_TN_ind=get_abs_dataset_path(
+            "preprocessed","bmwk_long_term_scenarios"
+            ) / "data" / "TN-Strom_ind_demand_reformatted.csv",
+        demand_future_T45=get_abs_dataset_path(
+            "preprocessed", "bmwk_long_term_scenarios") / "data" /
+            "T45-Strom_buildings_heating_demand_by_carrier_reformatted.csv",
+        demand_future_T45_ind=get_abs_dataset_path(
+            "preprocessed","bmwk_long_term_scenarios"
+            ) / "data" / "T45-Strom_ind_demand_reformatted.csv",
     output:
         demand_res_heat_demand=DATASET_PATH / "demand_hh_heat_demand.csv",
         demand_nonres_heat_demand=DATASET_PATH / "demand_cts_heat_demand.csv",
@@ -37,11 +50,23 @@ rule heat_demand_build_type:
     run:
         muns_data = gpd.read_file(input.region_muns)
         wfbb_data = pd.read_csv(input.preprocessed_wfbb, dtype=str)
-        merged_data = pd.merge(muns_data, wfbb_data, on='ags', how='inner')
+        merged_data = pd.merge(muns_data, wfbb_data, on="ags", how="inner")
         for idx, column_name in enumerate(params.build_type_column_selection):
-            extracted_data = merged_data[["id", column_name]].rename(columns={column_name: "2022", "id": "municipality_id"})
+            extracted_data = merged_data[["id", column_name]].rename(columns={column_name: 2022, "id": "municipality_id"})
+            extracted_data.set_index("municipality_id", inplace=True)
+            extracted_data[2022] = extracted_data[2022].astype(float)
+            extracted_data = extracted_data.join(
+                demand_prognosis(
+                    demand_future_T45=input.demand_future_T45_ind if params.sectors[idx] == "ind" else input.demand_future_T45,
+                    demand_future_TN=input.demand_future_TN_ind if params.sectors[idx] == "ind" else input.demand_future_TN,
+                    demand_region=extracted_data,
+                    year_base=2022,
+                    year_target=2045,
+                    scale_by="total",
+                    ).rename(columns={2022: 2045})
+                )
             output_file = DATASET_PATH / f"demand_{params.sectors[idx]}_heat_demand.csv"
-            extracted_data.to_csv(output_file, index=False)
+            extracted_data.to_csv(output_file, index=True)
 
 
 rule heat_demand_build_type_dec_cen:
@@ -91,6 +116,7 @@ rule heat_demand_build_type_dec_cen:
             output_file_dec = DATASET_PATH / f"demand_{sector}_heat_demand_dec.csv"
             output_data_dec = merged_data[['municipality_id']].assign(**{f"2022": decentral_demand_build_type})
             output_data_dec.to_csv(output_file_dec, index=False)
+
             output_file_cen = DATASET_PATH / f"demand_{sector}_heat_demand_cen.csv"
             output_data_cen = merged_data[['municipality_id']].assign(**{f"2022": central_demand_build_type})
             output_data_cen.to_csv(output_file_cen, index=False)

@@ -20,9 +20,10 @@ DATASET_PATH = get_abs_dataset_path(
 # - (add demand_heat_structure_esys_dec.csv)
 
 
-rule heat_demand_build_type:
+rule heat_demand_hh_ct_ind:
     """
     Extracts heat demand values of the building types 'residential' (hh) / 'non-residential' (cts) / 'industry' (ind) for each municipality and saves them as seperate CSV files for each sector.
+    2022 and 2045 scenario.
     """
     input:
         preprocessed_wfbb=get_abs_dataset_path(
@@ -69,18 +70,34 @@ rule heat_demand_build_type:
             extracted_data.to_csv(output_file, index=True)
 
 
-rule heat_demand_build_type_dec_cen:
+rule heat_demand_dec_cen:
     """
     Extracts and computes decentralized and centralized heat demand across 'hh', 'cts', and 'ind' sectors for each municipality, saving the data as separate CSV files for each sector.
+    2022 and 2045 scenario.
     """
     input:
         preprocessed_wfbb=get_abs_dataset_path(
             "preprocessed", "wfbb_heat_atlas_bb") / "data" / "wfbb_heat_atlas.csv",
-        region_muns=PATH_TO_REGION_MUNICIPALITIES_GPKG
+        region_muns=PATH_TO_REGION_MUNICIPALITIES_GPKG,
+        demand_future_TN=get_abs_dataset_path(
+            "preprocessed", "bmwk_long_term_scenarios") / "data" /
+            "TN-Strom_buildings_heating_demand_by_carrier_reformatted.csv",
+        demand_future_TN_ind=get_abs_dataset_path(
+            "preprocessed","bmwk_long_term_scenarios"
+            ) / "data" / "TN-Strom_ind_demand_reformatted.csv",
+        demand_future_T45=get_abs_dataset_path(
+            "preprocessed", "bmwk_long_term_scenarios") / "data" /
+            "T45-Strom_buildings_heating_demand_by_carrier_reformatted.csv",
+        demand_future_T45_ind=get_abs_dataset_path(
+            "preprocessed","bmwk_long_term_scenarios"
+            ) / "data" / "T45-Strom_ind_demand_reformatted.csv",
     output:
         demand_hh_heat_demand_dec=DATASET_PATH / "demand_hh_heat_demand_dec.csv",
         demand_cts_heat_demand_dec=DATASET_PATH / "demand_cts_heat_demand_dec.csv",
         demand_ind_heat_demand_dec=DATASET_PATH / "demand_ind_heat_demand_dec.csv",
+        demand_hh_heat_demand_cen=DATASET_PATH / "demand_hh_heat_demand_cen.csv",
+        demand_cts_heat_demand_cen=DATASET_PATH / "demand_cts_heat_demand_cen.csv",
+        demand_ind_heat_demand_cen=DATASET_PATH / "demand_ind_heat_demand_cen.csv",
     params:
         sectors=["hh", "cts", "ind"],
         decentral_demand_columns=[
@@ -101,30 +118,50 @@ rule heat_demand_build_type_dec_cen:
         wfbb_data = pd.read_csv(input.preprocessed_wfbb, dtype=str)
 
         wfbb_data[params['decentral_demand_columns']] = wfbb_data[params['decentral_demand_columns']].apply(pd.to_numeric, errors='coerce')
-        wfbb_data[params['central_demand_columnumn']] = wfbb_data[params['central_demand_columnumn']].apply(pd.to_numeric, errors='coerce')
+        wfbb_data[params['central_demand_column']] = wfbb_data[params['central_demand_column']].apply(pd.to_numeric, errors='coerce')
 
         merged_data = pd.merge(muns_data, wfbb_data, on='ags', how='inner').rename(columns={'id': 'municipality_id'})
-
+        merged_data.set_index("municipality_id", inplace=True)
         for idx, sector in enumerate(params['sectors']):
             decentral_demand = merged_data[params['decentral_demand_columns']].sum(axis=1)
-            central_demand = merged_data[params['central_demand_columnumn']]
+            central_demand = merged_data[params['central_demand_column']]
             build_type_demand = merged_data[params['build_type_column_selection'][idx]]
 
             decentral_demand_build_type = pd.to_numeric(build_type_demand, errors='coerce') * (decentral_demand / (decentral_demand + central_demand))
             central_demand_build_type = pd.to_numeric(build_type_demand, errors='coerce') * (central_demand / (decentral_demand + central_demand))
 
             output_file_dec = DATASET_PATH / f"demand_{sector}_heat_demand_dec.csv"
-            output_data_dec = merged_data[['municipality_id']].assign(**{f"2022": decentral_demand_build_type})
-            output_data_dec.to_csv(output_file_dec, index=False)
+            output_data_dec = pd.DataFrame({2022: decentral_demand_build_type}, index=merged_data.index)
+            output_data_dec = output_data_dec.join(
+                demand_prognosis(
+                    demand_future_T45=input.demand_future_T45_ind if sector == "ind" else input.demand_future_T45,
+                    demand_future_TN=input.demand_future_TN_ind if sector == "ind" else input.demand_future_TN,
+                    demand_region=output_data_dec,
+                    year_base=2022,
+                    year_target=2045,
+                    scale_by="total",
+                ).rename(columns={2022: 2045})
+            )
+            output_data_dec.to_csv(output_file_dec, index=True)
 
             output_file_cen = DATASET_PATH / f"demand_{sector}_heat_demand_cen.csv"
-            output_data_cen = merged_data[['municipality_id']].assign(**{f"2022": central_demand_build_type})
-            output_data_cen.to_csv(output_file_cen, index=False)
+            output_data_cen = pd.DataFrame({2022: central_demand_build_type}, index=merged_data.index)
+            output_data_cen = output_data_cen.join(
+                demand_prognosis(
+                    demand_future_T45=input.demand_future_T45_ind if sector == "ind" else input.demand_future_T45,
+                    demand_future_TN=input.demand_future_TN_ind if sector == "ind" else input.demand_future_TN,
+                    demand_region=output_data_cen,
+                    year_base=2022,
+                    year_target=2045,
+                    scale_by="total",
+                ).rename(columns={2022: 2045})
+            )
+            output_data_cen.to_csv(output_file_cen, index=True)
 
 
 rule heat_demand_structure_dec:
     """
-    Calculate the percentage shares of each energy carrier in total decentralized heat demand and export as a CSV file
+    Calculate the percentage shares of each energy carrier in total decentralized heat demand and export as a CSV file.
     """
     input:
         preprocessed_wfbb=get_abs_dataset_path("preprocessed", "wfbb_heat_atlas_bb") / "data" / "wfbb_heat_atlas.csv",

@@ -12,7 +12,7 @@
     "openstreetmap",
     "osm"
   ],
-  "publicationDate": "2023-06-30",
+  "publicationDate": "2024-01-01",
   "context": {
     "homepage": "https://abw.rl-institut.de",
     "documentation": "https://digiplan.readthedocs.io",
@@ -29,14 +29,14 @@
     "resolution": ""
   },
   "temporal": {
-    "referenceDate": "2023-06-30",
+    "referenceDate": "2024-01-01",
     "timeseries": []
   },
   "sources": [
     {
       "title": "OpenStreetMap Data Extracts (Geofabrik)",
       "description": "Full data extract of OpenStreetMap data",
-      "path": "https://download.geofabrik.de/europe/germany-230101.osm.pbf",
+      "path": "https://download.geofabrik.de/europe/germany-240101.osm.pbf",
       "licenses": [
         {
           "name": "ODbL-1.0",
@@ -61,7 +61,7 @@
     {
       "title": "nesnoj",
       "email": "jonathan.amme@rl-institut.de",
-      "date": "2023-06-30",
+      "date": "2024-01-26",
       "object": "metadata",
       "comment": "Create metadata"
     }

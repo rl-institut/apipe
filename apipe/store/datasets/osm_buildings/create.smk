@@ -23,7 +23,7 @@ rule extract_buildings:
     input:
         get_abs_dataset_path(
             "preprocessed", "osm_filtered", data_dir=True
-        ) / "germany-230101_filtered.osm.gpkg"
+        ) / "germany-240101_filtered.osm.gpkg"
     output: DATASET_PATH / "osm_buildings.gpkg"
     params:
         tags=create_tag_string_ogr(config["tags"]),

@@ -4,8 +4,8 @@
     "id": "bnetza_mastr",
     "description": "Daten aus dem Marktstammdatenregister der Bundesnetzagentur",
     "language": [
-    "en-GB",
-    "de-DE"
+        "en-GB",
+        "de-DE"
     ],
     "subject": null,
     "keywords": [
@@ -13,7 +13,7 @@
         "openmastr",
         "mastr"
     ],
-    "publicationDate": "2022-12-19",
+    "publicationDate": "2024-01-08",
     "context": {
         "homepage": "https://abw.rl-institut.de",
         "documentation": "https://digiplan.readthedocs.io",
@@ -30,7 +30,7 @@
         "resolution": null
     },
     "temporal": {
-        "referenceDate": "2022-12-19",
+        "referenceDate": "2024-01-08",
         "timeseries": null
     },
     "sources": [
@@ -44,7 +44,7 @@
                     "title": "Open Data Datenlizenz Deutschland – Namensnennung – Version 2.0",
                     "path": "http://www.govdata.de/dl-de/by-2-0",
                     "instruction": "The data and meta-data provided may, for commercial and non-commercial use, in particular be copied, printed, presented, altered, processed and transmitted to third parties; be merged with own data and with the data of others and be combined to form new and independent datasets;be integrated in internal and external business processes, products and applications in public and non-public electronic networks.",
-                    "attribution": "© Marktstammdatenregister 2023"
+                    "attribution": "© Marktstammdatenregister 2024"
                 }
             ]
         }
@@ -55,14 +55,14 @@
             "title": "Open Data Datenlizenz Deutschland – Namensnennung – Version 2.0?" ,
             "path": "http://www.govdata.de/dl-de/by-2-0",
             "instruction": "The data and meta-data provided may, for commercial and non-commercial use, in particular be copied, printed, presented, altered, processed and transmitted to third parties; be merged with own data and with the data of others and be combined to form new and independent datasets;be integrated in internal and external business processes, products and applications in public and non-public electronic networks.",
-            "attribution": "© Marktstammdatenregister 2023"
+            "attribution": "© Marktstammdatenregister 2024"
         }
     ],
     "contributors": [
         {
-            "title": "hedwiglieselotte",
-            "email": "hedwig.bartels@rl-institut.de",
-            "date": "2023-03-28",
+            "title": "nesnoj",
+            "email": "jonathan.amme@rl-institut.de",
+            "date": "2024-01-26",
             "object": "metadata",
             "comment": "Create metadata"
         }

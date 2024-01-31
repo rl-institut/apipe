@@ -28,20 +28,8 @@ resources:
           2022:
             description: "Bevölkerung 2022"
             unit: "-"
-          2025:
-            description: "Bevölkerung 2025"
-            unit: "-"
-          2030:
-            description: "Bevölkerung 2030"
-            unit: "-"
-          2035:
-            description: "Bevölkerung 2035"
-            unit: "-"
-          2040:
-            description: "Bevölkerung 2040"
-            unit: "-"
-          2045:
-            description: "Bevölkerung 2045"
+          2023:
+            description: "Bevölkerung 2023"
             unit: "-"
         _source_path:
           dataset: "population_region"

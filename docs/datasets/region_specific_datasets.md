@@ -9,7 +9,6 @@ spezifisch für die ABW-Region:
 |--------------------------------|-----------------------------|-------------------------------------------------------------|
 | bnetza_mastr_correction_region | Region ABW                  |                                                             |
 | dwd_temperature                | Region ABW                  | [DWD CDC](https://opendata.dwd.de/climate_environment/CDC/) |
-| emissions                      | Sachsen-Anhalt / Region ABW |                                                             |
 | renewables.ninja_feedin        | Region ABW                  | renewables.ninja_feedin                                     |
 | rpg_abw_pv_roof_potential      | Region ABW                  |                                                             |
 | rpg_abw_regional_plan          | Region ABW                  |                                                             |

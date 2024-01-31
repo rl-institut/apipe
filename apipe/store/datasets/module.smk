@@ -141,11 +141,6 @@ module osm_buildings:
     config: config["store"]["datasets"]["osm_buildings"]
 use rule * from osm_buildings as datasets_osm_buildings_ *
 
-module emissions_region:
-    snakefile: "emissions_region/create.smk"
-    config: config["store"]["datasets"]["emissions_region"]
-use rule * from emissions_region as datasets_emissions_region_ *
-
 module app_captions:
     snakefile: "app_captions/create.smk"
     config: config["store"]["datasets"]["app_captions"]

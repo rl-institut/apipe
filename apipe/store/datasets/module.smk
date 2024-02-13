@@ -116,10 +116,20 @@ module potentialarea_wind_region:
     config: config["store"]["datasets"]["potentialarea_wind_region"]
 use rule * from potentialarea_wind_region as datasets_potentialarea_wind_region_*
 
+module potentialarea_pv_ground:
+    snakefile: "potentialarea_pv_ground/create.smk"
+    config: config["store"]["datasets"]["potentialarea_pv_ground"]
+use rule * from potentialarea_pv_ground as datasets_potentialarea_pv_ground_*
+
 module potentialarea_pv_ground_region:
     snakefile: "potentialarea_pv_ground_region/create.smk"
     config: config["store"]["datasets"]["potentialarea_pv_ground_region"]
 use rule * from potentialarea_pv_ground_region as datasets_potentialarea_pv_ground_region_*
+
+module potentialarea_pv_ground_region2:
+    snakefile: "potentialarea_pv_ground_region2/create.smk"
+    config: config["store"]["datasets"]["potentialarea_pv_ground_region2"]
+use rule * from potentialarea_pv_ground_region2 as datasets_potentialarea_pv_ground_region2_*
 
 module potentialarea_pv_roof_region:
     snakefile: "potentialarea_pv_roof_region/create.smk"

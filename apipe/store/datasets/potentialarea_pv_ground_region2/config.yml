@@ -1,0 +1,12 @@
+##############################################################################
+# This file holds configuration parameters for the creation of this dataset. #
+##############################################################################
+
+area_threshold: 10000
+
+areas:
+  [
+    "soil_quality_low",
+    "soil_quality_medium",
+    "permanent_crops",
+  ]

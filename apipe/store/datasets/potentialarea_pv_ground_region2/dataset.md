@@ -15,10 +15,7 @@
 - potentialarea_pv_ground_soil_quality_medium_region.gpkg (2)
 - potentialarea_pv_ground_permanent_crops_region.gpkg (3)
 
-### Result files (statistics, see dataset "potentialarea_pv_ground_region" in digipipe)
+### Result files (statistics)
 
-- per mun:
-potentialarea_pv_ground_area_stats_muns.csv
-- total shares:
-potentialarea_pv_ground_area_shares.json
+- per mun: potentialarea_pv_ground_area_stats_muns.csv
 - targets: potentialarea_pv_ground_regionalized_targets.json

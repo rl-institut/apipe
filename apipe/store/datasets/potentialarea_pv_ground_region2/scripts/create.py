@@ -32,7 +32,9 @@ def process_dataset(
     gdf_overlayed["area"] = gdf_overlayed.geometry.area
     # Step 3: Merge adjacent polygons if area meets the threshold
     gdf_overlayed = convert_to_multipolygon(gdf_overlayed)
-    gdf_overlayed = gdf_overlayed[gdf_overlayed["area"] > area_threshold]
+    gdf_overlayed = gdf_overlayed[
+        gdf_overlayed["area"] >= (area_threshold * 10000)
+    ]
 
     # Step 4: Calculate the mean of the original raster values per polygon
     stats = zonal_stats(

@@ -83,7 +83,7 @@ rule create_area_stats_muns:
         # Calc areas per area type file
         for file in input.area:
             area_name = re.findall(
-                "potentialarea_pv_(.*).gpkg",
+                "potentialarea_pv_ground_(.*).gpkg",
                 Path(file).name,
             )[0]
             data = gpd.read_file(file)
@@ -176,13 +176,13 @@ rule regionalize_state_targets:
 
         output_data = {
             "target_power_total": round(target_power_total, 2),
-            "target_power_soil_quality_low": round(target_power_soil_quality_low,2),
-            "target_power_soil_quality_medium": round(target_power_soil_quality_medium,2),
-            "target_power_permanent_crops": round(target_power_permanent_crops,2),
+            "target_power_agri_soil_quality_low": round(target_power_soil_quality_low,2),
+            "target_power_agri_soil_quality_medium": round(target_power_soil_quality_medium,2),
+            "target_power_agri_permanent_crops": round(target_power_permanent_crops,2),
             "target_area_total": round(target_area_total,2),
-            "target_area_soil_quality_low": round(target_area_soil_quality_low,2),
-            "target_area_soil_quality_medium": round(target_area_soil_quality_medium,2),
-            "target_area_permanent_crops": round(target_area_permanent_crops,2),
+            "target_area_agri_soil_quality_low": round(target_area_soil_quality_low,2),
+            "target_area_agri_soil_quality_medium": round(target_area_soil_quality_medium,2),
+            "target_area_agri_permanent_crops": round(target_area_permanent_crops,2),
         }
 
         with open(output[0], "w", encoding="utf8") as f:

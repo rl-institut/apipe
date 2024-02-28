@@ -7,6 +7,8 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 ## [Unreleased]
 
 ### Added
+- Add dataset `potentialarea_pv_ground_region2`
+- Add dataset `potentialarea_pv_ground`
 
 ### Changed
 

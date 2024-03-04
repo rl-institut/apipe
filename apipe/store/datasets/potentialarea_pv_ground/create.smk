@@ -21,7 +21,7 @@ BGR_SQR_PATH = get_abs_dataset_path("preprocessed", "bgr_sqr", data_dir=True) / 
 AGRI_SQR_TOTAL_PATH = OEI_AGRI_PATH / "Agri-PV-Potenziale_Gesamt_100x100_EPSG3035.tif"
 
 # Path to 'SQR 50-70'
-AGRI_SQR_50_70_PATH = OEI_AGRI_PATH / "Agri-PV-Potenziale_SQR_50-70_100x100_EPSG3035_pos.tif"
+AGRI_SQR_50_70_PATH = OEI_AGRI_PATH / "Agri-PV-Potenziale_SQR_50-70_NOT_Dauerkulturen_100x100_EPSG3035.tif"
 
 # Path to 'Dauerkulturen'
 PERMANENT_CROPS_PATH = OEI_AGRI_PATH / "Agri-PV-Potenziale_Dauerkulturen_100x100_EPSG3035.tif"

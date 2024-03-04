@@ -2,10 +2,10 @@
 # This file holds configuration parameters for the creation of this dataset. #
 ##############################################################################
 
-# Files to be converted from raw dataset
-files_convert:
+# datasets to be copied from raw dataset
+datasets:
   [
     "Agri-PV-Potenziale_Dauerkulturen_100x100_EPSG3035",
     "Agri-PV-Potenziale_Gesamt_100x100_EPSG3035",
-    "Agri-PV-Potenziale_SQR_50-70_100x100_EPSG3035_pos"
+    "Agri-PV-Potenziale_SQR_50-70_NOT_Dauerkulturen_100x100_EPSG3035"
   ]

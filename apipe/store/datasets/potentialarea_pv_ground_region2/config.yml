@@ -12,7 +12,11 @@ areas:
 # Delete areas below min. area (in ha (1 ha = 1 cell))
 area_threshold: 2
 
-# PV targets split: share of pv_ground
-# Caution: when adjusting this value, the pv_roof_share in dataset
+# PV targets split: share of pv_ground in total PV targets for Germany
+#   pv_ground_share: share of ground mounted PV
+#   pv_ground_agri_share: share of Agri PV
+# Caution: when adjusting these values, the pv_roof_share in dataset
 #          potentialarea_pv_roof_region must be adjusted accordingly!
-pv_ground_share: 0.5
+#          (total sum = 1)
+pv_ground_share: 0.44
+pv_ground_agri_share: 0.04

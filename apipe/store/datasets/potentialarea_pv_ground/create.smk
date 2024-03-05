@@ -35,18 +35,23 @@ rule calculate_raster_intersection_sq_low:
     output:
         DATASET_PATH / "data" / "potentialarea_pv_ground_soil_quality_low.tif"
     run:
-        with rasterio.open(input.bgr_sqr) as bgr_sqr_src, rasterio.open(input.agri_sqr_total) as agri_sqr_total_src, rasterio.open(input.permanent_crops) as permanent_crops_src:
+        with rasterio.open(input.bgr_sqr) as bgr_sqr_src, \
+                rasterio.open(input.agri_sqr_total) as agri_sqr_total_src, \
+                rasterio.open(input.permanent_crops) as permanent_crops_src:
             out_meta = agri_sqr_total_src.meta.copy()
 
             # Create empty data structures for the reprojected rasters
             bgr_sqr_reproj = np.empty(
-                (agri_sqr_total_src.height, agri_sqr_total_src.width), dtype=rasterio.float32
+                (agri_sqr_total_src.height, agri_sqr_total_src.width),
+                dtype=rasterio.float32
             )
             permanent_crops_reproj = np.empty(
-                (agri_sqr_total_src.height, agri_sqr_total_src.width), dtype=rasterio.float32
+                (agri_sqr_total_src.height, agri_sqr_total_src.width),
+                dtype=rasterio.float32
             )
 
-            # Bring raster data for 'bgr_sqr' and 'permanent_crops' to the same resolution and extent as 'agri_sqr_total'
+            # Bring raster data for 'bgr_sqr' and 'permanent_crops' to the same
+            # resolution and extent as 'agri_sqr_total'
             reproject(
                 source=rasterio.band(bgr_sqr_src, 1),
                 destination=bgr_sqr_reproj,
@@ -83,12 +88,14 @@ rule calculate_raster_intersection_sq_medium:
     output:
         DATASET_PATH / "data" / "potentialarea_pv_ground_soil_quality_medium.tif"
     run:
-        with rasterio.open(input.agri_sqr_50_70) as agri_sqr_50_70_src, rasterio.open(input.permanent_crops) as permanent_crops_src:
+        with rasterio.open(input.agri_sqr_50_70) as agri_sqr_50_70_src, \
+                rasterio.open(input.permanent_crops) as permanent_crops_src:
             out_meta = agri_sqr_50_70_src.meta.copy()
 
             # Create an empty data structure for the reprojected raster 'permanent_crops'
             permanent_crops_reproj = np.empty(
-                (agri_sqr_50_70_src.height, agri_sqr_50_70_src.width), dtype=rasterio.float32
+                (agri_sqr_50_70_src.height, agri_sqr_50_70_src.width),
+                dtype=rasterio.float32
             )
 
             # Bring raster data for 'permanent_crops' to the same resolution and extent as 'agri_sqr_50_70'

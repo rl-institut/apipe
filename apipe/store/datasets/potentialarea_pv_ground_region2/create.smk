@@ -159,23 +159,34 @@ rule regionalize_state_targets:
         area_medium_region = calculate_nonzero_pixel_sum(input.potarea_pv_ground_soil_quality_medium_region)
         area_crops_region = calculate_nonzero_pixel_sum(input.potarea_pv_ground_permanent_crops_region)
 
+        # Total targets in scenario
         tech_data = json.load(open(input.tech_data))
         targets = pd.read_csv(input.el_capacity_targets, index_col="year")
-        target_cap = targets.loc[targets.technology == "pv"].loc[2045].capacity * 1e3 * config.get("pv_ground_share")
+        target_cap = targets.loc[targets.technology == "pv"].loc[2045].capacity * 1e3
 
-        target_power_soil_quality_low = target_cap * (area_low_region / area_low)
-        target_power_soil_quality_medium = target_cap * (area_medium_region / area_medium)
-        target_power_permanent_crops = target_cap * (area_crops_region / area_crops)
+        target_power_soil_quality_low = target_cap * config.get("pv_ground_share") * (area_low_region / area_low)
+        target_power_soil_quality_medium = (
+            target_cap *  # total capacity Germany
+            config.get("pv_ground_agri_share") *  # share of agri PV
+            area_medium_region / (area_medium_region + area_crops_region) *  # region's area share medium of total agri PV
+            (area_medium_region / area_medium)  #  region's medium area share of Germany's
+        )
+        target_power_permanent_crops = (
+            target_cap *
+            config.get("pv_ground_agri_share") *
+            area_crops_region / (area_medium_region + area_crops_region) *
+            (area_crops_region / area_crops)
+        )
 
         target_area_soil_quality_low = target_power_soil_quality_low / tech_data["power_density"]["pv_ground"]
-        target_area_soil_quality_medium = target_power_soil_quality_medium / tech_data["power_density"]["pv_ground"]
-        target_area_permanent_crops = target_power_permanent_crops / tech_data["power_density"]["pv_ground"]
+        target_area_soil_quality_medium = target_power_soil_quality_medium / tech_data["power_density"]["pv_ground_vertical_bifacial"]
+        target_area_permanent_crops = target_power_permanent_crops / tech_data["power_density"]["pv_ground_high"]
 
         target_power_total = target_power_soil_quality_low + target_power_soil_quality_medium + target_power_permanent_crops
         target_area_total = target_area_soil_quality_low + target_area_soil_quality_medium + target_area_permanent_crops
 
         output_data = {
-            "target_power_total": round(target_power_total, 2),
+            "target_power_total": round(target_power_total,2),
             "target_power_agri_soil_quality_low": round(target_power_soil_quality_low,2),
             "target_power_agri_soil_quality_medium": round(target_power_soil_quality_medium,2),
             "target_power_agri_permanent_crops": round(target_power_permanent_crops,2),

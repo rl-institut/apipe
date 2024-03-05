@@ -27,12 +27,17 @@ Global Solar Atlas.
 
 Installierbare Leistung pro Fläche / spezifischer Flächenbedarf:
 
-- Windenergie: 21 MW/km²
-- PV-Freiflächenanlagen: 100 MW/km²
-- PV-Aufdachanlagen: 140 MW/km²
+- Windenergie: 28 MW/km²
+  ([Quelle1](https://www.umweltbundesamt.de/sites/default/files/medien/11850/publikationen/32_2023_cc_flaechenverfuegbarkeit_und_flaechenbedarfe_fuer_den_ausbau_der_windenergie_an_land_0.pdf),
+  [Quelle2](https://www.umweltbundesamt.de/sites/default/files/medien/479/publikationen/cc_41-2022_auswirkungen_einer_rotor-in-planung_auf_die_verfuegbarkeit_von_windflaechen.pdf))
+- PV-Freiflächenanlagen (flach aufgeständert): 100
+  MW/km² ([Quelle](https://zenodo.org/record/6794558))
+- Agri-PV-Anlagen (hoch aufgeständert): 65
+  MW/km² ([Quelle](https://www.ise.fraunhofer.de/content/dam/ise/de/documents/publications/studies/APV-Leitfaden.pdf))
+- Agri-PV-Anlagen (vertikal bifazial): 34
+  MW/km² ([Quelle](https://www.ise.fraunhofer.de/content/dam/ise/de/documents/publications/studies/APV-Leitfaden.pdf))
+- PV-Aufdachanlagen: 140 MW/km² ([Quelle](https://zenodo.org/record/6794558))
 - Solarthermie: ? MW/km²
-
-Quelle: [PV- und Windflächenrechner](https://zenodo.org/record/6794558)
 
 Datei: `technology_data.json` --> `power_density`
 

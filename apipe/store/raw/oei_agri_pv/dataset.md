@@ -1,11 +1,15 @@
 # Agri-PV Daten (Öko-Institut)
 
-### GIS-Info:
-Die drei TIFF-Dateien enthalten Informationen darüber, wie viel Potenzialfläche pro Pixel mit einer Größe von einem Hektar vorhanden ist (1 = 1 ha/ha).
-Dies wurde erreicht, indem die Positivflächen aus dem Landnutzungsdatensatz mit den Ausschlussflächen in QGIS überlagert wurden.
-Die Flächen wurden ursprünglich in einem Raster mit einer Größe von 20x20 Metern erfasst und dann zu 1 Hektar großen Flächen zusammengefasst.
+## GIS-Info
 
-### Positivgebiete:
+Die drei TIFF-Dateien enthalten Informationen darüber, wie viel Potenzialfläche
+pro Pixel mit einer Größe von einem Hektar vorhanden ist (1 = 1 ha/ha).
+Dies wurde erreicht, indem die Positivflächen aus dem Landnutzungsdatensatz mit
+den Ausschlussflächen in QGIS überlagert wurden.
+Die Flächen wurden ursprünglich in einem Raster mit einer Größe von 20x20 Metern
+erfasst und dann zu 1 Hektar großen Flächen zusammengefasst.
+
+## Positivgebiete
 
 - **Raster_gesamt**:
   - Preidl_Landuse
@@ -17,8 +21,8 @@ Die Flächen wurden ursprünglich in einem Raster mit einer Größe von 20x20 Me
   - SQR_Germany:
     - Werte: 50-70
 
+## Ausschlusskritieren
 
-### Ausschlusskritieren:
 | Kategorie                | Bezeichnung                         | Quelle / Begründung                                                                                                                         |
 |--------------------------|-------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------|
 | Biosphärengebiete        | Kernzonen                           | BNatSchG § 25: Nur Maßnahmen, die dem Schutz, der Pflege oder der Entwicklung dienen, sind erlaubt.                                         |
@@ -43,9 +47,8 @@ Die Flächen wurden ursprünglich in einem Raster mit einer Größe von 20x20 Me
 | Wald- und Forstflächen   | Wald                                | Bundeswaldgesetz (BWaldG) § 9: Umwandlung von Wald in andere Nutzungsarten ist für Photovoltaikanlagen verboten.                            |
 | Wasserschutzgebietszonen | Zone I und II                       | WHG § 51: Anlagen dürfen die Wasserqualität nicht gefährden.                                                                                |
 
+Datenherkunft:
 
-
-### Datenherkunft:
 | Kategorie                                         | Datenquelle                                                                                                                                                   |
 |---------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Biosphärengebiete                                 | BfN                                                                                                                                                           |
@@ -64,3 +67,7 @@ Die Flächen wurden ursprünglich in einem Raster mit einer Größe von 20x20 Me
 | Sentinel-2A Landnutzungsklassifikation            | Preidl, Sebastian; Lange, Maximilian; Doktor, Daniel (2020): Land cover classification map of Germany's agricultural area based on Sentinel-2A data from 2016 |
 | Siedlungsflächen                                  | DLM250                                                                                                                                                        |
 | Soil Quality Rating                               | BGR                                                                                                                                                           |
+
+## Quelle
+
+TODO: INSERT ÖI ZENODO SOURCE

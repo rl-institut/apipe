@@ -41,10 +41,27 @@ Die Ergebnisse bieten Einblicke in das regionale PV-Potenzial und umfassen:
     - `potentialarea_pv_ground_soil_quality_medium_region.gpkg`
     - `potentialarea_pv_ground_permanent_crops_region.gpkg`
 
-- **Statistische Auswertungen (`potentialarea_pv_ground_area_stats_muns.csv`)**:
-  Auswertung der Potenzialflächen je Gemeinde, inklusive Flächensummen und
-  spezifischer Attribute.
+### Statistische Auswertung
 
-- **Regionale PV-Ziele (`potentialarea_pv_ground_regionalized_targets.json`)**:
-  Basierend auf den identifizierten Potenzialflächen und nationalen Ausbauzielen
-  berechnete regionale PV-Ziele.
+Die Flächen werden mit den Gemeindegrenzen verschnitten und den Gemeinden
+zugeordnet. Je Gemeinde und obigem Flächentyp/Datei wird eine Flächensumme (in
+km²) berechnet, siehe `potentialarea_pv_ground_area_stats_muns.csv`. Die
+Gemeinden werden über den Schlüssel `municipality_id` (vgl.
+[bkg_vg250_muns_region](../../datasets/bkg_vg250_muns_region/dataset.md))
+identifiziert.
+
+### Ausbauziele
+
+Es werden regionalisierte PV-Ausbauziele für die Region berechnet, indem die
+Bundesziele aus den
+[BMWK Langfristszenarien](../../preprocessed/bmwk_long_term_scenarios/dataset.md)
+i.H.v. 428 GW
+([§4 EEG 2023](https://www.gesetze-im-internet.de/eeg_2014/__4.html): 400 GW)
+anhand der regional verfügbaren Potenzialflächen disaggregiert werden. Hierzu
+wird der Anteil der Flächensumme der drei o.g. Flächentypen an den bundesweit
+verfügbaren Flächen (Datensatz [oei_agri_pv](../../raw/oei_agri_pv/dataset.md))
+berechnet. Da in den o.g. Ausbauzielen nicht zwischen Freiflächen- und
+Aufdach-PV unterschieden wird, wird ein Verhältnis von 50:50 angenommen, d.h.
+es entfallen bundesweit 214 GW auf Freiflächen-PV (inkl. Agri-PV).
+
+Ergebnisse in `potentialarea_pv_ground_regionalized_targets.json`

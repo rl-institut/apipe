@@ -35,7 +35,7 @@ km²) berechnet. Die Gemeinden werden über den Schlüssel `municipality_id` (vg
 [bkg_vg250_muns_region](../../datasets/bkg_vg250_muns_region/dataset.md))
 identifiziert.
 
-File: `potentialarea_pv_ground_area_stats_muns.csv`
+File: `potentialarea_pv_ground_area_stats_muns.csv` (Einheit: km²)
 
 ### Regionalisierte Ausbauziele
 
@@ -65,4 +65,7 @@ TODO: Update ÖI Link Projektionsbericht 2024
   [technology_data](../../raw/technology_data/dataset.md)) können sich andere
   Leistungspotenzial-Verhältnisse ergeben.
 
-File: `potentialarea_pv_ground_regionalized_targets.json`
+Ergebnisfile: `potentialarea_pv_ground_regionalized_targets.json`
+
+- Leistungsziele: `target_power_*` (Einheit: MW)
+- Flächenziele: `target_area_*` (Einheit: km²)

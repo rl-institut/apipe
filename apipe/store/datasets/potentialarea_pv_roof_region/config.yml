@@ -2,7 +2,8 @@
 # This file holds configuration parameters for the creation of this dataset. #
 ##############################################################################
 
-# PV targets split: share of pv_roof
-# Caution: when adjusting this value, the pv_ground_share in dataset
+# PV targets split: share of pv_roof in total PV targets for Germany
+# Caution: when adjusting this value, the shares in dataset
 #          potentialarea_pv_ground_region must be adjusted accordingly!
-pv_roof_share: 0.5
+#          (total sum = 1)
+pv_roof_share: 0.52

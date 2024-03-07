@@ -101,3 +101,13 @@ module dbfz_biomass_capacity_rel:
     snakefile: "dbfz_biomass_capacity_rel/create.smk"
     config: config["store"]["preprocessed"]["dbfz_biomass_capacity_rel"]
 use rule * from dbfz_biomass_capacity_rel as preprocessed_dbfz_biomass_capacity_rel_ *
+
+module oei_agri_pv:
+    snakefile: "oei_agri_pv/create.smk"
+    config: config["store"]["preprocessed"]["oei_agri_pv"]
+use rule * from oei_agri_pv as preprocessed_oei_agri_pv_*
+
+module bgr_sqr:
+    snakefile: "bgr_sqr/create.smk"
+    config: config["store"]["preprocessed"]["bgr_sqr"]
+use rule * from bgr_sqr as preprocessed_bgr_sqr_*

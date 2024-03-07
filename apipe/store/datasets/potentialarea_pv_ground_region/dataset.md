@@ -1,4 +1,4 @@
-# Potenzialgebiete PV-Freiflächen
+# Potenzialgebiete PV-Freiflächen (Region)
 
 ## Potenzialflächen
 
@@ -57,3 +57,8 @@ Gesamt: 0.38 % (819 MW)
 - Acker- und Grünlandflächen mit geringer Bodengüte: 0.25 % (541 MW)
 
 Ergebnisse in `potentialarea_pv_ground_regionalized_targets.json`
+
+## Verwandte Datensätze
+
+- [potentialarea_pv_ground](../../datasets/potentialarea_pv_ground/create.smk))
+- [potentialarea_pv_ground_region2](../../datasets/potentialarea_pv_ground_region2/dataset.md))

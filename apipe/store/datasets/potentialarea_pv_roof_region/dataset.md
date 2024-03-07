@@ -34,9 +34,13 @@ i.H.v. 428 GW
 anhand der Gebäudegrundflächen disaggregiert werden. Hierzu wird der Anteil der
 Gebäudegrundflächen in der Region an der bundesweiten Gebäudegrundflächen
 berechnet (s. Datensatz [osm_buildings](../osm_buildings/dataset.md)) und die
-Ziele linear skaliert. Da in den o.g. Ausbauzielen nicht zwischen Freiflächen-
-und Aufdach-PV unterschieden wird, wird ein Verhältnis von 50:50 angenommen,
-d.h. bundesweit 214 GW auf Aufdach-PV entfallen.
+Ziele linear skaliert. Da in den o.g. Ausbauzielen nicht zwischen Freiflächen- und
+Aufdach-PV unterschieden wird, wird folgende Aufteilung angenommen (änderbar in
+[config.yml](config.yml)):
 
-Der Anteil beträgt 0,62 % und das Leistungsziel damit 1327 MW, s.
-`potentialarea_pv_roof_regionalized_targets.json`.
+- Aufdach-PV: 52 % (221 GW)
+- Freiflächen-PV (niedrig aufgeständert): 44 % (190 GW), vgl.
+  [potentialarea_pv_ground_region2](../../datasets/potentialarea_pv_ground_region2/dataset.md)
+- Agri-PV (hoch aufgeständert und vertikal bifazial): 4 % (17 GW)
+
+File: `potentialarea_pv_roof_regionalized_targets.json`

@@ -1,4 +1,4 @@
-# Agri-PV Daten (Öko-Institut)
+# Agri-PV-Potenzialflächen
 
 ## GIS-Info
 
@@ -12,7 +12,7 @@ erfasst und dann zu 1 Hektar großen Flächen zusammengefasst.
 ## Positivgebiete
 
 - **Raster_gesamt**:
-  - Preidl_Landuse
+  - Preidl_Landuse (Landnutzungsklassifikation)
     - Klassen: 1 - 19
 - **Raster_besonders_geeignete_Kulturen**
   - Preidl_Landuse

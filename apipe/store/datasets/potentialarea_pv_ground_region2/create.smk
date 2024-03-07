@@ -180,7 +180,7 @@ rule regionalize_state_targets:
 
         target_area_soil_quality_low = target_power_soil_quality_low / tech_data["power_density"]["pv_ground"]
         target_area_soil_quality_medium = target_power_soil_quality_medium / tech_data["power_density"]["pv_ground_vertical_bifacial"]
-        target_area_permanent_crops = target_power_permanent_crops / tech_data["power_density"]["pv_ground_high"]
+        target_area_permanent_crops = target_power_permanent_crops / tech_data["power_density"]["pv_ground_elevated"]
 
         target_power_total = target_power_soil_quality_low + target_power_soil_quality_medium + target_power_permanent_crops
         target_area_total = target_area_soil_quality_low + target_area_soil_quality_medium + target_area_permanent_crops

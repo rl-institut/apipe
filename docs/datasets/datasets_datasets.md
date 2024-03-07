@@ -267,14 +267,67 @@ i.H.v. 428 GW
 anhand der Gebäudegrundflächen disaggregiert werden. Hierzu wird der Anteil der
 Gebäudegrundflächen in der Region an der bundesweiten Gebäudegrundflächen
 berechnet (s. Datensatz [osm_buildings](../../apipe/store/datasets/osm_buildings/dataset.md)) und die
-Ziele linear skaliert. Da in den o.g. Ausbauzielen nicht zwischen Freiflächen-
-und Aufdach-PV unterschieden wird, wird ein Verhältnis von 50:50 angenommen,
-d.h. bundesweit 214 GW auf Aufdach-PV entfallen.
+Ziele linear skaliert. Da in den o.g. Ausbauzielen nicht zwischen Freiflächen- und
+Aufdach-PV unterschieden wird, wird folgende Aufteilung angenommen (änderbar in
+[config.yml](../../apipe/store/datasets/potentialarea_pv_roof_region/config.yml)):
 
-Der Anteil beträgt 0,62 % und das Leistungsziel damit 1327 MW, s.
-`potentialarea_pv_roof_regionalized_targets.json`.
+- Aufdach-PV: 52 % (221 GW)
+- Freiflächen-PV (niedrig aufgeständert): 44 % (190 GW), vgl.
+  [potentialarea_pv_ground_region2](../../apipe/store/datasets/potentialarea_pv_ground_region2/dataset.md)
+- Agri-PV (hoch aufgeständert und vertikal bifazial): 4 % (17 GW)
+
+File: `potentialarea_pv_roof_regionalized_targets.json`
 
 **Dataset: `datasets/potentialarea_pv_roof_region`**
+
+
+------------------------------
+## Potenzialgebiete PV-Freiflächen (Deutschland gesamt)
+
+Diese Analyse widmet sich der Identifizierung von Photovoltaik-Potenzialen auf
+Agrarflächen, basierend auf einer Auswertung rasterbasierter Landnutzungsdaten.
+Im Fokus stehen dabei die Bodenqualität und die Eignung landwirtschaftlicher
+Dauerkulturen für die Integration von Agri-PV-Systemen.
+
+### Datengrundlage und Methodik
+
+Datengrundlage:
+
+- SQR-Daten (Soil Quality Rating), s. Datensatz
+  [bgr_sqr](../../apipe/store/raw/bgr_sqr/dataset.md).
+  - **(I)** SQR Originaldaten
+- Potenzialflächen Agri-PV , s. Datensatz
+  [oei_agri_pv](../../apipe/store/raw/oei_agri_pv/dataset.md)
+  - **(II)** SQR Gesamtpotenzial (`Agri-PV-Potenziale_Gesamt_100x100_EPSG3035`)
+  - **(III)** SQR 50-70
+    (`Agri-PV-Potenziale_SQR_50-70_NOT_Dauerkulturen_100x100_EPSG3035`)
+  - **(IV)** Dauerkulturen (`Agri-PV-Potenziale_Dauerkulturen_100x100_EPSG3035`)
+
+(III) und (IV) sind hierbei disjunkt.
+
+Es werden folgende Flächen verwendet, auf welchen jeweils eine andere
+technologische Umsetzung als Grundlage angenommen wird:
+
+- **(A)** Auf Acker- und Grünlandflächen mit sehr geringer..geringer Bodengüte
+  (SQR 0..50): Klassische, niedrig aufgeständerte FF-PV.
+- **(B)** Auf Acker- und Grünlandflächen mit geringer..mittlerer Bodengüte (SQR
+  50..70): Agri-PV - bifaziale, vertikal aufgeständerte PV
+- **(C)** Dauerkulturen (Kernobst, Wein, Gemüse und Beeren): Agri-PV - hoch
+   aufgeständerte PV-Systeme
+
+Berechnung/Verschneidung
+
+- **(A)** = **(II)**-(**(I)**) mit Wert>50)-(**(IV)**) mit Wert>0)
+- **(B)** = **(III)**
+- **(C)** = **(IV)**
+
+### Ergebnisdaten
+
+- **(A)**: `potentialarea_pv_ground_soil_quality_low.tif`
+- **(B)**: `potentialarea_pv_ground_soil_quality_medium.tif`
+- **(C)**: `potentialarea_pv_ground_permanent_crops.tif`
+
+**Dataset: `datasets/potentialarea_pv_ground`**
 
 
 ------------------------------
@@ -398,7 +451,7 @@ nach Landmasse gefiltert (Geofaktor 4 = "mit Struktur Land").
 
 
 ------------------------------
-## Potenzialgebiete PV-Freiflächen
+## Potenzialgebiete PV-Freiflächen (Region)
 
 ### Potenzialflächen
 
@@ -457,6 +510,11 @@ Gesamt: 0.38 % (819 MW)
 - Acker- und Grünlandflächen mit geringer Bodengüte: 0.25 % (541 MW)
 
 Ergebnisse in `potentialarea_pv_ground_regionalized_targets.json`
+
+### Verwandte Datensätze
+
+- [potentialarea_pv_ground](../../apipe/store/datasets/potentialarea_pv_ground/create.smk))
+- [potentialarea_pv_ground_region2](../../apipe/store/datasets/potentialarea_pv_ground_region2/dataset.md))
 
 **Dataset: `datasets/potentialarea_pv_ground_region`**
 
@@ -834,6 +892,86 @@ Bezeichner und Namen aus MaStR als Mapping <NAME_IN_GEODATEN> ->
 werden.
 
 **Dataset: `datasets/bnetza_mastr_captions`**
+
+
+------------------------------
+## Regionale Analyse von Freiflächen-PV-Potenzialen
+
+Die Agri-PV-Potenzialflächen für Deutschland aus Datensatz
+[potentialarea_pv_ground](../../apipe/store/datasets/potentialarea_pv_ground/dataset.md)
+werden hier regionalisiert:
+
+- Zuschnitt der Rasterdaten auf die Region
+- Vektorisierung der Einzelflächen aller 3 Nutzungskategorien
+  - Entfernung von Gebieten unterhalb einer Mindestflächengröße, einstellbar in
+    [config.yml](../../apipe/store/datasets/potentialarea_pv_ground_region2/config.yml) -> `area_threshold`
+  - Entfernung von Gebieten unterhalb eines Rasterwertes, einstellbar in
+    [config.yml](../../apipe/store/datasets/potentialarea_pv_ground_region2/config.yml) -> `raster_value_threshold`
+- Bildung eines Mittelwerts (nutzbare Fläche) je Polygon
+- Zuweisung der Gemeinde-ID (`municipality_id`, vgl.
+  [bkg_vg250_muns_region](../../apipe/store/apipe/store/datasets/bkg_vg250_muns_region/dataset.md))
+
+### Ergebnisse
+
+#### Geodaten
+
+Die Ergebnisse bieten Einblicke in das regionale PV-Potenzial und umfassen:
+
+- **GeoPackages**: Vektorisierte Darstellung der Agri-PV-Potenzialflächen,
+  differenziert nach Bodenqualität und Kulturtyp:
+    - `potentialarea_pv_ground_soil_quality_low_region.gpkg` **(A)**
+    - `potentialarea_pv_ground_soil_quality_medium_region.gpkg` **(B)**
+    - `potentialarea_pv_ground_permanent_crops_region.gpkg` **(C)**
+
+#### Statistische Auswertung
+
+Die Flächen werden mit den Gemeindegrenzen verschnitten und den Gemeinden
+zugeordnet. Je Gemeinde und obigem Flächentyp/Datei wird eine Flächensumme (in
+km²) berechnet. Die Gemeinden werden über den Schlüssel `municipality_id` (vgl.
+[bkg_vg250_muns_region](../../apipe/store/datasets/bkg_vg250_muns_region/dataset.md))
+identifiziert.
+
+File: `potentialarea_pv_ground_area_stats_muns.csv` (Einheit: km²)
+
+#### Regionalisierte Ausbauziele
+
+Es werden regionalisierte PV-Ausbauziele für die Region berechnet, indem die
+Bundesziele aus den
+[BMWK Langfristszenarien](../../apipe/store/preprocessed/bmwk_long_term_scenarios/dataset.md)
+i.H.v. 428 GW
+([§4 EEG 2023](https://www.gesetze-im-internet.de/eeg_2014/__4.html): 400 GW)
+anhand der regional verfügbaren Potenzialflächen disaggregiert werden. Hierzu
+wird der Anteil der Flächensumme der drei o.g. Flächentypen an den bundesweit
+verfügbaren Flächen (Datensatz [oei_agri_pv](../../apipe/store/raw/oei_agri_pv/dataset.md))
+berechnet. Da in den o.g. Ausbauzielen nicht zwischen Freiflächen- und
+Aufdach-PV unterschieden wird, wird folgende Aufteilung angenommen (änderbar in
+[config.yml](../../apipe/store/datasets/potentialarea_pv_ground_region2/config.yml)), basierend auf dem
+[Projektionsbericht 2024]():
+
+TODO: Update ÖI Link Projektionsbericht 2024
+
+- Aufdach-PV: 52 % (221 GW), vgl.
+  [potentialarea_pv_roof_region](../../apipe/store/datasets/potentialarea_pv_roof_region/dataset.md)
+- Freiflächen-PV (niedrig aufgeständert): 44 % (190 GW)
+- Agri-PV (hoch aufgeständert und vertikal bifazial): 4 % (17 GW),
+  Die Aufteilung zwischen hoch aufgeständert und vertikal bifazial erfolgt
+  flächengewichtet, d.h. ein Flächenverhältnis von 1:9 führt zu 9-facher
+  Nutzung von Flächen, auf denen vertikale Anlagen angenommen werden. Durch die
+  spezifische Leistungsdichte (Werte s.
+  [technology_data](../../apipe/store/raw/technology_data/dataset.md)) können sich andere
+  Leistungspotenzial-Verhältnisse ergeben.
+
+Ergebnisfile: `potentialarea_pv_ground_regionalized_targets.json`
+
+- Leistungsziele: `target_power_*` (Einheit: MW)
+- Flächenziele: `target_area_*` (Einheit: km²)
+
+### Verwandte Datensätze
+
+- [potentialarea_pv_ground](../../apipe/store/datasets/potentialarea_pv_ground/create.smk))
+- [potentialarea_pv_ground_region](../../apipe/store/datasets/potentialarea_pv_ground_region/dataset.md))
+
+**Dataset: `datasets/potentialarea_pv_ground_region2`**
 
 
 ------------------------------

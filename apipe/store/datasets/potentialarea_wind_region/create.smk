@@ -77,7 +77,7 @@ rule create_area_stats_muns:
             area_dict[area_name] = area_km2.to_dict()["area_km2"]
             print(
                 f"  Total area for {area_name}: "
-                f"{round(float(area_km2.sum()), 1)} sqm"
+                f"{round(float(area_km2.sum()), 1)} sqkm"
             )
 
         area_df = pd.DataFrame(area_dict)

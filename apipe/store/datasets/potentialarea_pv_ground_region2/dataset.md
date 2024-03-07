@@ -6,14 +6,13 @@ werden hier regionalisiert:
 
 - Zuschnitt der Rasterdaten auf die Region
 - Vektorisierung der Einzelflächen aller 3 Nutzungskategorien
-- Entfernung von Gebieten unterhalb einer Mindestflächengröße
+  - Entfernung von Gebieten unterhalb einer Mindestflächengröße, einstellbar in
+    [config.yml](config.yml) -> `area_threshold`
+  - Entfernung von Gebieten unterhalb eines Rasterwertes, einstellbar in
+    [config.yml](config.yml) -> `raster_value_threshold`
 - Bildung eines Mittelwerts (nutzbare Fläche) je Polygon
 - Zuweisung der Gemeinde-ID (`municipality_id`, vgl.
   [bkg_vg250_muns_region](../../apipe/store/datasets/bkg_vg250_muns_region/dataset.md))
-
-Die Mindestflächengröße für die Vektorisierung kann mittels `area_threshold` in
-der [config.yml](config.yml) festgelegt werden. Flächen kleiner als dieser
-Grenzwert werden entfernt.
 
 ## Ergebnisse
 

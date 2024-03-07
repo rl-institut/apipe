@@ -416,7 +416,7 @@ def raster_to_vector(raster_file_in):
 
     Parameters
     ----------
-    raster_file_in : str
+    raster_file_in : pathlib.Path
         Path to raster file with data
 
     Returns

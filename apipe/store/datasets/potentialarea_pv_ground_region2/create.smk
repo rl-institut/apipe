@@ -57,6 +57,7 @@ rule vectorize_and_add_zonal_stats:
     params:
         script=DATASET_PATH / "scripts" / "create.py",
         area_threshold=config["area_threshold"],
+        raster_value_threshold=config["raster_value_threshold"],
     script:
         DATASET_PATH / "scripts" / "create.py"
 

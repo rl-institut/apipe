@@ -14,12 +14,36 @@ from apipe.scripts.geo import (
 
 
 def process_dataset(
-    clipped_raster_path, region_muns_path, output_gpkg_path, area_threshold
+    clipped_raster_path,
+    region_muns_path,
+    output_gpkg_path,
+    area_threshold,
+    raster_value_threshold,
 ):
+    """Vectorize and calc raster mean value per polygon
+
+    Parameters
+    ----------
+    clipped_raster_path : pathlib.Path
+        Path to raster file with data
+    region_muns_path : pathlib.Path
+        Path to regions' municipalities
+    output_gpkg_path : pathlib.Path
+        Path to output vector file
+    area_threshold : float
+        Threshold for min. area to be vectorized (in ha/cells)
+    raster_value_threshold : float
+        Threshold for raster value to be vectorized (0..1)
+
+    Returns
+    -------
+    None
+    """
+
     # Step 1: Set raster values > 0 to 1 and save
     with rasterio.open(clipped_raster_path) as src:
         raster = src.read(1)
-        binary_raster = np.where(raster > 0, 1, 0)
+        binary_raster = np.where(raster > raster_value_threshold, 1, 0)
         meta = src.meta
         meta["dtype"] = "int32"
         binary_raster_path = clipped_raster_path.replace(".tif", "_binary.tif")
@@ -65,11 +89,10 @@ def process_dataset(
     os.remove(binary_raster_path)
 
 
-clipped_raster_path = snakemake.input.clipped_raster
-region_muns_path = snakemake.input.region_muns
-output_gpkg_path = snakemake.output.vector_overlay_gpkg
-area_threshold = float(snakemake.params.area_threshold)
-
 process_dataset(
-    clipped_raster_path, region_muns_path, output_gpkg_path, area_threshold
+    clipped_raster_path=snakemake.input.clipped_raster,
+    region_muns_path=snakemake.input.region_muns,
+    output_gpkg_path=snakemake.output.vector_overlay_gpkg,
+    area_threshold=float(snakemake.params.area_threshold),
+    raster_value_threshold=float(snakemake.params.raster_value_threshold),
 )

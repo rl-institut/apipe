@@ -1004,52 +1004,64 @@ resources:
           municipality_id:
             description: "Gemeinde-ID"
             unit: "-"
-          agriculture_lfa-off_region:
-            description: "Freiflächen-PV auf Acker- und Grünlandflächen mit geringer Bodengüte"
+          soil_quality_low_region:
+            description: "Potenzialflächen für Freiflächen-PV auf Agrarflächen geringer Bodengüte"
             unit: "km2"
-          road_railway_region:
-            description: "Potenzialflächen für Freiflächen-PV entlang von Bundesautobahnen und Schienenwegen (500m-Streifen)"
+          soil_quality_medium_region:
+            description: "Potenzialflächen für Agri-PV auf Agrarflächen mittlerer Bodengüte"
+            unit: "km2"
+          permanent_crops_region:
+            description: "Potenzialflächen für Agri-PV über Dauerkulturen"
             unit: "km2"
         _source_path:
-          dataset: "potentialarea_pv_ground_region"
+          dataset: "potentialarea_pv_ground_region2"
           file: "potentialarea_pv_ground_area_stats_muns.csv"
       pv_ground_area_shares:
         description: "Anteil Potenzialflächen an Regionsfläche nach Flächentyp"
         path: "scalars/potentialarea_pv_ground_area_shares.json"
         fields:
-          road_railway:
-            description: "Anteil Potenzialflächen entlang von Bundesautobahnen und Schienenwegen an Regionsfläche"
+          soil_quality_low:
+            description: "Anteil Potenzialflächen für Freiflächen-PV auf Agrarflächen geringer Bodengüte an Regionsfläche"
             unit: "-"
-          agri:
-            description: "Anteil Potenzialflächen auf Acker- und Grünlandflächen mit geringer Bodengüte an Regionsfläche"
+          soil_quality_medium:
+            description: "Anteil Potenzialflächen für Agri-PV auf Agrarflächen mittlerer Bodengüte an Regionsfläche"
+            unit: "-"
+          permanent_crops:
+            description: "Anteil Potenzialflächen für Agri-PV über Dauerkulturen an Regionsfläche"
             unit: "-"
         _source_path:
-          dataset: "potentialarea_pv_ground_region"
+          dataset: "potentialarea_pv_ground_region2"
           file: "potentialarea_pv_ground_area_shares.json"
       pv_ground_area_targets:
         description: "Regionale, aus Bundeszielen anhand der Potenzialflächen desaggregierte Bundesziele für Freiflächen-PV nach Flächentyp"
         path: "scalars/potentialarea_pv_ground_regionalized_targets.json"
         fields:
           target_area_total:
-            description: "Regionales Flächenziel gesamt"
+            description: "Regionalisiertes Flächenziel gesamt"
             unit: "km2"
-          target_area_road_railway:
-            description: "Regionales Flächenziel entlang von Bundesautobahnen und Schienenwegen"
+          target_area_agri_soil_quality_low:
+            description: "Regionalisiertes Flächenziel für Freiflächen-PV auf Agrarflächen geringer Bodengüte"
             unit: "km2"
-          target_area_agri:
-            description: "Regionales Flächenziel auf Acker- und Grünlandflächen mit geringer Bodengüte"
+          target_area_agri_soil_quality_medium:
+            description: "Regionalisiertes Flächenziel für Agri-PV auf Agrarflächen mittlerer Bodengüte"
+            unit: "km2"
+          target_area_agri_permanent_crops:
+            description: "Regionalisiertes Flächenziel für Agri-PV über Dauerkulturen"
             unit: "km2"
           target_power_total:
-            description: "Regionales Leistungsziel gesamt"
+            description: "Regionalisiertes Leistungsziel gesamt"
             unit: "MW"
-          target_power_road_railway:
-            description: "Regionales Leistungsziel entlang von Bundesautobahnen und Schienenwegen"
+          target_power_agri_soil_quality_low:
+            description: "Regionalisiertes Leistungsziel für Freiflächen-PV auf Agrarflächen geringer Bodengüte"
             unit: "MW"
-          target_power_agri:
-            description: "Regionales Leistungsziel auf Acker- und Grünlandflächen mit geringer Bodengüte"
+          target_power_agri_soil_quality_medium:
+            description: "Regionalisiertes Leistungsziel für Agri-PV auf Agrarflächen mittlerer Bodengüte"
+            unit: "MW"
+          target_power_agri_permanent_crops:
+            description: "Regionalisiertes Leistungsziel für Agri-PV über Dauerkulturen"
             unit: "MW"
         _source_path:
-          dataset: "potentialarea_pv_ground_region"
+          dataset: "potentialarea_pv_ground_region2"
           file: "potentialarea_pv_ground_regionalized_targets.json"
       pv_roof_area_stats:
         description: "Potenziale PV-Aufdachanlagen (alle Gebäude)"
@@ -1199,20 +1211,27 @@ resources:
           file: "potentialarea_pv_roof_regionalized_targets.json"
 
     geodata:
-      potentialarea_pv_agriculture_lfa-off_region:
-        description: "Potenzialflächen Freiflächen-PV auf Ackerflächen inner- und außerhalb benachteiligter Gebiete"
-        path: "geodata/potentialarea_pv_agriculture_lfa-off_region.gpkg"
+      potentialarea_pv_ground_soil_quality_low_region:
+        description: "Potenzialflächen für Freiflächen-PV auf Agrarflächen geringer Bodengüte"
+        path: "geodata/potentialarea_pv_ground_soil_quality_low_region.gpkg"
         fields: [ ]
         _source_path:
-          dataset: "potentialarea_pv_ground_region"
-          file: "potentialarea_pv_agriculture_lfa-off_region.gpkg"
-      potentialarea_pv_road_railway_region:
-        description: "Potenzialflächen Freiflächen-PV entlang von Autobahnen und Schienenwegen"
-        path: "geodata/potentialarea_pv_road_railway_region.gpkg"
+          dataset: "potentialarea_pv_ground_region2"
+          file: "potentialarea_pv_ground_soil_quality_low_region.gpkg"
+      potentialarea_pv_ground_soil_quality_medium_region:
+        description: "Potenzialflächen für Agri-PV auf Agrarflächen mittlerer Bodengüte"
+        path: "geodata/potentialarea_pv_ground_soil_quality_medium_region.gpkg"
         fields: [ ]
         _source_path:
-          dataset: "potentialarea_pv_ground_region"
-          file: "potentialarea_pv_road_railway_region.gpkg"
+          dataset: "potentialarea_pv_ground_region2"
+          file: "potentialarea_pv_ground_soil_quality_medium_region.gpkg"
+      potentialarea_pv_ground_permanent_crops_region:
+        description: "Potenzialflächen für Agri-PV über Dauerkulturen"
+        path: "geodata/potentialarea_pv_ground_permanent_crops_region.gpkg"
+        fields: [ ]
+        _source_path:
+          dataset: "potentialarea_pv_ground_region2"
+          file: "potentialarea_pv_ground_permanent_crops_region.gpkg"
 
       potentialarea_wind_stp_2018_vreg:
         description: "Potenzialflächen Windenergie: STP Wind 2018 - Vorrang-/Eignungsgebiete"

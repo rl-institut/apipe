@@ -30,11 +30,15 @@ Die Ergebnisse bieten Einblicke in das regionale PV-Potenzial und umfassen:
 
 Die Flächen werden mit den Gemeindegrenzen verschnitten und den Gemeinden
 zugeordnet. Je Gemeinde und obigem Flächentyp/Datei wird eine Flächensumme (in
-km²) berechnet. Die Gemeinden werden über den Schlüssel `municipality_id` (vgl.
+km²) berechnet und in `potentialarea_pv_ground_area_stats_muns.csv` geschrieben.
+Die Gemeinden werden über den Schlüssel `municipality_id` (vgl.
 [bkg_vg250_muns_region](../../datasets/bkg_vg250_muns_region/dataset.md))
 identifiziert.
 
-File: `potentialarea_pv_ground_area_stats_muns.csv` (Einheit: km²)
+Des Weiteren werden die Flächenanteile der verfügbaren Potenzialgebiete - deren
+Nutzung nur eingeschränkt möglich ist (z.B. durch Naturschutzgebieten etc.) -
+gegenüber der gesamten Regionsfläche (für die Parametrierung der Regler) nach
+`potentialarea_pv_ground_area_shares.json` exportiert.
 
 ### Regionalisierte Ausbauziele
 

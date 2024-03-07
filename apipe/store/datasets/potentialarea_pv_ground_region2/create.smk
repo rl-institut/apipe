@@ -199,3 +199,36 @@ rule regionalize_state_targets:
 
         with open(output[0], "w", encoding="utf8") as f:
             json.dump(output_data, f, indent=4)
+
+rule create_potarea_shares:
+    """
+    Calc shares of potential areas in region's area (per type)
+    """
+    input:
+        areas=expand(
+            DATASET_PATH
+            / "data"
+            / "potentialarea_pv_ground_{area}_region.gpkg",
+            area=config["areas"],
+        ),
+        region=rules.datasets_bkg_vg250_region_create.output
+    output:
+        DATASET_PATH / "data" / "potentialarea_pv_ground_area_shares.json"
+    run:
+        area_dict = dict()
+        region = gpd.read_file(input.region[0])
+
+        # Calc areas per area type file
+        for file in input.areas:
+            area_name = re.findall(
+                "potentialarea_pv_ground_(.*)_region.gpkg",
+                Path(file).name,
+            )[0]
+            area_dict[area_name] = round(
+                gpd.read_file(file).area.sum() / region.area.sum(),
+                3
+            )
+
+        # Dump
+        with open(output[0], "w", encoding="utf8") as f:
+            json.dump(area_dict, f, indent=4)

@@ -10,7 +10,7 @@ areas:
   ]
 
 # Delete areas below min. area (in ha (1 ha = 1 cell))
-area_threshold: 2
+area_threshold: 1
 
 # PV targets split: share of pv_ground in total PV targets for Germany
 #   pv_ground_share: share of ground mounted PV

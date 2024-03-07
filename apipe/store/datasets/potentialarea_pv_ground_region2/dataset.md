@@ -68,3 +68,8 @@ Ergebnisfile: `potentialarea_pv_ground_regionalized_targets.json`
 
 - Leistungsziele: `target_power_*` (Einheit: MW)
 - Flächenziele: `target_area_*` (Einheit: km²)
+
+## Verwandte Datensätze
+
+- [potentialarea_pv_ground](../../datasets/potentialarea_pv_ground/create.smk))
+- [potentialarea_pv_ground_region](../../datasets/potentialarea_pv_ground_region/dataset.md))

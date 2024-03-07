@@ -3,11 +3,14 @@ import os
 import geopandas as gpd
 import numpy as np
 import rasterio
-from rasterio.features import shapes
 from rasterstats import zonal_stats
-from shapely.geometry import shape
 
-from apipe.scripts.geo import convert_to_multipolygon, overlay, write_geofile
+from apipe.scripts.geo import (
+    convert_to_multipolygon,
+    overlay,
+    raster_to_vector,
+    write_geofile,
+)
 
 
 def process_dataset(
@@ -60,18 +63,6 @@ def process_dataset(
 
     # Remove binary raster temp-files
     os.remove(binary_raster_path)
-
-
-def raster_to_vector(raster_path):
-    with rasterio.open(raster_path) as src:
-        image = src.read(1)
-        results = [
-            {"properties": {"value": v}, "geometry": shape(s)}
-            for s, v in shapes(image, transform=src.transform)
-            if v > 0
-        ]
-        gdf = gpd.GeoDataFrame.from_features(results, crs=src.crs)
-    return gdf
 
 
 clipped_raster_path = snakemake.input.clipped_raster

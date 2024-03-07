@@ -27,7 +27,7 @@ der Wirtschaftszweige, Ausgabe 2008 (WZ 2008)“, und zwar
 die Abschnitte B und C.
 
 - Datei: `43531-01-02-4.xlsx`
-- Stand: 2021
+- Stand: 31.12.2022
 
 ## Betriebe, tätige Personen, Bruttoentgelte (42111-01-04-5)
 
@@ -61,7 +61,7 @@ der Wirtschaftszweige, Ausgabe 2008 (WZ 2008)“, und zwar
 die Abschnitte B und C.
 
 - Datei: `42111-01-04-5.xlsx`
-- Stand: 30.09.2021
+- Stand: 31.12.2022
 
 ## Gebäude mit Wohnraum nach Heizungsart (31211-04-01-5-B)
 

@@ -106,3 +106,13 @@ module wfbb_heat_atlas_bb:
     snakefile: "wfbb_heat_atlas_bb/create.smk"
     config: config["store"]["preprocessed"]["wfbb_heat_atlas_bb"]
 use rule * from wfbb_heat_atlas_bb as preprocessed_wfbb_heat_atlas_bb_*
+
+module oei_agri_pv:
+    snakefile: "oei_agri_pv/create.smk"
+    config: config["store"]["preprocessed"]["oei_agri_pv"]
+use rule * from oei_agri_pv as preprocessed_oei_agri_pv_*
+
+module bgr_sqr:
+    snakefile: "bgr_sqr/create.smk"
+    config: config["store"]["preprocessed"]["bgr_sqr"]
+use rule * from bgr_sqr as preprocessed_bgr_sqr_*

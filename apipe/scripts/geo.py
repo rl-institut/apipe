@@ -10,8 +10,10 @@ import fiona
 import geopandas as gpd
 import pandas as pd
 import rasterio as rio
+from rasterio.features import shapes
 from rasterio.mask import mask
 from rasterstats import zonal_stats
+from shapely.geometry import shape
 from shapely.geometry.multipolygon import MultiPolygon
 from shapely.ops import transform
 
@@ -407,3 +409,27 @@ def raster_zonal_stats(
         layer_name="res",
         schema=schema_out,
     )
+
+
+def raster_to_vector(raster_file_in):
+    """Vectorize raster data
+
+    Parameters
+    ----------
+    raster_file_in : pathlib.Path
+        Path to raster file with data
+
+    Returns
+    -------
+    pd.DataFrame or gpd.GeoDataFrame
+        Vector data
+    """
+    with rio.open(raster_file_in) as src:
+        image = src.read(1)
+        results = [
+            {"properties": {"value": v}, "geometry": shape(s)}
+            for s, v in shapes(image, transform=src.transform)
+            if v > 0
+        ]
+        gdf = gpd.GeoDataFrame.from_features(results, crs=src.crs)
+    return gdf

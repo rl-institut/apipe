@@ -1,0 +1,25 @@
+##############################################################################
+# This file holds configuration parameters for the creation of this dataset. #
+##############################################################################
+
+areas:
+  [
+    "soil_quality_low",
+    "soil_quality_medium",
+    "permanent_crops",
+  ]
+
+# Delete areas below min. area (in ha (1 ha = 1 cell))
+area_threshold: 10
+
+# Delete areas below min. raster value (0..1)
+raster_value_threshold: 0.5
+
+# PV targets split: share of pv_ground in total PV targets for Germany
+#   pv_ground_share: share of ground mounted PV
+#   pv_ground_agri_share: share of Agri PV
+# Caution: when adjusting these values, the pv_roof_share in dataset
+#          potentialarea_pv_roof_region must be adjusted accordingly!
+#          (total sum = 1)
+pv_ground_share: 0.44
+pv_ground_agri_share: 0.04

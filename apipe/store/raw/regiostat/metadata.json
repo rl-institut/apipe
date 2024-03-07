@@ -34,35 +34,35 @@
         "resolution": null
     },
     "temporal": {
-        "referenceDate": "2021-01-01",
+        "referenceDate": "2022-12-31",
         "timeseries": null
     },
     "sources": [
         {
             "title": "Regionalstatistik (GENESIS)",
-            "description": "Energieverwendung der Betriebe im Verarbeitenden Gewerbe (43531-01-02-4), Betriebe, tätige Personen, Bruttoentgelte (42111-01-04-5), Gebäude mit Wohnraum nach Heizungsart (31211-04-01-5-B), Gebäude mit Wohnraum nach Heizungsart (31231-02-01-5)",
-            "path": ["https://www.regionalstatistik.de/genesis//online?operation=table&code=43531-01-02-4", "https://www.regionalstatistik.de/genesis//online?operation=table&code=42111-01-04-5"],
+            "description": "Energieverwendung der Betriebe im Verarbeitenden Gewerbe (43531-01-02-4)",
+            "path": ["https://www.regionalstatistik.de/genesis//online?operation=table&code=43531-01-02-4"],
             "licenses": [
                 {
                     "name": "DL-DE-BY-2.0",
                     "title": "Data licence Germany – attribution – version 2.0",
                     "path": "https://www.govdata.de/dl-de/by-2-0",
                     "instruction": "The data and meta-data provided may, for commercial and non-commercial use, in particular be copied, printed, presented, altered, processed and transmitted to third parties; be merged with own data and with the data of others and be combined to form new and independent datasets; be integrated in internal and external business processes, products and applications in public and non-public electronic networks.",
-                    "attribution": "©  Statistische Ämter des Bundes und der Länder, 2023"
+                    "attribution": "©  Statistische Ämter des Bundes und der Länder, 2024"
                 }
             ]
         },
         {
-            "title": null,
-            "description": null,
-            "path": null,
+            "title": "Regionalstatistik (GENESIS)",
+            "description": "Betriebe, tätige Personen, Bruttoentgelte (42111-01-04-5)",
+            "path": ["https://www.regionalstatistik.de/genesis//online?operation=table&code=42111-01-04-5"],
             "licenses": [
                 {
-                    "name": null,
-                    "title": null,
-                    "path": null,
-                    "instruction": null,
-                    "attribution": null
+                    "name": "DL-DE-BY-2.0",
+                    "title": "Data licence Germany – attribution – version 2.0",
+                    "path": "https://www.govdata.de/dl-de/by-2-0",
+                    "instruction": "The data and meta-data provided may, for commercial and non-commercial use, in particular be copied, printed, presented, altered, processed and transmitted to third parties; be merged with own data and with the data of others and be combined to form new and independent datasets; be integrated in internal and external business processes, products and applications in public and non-public electronic networks.",
+                    "attribution": "©  Statistische Ämter des Bundes und der Länder, 2024"
                 }
             ]
         }
@@ -83,6 +83,13 @@
             "date": "2023-08-15",
             "object": "metadata",
             "comment": "create metadata"
+        },
+        {
+          "title": "nesnoj",
+          "email": "jonathan.amme@rl-institut.de",
+          "date": "2024-01-31",
+          "object": "metadata",
+          "comment": "Update metadata"
         }
     ],
     "resources": [

@@ -14,7 +14,7 @@
         "Wohnort",
         "Arbeitsort"
     ],
-    "publicationDate": "2023-01-16",
+    "publicationDate": "2024-01-15",
     "context": {
         "homepage": "https://abw.rl-institut.de",
         "documentation": "https://digiplan.readthedocs.io",
@@ -31,7 +31,7 @@
         "resolution": null
     },
     "temporal": {
-        "referenceDate": "2022-06-23",
+        "referenceDate": "2023-06-30",
         "timeseries": null
     },
     "sources": [
@@ -66,6 +66,13 @@
             "date": "2023-08-15",
             "object": "metadata",
             "comment": "Create metadata"
+        },
+        {
+          "title": "nesnoj",
+          "email": "jonathan.amme@rl-institut.de",
+          "date": "2024-01-31",
+          "object": "metadata",
+          "comment": "Update metadata"
         }
     ],
     "resources": [

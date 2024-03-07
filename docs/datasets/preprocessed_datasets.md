@@ -25,6 +25,11 @@ Raw dataset:
 
 
 ------------------------------
+
+**Dataset: `preprocessed/bgr_sqr`**
+
+
+------------------------------
 ## Dachflächenpotenzial PV-Aufdachanlagen in ABW
 
 Abschätzung der installierten Leistung und des Ertrags von PV-Aufdachanlagen in
@@ -45,6 +50,11 @@ Mittelwert für alle Gemeinden.
 Verwendet: [dwd_temperature](../../apipe/store/raw/dwd_temperature/dataset.md)
 
 **Dataset: `preprocessed/dwd_temperature`**
+
+
+------------------------------
+
+**Dataset: `preprocessed/oei_agri_pv`**
 
 
 ------------------------------

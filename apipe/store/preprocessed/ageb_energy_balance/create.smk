@@ -14,7 +14,7 @@ rule convert:
     """
     input:
         get_abs_dataset_path("raw", "ageb_energy_balance")
-        / "data" / "AGEB_21p2_V3_20221222.pdf"
+        / "data" / "AGEB_22p2_rev-1.pdf"
     output:
         DATASET_PATH / "ageb_energy_balance_germany_{sector}_twh_2021.csv",
     run:

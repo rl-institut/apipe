@@ -10,7 +10,8 @@ excel_file:
       "2015": "Onlineprodukt_Gemeinden_311215",
       "2020": "Onlineprodukt_Gemeinden",
       "2021": "Onlineprodukt_Gemeinden",
-      "2022": "Onlineprodukt_Gemeinden"
+      "2022": "Onlineprodukt_Gemeinden",
+      "2023": "Onlineprodukt_Gemeinden31122023"
     }
   usecols: "C:E, G, J"
   skiprows: 6

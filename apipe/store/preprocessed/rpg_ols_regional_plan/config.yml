@@ -1,0 +1,32 @@
+##############################################################################
+# This file holds configuration parameters for the creation of this dataset. #
+##############################################################################
+
+# Sachlicher Teilplan Wind 2018: EG
+stp_2018:
+   layer: "stp_2018_eg"
+   attributes:
+     {"WEG_Nummer": "weg_nr",
+      "WEG_Name": "weg_name",
+      "geometry": "geometry"}
+
+# Sachlicher Teilplan EE 2024: VR
+stp_2024:
+   layer: "stp_2024_vr"
+   attributes:
+     {"VR_WEN_NR_": "vr_wen_nr",
+      "geometry": "geometry"}
+
+# PV ground
+pv_ground:
+   layer: "pv_ground"
+   attributes:
+     {"Bezeichnun": "name",
+      "Planart": "plan_type",
+      "Plan_Stand": "plan_status",
+      "Status": "status",
+      "Leistung_M": "nom_power_mw",
+      "Jahr": "year",
+      "Baubeginn": "construction_start_date",
+      "Fertigstel": "construction_end_date",
+      "geometry": "geometry"}

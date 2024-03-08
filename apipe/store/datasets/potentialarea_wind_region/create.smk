@@ -28,7 +28,7 @@ rule overlay_muns:
     """
     input:
         area=get_abs_dataset_path(
-            "preprocessed", "rpg_abw_regional_plan") / "data" / "{file}.gpkg",
+            "preprocessed", "rpg_ols_regional_plan") / "data" / "{file}.gpkg",
         region_muns=PATH_TO_REGION_MUNICIPALITIES_GPKG
     output:
         area=DATASET_PATH / "potentialarea_wind_{file}.gpkg"

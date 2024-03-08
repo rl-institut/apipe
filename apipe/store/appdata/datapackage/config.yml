@@ -979,20 +979,11 @@ resources:
           municipality_id:
             description: "Gemeinde-ID"
             unit: "-"
-          stp_2018_vreg:
-            description: "STP Wind 2018 - Vorrang-/Eignungsgebiete"
+          stp_2018_eg:
+            description: "STP Wind 2018 - Eignungsgebiete"
             unit: "km2"
-          stp_2027_vr:
-            description: "STP Wind 2027 - Planabsicht Vorranggebiete"
-            unit: "km2"
-          stp_2027_repowering:
-            description: "STP Wind 2027 - Planabsicht Repoweringgebiete"
-            unit: "km2"
-          stp_2027_search_area_forest_area:
-            description: "STP Wind 2027 - Suchraum Wald"
-            unit: "km2"
-          stp_2027_search_area_open_area:
-            description: "STP Wind 2027 - Suchraum Offenland"
+          stp_2024_vr:
+            description: "STP Wind 2024 - Planabsicht Vorranggebiete"
             unit: "km2"
         _source_path:
           dataset: "potentialarea_wind_region"
@@ -1234,40 +1225,19 @@ resources:
           file: "potentialarea_pv_ground_permanent_crops_region.gpkg"
 
       potentialarea_wind_stp_2018_vreg:
-        description: "Potenzialflächen Windenergie: STP Wind 2018 - Vorrang-/Eignungsgebiete"
-        path: "geodata/potentialarea_wind_stp_2018_vreg.gpkg"
+        description: "Potenzialflächen Windenergie: STP Wind 2018 - Eignungsgebiete"
+        path: "geodata/potentialarea_wind_stp_2018_eg.gpkg"
         fields: [ ]
         _source_path:
           dataset: "potentialarea_wind_region"
-          file: "potentialarea_wind_stp_2018_vreg.gpkg"
-      potentialarea_wind_stp_2027_repowering:
-        description: "Potenzialflächen Windenergie: STP Wind 2027 - Planabsicht Repoweringgebiete"
-        path: "geodata/potentialarea_wind_stp_2027_repowering.gpkg"
+          file: "potentialarea_wind_stp_2018_eg.gpkg"
+      potentialarea_wind_stp_2024_vr:
+        description: "Potenzialflächen Windenergie: STP Wind 2024 - Planabsicht Vorranggebiete"
+        path: "geodata/potentialarea_wind_stp_2024_vr.gpkg"
         fields: [ ]
         _source_path:
           dataset: "potentialarea_wind_region"
-          file: "potentialarea_wind_stp_2027_repowering.gpkg"
-      potentialarea_wind_stp_2027_search_area_forest_area:
-        description: "Potenzialflächen Windenergie: STP Wind 2027 - Suchraum Wald"
-        path: "geodata/potentialarea_wind_stp_2027_search_area_forest_area.gpkg"
-        fields: [ ]
-        _source_path:
-          dataset: "potentialarea_wind_region"
-          file: "potentialarea_wind_stp_2027_search_area_forest_area.gpkg"
-      potentialarea_wind_stp_2027_search_area_open_area:
-        description: "Potenzialflächen Windenergie: STP Wind 2027 - Suchraum Offenland"
-        path: "geodata/potentialarea_wind_stp_2027_search_area_open_area.gpkg"
-        fields: [ ]
-        _source_path:
-          dataset: "potentialarea_wind_region"
-          file: "potentialarea_wind_stp_2027_search_area_open_area.gpkg"
-      potentialarea_wind_stp_2027_vr:
-        description: "Potenzialflächen Windenergie: STP Wind 2027 - Planabsicht Vorranggebiete"
-        path: "geodata/potentialarea_wind_stp_2027_vr.gpkg"
-        fields: [ ]
-        _source_path:
-          dataset: "potentialarea_wind_region"
-          file: "potentialarea_wind_stp_2027_vr.gpkg"
+          file: "potentialarea_wind_stp_2024_vr.gpkg"
 
   # Settings
   settings:

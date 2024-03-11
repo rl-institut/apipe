@@ -98,6 +98,7 @@ def write_geofile(
     schema: dict = None,
     driver: str = "GPKG",
     encoding: str = "utf-8",
+    mode: str = "w",
 ) -> None:
     """Write geodata to file
 
@@ -114,6 +115,8 @@ def write_geofile(
         Geofile driver, default is Geopackage
     encoding : str
         Encoding
+    mode : str
+        The write mode, ‘w’ to overwrite the existing file and ‘a’ to append.
     """
     if layer_name is None:
         layer_name = os.path.basename(file).split(".")[0]
@@ -127,7 +130,12 @@ def write_geofile(
         raise ValueError(f"Data contain multiple geometry types: {types} !")
 
     gdf.to_file(
-        file, layer=layer_name, schema=schema, driver=driver, encoding=encoding
+        file,
+        layer=layer_name,
+        schema=schema,
+        driver=driver,
+        encoding=encoding,
+        mode=mode,
     )
 
 

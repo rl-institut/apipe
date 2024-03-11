@@ -238,13 +238,103 @@ resources:
           dataset: "rli_pv_wfr_region"
           file: "special_protection_area_region.gpkg"
       water_region:
-        description: "Gewässser"
+        description: "Gewässer"
         path: "geodata/water_region.gpkg"
         fields: [ ]
         _source_path:
           dataset: "rli_pv_wfr_region"
           file: "water_region.gpkg"
-
+      pv_ground_criteria_settlements:
+        description: "Siedlungen"
+        path: "geodata/pv_ground_criteria_settlements.gpkg"
+        fields: [ ]
+        _source_path:
+          dataset: "rpg_ols_regional_plan"
+          file: "pv_ground_criteria_settlements.gpkg"
+      pv_ground_criteria_settlements_200m:
+        description: "Siedlungen (200 m Puffer)"
+        path: "geodata/pv_ground_criteria_settlements_200m.gpkg"
+        fields: [ ]
+        _source_path:
+          dataset: "rpg_ols_regional_plan"
+          file: "pv_ground_criteria_settlements_200m.gpkg"
+      pv_ground_criteria_linked_open_spaces:
+        description: "Freiraumverbund"
+        path: "geodata/pv_ground_criteria_linked_open_spaces.gpkg"
+        fields: [ ]
+        _source_path:
+          dataset: "rpg_ols_regional_plan"
+          file: "pv_ground_criteria_linked_open_spaces.gpkg"
+      pv_ground_criteria_biotopes:
+        description: "Geschützte Biotope"
+        path: "geodata/pv_ground_criteria_biotopes.gpkg"
+        fields: [ ]
+        _source_path:
+          dataset: "rpg_ols_regional_plan"
+          file: "pv_ground_criteria_biotopes.gpkg"
+      pv_ground_criteria_moor:
+        description: "Naturnahe Moorböden"
+        path: "geodata/pv_ground_criteria_moor.gpkg"
+        fields: [ ]
+        _source_path:
+          dataset: "rpg_ols_regional_plan"
+          file: "pv_ground_criteria_moor.gpkg"
+      pv_ground_criteria_water_first_order:
+        description: "Gewässer 1. Ordung"
+        path: "geodata/pv_ground_criteria_water_first_order.gpkg"
+        fields: [ ]
+        _source_path:
+          dataset: "rpg_ols_regional_plan"
+          file: "pv_ground_criteria_water_first_order.gpkg"
+      pv_ground_criteria_water_bodies:
+        description: "Stillgewässer"
+        path: "geodata/pv_ground_criteria_water_bodies.gpkg"
+        fields: [ ]
+        _source_path:
+          dataset: "rpg_ols_regional_plan"
+          file: "pv_ground_criteria_water_bodies.gpkg"
+      pv_ground_criteria_forest:
+        description: "Wälder"
+        path: "geodata/pv_ground_criteria_forest.gpkg"
+        fields: [ ]
+        _source_path:
+          dataset: "rpg_ols_regional_plan"
+          file: "pv_ground_criteria_forest.gpkg"
+      pv_ground_criteria_nature_monuments:
+        description: "Flächennaturdenkmale"
+        path: "geodata/pv_ground_criteria_nature_monuments.gpkg"
+        fields: [ ]
+        _source_path:
+          dataset: "rpg_ols_regional_plan"
+          file: "pv_ground_criteria_nature_monuments.gpkg"
+      pv_ground_criteria_aviation:
+        description: "Luftverkehr"
+        path: "geodata/pv_ground_criteria_aviation.gpkg"
+        fields: [ ]
+        _source_path:
+          dataset: "rpg_ols_regional_plan"
+          file: "pv_ground_criteria_aviation.gpkg"
+      pv_ground_criteria_priority_areas_climate_resistent_agri:
+        description: "Vorzugsgebiete Klimarobustes Ackerland"
+        path: "geodata/pv_ground_criteria_priority_areas_climate_resistent_agri.gpkg"
+        fields: [ ]
+        _source_path:
+          dataset: "rpg_ols_regional_plan"
+          file: "pv_ground_criteria_priority_areas_climate_resistent_agri.gpkg"
+      pv_ground_criteria_priority_areas_permanent_crops:
+        description: "Vorzugsgebiete Dauerkultur"
+        path: "geodata/pv_ground_criteria_priority_areas_permanent_crops.gpkg"
+        fields: [ ]
+        _source_path:
+          dataset: "rpg_ols_regional_plan"
+          file: "pv_ground_criteria_priority_areas_permanent_crops.gpkg"
+      pv_ground_criteria_priority_areas_grassland:
+        description: "Vorzugsgebiete Grünland"
+        path: "geodata/pv_ground_criteria_priority_areas_grassland.gpkg"
+        fields: [ ]
+        _source_path:
+          dataset: "rpg_ols_regional_plan"
+          file: "pv_ground_criteria_priority_areas_grassland.gpkg"
 
   # Energy production
   production:

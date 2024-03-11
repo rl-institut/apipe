@@ -257,7 +257,7 @@ def reproject_simplify(
         gdf["geometry"] = gdf.simplify(simplify_tol, preserve_topology=True)
 
     # Fix invalid geometries
-    if fix_geom is True:
+    if (~gdf.is_valid.all()) and (fix_geom is True):
         buffer = GLOBAL_CONFIG["global"]["geodata"]["fix_geom_buffer"]
         if buffer > 0:
             gdf["geometry"] = gdf.buffer(buffer)

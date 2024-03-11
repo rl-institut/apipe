@@ -151,6 +151,11 @@ module osm_buildings:
     config: config["store"]["datasets"]["osm_buildings"]
 use rule * from osm_buildings as datasets_osm_buildings_ *
 
+module rpg_ols_regional_plan:
+    snakefile: "rpg_ols_regional_plan/create.smk"
+    config: config["store"]["datasets"]["rpg_ols_regional_plan"]
+use rule * from rpg_ols_regional_plan as datasets_rpg_ols_regional_plan_ *
+
 module app_captions:
     snakefile: "app_captions/create.smk"
     config: config["store"]["datasets"]["app_captions"]

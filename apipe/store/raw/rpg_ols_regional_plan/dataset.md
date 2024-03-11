@@ -8,8 +8,6 @@ Planungsgemeinschaft Oderland-Spree.
 Geodaten aus
 [Sachlichen Teilplan Wind 2018](https://www.planungsregion-abw.de/regionalplanung/teilplan-windenergie/teilplan-2018/).
 
-Dateien:
-
 - Eignungsgebiete: `Windeignungsgebiete_Satzung_2018_OLS.gpkg`
   (Quelle: Regionale Planungsgemeinschaft OLS)
 
@@ -18,17 +16,15 @@ Dateien:
 Geodaten aus Planentwurf des
 [Sachlichen Teilregionalplan EE 2024](https://www.rpg-oderland-spree.de/regionalplaene/sachlicher-teilregionalplan-erneuerbare-energien).
 
-Dateien:
-
-- Vorranggebiete: `VR_Windenergienutzung_2024_RPG_OLS.gpkg`
-  (Quelle:
-  [Regionale Planungsgemeinschaft OLS](https://www.rpg-oderland-spree.de/regionalplaene/sachlicher-teilregionalplan-erneuerbare-energien))
+- Vorranggebiete: `VR_Windenergienutzung_2024_RPG_OLS.gpkg`, Quelle:
+  [Regionale Planungsgemeinschaft OLS](https://www.rpg-oderland-spree.de/regionalplaene/sachlicher-teilregionalplan-erneuerbare-energien)
 
 ## Freiflächen-Photovoltaikanlagen
 
-Photovoltaik-Freiflächenanlagen in OLS in verschiedenen Genehmigungstatus.
-
-Dateien:
-
-- PV-Anlagen: `PV_FFA_OLS_Stand_Sommer2023.gpkg` (Stand: Sommer 2023)
-  (Quelle: Regionale Planungsgemeinschaft OLS)
+- PV-Anlagen in OLS in verschiedenen Genehmigungstatus.:
+  `PV_FFA_OLS_Stand_Sommer2023.gpkg` (Stand: Sommer 2023), Quelle: Regionale
+  Planungsgemeinschaft OLS)
+- Negativkriterien Freiflächen-PV aus
+  [Kriteriengerüst Photovoltaik-Freiflächenanlagen](https://www.rpg-oderland-spree.de/regionalplaene/sachlicher-teilregionalplan-erneuerbare-energien):
+  `Negativkriterien_PV_RPG_OLS_07032024.gpkg` (Stand: März 2024), Quelle:
+  Regionale Planungsgemeinschaft OLS

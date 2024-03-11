@@ -3,7 +3,10 @@ Snakefile for this dataset
 
 Note: To include the file in the main workflow, it must be added to the respective module.smk .
 """
+import fiona
+import os
 import geopandas as gpd
+import pandas as pd
 from apipe.scripts.geo import (
     rename_filter_attributes,
     reproject_simplify,
@@ -81,3 +84,53 @@ rule create_pv_ground:
             file=output[0],
             layer_name=config["pv_ground"]["layer"],
         )
+
+rule create_pv_ground_criteria:
+    """
+    Freiflächen-Photovoltaikanlagen Negativkriterien: Preprocess
+    """
+    input:
+        get_abs_dataset_path(
+            "raw", "rpg_ols_regional_plan") / "data" /
+            "Negativkriterien_PV_RPG_OLS_07032024.gpkg"
+    output:
+        [DATASET_PATH / "data" / f"{fname}.gpkg"
+         for fname in set(config["pv_ground_criteria"]["layers"].values())
+         if fname != ""]
+    run:
+        target_layers = [
+            layer for layer in fiona.listlayers(input[0])
+            if config["pv_ground_criteria"]["layers"].get(layer) != ""
+        ]
+        for target_layer in target_layers:
+            print(f"Processing layer: {target_layer}"),
+            data = reproject_simplify(
+                rename_filter_attributes(
+                    gdf=gpd.read_file(input[0], layer=target_layer),
+                    attrs_mapping=config["pv_ground"]["attributes"],
+                ),
+                fix_geom=True,
+            )
+            target_file = (
+                DATASET_PATH / "data" /
+                f'{config["pv_ground_criteria"]["layers"].get(target_layer)}.gpkg'
+            )
+
+            # If 2 layers have same target: Append and union data
+            if os.path.exists(target_file):
+                print(
+                    f"File {target_file} exists, merging new data and overwrite "
+                    f"exiting file..."
+                )
+                data_existing = gpd.read_file(target_file)
+                data = pd.concat([data, data_existing])
+
+            data = gpd.GeoDataFrame(
+                crs=data.crs.srs, geometry=[data.unary_union]
+            )
+
+            write_geofile(
+                gdf=data,
+                file=target_file,
+                layer_name=target_layer,
+            )

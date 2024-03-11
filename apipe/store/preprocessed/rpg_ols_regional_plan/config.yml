@@ -30,3 +30,34 @@ pv_ground:
       "Baubeginn": "construction_start_date",
       "Fertigstel": "construction_end_date",
       "geometry": "geometry"}
+
+# Kriteriengerüst FF-PV
+pv_ground_criteria:
+   layers:
+     {"Bundeswehr": "",
+      "FFH_Gebiete": "pv_ground_criteria_ffh",
+      "Freiraumverbund_LEP_HR": "pv_ground_criteria_linked_open_spaces",
+      "Gesetzlich_Geschuetzte_Biotope": "pv_ground_criteria_biotopes",
+      "Geweasser_1_Ordnung": "pv_ground_criteria_water_first_order",
+      "Landebahnflaechen": "pv_ground_criteria_aviation",
+      "Naturdenkmaeler": "pv_ground_criteria_nature_monuments",
+      "NSG": "pv_ground_criteria_nature_conservation_area",
+      "Stillgewaesser_Groesser_5ha": "pv_ground_criteria_water_bodies",
+      "VR_WEN": "",
+      "Wald": "pv_ground_criteria_forest",
+      "Wohnbauflaechen": "pv_ground_criteria_settlements",
+      "Wohnpuffer_200m": "pv_ground_criteria_settlements_200m",
+      "Vorzugsgebiete_Dauerkultur": "pv_ground_criteria_priority_areas_permanent_crops",
+      "Vorzugsgebiete_Gruenland": "pv_ground_criteria_priority_areas_grassland",
+      "Vorzugsgebiete_Klimarobust_Ackerland": "pv_ground_criteria_priority_areas_climate_resistent_agri",
+      "Moor_bfap_nbmb": "pv_ground_criteria_moor",
+      "Moor_bfap_nbmfb": "pv_ground_criteria_moor",
+      "Mooregroessernull": "pv_ground_criteria_moor",
+      "Beeskow": "",
+      "TWS_I_II_LOS": "",
+      "zone2": "",
+      "zone2_heckel": "",
+      "zone2_kruge": "",
+      "ZoneII": ""}
+   attributes:
+     {"geometry": "geometry"}

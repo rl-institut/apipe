@@ -22,12 +22,12 @@ map_panel_layer_list:
     ]
   settlements_infrastructure:
     [
-      "settlement-0m_region",
+      "pv_ground_criteria_settlements",
+      "pv_ground_criteria_settlements_200m",
       "industry_region",
       "road_region",
       "railway_region",
-      "road_railway-500m_region",
-      "aviation_region",
+      "pv_ground_criteria_aviation",
       "air_traffic_control_system_region",
       "military_region",
       "grid_region"
@@ -39,13 +39,38 @@ map_panel_layer_list:
       "fauna_flora_habitat_region",
       "special_protection_area_region",
       "biosphere_reserve_region",
-      "forest_region",
-      "water_region",
+      "nature_park_region",
+#      "nature_monument_region",
+#      "national_park_region",
+      "pv_ground_criteria_biotopes",
+      "pv_ground_criteria_forest",
+      "pv_ground_criteria_water_first_order",
+      "pv_ground_criteria_water_bodies",
+      "pv_ground_criteria_moor",
       "floodplain_region",
       "landscape_protection_area_region",
-      "soil_quality_high_region",
-      "soil_quality_low_region",
-      "less_favoured_areas_agricultural_region"
+      "pv_ground_criteria_linked_open_spaces",
+    ]
+  pv_ground_neg_criteria:
+    [
+      "pv_ground_criteria_settlements",
+      "pv_ground_criteria_settlements_200m",
+      "floodplain_region",
+      "pv_ground_criteria_linked_open_spaces",
+      "nature_conservation_area_region",
+      "fauna_flora_habitat_region",
+      "pv_ground_criteria_biotopes",
+      "pv_ground_criteria_moor",
+      "drinking_water_protection_area_region",
+      "pv_ground_criteria_water_first_order",
+      "pv_ground_criteria_water_bodies",
+      "pv_ground_criteria_forest",
+      "pv_ground_criteria_nature_monuments",
+      "pv_ground_criteria_aviation",
+      "military_region",
+      "pv_ground_criteria_priority_areas_climate_resistent_agri",
+      "pv_ground_criteria_priority_areas_permanent_crops",
+      "pv_ground_criteria_priority_areas_grassland",
     ]
 
 # Settings for energy panel

@@ -37,7 +37,7 @@ rule clip_to_region:
         geodata = overlay(
             gdf=geodata,
             gdf_overlay=gpd.read_file(input.region[0]),
-        ).drop(columns=["id"])
+        )
 
         if len(geodata) == 0:
             print("  Layer has no data in region!")

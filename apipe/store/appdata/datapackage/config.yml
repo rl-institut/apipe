@@ -96,7 +96,6 @@ resources:
           dataset: "bkg_vg250_muns_region"
           file: "bkg_vg250_muns_region.gpkg"
 
-      # From Djagora
       air_traffic_control_system_region:
         description: "Drehfunkfeuer"
         path: "geodata/air_traffic_control_system_region.gpkg"
@@ -104,19 +103,19 @@ resources:
         _source_path:
           dataset: "rli_pv_wfr_region"
           file: "air_traffic_control_system_region.gpkg"
-      aviation_region:
+      pv_ground_criteria_aviation:
         description: "Luftverkehr"
-        path: "geodata/aviation_region.gpkg"
+        path: "geodata/pv_ground_criteria_aviation.gpkg"
         fields: [ ]
         _source_path:
-          dataset: "rli_pv_wfr_region"
-          file: "aviation_region.gpkg"
+          dataset: "rpg_ols_regional_plan"
+          file: "pv_ground_criteria_aviation.gpkg"
       biosphere_reserve_region:
         description: "Biosphärenreservate"
         path: "geodata/biosphere_reserve_region.gpkg"
         fields: [ ]
         _source_path:
-          dataset: "rli_pv_wfr_region"
+          dataset: "bfn_protected_areas_region"
           file: "biosphere_reserve_region.gpkg"
       drinking_water_protection_area_region:
         description: "Wasserschutzgebiete"
@@ -130,7 +129,7 @@ resources:
         path: "geodata/fauna_flora_habitat_region.gpkg"
         fields: [ ]
         _source_path:
-          dataset: "rli_pv_wfr_region"
+          dataset: "bfn_protected_areas_region"
           file: "fauna_flora_habitat_region.gpkg"
       floodplain_region:
         description: "Überschwemmungsgebiete"
@@ -139,13 +138,13 @@ resources:
         _source_path:
           dataset: "rli_pv_wfr_region"
           file: "floodplain_region.gpkg"
-      forest_region:
+      pv_ground_criteria_forest:
         description: "Wälder"
-        path: "geodata/forest_region.gpkg"
+        path: "geodata/pv_ground_criteria_forest.gpkg"
         fields: [ ]
         _source_path:
-          dataset: "rli_pv_wfr_region"
-          file: "forest_region.gpkg"
+          dataset: "rpg_ols_regional_plan"
+          file: "pv_ground_criteria_forest.gpkg"
       grid_region:
         description: "Stromnetze (>=110 kV)"
         path: "geodata/grid_region.gpkg"
@@ -165,15 +164,8 @@ resources:
         path: "geodata/landscape_protection_area_region.gpkg"
         fields: [ ]
         _source_path:
-          dataset: "rli_pv_wfr_region"
+          dataset: "bfn_protected_areas_region"
           file: "landscape_protection_area_region.gpkg"
-      less_favoured_areas_agricultural_region:
-        description: "Benachteiligte Gebiete"
-        path: "geodata/less_favoured_areas_agricultural_region.gpkg"
-        fields: [ ]
-        _source_path:
-          dataset: "rli_pv_wfr_region"
-          file: "less_favoured_areas_agricultural_region.gpkg"
       military_region:
         description: "Militärische Sperrgebiete und Liegenschaften"
         path: "geodata/military_region.gpkg"
@@ -181,69 +173,34 @@ resources:
         _source_path:
           dataset: "rli_pv_wfr_region"
           file: "military_region.gpkg"
+#      national_park_region:
+#        description: "Nationalparke"
+#        path: "geodata/national_park_region.gpkg"
+#        fields: [ ]
+#        _source_path:
+#          dataset: "bfn_protected_areas_region"
+#          file: "national_park_region.gpkg"
       nature_conservation_area_region:
         description: "Naturschutzgebiete"
         path: "geodata/nature_conservation_area_region.gpkg"
         fields: [ ]
         _source_path:
-          dataset: "rli_pv_wfr_region"
+          dataset: "bfn_protected_areas_region"
           file: "nature_conservation_area_region.gpkg"
-      railway_region:
-        description: "Bahnverkehr"
-        path: "geodata/railway_region.gpkg"
+#      nature_monument_region:
+#        description: "Nationale Naturmonumente"
+#        path: "geodata/nature_monument_region.gpkg"
+#        fields: [ ]
+#        _source_path:
+#          dataset: "bfn_protected_areas_region"
+#          file: "nature_monument_region.gpkg"
+      nature_park_region:
+        description: "Naturparke"
+        path: "geodata/nature_park_region.gpkg"
         fields: [ ]
         _source_path:
-          dataset: "rli_pv_wfr_region"
-          file: "railway_region.gpkg"
-      road_region:
-        description: "Straßen"
-        path: "geodata/road_region.gpkg"
-        fields: [ ]
-        _source_path:
-          dataset: "rli_pv_wfr_region"
-          file: "road_region.gpkg"
-      road_railway-500m_region:
-        description: "Straßen und Bahnverkehr (500 m Puffer)"
-        path: "geodata/road_railway-500m_region.gpkg"
-        fields: [ ]
-        _source_path:
-          dataset: "rli_pv_wfr_region"
-          file: "road_railway-500m_region.gpkg"
-      settlement-0m_region:
-        description: "Siedlungen"
-        path: "geodata/settlement-0m_region.gpkg"
-        fields: [ ]
-        _source_path:
-          dataset: "rli_pv_wfr_region"
-          file: "settlement-0m_region.gpkg"
-      soil_quality_high_region:
-        description: "Ackerflächen mit hoher Bodenqualität (Soil Quality Rating >= 40)"
-        path: "geodata/soil_quality_high_region.gpkg"
-        fields: [ ]
-        _source_path:
-          dataset: "rli_pv_wfr_region"
-          file: "soil_quality_high_region.gpkg"
-      soil_quality_low_region:
-        description: "Ackerflächen mit geringer Bodenqualität (Soil Quality Rating < 40)"
-        path: "geodata/soil_quality_low_region.gpkg"
-        fields: [ ]
-        _source_path:
-          dataset: "rli_pv_wfr_region"
-          file: "soil_quality_low_region.gpkg"
-      special_protection_area_region:
-        description: "Vogelschutzgebiete"
-        path: "geodata/special_protection_area_region.gpkg"
-        fields: [ ]
-        _source_path:
-          dataset: "rli_pv_wfr_region"
-          file: "special_protection_area_region.gpkg"
-      water_region:
-        description: "Gewässer"
-        path: "geodata/water_region.gpkg"
-        fields: [ ]
-        _source_path:
-          dataset: "rli_pv_wfr_region"
-          file: "water_region.gpkg"
+          dataset: "bfn_protected_areas_region"
+          file: "nature_park_region.gpkg"
       pv_ground_criteria_settlements:
         description: "Siedlungen"
         path: "geodata/pv_ground_criteria_settlements.gpkg"
@@ -293,13 +250,6 @@ resources:
         _source_path:
           dataset: "rpg_ols_regional_plan"
           file: "pv_ground_criteria_water_bodies.gpkg"
-      pv_ground_criteria_forest:
-        description: "Wälder"
-        path: "geodata/pv_ground_criteria_forest.gpkg"
-        fields: [ ]
-        _source_path:
-          dataset: "rpg_ols_regional_plan"
-          file: "pv_ground_criteria_forest.gpkg"
       pv_ground_criteria_nature_monuments:
         description: "Flächennaturdenkmale"
         path: "geodata/pv_ground_criteria_nature_monuments.gpkg"
@@ -307,13 +257,6 @@ resources:
         _source_path:
           dataset: "rpg_ols_regional_plan"
           file: "pv_ground_criteria_nature_monuments.gpkg"
-      pv_ground_criteria_aviation:
-        description: "Luftverkehr"
-        path: "geodata/pv_ground_criteria_aviation.gpkg"
-        fields: [ ]
-        _source_path:
-          dataset: "rpg_ols_regional_plan"
-          file: "pv_ground_criteria_aviation.gpkg"
       pv_ground_criteria_priority_areas_climate_resistent_agri:
         description: "Vorzugsgebiete Klimarobustes Ackerland"
         path: "geodata/pv_ground_criteria_priority_areas_climate_resistent_agri.gpkg"
@@ -335,6 +278,34 @@ resources:
         _source_path:
           dataset: "rpg_ols_regional_plan"
           file: "pv_ground_criteria_priority_areas_grassland.gpkg"
+      railway_region:
+        description: "Bahnverkehr"
+        path: "geodata/railway_region.gpkg"
+        fields: [ ]
+        _source_path:
+          dataset: "rli_pv_wfr_region"
+          file: "railway_region.gpkg"
+      road_region:
+        description: "Straßen"
+        path: "geodata/road_region.gpkg"
+        fields: [ ]
+        _source_path:
+          dataset: "rli_pv_wfr_region"
+          file: "road_region.gpkg"
+      special_protection_area_region:
+        description: "Vogelschutzgebiete"
+        path: "geodata/special_protection_area_region.gpkg"
+        fields: [ ]
+        _source_path:
+          dataset: "bfn_protected_areas_region"
+          file: "special_protection_area_region.gpkg"
+      water_region:
+        description: "Gewässer"
+        path: "geodata/water_region.gpkg"
+        fields: [ ]
+        _source_path:
+          dataset: "rli_pv_wfr_region"
+          file: "water_region.gpkg"
 
   # Energy production
   production:

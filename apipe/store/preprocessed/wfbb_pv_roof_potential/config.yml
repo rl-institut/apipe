@@ -1,0 +1,16 @@
+##############################################################################
+# This file holds configuration parameters for the creation of this dataset. #
+##############################################################################
+
+layer: wfbb_pv_roof_potential
+attributes:
+  {"gebaeude_id": "building_id",
+   "gebaeude_funktion": "building_function",
+   "dach_ausrichtung_grad": "roof_azimuth_deg",
+   "dach_neigung_grad": "roof_inclination_deg",
+   "dach_flaeche_qm": "roof_area_sqm",
+   "dach_potenzial_nutzflaeche_qm": "roof_area_pv_potential_sqm",
+   "dach_eignung_prozent": "roof_suitability_perc",
+   "dach_potenzial_leistung_kw": "installable_power_kw",
+   "dach_potenzial_ertrag_kwh_a": "energy_annual_mwh",
+   "geometry": "geometry"}

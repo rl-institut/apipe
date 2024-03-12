@@ -156,6 +156,11 @@ module rpg_ols_regional_plan:
     config: config["store"]["datasets"]["rpg_ols_regional_plan"]
 use rule * from rpg_ols_regional_plan as datasets_rpg_ols_regional_plan_ *
 
+module bfn_protected_areas_region:
+    snakefile: "bfn_protected_areas_region/create.smk"
+    config: config["store"]["datasets"]["bfn_protected_areas_region"]
+use rule * from bfn_protected_areas_region as datasets_bfn_protected_areas_region_ *
+
 module app_captions:
     snakefile: "app_captions/create.smk"
     config: config["store"]["datasets"]["app_captions"]

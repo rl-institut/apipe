@@ -3,7 +3,7 @@ Snakefile for this dataset
 
 Note: To include the file in the main workflow, it must be added to the respective module.smk .
 """
-
+import fiona
 import geopandas as gpd
 
 from apipe.scripts.geo import (
@@ -23,12 +23,27 @@ rule create:
     output:
         DATASET_PATH / "data" / "solaratlas_eignung_dachflaechen_pv.gpkg"
     run:
+        print("Reading file...")
+        # Get columns
+        with fiona.open(input[0]) as f:
+            columns = f.schema['properties']
+        data = gpd.read_file(
+            input[0],
+            ignore_fields=[
+                col for col in columns
+                if col not in config["attributes"].keys()
+            ],
+        )
+
+        print("Filtering...")
         data = reproject_simplify(
             rename_filter_attributes(
-                gdf=gpd.read_file(input[0]),
+                gdf=data,
                 attrs_mapping=config["attributes"]
             )
         )
+
+        print("Writing result file...")
         write_geofile(
             gdf=data,
             file=output[0],

@@ -109,16 +109,64 @@ Zeitreihe normiert auf Summe=1 für
 
 
 ------------------------------
-## Emissionen
+## Geodaten PV- und Windflächenrechner
 
-Emissionen für Sachsen-Anhalt und die Region, aggregiert nach Sektoren der
-CRF-Nomenklatur.
+Schutzgebiete des Bundesamts für Naturschutz, zu LAEA Europe (EPSG:3035)
+umprojiziert und auf die Regionsgrenzen zugeschnitten.
 
-Datei `emissions.json` enthält Chartdaten.
+Raw dataset:
+[bfn_protected_areas](../../apipe/store/raw/bfn_protected_areas/dataset.md)
 
-Raw dataset: [emissions](../../apipe/store/raw/emissions/dataset.md)
+**Dataset: `datasets/bfn_protected_areas_region`**
 
-**Dataset: `datasets/emissions_region`**
+
+------------------------------
+## Dachflächenpotenzial PV-Aufdachanlagen in der Region
+
+Berechnung der installierten Leistung und des Ertrags von PV-Aufdachanlagen in
+der Region aus Datensatz
+[wfbb_pv_roof_potential](../../apipe/store/preprocessed/wfbb_pv_roof_potential/dataset.md).
+
+Es werden nur Dächer verwendet, deren Eignung über 60 % beträgt, d.h. geeignet
+oder gut geeignet sind (Klassifikation s.
+[wfbb_pv_roof_potential](../../apipe/store/preprocessed/wfbb_pv_roof_potential/dataset.md)).
+Der Grenzwert `roof_suitability_threshold` ist in [config.yml](../../apipe/store/datasets/potentialarea_pv_roof_region2/config.yml)
+änderbar.
+
+Es werden Statistiken je Gemeinde erstellt, hierfür werden die Gebäudezentroide
+mit den Gemeindegrenzen verschnitten und den Gemeinden zugeordnet.
+Ergebnisdaten: `potentialarea_pv_roof_area_stats_muns.csv`
+
+Des Weiteren wird je Gemeinde der relative Anteil der bereits installierten
+Anlagenleistung an der theoretisch installierbaren Leistung (bei
+100% Dachnutzung) berechnet.
+Ergebnisdaten: `potentialarea_pv_roof_deployment_stats_muns.csv`
+
+Die Gemeinden werden über den Schlüssel `municipality_id` (vgl.
+[bkg_vg250_muns_region](../../apipe/store/datasets/bkg_vg250_muns_region/dataset.md))
+identifiziert.
+
+### Ausbauziele
+
+Es werden PV-Ausbauziele für die Region berechnet, indem die Bundesziele aus den
+[BMWK Langfristszenarien](../../apipe/store/preprocessed/bmwk_long_term_scenarios/dataset.md)
+i.H.v. 428 GW
+([§4 EEG 2023](https://www.gesetze-im-internet.de/eeg_2014/__4.html): 400 GW)
+anhand der Gebäudegrundflächen disaggregiert werden. Hierzu wird der Anteil der
+Gebäudegrundflächen in der Region an der bundesweiten Gebäudegrundflächen
+berechnet (s. Datensatz [osm_buildings](../../apipe/store/datasets/osm_buildings/dataset.md)) und die
+Ziele linear skaliert. Da in den o.g. Ausbauzielen nicht zwischen Freiflächen-
+und Aufdach-PV unterschieden wird, wird folgende Aufteilung angenommen
+(Parameter`pv_roof_share`, änderbar in [config.yml](../../apipe/store/datasets/potentialarea_pv_roof_region2/config.yml)):
+
+- Aufdach-PV: 52 % (221 GW)
+- Freiflächen-PV (niedrig aufgeständert): 44 % (190 GW), vgl.
+  [potentialarea_pv_ground_region2](../../apipe/store/datasets/potentialarea_pv_ground_region2/dataset.md)
+- Agri-PV (hoch aufgeständert und vertikal bifazial): 4 % (17 GW)
+
+File: `potentialarea_pv_roof_regionalized_targets.json`
+
+**Dataset: `datasets/potentialarea_pv_roof_region2`**
 
 
 ------------------------------
@@ -233,9 +281,9 @@ landesweiter Prognosen aus den
 ------------------------------
 ## Dachflächenpotenzial PV-Aufdachanlagen in ABW
 
-Abschätzung der installierten Leistung und des Ertrags von PV-Aufdachanlagen in
+Berechnung der installierten Leistung und des Ertrags von PV-Aufdachanlagen in
 Anhalt-Bitterfeld-Wittenberg der Regionalen Planungsgemeinschaft aus Datensatz
-[rpg_abw_pv_roof_potential](../../apipe/store/raw/rpg_abw_pv_roof_potential/dataset.md).
+[rpg_abw_pv_roof_potential](../../apipe/store/preprocessed/rpg_abw_pv_roof_potential/dataset.md).
 
 Die Gebäudezentroide werden mit den Gemeindegrenzen verschnitten und den
 Gemeinden zugeordnet.
@@ -537,38 +585,10 @@ Raw datasets:
 
 EinwohnerInnen je Gemeinde: Historische Daten und Prognosen
 
-### Historische Daten bis 2022
+### Historische Daten bis 2023
 
 Statistisches Bundesamt (Raw dataset:
 [destatis_gv](../../apipe/store/raw/destatis_gv/dataset.md))
-
-### Prognosen bis 2035
-
-Statistisches Landesamt Sachsen-Anhalt (Raw dataset:
-[stala_st_pop_prog](../../apipe/store/raw/stala_st_pop_prog/dataset.md)). Deaktivieren
-mittels entfernen der Zieljahre in [config.yml](../../apipe/store/datasets/population_region/config.yml) im Abschnitt
-`prognosis_fstate_munlevel`.
-
-Kann für andere Regionen auch durch DemandRegio (s.u.) ersetzt werden, die
-tatsächliche regionale Auflösung wird dadurch reduziert.
-
-### Prognosen bis 2045
-
-DemandRegio (Raw dataset: [demandregio](../../apipe/store/raw/demandregio/dataset.md))
-basierend auf der
-[14. koordinierten Bevölkerungsvorausberechnung](https://www.destatis.de/DE/Themen/Gesellschaft-Umwelt/Bevoelkerung/Bevoelkerungsvorausberechnung/aktualisierung-bevoelkerungsvorausberechnung.html)
-der Statistischen Ämter von Bund und Ländern. Diese Daten liegen auf
-Landkreisebene vor, daher erfolgt eine gleichmäßige Skalierung der
-dazugehörigen Gemeinden auf den jeweiligen Prognosewert.
-
-Deaktivieren mittels entfernen der Zieljahre in [config.yml](../../apipe/store/datasets/population_region/config.yml) im
-Abschnitt `prognosis_germany_districtlevel`.
-
-### Extrapolation
-
-Über 2045 hinaus wird lineare Extrapolation auf Basis der letzten beiden
-Prognosejahre unterstützt. Um diese zu aktivieren, müssen lediglich Zieljahre
-in die [config.yml](../../apipe/store/datasets/population_region/config.yml) im Abschnitt `extrapolation` eingetragen werden.
 
 **Dataset: `datasets/population_region`**
 
@@ -927,11 +947,14 @@ Die Ergebnisse bieten Einblicke in das regionale PV-Potenzial und umfassen:
 
 Die Flächen werden mit den Gemeindegrenzen verschnitten und den Gemeinden
 zugeordnet. Je Gemeinde und obigem Flächentyp/Datei wird eine Flächensumme (in
-km²) berechnet. Die Gemeinden werden über den Schlüssel `municipality_id` (vgl.
+km²) berechnet und in `potentialarea_pv_ground_area_stats_muns.csv` geschrieben.
+Die Gemeinden werden über den Schlüssel `municipality_id` (vgl.
 [bkg_vg250_muns_region](../../apipe/store/datasets/bkg_vg250_muns_region/dataset.md))
 identifiziert.
 
-File: `potentialarea_pv_ground_area_stats_muns.csv` (Einheit: km²)
+Des Weiteren werden die Flächenanteile (in %) gegenüber der gesamten
+Regionsfläche (für die Parametrierung der Regler) berechnet und nach
+`potentialarea_pv_ground_area_shares.json` exportiert.
 
 #### Regionalisierte Ausbauziele
 
@@ -993,6 +1016,16 @@ Preprocessed dataset:
 Region aus Geodaten der Landkreise zusammengeführt.
 
 **Dataset: `datasets/bkg_vg250_region`**
+
+
+------------------------------
+## Regionalplan Oderland-Spree
+
+Vorverarbeitete Datensätze aus Teilplänen Wind der Regionalen
+Planungsgemeinschaft Oderland-Spree aus
+[rpg_ols_regional_plan](../../apipe/store/raw/rpg_ols_regional_plan/dataset.md).
+
+**Dataset: `datasets/rpg_ols_regional_plan`**
 
 
 ------------------------------

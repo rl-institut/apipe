@@ -136,6 +136,11 @@ module potentialarea_pv_roof_region:
     config: config["store"]["datasets"]["potentialarea_pv_roof_region"]
 use rule * from potentialarea_pv_roof_region as datasets_potentialarea_pv_roof_region_*
 
+module potentialarea_pv_roof_region2:
+    snakefile: "potentialarea_pv_roof_region2/create.smk"
+    config: config["store"]["datasets"]["potentialarea_pv_roof_region2"]
+use rule * from potentialarea_pv_roof_region2 as datasets_potentialarea_pv_roof_region2_*
+
 module rli_pv_wfr_region:
     snakefile: "rli_pv_wfr_region/create.smk"
     config: config["store"]["datasets"]["rli_pv_wfr_region"]

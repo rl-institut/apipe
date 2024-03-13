@@ -215,7 +215,7 @@ def reproject_simplify(
         (default).
         Raises exception if `target_crs` is not LAEA Europe (EPSG:3035).
     simplify_tol : float
-        Threshold for simplification of geometries. Use None for no
+        Threshold for simplification of geometries in meter. Use None for no
         simplification (default).
         Raises exception if `target_crs` is not LAEA Europe (EPSG:3035).
     fix_geom : bool

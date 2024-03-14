@@ -23,4 +23,6 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 
 ### Changed
 
+- Regionalize PV ground and roof targets from energy strategy BB
+
 ### Fixed

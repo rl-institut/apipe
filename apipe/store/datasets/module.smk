@@ -166,6 +166,11 @@ module bfn_protected_areas_region:
     config: config["store"]["datasets"]["bfn_protected_areas_region"]
 use rule * from bfn_protected_areas_region as datasets_bfn_protected_areas_region_ *
 
+module mwae_bb_energy_strategy_region:
+    snakefile: "mwae_bb_energy_strategy_region/create.smk"
+    config: config["store"]["datasets"]["mwae_bb_energy_strategy_region"]
+use rule * from mwae_bb_energy_strategy_region as datasets_mwae_bb_energy_strategy_region_ *
+
 module app_captions:
     snakefile: "app_captions/create.smk"
     config: config["store"]["datasets"]["app_captions"]

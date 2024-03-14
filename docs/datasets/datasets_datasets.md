@@ -14,22 +14,15 @@ Raw dataset: [technology_data](../../apipe/store/raw/technology_data/dataset.md)
 ## Potenzialgebiete Windenergie
 
 Potenzialgebiete für die Errichtung von Windenergieanlagen, basierend auf den
-Teilplänen Wind der Regionalen Planungsgemeinschaft Anhalt-Bitterfeld-Wittenberg
-aus
-[rpg_abw_regional_plan](../../apipe/store/preprocessed/rpg_abw_regional_plan/dataset.md).
+Teilplänen Wind der Regionalen Planungsgemeinschaft Oderland-Spree aus
+[rpg_ols_regional_plan](../../apipe/store/preprocessed/rpg_ols_regional_plan/dataset.md).
 
 Dateien:
 
-- STP Wind 2018 - Vorrang-/Eignungsgebiete:
+- STP Wind 2018 - Eignungsgebiete:
   `potentialarea_wind_stp_2018_vreg.gpkg`
-- STP Wind 2027 - Planabsicht Vorranggebiete:
+- STP Wind 2024 - Planabsicht Vorranggebiete:
   `potentialarea_wind_stp_2027_vr.gpkg`
-- STP Wind 2027 - Planabsicht Repoweringgebiete:
-  `potentialarea_wind_stp_2027_repowering.gpkg`
-- STP Wind 2027 - Suchraum Wald:
-  `potentialarea_wind_stp_2027_search_area_forest_area.gpkg`
-- STP Wind 2027 - Suchraum Offenland:
-  `potentialarea_wind_stp_2027_search_area_open_area.gpkg`
 
 Die darin verwendeten Attributtexte werden in die Datei
 `potentialarea_wind_attribute_captions.json` exportiert.
@@ -591,6 +584,25 @@ Statistisches Bundesamt (Raw dataset:
 [destatis_gv](../../apipe/store/raw/destatis_gv/dataset.md))
 
 **Dataset: `datasets/population_region`**
+
+
+------------------------------
+## Energiestrategie Brandenburg 2040 regionalisiert
+
+Ziele aus der Energiestrategie Brandenburg 2040 des Ministeriums für Wirtschaft,
+Arbeit und Energie. Es erfolgt eine lineare Skalierung der Ziele anhand der
+Fläche.
+
+Dateien:
+
+- Ziele aus der Energiestrategie: `mwae_bb_energy_strategy.json`
+- Ziele aus der Energiestrategie, desaggregiert auf die Region:
+  `mwae_bb_energy_strategy_region.json`
+
+Raw dataset:
+[mwae_bb_energy_strategy](../../apipe/store/raw/mwae_bb_energy_strategy/dataset.md)
+
+**Dataset: `datasets/mwae_bb_energy_strategy_region`**
 
 
 ------------------------------

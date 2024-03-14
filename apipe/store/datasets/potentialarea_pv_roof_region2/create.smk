@@ -178,30 +178,42 @@ rule regionalize_state_targets:
         osm_buildings_stats=get_abs_dataset_path(
             "datasets", "osm_buildings", data_dir=True
         ) / "osm_buildings_ground_area.json",
-        el_capacity_targets=get_abs_dataset_path(
+        el_capacity_targets_bmwk_de=get_abs_dataset_path(
             "preprocessed", "bmwk_long_term_scenarios"
         ) / "data" / "T45-Strom_electricity_installed_power_reformatted.csv",
+        el_capacity_targets_mwae_bb=get_abs_dataset_path(
+            "datasets","mwae_bb_energy_strategy_region"
+        ) / "data" / "mwae_bb_energy_strategy_region.json"
     output:
         DATASET_PATH / "potentialarea_pv_roof_regionalized_targets.json"
     run:
         osm_buildings_stats = load_json(input.osm_buildings_stats)
 
-        # Power target from longterm scenario
-        targets = pd.read_csv(input.el_capacity_targets, index_col="year")
+        # Power target from scenarios
+        targets_bmwk_de = pd.read_csv(input.el_capacity_targets_bmwk_de, index_col="year")
+        with open(input.el_capacity_targets_mwae_bb, "r") as f:
+            targets_mwae_bb = json.load(f)
 
-        target_cap = targets.loc[
-                         targets.technology == "pv"
+        target_cap_bmwk_de = targets_bmwk_de.loc[
+                         targets_bmwk_de.technology == "pv"
                      ].loc[2045].capacity * 1e3 * config.get("pv_roof_share")
 
-        with open(output[0], "w", encoding="utf8") as f:
-            json.dump(
-                {
-                    # Power targets (disaggregated)
-                    "target_power_total": round(
-                        target_cap *
+        targets_output = {
+            "bmwk_de": {
+                "target_power_total":  {
+                    "2045": round(
+                        target_cap_bmwk_de *
                         osm_buildings_stats["building_ground_area_share_region"]
                     ),
                 },
-                f,
-                indent=4
-            )
+            },
+            "mwae_bb": {
+                "target_power_total": {
+                    year: cap * config.get("pv_roof_share")
+                    for year, cap in targets_mwae_bb["re_installed_capacity_pv_mw"].items()
+                },
+            },
+        }
+
+        with open(output[0], "w", encoding="utf8") as f:
+            json.dump(targets_output, f, indent=4)

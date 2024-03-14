@@ -134,11 +134,15 @@ rule regionalize_state_targets:
             "datasets", "potentialarea_pv_ground_region2", data_dir=True
         )
             / "clipped_potentialarea_pv_ground_permanent_crops.tif",
-        el_capacity_targets=get_abs_dataset_path(
+        el_capacity_targets_bmwk_de=get_abs_dataset_path(
             "preprocessed", "bmwk_long_term_scenarios"
         )
         / "data"
         / "T45-Strom_electricity_installed_power_reformatted.csv",
+        el_capacity_targets_mwae_bb=get_abs_dataset_path(
+            "datasets", "mwae_bb_energy_strategy_region")
+            / "data"
+            / "mwae_bb_energy_strategy_region.json",
         tech_data=get_abs_dataset_path(
             "datasets", "technology_data", data_dir=True
         )
@@ -160,20 +164,26 @@ rule regionalize_state_targets:
         area_medium_region = calculate_nonzero_pixel_sum(input.potarea_pv_ground_soil_quality_medium_region)
         area_crops_region = calculate_nonzero_pixel_sum(input.potarea_pv_ground_permanent_crops_region)
 
-        # Total targets in scenario
         tech_data = json.load(open(input.tech_data))
-        targets = pd.read_csv(input.el_capacity_targets, index_col="year")
-        target_cap = targets.loc[targets.technology == "pv"].loc[2045].capacity * 1e3
+        targets_output = dict()
 
-        target_power_soil_quality_low = target_cap * config.get("pv_ground_share") * (area_low_region / area_low)
+        # Scenario: BMWK longterm T45 Strom
+        # =================================
+        # Get DE targets
+        targets_bmwk_de = pd.read_csv(
+            input.el_capacity_targets_bmwk_de, index_col="year")
+        target_cap_bmwk_de = targets_bmwk_de.loc[
+            targets_bmwk_de.technology == "pv"].loc[2045].capacity * 1e3
+
+        target_power_soil_quality_low = target_cap_bmwk_de * config.get("pv_ground_share") * (area_low_region / area_low)
         target_power_soil_quality_medium = (
-            target_cap *  # total capacity Germany
+            target_cap_bmwk_de *  # total capacity Germany
             config.get("pv_ground_agri_share") *  # share of agri PV
             area_medium_region / (area_medium_region + area_crops_region) *  # region's area share medium of total agri PV
             (area_medium_region / area_medium)  #  region's medium area share of Germany's
         )
         target_power_permanent_crops = (
-            target_cap *
+            target_cap_bmwk_de *
             config.get("pv_ground_agri_share") *
             area_crops_region / (area_medium_region + area_crops_region) *
             (area_crops_region / area_crops)
@@ -186,19 +196,64 @@ rule regionalize_state_targets:
         target_power_total = target_power_soil_quality_low + target_power_soil_quality_medium + target_power_permanent_crops
         target_area_total = target_area_soil_quality_low + target_area_soil_quality_medium + target_area_permanent_crops
 
-        output_data = {
-            "target_power_total": round(target_power_total,2),
-            "target_power_agri_soil_quality_low": round(target_power_soil_quality_low,2),
-            "target_power_agri_soil_quality_medium": round(target_power_soil_quality_medium,2),
-            "target_power_agri_permanent_crops": round(target_power_permanent_crops,2),
-            "target_area_total": round(target_area_total,2),
-            "target_area_agri_soil_quality_low": round(target_area_soil_quality_low,2),
-            "target_area_agri_soil_quality_medium": round(target_area_soil_quality_medium,2),
-            "target_area_agri_permanent_crops": round(target_area_permanent_crops,2),
-        }
+        targets_output.update({
+            "bmwk_de": {
+                "2045":  {
+                    "target_power_total": round(target_power_total, 2),
+                    "target_power_agri_soil_quality_low": round(target_power_soil_quality_low, 2),
+                    "target_power_agri_soil_quality_medium": round(target_power_soil_quality_medium, 2),
+                    "target_power_agri_permanent_crops": round(target_power_permanent_crops, 2),
+                    "target_area_total": round(target_area_total, 2),
+                    "target_area_agri_soil_quality_low": round(target_area_soil_quality_low, 2),
+                    "target_area_agri_soil_quality_medium": round(target_area_soil_quality_medium, 2),
+                    "target_area_agri_permanent_crops": round(target_area_permanent_crops, 2),
+                }
+            }
+        })
 
+        # Scenario: MWAE BB energy strategy
+        # =================================
+        # Get regionalized targets
+        with open(input.el_capacity_targets_mwae_bb, "r") as f:
+            targets_mwae_bb = json.load(f)
+        targets_output["mwae_bb"] = dict()
+
+        for year, target_cap_mwae_bb in targets_mwae_bb["re_installed_capacity_pv_mw"].items():
+            target_power_soil_quality_low = target_cap_mwae_bb * config.get("pv_ground_share")
+            target_power_soil_quality_medium = (
+                target_cap_mwae_bb *  # total capacity
+                config.get("pv_ground_agri_share") *  # share of agri PV
+                area_medium_region / (area_medium_region + area_crops_region) # region's area share medium of total agri PV
+            )
+            target_power_permanent_crops = (
+                target_cap_mwae_bb *
+                config.get("pv_ground_agri_share") *
+                area_crops_region / (area_medium_region + area_crops_region)
+            )
+
+            target_area_soil_quality_low = target_power_soil_quality_low / tech_data["power_density"]["pv_ground"]
+            target_area_soil_quality_medium = target_power_soil_quality_medium / tech_data["power_density"]["pv_ground_vertical_bifacial"]
+            target_area_permanent_crops = target_power_permanent_crops / tech_data["power_density"]["pv_ground_elevated"]
+
+            target_power_total = target_power_soil_quality_low + target_power_soil_quality_medium + target_power_permanent_crops
+            target_area_total = target_area_soil_quality_low + target_area_soil_quality_medium + target_area_permanent_crops
+
+            targets_output["mwae_bb"].update({
+                year:  {
+                    "target_power_total": round(target_power_total, 2),
+                    "target_power_agri_soil_quality_low": round(target_power_soil_quality_low, 2),
+                    "target_power_agri_soil_quality_medium": round(target_power_soil_quality_medium, 2),
+                    "target_power_agri_permanent_crops": round(target_power_permanent_crops, 2),
+                    "target_area_total": round(target_area_total, 2),
+                    "target_area_agri_soil_quality_low": round(target_area_soil_quality_low, 2),
+                    "target_area_agri_soil_quality_medium": round(target_area_soil_quality_medium, 2),
+                    "target_area_agri_permanent_crops": round(target_area_permanent_crops, 2),
+                }
+            })
+
+        # Write results
         with open(output[0], "w", encoding="utf8") as f:
-            json.dump(output_data, f, indent=4)
+            json.dump(targets_output, f, indent=4)
 
 rule create_potarea_shares:
     """

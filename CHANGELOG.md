@@ -8,9 +8,17 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 
 ### Added
 
-- Add PV ground potentials for Germany (dataset `potentialarea_pv_ground`)
-- Add regionalization of PV ground potentials (dataset
-  `potentialarea_pv_ground_region2`)
+- Add PV ground potentials for Germany (dataset `potentialarea_pv_ground`) and
+  regionalization (dataset `potentialarea_pv_ground_region2`)
+- Add function to reduce DF size
+- Add protected areas for Germany (dataset `bfn_protected_areas`) and
+  regionalization
+- Add RLG OLS data (dataset `rpg_ols_regional_plan`)
+- Add PV roof potentials for Brandenburg (dataset `wfbb_pv_roof_potential`) and
+  regionalization (dataset `potentialarea_pv_roof2`)
+- Add energy strategy targets for Brandenburg (dataset
+  `mwae_bb_energy_strategy`) and regionalization (dataset
+  `mwae_bb_energy_strategy_region`)
 
 ### Changed
 

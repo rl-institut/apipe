@@ -19,6 +19,7 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 - Add energy strategy targets for Brandenburg (dataset
   `mwae_bb_energy_strategy`) and regionalization (dataset
   `mwae_bb_energy_strategy_region`)
+- Add permanent crops Brandenburg (dataset `mluk_bb_field_block_cadastre`)
 
 ### Changed
 

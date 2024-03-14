@@ -121,3 +121,8 @@ module wfbb_pv_roof_potential:
     snakefile: "wfbb_pv_roof_potential/create.smk"
     config: config["store"]["preprocessed"]["wfbb_pv_roof_potential"]
 use rule * from wfbb_pv_roof_potential as preprocessed_wfbb_pv_roof_potential_ *
+
+module mluk_bb_field_block_cadastre:
+    snakefile: "mluk_bb_field_block_cadastre/create.smk"
+    config: config["store"]["preprocessed"]["mluk_bb_field_block_cadastre"]
+use rule * from mluk_bb_field_block_cadastre as preprocessed_mluk_bb_field_block_cadastre_ *

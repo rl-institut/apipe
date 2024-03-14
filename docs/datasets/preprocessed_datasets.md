@@ -70,11 +70,11 @@ Raw dataset:
 
 
 ------------------------------
-## AGEB – Anwendungsbilanzen für die Endenergiesektoren 2011 bis 2021
+## AGEB – Anwendungsbilanzen für die Endenergiesektoren 2012 bis 2022
 
-Detaillierte Anwendungsbilanzen der Endenergiesektoren für 2020 und 2021 sowie
+Detaillierte Anwendungsbilanzen der Endenergiesektoren für 2021 und 2022 sowie
 zusammenfassende Zeitreihen zum Endenergieverbrauch nach Energieträgern und
-Anwendungszwecken für Jahre von 2011 bis 2021 der AG Energiebilanzen.
+Anwendungszwecken für Jahre von 2012 bis 2022 der AG Energiebilanzen.
 
 Aus PDF extrahierte Tabellenwerte für Haushalte, GHD und Industrie.
 
@@ -107,7 +107,7 @@ Speicherplatz und kann viel Zeit in Anspruch nehmen.
 ------------------------------
 ## Sozialversicherungspflichtig Beschäftigte und Betriebe
 
-Gemeindedaten der sozialversicherungspflichtig Beschäftigten am 30.06.2022 nach
+Gemeindedaten der sozialversicherungspflichtig Beschäftigten am 30.06.2023 nach
 Wohn- und Arbeitsort - Deutschland, Länder, Kreise und Gemeinden (Jahreszahlen)
 der Bundesagentur für Arbeit.
 Anzahl Beschäftigte und Betriebe extrahiert und in CSV konvertiert.
@@ -221,6 +221,31 @@ Enthält Jahresverbräuche und Zeitreihen für die Sektoren Haushalte, Gewerbe,
 Handel, Dienstleistungen (GHD) und Industrie für mehrere Zieljahre.
 
 **Dataset: `preprocessed/demandregio`**
+
+
+------------------------------
+## Regionalplan Oderland-Spree
+
+Vorverarbeitete Datensätze aus Teilplänen Wind der Regionalen
+Planungsgemeinschaft Oderland-Spree aus
+[rpg_ols_regional_plan](../../apipe/store/raw/rpg_ols_regional_plan/dataset.md).
+
+In der [config.yml](../../apipe/store/preprocessed/rpg_ols_regional_plan/config.yml) können Einstellungen vorgenommen werden.
+
+**Dataset: `preprocessed/rpg_ols_regional_plan`**
+
+
+------------------------------
+## Solaratlas Brandenburg - Photovoltaikanlagen auf Dachflächen
+
+Abschätzung der installierten Leistung und des Ertrags von PV-Aufdachanlagen in
+Brandenburg der Wirtschaftsförderung Berlin-Brandenburg, reprojizert und
+Attribute gefiltert und umbenannt.
+
+Raw dataset:
+[wfbb_pv_roof_potential](../../apipe/store/raw/wfbb_pv_roof_potential/dataset.md)
+
+**Dataset: `preprocessed/wfbb_pv_roof_potential`**
 
 
 ------------------------------

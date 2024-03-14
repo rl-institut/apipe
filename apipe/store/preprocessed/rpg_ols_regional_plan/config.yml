@@ -1,0 +1,63 @@
+##############################################################################
+# This file holds configuration parameters for the creation of this dataset. #
+##############################################################################
+
+# Sachlicher Teilplan Wind 2018: EG
+stp_2018:
+   layer: "stp_2018_eg"
+   attributes:
+     {"WEG_Nummer": "weg_nr",
+      "WEG_Name": "weg_name",
+      "geometry": "geometry"}
+
+# Sachlicher Teilplan EE 2024: VR
+stp_2024:
+   layer: "stp_2024_vr"
+   attributes:
+     {"VR_WEN_NR_": "vr_wen_nr",
+      "geometry": "geometry"}
+
+# PV ground
+pv_ground:
+   layer: "pv_ground"
+   attributes:
+     {"Bezeichnun": "name",
+      "Planart": "plan_type",
+      "Plan_Stand": "plan_status",
+      "Status": "status",
+      "Leistung_M": "nom_power_mw",
+      "Jahr": "year",
+      "Baubeginn": "construction_start_date",
+      "Fertigstel": "construction_end_date",
+      "geometry": "geometry"}
+
+# Kriteriengerüst FF-PV
+pv_ground_criteria:
+   layers:
+     {"Bundeswehr": "",
+      "FFH_Gebiete": "pv_ground_criteria_ffh",
+      "Freiraumverbund_LEP_HR": "pv_ground_criteria_linked_open_spaces",
+      "Gesetzlich_Geschuetzte_Biotope": "pv_ground_criteria_biotopes",
+      "Geweasser_1_Ordnung": "pv_ground_criteria_water_first_order",
+      "Landebahnflaechen": "pv_ground_criteria_aviation",
+      "Naturdenkmaeler": "pv_ground_criteria_nature_monuments",
+      "NSG": "pv_ground_criteria_nature_conservation_area",
+      "Stillgewaesser_Groesser_5ha": "pv_ground_criteria_water_bodies",
+      "VR_WEN": "",
+      "Wald": "pv_ground_criteria_forest",
+      "Wohnbauflaechen": "pv_ground_criteria_settlements",
+      "Wohnpuffer_200m": "pv_ground_criteria_settlements_200m",
+      "Vorzugsgebiete_Dauerkultur": "pv_ground_criteria_priority_areas_permanent_crops",
+      "Vorzugsgebiete_Gruenland": "pv_ground_criteria_priority_areas_grassland",
+      "Vorzugsgebiete_Klimarobust_Ackerland": "pv_ground_criteria_priority_areas_climate_resistent_agri",
+      "Moor_bfap_nbmb": "pv_ground_criteria_moor",
+      "Moor_bfap_nbmfb": "pv_ground_criteria_moor",
+      "Mooregroessernull": "pv_ground_criteria_moor",
+      "Beeskow": "",
+      "TWS_I_II_LOS": "",
+      "zone2": "",
+      "zone2_heckel": "",
+      "zone2_kruge": "",
+      "ZoneII": ""}
+   attributes:
+     {"geometry": "geometry"}

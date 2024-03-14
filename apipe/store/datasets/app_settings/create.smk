@@ -23,7 +23,7 @@ rule create_map_panel_layer_list:
     """
     Create layer list for right map panel
     """
-    input: DATASET_PATH / "energy_settings_panel.json"  # Any file (no input required)
+    input: DATASET_PATH / ".gitkeep"  # Any file (no input required)
     output: DATASET_PATH / "map_panel_layer_list.json"
     run:
         print("Creating list of layers...")

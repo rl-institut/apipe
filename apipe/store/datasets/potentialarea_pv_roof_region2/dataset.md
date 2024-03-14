@@ -1,25 +1,23 @@
-# Dachflächenpotenzial PV-Aufdachanlagen in ABW
+# Dachflächenpotenzial PV-Aufdachanlagen in der Region
 
 Berechnung der installierten Leistung und des Ertrags von PV-Aufdachanlagen in
-Anhalt-Bitterfeld-Wittenberg der Regionalen Planungsgemeinschaft aus Datensatz
-[rpg_abw_pv_roof_potential](../../preprocessed/rpg_abw_pv_roof_potential/dataset.md).
+der Region aus Datensatz
+[wfbb_pv_roof_potential](../../preprocessed/wfbb_pv_roof_potential/dataset.md).
 
-Die Gebäudezentroide werden mit den Gemeindegrenzen verschnitten und den
-Gemeinden zugeordnet.
-Ergebnisdaten:
+Es werden nur Dächer verwendet, deren Eignung über 60 % beträgt, d.h. geeignet
+oder gut geeignet sind (Klassifikation s.
+[wfbb_pv_roof_potential](../../preprocessed/wfbb_pv_roof_potential/dataset.md)).
+Der Grenzwert `roof_suitability_threshold` ist in [config.yml](config.yml)
+änderbar.
 
-- Alle Gebäude: `potentialarea_pv_roof_area_stats_muns.csv`
-- Alle nicht denkmalgeschützten Gebäude:
-  `potentialarea_pv_roof_wo_historic_area_stats_muns.csv`
+Es werden Statistiken je Gemeinde erstellt, hierfür werden die Gebäudezentroide
+mit den Gemeindegrenzen verschnitten und den Gemeinden zugeordnet.
+Ergebnisdaten: `potentialarea_pv_roof_area_stats_muns.csv`
 
 Des Weiteren wird je Gemeinde der relative Anteil der bereits installierten
 Anlagenleistung an der theoretisch installierbaren Leistung (bei
 100% Dachnutzung) berechnet.
-Ergebnisdaten:
-
-- Alle Gebäude: `potentialarea_pv_roof_deployment_stats_muns.csv`
-- Alle nicht denkmalgeschützten Gebäude:
-  `potentialarea_pv_roof_wo_historic_deployment_stats_muns.csv`
+Ergebnisdaten: `potentialarea_pv_roof_deployment_stats_muns.csv`
 
 Die Gemeinden werden über den Schlüssel `municipality_id` (vgl.
 [bkg_vg250_muns_region](../../datasets/bkg_vg250_muns_region/dataset.md))
@@ -34,9 +32,9 @@ i.H.v. 428 GW
 anhand der Gebäudegrundflächen disaggregiert werden. Hierzu wird der Anteil der
 Gebäudegrundflächen in der Region an der bundesweiten Gebäudegrundflächen
 berechnet (s. Datensatz [osm_buildings](../osm_buildings/dataset.md)) und die
-Ziele linear skaliert. Da in den o.g. Ausbauzielen nicht zwischen Freiflächen- und
-Aufdach-PV unterschieden wird, wird folgende Aufteilung angenommen (änderbar in
-[config.yml](config.yml)):
+Ziele linear skaliert. Da in den o.g. Ausbauzielen nicht zwischen Freiflächen-
+und Aufdach-PV unterschieden wird, wird folgende Aufteilung angenommen
+(Parameter`pv_roof_share`, änderbar in [config.yml](config.yml)):
 
 - Aufdach-PV: 52 % (221 GW)
 - Freiflächen-PV (niedrig aufgeständert): 44 % (190 GW), vgl.

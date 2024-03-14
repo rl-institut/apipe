@@ -111,3 +111,13 @@ module bgr_sqr:
     snakefile: "bgr_sqr/create.smk"
     config: config["store"]["preprocessed"]["bgr_sqr"]
 use rule * from bgr_sqr as preprocessed_bgr_sqr_*
+
+module rpg_ols_regional_plan:
+    snakefile: "rpg_ols_regional_plan/create.smk"
+    config: config["store"]["preprocessed"]["rpg_ols_regional_plan"]
+use rule * from rpg_ols_regional_plan as preprocessed_rpg_ols_regional_plan_ *
+
+module wfbb_pv_roof_potential:
+    snakefile: "wfbb_pv_roof_potential/create.smk"
+    config: config["store"]["preprocessed"]["wfbb_pv_roof_potential"]
+use rule * from wfbb_pv_roof_potential as preprocessed_wfbb_pv_roof_potential_ *

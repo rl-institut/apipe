@@ -26,9 +26,9 @@ rule unzip:
         unzip -j {input} -d {params.outpath}
         """
 
-rule convert:
+rule convert_filter:
     """
-    Convert to geopackage and reproject
+    Convert to geopackage, reproject and filter for permanent crops
     """
     input:
         DATASET_PATH / "data" / "temp" / "DFBK_FB.shp"
@@ -38,9 +38,30 @@ rule convert:
         data = gpd.read_file(input[0], layer="DFBK_FB").to_crs(
             GLOBAL_CONFIG["global"]["geodata"]["crs"]
         )
+        # filter for permanent crops
+        data = data.loc[data["HBN_KAT"] == "DK"]
+
         write_geofile(
             gdf=data,
             file=output[0],
             layer_name="DFBK_FB",
         )
         shutil.rmtree(DATASET_PATH / "data" / "temp")
+
+rule rasterize:
+    """
+    Rasterize vector data for further processing in
+    potentialarea_pv_ground_region2.
+    """
+    input:
+        DATASET_PATH / "data" / "DFBK_FB.gpkg"
+    output:
+        DATASET_PATH / "data" / "DFBK_FB.tif"
+    params:
+        res_m=100
+    run:
+        shell(
+            f"gdal_rasterize -burn 1 -a_nodata 0 "
+            f"-tr {params.res_m} {params.res_m} "
+            f"{input} {output}"
+        )

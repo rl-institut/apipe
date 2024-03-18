@@ -53,6 +53,16 @@ def process_dataset(
     # Step 2: Overlay with municipal boundaries and rename
     municipalities = gpd.read_file(region_muns_path)
     gdf = raster_to_vector(binary_raster_path)
+
+    # Buffer and unbuffer to connect diagonal cells
+    gdf = gpd.GeoDataFrame(
+        crs=gdf.crs.srs,
+        geometry=gpd.GeoDataFrame(crs=gdf.crs.srs, geometry=gdf.buffer(10))
+        .dissolve()
+        .buffer(-10)
+        .explode(ignore_index=True),
+    )
+
     gdf_overlayed = overlay(gdf, municipalities, {"id": "municipality_id"})
 
     # Calculate the area for each polygon and add as a new column 'area'
@@ -60,7 +70,7 @@ def process_dataset(
     # Step 3: Merge adjacent polygons if area meets the threshold
     gdf_overlayed = convert_to_multipolygon(gdf_overlayed)
     gdf_overlayed = gdf_overlayed[
-        gdf_overlayed["area"] >= (area_threshold * 10000)
+        gdf_overlayed["area"] >= (area_threshold * 1e4)
     ]
 
     # Step 4: Calculate the mean of the original raster values per polygon

@@ -14,24 +14,25 @@ DATASET_PATH = get_abs_dataset_path("datasets", "potentialarea_pv_ground")
 
 OEI_AGRI_PATH = get_abs_dataset_path("preprocessed", "oei_agri_pv", data_dir=True)
 
-# Path to 'BGR SQR' (3035)
+# Path to 'BGR SQR' (BGR)
 BGR_SQR_PATH = get_abs_dataset_path("preprocessed", "bgr_sqr", data_dir=True) / "sqr1000_250_v10_3035.tif"
 
-# Path to 'SQR Gesamt Agri'
+# Path to 'SQR Gesamt Agri' (OEI)
 AGRI_SQR_TOTAL_PATH = OEI_AGRI_PATH / "Agri-PV-Potenziale_Gesamt_100x100_EPSG3035.tif"
 
-# Path to 'SQR 50-70'
-AGRI_SQR_50_70_PATH = OEI_AGRI_PATH / "Agri-PV-Potenziale_SQR_50-70_NOT_Dauerkulturen_100x100_EPSG3035.tif"
+# Path to 'SQR 50-70' (OEI)
+AGRI_SQR_50_70_PATH = OEI_AGRI_PATH / "Agri-PV-Potenziale_SQR_50-70_100x100_EPSG3035.tif"
 
-# Path to 'Dauerkulturen'
-PERMANENT_CROPS_PATH = OEI_AGRI_PATH / "Agri-PV-Potenziale_Dauerkulturen_100x100_EPSG3035.tif"
+# Path to 'Dauerkulturen' (MLUK)
+PERMANENT_CROPS_PATH = get_abs_dataset_path(
+    "preprocessed", "mluk_bb_field_block_cadastre") / "data" / "DFBK_FB.tif",
 
 
 rule calculate_raster_intersection_sq_low:
     input:
         bgr_sqr=BGR_SQR_PATH,
         agri_sqr_total=AGRI_SQR_TOTAL_PATH,
-        permanent_crops=PERMANENT_CROPS_PATH
+        permanent_crops=PERMANENT_CROPS_PATH[0]
     output:
         DATASET_PATH / "data" / "potentialarea_pv_ground_soil_quality_low.tif"
     run:
@@ -84,7 +85,7 @@ rule calculate_raster_intersection_sq_low:
 rule calculate_raster_intersection_sq_medium:
     input:
         agri_sqr_50_70=AGRI_SQR_50_70_PATH,
-        permanent_crops=PERMANENT_CROPS_PATH
+        permanent_crops=PERMANENT_CROPS_PATH[0]
     output:
         DATASET_PATH / "data" / "potentialarea_pv_ground_soil_quality_medium.tif"
     run:
@@ -120,7 +121,7 @@ rule calculate_raster_intersection_sq_medium:
 
 rule create_adjusted_permanent_crops_tif:
     input:
-        permanent_crops=PERMANENT_CROPS_PATH
+        permanent_crops=PERMANENT_CROPS_PATH[0]
     output:
         DATASET_PATH / "data" / "potentialarea_pv_ground_permanent_crops.tif"
     shell:

@@ -12,6 +12,11 @@ from pathlib import Path
 
 from apipe.config import GLOBAL_CONFIG
 from apipe.scripts.data_io import load_json
+from apipe.scripts.geo import (
+    convert_to_multipolygon,
+    overlay,
+    write_geofile,
+)
 from apipe.store.utils import (
     get_abs_dataset_path,
     PATH_TO_REGION_MUNICIPALITIES_GPKG,
@@ -61,6 +66,39 @@ rule vectorize_and_add_zonal_stats:
     script:
         DATASET_PATH / "scripts" / "create.py"
 
+# RULE FOR DIRECT COPY OF PERMANENT CROPS FROM DATA FROM
+# mluk_bb_field_block_cadastre, UNUSED AS DATA IS NOW RASTERIZED IN
+# potentialarea_pv_ground
+#
+# rule bb_permanent_crops:
+#     """
+#     Extract permanent crops from MLUK data and clip to region
+#     """
+#
+#     input:
+#         field_block_cadastre=get_abs_dataset_path(
+#             "preprocessed", "mluk_bb_field_block_cadastre"
+#         ) / "data" / "DFBK_FB.gpkg",
+#         region=rules.datasets_bkg_vg250_region_create.output
+#         ########################TODO: REPLACE WITH potentialarea_pv_ground
+#     output:
+#         DATASET_PATH / "data" / "potentialarea_pv_ground_permanent_crops_region.gpkg"
+#     run:
+#         geodata = gpd.read_file(input.field_block_cadastre)
+#         geodata = geodata.loc[geodata["HBN_KAT"] == "DK"]
+#         geodata = overlay(
+#             gdf=geodata,
+#             gdf_overlay=gpd.read_file(input.region[0]),
+#         )
+#         write_geofile(
+#             gdf=convert_to_multipolygon(geodata),
+#             file=output[0],
+#             layer_name="potentialarea_pv_ground_permanent_crops_region",
+#         )
+#         print(
+#             f"Total area of permanent crops in region: "
+#             f"{round(geodata.area.sum()/1e4)} ha"
+#         )
 
 rule create_area_stats_muns:
     """
@@ -98,7 +136,7 @@ rule create_area_stats_muns:
             area_dict[area_name] = area_km2.to_dict()["area_km2"]
             print(
                 f"  Total area for {area_name}: "
-                f"{round(float(area_km2.sum()), 1)} sqm"
+                f"{round(float(area_km2.sum()), 1)} sqkm"
             )
 
         area_df = pd.DataFrame(area_dict)

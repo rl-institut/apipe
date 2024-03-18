@@ -1,5 +1,7 @@
 # Agri-PV-Potenzialflächen
 
+Potenzialflächen für Agri-Photovoltaik des Öko-Institut.
+
 ## GIS-Info
 
 Die drei TIFF-Dateien enthalten Informationen darüber, wie viel Potenzialfläche
@@ -20,6 +22,9 @@ erfasst und dann zu 1 Hektar großen Flächen zusammengefasst.
 - **Raster_geringe_mittlere_Bodengüte**
   - SQR_Germany:
     - Werte: 50-70
+
+Update: Aus diesem Datensatz werden aufgrund der Datengüte keine Dauerkulturen
+("Raster_besonders_geeignete_Kulturen") verwendet.
 
 ## Ausschlusskritieren
 

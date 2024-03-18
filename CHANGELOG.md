@@ -24,5 +24,7 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 ### Changed
 
 - Regionalize PV ground and roof targets from energy strategy BB
+- Replace permanent crops dataset `oei_agri_pv` by
+  `mluk_bb_field_block_cadastre` for PV ground potential calculation
 
 ### Fixed

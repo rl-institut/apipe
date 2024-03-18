@@ -28,13 +28,14 @@ PERMANENT_CROPS_PATH = get_abs_dataset_path(
     "preprocessed", "mluk_bb_field_block_cadastre") / "data" / "DFBK_FB.tif",
 
 
-rule calculate_raster_intersection_sq_low:
+rule calculate_raster_intersection_sq_low_and_permanent_crops:
     input:
         bgr_sqr=BGR_SQR_PATH,
         agri_sqr_total=AGRI_SQR_TOTAL_PATH,
         permanent_crops=PERMANENT_CROPS_PATH[0]
     output:
-        DATASET_PATH / "data" / "potentialarea_pv_ground_soil_quality_low.tif"
+        sq_low=DATASET_PATH / "data" / "potentialarea_pv_ground_soil_quality_low.tif",
+        perm_crops=DATASET_PATH / "data" / "potentialarea_pv_ground_permanent_crops.tif"
     run:
         with rasterio.open(input.bgr_sqr) as bgr_sqr_src, \
                 rasterio.open(input.agri_sqr_total) as agri_sqr_total_src, \
@@ -79,8 +80,11 @@ rule calculate_raster_intersection_sq_low:
             agri_sqr_total_data[mask] = 0
             out_meta['nodata'] = 0
 
-            with rasterio.open(output[0], "w", **out_meta) as out_raster:
+            with rasterio.open(output.sq_low, "w", **out_meta) as out_raster:
                 out_raster.write(agri_sqr_total_data, 1)
+
+            with rasterio.open(output.perm_crops, "w", **out_meta) as out_raster:
+                out_raster.write(permanent_crops_reproj, 1)
 
 rule calculate_raster_intersection_sq_medium:
     input:
@@ -118,13 +122,3 @@ rule calculate_raster_intersection_sq_medium:
 
             with rasterio.open(output[0], "w", **out_meta) as out_raster:
                 out_raster.write(agri_sqr_50_70_data, 1)
-
-rule create_adjusted_permanent_crops_tif:
-    input:
-        permanent_crops=PERMANENT_CROPS_PATH[0]
-    output:
-        DATASET_PATH / "data" / "potentialarea_pv_ground_permanent_crops.tif"
-    shell:
-        """
-        gdal_translate {input.permanent_crops} {output[0]} -of GTiff -ot Float32 -a_nodata 0
-        """

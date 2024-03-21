@@ -1,0 +1,137 @@
+{
+    "name": "bgr_sqr",
+    "title": "Ackerbauliches Ertragspotential der Böden in Deutschland 1:1.000.000",
+    "id": "bgr_sqr",
+    "description": "Der Datensatz enthält das Ackerbauliche Ertragspotential der Böden in Deutschland im Maßstab 1:1.000.000, basierend auf dem Müncheberger Soil Quality Rating (SQR).",
+    "language": [
+        "de-DE"
+        ],
+    "subject": [
+        {
+            "name": null,
+            "path": null
+        }
+    ],
+    "keywords": [
+        "Boden",
+        "Bodengüte",
+        "Bodenwert",
+        "Bodeneigenschaften",
+        "Bodennutzung",
+        "Bodenverdichtung",
+        "Landwirtschaft",
+        "Ertragspotential",
+        "Deutschland"
+    ],
+    "publicationDate": "2024-03-13",
+    "context": {
+        "homepage": "https://reiner-lemoine-institut.de/projekt-empowerplan/",
+        "documentation": null,
+        "sourceCode": "https://github.com/rl-institut/apipe/",
+        "contact": "https://reiner-lemoine-institut.de/ueber-uns/kontakt/",
+        "grantNo": null,
+        "fundingAgency": null,
+        "fundingAgencyLogo": null,
+        "publisherLogo": "https://reiner-lemoine-institut.de//wp-content/uploads/2015/09/rlilogo.png"
+    },
+    "spatial": {
+        "location": "Germany",
+        "extent": "Germany",
+        "resolution": null
+    },
+    "temporal": {
+        "referenceDate": "2013-10-24",
+        "timeseries": [
+            {
+                "start": null,
+                "end": null,
+                "resolution": null,
+                "alignment": null,
+                "aggregationType": null
+            },
+            {
+                "start": null,
+                "end": null,
+                "resolution": null,
+                "alignment": null,
+                "aggregationType": null
+            }
+        ]
+    },
+    "sources": [
+        {
+            "title": "SQR1000 V1.0, (C) BGR, Hannover, 2013",
+            "description": "Das Ackerbauliche Ertragspotential der Böden in Deutschland im Maßstab 1:1.000.000, bewertet mithilfe des Müncheberger Soil Quality Ratings (SQR).",
+            "path": "https://geoportal.bgr.de/mapapps/resources/apps/geoportal/index.html?lang=de#/datasets/portal/3DBC11EE-81E9-41A2-916E-1281DDD6C7A8",
+            "licenses": [
+                {
+                    "name": "Allgemeine Geschäftsbedingungen (AGB) der Bundesanstalt für Geowissenschaften und Rohstoffe (BGR)",
+                    "title": null,
+                    "path": "https://www.bgr.bund.de/DE/Gemeinsames/Produkte/Downloads/AGB.pdf?__blob=publicationFile&v=4",
+                    "instruction": "Allgemeine Geschäftsbedingungen, siehe https://www.bgr.bund.de/AGB ",
+                    "attribution": "© BGR, Hannover, 2013"
+                }
+            ]
+        }
+    ],
+    "licenses": [
+        {
+            "name": "Allgemeine Geschäftsbedingungen (AGB) der Bundesanstalt für Geowissenschaften und Rohstoffe (BGR)",
+            "title": null,
+            "path": "https://www.bgr.bund.de/DE/Gemeinsames/Produkte/Downloads/AGB.pdf?__blob=publicationFile&v=4",
+            "instruction": "Allgemeine Geschäftsbedingungen, siehe https://www.bgr.bund.de/AGB ",
+            "attribution": "© BGR, Hannover, 2013"
+        }
+    ],
+    "contributors": [
+        {
+            "title": "David Starzl",
+            "email": "@dvdstrzl",
+            "date": "2024-03-13",
+            "object": "metadata",
+            "comment": "Create metadata"
+        }
+    ],
+    "resources": [
+        {
+            "profile": null,
+            "name": null,
+            "path": null,
+            "format": null,
+            "encoding": null,
+            "schema": {
+                "fields": [],
+                "primaryKey": [],
+                "foreignKeys": []
+            },
+            "dialect": {
+                "delimiter": "",
+                "decimalSeparator": "."
+            }
+        }
+    ],
+    "@id": null,
+    "@context": "https://raw.githubusercontent.com/OpenEnergyPlatform/oemetadata/develop/metadata/latest/context.json",
+    "review": {
+        "path": null,
+        "badge": null
+    },
+    "metaMetadata": {
+        "metadataVersion": "OEP-1.6.0",
+        "metadataLicense": {
+            "name": "CC0-1.0",
+            "title": "Creative Commons Zero v1.0 Universal",
+            "path": "https://creativecommons.org/publicdomain/zero/1.0/"
+        }
+    },
+    "_comment": {
+        "metadata": "Metadata documentation and explanation (https://github.com/OpenEnergyPlatform/oemetadata)",
+        "dates": "Dates and time must follow the ISO8601 including time zone (YYYY-MM-DD or YYYY-MM-DDThh:mm:ss±hh)",
+        "units": "Use a space between numbers and units (100 m)",
+        "languages": "Languages must follow the IETF (BCP47) format (en-GB, en-US, de-DE)",
+        "licenses": "License name must follow the SPDX License List (https://spdx.org/licenses/)",
+        "review": "Following the OEP Data Review (https://github.com/OpenEnergyPlatform/data-preprocessing/blob/master/data-review/manual/review_manual.md)",
+        "null": "If not applicable use: null",
+        "todo": "If a value is not yet available, use: todo"
+    }
+}

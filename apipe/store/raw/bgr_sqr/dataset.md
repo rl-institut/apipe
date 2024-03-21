@@ -18,7 +18,7 @@
 - **Bewertungsskala:** 0 bis 102 Punkte, höherer Wert = höheres
   Ertragspotential.
 
-Quellen
+Quellen:
 
 - Müller, L., et al. (2008). Das Müncheberger Soil Quality Rating (SQR).
   Berichte der DBG.

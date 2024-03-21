@@ -1,0 +1,156 @@
+{
+    "name": "oei_agri_pv",
+    "title": "Agri-PV-Potenzialflächen (Öko-Institut)",
+    "id": "oei_agri_pv",
+    "description": "Die drei TIFF-Dateien enthalten Informationen darüber, wie viel Potenzialfläche pro Pixel mit einer Größe von einem Hektar vorhanden ist (1 = 1 ha/ha). Dies wurde erreicht, indem die Positivflächen aus dem Landnutzungsdatensatz mit den Ausschlussflächen in QGIS überlagert wurden. Die Flächen wurden ursprünglich in einem Raster mit einer Größe von 20x20 Metern erfasst und dann zu 1 Hektar großen Flächen zusammengefasst.",
+    "language": [
+        "de-DE"
+        ],
+    "subject": [
+        {
+            "name": null,
+            "path": null
+        }
+    ],
+    "keywords": [
+        "Soil Quality Rating",
+        "Potenzialfläche",
+        "Bodengüte",
+        "Photovoltaik",
+        "Agri-PV",
+        "Bodenwert",
+        "Bodeneigenschaften",
+        "Bodennutzung",
+        "Landnutzungsklassifikation",
+        "Bodenverdichtung",
+        "Landwirtschaft",
+        "Landnutzung",
+        "Ertragspotential",
+        "Deutschland"
+    ],
+    "publicationDate": "2024-03-20",
+    "context": {
+        "homepage": "https://reiner-lemoine-institut.de/projekt-empowerplan/",
+        "documentation": null,
+        "sourceCode": "https://github.com/rl-institut/apipe/",
+        "contact": "https://reiner-lemoine-institut.de/ueber-uns/kontakt/",
+        "grantNo": null,
+        "fundingAgency": null,
+        "fundingAgencyLogo": null,
+        "publisherLogo": "https://reiner-lemoine-institut.de//wp-content/uploads/2015/09/rlilogo.png"
+    },
+    "spatial": {
+        "location": "Germany",
+        "extent": "Germany",
+        "resolution": null
+    },
+    "temporal": {
+        "referenceDate": "",
+        "timeseries": [
+            {
+                "start": null,
+                "end": null,
+                "resolution": null,
+                "alignment": null,
+                "aggregationType": null
+            },
+            {
+                "start": null,
+                "end": null,
+                "resolution": null,
+                "alignment": null,
+                "aggregationType": null
+            }
+        ]
+    },
+    "sources": [
+        {
+            "title": null,
+            "description": null,
+            "path": null,
+            "licenses": [
+                {
+                    "name": null,
+                    "title": null,
+                    "path": null,
+                    "instruction": null,
+                    "attribution": "© Öko-Institut e.V."
+                }
+            ]
+        },
+        {
+            "title": null,
+            "description": null,
+            "path": null,
+            "licenses": [
+                {
+                    "name": null,
+                    "title": null,
+                    "path": null,
+                    "instruction": null,
+                    "attribution": null
+                }
+            ]
+        }
+    ],
+    "licenses": [
+        {
+            "name": "",
+            "title": null,
+            "path": "",
+            "instruction": "",
+            "attribution": ""
+        }
+    ],
+    "contributors": [
+        {
+            "title": "David Starzl",
+            "email": "@dvdstrzl",
+            "date": "2024-03-20",
+            "object": "metadata",
+            "comment": "Create metadata"
+        }
+    ],
+    "resources": [
+        {
+            "profile": null,
+            "name": null,
+            "path": null,
+            "format": null,
+            "encoding": null,
+            "schema": {
+                "fields": [],
+                "primaryKey": [],
+                "foreignKeys": []
+            },
+            "dialect": {
+                "delimiter": "",
+                "decimalSeparator": "."
+            }
+        }
+    ],
+    "@id": null,
+    "@context": "https://raw.githubusercontent.com/OpenEnergyPlatform/oemetadata/develop/metadata/latest/context.json",
+    "review": {
+        "path": null,
+        "badge": null
+    },
+    "metaMetadata": {
+        "metadataVersion": "OEP-1.6.0",
+        "metadataLicense": {
+            "name": "CC0-1.0",
+            "title": "Creative Commons Zero v1.0 Universal",
+            "path": "https://creativecommons.org/publicdomain/zero/1.0/"
+        }
+    },
+    "_comment": {
+        "metadata": "Metadata documentation and explanation (https://github.com/OpenEnergyPlatform/oemetadata)",
+        "dates": "Dates and time must follow the ISO8601 including time zone (YYYY-MM-DD or YYYY-MM-DDThh:mm:ss±hh)",
+        "units": "Use a space between numbers and units (100 m)",
+        "languages": "Languages must follow the IETF (BCP47) format (en-GB, en-US, de-DE)",
+        "licenses": "License name must follow the SPDX License List (https://spdx.org/licenses/)",
+        "review": "Following the OEP Data Review (https://github.com/OpenEnergyPlatform/data-preprocessing/blob/master/data-review/manual/review_manual.md)",
+        "null": "If not applicable use: null",
+        "todo": "If a value is not yet available, use: todo"
+    }
+}

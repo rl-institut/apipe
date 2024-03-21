@@ -1,0 +1,179 @@
+{
+    "name": "rpg_ols_regional_plan",
+    "title": "Regionalplan Oderland-Spree",
+    "id": "rpg_ols_regional_plan",
+    "description": "Geodatensätze aus Regionalplan 2018 und Vorentwurf 2024 der Regionalen Planungsgemeinschaft Oderland-Spree.",
+    "language": [
+        "de-DE"
+        ],
+    "subject": [
+        {
+            "name": null,
+            "path": null
+        }
+    ],
+    "keywords": [
+        "Regionalplan",
+        "Vorentwurf",
+        "Oderland-Spree",
+        "Planungsgemeinschaft",
+        "Windenergienutzung",
+        "Teilregionalplan",
+        "Erneuerbare Energien",
+        "Freiflächen-Photovoltaikanlagen",
+        "PV"
+    ],
+    "publicationDate": "2024-03-13",
+    "context": {
+        "homepage": "https://reiner-lemoine-institut.de/projekt-empowerplan/",
+        "documentation": null,
+        "sourceCode": "https://github.com/rl-institut/apipe/",
+        "contact": "https://reiner-lemoine-institut.de/ueber-uns/kontakt/",
+        "grantNo": null,
+        "fundingAgency": null,
+        "fundingAgencyLogo": null,
+        "publisherLogo": "https://reiner-lemoine-institut.de//wp-content/uploads/2015/09/rlilogo.png"
+    },
+    "spatial": {
+        "location": "Germany",
+        "extent": "Germany",
+        "resolution": null
+    },
+    "temporal": {
+        "referenceDate": null,
+        "timeseries": [
+            {
+                "start": null,
+                "end": null,
+                "resolution": null,
+                "alignment": null,
+                "aggregationType": null
+            },
+            {
+                "start": null,
+                "end": null,
+                "resolution": null,
+                "alignment": null,
+                "aggregationType": null
+            }
+        ]
+    },
+    "sources": [
+        {
+            "title": "Sachlicher Teilregionalplan 'Windenergienutzung' 2018",
+            "description": "Im Sachlichen Teilplan „Nutzung der Windenergie in der Planungsregion Anhalt-Bitterfeld-Wittenberg“ vom 30.05.2018 werden 22 Vorranggebiete für die Nutzung der Windenergie mit der Wirkung von Eignungsgebieten festgelegt. Sie dienen der raumordnerischen Steuerung der Errichtung von raumbedeutsamen Windenergieanlagen in Konzentrationszonen. ",
+            "path": "https://www.planungsregion-abw.de/regionalplanung/teilplan-windenergie/teilplan-2018/",
+            "licenses": [
+                {
+                    "name": "dl-de/by-2-0",
+                    "title": "Datenlizenz Deutschland -- Namensnennung -- Version 2.0",
+                    "path": "https://www.govdata.de/dl-de/by-2-0",
+                    "instruction": "Jede Nutzung ist unter den Bedingungen dieser 'Datenlizenz Deutschland -- Namensnennung -- Version 2.0' zulässig.",
+                    "attribution": "© Regionale Planungsgemeinschaft OLS"
+                }
+            ]
+        },
+        {
+            "title": "Sachlicher Teilregionalplan 'Erneuerbare Energien' 2024 (in Aufstellung)",
+            "description": "Der Entwurf des Sachlichen Teilregionalplans „Erneuerbare Energien“ beinhaltet textliche und zeichnerische Festlegungen zum Thema Windenergienutzung als Vorranggebiete und textliche Festlegungen zum Thema Photovoltaik-Freiflächenanlagen.",
+            "path": "https://www.rpg-oderland-spree.de/regionalplaene/sachlicher-teilregionalplan-erneuerbare-energien",
+            "licenses": [
+                {
+                    "name": "dl-de/by-2-0",
+                    "title": "Datenlizenz Deutschland -- Namensnennung -- Version 2.0",
+                    "path": "https://www.govdata.de/dl-de/by-2-0",
+                    "instruction": "Jede Nutzung ist unter den Bedingungen dieser 'Datenlizenz Deutschland -- Namensnennung -- Version 2.0' zulässig.",
+                    "attribution": "© Regionale Planungsgemeinschaft OLS"
+                }
+            ]
+        },
+        {
+            "title": "PV-Anlagen in OLS in verschiedenen Genehmigungstatus",
+            "description": "PV-Anlagen in OLS in verschiedenen Genehmigungstatus (Stand: Sommer 2023)",
+            "path": null,
+            "licenses": [
+                {
+                    "name": "dl-de/by-2-0",
+                    "title": "Datenlizenz Deutschland -- Namensnennung -- Version 2.0",
+                    "path": "https://www.govdata.de/dl-de/by-2-0",
+                    "instruction": "Jede Nutzung ist unter den Bedingungen dieser 'Datenlizenz Deutschland -- Namensnennung -- Version 2.0' zulässig.",
+                    "attribution": "© Regionale Planungsgemeinschaft OLS"
+                }
+            ]
+        },
+        {
+            "title": "Kriteriengerüst Photovoltaik-Freiflächenanlagen",
+            "description": "Negativkriterien Freiflächen-PV aus 'Kriteriengerüst Photovoltaik-Freiflächenanlagen' (Stand: März 2024)",
+            "path": "https://www.rpg-oderland-spree.de/regionalplaene/sachlicher-teilregionalplan-erneuerbare-energien",
+            "licenses": [
+                {
+                    "name": "dl-de/by-2-0",
+                    "title": "Datenlizenz Deutschland -- Namensnennung -- Version 2.0",
+                    "path": "https://www.govdata.de/dl-de/by-2-0",
+                    "instruction": "Jede Nutzung ist unter den Bedingungen dieser 'Datenlizenz Deutschland -- Namensnennung -- Version 2.0' zulässig.",
+                    "attribution": "© Regionale Planungsgemeinschaft OLS"
+                }
+            ]
+        }
+    ],
+    "licenses": [
+        {
+            "name": "dl-de/by-2-0",
+            "title": "Datenlizenz Deutschland -- Namensnennung -- Version 2.0",
+            "path": "https://www.govdata.de/dl-de/by-2-0",
+            "instruction": "Jede Nutzung ist unter den Bedingungen dieser 'Datenlizenz Deutschland -- Namensnennung -- Version 2.0' zulässig.",
+            "attribution": "© Regionale Planungsgemeinschaft OLS"
+        }
+    ],
+    "contributors": [
+        {
+            "title": "David Starzl",
+            "email": "@dvdstrzl",
+            "date": "2024-03-20",
+            "object": "metadata",
+            "comment": "Create metadata"
+        }
+    ],
+    "resources": [
+        {
+            "profile": null,
+            "name": null,
+            "path": null,
+            "format": null,
+            "encoding": null,
+            "schema": {
+                "fields": [],
+                "primaryKey": [],
+                "foreignKeys": []
+            },
+            "dialect": {
+                "delimiter": "",
+                "decimalSeparator": "."
+            }
+        }
+    ],
+    "@id": null,
+    "@context": "https://raw.githubusercontent.com/OpenEnergyPlatform/oemetadata/develop/metadata/latest/context.json",
+    "review": {
+        "path": null,
+        "badge": null
+    },
+    "metaMetadata": {
+        "metadataVersion": "OEP-1.6.0",
+        "metadataLicense": {
+            "name": "CC0-1.0",
+            "title": "Creative Commons Zero v1.0 Universal",
+            "path": "https://creativecommons.org/publicdomain/zero/1.0/"
+        }
+    },
+    "_comment": {
+        "metadata": "Metadata documentation and explanation (https://github.com/OpenEnergyPlatform/oemetadata)",
+        "dates": "Dates and time must follow the ISO8601 including time zone (YYYY-MM-DD or YYYY-MM-DDThh:mm:ss±hh)",
+        "units": "Use a space between numbers and units (100 m)",
+        "languages": "Languages must follow the IETF (BCP47) format (en-GB, en-US, de-DE)",
+        "licenses": "License name must follow the SPDX License List (https://spdx.org/licenses/)",
+        "review": "Following the OEP Data Review (https://github.com/OpenEnergyPlatform/data-preprocessing/blob/master/data-review/manual/review_manual.md)",
+        "null": "If not applicable use: null",
+        "todo": "If a value is not yet available, use: todo"
+    }
+}

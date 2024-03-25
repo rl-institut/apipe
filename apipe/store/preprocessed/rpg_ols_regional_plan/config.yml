@@ -30,6 +30,8 @@ pv_ground:
       "Baubeginn": "construction_start_date",
       "Fertigstel": "construction_end_date",
       "geometry": "geometry"}
+   attributes_filter:
+     { "Status": [ "realisiert", "Planung", "genehmigt" ] }
 
 # Kriteriengerüst FF-PV
 pv_ground_criteria:

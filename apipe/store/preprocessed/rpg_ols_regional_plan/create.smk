@@ -69,13 +69,14 @@ rule create_pv_ground:
     input:
         get_abs_dataset_path(
             "raw", "rpg_ols_regional_plan") / "data" /
-            "PV_FFA_OLS_Stand_Sommer2023.gpkg"
+            "PV_FFA_OLS_Stand_November2023.gpkg"
     output:
         DATASET_PATH / "data" / "pv_ground.gpkg"
     run:
         data = reproject_simplify(
             rename_filter_attributes(
                 gdf=gpd.read_file(input[0]),
+                attrs_filter_by_values=config["pv_ground"]["attributes_filter"],
                 attrs_mapping=config["pv_ground"]["attributes"],
             )
         )

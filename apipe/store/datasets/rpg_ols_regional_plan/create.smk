@@ -8,7 +8,7 @@ from apipe.store.utils import get_abs_dataset_path
 
 rule create_pv_ground_criteria:
     """
-    Freiflächen-Photovoltaikanlagen Negativkriterien: Preprocess
+    Freiflächen-Photovoltaikanlagen Negativkriterien
     """
     input:
         get_abs_dataset_path(

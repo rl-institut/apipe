@@ -10,7 +10,8 @@ import pandas as pd
 from apipe.scripts.geo import (
     rename_filter_attributes,
     reproject_simplify,
-    write_geofile
+    write_geofile,
+    convert_to_multipolygon
 )
 from apipe.store.utils import get_abs_dataset_path
 
@@ -125,13 +126,14 @@ rule create_pv_ground_criteria:
                 )
                 data_existing = gpd.read_file(target_file)
                 data = pd.concat([data, data_existing])
+                os.remove(target_file)
 
             data = gpd.GeoDataFrame(
-                crs=data.crs.srs, geometry=[data.unary_union]
+                crs=data.crs.srs, geometry=[data.unary_union.simplify(5, preserve_topology=True)]
             )
 
             write_geofile(
-                gdf=data,
+                gdf=convert_to_multipolygon(data),
                 file=target_file,
                 layer_name=target_layer,
             )

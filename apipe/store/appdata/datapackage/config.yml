@@ -257,27 +257,13 @@ resources:
         _source_path:
           dataset: "rpg_ols_regional_plan"
           file: "pv_ground_criteria_nature_monuments.gpkg"
-      pv_ground_criteria_priority_areas_climate_resistent_agri:
-        description: "Vorzugsgebiete Klimarobustes Ackerland"
-        path: "geodata/pv_ground_criteria_priority_areas_climate_resistent_agri.gpkg"
+      pv_ground_criteria_priority_areas:
+        description: "Vorzugsgebiete Dauerkulturen, Grünland und klimarobustes Ackerland"
+        path: "geodata/pv_ground_criteria_priority_areas.gpkg"
         fields: [ ]
         _source_path:
           dataset: "rpg_ols_regional_plan"
-          file: "pv_ground_criteria_priority_areas_climate_resistent_agri.gpkg"
-      pv_ground_criteria_priority_areas_permanent_crops:
-        description: "Vorzugsgebiete Dauerkultur"
-        path: "geodata/pv_ground_criteria_priority_areas_permanent_crops.gpkg"
-        fields: [ ]
-        _source_path:
-          dataset: "rpg_ols_regional_plan"
-          file: "pv_ground_criteria_priority_areas_permanent_crops.gpkg"
-      pv_ground_criteria_priority_areas_grassland:
-        description: "Vorzugsgebiete Grünland"
-        path: "geodata/pv_ground_criteria_priority_areas_grassland.gpkg"
-        fields: [ ]
-        _source_path:
-          dataset: "rpg_ols_regional_plan"
-          file: "pv_ground_criteria_priority_areas_grassland.gpkg"
+          file: "pv_ground_criteria_priority_areas.gpkg"
       railway_region:
         description: "Bahnverkehr"
         path: "geodata/railway_region.gpkg"

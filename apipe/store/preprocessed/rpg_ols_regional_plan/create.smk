@@ -129,7 +129,7 @@ rule create_pv_ground_criteria:
                 os.remove(target_file)
 
             data = gpd.GeoDataFrame(
-                crs=data.crs.srs, geometry=[data.unary_union.simplify(5, preserve_topology=True)]
+                crs=data.crs.srs, geometry=[data.unary_union]
             )
 
             write_geofile(

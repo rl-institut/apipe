@@ -68,9 +68,7 @@ map_panel_layer_list:
       "pv_ground_criteria_nature_monuments",
       "pv_ground_criteria_aviation",
       "military_region",
-      "pv_ground_criteria_priority_areas_climate_resistent_agri",
-      "pv_ground_criteria_priority_areas_permanent_crops",
-      "pv_ground_criteria_priority_areas_grassland",
+      "pv_ground_criteria_priority_areas",
     ]
 
 # Settings for energy panel

@@ -254,7 +254,12 @@ def save_df(df, path):
         Path to save the csv file
     """
     # Save scalars to csv file
-    df.to_csv(path, index=True, sep=esys_conf.settings.general.separator)
+    df.to_csv(
+        path,
+        index=True,
+        sep=esys_conf.settings.general.separator,
+        date_format="%Y-%m-%d %H:%M:%S",
+    )
 
     # Print user info
     logger.info(f"The DataFrame has been saved to: {path}.")
@@ -528,7 +533,7 @@ def aggregate_scalars(df, columns_to_aggregate, agg_method=None):
     if not agg_method:
         agg_method = {
             "var_value": sum,
-            "name": lambda x: "None",
+            "name": lambda x: np.nan,
             "var_unit": aggregate_units,
         }
 
@@ -830,15 +835,15 @@ def expand_regions(scalars, regions, where="ALL"):
     if not sc_wo_region.empty:
         # Ensure name is empty if region is 'ALL'
         # Print user warning if name is not NaN and region is "ALL"
-        name_overwritten = sc_wo_region[sc_wo_region["name"].notnull()][
+        name_region_all = sc_wo_region[sc_wo_region["name"].notnull()][
             "name"
         ].values
         if not sc_wo_region["name"].isnull().values.all():
             print(
-                "User warning: Please leave 'name' empty if you set 'region' "
-                "to 'ALL'.\n"
+                "User warning: Please leave 'name' empty if you set 'region' to"
+                "'ALL'.\n"
                 "The name you have specified "
-                f"{name_overwritten} "
+                f"{name_region_all} "
                 f"will be overwritten."
             )
 
@@ -1319,7 +1324,10 @@ def _get_direction(oemof_tuple):
 
 def _get_region_carrier_tech_from_component(component, delimiter="-"):
 
-    if isinstance(component, oemof.tabular.facades.Facade):
+    typemap_facades = oemof.tabular.facades.TYPEMAP
+    typemap_values = list(typemap_facades.values())
+
+    if isinstance(component, classmethod) and (component in typemap_values):
         region = component.region
         carrier = component.carrier
         tech = component.tech

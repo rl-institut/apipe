@@ -251,6 +251,7 @@ if __name__ == "__main__":
         # Reduce number of timestep for debugging
         if esys_conf.settings.optimize.debug:
             es.timeindex = es.timeindex[:3]
+            es.timeincrement = es.timeincrement[:3]
 
             logger.info(
                 "Using DEBUG mode: Running model with first 3 timesteps only."

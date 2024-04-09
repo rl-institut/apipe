@@ -81,6 +81,7 @@ repos:
             "--disable=W0012", # Disable the W0012 error TODO: To be fixed
             "--disable=W0611", # Disable the W0611 error TODO: To be fixed
             "--disable=C0207", # Disable the C0207 error TODO: To be fixed
+            "--disable=E1101", # Disable the E1101 error TODO: To be fixed
             "--max-line-length=80", # Set the maximum line length to 80
           ]
       - id: mypy

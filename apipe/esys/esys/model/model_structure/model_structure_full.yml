@@ -39,7 +39,7 @@ components:
   - ch4-extchp_decentral
 
   - biomass-biogas_plant
-  - biomass-shortage
+  - biomass-import
 
   - biogas-bpchp_central
   - biogas-bpchp_decentral
@@ -54,14 +54,14 @@ components:
 #  - h2-extchp_central
 #  - h2-extchp_decentral
 #  - h2-import
-#  - h2-shortage
+#  - h2-import
 
   - wood-oven
   - wood-extchp_central
   - wood-extchp_decentral
-  - wood-shortage
+  - wood-import
 
-  - lignite-shortage
+  - lignite-import
   - lignite-oven
 
   - heat_central-demand_hh

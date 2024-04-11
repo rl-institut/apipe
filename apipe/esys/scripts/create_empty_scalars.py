@@ -76,7 +76,11 @@ def format_input_scalars(df):
         _df = _df.loc[_df.loc[:, "var_value"].isna()]
 
     # Combine those parameters that are valid for all regions
-    _df.loc[_df["var_name"].isin(NON_REGIONAL), ["name", "region"]] = [
+    _df.loc[
+        ~_df["var_value"].apply(lambda x: isinstance(x, str))
+        & _df["var_name"].isin(NON_REGIONAL),
+        ["name", "region"],
+    ] = [
         None,
         "ALL",
     ]

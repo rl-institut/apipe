@@ -1,0 +1,10 @@
+##############################################################################
+# This file holds configuration parameters for the creation of this dataset. #
+##############################################################################
+
+# scenario used from file
+scenario: "BEV-VARIANTE-02"
+
+# Years to be included (leave empty for all)
+years:
+  []

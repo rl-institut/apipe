@@ -126,3 +126,8 @@ module mluk_bb_field_block_cadastre:
     snakefile: "mluk_bb_field_block_cadastre/create.smk"
     config: config["store"]["preprocessed"]["mluk_bb_field_block_cadastre"]
 use rule * from mluk_bb_field_block_cadastre as preprocessed_mluk_bb_field_block_cadastre_ *
+
+module destatis_pop_prog:
+    snakefile: "destatis_pop_prog/create.smk"
+    config: config["store"]["preprocessed"]["destatis_pop_prog"]
+use rule * from destatis_pop_prog as preprocessed_destatis_pop_prog_ *

@@ -34,7 +34,7 @@ repository = "https://github.com/rl-institut/apipe"
 
 [tool.poetry.dependencies]
 python = ">=3.9,<3.11"
-pandas = "^1.5.3"
+pandas = "2.2.1"
 geopandas = "^0.12.2"
 shapely = "^2.0.1"
 snakemake = "7.32.0"

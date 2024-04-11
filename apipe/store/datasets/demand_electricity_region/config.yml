@@ -31,4 +31,4 @@ ind_electricity_demand:
 
 # Industry demand: dataset to be used for today's industrial power consumption,
 # must be one of ["demandregio", "stala"]
-ind_electricity_demand_source: "stala"
+ind_electricity_demand_source: "demandregio"

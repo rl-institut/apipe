@@ -13,13 +13,13 @@ erfasst und dann zu 1 Hektar großen Flächen zusammengefasst.
 
 ## Positivgebiete
 
-- **Raster_gesamt**:
+- **Realisierbares Gesamtpotenzial**:
   - Preidl_Landuse (Landnutzungsklassifikation)
     - Klassen: 1 - 19
-- **Raster_besonders_geeignete_Kulturen**
+- **Erschließbares Potenzial an Synergieeffekten auf Dauerkulturen**
   - Preidl_Landuse
     - Klassen: 9 (legumes) ,11 (leeks), 14 (berries), 15 (stonefruits)
-- **Raster_geringe_mittlere_Bodengüte**
+- **Erschließbares Potenzial an geringer Nutzungskonkurrenz auf Gebieten mit geringer und mittlerer Bodengüte**
   - SQR_Germany:
     - Werte: 50-70
 
@@ -75,4 +75,4 @@ Datenherkunft:
 
 ## Quelle
 
-TODO: INSERT ÖI ZENODO SOURCE
+Öko-Institut: [Potenzialflächen für Agri-Photovoltaik](https://zenodo.org/records/10878761)

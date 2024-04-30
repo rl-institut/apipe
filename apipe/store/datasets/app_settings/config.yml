@@ -13,6 +13,7 @@ map_panel_layer_list:
     [
       "bnetza_mastr_wind_agg_region",
       "bnetza_mastr_pv_ground_agg_region",
+      "rpg_ols_pv_ground_all",
       "bnetza_mastr_pv_roof_agg_region",
       "bnetza_mastr_biomass_agg_region",
       "bnetza_mastr_hydro_agg_region",

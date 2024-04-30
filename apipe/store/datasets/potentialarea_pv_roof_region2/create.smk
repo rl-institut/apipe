@@ -108,8 +108,8 @@ rule create_area_stats_muns:
         # aggregate per mun
         agg_cols = dict(
             roof_count=("roof_area_sqm", "count"),
-            roof_area_sqm=("roof_area_sqm", "sum"),
-            roof_area_pv_potential_sqm=("roof_area_pv_potential_sqm", "sum"),
+            roof_area_sqkm=("roof_area_sqm", "sum"),
+            roof_area_pv_potential_sqkm=("roof_area_pv_potential_sqm", "sum"),
             roof_suitability_perc=("roof_suitability_perc", "mean"),
             installable_power=("installable_power_kw", "sum"),
             energy_annual=("energy_annual_mwh", "sum"),
@@ -118,9 +118,11 @@ rule create_area_stats_muns:
         potential = potential[
             cols_base].groupby("municipality_id").agg(**agg_cols)
 
-        # kW -> MW
+        # kW -> MW, sqm -> sqkm
         potential = potential.assign(
-            installable_power=potential["installable_power"].div(1e3)
+            installable_power=potential["installable_power"].div(1e3),
+            roof_area_sqkm=potential["roof_area_sqkm"].div(1e6),
+            roof_area_pv_potential_sqkm=potential["roof_area_pv_potential_sqkm"].div(1e6),
         )
         print(f"Total installable power: {potential.installable_power.sum()} MW")
         print(f"Total energy annual: {potential.energy_annual.sum()} MWh")

@@ -377,6 +377,70 @@ resources:
         _source_path:
           dataset: "bnetza_mastr_pv_ground_region"
           file: "bnetza_mastr_pv_ground_stats_muns.csv"
+      rpg_ols_pv_ground_all:
+        description: "PV-Freiflächenanlagen: Installierte Leistung und Anzahl (Flächendaten, alle Status)"
+        path: "scalars/rpg_ols_pv_ground_stats_muns_all.csv"
+        fields:
+          municipality_id:
+            description: "Gemeinde-ID"
+            unit: "-"
+          capacity_net:
+            description: "Nennleistung"
+            unit: "MW"
+          count:
+            description: "Anzahl"
+            unit: "-"
+        _source_path:
+          dataset: "rpg_ols_regional_plan"
+          file: "rpg_ols_pv_ground_stats_muns_all.csv"
+      rpg_ols_pv_ground_approved:
+        description: "PV-Freiflächenanlagen: Installierte Leistung und Anzahl (Flächendaten, genehmigt)"
+        path: "scalars/rpg_ols_pv_ground_stats_muns_approved.csv"
+        fields:
+          municipality_id:
+            description: "Gemeinde-ID"
+            unit: "-"
+          capacity_net:
+            description: "Nennleistung"
+            unit: "MW"
+          count:
+            description: "Anzahl"
+            unit: "-"
+        _source_path:
+          dataset: "rpg_ols_regional_plan"
+          file: "rpg_ols_pv_ground_stats_muns_approved.csv"
+      rpg_ols_pv_ground_operating:
+        description: "PV-Freiflächenanlagen: Installierte Leistung und Anzahl (Flächendaten, in Betrieb)"
+        path: "scalars/rpg_ols_pv_ground_stats_muns_operating.csv"
+        fields:
+          municipality_id:
+            description: "Gemeinde-ID"
+            unit: "-"
+          capacity_net:
+            description: "Nennleistung"
+            unit: "MW"
+          count:
+            description: "Anzahl"
+            unit: "-"
+        _source_path:
+          dataset: "rpg_ols_regional_plan"
+          file: "rpg_ols_pv_ground_stats_muns_operating.csv"
+      rpg_ols_pv_ground_planned:
+        description: "PV-Freiflächenanlagen: Installierte Leistung und Anzahl (Flächendaten, in Planung)"
+        path: "scalars/rpg_ols_pv_ground_stats_muns_planned.csv"
+        fields:
+          municipality_id:
+            description: "Gemeinde-ID"
+            unit: "-"
+          capacity_net:
+            description: "Nennleistung"
+            unit: "MW"
+          count:
+            description: "Anzahl"
+            unit: "-"
+        _source_path:
+          dataset: "rpg_ols_regional_plan"
+          file: "rpg_ols_pv_ground_stats_muns_planned.csv"
       solar-pv_ground_development_over_time:
         description: "Veränderung (pro Jahr) der installierten Gesamtleistung und der Anzahl (in Betrieb)"
         path: "scalars/bnetza_mastr_pv_ground_development_over_time.csv"
@@ -718,6 +782,35 @@ resources:
         _source_path:
           dataset: "bnetza_mastr_wind_region"
           file: "bnetza_mastr_wind_agg_region.gpkg"
+      rpg_ols_pv_ground_all:
+        description: "PV-Freiflächenanlagen (Flächendaten, alle Status)"
+        path: "geodata/rpg_ols_pv_ground.gpkg"
+        fields: [ ]
+        _source_path:
+          dataset: "rpg_ols_regional_plan"
+          file: "rpg_ols_pv_ground_all.gpkg"
+      rpg_ols_pv_ground_approved:
+        description: "PV-Freiflächenanlagen (Flächendaten, genehmigt)"
+        path: "geodata/rpg_ols_pv_ground_approved.gpkg"
+        fields: [ ]
+        _source_path:
+          dataset: "rpg_ols_regional_plan"
+          file: "rpg_ols_pv_ground_approved.gpkg"
+      rpg_ols_pv_ground_operating:
+        description: "PV-Freiflächenanlagen (Flächendaten, in Betrieb)"
+        path: "geodata/rpg_ols_pv_ground_operating.gpkg"
+        fields: [ ]
+        _source_path:
+          dataset: "rpg_ols_regional_plan"
+          file: "rpg_ols_pv_ground_operating.gpkg"
+      rpg_ols_pv_ground_planned:
+        description: "PV-Freiflächenanlagen (Flächendaten, in Planung)"
+        path: "geodata/rpg_ols_pv_ground_planned.gpkg"
+        fields: [ ]
+        _source_path:
+          dataset: "rpg_ols_regional_plan"
+          file: "rpg_ols_pv_ground_planned.gpkg"
+
   # Energy demand
   demand:
     scalars:

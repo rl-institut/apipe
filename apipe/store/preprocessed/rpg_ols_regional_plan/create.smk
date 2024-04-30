@@ -72,7 +72,7 @@ rule create_pv_ground:
             "raw", "rpg_ols_regional_plan") / "data" /
             "PV_FFA_OLS_Stand_November2023.gpkg"
     output:
-        DATASET_PATH / "data" / "pv_ground.gpkg"
+        DATASET_PATH / "data" / "rpg_ols_pv_ground.gpkg"
     run:
         data = reproject_simplify(
             rename_filter_attributes(

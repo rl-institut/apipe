@@ -25,7 +25,7 @@ pv_ground:
       "Planart": "plan_type",
       "Plan_Stand": "plan_status",
       "Status": "status",
-      "Leistung_M": "nom_power_mw",
+      "Leistung_M": "capacity_net",
       "Jahr": "year",
       "Baubeginn": "construction_start_date",
       "Fertigstel": "construction_end_date",

@@ -378,7 +378,7 @@ resources:
           dataset: "bnetza_mastr_pv_ground_region"
           file: "bnetza_mastr_pv_ground_stats_muns.csv"
       rpg_ols_pv_ground_all:
-        description: "PV-Freiflächenanlagen: Installierte Leistung und Anzahl (Flächendaten, alle Status)"
+        description: "PV-Freiflächenanlagen: Installierte Leistung und Anzahl (alle Status, Daten der RPG)"
         path: "scalars/rpg_ols_pv_ground_stats_muns_all.csv"
         fields:
           municipality_id:
@@ -394,7 +394,7 @@ resources:
           dataset: "rpg_ols_regional_plan"
           file: "rpg_ols_pv_ground_stats_muns_all.csv"
       rpg_ols_pv_ground_approved:
-        description: "PV-Freiflächenanlagen: Installierte Leistung und Anzahl (Flächendaten, genehmigt)"
+        description: "PV-Freiflächenanlagen: Installierte Leistung und Anzahl (genehmigt, Daten der RPG)"
         path: "scalars/rpg_ols_pv_ground_stats_muns_approved.csv"
         fields:
           municipality_id:
@@ -410,7 +410,7 @@ resources:
           dataset: "rpg_ols_regional_plan"
           file: "rpg_ols_pv_ground_stats_muns_approved.csv"
       rpg_ols_pv_ground_operating:
-        description: "PV-Freiflächenanlagen: Installierte Leistung und Anzahl (Flächendaten, in Betrieb)"
+        description: "PV-Freiflächenanlagen: Installierte Leistung und Anzahl (in Betrieb, Daten der RPG)"
         path: "scalars/rpg_ols_pv_ground_stats_muns_operating.csv"
         fields:
           municipality_id:
@@ -426,7 +426,7 @@ resources:
           dataset: "rpg_ols_regional_plan"
           file: "rpg_ols_pv_ground_stats_muns_operating.csv"
       rpg_ols_pv_ground_planned:
-        description: "PV-Freiflächenanlagen: Installierte Leistung und Anzahl (Flächendaten, in Planung)"
+        description: "PV-Freiflächenanlagen: Installierte Leistung und Anzahl (in Planung, Daten der RPG)"
         path: "scalars/rpg_ols_pv_ground_stats_muns_planned.csv"
         fields:
           municipality_id:

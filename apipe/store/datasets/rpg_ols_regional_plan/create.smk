@@ -137,7 +137,6 @@ rule create_wind_units:
                 gdf_overlay=gpd.read_file(input.region_muns),
                 retain_rename_overlay_columns={"id": "municipality_id"},
             )
-            units = convert_to_multipolygon(units)
             all_units.append(units.copy().assign(status=status))
             write_geofile(
                 gdf=units,

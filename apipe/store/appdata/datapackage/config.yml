@@ -581,6 +581,70 @@ resources:
         _source_path:
           dataset: "bnetza_mastr_wind_region"
           file: "bnetza_mastr_wind_stats_muns.csv"
+      rpg_ols_wind_all:
+        description: "PV-Freiflächenanlagen: Installierte Leistung und Anzahl (alle Status, Daten der RPG)"
+        path: "scalars/rpg_ols_wind_stats_muns_all.csv"
+        fields:
+          municipality_id:
+            description: "Gemeinde-ID"
+            unit: "-"
+          capacity_net:
+            description: "Nennleistung"
+            unit: "MW"
+          count:
+            description: "Anzahl"
+            unit: "-"
+        _source_path:
+          dataset: "rpg_ols_regional_plan"
+          file: "rpg_ols_wind_stats_muns_all.csv"
+      rpg_ols_wind_approved:
+        description: "Windenergieanlagen: Installierte Leistung und Anzahl (genehmigt, Daten der RPG)"
+        path: "scalars/rpg_ols_wind_stats_muns_approved.csv"
+        fields:
+          municipality_id:
+            description: "Gemeinde-ID"
+            unit: "-"
+          capacity_net:
+            description: "Nennleistung"
+            unit: "MW"
+          count:
+            description: "Anzahl"
+            unit: "-"
+        _source_path:
+          dataset: "rpg_ols_regional_plan"
+          file: "rpg_ols_wind_stats_muns_approved.csv"
+      rpg_ols_wind_operating:
+        description: "PV-Freiflächenanlagen: Installierte Leistung und Anzahl (in Betrieb, Daten der RPG)"
+        path: "scalars/rpg_ols_wind_stats_muns_operating.csv"
+        fields:
+          municipality_id:
+            description: "Gemeinde-ID"
+            unit: "-"
+          capacity_net:
+            description: "Nennleistung"
+            unit: "MW"
+          count:
+            description: "Anzahl"
+            unit: "-"
+        _source_path:
+          dataset: "rpg_ols_regional_plan"
+          file: "rpg_ols_wind_stats_muns_operating.csv"
+      rpg_ols_wind_planned:
+        description: "PV-Freiflächenanlagen: Installierte Leistung und Anzahl (in Planung, Daten der RPG)"
+        path: "scalars/rpg_ols_wind_stats_muns_planned.csv"
+        fields:
+          municipality_id:
+            description: "Gemeinde-ID"
+            unit: "-"
+          capacity_net:
+            description: "Nennleistung"
+            unit: "MW"
+          count:
+            description: "Anzahl"
+            unit: "-"
+        _source_path:
+          dataset: "rpg_ols_regional_plan"
+          file: "rpg_ols_wind_stats_muns_planned.csv"
       wind-onshore_development_over_time:
         description: "Veränderung (pro Jahr) der installierten Gesamtleistung und der Anzahl (in Betrieb)"
         path: "scalars/bnetza_mastr_wind_development_over_time.csv"
@@ -810,6 +874,34 @@ resources:
         _source_path:
           dataset: "rpg_ols_regional_plan"
           file: "rpg_ols_pv_ground_planned.gpkg"
+      rpg_ols_wind_all:
+        description: "Windenergieanlagen (alle Status, Daten der RPG)"
+        path: "geodata/rpg_ols_wind.gpkg"
+        fields: [ ]
+        _source_path:
+          dataset: "rpg_ols_regional_plan"
+          file: "rpg_ols_wind_all.gpkg"
+      rpg_ols_wind_approved:
+        description: "Windenergieanlagen (genehmigt, Daten der RPG)"
+        path: "geodata/rpg_ols_wind_approved.gpkg"
+        fields: [ ]
+        _source_path:
+          dataset: "rpg_ols_regional_plan"
+          file: "rpg_ols_wind_approved.gpkg"
+      rpg_ols_wind_operating:
+        description: "Windenergieanlagen (in Betrieb, Daten der RPG)"
+        path: "geodata/rpg_ols_wind_operating.gpkg"
+        fields: [ ]
+        _source_path:
+          dataset: "rpg_ols_regional_plan"
+          file: "rpg_ols_wind_operating.gpkg"
+      rpg_ols_wind_planned:
+        description: "Windenergieanlagen (in Planung, Daten der RPG)"
+        path: "geodata/rpg_ols_wind_planned.gpkg"
+        fields: [ ]
+        _source_path:
+          dataset: "rpg_ols_regional_plan"
+          file: "rpg_ols_wind_planned.gpkg"
 
   # Energy demand
   demand:

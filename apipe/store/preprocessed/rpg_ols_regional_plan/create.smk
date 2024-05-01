@@ -137,3 +137,32 @@ rule create_pv_ground_criteria:
                 file=target_file,
                 layer_name=target_layer,
             )
+
+rule create_wind_turbines:
+    """
+    Windenergieanlagen: Preprocess
+    """
+    input:
+        expand(
+            get_abs_dataset_path("raw", "rpg_ols_regional_plan") / "data" /
+            "WEA_{status}_09012024.gpkg",
+            status=["genehmigt", "geplant", "realisiert"]
+        )
+    output:
+        expand(
+            DATASET_PATH / "data" / "rpg_ols_wind_{status}.gpkg",
+            status=["approved", "planned", "operating"]
+        )
+    run:
+        for file_in, file_out in zip(input, output):
+            data = reproject_simplify(
+                rename_filter_attributes(
+                    gdf=gpd.read_file(file_in),
+                    attrs_mapping=config["wind_turbines"]["attributes"],
+                )
+            )
+            write_geofile(
+                gdf=data,
+                file=file_out,
+                layer_name=config["wind_turbines"]["layer"],
+            )

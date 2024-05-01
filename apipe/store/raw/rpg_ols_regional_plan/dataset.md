@@ -21,10 +21,18 @@ Geodaten aus Planentwurf des
 
 ## Freiflächen-Photovoltaikanlagen
 
-- PV-Anlagen in OLS in verschiedenen Genehmigungstatus.:
+- PV-Anlagen in OLS in verschiedenen Genehmigungstatus:
   `PV_FFA_OLS_Stand_November2023.gpkg` (Stand: November 2023), Quelle: Regionale
   Planungsgemeinschaft OLS
 - Negativkriterien Freiflächen-PV aus
   [Kriteriengerüst Photovoltaik-Freiflächenanlagen](https://www.rpg-oderland-spree.de/regionalplaene/sachlicher-teilregionalplan-erneuerbare-energien):
   `Negativkriterien_PV_RPG_OLS_07032024.gpkg` (Stand: März 2024), Quelle:
   Regionale Planungsgemeinschaft OLS
+
+## Windenergieanlagen
+
+- Windenergieanlagen in OLS in verschiedenen Genehmigungstatus (Stand:
+  Dezember 2023), Quelle: Regionale Planungsgemeinschaft OLS
+  - `WEA_genehmigt_09012024.gpkg`
+  - `WEA_geplant_09012024.gpkg`
+  - `WEA_realisiert_09012024.gpkg`

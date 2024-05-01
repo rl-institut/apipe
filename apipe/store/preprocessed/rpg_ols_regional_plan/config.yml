@@ -63,3 +63,17 @@ pv_ground_criteria:
       "ZoneII": ""}
    attributes:
      {"geometry": "geometry"}
+
+# Wind turbines
+wind_turbines:
+   layer: "wind_turbines"
+   attributes:
+     {"Anl_Bez": "name",
+      "Bst_Name": "operator",
+      "Ort": "city",
+      "PLZ": "zip_code",
+      "Inbetriebn": "commissioning_date",
+      "Leistung": "capacity_net",
+      "Nabenhoehe": "hub_height",
+      "Rotordurch": "rotor_diameter",
+      "geometry": "geometry"}

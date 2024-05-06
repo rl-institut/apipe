@@ -4,6 +4,8 @@ import shutil
 import zipfile
 from pathlib import Path
 
+import numpy as np
+import pandas as pd
 import requests
 
 
@@ -118,3 +120,67 @@ def clean_folder(folder_path: str) -> None:
             os.remove(item_path)
         elif os.path.isdir(item_path):
             shutil.rmtree(item_path)
+
+
+def df_reduce_mem_usage(
+    df: pd.DataFrame, show_reduction: bool = False
+) -> pd.DataFrame:
+    """Function to automatically check if columns of a pandas DataFrame can
+    be reduced to a smaller data type. Source:
+    https://www.mikulskibartosz.name/how-to-reduce-memory-usage-in-pandas/
+
+    Parameters
+    ----------
+    df: pd.DataFrame
+        DataFrame to reduce memory usage on
+    show_reduction : bool
+        If True, print amount of memory reduced
+
+    Returns
+    -------
+    pd.DataFrame
+        DataFrame with memory usage decreased
+    """
+    start_mem = df.memory_usage().sum() / 1024 ** 2
+
+    for col in df.columns:
+        col_type = df[col].dtype
+
+        if col_type != object and str(col_type) != "category":
+            c_min = df[col].min()
+            c_max = df[col].max()
+
+            if str(col_type)[:3] == "int":
+                if (
+                    c_min > np.iinfo(np.int16).min
+                    and c_max < np.iinfo(np.int16).max
+                ):
+                    df[col] = df[col].astype("int16")
+                elif (
+                    c_min > np.iinfo(np.int32).min
+                    and c_max < np.iinfo(np.int32).max
+                ):
+                    df[col] = df[col].astype("int32")
+                else:
+                    df[col] = df[col].astype("int64")
+            else:
+                if (
+                    c_min > np.finfo(np.float32).min
+                    and c_max < np.finfo(np.float32).max
+                ):
+                    df[col] = df[col].astype("float32")
+                else:
+                    df[col] = df[col].astype("float64")
+
+        else:
+            df[col] = df[col].astype("category")
+
+    end_mem = df.memory_usage().sum() / 1024 ** 2
+
+    if show_reduction is True:
+        print(
+            "Reduced memory usage of DataFrame by "
+            f"{(1 - end_mem/start_mem) * 100:.2f} %."
+        )
+
+    return df

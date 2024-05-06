@@ -10,7 +10,7 @@ areas:
   ]
 
 # Delete areas below min. area (in ha (1 ha = 1 cell))
-area_threshold: 10
+area_threshold: 1
 
 # Delete areas below min. raster value (0..1)
 raster_value_threshold: 0.5

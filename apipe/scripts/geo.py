@@ -98,6 +98,7 @@ def write_geofile(
     schema: dict = None,
     driver: str = "GPKG",
     encoding: str = "utf-8",
+    mode: str = "w",
 ) -> None:
     """Write geodata to file
 
@@ -114,6 +115,8 @@ def write_geofile(
         Geofile driver, default is Geopackage
     encoding : str
         Encoding
+    mode : str
+        The write mode, ‘w’ to overwrite the existing file and ‘a’ to append.
     """
     if layer_name is None:
         layer_name = os.path.basename(file).split(".")[0]
@@ -127,7 +130,12 @@ def write_geofile(
         raise ValueError(f"Data contain multiple geometry types: {types} !")
 
     gdf.to_file(
-        file, layer=layer_name, schema=schema, driver=driver, encoding=encoding
+        file,
+        layer=layer_name,
+        schema=schema,
+        driver=driver,
+        encoding=encoding,
+        mode=mode,
     )
 
 
@@ -207,7 +215,7 @@ def reproject_simplify(
         (default).
         Raises exception if `target_crs` is not LAEA Europe (EPSG:3035).
     simplify_tol : float
-        Threshold for simplification of geometries. Use None for no
+        Threshold for simplification of geometries in meter. Use None for no
         simplification (default).
         Raises exception if `target_crs` is not LAEA Europe (EPSG:3035).
     fix_geom : bool
@@ -249,7 +257,7 @@ def reproject_simplify(
         gdf["geometry"] = gdf.simplify(simplify_tol, preserve_topology=True)
 
     # Fix invalid geometries
-    if fix_geom is True:
+    if (~gdf.is_valid.all()) and (fix_geom is True):
         buffer = GLOBAL_CONFIG["global"]["geodata"]["fix_geom_buffer"]
         if buffer > 0:
             gdf["geometry"] = gdf.buffer(buffer)

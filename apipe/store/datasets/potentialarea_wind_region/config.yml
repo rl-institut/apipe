@@ -5,20 +5,12 @@
 # Area names (which identify files from preprocessing)
 areas:
   [
-    "stp_2018_vreg",
-    "stp_2027_repowering",
-    "stp_2027_search_area_forest_area",
-    "stp_2027_search_area_open_area",
-    "stp_2027_vr"
+    "stp_2018_eg",
+    "stp_2024_vr"
   ]
 
 # Attributes' captions for the app
 captions:
-  {"name_1": "Typ",
-   "name_2": "Lage",
-   "name_3": "ID/Nr.",
-   "name_4": "Anmerkung",
-   "plan_status": "Plan Status",
-   "decision_date": "Beschlussdatum",
-   "authorization_date": "Genehmigungsdatum",
-   "in_force_date": "Datum des Inkrafttretens"}
+  {"weg_nr": "WEG Nummer",
+   "weg_name": "WEG Name",
+   "vr_wen_nr": "VR WEN Nummer"}

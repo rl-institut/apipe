@@ -12,6 +12,7 @@ geodata:
     user_agent: "geocoder"
     interval_sec: 1
   # Define NUTS3 codes for region of interest
+  # (all must be located in same federal state!)
   nuts:
     - "DE409"
     - "DE40C"

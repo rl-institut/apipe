@@ -116,3 +116,23 @@ module bgr_sqr:
     snakefile: "bgr_sqr/create.smk"
     config: config["store"]["preprocessed"]["bgr_sqr"]
 use rule * from bgr_sqr as preprocessed_bgr_sqr_*
+
+module rpg_ols_regional_plan:
+    snakefile: "rpg_ols_regional_plan/create.smk"
+    config: config["store"]["preprocessed"]["rpg_ols_regional_plan"]
+use rule * from rpg_ols_regional_plan as preprocessed_rpg_ols_regional_plan_ *
+
+module wfbb_pv_roof_potential:
+    snakefile: "wfbb_pv_roof_potential/create.smk"
+    config: config["store"]["preprocessed"]["wfbb_pv_roof_potential"]
+use rule * from wfbb_pv_roof_potential as preprocessed_wfbb_pv_roof_potential_ *
+
+module mluk_bb_field_block_cadastre:
+    snakefile: "mluk_bb_field_block_cadastre/create.smk"
+    config: config["store"]["preprocessed"]["mluk_bb_field_block_cadastre"]
+use rule * from mluk_bb_field_block_cadastre as preprocessed_mluk_bb_field_block_cadastre_ *
+
+module destatis_pop_prog:
+    snakefile: "destatis_pop_prog/create.smk"
+    config: config["store"]["preprocessed"]["destatis_pop_prog"]
+use rule * from destatis_pop_prog as preprocessed_destatis_pop_prog_ *

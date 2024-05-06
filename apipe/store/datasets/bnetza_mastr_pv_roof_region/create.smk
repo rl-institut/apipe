@@ -101,5 +101,10 @@ rule create_development_over_time:
         df_combined["capacity_net"] = (
             df_combined["capacity_net"].div(1e3).round(1)
         )
+        # Fill missing years by using values from year before
+        df_combined = df_combined.set_index("year").reindex(
+            range(df_combined["year"].min(), df_combined["year"].max() + 1)
+        ).ffill().reset_index()
+
         df_combined["year"] = df_combined["year"].astype(int)
         df_combined.to_csv(output[0], index=False)

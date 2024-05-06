@@ -1,22 +1,15 @@
 # Potenzialgebiete Windenergie
 
 Potenzialgebiete für die Errichtung von Windenergieanlagen, basierend auf den
-Teilplänen Wind der Regionalen Planungsgemeinschaft Anhalt-Bitterfeld-Wittenberg
-aus
-[rpg_abw_regional_plan](../../preprocessed/rpg_abw_regional_plan/dataset.md).
+Teilplänen Wind der Regionalen Planungsgemeinschaft Oderland-Spree aus
+[rpg_ols_regional_plan](../../preprocessed/rpg_ols_regional_plan/dataset.md).
 
 Dateien:
 
-- STP Wind 2018 - Vorrang-/Eignungsgebiete:
+- STP Wind 2018 - Eignungsgebiete:
   `potentialarea_wind_stp_2018_vreg.gpkg`
-- STP Wind 2027 - Planabsicht Vorranggebiete:
+- STP Wind 2024 - Planabsicht Vorranggebiete:
   `potentialarea_wind_stp_2027_vr.gpkg`
-- STP Wind 2027 - Planabsicht Repoweringgebiete:
-  `potentialarea_wind_stp_2027_repowering.gpkg`
-- STP Wind 2027 - Suchraum Wald:
-  `potentialarea_wind_stp_2027_search_area_forest_area.gpkg`
-- STP Wind 2027 - Suchraum Offenland:
-  `potentialarea_wind_stp_2027_search_area_open_area.gpkg`
 
 Die darin verwendeten Attributtexte werden in die Datei
 `potentialarea_wind_attribute_captions.json` exportiert.

@@ -136,6 +136,11 @@ module potentialarea_pv_roof_region:
     config: config["store"]["datasets"]["potentialarea_pv_roof_region"]
 use rule * from potentialarea_pv_roof_region as datasets_potentialarea_pv_roof_region_*
 
+module potentialarea_pv_roof_region2:
+    snakefile: "potentialarea_pv_roof_region2/create.smk"
+    config: config["store"]["datasets"]["potentialarea_pv_roof_region2"]
+use rule * from potentialarea_pv_roof_region2 as datasets_potentialarea_pv_roof_region2_*
+
 module rli_pv_wfr_region:
     snakefile: "rli_pv_wfr_region/create.smk"
     config: config["store"]["datasets"]["rli_pv_wfr_region"]
@@ -150,6 +155,21 @@ module osm_buildings:
     snakefile: "osm_buildings/create.smk"
     config: config["store"]["datasets"]["osm_buildings"]
 use rule * from osm_buildings as datasets_osm_buildings_ *
+
+module rpg_ols_regional_plan:
+    snakefile: "rpg_ols_regional_plan/create.smk"
+    config: config["store"]["datasets"]["rpg_ols_regional_plan"]
+use rule * from rpg_ols_regional_plan as datasets_rpg_ols_regional_plan_ *
+
+module bfn_protected_areas_region:
+    snakefile: "bfn_protected_areas_region/create.smk"
+    config: config["store"]["datasets"]["bfn_protected_areas_region"]
+use rule * from bfn_protected_areas_region as datasets_bfn_protected_areas_region_ *
+
+module mwae_bb_energy_strategy_region:
+    snakefile: "mwae_bb_energy_strategy_region/create.smk"
+    config: config["store"]["datasets"]["mwae_bb_energy_strategy_region"]
+use rule * from mwae_bb_energy_strategy_region as datasets_mwae_bb_energy_strategy_region_ *
 
 module app_captions:
     snakefile: "app_captions/create.smk"

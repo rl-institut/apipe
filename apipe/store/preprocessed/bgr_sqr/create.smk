@@ -25,10 +25,11 @@ rule fix_crs:
     input:
         tif_in=DATASET_PATH / "sqr1000_250_v10.tif"
     output:
-        tif_out=DATASET_PATH / "sqr1000_250_v10_3035.tif"
+        tif_out=DATASET_PATH / "sqr1000_250_v10_3035_100x100.tif"
     shell:
         """
-        gdalwarp -t_srs EPSG:3035 -s_srs EPSG:3034 {input.tif_in} {output.tif_out}
+        gdalwarp -t_srs EPSG:3035 -tap -tr 100 100 -co COMPRESS=DEFLATE
+        {input.tif_in} {output.tif_out}
         """
 
 

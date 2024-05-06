@@ -96,7 +96,6 @@ resources:
           dataset: "bkg_vg250_muns_region"
           file: "bkg_vg250_muns_region.gpkg"
 
-      # From Djagora
       air_traffic_control_system_region:
         description: "Drehfunkfeuer"
         path: "geodata/air_traffic_control_system_region.gpkg"
@@ -104,19 +103,19 @@ resources:
         _source_path:
           dataset: "rli_pv_wfr_region"
           file: "air_traffic_control_system_region.gpkg"
-      aviation_region:
+      pv_ground_criteria_aviation:
         description: "Luftverkehr"
-        path: "geodata/aviation_region.gpkg"
+        path: "geodata/pv_ground_criteria_aviation.gpkg"
         fields: [ ]
         _source_path:
-          dataset: "rli_pv_wfr_region"
-          file: "aviation_region.gpkg"
+          dataset: "rpg_ols_regional_plan"
+          file: "pv_ground_criteria_aviation.gpkg"
       biosphere_reserve_region:
         description: "Biosphärenreservate"
         path: "geodata/biosphere_reserve_region.gpkg"
         fields: [ ]
         _source_path:
-          dataset: "rli_pv_wfr_region"
+          dataset: "bfn_protected_areas_region"
           file: "biosphere_reserve_region.gpkg"
       drinking_water_protection_area_region:
         description: "Wasserschutzgebiete"
@@ -130,7 +129,7 @@ resources:
         path: "geodata/fauna_flora_habitat_region.gpkg"
         fields: [ ]
         _source_path:
-          dataset: "rli_pv_wfr_region"
+          dataset: "bfn_protected_areas_region"
           file: "fauna_flora_habitat_region.gpkg"
       floodplain_region:
         description: "Überschwemmungsgebiete"
@@ -139,13 +138,13 @@ resources:
         _source_path:
           dataset: "rli_pv_wfr_region"
           file: "floodplain_region.gpkg"
-      forest_region:
+      pv_ground_criteria_forest:
         description: "Wälder"
-        path: "geodata/forest_region.gpkg"
+        path: "geodata/pv_ground_criteria_forest.gpkg"
         fields: [ ]
         _source_path:
-          dataset: "rli_pv_wfr_region"
-          file: "forest_region.gpkg"
+          dataset: "rpg_ols_regional_plan"
+          file: "pv_ground_criteria_forest.gpkg"
       grid_region:
         description: "Stromnetze (>=110 kV)"
         path: "geodata/grid_region.gpkg"
@@ -165,15 +164,8 @@ resources:
         path: "geodata/landscape_protection_area_region.gpkg"
         fields: [ ]
         _source_path:
-          dataset: "rli_pv_wfr_region"
+          dataset: "bfn_protected_areas_region"
           file: "landscape_protection_area_region.gpkg"
-      less_favoured_areas_agricultural_region:
-        description: "Benachteiligte Gebiete"
-        path: "geodata/less_favoured_areas_agricultural_region.gpkg"
-        fields: [ ]
-        _source_path:
-          dataset: "rli_pv_wfr_region"
-          file: "less_favoured_areas_agricultural_region.gpkg"
       military_region:
         description: "Militärische Sperrgebiete und Liegenschaften"
         path: "geodata/military_region.gpkg"
@@ -181,13 +173,97 @@ resources:
         _source_path:
           dataset: "rli_pv_wfr_region"
           file: "military_region.gpkg"
+#      national_park_region:
+#        description: "Nationalparke"
+#        path: "geodata/national_park_region.gpkg"
+#        fields: [ ]
+#        _source_path:
+#          dataset: "bfn_protected_areas_region"
+#          file: "national_park_region.gpkg"
       nature_conservation_area_region:
         description: "Naturschutzgebiete"
         path: "geodata/nature_conservation_area_region.gpkg"
         fields: [ ]
         _source_path:
-          dataset: "rli_pv_wfr_region"
+          dataset: "bfn_protected_areas_region"
           file: "nature_conservation_area_region.gpkg"
+#      nature_monument_region:
+#        description: "Nationale Naturmonumente"
+#        path: "geodata/nature_monument_region.gpkg"
+#        fields: [ ]
+#        _source_path:
+#          dataset: "bfn_protected_areas_region"
+#          file: "nature_monument_region.gpkg"
+      nature_park_region:
+        description: "Naturparke"
+        path: "geodata/nature_park_region.gpkg"
+        fields: [ ]
+        _source_path:
+          dataset: "bfn_protected_areas_region"
+          file: "nature_park_region.gpkg"
+      pv_ground_criteria_settlements:
+        description: "Siedlungen"
+        path: "geodata/pv_ground_criteria_settlements.gpkg"
+        fields: [ ]
+        _source_path:
+          dataset: "rpg_ols_regional_plan"
+          file: "pv_ground_criteria_settlements.gpkg"
+      pv_ground_criteria_settlements_200m:
+        description: "Siedlungen (200 m Puffer)"
+        path: "geodata/pv_ground_criteria_settlements_200m.gpkg"
+        fields: [ ]
+        _source_path:
+          dataset: "rpg_ols_regional_plan"
+          file: "pv_ground_criteria_settlements_200m.gpkg"
+      pv_ground_criteria_linked_open_spaces:
+        description: "Freiraumverbund"
+        path: "geodata/pv_ground_criteria_linked_open_spaces.gpkg"
+        fields: [ ]
+        _source_path:
+          dataset: "rpg_ols_regional_plan"
+          file: "pv_ground_criteria_linked_open_spaces.gpkg"
+      pv_ground_criteria_biotopes:
+        description: "Geschützte Biotope"
+        path: "geodata/pv_ground_criteria_biotopes.gpkg"
+        fields: [ ]
+        _source_path:
+          dataset: "rpg_ols_regional_plan"
+          file: "pv_ground_criteria_biotopes.gpkg"
+      pv_ground_criteria_moor:
+        description: "Naturnahe Moorböden"
+        path: "geodata/pv_ground_criteria_moor.gpkg"
+        fields: [ ]
+        _source_path:
+          dataset: "rpg_ols_regional_plan"
+          file: "pv_ground_criteria_moor.gpkg"
+      pv_ground_criteria_water_first_order:
+        description: "Gewässer 1. Ordung"
+        path: "geodata/pv_ground_criteria_water_first_order.gpkg"
+        fields: [ ]
+        _source_path:
+          dataset: "rpg_ols_regional_plan"
+          file: "pv_ground_criteria_water_first_order.gpkg"
+      pv_ground_criteria_water_bodies:
+        description: "Stillgewässer"
+        path: "geodata/pv_ground_criteria_water_bodies.gpkg"
+        fields: [ ]
+        _source_path:
+          dataset: "rpg_ols_regional_plan"
+          file: "pv_ground_criteria_water_bodies.gpkg"
+      pv_ground_criteria_nature_monuments:
+        description: "Flächennaturdenkmale"
+        path: "geodata/pv_ground_criteria_nature_monuments.gpkg"
+        fields: [ ]
+        _source_path:
+          dataset: "rpg_ols_regional_plan"
+          file: "pv_ground_criteria_nature_monuments.gpkg"
+      pv_ground_criteria_priority_areas:
+        description: "Vorzugsgebiete Dauerkulturen, Grünland und klimarobustes Ackerland"
+        path: "geodata/pv_ground_criteria_priority_areas.gpkg"
+        fields: [ ]
+        _source_path:
+          dataset: "rpg_ols_regional_plan"
+          file: "pv_ground_criteria_priority_areas.gpkg"
       railway_region:
         description: "Bahnverkehr"
         path: "geodata/railway_region.gpkg"
@@ -202,49 +278,20 @@ resources:
         _source_path:
           dataset: "rli_pv_wfr_region"
           file: "road_region.gpkg"
-      road_railway-500m_region:
-        description: "Straßen und Bahnverkehr (500 m Puffer)"
-        path: "geodata/road_railway-500m_region.gpkg"
-        fields: [ ]
-        _source_path:
-          dataset: "rli_pv_wfr_region"
-          file: "road_railway-500m_region.gpkg"
-      settlement-0m_region:
-        description: "Siedlungen"
-        path: "geodata/settlement-0m_region.gpkg"
-        fields: [ ]
-        _source_path:
-          dataset: "rli_pv_wfr_region"
-          file: "settlement-0m_region.gpkg"
-      soil_quality_high_region:
-        description: "Ackerflächen mit hoher Bodenqualität (Soil Quality Rating >= 40)"
-        path: "geodata/soil_quality_high_region.gpkg"
-        fields: [ ]
-        _source_path:
-          dataset: "rli_pv_wfr_region"
-          file: "soil_quality_high_region.gpkg"
-      soil_quality_low_region:
-        description: "Ackerflächen mit geringer Bodenqualität (Soil Quality Rating < 40)"
-        path: "geodata/soil_quality_low_region.gpkg"
-        fields: [ ]
-        _source_path:
-          dataset: "rli_pv_wfr_region"
-          file: "soil_quality_low_region.gpkg"
       special_protection_area_region:
         description: "Vogelschutzgebiete"
         path: "geodata/special_protection_area_region.gpkg"
         fields: [ ]
         _source_path:
-          dataset: "rli_pv_wfr_region"
+          dataset: "bfn_protected_areas_region"
           file: "special_protection_area_region.gpkg"
       water_region:
-        description: "Gewässser"
+        description: "Gewässer"
         path: "geodata/water_region.gpkg"
         fields: [ ]
         _source_path:
           dataset: "rli_pv_wfr_region"
           file: "water_region.gpkg"
-
 
   # Energy production
   production:
@@ -330,6 +377,70 @@ resources:
         _source_path:
           dataset: "bnetza_mastr_pv_ground_region"
           file: "bnetza_mastr_pv_ground_stats_muns.csv"
+      rpg_ols_pv_ground_all:
+        description: "PV-Freiflächenanlagen: Installierte Leistung und Anzahl (alle Status, Daten der RPG)"
+        path: "scalars/rpg_ols_pv_ground_stats_muns_all.csv"
+        fields:
+          municipality_id:
+            description: "Gemeinde-ID"
+            unit: "-"
+          capacity_net:
+            description: "Nennleistung"
+            unit: "MW"
+          count:
+            description: "Anzahl"
+            unit: "-"
+        _source_path:
+          dataset: "rpg_ols_regional_plan"
+          file: "rpg_ols_pv_ground_stats_muns_all.csv"
+      rpg_ols_pv_ground_approved:
+        description: "PV-Freiflächenanlagen: Installierte Leistung und Anzahl (genehmigt, Daten der RPG)"
+        path: "scalars/rpg_ols_pv_ground_stats_muns_approved.csv"
+        fields:
+          municipality_id:
+            description: "Gemeinde-ID"
+            unit: "-"
+          capacity_net:
+            description: "Nennleistung"
+            unit: "MW"
+          count:
+            description: "Anzahl"
+            unit: "-"
+        _source_path:
+          dataset: "rpg_ols_regional_plan"
+          file: "rpg_ols_pv_ground_stats_muns_approved.csv"
+      rpg_ols_pv_ground_operating:
+        description: "PV-Freiflächenanlagen: Installierte Leistung und Anzahl (in Betrieb, Daten der RPG)"
+        path: "scalars/rpg_ols_pv_ground_stats_muns_operating.csv"
+        fields:
+          municipality_id:
+            description: "Gemeinde-ID"
+            unit: "-"
+          capacity_net:
+            description: "Nennleistung"
+            unit: "MW"
+          count:
+            description: "Anzahl"
+            unit: "-"
+        _source_path:
+          dataset: "rpg_ols_regional_plan"
+          file: "rpg_ols_pv_ground_stats_muns_operating.csv"
+      rpg_ols_pv_ground_planned:
+        description: "PV-Freiflächenanlagen: Installierte Leistung und Anzahl (in Planung, Daten der RPG)"
+        path: "scalars/rpg_ols_pv_ground_stats_muns_planned.csv"
+        fields:
+          municipality_id:
+            description: "Gemeinde-ID"
+            unit: "-"
+          capacity_net:
+            description: "Nennleistung"
+            unit: "MW"
+          count:
+            description: "Anzahl"
+            unit: "-"
+        _source_path:
+          dataset: "rpg_ols_regional_plan"
+          file: "rpg_ols_pv_ground_stats_muns_planned.csv"
       solar-pv_ground_development_over_time:
         description: "Veränderung (pro Jahr) der installierten Gesamtleistung und der Anzahl (in Betrieb)"
         path: "scalars/bnetza_mastr_pv_ground_development_over_time.csv"
@@ -470,6 +581,70 @@ resources:
         _source_path:
           dataset: "bnetza_mastr_wind_region"
           file: "bnetza_mastr_wind_stats_muns.csv"
+      rpg_ols_wind_all:
+        description: "PV-Freiflächenanlagen: Installierte Leistung und Anzahl (alle Status, Daten der RPG)"
+        path: "scalars/rpg_ols_wind_stats_muns_all.csv"
+        fields:
+          municipality_id:
+            description: "Gemeinde-ID"
+            unit: "-"
+          capacity_net:
+            description: "Nennleistung"
+            unit: "MW"
+          count:
+            description: "Anzahl"
+            unit: "-"
+        _source_path:
+          dataset: "rpg_ols_regional_plan"
+          file: "rpg_ols_wind_stats_muns_all.csv"
+      rpg_ols_wind_approved:
+        description: "Windenergieanlagen: Installierte Leistung und Anzahl (genehmigt, Daten der RPG)"
+        path: "scalars/rpg_ols_wind_stats_muns_approved.csv"
+        fields:
+          municipality_id:
+            description: "Gemeinde-ID"
+            unit: "-"
+          capacity_net:
+            description: "Nennleistung"
+            unit: "MW"
+          count:
+            description: "Anzahl"
+            unit: "-"
+        _source_path:
+          dataset: "rpg_ols_regional_plan"
+          file: "rpg_ols_wind_stats_muns_approved.csv"
+      rpg_ols_wind_operating:
+        description: "PV-Freiflächenanlagen: Installierte Leistung und Anzahl (in Betrieb, Daten der RPG)"
+        path: "scalars/rpg_ols_wind_stats_muns_operating.csv"
+        fields:
+          municipality_id:
+            description: "Gemeinde-ID"
+            unit: "-"
+          capacity_net:
+            description: "Nennleistung"
+            unit: "MW"
+          count:
+            description: "Anzahl"
+            unit: "-"
+        _source_path:
+          dataset: "rpg_ols_regional_plan"
+          file: "rpg_ols_wind_stats_muns_operating.csv"
+      rpg_ols_wind_planned:
+        description: "PV-Freiflächenanlagen: Installierte Leistung und Anzahl (in Planung, Daten der RPG)"
+        path: "scalars/rpg_ols_wind_stats_muns_planned.csv"
+        fields:
+          municipality_id:
+            description: "Gemeinde-ID"
+            unit: "-"
+          capacity_net:
+            description: "Nennleistung"
+            unit: "MW"
+          count:
+            description: "Anzahl"
+            unit: "-"
+        _source_path:
+          dataset: "rpg_ols_regional_plan"
+          file: "rpg_ols_wind_stats_muns_planned.csv"
       wind-onshore_development_over_time:
         description: "Veränderung (pro Jahr) der installierten Gesamtleistung und der Anzahl (in Betrieb)"
         path: "scalars/bnetza_mastr_wind_development_over_time.csv"
@@ -671,6 +846,63 @@ resources:
         _source_path:
           dataset: "bnetza_mastr_wind_region"
           file: "bnetza_mastr_wind_agg_region.gpkg"
+      rpg_ols_pv_ground_all:
+        description: "PV-Freiflächenanlagen (Flächendaten, alle Status)"
+        path: "geodata/rpg_ols_pv_ground.gpkg"
+        fields: [ ]
+        _source_path:
+          dataset: "rpg_ols_regional_plan"
+          file: "rpg_ols_pv_ground_all.gpkg"
+      rpg_ols_pv_ground_approved:
+        description: "PV-Freiflächenanlagen (Flächendaten, genehmigt)"
+        path: "geodata/rpg_ols_pv_ground_approved.gpkg"
+        fields: [ ]
+        _source_path:
+          dataset: "rpg_ols_regional_plan"
+          file: "rpg_ols_pv_ground_approved.gpkg"
+      rpg_ols_pv_ground_operating:
+        description: "PV-Freiflächenanlagen (Flächendaten, in Betrieb)"
+        path: "geodata/rpg_ols_pv_ground_operating.gpkg"
+        fields: [ ]
+        _source_path:
+          dataset: "rpg_ols_regional_plan"
+          file: "rpg_ols_pv_ground_operating.gpkg"
+      rpg_ols_pv_ground_planned:
+        description: "PV-Freiflächenanlagen (Flächendaten, in Planung)"
+        path: "geodata/rpg_ols_pv_ground_planned.gpkg"
+        fields: [ ]
+        _source_path:
+          dataset: "rpg_ols_regional_plan"
+          file: "rpg_ols_pv_ground_planned.gpkg"
+      rpg_ols_wind_all:
+        description: "Windenergieanlagen (alle Status, Daten der RPG)"
+        path: "geodata/rpg_ols_wind.gpkg"
+        fields: [ ]
+        _source_path:
+          dataset: "rpg_ols_regional_plan"
+          file: "rpg_ols_wind_all.gpkg"
+      rpg_ols_wind_approved:
+        description: "Windenergieanlagen (genehmigt, Daten der RPG)"
+        path: "geodata/rpg_ols_wind_approved.gpkg"
+        fields: [ ]
+        _source_path:
+          dataset: "rpg_ols_regional_plan"
+          file: "rpg_ols_wind_approved.gpkg"
+      rpg_ols_wind_operating:
+        description: "Windenergieanlagen (in Betrieb, Daten der RPG)"
+        path: "geodata/rpg_ols_wind_operating.gpkg"
+        fields: [ ]
+        _source_path:
+          dataset: "rpg_ols_regional_plan"
+          file: "rpg_ols_wind_operating.gpkg"
+      rpg_ols_wind_planned:
+        description: "Windenergieanlagen (in Planung, Daten der RPG)"
+        path: "geodata/rpg_ols_wind_planned.gpkg"
+        fields: [ ]
+        _source_path:
+          dataset: "rpg_ols_regional_plan"
+          file: "rpg_ols_wind_planned.gpkg"
+
   # Energy demand
   demand:
     scalars:
@@ -979,20 +1211,11 @@ resources:
           municipality_id:
             description: "Gemeinde-ID"
             unit: "-"
-          stp_2018_vreg:
-            description: "STP Wind 2018 - Vorrang-/Eignungsgebiete"
+          stp_2018_eg:
+            description: "STP Wind 2018 - Eignungsgebiete"
             unit: "km2"
-          stp_2027_vr:
-            description: "STP Wind 2027 - Planabsicht Vorranggebiete"
-            unit: "km2"
-          stp_2027_repowering:
-            description: "STP Wind 2027 - Planabsicht Repoweringgebiete"
-            unit: "km2"
-          stp_2027_search_area_forest_area:
-            description: "STP Wind 2027 - Suchraum Wald"
-            unit: "km2"
-          stp_2027_search_area_open_area:
-            description: "STP Wind 2027 - Suchraum Offenland"
+          stp_2024_vr:
+            description: "STP Wind 2024 - Planabsicht Vorranggebiete"
             unit: "km2"
         _source_path:
           dataset: "potentialarea_wind_region"
@@ -1004,55 +1227,67 @@ resources:
           municipality_id:
             description: "Gemeinde-ID"
             unit: "-"
-          agriculture_lfa-off_region:
-            description: "Freiflächen-PV auf Acker- und Grünlandflächen mit geringer Bodengüte"
+          soil_quality_low_region:
+            description: "Potenzialflächen für Freiflächen-PV auf Agrarflächen geringer Bodengüte"
             unit: "km2"
-          road_railway_region:
-            description: "Potenzialflächen für Freiflächen-PV entlang von Bundesautobahnen und Schienenwegen (500m-Streifen)"
+          soil_quality_medium_region:
+            description: "Potenzialflächen für Agri-PV auf Agrarflächen mittlerer Bodengüte"
+            unit: "km2"
+          permanent_crops_region:
+            description: "Potenzialflächen für Agri-PV über Dauerkulturen"
             unit: "km2"
         _source_path:
-          dataset: "potentialarea_pv_ground_region"
+          dataset: "potentialarea_pv_ground_region2"
           file: "potentialarea_pv_ground_area_stats_muns.csv"
       pv_ground_area_shares:
         description: "Anteil Potenzialflächen an Regionsfläche nach Flächentyp"
         path: "scalars/potentialarea_pv_ground_area_shares.json"
         fields:
-          road_railway:
-            description: "Anteil Potenzialflächen entlang von Bundesautobahnen und Schienenwegen an Regionsfläche"
+          soil_quality_low:
+            description: "Anteil Potenzialflächen für Freiflächen-PV auf Agrarflächen geringer Bodengüte an Regionsfläche"
             unit: "-"
-          agri:
-            description: "Anteil Potenzialflächen auf Acker- und Grünlandflächen mit geringer Bodengüte an Regionsfläche"
+          soil_quality_medium:
+            description: "Anteil Potenzialflächen für Agri-PV auf Agrarflächen mittlerer Bodengüte an Regionsfläche"
+            unit: "-"
+          permanent_crops:
+            description: "Anteil Potenzialflächen für Agri-PV über Dauerkulturen an Regionsfläche"
             unit: "-"
         _source_path:
-          dataset: "potentialarea_pv_ground_region"
+          dataset: "potentialarea_pv_ground_region2"
           file: "potentialarea_pv_ground_area_shares.json"
       pv_ground_area_targets:
         description: "Regionale, aus Bundeszielen anhand der Potenzialflächen desaggregierte Bundesziele für Freiflächen-PV nach Flächentyp"
         path: "scalars/potentialarea_pv_ground_regionalized_targets.json"
         fields:
           target_area_total:
-            description: "Regionales Flächenziel gesamt"
+            description: "Regionalisiertes Flächenziel gesamt"
             unit: "km2"
-          target_area_road_railway:
-            description: "Regionales Flächenziel entlang von Bundesautobahnen und Schienenwegen"
+          target_area_agri_soil_quality_low:
+            description: "Regionalisiertes Flächenziel für Freiflächen-PV auf Agrarflächen geringer Bodengüte"
             unit: "km2"
-          target_area_agri:
-            description: "Regionales Flächenziel auf Acker- und Grünlandflächen mit geringer Bodengüte"
+          target_area_agri_soil_quality_medium:
+            description: "Regionalisiertes Flächenziel für Agri-PV auf Agrarflächen mittlerer Bodengüte"
+            unit: "km2"
+          target_area_agri_permanent_crops:
+            description: "Regionalisiertes Flächenziel für Agri-PV über Dauerkulturen"
             unit: "km2"
           target_power_total:
-            description: "Regionales Leistungsziel gesamt"
+            description: "Regionalisiertes Leistungsziel gesamt"
             unit: "MW"
-          target_power_road_railway:
-            description: "Regionales Leistungsziel entlang von Bundesautobahnen und Schienenwegen"
+          target_power_agri_soil_quality_low:
+            description: "Regionalisiertes Leistungsziel für Freiflächen-PV auf Agrarflächen geringer Bodengüte"
             unit: "MW"
-          target_power_agri:
-            description: "Regionales Leistungsziel auf Acker- und Grünlandflächen mit geringer Bodengüte"
+          target_power_agri_soil_quality_medium:
+            description: "Regionalisiertes Leistungsziel für Agri-PV auf Agrarflächen mittlerer Bodengüte"
+            unit: "MW"
+          target_power_agri_permanent_crops:
+            description: "Regionalisiertes Leistungsziel für Agri-PV über Dauerkulturen"
             unit: "MW"
         _source_path:
-          dataset: "potentialarea_pv_ground_region"
+          dataset: "potentialarea_pv_ground_region2"
           file: "potentialarea_pv_ground_regionalized_targets.json"
       pv_roof_area_stats:
-        description: "Potenziale PV-Aufdachanlagen (alle Gebäude)"
+        description: "Potenziale PV-Aufdachanlagen"
         path: "scalars/potentialarea_pv_roof_area_stats_muns.csv"
         fields:
           municipality_id:
@@ -1061,50 +1296,23 @@ resources:
           roof_count:
             description: "Anzahl der Dächer/Gebäude"
             unit: "-"
-          building_area_sqm:
-            description: "Gesamtgrundfläche"
-            unit: "m2"
-          historic_preservation_count:
-            description: "Anzahl der Gebäude unter Denkmalschutz"
-            unit: "-"
-          installable_power_south:
-            description: "Installierbare Gesamtleistung (Südausrichtung)"
+          roof_area_sqkm:
+            description: "Dachfläche"
+            unit: "sqkm"
+          roof_area_pv_potential_sqkm:
+            description: "Dachfläche für PV"
+            unit: "sqkm"
+          roof_suitability_perc:
+            description: "Dacheignung für PV"
+            unit: "%"
+          installable_power:
+            description: "Installierbare Gesamtleistung"
             unit: "MW"
-          installable_power_north:
-            description: "Installierbare Gesamtleistung (Nordausrichtung)"
-            unit: "MW"
-          installable_power_east:
-            description: "Installierbare Gesamtleistung (Ostausrichtung)"
-            unit: "MW"
-          installable_power_west:
-            description: "Installierbare Gesamtleistung (Westausrichtung)"
-            unit: "MW"
-          installable_power_flat:
-            description: "Installierbare Gesamtleistung (Flachdach)"
-            unit: "MW"
-          installable_power_total:
-            description: "Installierbare Gesamtleistung (Summe)"
-            unit: "MW"
-          energy_annual_south:
-            description: "Erzielbarer Energieertrag (Südausrichtung)"
-            unit: "MWh"
-          energy_annual_north:
-            description: "Erzielbarer Energieertrag (Nordausrichtung)"
-            unit: "MWh"
-          energy_annual_east:
-            description: "Erzielbarer Energieertrag (Ostausrichtung)"
-            unit: "MWh"
-          energy_annual_west:
-            description: "Erzielbarer Energieertrag (Westausrichtung)"
-            unit: "MWh"
-          energy_annual_flat:
-            description: "Erzielbarer Energieertrag (Flachdach)"
-            unit: "MWh"
-          energy_annual_total:
-            description: "Erzielbarer Energieertrag (Summe)"
+          energy_annual:
+            description: "Erzielbarer Energieertrag"
             unit: "MWh"
         _source_path:
-          dataset: "potentialarea_pv_roof_region"
+          dataset: "potentialarea_pv_roof_region2"
           file: "potentialarea_pv_roof_area_stats_muns.csv"
       pv_roof_area_deployment_stats:
         description: "Genutzte Potenziale PV-Aufdachanlagen (alle Gebäude)"
@@ -1117,138 +1325,59 @@ resources:
             description: "Relative Potenzialnutzung"
             unit: "-"
         _source_path:
-          dataset: "potentialarea_pv_roof_region"
+          dataset: "potentialarea_pv_roof_region2"
           file: "potentialarea_pv_roof_deployment_stats_muns.csv"
-      pv_roof_wo_historic_area_stats:
-        description: "Potenziale PV-Aufdachanlagen (ohne denkmalgeschützte Gebäude)"
-        path: "scalars/potentialarea_pv_roof_wo_historic_area_stats_muns.csv"
-        fields:
-          municipality_id:
-            description: "Gemeinde-ID"
-            unit: "-"
-          roof_count:
-            description: "Anzahl der Dächer/Gebäude"
-            unit: "-"
-          building_area_sqm:
-            description: "Gesamtgrundfläche"
-            unit: "m2"
-          historic_preservation_count:
-            description: "Anzahl der Gebäude unter Denkmalschutz"
-            unit: "-"
-          installable_power_south:
-            description: "Installierbare Gesamtleistung (Südausrichtung)"
-            unit: "MW"
-          installable_power_north:
-            description: "Installierbare Gesamtleistung (Nordausrichtung)"
-            unit: "MW"
-          installable_power_east:
-            description: "Installierbare Gesamtleistung (Ostausrichtung)"
-            unit: "MW"
-          installable_power_west:
-            description: "Installierbare Gesamtleistung (Westausrichtung)"
-            unit: "MW"
-          installable_power_flat:
-            description: "Installierbare Gesamtleistung (Flachdach)"
-            unit: "MW"
-          installable_power_total:
-            description: "Installierbare Gesamtleistung (Summe)"
-            unit: "MW"
-          energy_annual_south:
-            description: "Erzielbarer Energieertrag (Südausrichtung)"
-            unit: "MWh"
-          energy_annual_north:
-            description: "Erzielbarer Energieertrag (Nordausrichtung)"
-            unit: "MWh"
-          energy_annual_east:
-            description: "Erzielbarer Energieertrag (Ostausrichtung)"
-            unit: "MWh"
-          energy_annual_west:
-            description: "Erzielbarer Energieertrag (Westausrichtung)"
-            unit: "MWh"
-          energy_annual_flat:
-            description: "Erzielbarer Energieertrag (Flachdach)"
-            unit: "MWh"
-          energy_annual_total:
-            description: "Erzielbarer Energieertrag (Summe)"
-            unit: "MWh"
-        _source_path:
-          dataset: "potentialarea_pv_roof_region"
-          file: "potentialarea_pv_roof_wo_historic_area_stats_muns.csv"
-      pv_roof_wo_historic_area_deployment_stats:
-        description: "Genutzte Potenziale PV-Aufdachanlagen (ohne denkmalgeschützte Gebäude)"
-        path: "scalars/potentialarea_pv_roof_wo_historic_deployment_stats_muns.csv"
-        fields:
-          municipality_id:
-            description: "Gemeinde-ID"
-            unit: "-"
-          relative_deployment:
-            description: "Relative Potenzialnutzung"
-            unit: "-"
-        _source_path:
-          dataset: "potentialarea_pv_roof_region"
-          file: "potentialarea_pv_roof_wo_historic_deployment_stats_muns.csv"
       pv_roof_area_targets:
         description: "Regionale, aus Bundeszielen anhand der Gebäudegrundflächen desaggregierte Bundesziele für Aufdach-PV"
         path: "scalars/potentialarea_pv_roof_regionalized_targets.json"
         fields:
-          target_power_total:
-            description: "Regionales Leistungsziel gesamt"
+          bmwk_de:
+            description: "Leistung nach BMWK (2045)"
+            unit: "MW"
+          mwae_bb:
+            description: "Leistung nach MWAE (2030, 2040)"
             unit: "MW"
         _source_path:
-          dataset: "potentialarea_pv_roof_region"
+          dataset: "potentialarea_pv_roof_region2"
           file: "potentialarea_pv_roof_regionalized_targets.json"
 
     geodata:
-      potentialarea_pv_agriculture_lfa-off_region:
-        description: "Potenzialflächen Freiflächen-PV auf Ackerflächen inner- und außerhalb benachteiligter Gebiete"
-        path: "geodata/potentialarea_pv_agriculture_lfa-off_region.gpkg"
+      potentialarea_pv_ground_soil_quality_low_region:
+        description: "Potenzialflächen für Freiflächen-PV auf Agrarflächen geringer Bodengüte"
+        path: "geodata/potentialarea_pv_ground_soil_quality_low_region.gpkg"
         fields: [ ]
         _source_path:
-          dataset: "potentialarea_pv_ground_region"
-          file: "potentialarea_pv_agriculture_lfa-off_region.gpkg"
-      potentialarea_pv_road_railway_region:
-        description: "Potenzialflächen Freiflächen-PV entlang von Autobahnen und Schienenwegen"
-        path: "geodata/potentialarea_pv_road_railway_region.gpkg"
+          dataset: "potentialarea_pv_ground_region2"
+          file: "potentialarea_pv_ground_soil_quality_low_region.gpkg"
+      potentialarea_pv_ground_soil_quality_medium_region:
+        description: "Potenzialflächen für Agri-PV auf Agrarflächen mittlerer Bodengüte"
+        path: "geodata/potentialarea_pv_ground_soil_quality_medium_region.gpkg"
         fields: [ ]
         _source_path:
-          dataset: "potentialarea_pv_ground_region"
-          file: "potentialarea_pv_road_railway_region.gpkg"
+          dataset: "potentialarea_pv_ground_region2"
+          file: "potentialarea_pv_ground_soil_quality_medium_region.gpkg"
+      potentialarea_pv_ground_permanent_crops_region:
+        description: "Potenzialflächen für Agri-PV über Dauerkulturen"
+        path: "geodata/potentialarea_pv_ground_permanent_crops_region.gpkg"
+        fields: [ ]
+        _source_path:
+          dataset: "potentialarea_pv_ground_region2"
+          file: "potentialarea_pv_ground_permanent_crops_region.gpkg"
 
       potentialarea_wind_stp_2018_vreg:
-        description: "Potenzialflächen Windenergie: STP Wind 2018 - Vorrang-/Eignungsgebiete"
-        path: "geodata/potentialarea_wind_stp_2018_vreg.gpkg"
+        description: "Potenzialflächen Windenergie: STP Wind 2018 - Eignungsgebiete"
+        path: "geodata/potentialarea_wind_stp_2018_eg.gpkg"
         fields: [ ]
         _source_path:
           dataset: "potentialarea_wind_region"
-          file: "potentialarea_wind_stp_2018_vreg.gpkg"
-      potentialarea_wind_stp_2027_repowering:
-        description: "Potenzialflächen Windenergie: STP Wind 2027 - Planabsicht Repoweringgebiete"
-        path: "geodata/potentialarea_wind_stp_2027_repowering.gpkg"
+          file: "potentialarea_wind_stp_2018_eg.gpkg"
+      potentialarea_wind_stp_2024_vr:
+        description: "Potenzialflächen Windenergie: STP Wind 2024 - Planabsicht Vorranggebiete"
+        path: "geodata/potentialarea_wind_stp_2024_vr.gpkg"
         fields: [ ]
         _source_path:
           dataset: "potentialarea_wind_region"
-          file: "potentialarea_wind_stp_2027_repowering.gpkg"
-      potentialarea_wind_stp_2027_search_area_forest_area:
-        description: "Potenzialflächen Windenergie: STP Wind 2027 - Suchraum Wald"
-        path: "geodata/potentialarea_wind_stp_2027_search_area_forest_area.gpkg"
-        fields: [ ]
-        _source_path:
-          dataset: "potentialarea_wind_region"
-          file: "potentialarea_wind_stp_2027_search_area_forest_area.gpkg"
-      potentialarea_wind_stp_2027_search_area_open_area:
-        description: "Potenzialflächen Windenergie: STP Wind 2027 - Suchraum Offenland"
-        path: "geodata/potentialarea_wind_stp_2027_search_area_open_area.gpkg"
-        fields: [ ]
-        _source_path:
-          dataset: "potentialarea_wind_region"
-          file: "potentialarea_wind_stp_2027_search_area_open_area.gpkg"
-      potentialarea_wind_stp_2027_vr:
-        description: "Potenzialflächen Windenergie: STP Wind 2027 - Planabsicht Vorranggebiete"
-        path: "geodata/potentialarea_wind_stp_2027_vr.gpkg"
-        fields: [ ]
-        _source_path:
-          dataset: "potentialarea_wind_region"
-          file: "potentialarea_wind_stp_2027_vr.gpkg"
+          file: "potentialarea_wind_stp_2024_vr.gpkg"
 
   # Settings
   settings:

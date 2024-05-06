@@ -1,8 +1,8 @@
 # Dachflächenpotenzial PV-Aufdachanlagen in ABW
 
-Abschätzung der installierten Leistung und des Ertrags von PV-Aufdachanlagen in
+Berechnung der installierten Leistung und des Ertrags von PV-Aufdachanlagen in
 Anhalt-Bitterfeld-Wittenberg der Regionalen Planungsgemeinschaft aus Datensatz
-[rpg_abw_pv_roof_potential](../../raw/rpg_abw_pv_roof_potential/dataset.md).
+[rpg_abw_pv_roof_potential](../../preprocessed/rpg_abw_pv_roof_potential/dataset.md).
 
 Die Gebäudezentroide werden mit den Gemeindegrenzen verschnitten und den
 Gemeinden zugeordnet.

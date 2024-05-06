@@ -1,0 +1,14 @@
+##############################################################################
+# This file holds configuration parameters for the creation of this dataset. #
+##############################################################################
+
+# PV roof suitability threshold (of reference energy yield), disregard roofs
+# below this value. Details see store/raw/wfbb_pv_roof_potential/dataset.md
+# (0..1)
+roof_suitability_threshold: 0.6
+
+# PV targets split: share of pv_roof in total PV targets for Germany
+# Caution: when adjusting this value, the shares in dataset
+#          potentialarea_pv_ground_region must be adjusted accordingly!
+#          (total sum = 1)
+pv_roof_share: 0.52

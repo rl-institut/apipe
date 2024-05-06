@@ -5,8 +5,10 @@ Note: To include the file in the main workflow, it must be added to the respecti
 """
 
 import geopandas as gpd
+import numpy as np
 import pandas as pd
 
+from apipe.scripts.data_io import load_json
 from apipe.scripts.datasets.mastr import create_stats_per_municipality
 from apipe.scripts.geo import (
     convert_to_multipolygon,
@@ -37,11 +39,14 @@ rule create_pv_ground_criteria:
 
 rule create_pv_ground_units_filtered:
     """
-    Filter PV units for different status and add municipality ids
+    Filter PV units for different status and add municipality ids.
+    For approved and planned units add missing power (=0) using power density
+    from tech data.
     """
     input:
         units=DATASET_PATH / "rpg_ols_pv_ground.gpkg",
-        region_muns=PATH_TO_REGION_MUNICIPALITIES_GPKG
+        region_muns=PATH_TO_REGION_MUNICIPALITIES_GPKG,
+        tech_data=rules.datasets_technology_data_copy_files.output,
     output:
         units_all=DATASET_PATH / "rpg_ols_pv_ground_all.gpkg",
         units_filtered=expand(
@@ -58,10 +63,35 @@ rule create_pv_ground_units_filtered:
             retain_rename_overlay_columns={"id": "municipality_id"},
         )
 
+        # Add capacity to units where capacity is 0
+        # (approximation for planned units)
+        tech_data = load_json(input.tech_data[0])
+        print(
+            "Capacity in original data: ",
+            units[["status", "capacity_net"]].groupby(
+                "status").capacity_net.sum()
+        )
+        units = units.assign(capacity_net_inferred=0)
+        mask = (
+            (units.status.isin(["Planung", "genehmigt"])) &
+            (units.capacity_net == 0)
+        )
+        units["capacity_net"].update(
+            units[mask].area / 1e6 *
+            tech_data["power_density"]["pv_ground"]
+        )
+        units.loc[mask, "capacity_net_inferred"] = 1
+        units["capacity_net"] = units["capacity_net"].mul(1e3)  # MW to kW
+        print(
+            "Capacity inferred: ",
+            units[["status", "capacity_net"]].groupby(
+                "status").capacity_net.sum()
+        )
+
         # Write all
         write_geofile(
             gdf=convert_to_multipolygon(units),
-            file=DATASET_PATH / "rpg_ols_pv_ground_all.gpkg"
+            file=output.units_all
         )
 
         # Write filtered
@@ -102,6 +132,7 @@ rule create_pv_ground_power_stats_muns:
                 column="capacity_net",
                 only_operating_units=False  # Disable MaStR-specific setting
             )
+            units["capacity_net"] = units["capacity_net"].div(1e3)  # kW to MW
             print(f"Total capacity for {status} units: {units.capacity_net.sum()}")
             units.to_csv(
                 DATASET_PATH /

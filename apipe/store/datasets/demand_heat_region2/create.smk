@@ -66,6 +66,7 @@ rule heat_demand_hh_ct_ind:
                     scale_by="total",
                     ).rename(columns={2022: 2045})
                 )
+            extracted_data = extracted_data.div(1e3)  # kWh to MWh
             output_file = DATASET_PATH / f"demand_{params.sectors[idx]}_heat_demand.csv"
             extracted_data.to_csv(output_file, index=True)
 
@@ -142,6 +143,7 @@ rule heat_demand_dec_cen:
                     scale_by="total",
                 ).rename(columns={2022: 2045})
             )
+            output_data_dec = output_data_dec.div(1e3)  # kWh to MWh
             output_data_dec.to_csv(output_file_dec, index=True)
 
             output_file_cen = DATASET_PATH / f"demand_{sector}_heat_demand_cen.csv"
@@ -156,6 +158,7 @@ rule heat_demand_dec_cen:
                     scale_by="total",
                 ).rename(columns={2022: 2045})
             )
+            output_data_cen = output_data_cen.div(1e3)  # kWh to MWh
             output_data_cen.to_csv(output_file_cen, index=True)
 
 

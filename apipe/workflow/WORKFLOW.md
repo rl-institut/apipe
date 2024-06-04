@@ -44,6 +44,7 @@ appdata.
 
 Beside the global rules above each dataset contains one or more rules that can
 be executed individually. The rule name consist of
+
 - `<CATEGORY>`: the store's category (preprocessed, datasets, appdata)
 - `<DATASET_NAME>`: dataset name
 - `<RULE_NAME>`: name of dataset's rule

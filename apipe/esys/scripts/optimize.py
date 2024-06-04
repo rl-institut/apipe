@@ -41,6 +41,7 @@ import sys
 import numpy as np
 from oemof import solph
 from oemof.solph import EnergySystem, Model, constraints, processing
+from oemof.solph.constraints.equate_flows import equate_flows_by_keyword
 
 # DONT REMOVE THIS LINE!
 # pylint: disable=unusedimport
@@ -49,7 +50,6 @@ from oemof.tabular.facades import TYPEMAP
 
 from apipe.esys.esys.config import esys_conf
 from apipe.esys.esys.tools import data_processing as dp
-from apipe.esys.esys.tools.equate_flows import equate_flows_by_keyword
 from apipe.esys.esys.tools.timing import Timer
 
 logger = logging.getLogger()
@@ -251,6 +251,7 @@ if __name__ == "__main__":
         # Reduce number of timestep for debugging
         if esys_conf.settings.optimize.debug:
             es.timeindex = es.timeindex[:3]
+            es.timeincrement = es.timeincrement[:3]
 
             logger.info(
                 "Using DEBUG mode: Running model with first 3 timesteps only."

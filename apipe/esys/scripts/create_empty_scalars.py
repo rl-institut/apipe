@@ -76,7 +76,11 @@ def format_input_scalars(df):
         _df = _df.loc[_df.loc[:, "var_value"].isna()]
 
     # Combine those parameters that are valid for all regions
-    _df.loc[_df["var_name"].isin(NON_REGIONAL), ["name", "region"]] = [
+    _df.loc[
+        ~_df["var_value"].apply(lambda x: isinstance(x, str))
+        & _df["var_name"].isin(NON_REGIONAL),
+        ["name", "region"],
+    ] = [
         None,
         "ALL",
     ]
@@ -109,7 +113,8 @@ def expand_scalars(df, column, where, expand):
 
 
 def add_new_entry_to_scalars(sc, new_entry_dict):
-    sc = sc.append(new_entry_dict, ignore_index=True)
+    new_entry_df = pd.DataFrame([new_entry_dict])
+    sc = pd.concat([sc, new_entry_df], ignore_index=True)
 
     return sc
 
@@ -122,7 +127,7 @@ def save_empty_scalars(sc, path):
         if all_sc.empty:
             all_sc = sc
         else:
-            all_sc = all_sc.append(sc, ignore_index=True)
+            all_sc = pd.concat([all_sc, sc], ignore_index=True)
             all_sc.index.name = sc.index.name
 
     else:

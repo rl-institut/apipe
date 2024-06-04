@@ -40,6 +40,26 @@ To clean all produced data, use
 This involves preprocessed data in directories: preprocessed, datasets and
 appdata.
 
+### Run specific dataset rule
+
+Beside the global rules above each dataset contains one or more rules that can
+be executed individually. The rule name consist of
+- `<CATEGORY>`: the store's category (preprocessed, datasets, appdata)
+- `<DATASET_NAME>`: dataset name
+- `<RULE_NAME>`: name of dataset's rule
+
+Format:
+
+    snakemake -j1 <CATEGORY>_<DATASET_NAME>_<RULE_NAME>
+
+Example: to run rule `create_power_stats_muns` in
+[store/datasets/bnetza_mastr_storage_region/create.smk](../store/datasets/bnetza_mastr_storage_region/create.smk)
+execute
+
+    snakemake -j1 datasets_bnetza_mastr_storage_region_create_power_stats_muns
+
+Further information on the modules see below.
+
 ## Pipeline visualization / DAG
 
 The entire pipeline can be visualized as a directed acyclic graph (DAG).
@@ -67,7 +87,8 @@ The graphs also provide information on the completed (solid lines) and pending
 - The global workflow is defined in the main
   [Snakefile](../workflow/Snakefile).
 - It includes the module Snakefiles from the data store located at
-  - [store/preprocessed/module.smk](../store/preprocessed/module.smk) and
+  - [store/preprocessed/module.smk](../store/preprocessed/module.smk)
   - [store/datasets/module.smk](../store/datasets/module.smk)
+  - [store/appdata/module.smk](../store/appdata/module.smk)
 - In each of these modules, the rules as well as the config from the contained
-  datasets are imported.
+  datasets are imported. See above how to run a specific rule.

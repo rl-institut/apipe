@@ -28,3 +28,6 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
   `mluk_bb_field_block_cadastre` for PV ground potential calculation
 
 ### Fixed
+
+- Dependencies for esys input data added: upstream rules are now triggered when
+  executing `make_esys_appdata`

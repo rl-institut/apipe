@@ -48,6 +48,27 @@ write_default_scalars:
     "which": "empty",
     "var_unit": "MW",
   }
+  from_to_capacity_link: {
+    "var_name": "from_to_capacity",
+    "type": link,
+    "tech": None,
+    "which": "high_capacity",
+    "var_unit": "MW",
+  }
+  to_from_capacity_link: {
+    "var_name": "to_from_capacity",
+    "type": link,
+    "tech": None,
+    "which": "high_capacity",
+    "var_unit": "MW",
+  }
+  loss_link: {
+    "var_name": "loss",
+    "type": link,
+    "tech": None,
+    "which": "zeros",
+    "var_unit": "None",
+  }
   amount: {
     "var_name": "amount",
     "type": None,

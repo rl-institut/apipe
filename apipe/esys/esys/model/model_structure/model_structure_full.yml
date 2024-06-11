@@ -82,6 +82,7 @@ components:
   - heat_central-demand_cts
   - heat_central-demand_ind
   - heat_central-storage
+  - heat_central-transmission
 
   - heat_decentral-demand_hh
   - heat_decentral-demand_cts

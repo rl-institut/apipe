@@ -264,7 +264,13 @@ heat_central-storage:
     input_parameters: "{}"
     output_parameters: "{}"
 
-
+heat_central-transmission:
+  carrier: heat_central
+  tech: transmission
+  type: link
+  foreign_keys:
+    from_bus: heat_central
+    to_bus: heat_central
 
 # Bus "decentral heat":
 

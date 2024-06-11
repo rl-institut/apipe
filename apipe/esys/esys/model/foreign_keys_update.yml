@@ -62,6 +62,7 @@
     'electricity-pth_central',
     'wood-oven',
     'lignite-oven',
+    'heat_central-transmission'
 ]
 
 'chp': [

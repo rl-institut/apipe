@@ -44,6 +44,7 @@ components:
   - electricity-pth_decentral
 
   - ch4-import
+  - ch4-transmission
   - ch4-boiler_central
   - ch4-boiler_decentral
   - ch4-bpchp_central

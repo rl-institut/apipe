@@ -40,6 +40,14 @@ electricity-export:
   defaults:
     input_parameters: "{}"
 
+ch4-transmission:
+  carrier: ch4
+  tech: transmission
+  type: link
+  foreign_keys:
+    from_bus: ch4
+    to_bus: ch4
+
 ch4-gt:
   carrier: ch4
   tech: gt

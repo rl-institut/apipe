@@ -11,12 +11,17 @@ To test if everything works, you can run the test scenario with
 snakemake -j1 make_esys_appdata
 ```
 
-For this you have to copy the corresponding raw data from into the raw directory
-`store/esys_raw/`.
-In the future, empty raw data (scalars and time series) will be created
-automatically. Then, assumptions on constant parameters such as plant costs,
-lifetime and efficiencies are mapped and set as values of the corresponding
-variables in the scalars.
+For this you have to provide the corresponding input data in the store:
+
+- raw/technology_data/data
+- raw/renewables.ninja_feedin/data
+- raw/demandregio/data
+- raw/bkg_vg250/data
+- raw/dwd_temperature/data.
+
+Then, assumptions on constant parameters such as plant costs, lifetime and
+efficiencies are mapped and set as values of the corresponding variables in the
+scalars.
 
 Empty scalars and time series can be created from the energy model setup with
 

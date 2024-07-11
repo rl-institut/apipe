@@ -31,3 +31,4 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
 
 - Dependencies for esys input data added: upstream rules are now triggered when
   executing `make_esys_appdata`
+- Documentation for executing `make_esys_appdata` has been adapted accordingly

@@ -44,6 +44,7 @@ components:
   - electricity-pth_decentral
 
   - ch4-import
+  - ch4-transmission
   - ch4-boiler_central
   - ch4-boiler_decentral
   - ch4-bpchp_central
@@ -82,6 +83,7 @@ components:
   - heat_central-demand_cts
   - heat_central-demand_ind
   - heat_central-storage
+  - heat_central-transmission
 
   - heat_decentral-demand_hh
   - heat_decentral-demand_cts

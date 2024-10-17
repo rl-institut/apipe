@@ -87,7 +87,7 @@ rule create_pv_ground:
             layer_name=config["pv_ground"]["layer"],
         )
 
-rule create_pv_ground_criteria:
+rule create_pv_ground_criteria_single:
     """
     Freiflächen-Photovoltaikanlagen Negativkriterien: Preprocess
     """
@@ -100,6 +100,14 @@ rule create_pv_ground_criteria:
          for fname in set(config["pv_ground_criteria"]["layers"].values())
          if fname != ""]
     run:
+        def create_convex_hull_open_spaces(data):
+            return gpd.GeoDataFrame(
+                crs=data.crs.srs,
+                geometry=[
+                    data.buffer(180, join_style="mitre").buffer(-180).unary_union
+                ]
+            )
+
         target_layers = [
             layer for layer in fiona.listlayers(input[0])
             if config["pv_ground_criteria"]["layers"].get(layer) != ""
@@ -131,12 +139,44 @@ rule create_pv_ground_criteria:
             data = gpd.GeoDataFrame(
                 crs=data.crs.srs, geometry=[data.unary_union]
             )
+            if (config["pv_ground_criteria"]["layers"].get(target_layer) ==
+                "pv_ground_criteria_linked_open_spaces"):
+                data = create_convex_hull_open_spaces(data)
 
             write_geofile(
                 gdf=convert_to_multipolygon(data),
                 file=target_file,
                 layer_name=target_layer,
             )
+
+rule create_pv_ground_criteria_merged:
+    """
+    Freiflächen-Photovoltaikanlagen Negativkriterien kombiniert
+    """
+    input:
+        rules.create_pv_ground_criteria_single.output
+    output:
+        DATASET_PATH / "data" / "pv_ground_criteria_merged.gpkg"
+    run:
+        layers = []
+        for file_in in input:
+            layer = gpd.read_file(file_in)
+            if layer.geom_type[0] == 'MultiPolygon':
+                layers.append(layer)
+        merged = gpd.GeoDataFrame(pd.concat(layers))
+
+        # Merge all layers, remove gaps and union
+        merged = gpd.GeoDataFrame(
+            crs=merged.crs.srs,
+            geometry=[merged.unary_union.buffer(10).buffer(-10)]
+        )
+
+        write_geofile(
+            gdf=reproject_simplify(merged, simplify_tol=1),
+            file=output[0],
+            layer_name="pv_ground_criteria_merged"
+        )
+
 
 rule create_wind_turbines:
     """

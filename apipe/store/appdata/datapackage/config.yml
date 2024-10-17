@@ -145,6 +145,13 @@ resources:
         _source_path:
           dataset: "rpg_ols_regional_plan"
           file: "pv_ground_criteria_forest.gpkg"
+      pv_ground_criteria_merged:
+        description: "Alle Flächen aus PV-Negativkriterien kombiniert"
+        path: "geodata/pv_ground_criteria_merged.gpkg"
+        fields: [ ]
+        _source_path:
+          dataset: "rpg_ols_regional_plan"
+          file: "pv_ground_criteria_merged.gpkg"
       grid_region:
         description: "Stromnetze (>=110 kV)"
         path: "geodata/grid_region.gpkg"

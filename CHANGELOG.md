@@ -20,6 +20,9 @@ and the versioning aim to respect [Semantic Versioning](http://semver.org/spec/v
   `mwae_bb_energy_strategy`) and regionalization (dataset
   `mwae_bb_energy_strategy_region`)
 - Add permanent crops Brandenburg (dataset `mluk_bb_field_block_cadastre`)
+- Combine negative PV ground criteria layers to additional layer
+- Buffer negative PV ground criteria layer for open spaces to prevent hatch
+  style
 
 ### Changed
 

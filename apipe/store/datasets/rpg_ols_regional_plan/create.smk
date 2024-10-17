@@ -24,9 +24,9 @@ DATASET_PATH = get_abs_dataset_path(
     "datasets", "rpg_ols_regional_plan", data_dir=True)
 
 
-rule create_pv_ground_criteria:
+rule create_pv_ground_criteria_single:
     """
-    Freiflächen-Photovoltaikanlagen Negativkriterien
+    Freiflächen-Photovoltaikanlagen Negativkriterien einzeln
     """
     input:
         get_abs_dataset_path(

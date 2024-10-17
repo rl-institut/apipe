@@ -54,6 +54,7 @@ map_panel_layer_list:
     ]
   pv_ground_neg_criteria:
     [
+      "pv_ground_criteria_merged",
       "pv_ground_criteria_settlements",
       "pv_ground_criteria_settlements_200m",
       "floodplain_region",

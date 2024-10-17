@@ -100,6 +100,14 @@ rule create_pv_ground_criteria_single:
          for fname in set(config["pv_ground_criteria"]["layers"].values())
          if fname != ""]
     run:
+        def create_convex_hull_open_spaces(data):
+            return gpd.GeoDataFrame(
+                crs=data.crs.srs,
+                geometry=[
+                    data.buffer(180, join_style="mitre").buffer(-180).unary_union
+                ]
+            )
+
         target_layers = [
             layer for layer in fiona.listlayers(input[0])
             if config["pv_ground_criteria"]["layers"].get(layer) != ""
@@ -131,6 +139,9 @@ rule create_pv_ground_criteria_single:
             data = gpd.GeoDataFrame(
                 crs=data.crs.srs, geometry=[data.unary_union]
             )
+            if (config["pv_ground_criteria"]["layers"].get(target_layer) ==
+                "pv_ground_criteria_linked_open_spaces"):
+                data = create_convex_hull_open_spaces(data)
 
             write_geofile(
                 gdf=convert_to_multipolygon(data),

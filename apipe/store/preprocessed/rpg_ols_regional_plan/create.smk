@@ -168,11 +168,11 @@ rule create_pv_ground_criteria_merged:
         # Merge all layers, remove gaps and union
         merged = gpd.GeoDataFrame(
             crs=merged.crs.srs,
-            geometry=[merged.unary_union.buffer(1).buffer(-1)]
+            geometry=[merged.unary_union.buffer(10).buffer(-10)]
         )
 
         write_geofile(
-            gdf=merged,
+            gdf=reproject_simplify(merged, simplify_tol=1),
             file=output[0],
             layer_name="pv_ground_criteria_merged"
         )

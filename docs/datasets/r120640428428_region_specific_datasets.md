@@ -78,17 +78,17 @@ Annahmen:
 
 #### Gesamtwärmebedarf Prozesswärme (2045) in MWh
 
-| Name                          | Raw-Datensatz | Dataset                                                       | Kommentar       |
-|-------------------------------|---------------|---------------------------------------------------------------|-----------------|
-| *heat_med-demand_ind*         |               |                                                               |                 |
+| Name                          | Raw-Datensatz | Dataset    | Kommentar       |
+|-------------------------------|---------------|------------|-----------------|
+| *heat_med-demand_ind*         |               |  |                 | 
 
 *[Platzhalter für weiterführende Erklärungen]*
 
 #### Wärmelastprofile Prozesswwärme, normiert
 
-| Name                          | Raw-Datensatz | Dataset                                                       | Kommentar       |
-|-------------------------------|---------------|---------------------------------------------------------------|-----------------|
-| *heat_med-demand_ind_profile* |               |                                                               |                 | 
+| Name                          | Raw-Datensatz | Dataset    | Kommentar       |
+|-------------------------------|---------------|------------|-----------------|
+| *heat_med-demand_ind_profile* | industry_heat_profiles_med_high               | demand_heat_ind_med_high|                 | 
 
 --------------------------------------------------------------------------------------------------------------------
 ### Wärmebedarf Industrieöfen (>500°C)
@@ -106,9 +106,9 @@ Annahmen:
 
 #### Wärmelastprofile Niedrigtemperaturwärme dezentral, normiert
 
-| Name                           | Raw-Datensatz | Dataset                                                       | Kommentar       |
-|--------------------------------|---------------|---------------------------------------------------------------|-----------------|
-| *heat_high-demand_ind_profile* |               |                                                               |                 | 
+| Name                           | Raw-Datensatz | Dataset                   | Kommentar       |
+|--------------------------------|---------------|---------------------------|-----------------|
+| *heat_high-demand_ind_profile* |  industry_heat_profiles_med_high              | demand_heat_ind_med_high  |                 | 
 
 --------------------------------------------------------------------------------------------------------------------
 ### EE-Technologien
@@ -163,7 +163,7 @@ Annahmen:
 |------------------------------------------|---------------|-----------------------|---------------------------------------------------------------------------|
 | _electricity-heatpump_central-profile_   |               | `datasets/heatpump_cop` | Zeitreihe wird auch für electricity-heatpump_decentral-profile angenommen | 
 | _electricity-heatpump_decentral-profile_ |               | `datasets/heatpump_cop` |                                                                           | 
-| _electricity-heatpump_heat_med-profile_  |               |                       | Hochtemperaturwärmepumpe                                                  |
+| _electricity-heatpump_heat_med-profile_  |heatpump_cop_heat_med            |     heatpump_cop_heat_med            | Hochtemperaturwärmepumpe                                                  |
 
 ----------------------------------------------------------------------------------------------------------------------
 ## Kraft-Wärme-Kopplung

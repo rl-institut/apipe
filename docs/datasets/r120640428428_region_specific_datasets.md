@@ -148,14 +148,6 @@ Annahmen:
 | _electricity-heatpump_heat_med-capacity_potential_  |               |         |           | 
 
 
-#### Feste Kapazitäten für Wärmepumpen in MW
-
-
-| Name                                               | Raw-Datensatz | Dataset | Kommentar |
-|----------------------------------------------------|---------------|---------|-----------|
-| _electricity-heatpump_central-capacity_   |               |         |           | 
-| _electricity-heatpump_decentral-capacity_ |               |         |           | 
-| _electricity-heatpump_heat_med-capacity_  |               |         |           | 
 
 #### COP-Zeitreihen für Wärmepumpen, normiert
 

@@ -10,7 +10,6 @@
     'heat_low_decentral-demand_hh',
     'heat_low_decentral-demand_cts',
     'heat_low_decentral-demand_ind',
-    'heat_med-demand_ind',
     'heat_high-demand_ind',
     'electricity-import',
     'biomass_solid-commodity',
@@ -43,7 +42,6 @@
     'heat_low_decentral-demand_hh',
     'heat_low_decentral-demand_cts',
     'heat_low_decentral-demand_ind',
-    'heat_med-demand_ind',
     'heat_high-demand_ind',
     'electricity-wind',
     'electricity-pv_ground',
@@ -56,16 +54,13 @@
 
 'from_to_bus': [
   #conversion, transmission, heatpumps
-    'biomass_solid-boiler_heat_med',
     'biomass_solid-boiler_heat_high',
-    'electricity-boiler_heat_med',
     'electricity-boiler_heat_high',
-    'h2-boiler_heat_med',
     'h2-boiler_heat_high',
     'electricity-electrolyzer',
     'electricity-heatpump_central',
     'electricity-heatpump_decentral',
-    'electricity-heatpump_heat_med',
+    'electricity-heatpump_heat_high',
     'h2-transmission',
     'electricity-transmission',
     'heat_low_central-transmission',
@@ -74,26 +69,24 @@
 'chp': [
     'biomass_solid-extchp_heat_low_decentral',
     'biomass_solid-extchp_heat_low_central',
-    'biomass_solid-extchp_heat_med',
     'biomass_solid-extchp_heat_high',
     'biomass_gas-extchp_heat_low_decentral',
     'biomass_gas-extchp_heat_low_central',
-    'biomass_gas-extchp_heat_med',
     'biomass_gas-extchp_heat_high',
     'h2-extchp_heat_high',
     'residual_waste-extchp_heat_high',
     'residual_waste-extchp_heat_low_central',
     'biomass_solid-bpchp_heat_low_decentral',
     'biomass_solid-bpchp_heat_low_central',
-    'biomass_solid-bpchp_heat_med',
+    'biomass_solid-bpchp_heat_high',
     'biomass_gas-bpchp_heat_low_decentral',
     'biomass_gas-bpchp_heat_low_central',
-    'biomass_gas-bpchp_heat_med',
+    'biomass_gas-bpchp_heat_high',
 ]
 
 'efficiency': [
   #heatpumps
     'electricity-heatpump_central',
     'electricity-heatpump_decentral',
-    'electricity-heatpump_heat_med',
+    'electricity-heatpump_heat_high',
 ]

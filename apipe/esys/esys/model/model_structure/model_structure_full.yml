@@ -17,7 +17,6 @@ busses:
   - electricity
   - heat_low_decentral
   - heat_low_central
-  - heat_med
   - heat_high
 
   # resource busses

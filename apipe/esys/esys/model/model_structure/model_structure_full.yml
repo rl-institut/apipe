@@ -1,16 +1,16 @@
 regions:
   - r120640428428
-  - r120640472472
-  - r120670124124
-  - r120670201201
+#  - r120640472472
+#  - r120670124124
+#  - r120670201201
 
 links:
-  - r120640428428-r120640472472
-  - r120640428428-r120670124124
-  - r120640428428-r120670201201
-  - r120640472472-r120670124124
-  - r120640472472-r120670201201
-  - r120670124124-r120670201201
+#  - r120640428428-r120640472472
+#  - r120640428428-r120670124124
+#  - r120640428428-r120670201201
+#  - r120640472472-r120670124124
+#  - r120640472472-r120670201201
+#  - r120670124124-r120670201201
 
 busses:
   # end usage energy busses
@@ -41,9 +41,6 @@ components:
   - heat_low_decentral-demand_cts
   - heat_low_decentral-demand_ind
 
-  # heat_med demands
-  - heat_med-demand_ind
-
   # heat_high demands
   - heat_high-demand_ind
 
@@ -67,27 +64,22 @@ components:
 #  - heat_low_decentral-geothermal_plant
 
   # conversion
-  - biomass_solid-boiler_heat_med
   - biomass_solid-boiler_heat_high
-  - electricity-boiler_heat_med
   - electricity-boiler_heat_high
-  - h2-boiler_heat_med
   - h2-boiler_heat_high
   - electricity-electrolyzer
 
   # heatpumps
   - electricity-heatpump_central
   - electricity-heatpump_decentral
-  - electricity-heatpump_heat_med
+  - electricity-heatpump_heat_high
 
   # extraction KWK-Dampfturbine
   #- biomass_solid-extchp_heat_low_decentral
   #- biomass_solid-extchp_heat_low_central
-  - biomass_solid-extchp_heat_med
   - biomass_solid-extchp_heat_high
   #- biomass_gas-extchp_heat_low_decentral
   #- biomass_gas-extchp_heat_low_central
-  - biomass_gas-extchp_heat_med
   - biomass_gas-extchp_heat_high
   - h2-extchp_heat_high
   - residual_waste-extchp_heat_high
@@ -96,10 +88,8 @@ components:
   # backpressure
   - biomass_solid-bpchp_heat_low_decentral
   - biomass_solid-bpchp_heat_low_central
-  #- biomass_solid-bpchp_heat_med
   - biomass_gas-bpchp_heat_low_decentral
   - biomass_gas-bpchp_heat_low_central
- # - biomass_gas-bpchp_heat_med
 
   # storage
   - electricity-small_battery_storage
@@ -114,6 +104,5 @@ components:
   - electricity-export
 
   # transmission
-  - h2-transmission
-  - electricity-transmission
-  - heat_low_central-transmission
+#  - h2-transmission
+#  - electricity-transmission

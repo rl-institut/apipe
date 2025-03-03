@@ -70,31 +70,12 @@ BMWK lfs
 
 *[Platzhalter für weiterführende Erklärungen]*
 
---------------------------------------------------------------------------------------------------------------------
-### Wärmebedarf Prozesswärme (150-500°C)
-Annahmen:
-- Temperaturniveau: 150-500′C (med)
-- Anwendungsgebiet: Prozessdampf- und Warmwasser für Industrieprozesse [Quelle:Langfristszenarien]
-
-#### Gesamtwärmebedarf Prozesswärme (2045) in MWh
-
-| Name                          | Raw-Datensatz | Dataset    | Kommentar       |
-|-------------------------------|---------------|------------|-----------------|
-| *heat_med-demand_ind*         |               |  |                 | 
-
-*[Platzhalter für weiterführende Erklärungen]*
-
-#### Wärmelastprofile Prozesswwärme, normiert
-
-| Name                          | Raw-Datensatz | Dataset    | Kommentar       |
-|-------------------------------|---------------|------------|-----------------|
-| *heat_med-demand_ind_profile* | industry_heat_profiles_med_high               | demand_heat_ind_med_high|                 | 
-
+ 
 --------------------------------------------------------------------------------------------------------------------
 ### Wärmebedarf Industrieöfen (>500°C)
 Annahmen:
-- Temperaturniveau: >-500′C (high)
-- Anwendungsgebiet: Industrieöfen und Hochtemperaturverfahren für Industrieprozesse [Quelle:Langfristszenarien]
+- Temperaturniveau: >-100′C (high)
+- Anwendungsgebiet: Industrieöfen und Hochtemperaturverfahren, Prozessdampf- und Warmwasser für Industrieprozesse [Quelle:Langfristszenarien]
 
 #### Gesamtwärmebedarf Prozesswärme (2045) in MWh
 
@@ -108,7 +89,7 @@ Annahmen:
 
 | Name                           | Raw-Datensatz | Dataset                   | Kommentar       |
 |--------------------------------|---------------|---------------------------|-----------------|
-| *heat_high-demand_ind_profile* |  industry_heat_profiles_med_high              | demand_heat_ind_med_high  |                 | 
+| *heat_high-demand_ind_profile* |  industry_heat_profiles              | demand_heat_high_ind  |                 | 
 
 --------------------------------------------------------------------------------------------------------------------
 ### EE-Technologien
@@ -145,17 +126,17 @@ Annahmen:
 |-----------------------------------------------------|---------------|---------|-----------|
 | _electricity-heatpump_central-capacity_potential_   |               |         |           | 
 | _electricity-heatpump_decentral-capacity_potential_ |               |         |           | 
-| _electricity-heatpump_heat_med-capacity_potential_  |               |         |           | 
+| _electricity-heatpump_heat_high-capacity_potential_ |               |         |           | 
 
 
 
 #### COP-Zeitreihen für Wärmepumpen, normiert
 
-| Name                                     | Raw-Datensatz | Dataset               | Kommentar                                                                 |
-|------------------------------------------|---------------|-----------------------|---------------------------------------------------------------------------|
-| _electricity-heatpump_central-profile_   |               | `datasets/heatpump_cop` | Zeitreihe wird auch für electricity-heatpump_decentral-profile angenommen | 
-| _electricity-heatpump_decentral-profile_ |               | `datasets/heatpump_cop` |                                                                           | 
-| _electricity-heatpump_heat_med-profile_  |heatpump_cop_heat_med            |     heatpump_cop_heat_med            | Hochtemperaturwärmepumpe                                                  |
+| Name                                     | Raw-Datensatz          | Dataset                          | Kommentar                                                                 |
+|------------------------------------------|------------------------|----------------------------------|---------------------------------------------------------------------------|
+| _electricity-heatpump_central-profile_   |                        | `datasets/heatpump_cop`          | Zeitreihe wird auch für electricity-heatpump_decentral-profile angenommen | 
+| _electricity-heatpump_decentral-profile_ |                        | `datasets/heatpump_cop`          |                                                                           | 
+| _electricity-heatpump_heat_high-profile_ | heatpump_cop_heat_high | `datasets/heatpump_cop_heat_high`| Hochtemperaturwärmepumpe                                                  |
 
 ----------------------------------------------------------------------------------------------------------------------
 ## Kraft-Wärme-Kopplung

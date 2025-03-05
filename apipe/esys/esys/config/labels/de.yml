@@ -1,7 +1,6 @@
 electricity: Strom
 heat_low_decentral: Wärme (niedrig, dezentral)
 heat_low_central: Wärme (niedrig, zentral)
-heat_med: Wärme (mittel)
 heat_high: Wärme (hoch)
 residual_waste: Restmüll
 biomass_solid: Feste Biomasse
@@ -21,9 +20,6 @@ heat_low_central-demand_ind: Wärme (niedrig, zentral) Nachfrage (Industrie)
 heat_low_decentral-demand_hh: Wärme (niedrig, dezentral) Nachfrage (Haushalte)
 heat_low_decentral-demand_cts: Wärme (niedrig, dezentral) Nachfrage (Gewerbe, Handel, Dienstleistungen)
 heat_low_decentral-demand_ind: Wärme (niedrig, dezentral) Nachfrage (Industrie)
-
-# Wärme (mittel) Nachfragen
-heat_med-demand_ind: Wärme (mittel) Nachfrage (Industrie)
 
 # Wärme (hoch) Nachfragen
 heat_high-demand_ind: Wärme (hoch) Nachfrage (Industrie)
@@ -46,23 +42,18 @@ electricity-pv_rooftop: PV (Dachflächen)
 heat_low_decentral-solarthermal_plant: Solarkollektor (dezentral)
 
 # Umwandlung
-biomass_solid-boiler_heat_med: Biomassekessel (fest, mittlere Wärme) - boiler
 biomass_solid-boiler_heat_high: Biomassekessel (fest, hohe Wärme) - boiler
-electricity-boiler_heat_med: Elektrokessel (mittlere Wärme) - boiler
 electricity-boiler_heat_high: Elektrokessel (hohe Wärme) - boiler
-h2-boiler_heat_med: Wasserstoffkessel (mittlere Wärme) - boiler
 h2-boiler_heat_high: Wasserstoffkessel (hohe Wärme) - boiler
 electricity-electrolyzer: Elektrolyseur
 
 # Wärmepumpen
 electricity-heatpump_central: Wärmepumpe (zentral)
 electricity-heatpump_decentral: Wärmepumpe (dezentral)
-electricity-heatpump_heat_med: Wärmepumpe (mittel)
+electricity-heatpump_heat_high: Wärmepumpe (hoch)
 
 # Entnahme-KWK (Kraft-Wärme-Kopplung)
-biomass_solid-extchp_heat_med: Biomasse-KWK (fest, mittel) - extchp
 biomass_solid-extchp_heat_high: Biomasse-KWK (fest, hoch) - extchp
-biomass_gas-extchp_heat_med: Biogas-KWK (mittel) - extchp
 biomass_gas-extchp_heat_high: Biogas-KWK (hoch) - extchp
 h2-extchp_heat_high: Wasserstoff-KWK (hoch) - extchp
 residual_waste-extchp_heat_high: Restmüll-KWK (hoch) - extchp

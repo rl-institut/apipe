@@ -10,10 +10,6 @@ heat_low_decentral:
   balanced:
     True
 
-heat_med:
-  balanced:
-    True
-
 heat_high:
   balanced:
     True

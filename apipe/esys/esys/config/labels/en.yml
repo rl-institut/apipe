@@ -1,7 +1,6 @@
 electricity: Electricity
 heat_low_decentral: Heat (low, decentral)
 heat_low_central: Heat (low, central)
-heat_med: Heat (medium)
 heat_high: Heat (high)
 residual_waste: Residual waste
 biomass_solid: Solid biomass
@@ -20,9 +19,6 @@ heat_low_central_demand_ind: Heat (low, central) demand (industry)
 heat_low_decentral-demand_hh: Heat (low, decentral) demand (households)
 heat_low_decentral_demand_cts: Heat (low, decentral) demand (commercial, trade, services)
 heat_low_decentral_demand_ind: Heat (low, decentral) demand (industry)
-
-# Heat medium demands
-heat_med-demand_ind: Heat (medium) demand (industry)
 
 # Heat high demands
 heat_high-demand_ind: Heat (high) demand (industry)
@@ -46,27 +42,22 @@ heat_low_decentral_solarthermal_plant: Solar thermal collector (decentral)
 heat_low_decentral_geothermal_plant: Geothermal plant (decentral)
 
 # Conversion
-biomass_solid_boiler_heat_med: Solid biomass boiler (medium heat)
 biomass_solid_boiler_heat_high: Solid biomass boiler (high heat)
-electricity_boiler_heat_med: Electric boiler (medium heat)
 electricity_boiler_heat_high: Electric boiler (high heat)
-h2_boiler_heat_med: Hydrogen boiler (medium heat)
 h2_boiler_heat_high: Hydrogen boiler (high heat)
 electricity_electrolyzer: Electrolyzer
 
 # Heat pumps
 electricity-heatpump_heat_low_central: Heat pump (low, central)
 electricity-heatpump_heat_low_decentral: Heat pump (low, decentral)
-electricity-heatpump_heat_med: Heat pump (medium)
+electricity-heatpump_heat_high: Heat pump (high)
 
 # Extraction CHP (combined heat and power)
 biomass_solid_extchp_heat_low_decentral: Solid biomass extraction CHP (low, decentral)
 biomass_solid_extchp_heat_low_central: Solid biomass extraction CHP (low, central)
-biomass_solid_extchp_heat_med: Solid biomass extraction CHP (medium)
 biomass_solid_extchp_heat_high: Solid biomass extraction CHP (high)
 biomass_gas_extchp_heat_low_decentral: Biogas extraction CHP (low, decentral)
 biomass_gas_extchp_heat_low_central: Biogas extraction CHP (low, central)
-biomass_gas_extchp_heat_med: Biogas extraction CHP (medium)
 biomass_gas_extchp_heat_high: Biogas extraction CHP (high)
 h2_extchp_heat_high: Hydrogen extraction CHP (high)
 residual_waste_extchp_heat_high: Residual waste extraction CHP (high)
@@ -75,10 +66,8 @@ residual_waste_extchp_heat_low_central: Residual waste extraction CHP (low, cent
 # Backpressure CHP
 biomass_solid_bpchp_heat_low_decentral: Solid biomass backpressure CHP (low, decentral)
 biomass_solid_bpchp_heat_low_central: Solid biomass backpressure CHP (low, central)
-biomass_solid_bpchp_heat_med: Solid biomass backpressure CHP (medium)
 biomass_gas_bpchp_heat_low_decentral: Biogas backpressure CHP (low, decentral)
 biomass_gas_bpchp_heat_low_central: Biogas backpressure CHP (low, central)
-biomass_gas_bpchp_heat_med: Biogas backpressure CHP (medium)
 
 # Storage
 electricity-small_battery_storage: Battery storage (small)

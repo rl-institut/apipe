@@ -101,20 +101,20 @@ module heatpump_cop:
     config: config["store"]["datasets"]["heatpump_cop"]
 use rule * from heatpump_cop as datasets_heatpump_cop_*
 
-module heatpump_cop_heat_med:
-    snakefile: "heatpump_cop_heat_med/create.smk"
-    config: config["store"]["datasets"]["heatpump_cop_heat_med"]
-use rule * from heatpump_cop_heat_med as datasets_heatpump_cop_heat_med_*
+module heatpump_cop_heat_high:
+    snakefile: "heatpump_cop_heat_high/create.smk"
+    config: config["store"]["datasets"]["heatpump_cop_heat_high"]
+use rule * from heatpump_cop_heat_high as datasets_heatpump_cop_heat_high_*
 
 module demand_heat_region:
     snakefile: "demand_heat_region/create.smk"
     config: config["store"]["datasets"]["demand_heat_region"]
 use rule * from demand_heat_region as datasets_demand_heat_region_*
 
-module demand_heat_ind_med_high:
-    snakefile: "demand_heat_ind_med_high/create.smk"
-    config: config["store"]["datasets"]["demand_heat_ind_med_high"]
-use rule * from demand_heat_ind_med_high as datasets_demand_heat_ind_med_high_*
+module demand_heat_high_ind:
+    snakefile: "demand_heat_high_ind/create.smk"
+    config: config["store"]["datasets"]["demand_heat_high_ind"]
+use rule * from demand_heat_high_ind as datasets_demand_heat_high_ind_*
 
 module renewable_feedin:
     snakefile: "renewable_feedin/create.smk"

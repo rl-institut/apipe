@@ -9,8 +9,8 @@ load: {
     "file": "demand_cts_power_timeseries.csv",
   },
   "electricity-demand_mob-profile": {
-    "dataset": "renewable_feedin",
-    "file": "pv_feedin_timeseries.csv",
+    "dataset": "demand_emobility_region",
+    "file": "emobility_charging_demand_12064428_normalized.csv",
   },
   "electricity-demand_ind-profile": {
     "dataset": "demand_electricity_region",
@@ -40,12 +40,8 @@ load: {
     "dataset": "demand_heat_region",
     "file": "demand_ind_heat_timeseries.csv",
   },
-  "heat_med-demand_ind-profile": {
-    "dataset": "demand_heat_ind_med_high",
-    "file": "demand_ind_heat_med_timeseries.csv",
-  },
   "heat_high-demand_ind-profile": {
-    "dataset": "demand_heat_ind_med_high",
+    "dataset": "demand_heat_high_ind",
     "file": "demand_ind_heat_high_timeseries.csv",
   }
 }
@@ -90,8 +86,8 @@ efficiencies: {
     "dataset": "heatpump_cop",
     "file": "heatpump_cop_timeseries.csv",
   },
-  "electricity-heatpump_heat_med-profile": {
-    "dataset": "heatpump_cop_heat_med",
-    "file": "heatpump_cop_heat_med_timeseries.csv",
+  "electricity-heatpump_heat_high-profile": {
+    "dataset": "heatpump_cop_heat_high",
+    "file": "heatpump_cop_heat_high_timeseries.csv",
   },
 }

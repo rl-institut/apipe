@@ -15,7 +15,7 @@ spezifisch für die Region **r120640428428** :
 | *electricity-demand_hh*  | demandregio   | demand_electricity_region |           |
 | *electricity-demand_cts* | demandregio   | demand_electricity_region |           |
 | *electricity-demand_ind* | demandregio   | demand_electricity_region |           |
-| *electricity-demand_mob* |               |                           |           |
+| *electricity-demand_mob* | egon_ev       | demand_emobility_region   |           |
  
 
 *[Platzhalter für weiterführende Erklärungen und Annahmen]*
@@ -108,9 +108,15 @@ Annahmen:
 
 #### Ausbaupotentiale EE-Technologie in MW
 
+##### Wind
+
+- In Rüdersdorf keine Windpotenzialflächen nach Regionalplan 2024 (1. Entwurf)
+- Spalte `stp_2024_vr` gibt Flächenpotenziale in km², Umrechnung in MW mittels
+  24 MW/km² (s. `technology_data.json`)
+
 | Name                                                       | Raw-Datensatz          | Dataset                         | Kommentar                                                      |
 |------------------------------------------------------------|------------------------|---------------------------------|----------------------------------------------------------------|
-| _electricity-wind-capacity_potential_                      |                        |                                 | Keine Windpotenzialflächen nach Regionalplan 2024 (1. Entwurf) |
+| _electricity-wind-capacity_potential_                      | rpg_ols_regional_plan  | potentialarea_wind_region       | Keine Windpotenzialflächen nach Regionalplan 2024 (1. Entwurf) |
 | _electricity-pv_ground-capacity_potential_                 | oei_agri_pv            | potentialarea_pv_ground_region2 | Bezeichnung in Daten: *soil_quality_low*                       |
 | _electricity-pv_agri_vertical-capacity_potential_          | oei_agri_pv            | potentialarea_pv_ground_region2 | Bezeichnung in Daten: *soil_quality_medium*                    |
 | _electricity-pv_agri_horizontal-capacity_potential_        | oei_agri_pv            | potentialarea_pv_ground_region2 | Bezeichnung in Daten: *permanent_crops*                        |

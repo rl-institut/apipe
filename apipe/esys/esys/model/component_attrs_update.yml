@@ -308,93 +308,93 @@ electricity-heatpump_heat_high:
     output_parameters: "{}"
 
 #######################################################
-# extraction /  KWK-Dampfturbine
+# KWK-Dampfturbine
 
-biomass_solid-extchp_heat_low_decentral:
+biomass_solid-bpchp_heat_low_decentral:
   carrier: biomass_solid
-  tech: extchp_heat_low_decentral
-  type: extraction
+  tech: bpchp_heat_low_decentral
+  type: backpressure
   foreign_keys:
     fuel_bus: biomass_solid
     electricity_bus: electricity
     heat_bus: heat_low_decentral
 
-biomass_solid-extchp_heat_low_central:
+biomass_solid-bpchp_heat_low_central:
   carrier: biomass_solid
-  tech: extchp_heat_low_central
-  type: extraction
+  tech: bpchp_heat_low_central
+  type: backpressure
   foreign_keys:
     fuel_bus: biomass_solid
     electricity_bus: electricity
     heat_bus: heat_low_central
 
 
-biomass_solid-extchp_heat_high:
+biomass_solid-bpchp_heat_high:
   carrier: biomass_solid
-  tech: extchp_heat_high
-  type: extraction
+  tech: bpchp_heat_high
+  type: backpressure
   foreign_keys:
     fuel_bus: biomass_solid
     electricity_bus: electricity
     heat_bus: heat_high
 
-biomass_gas-extchp_heat_low_decentral:
+biomass_gas-bpchp_heat_low_decentral:
   carrier: biomass_gas
-  tech: extchp_heat_low_decentral
-  type: extraction
+  tech: bpchp_heat_low_decentral
+  type: backpressure
   foreign_keys:
     fuel_bus: biomass_gas
     electricity_bus: electricity
     heat_bus: heat_low_decentral
 
-biomass_gas-extchp_heat_low_central:
+biomass_gas-bpchp_heat_low_central:
   carrier: biomass_gas
-  tech: extchp_heat_low_central
-  type: extraction
+  tech: bpchp_heat_low_central
+  type: backpressure
   foreign_keys:
     fuel_bus: biomass_gas
     electricity_bus: electricity
     heat_bus: heat_low_central
 
-biomass_gas-extchp_heat_high:
+biomass_gas-bpchp_heat_high:
   carrier: biomass_gas
-  tech: extchp_heat_high
-  type: extraction
+  tech: bpchp_heat_high
+  type: backpressure
   foreign_keys:
     fuel_bus: biomass_gas
     electricity_bus: electricity
     heat_bus: heat_high
 
-h2-extchp_heat_high:
+h2-bpchp_heat_high:
   carrier: h2
-  tech: extchp_heat_high
-  type: extraction
+  tech: bpchp_heat_high
+  type: backpressure
   foreign_keys:
     fuel_bus: h2
     electricity_bus: electricity
     heat_bus: heat_high
 
 
-residual_waste-extchp_heat_high:
+residual_waste-bpchp_heat_high:
   carrier: residual_waste
-  tech: extchp_heat_high
-  type: extraction
+  tech: bpchp_heat_high
+  type: backpressure
   foreign_keys:
     fuel_bus: residual_waste
     electricity_bus: electricity
     heat_bus: heat_high
 
-residual_waste-extchp_heat_low_central:
+residual_waste-bpchp_heat_low_central:
   carrier: residual_waste
-  tech: extchp_heat_low_central
-  type: extraction
+  tech: bpchp_heat_low_central
+  type: backpressure
   foreign_keys:
     fuel_bus: residual_waste
     electricity_bus: electricity
     heat_bus: heat_low_central
 
 #######################################################
-# backpressure
+# BHKW heat low
 biomass_solid-bpchp_heat_low_decentral:
   carrier: biomass_solid
   tech: bpchp_heat_low_decentral

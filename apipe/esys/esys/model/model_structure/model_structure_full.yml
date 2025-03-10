@@ -74,22 +74,18 @@ components:
   - electricity-heatpump_decentral
   - electricity-heatpump_heat_high
 
-  # extraction KWK-Dampfturbine
-  #- biomass_solid-extchp_heat_low_decentral
-  #- biomass_solid-extchp_heat_low_central
-  - biomass_solid-extchp_heat_high
-  #- biomass_gas-extchp_heat_low_decentral
-  #- biomass_gas-extchp_heat_low_central
-  - biomass_gas-extchp_heat_high
-  - h2-extchp_heat_high
-  - residual_waste-extchp_heat_high
-  - residual_waste-extchp_heat_low_central
+  # KWK-Dampfturbine
+  - biomass_solid-bpchp_heat_high
+  - biomass_gas-bpchp_heat_high
+  - h2-bpchp_heat_high
+  - residual_waste-bpchp_heat_high
 
-  # backpressure
+  # BHKWs heat low
   - biomass_solid-bpchp_heat_low_decentral
   - biomass_solid-bpchp_heat_low_central
   - biomass_gas-bpchp_heat_low_decentral
   - biomass_gas-bpchp_heat_low_central
+  - residual_waste-bpchp_heat_low_central
 
   # storage
   - electricity-small_battery_storage

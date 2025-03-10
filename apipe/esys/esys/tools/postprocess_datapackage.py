@@ -3,16 +3,21 @@ from pathlib import Path
 import pandas as pd
 
 from apipe.esys.esys.model import model_structures
+from apipe.esys.esys.tools import update_foreign_keys_for_heatpumps as hp
 
+# 1. Update foreign keys for heatpumps
+hp.update_foreign_keys_hp()
+
+# 2. emob and output parameters postprocessing
 # Set Paths
 BASE_PATH = Path(__file__).parents[3] / "store"
 DATA_PATH = (
-        BASE_PATH / "appdata" / "esys" / "2045_scenario" / "preprocessed" / "data"
+    BASE_PATH / "appdata" / "esys" / "2045_scenario" / "preprocessed" / "data"
 )
 
 DATASET_EMOB_PATH = BASE_PATH / "datasets" / "demand_emobility_region" / "data"
 DEMAND_FILE_PATH = (
-        DATA_PATH / "sequences" / "electricity-demand_mob_profile.csv"
+    DATA_PATH / "sequences" / "electricity-demand_mob_profile.csv"
 )
 
 # Load demand profile
@@ -36,8 +41,8 @@ def update_demand_mob_profile():
 
     for region in regions:
         region_file = (
-                DATASET_EMOB_PATH
-                / f"emobility_charging_demand_{region}_normalized.csv"
+            DATASET_EMOB_PATH
+            / f"emobility_charging_demand_{region}_normalized.csv"
         )
 
         if not region_file.exists():

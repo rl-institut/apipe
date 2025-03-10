@@ -38,26 +38,27 @@ def update_foreign_keys(datapackage_path, updates_dict, target_field):
     print("datapackage.json successfully updated.")
 
 
-# Parameters
-scenario = "2045_scenario"
-scenario_path = (
-    Path(__file__).resolve().parents[3]
-    / "store"
-    / "appdata"
-    / "esys"
-    / scenario
-    / "preprocessed"
-)  # Path to your datapackage.json file
+def update_foreign_keys_hp():
+    # Parameters
+    scenario = "2045_scenario"
+    scenario_path = (
+        Path(__file__).resolve().parents[3]
+        / "store"
+        / "appdata"
+        / "esys"
+        / scenario
+        / "preprocessed"
+    )  # Path to your datapackage.json file
 
-datapackage_path = scenario_path / "datapackage.json"
+    datapackage_path = scenario_path / "datapackage.json"
 
-updates_dict = {
-    "data/elements/electricity-heatpump_central.csv": "electricity-heatpump_central_profile",
-    "data/elements/electricity-heatpump_decentral.csv": "electricity-heatpump_decentral_profile",
-    "data/elements/electricity-heatpump_heat_high.csv":"electricity-heatpump_heat_high_profile"
-}
+    updates_dict = {
+        "data/elements/electricity-heatpump_central.csv": "electricity-heatpump_central_profile",
+        "data/elements/electricity-heatpump_decentral.csv": "electricity-heatpump_decentral_profile",
+        "data/elements/electricity-heatpump_heat_high.csv":"electricity-heatpump_heat_high_profile"
+    }
 
-target_field = "efficiency"
+    target_field = "efficiency"
 
-# Run the function
-update_foreign_keys(datapackage_path, updates_dict, target_field)
+    # Run the function
+    update_foreign_keys(datapackage_path, updates_dict, target_field)

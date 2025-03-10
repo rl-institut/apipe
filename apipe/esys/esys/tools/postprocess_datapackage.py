@@ -84,6 +84,14 @@ def update_output_parameters():
 
     output_parameters = {
         "r120640428428-h2-commodity": '{"full_load_hours_max":6500.0}',
+        "r120640428428-biomass_gas-commodity": '{"summed_max":1}',
+        "r120640428428-biomass_solid-commodity": '{"summed_max":1}',
+        "r120640472472-biomass_gas-commodity": '{"summed_max":1}',
+        "r120640472472-biomass_solid-commodity": '{"summed_max":1}',
+        "r120670124124-biomass_gas-commodity": '{"summed_max":1}',
+        "r120670124124-biomass_solid-commodity": '{"summed_max":1}',
+        "r120670201201-biomass_gas-commodity": '{"summed_max":1}',
+        "r120670201201-biomass_solid-commodity": '{"summed_max":1}',
     }
 
     # Iterate through the output_parameters

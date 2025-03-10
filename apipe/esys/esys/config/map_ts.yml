@@ -53,15 +53,15 @@ feedin: {
   },
   "electricity-pv_ground-profile": {
     "dataset": "renewable_feedin",
-    "file": "pv_feedin_timeseries.csv",
+    "file": "pv_ground_feedin_timeseries.csv",
   },
   "electricity-pv_agri_horizontal-profile": {
     "dataset": "renewable_feedin",
-    "file": "pv_feedin_timeseries.csv",
+    "file": "pv_ground_elevated_feedin_timeseries.csv",
   },
   "electricity-pv_agri_vertical-profile": {
     "dataset": "renewable_feedin",
-    "file": "pv_feedin_timeseries.csv",
+    "file": "pv_ground_vertical_bifacial_feedin_timeseries.csv",
   },
   "electricity-pv_rooftop-profile": {
     "dataset": "renewable_feedin",

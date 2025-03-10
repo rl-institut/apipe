@@ -65,7 +65,7 @@ feedin: {
   },
   "electricity-pv_rooftop-profile": {
     "dataset": "renewable_feedin",
-    "file": "pv_feedin_timeseries.csv",
+    "file": "pv_ground_feedin_timeseries.csv",
   },
   "heat_low_decentral-solarthermal_plant-profile": {
     "dataset": "renewable_feedin",

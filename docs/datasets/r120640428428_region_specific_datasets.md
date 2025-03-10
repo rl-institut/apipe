@@ -108,14 +108,14 @@ Annahmen:
 
 #### Ausbaupotentiale EE-Technologie in MW
 
-| Name                                                       | Raw-Datensatz          | Dataset                         | Kommentar                                                      |
-|------------------------------------------------------------|------------------------|---------------------------------|----------------------------------------------------------------|
-| _electricity-wind-capacity_potential_                      |                        |                                 | Keine Windpotenzialflächen nach Regionalplan 2024 (1. Entwurf) |
-| _electricity-pv_ground-capacity_potential_                 | oei_agri_pv            | potentialarea_pv_ground_region2 | Bezeichnung in Daten: *soil_quality_low*                       |
-| _electricity-pv_agri_vertical-capacity_potential_          | oei_agri_pv            | potentialarea_pv_ground_region2 | Bezeichnung in Daten: *soil_quality_medium*                    |
-| _electricity-pv_agri_horizontal-capacity_potential_        | oei_agri_pv            | potentialarea_pv_ground_region2 | Bezeichnung in Daten: *permanent_crops*                        |
-| _electricity-pv_rooftop-capacity_potential_                | wfbb_pv_roof_potential | potentialarea_pv_roof_region2   |                                                                |
-| _heat_low_decentral-solarthermal_plant-capacity_potential_ |                        |                                 |                                                                |
+| Name                                                       | Raw-Datensatz          | Dataset                         | Kommentar                                                                                         |
+|------------------------------------------------------------|------------------------|---------------------------------|---------------------------------------------------------------------------------------------------|
+| _electricity-wind-capacity_potential_                      |                        |                                 | Keine Windpotenzialflächen nach Regionalplan 2024 (1. Entwurf)                                    |
+| _electricity-pv_ground-capacity_potential_                 | oei_agri_pv            | potentialarea_pv_ground_region2 | Bezeichnung in Daten: *soil_quality_low*                                                          |
+| _electricity-pv_agri_vertical-capacity_potential_          | oei_agri_pv            | potentialarea_pv_ground_region2 | Bezeichnung in Daten: *soil_quality_medium*                                                       |
+| _electricity-pv_agri_horizontal-capacity_potential_        | oei_agri_pv            | potentialarea_pv_ground_region2 | Bezeichnung in Daten: *permanent_crops*                                                           |
+| _electricity-pv_rooftop-capacity_potential_                | wfbb_pv_roof_potential | potentialarea_pv_roof_region2   |                                                                                                   |
+| _heat_low_decentral-solarthermal_plant-capacity_potential_ |                        |                                 | Annahme: 50 % von PV-roof, Finetuning falls PV-roof oder Solarthermie komplett ausgeschöpft wird  |
 
 ----------------------------------------------------------------------------------------------------------------------
 ### Wärmepumpen 

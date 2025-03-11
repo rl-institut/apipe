@@ -15,13 +15,13 @@ build_datapackage:
 
 optimize:
   filename_metadata: datapackage.json
-  solver: cbc
+  solver: gurobi
   solve_kwargs:
     tee: True
     keepfiles: True
   write_lp_file: False
-  cmdline_options:
-    AllowableGap: 0.01
+#  cmdline_options:
+#    AllowableGap: 0.01
   debug: false
   receive_duals: false
   el_gas_relation: electricity_gas_relation  # appears in build_datapackage as well

@@ -292,8 +292,8 @@ if __name__ == "__main__":
         logger.info(
             f"Solving with solver '{esys_conf.settings.optimize.solver}' "
             f"using solve_kwargs '{esys_conf.settings.optimize.solve_kwargs}' "
-            f"and cmdline_options "
-            f"'{esys_conf.settings.optimize.cmdline_options}'."
+            # f"and cmdline_options "
+            # f"'{esys_conf.settings.optimize.cmdline_options}'."
         )
 
         with Timer(text="Solved the model.", logger=logger.info):
@@ -305,7 +305,7 @@ if __name__ == "__main__":
             m.solve(
                 solver=esys_conf.settings.optimize.solver,
                 solve_kwargs=esys_conf.settings.optimize.solve_kwargs,
-                cmdline_options=esys_conf.settings.optimize.cmdline_options,
+                # cmdline_options=esys_conf.settings.optimize.cmdline_options,
             )
 
     except:  # noqa: E722

@@ -1,46 +1,4 @@
 write_default_scalars:
-  from_to_capacity_link: {
-    "var_name": "from_to_capacity",
-    "type": link,
-    "tech": None,
-    "which": "high_capacity",
-    "var_unit": "MW",
-  }
-  to_from_capacity_link: {
-    "var_name": "to_from_capacity",
-    "type": link,
-    "tech": None,
-    "which": "high_capacity",
-    "var_unit": "MW",
-  }
-  loss_link: {# TODO: Add useful loss to default-option in write_default_scalars.py
-    "var_name": "loss",
-    "type": link,
-    "tech": None,
-    "which": "zeros",
-    "var_unit": "None",
-  }
-  input_parameters_storage: {
-    "var_name": "input_parameters",
-    "type": storage,
-    "tech": None,
-    "which": "variable_costs",
-    "var_unit": "None",
-  }
-  input_parameters: {
-    "var_name": "input_parameters",
-    "type": None,
-    "tech": None,
-    "which": "empty_dict",
-    "var_unit": "None",
-  }
-  marginal_cost_volatile: {
-    "var_name": "marginal_cost",
-    "type": volatile,
-    "tech": None,
-    "which": "zeros",
-    "var_unit": "EUR/MWh",
-  }
   emissions_not_modeled: {
     "var_name": "emissions_not_modeled",
     "type": None,

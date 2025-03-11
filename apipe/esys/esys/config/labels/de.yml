@@ -53,11 +53,11 @@ electricity-heatpump_decentral: Wärmepumpe (dezentral)
 electricity-heatpump_heat_high: Wärmepumpe (hoch)
 
 # Entnahme-KWK (Kraft-Wärme-Kopplung)
-biomass_solid-extchp_heat_high: Biomasse-KWK (fest, hoch) - extchp
-biomass_gas-extchp_heat_high: Biogas-KWK (hoch) - extchp
-h2-extchp_heat_high: Wasserstoff-KWK (hoch) - extchp
-residual_waste-extchp_heat_high: Restmüll-KWK (hoch) - extchp
-residual_waste-extchp_heat_low_central: Restmüll-KWK (niedrig, zentral) - extchp
+biomass_solid-bpchp_heat_high: Biomasse-KWK (fest, hoch) - bpchp
+biomass_gas-bpchp_heat_high: Biogas-KWK (hoch) - bpchp
+h2-bpchp_heat_high: Wasserstoff-KWK (hoch) - bpchp
+residual_waste-bpchp_heat_high: Restmüll-KWK (hoch) - bpchp
+residual_waste-bpchp_heat_low_central: Restmüll-KWK (niedrig, zentral) - bpchp
 
 # Gegendruck-KWK
 biomass_solid-bpchp_heat_low_decentral: Biomasse-Gegendruck-KWK (fest, niedrig, dezentral) - bpchp

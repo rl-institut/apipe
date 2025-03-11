@@ -10,7 +10,7 @@ load: {
   },
   "electricity-demand_mob-profile": {
     "dataset": "demand_emobility_region",
-    "file": "emobility_charging_demand_12064428_normalized.csv",
+    "file": "emobility_charging_demand_r120640428428_normalized.csv",
   },
   "electricity-demand_ind-profile": {
     "dataset": "demand_electricity_region",
@@ -53,19 +53,19 @@ feedin: {
   },
   "electricity-pv_ground-profile": {
     "dataset": "renewable_feedin",
-    "file": "pv_feedin_timeseries.csv",
+    "file": "pv_ground_feedin_timeseries.csv",
   },
   "electricity-pv_agri_horizontal-profile": {
     "dataset": "renewable_feedin",
-    "file": "pv_feedin_timeseries.csv",
+    "file": "pv_ground_elevated_feedin_timeseries.csv",
   },
   "electricity-pv_agri_vertical-profile": {
     "dataset": "renewable_feedin",
-    "file": "pv_feedin_timeseries.csv",
+    "file": "pv_ground_vertical_bifacial_feedin_timeseries.csv",
   },
   "electricity-pv_rooftop-profile": {
     "dataset": "renewable_feedin",
-    "file": "pv_feedin_timeseries.csv",
+    "file": "pv_ground_feedin_timeseries.csv",
   },
   "heat_low_decentral-solarthermal_plant-profile": {
     "dataset": "renewable_feedin",

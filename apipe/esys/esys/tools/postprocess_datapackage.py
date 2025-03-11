@@ -88,20 +88,31 @@ def update_output_parameters():
     """
 
     output_parameters = {
-        "r120640428428-h2-commodity": '{"full_load_hours_max":6500.0}',
-        "r120640428428-biomass_gas-commodity": '{"summed_max":1}',
-        "r120640428428-biomass_solid-commodity": '{"summed_max":1}',
-        "r120640472472-biomass_gas-commodity": '{"summed_max":1}',
-        "r120640472472-biomass_solid-commodity": '{"summed_max":1}',
-        "r120670124124-biomass_gas-commodity": '{"summed_max":1}',
-        "r120670124124-biomass_solid-commodity": '{"summed_max":1}',
-        "r120670201201-biomass_gas-commodity": '{"summed_max":1}',
-        "r120670201201-biomass_solid-commodity": '{"summed_max":1}',
+        "r120640428428-h2-commodity": '{"full_load_time_max":6500.0}',
+        "r120640428428-biomass_gas-commodity": '{"full_load_time_max":1}',
+        "r120640428428-biomass_solid-commodity": '{"full_load_time_max":1}',
+        "r120640472472-biomass_gas-commodity": '{"full_load_time_max":1}',
+        "r120640472472-biomass_solid-commodity": '{"full_load_time_max":1}',
+        "r120670124124-biomass_gas-commodity": '{"full_load_time_max":1}',
+        "r120670124124-biomass_solid-commodity": '{"full_load_time_max":1}',
+        "r120670201201-biomass_gas-commodity": '{"full_load_time_max":1}',
+        "r120670201201-biomass_solid-commodity": '{"full_load_time_max":1}',
     }
+
+
+    # Regions from model structure
+    valid_regions = model_structures["model_structure_full"]["regions"]
 
     # Iterate through the output_parameters
     for key, value in output_parameters.items():
-        # Check if the key matches any component in the model structure
+        # Extract region ID from the key (assuming it's the first part of the key before the first "-")
+        region_id = key.split("-")[0]
+
+        # Check if the region is in the valid region list
+        if region_id not in valid_regions:
+            print(f"Skipping {key}: Region {region_id} not in model structure")
+            continue
+
         matching_components = [
             comp
             for comp in model_structures["model_structure_full"]["components"]

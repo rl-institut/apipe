@@ -97,7 +97,7 @@ components:
   - h2-export
 
   # Dummys for model development
-  - electricity-export
+#  - electricity-export
 
   # transmission
   - h2-transmission

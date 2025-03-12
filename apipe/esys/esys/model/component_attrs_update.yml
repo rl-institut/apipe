@@ -393,61 +393,6 @@ residual_waste-bpchp_heat_low_central:
     electricity_bus: electricity
     heat_bus: heat_low_central
 
-#######################################################
-# BHKW heat low
-biomass_solid-bpchp_heat_low_decentral:
-  carrier: biomass_solid
-  tech: bpchp_heat_low_decentral
-  type: backpressure
-  foreign_keys:
-    fuel_bus: biomass_solid
-    electricity_bus: electricity
-    heat_bus: heat_low_decentral
-
-biomass_solid-bpchp_heat_low_central:
-  carrier: biomass_solid
-  tech: bpchp_heat_low_central
-  type: backpressure
-  foreign_keys:
-    fuel_bus: biomass_solid
-    electricity_bus: electricity
-    heat_bus: heat_low_central
-
-biomass_solid-bpchp_heat_high:
-  carrier: biomass_solid
-  tech: bpchp_heat_high
-  type: backpressure
-  foreign_keys:
-    fuel_bus: biomass_solid
-    electricity_bus: electricity
-    heat_bus: heat_high
-
-biomass_gas-bpchp_heat_low_decentral:
-  carrier: biomass_gas
-  tech: bpchp_heat_low_decentral
-  type: backpressure
-  foreign_keys:
-    fuel_bus: biomass_gas
-    electricity_bus: electricity
-    heat_bus: heat_low_decentral
-
-biomass_gas-bpchp_heat_low_central:
-  carrier: biomass_gas
-  tech: bpchp_heat_low_central
-  type: backpressure
-  foreign_keys:
-    fuel_bus: biomass_gas
-    electricity_bus: electricity
-    heat_bus: heat_low_central
-
-biomass_gas-bpchp_heat_high:
-  carrier: biomass_gas
-  tech: bpchp_heat_high
-  type: backpressure
-  foreign_keys:
-    fuel_bus: biomass_gas
-    electricity_bus: electricity
-    heat_bus: heat_high
 
 #######################################################
 # storage
@@ -526,6 +471,8 @@ h2-transmission:
   foreign_keys:
     from_bus: h2
     to_bus: h2
+  defaults:
+    marginal_cost: 5.81
 
 electricity-transmission:
   carrier: electricity
@@ -534,6 +481,8 @@ electricity-transmission:
   foreign_keys:
     from_bus: electricity
     to_bus: electricity
+  defaults:
+    marginal_cost: 5.81
 
 heat_low_central-transmission:
   carrier: heat_low_central

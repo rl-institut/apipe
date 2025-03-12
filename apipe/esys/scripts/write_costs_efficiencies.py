@@ -80,8 +80,13 @@ def map_var_value_costs_effs(df_1, df_2, cols):
         var_name = row["var_name"]
         carrier = row["carrier"]
         tech = row["tech"]
+        region = row["region"]
         df_3 = multi_filter_df(
-            df_2, var_name=var_name, carrier=carrier, tech=tech
+            df_2,
+            var_name=var_name,
+            carrier=carrier,
+            tech=tech,
+            region=region,
         )
 
         if not df_3.empty:
@@ -89,9 +94,9 @@ def map_var_value_costs_effs(df_1, df_2, cols):
                 df_1.loc[index, col] = df_3[col].values[0]
         else:
             raise ValueError(
-                f"Value of var_name '{var_name}', carrier '{carrier}' and tech"
-                f" '{tech}' is missing in {path_raw_costs_eff} or "
-                f"{path_region_specific_scalars}."
+                f"Value of var_name '{var_name}', carrier '{carrier}', tech"
+                f" '{tech}' and region '{region}' is missing in "
+                f"{path_raw_costs_eff} or {path_region_specific_scalars}."
             )
 
     return df_1

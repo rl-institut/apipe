@@ -61,7 +61,6 @@ components:
   - electricity-pv_rooftop
 
   - heat_low_decentral-solarthermal_plant
-#  - heat_low_decentral-geothermal_plant
 
   # conversion
   - biomass_solid-boiler_heat_high

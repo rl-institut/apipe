@@ -94,8 +94,6 @@ components:
 
   # excess
   - h2-export
-
-  # Dummys for model development
   - electricity-export
 
   # transmission

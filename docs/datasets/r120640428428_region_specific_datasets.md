@@ -1,4 +1,4 @@
-# Regionsspezifischer Datensatz für Rüdersdorf b Berlin (r120640428428)
+# Regionsspezifischer Datensatz für Rüdersdorf b Berlin (r120640428428)  ---------- todo adapt for case study 2
 
 Die meisten der Rohdatensätze können für eine beliebige Region in Deutschland
 verwendet werden. Einige sind jedoch nur für eine Teilregion verfügbar oder

@@ -87,25 +87,19 @@ def update_output_parameters():
     - Saves the modified CSV file.
     """
 
-    output_parameters = {
-        "r120640428428-h2-commodity": '{"full_load_time_max":6500.0}',
-        "r120640428428-biomass_gas-commodity": '{"full_load_time_max":1}',
-        "r120640428428-biomass_solid-commodity": '{"full_load_time_max":1}',
-        "r120640472472-biomass_gas-commodity": '{"full_load_time_max":1}',
-        "r120640472472-biomass_solid-commodity": '{"full_load_time_max":1}',
-        "r120670124124-biomass_gas-commodity": '{"full_load_time_max":1}',
-        "r120670124124-biomass_solid-commodity": '{"full_load_time_max":1}',
-        "r120670201201-biomass_gas-commodity": '{"full_load_time_max":1}',
-        "r120670201201-biomass_solid-commodity": '{"full_load_time_max":1}',
+    output_parameters = {  # todo adapt for case study 2
+        "r10020000000-h2-commodity": '{"full_load_time_max":6500.0}',
+        "r10020000000-biomass_gas-commodity": '{"full_load_time_max":1}',
+        "r10020000000-biomass_solid-commodity": '{"full_load_time_max":1}',
     }
-
 
     # Regions from model structure
     valid_regions = model_structures["model_structure_full"]["regions"]
 
     # Iterate through the output_parameters
     for key, value in output_parameters.items():
-        # Extract region ID from the key (assuming it's the first part of the key before the first "-")
+        # Extract region ID from the key (assuming it's the first part of the
+        # key before the first "-")
         region_id = key.split("-")[0]
 
         # Check if the region is in the valid region list

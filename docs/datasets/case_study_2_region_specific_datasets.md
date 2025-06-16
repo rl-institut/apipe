@@ -1,9 +1,8 @@
 # Regionsspezifischer Datensatz für Rüdersdorf b Berlin (r120640428428)  ---------- todo adapt for case study 2
-
+TODO: holds documentation for case-study-1 and needs to be updated
 Die meisten der Rohdatensätze können für eine beliebige Region in Deutschland
 verwendet werden. Einige sind jedoch nur für eine Teilregion verfügbar oder
-spezifisch für die Region  **r120640428428 (Rüdersdorf b Berlin)**, **r120640472472 (Strausberg)**, **r120670124124 (Erkner)**, **r120670201201(Grünheide)** :
-
+spezifisch für die Region  **r10020000000 (Kiel)**.
 ## Daten für die Energiesystemmodellierung
 
 ### Strombedarf

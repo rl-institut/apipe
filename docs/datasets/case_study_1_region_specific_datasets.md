@@ -1,12 +1,19 @@
-# Regionsspezifischer Datensatz Case Study: Erkner, Rüdersdorf (b Berlin), Strausberg, Grünheide (Mark)
+# Regionsspezifischer Datensatz Case Study: Oderland_Spree
 
 Die meisten der Rohdatensätze können für eine beliebige Region in Deutschland
 verwendet werden. Einige sind jedoch nur für eine Teilregion verfügbar oder
-spezifisch für die Region  **r120640428428 (Rüdersdorf b Berlin)**, **r120640472472 (Strausberg)**, **r120670124124 (Erkner)**, **r120670201201(Grünheide)** :
+spezifisch für die Gemeinden:  
+- Rüdersdorf b Berlin (120640428428)
+- Strausberg (r120640472472) 
+- Erkner (r120670124124), 
+- Grünheide (r120670201201).
 
 TODO: Links zur Doku einfügen
+
 TODO: heatpump_cop_heat_high Doku ergänzen 
+
 TODO: Quelle zu Anschlussleistung genehmigt Wasserstoffkernnetz
+
 ## Daten für die Energiesystemmodellierung
 
 ### Strombedarf
@@ -84,7 +91,7 @@ Annahmen:
 
 | Name                   | Raw-Datensatz | Dataset                                                       | Kommentar       |
 |------------------------|---------------|---------------------------------------------------------------|-----------------|
-| *heat_high-demand_ind* |               |                                                               | 0.8 *                |
+| *heat_high-demand_ind* |  technology_data             |        technology_data                                                       |                 |
 
 -Quelle: https://github.com/asandhaa/ElectricalAndHeatProfiles/blob/main/IAEE%20Conference%20Paper%20Anna%20Sandhaas.pdf
 basiert auf AGEB-Anwendungsbilanzen, durchschnittlicher Anteil für Prozesswärme 0.8 und Raumwärme und Warmwasser 0.2 über alle Industriezweige
@@ -129,7 +136,7 @@ basiert auf AGEB-Anwendungsbilanzen, durchschnittlicher Anteil für Prozesswärm
 | _electricity-pv_agri_vertical-capacity_potential_          | oei_agri_pv            | potentialarea_pv_ground_region2 | Bezeichnung in Daten: *soil_quality_medium*                    |
 | _electricity-pv_agri_horizontal-capacity_potential_        | oei_agri_pv            | potentialarea_pv_ground_region2 | Bezeichnung in Daten: *permanent_crops*                        |
 | _electricity-pv_rooftop-capacity_potential_                | wfbb_pv_roof_potential | potentialarea_pv_roof_region2   | Annahme: 78 % von potentialarea_pv_roof_region2                |
-| _heat_low_decentral-solarthermal_plant-capacity_potential_ |                        |                                 | Annahme: 22 % von potentialarea_pv_roof_region2                |
+| _heat_low_decentral-solarthermal_plant-capacity_potential_ |    technology_data                    |       technology_data                          | Annahme: 22 % von potentialarea_pv_roof_region2                |
 
 ----------------------------------------------------------------------------------------------------------------------
 ### Wärmepumpen 
@@ -138,9 +145,9 @@ basiert auf AGEB-Anwendungsbilanzen, durchschnittlicher Anteil für Prozesswärm
 
 | Name                                                | Raw-Datensatz | Dataset | Kommentar                   |
 |-----------------------------------------------------|---------------|---------|-----------------------------|
-| _electricity-heatpump_central-capacity_potential_   | -             | -       | Annahme: keine Ausbaugrenze | 
-| _electricity-heatpump_decentral-capacity_potential_ | -             | -       | Annahme: keine Ausbaugrenze | 
-| _electricity-heatpump_heat_high-capacity_potential_ | -             | -       | Annahme: keine Ausbaugrenze | 
+| _electricity-heatpump_central-capacity_potential_   | technology_data            | technology_data      | Annahme: keine Ausbaugrenze | 
+| _electricity-heatpump_decentral-capacity_potential_ | technology_data            | technology_data      | Annahme: keine Ausbaugrenze | 
+| _electricity-heatpump_heat_high-capacity_potential_ | technology_data            | technology_data      | Annahme: keine Ausbaugrenze | 
 
 
 
@@ -160,45 +167,37 @@ basiert auf AGEB-Anwendungsbilanzen, durchschnittlicher Anteil für Prozesswärm
 
 #### Ausbaupotentiale für KWK in MW
  - in `region_specific_dataset.csv`: value as `var_name:capacity_potential`
+  
 | Name                                                | Raw-Datensatz | Dataset | Kommentar |
 |-----------------------------------------------------|---------------|---------|-----------|
-| _biomass_solid-bpchp_heat_low_decentral-capacity_potential_   |               |         |           | 
-| _biomass_solid-bpchp_heat_low_central-capacity_potential_ |               |         |           | 
-| _biomass_solid-bpchp_heat_med-capacity_potential_  |               |         |           | 
-| _biomass_gas-bpchp_heat_low_decentral-capacity_potential_  |               |         |           | 
-| _biomass_gas-bpchp_heat_low_central-capacity_potential_  |               |         |           | 
-| _biomass_gas-bpchp_heat_med-capacity_potential_  |               |         |           | 
-| _h2-bpchp_heat_high-capacity_potential_  |               |         |           | 
-| _residual_waste-bpchp_heat_high-capacity_potential_  |               |         |           | 
-| _residual_waste-bpchp_heat_low_central-capacity_potential_  |               |         |           | 
+| _biomass_solid-bpchp_heat_low_decentral-capacity_potential_   |   technology_data            |  technology_data        |           | 
+| _biomass_solid-bpchp_heat_low_central-capacity_potential_ |   technology_data            |  technology_data        |          | 
+| _biomass_gas-bpchp_heat_low_decentral-capacity_potential_  |   technology_data            |  technology_data        |           | 
+| _biomass_gas-bpchp_heat_low_central-capacity_potential_  |   technology_data            |  technology_data        |           | 
+| _h2-bpchp_heat_high-capacity_potential_  |   technology_data            |  technology_data        |           | 
+| _residual_waste-bpchp_heat_high-capacity_potential_  |   technology_data            |  technology_data        ||           | 
+| _residual_waste-bpchp_heat_low_central-capacity_potential_  |   technology_data            |  technology_data        |           | 
 
 
 #### feste Kapazitäten für KWK in MW
  - in `region_specific_dataset.csv`: value as `var_name:capacity`
+   
 | Name                                                | Raw-Datensatz | Dataset | Kommentar |
 |-----------------------------------------------------|---------------|---------|-----------|
-| _biomass_solid-bpchp_heat_low_decentral-capacity_   |               |         |           | 
-| _biomass_solid-bpchp_heat_low_central-capacity_ |               |         |           | 
-| _biomass_solid-bpchp_heat_med-capacity_  |               |         |           | 
-| _biomass_gas-bpchp_heat_low_decentral-capacity_  |               |         |           | 
-| _biomass_gas-bpchp_heat_low_central-capacity_  |               |         |           | 
-| _h2-extchp_heat_high-capacity_  |               |         |           | 
-| _residual_waste-bpchp_heat_high-capacity_  |               |         |           | 
-| _residual_waste-bpchp_heat_low_central-capacity_  |               |         |           | 
+| _residual_waste-bpchp_heat_high-capacity_  |   technology_data            |  technology_data        |          | 
+| _residual_waste-bpchp_heat_low_central-capacity_  |   technology_data            |  technology_data        |           | 
 
 ----------------------------------------------------------------------------------------------------------------------
 ## Brennkessel
 
 #### Ausbaupotentiale für Brennkessel in MW
  - in `region_specific_dataset.csv`: value as `var_name:capacity_potential`
+   
 | Name                                               | Raw-Datensatz | Dataset | Kommentar                   |
 |----------------------------------------------------|---------------|---------|-----------------------------|
-| _biomass_solid-boiler_heat_med-capacity_potential_ |               |         | Annahme: keine Ausbaugrenze | 
-| _biomass_solid-boiler_heat_high-capacity_potential_         |               |         |  Annahme: keine Ausbaugrenze                          | 
-| _electricity-boiler_heat_med-capacity_potential_            |               |         |  Annahme: keine Ausbaugrenze                          | 
-| _electricity-boiler_heat_high-capacity_potential_           |               |         |  Annahme: keine Ausbaugrenze                          | 
-| _h2-boiler_heat_med-capacit_potential_                      |               |         |  Annahme: keine Ausbaugrenze                          | 
-| _h2-boiler_heat_high-capacity_potential_                    |               |         |  Annahme: keine Ausbaugrenze                          | 
+| _biomass_solid-boiler_heat_high-capacity_potential_         |   technology_data            |  technology_data        |  Annahme: keine Ausbaugrenze                          | 
+| _electricity-boiler_heat_high-capacity_potential_           |   technology_data            |  technology_data        | Annahme: keine Ausbaugrenze                          | 
+| _h2-boiler_heat_high-capacity_potential_                    |   technology_data            |  technology_data        |  Annahme: keine Ausbaugrenze                          | 
 
 
 ----------------------------------------------------------------------------------------------------------------------
@@ -206,18 +205,19 @@ basiert auf AGEB-Anwendungsbilanzen, durchschnittlicher Anteil für Prozesswärm
 
 #### Ausbaupotentiale für Speicher in MW
  - in `region_specific_dataset.csv`: value as `var_name:storage_capacity_potential`
+   
 | Name                                                   | Raw-Datensatz | Dataset | Kommentar |
 |--------------------------------------------------------|---------------|---------|-----------|
-| _electricity-large_battery_storage-capacity_potential_ |               |         |   Annahme: keine Ausbaugrenze        |
-| _heat_low_central-storage-capacity_potential_          |               |         |   Annahme: keine Ausbaugrenze        | 
-| _heat_low_decentral-storage-capacity_potential_  |               |         |   Annahme: keine Ausbaugrenze                                         |
+| _electricity-large_battery_storage-capacity_potential_ |   technology_data            |  technology_data        |   Annahme: keine Ausbaugrenze        |
+| _heat_low_central-storage-capacity_potential_          |   technology_data            |  technology_data        ||   Annahme: keine Ausbaugrenze        | 
+| _heat_low_decentral-storage-capacity_potential_  |   technology_data            |  technology_data        |   Annahme: keine Ausbaugrenze                                         |
 
 
 #### feste Kapazitäten für Speicher in MWh
 
 | Name                                   | Raw-Datensatz | Dataset | Kommentar                                  |
 |----------------------------------------|---------------|---------|--------------------------------------------|
-| _electricity-small_battery_storage-capacity_ |               |         | Annahme: storage_capacity=pv_roof_capacity |
+| _electricity-small_battery_storage-capacity_ |   technology_data            |  technology_data        | Annahme: storage_capacity=pv_roof_capacity |
 
 ----------------------------------------------------------------------------------------------------------------------
 ## Elektrolyseur
@@ -226,7 +226,7 @@ basiert auf AGEB-Anwendungsbilanzen, durchschnittlicher Anteil für Prozesswärm
 
 | Name                                          | Raw-Datensatz | Dataset | Kommentar                   |
 |-----------------------------------------------|---------------|---------|-----------------------------|
-| _electricity-electrolyzer-capacity_potential_ |               |         | Annahme: keine Ausbaugrenze | 
+| _electricity-electrolyzer-capacity_potential_ |   technology_data            |  technology_data        | Annahme: keine Ausbaugrenze | 
 
 
 ----------------------------------------------------------------------------------------------------------------------
@@ -236,8 +236,8 @@ basiert auf AGEB-Anwendungsbilanzen, durchschnittlicher Anteil für Prozesswärm
 
 | Name                          | Raw-Datensatz | Dataset | Kommentar |
 |-------------------------------|---------------|---------|-----------|
-| _h2-export-capacity_          |               |         | Annahme: unbegrenzt      |
-| _electricity-export-capacity_ |               |         | Annahme: unbegrenzt      |
+| _h2-export-capacity_          |   technology_data            |  technology_data        | Annahme: unbegrenzt      |
+| _electricity-export-capacity_ |   technology_data            |  technology_data        | Annahme: unbegrenzt      |
 
 ----------------------------------------------------------------------------------------------------------------------
 ## Commodities

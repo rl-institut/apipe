@@ -4,6 +4,9 @@ Die meisten der Rohdatensätze können für eine beliebige Region in Deutschland
 verwendet werden. Einige sind jedoch nur für eine Teilregion verfügbar oder
 spezifisch für die Region  **r120640428428 (Rüdersdorf b Berlin)**, **r120640472472 (Strausberg)**, **r120670124124 (Erkner)**, **r120670201201(Grünheide)** :
 
+TODO: Links zur Doku einfügen
+TODO: heatpump_cop_heat_high Doku ergänzen 
+TODO: Quelle zu Anschlussleistung genehmigt Wasserstoffkernnetz
 ## Daten für die Energiesystemmodellierung
 
 ### Strombedarf
@@ -87,7 +90,9 @@ Annahmen:
 basiert auf AGEB-Anwendungsbilanzen, durchschnittlicher Anteil für Prozesswärme 0.8 und Raumwärme und Warmwasser 0.2 über alle Industriezweige
 
 #### Wärmelastprofile Prozesswärme 
-
+- in `region_specific_dataset.csv`: Name as `var_name:profile`
+- in `apipe/store/datasets`: Dataset
+- 
 | Name                           | Raw-Datensatz | Dataset                   | Kommentar                                                                |
 |--------------------------------|---------------|---------------------------|--------------------------------------------------------------------------|
 | *heat_high-demand_ind_profile* |  industry_heat_profiles              | demand_heat_high_ind  | Annahme: Profile von WZ08 Zement,Glas und Keramik, da durchschnittliches Profil und großes Zementwer in der Region | 
@@ -96,6 +101,8 @@ basiert auf AGEB-Anwendungsbilanzen, durchschnittlicher Anteil für Prozesswärm
 ### EE-Technologien
 
 #### Einpeisezeitreihen EE-Technologien, normiert
+- in `region_specific_dataset.csv`: Name as `var_name:profile`
+- in `apipe/store/datasets`: Dataset
 
 | Name                                            | Raw-Datensatz | Dataset | Kommentar |
 |-------------------------------------------------|---------------|---------|-----------|
@@ -108,7 +115,7 @@ basiert auf AGEB-Anwendungsbilanzen, durchschnittlicher Anteil für Prozesswärm
 
 
 #### Ausbaupotentiale EE-Technologie in MW
-
+ - in `region_specific_dataset.csv`: value as `var_name:capacity_potential`
 ##### Wind
 
 - In Rüdersdorf keine Windpotenzialflächen nach Regionalplan 2024 (1. Entwurf) 
@@ -126,7 +133,7 @@ basiert auf AGEB-Anwendungsbilanzen, durchschnittlicher Anteil für Prozesswärm
 
 ----------------------------------------------------------------------------------------------------------------------
 ### Wärmepumpen 
-
+ - in `region_specific_dataset.csv`: value as `var_name:capacity_potential`
 #### Ausbaupotentiale für Wärmepumpen in MW
 
 | Name                                                | Raw-Datensatz | Dataset | Kommentar                   |
@@ -138,18 +145,21 @@ basiert auf AGEB-Anwendungsbilanzen, durchschnittlicher Anteil für Prozesswärm
 
 
 #### COP-Zeitreihen für Wärmepumpen, normiert
+- in `region_specific_dataset.csv`: Name as `var_name:profile`
+- in `apipe/store/datasets`: Dataset
 
 | Name                                     | Raw-Datensatz          | Dataset                          | Kommentar                                                                 |
 |------------------------------------------|------------------------|----------------------------------|---------------------------------------------------------------------------|
-| _electricity-heatpump_central-profile_   |                        | `datasets/heatpump_cop`          | Zeitreihe wird auch für electricity-heatpump_decentral-profile angenommen | 
-| _electricity-heatpump_decentral-profile_ |                        | `datasets/heatpump_cop`          |                                                                           | 
-| _electricity-heatpump_heat_high-profile_ | heatpump_cop_heat_high | `datasets/heatpump_cop_heat_high`| Hochtemperaturwärmepumpe                                                  |
+| _electricity-heatpump_central-profile_   |                        | heatpump_cop      | Zeitreihe wird auch für electricity-heatpump_decentral-profile angenommen | 
+| _electricity-heatpump_decentral-profile_ |                        |heatpump_cop         |                                                                           | 
+| _electricity-heatpump_heat_high-profile_ | heatpump_cop_heat_high |heatpump_cop_heat_high | Hochtemperaturwärmepumpe                                                  |
 
 ----------------------------------------------------------------------------------------------------------------------
 ## Kraft-Wärme-Kopplung
 
-#### Ausbaupotentiale für KWK in MW
 
+#### Ausbaupotentiale für KWK in MW
+ - in `region_specific_dataset.csv`: value as `var_name:capacity_potential`
 | Name                                                | Raw-Datensatz | Dataset | Kommentar |
 |-----------------------------------------------------|---------------|---------|-----------|
 | _biomass_solid-bpchp_heat_low_decentral-capacity_potential_   |               |         |           | 
@@ -164,7 +174,7 @@ basiert auf AGEB-Anwendungsbilanzen, durchschnittlicher Anteil für Prozesswärm
 
 
 #### feste Kapazitäten für KWK in MW
-
+ - in `region_specific_dataset.csv`: value as `var_name:capacity`
 | Name                                                | Raw-Datensatz | Dataset | Kommentar |
 |-----------------------------------------------------|---------------|---------|-----------|
 | _biomass_solid-bpchp_heat_low_decentral-capacity_   |               |         |           | 
@@ -180,7 +190,7 @@ basiert auf AGEB-Anwendungsbilanzen, durchschnittlicher Anteil für Prozesswärm
 ## Brennkessel
 
 #### Ausbaupotentiale für Brennkessel in MW
-
+ - in `region_specific_dataset.csv`: value as `var_name:capacity_potential`
 | Name                                               | Raw-Datensatz | Dataset | Kommentar                   |
 |----------------------------------------------------|---------------|---------|-----------------------------|
 | _biomass_solid-boiler_heat_med-capacity_potential_ |               |         | Annahme: keine Ausbaugrenze | 
@@ -191,27 +201,16 @@ basiert auf AGEB-Anwendungsbilanzen, durchschnittlicher Anteil für Prozesswärm
 | _h2-boiler_heat_high-capacity_potential_                    |               |         |  Annahme: keine Ausbaugrenze                          | 
 
 
-#### feste Kapazitäten für Brennkessel in MW
-
-| Name                                          | Raw-Datensatz | Dataset | Kommentar |
-|-----------------------------------------------|---------------|---------|-----------|
-| _biomass_solid-boiler_heat_med-capacity_      |               |         | Annahme: keine Ausbaugrenze          | 
-| _biomass_solid-boiler_heat_high-capacity_     |               |         | Annahme: keine Ausbaugrenze          | 
-| _electricity-boiler_heat_med-capacity_        |               |         | Annahme: keine Ausbaugrenze          | 
-| _electricity-boiler_heat_high-capacity_       |               |         | Annahme: keine Ausbaugrenze          | 
-| _h2-boiler_heat_med-capacity_ |               |         | Annahme: keine Ausbaugrenze          | 
-| _h2-boiler_heat_high-capacity_         |               |         | Annahme: keine Ausbaugrenze          | 
-
 ----------------------------------------------------------------------------------------------------------------------
 ## Speicher
 
 #### Ausbaupotentiale für Speicher in MW
-
+ - in `region_specific_dataset.csv`: value as `var_name:storage_capacity_potential`
 | Name                                                   | Raw-Datensatz | Dataset | Kommentar |
 |--------------------------------------------------------|---------------|---------|-----------|
 | _electricity-large_battery_storage-capacity_potential_ |               |         |   Annahme: keine Ausbaugrenze        |
 | _heat_low_central-storage-capacity_potential_          |               |         |   Annahme: keine Ausbaugrenze        | 
-| _heat_low_decentral-storage-capacity_  |               |         |                                            |
+| _heat_low_decentral-storage-capacity_potential_  |               |         |   Annahme: keine Ausbaugrenze                                         |
 
 
 #### feste Kapazitäten für Speicher in MWh
@@ -222,7 +221,7 @@ basiert auf AGEB-Anwendungsbilanzen, durchschnittlicher Anteil für Prozesswärm
 
 ----------------------------------------------------------------------------------------------------------------------
 ## Elektrolyseur
-
+ - in `region_specific_dataset.csv`: value as `var_name:capacity_potential`
 #### Ausbaupotentiale für Elektrolyseur  in MW
 
 | Name                                          | Raw-Datensatz | Dataset | Kommentar                   |
@@ -230,27 +229,21 @@ basiert auf AGEB-Anwendungsbilanzen, durchschnittlicher Anteil für Prozesswärm
 | _electricity-electrolyzer-capacity_potential_ |               |         | Annahme: keine Ausbaugrenze | 
 
 
-#### feste Kapazitäten für Elektrolyseur in MW
-
-
-| Name                                | Raw-Datensatz | Dataset | Kommentar |
-|-------------------------------------|---------------|---------|-----------|
-| _electricity-electrolyzer-capacity_ |               |         | -         |
-
 ----------------------------------------------------------------------------------------------------------------------
 ## Export
-
+ - in `region_specific_dataset.csv`: value as `var_name:capacity`
 #### feste Kapazitäten für Export in MW
 
 | Name                          | Raw-Datensatz | Dataset | Kommentar |
 |-------------------------------|---------------|---------|-----------|
-| _h2-export-capacity_          |               |         | -         |
-| _electricity-export-capacity_ |               |         | -         |
+| _h2-export-capacity_          |               |         | Annahme: unbegrenzt      |
+| _electricity-export-capacity_ |               |         | Annahme: unbegrenzt      |
 
 ----------------------------------------------------------------------------------------------------------------------
 ## Commodities
 
 #### feste Kapazitäten für Commodities in MW
+ - in `region_specific_dataset.csv`: value as `var_name:capacity`
 
 | Name                              | Raw-Datensatz | Dataset                                                                                                                                                      | Kommentar                                                                                                                                                                                                            |
 |-----------------------------------|---------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|

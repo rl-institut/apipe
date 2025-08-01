@@ -1,7 +1,6 @@
 # Energiesystem
 
-Im Folgenden wird der Aufbau des in Digiplan verwendeten Energiesystems für die
-Region Anhalt-Bitterfeld-Wittenberg beschrieben. Die Generierung der
+Im Folgenden wird der Aufbau des Energiesystems beschrieben. Die Generierung der
 Energiesystemdaten für die App ist Teil der
 [Developer Docs](../sections/esys_dev.md).
 

@@ -2,8 +2,8 @@
 
 ## Jahresvolllaststunden
 
-Anhand typischer heutiger und prognostizierter Werte für Sachsen-Anhalt werden
-folgende Jahresvolllaststunden angenommen:
+Anhand typischer heutiger und prognostizierter Werte werden folgende
+Jahresvolllaststunden angenommen:
 
 | Technologie     | Jahr | Volllaststunden | Quelle(n) für Annahme                                                                                                                                                                                                                                                               | Anmerkung                                                      |
 |-----------------|------|----------------:|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------|

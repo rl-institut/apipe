@@ -1,6 +1,6 @@
 # Willkommen!
 
-![Logo des Reiner Lemoine Instituts](docs/img/logos/RLI_DigiPlan_logos.png){ width="250", align="right"}
+![Logo des Reiner Lemoine Instituts](docs/img/logos/rli_logo.png){ width="250", align="right"}
 
 Bei *apipe* handelt es sich um eine Datenpipeline des
 [Reiner Lemoine Institut (RLI)](https://reiner-lemoine-institut.de)

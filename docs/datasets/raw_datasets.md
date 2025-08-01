@@ -8,18 +8,18 @@
 Anhand typischer heutiger und prognostizierter Werte für Sachsen-Anhalt werden
 folgende Jahresvolllaststunden angenommen:
 
-| Technologie     | Jahr | Volllaststunden | Quelle(n) für Annahme                                                                                                                                                                                                                                                                                       | Anmerkung                                                      |
-|-----------------|------|----------------:|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------|
-| Windenergie     | 2022 |            1800 | [foederal-erneuerbar](https://www.foederal-erneuerbar.de/landesinfo/bundesland/ST/kategorie/wind/auswahl/811-durchschnittliche_ja/#goto_811)                                                                                                                                                                |                                                                |
-|                 | 2045 |            2300 | [PV- und Windflächenrechner](https://zenodo.org/record/6794558)                                                                                                                                                                                                                                             |                                                                |
-| Freiflächen-PV  | 2022 |             980 | [foederal-erneuerbar](https://www.foederal-erneuerbar.de/landesinfo/bundesland/ST/kategorie/solar/auswahl/813-durchschnittliche_ja/#goto_813), [ISE](https://www.ise.fraunhofer.de/content/dam/ise/de/documents/publications/studies/aktuelle-fakten-zur-photovoltaik-in-deutschland.pdf)                   |                                                                |
-|                 | 2045 |             980 | [PV- und Windflächenrechner](https://zenodo.org/record/6794558), [Ariadne Szenarienreport](https://ariadneprojekt.de/media/2022/02/Ariadne_Szenarienreport_Oktober2021_corr0222_lowres.pdf)                                                                                                                 |                                                                |
-| Aufdach-PV      | 2022 |             910 | [foederal-erneuerbar](https://www.foederal-erneuerbar.de/landesinfo/bundesland/ST/kategorie/solar/auswahl/813-durchschnittliche_ja/#goto_813), [ISE](https://www.ise.fraunhofer.de/content/dam/ise/de/documents/publications/studies/aktuelle-fakten-zur-photovoltaik-in-deutschland.pdf)                   |                                                                |
-|                 | 2045 |             910 | [Ariadne Szenarienreport](https://ariadneprojekt.de/media/2022/02/Ariadne_Szenarienreport_Oktober2021_corr0222_lowres.pdf)                                                                                                                                                                                  |                                                                |
-| Laufwasserkraft | 2022 |            3800 | [foederal-erneuerbar](https://www.foederal-erneuerbar.de/landesinfo/bundesland/ST/kategorie/wasser/auswahl/840-durchschnittliche_ja/#goto_840)                                                                                                                                                              |                                                                |
-|                 | 2045 |            3800 | [foederal-erneuerbar](https://www.foederal-erneuerbar.de/landesinfo/bundesland/ST/kategorie/wasser/auswahl/840-durchschnittliche_ja/#goto_840)                                                                                                                                                              |                                                                |
-| Bioenergie      | 2022 |            6000 | [foederal-erneuerbar](https://www.foederal-erneuerbar.de/landesinfo/bundesland/ST/kategorie/bioenergie/auswahl/814-durchschnittliche_ja/#goto_814), [ISE](https://www.ise.fraunhofer.de/content/dam/ise/de/documents/publications/studies/DE2018_ISE_Studie_Stromgestehungskosten_Erneuerbare_Energien.pdf) | Bioenergie-Stromerzeugung (ohne<br/>biogenen Teil des Abfalls) |
-|                 |      |                 |                                                                                                                                                                                                                                                                                                             |                                                                |
+| Technologie     | Jahr | Volllaststunden | Quelle(n) für Annahme                                                                                                                                                                                                                                                               | Anmerkung                                                      |
+|-----------------|------|----------------:|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------|
+| Windenergie     | 2023 |            1500 | [Energieportal Brandenburg](https://energieportal-brandenburg.de/cms/inhalte/ausbaustand/statistiken/windkraftanlagen)                                                                                                                                                              |                                                                |
+|                 | 2045 |            2200 | [PV- und Windflächenrechner](https://zenodo.org/record/6794558)                                                                                                                                                                                                                     |                                                                |
+| Freiflächen-PV  | 2023 |             910 | [Energieportal Brandenburg](https://energieportal-brandenburg.de/cms/inhalte/ausbaustand/statistiken/photovoltaikanlagen), [ISE](https://www.ise.fraunhofer.de/content/dam/ise/de/documents/publications/studies/aktuelle-fakten-zur-photovoltaik-in-deutschland.pdf)               |                                                                |
+|                 | 2045 |             960 | [PV- und Windflächenrechner](https://zenodo.org/record/6794558), [Ariadne Szenarienreport](https://ariadneprojekt.de/media/2022/02/Ariadne_Szenarienreport_Oktober2021_corr0222_lowres.pdf)                                                                                         |                                                                |
+| Aufdach-PV      | 2023 |             750 | [Energieportal Brandenburg](https://energieportal-brandenburg.de/cms/inhalte/ausbaustand/statistiken/photovoltaikanlagen), [ISE](https://www.ise.fraunhofer.de/content/dam/ise/de/documents/publications/studies/aktuelle-fakten-zur-photovoltaik-in-deutschland.pdf)               |                                                                |
+|                 | 2045 |             910 | [Ariadne Szenarienreport](https://ariadneprojekt.de/media/2022/02/Ariadne_Szenarienreport_Oktober2021_corr0222_lowres.pdf)                                                                                                                                                          |                                                                |
+| Laufwasserkraft | 2022 |             500 | [Energieportal Brandenburg](https://energieportal-brandenburg.de/cms/inhalte/ausbaustand/statistiken/wasserkraftanlagen)                                                                                                                                                            |                                                                |
+|                 | 2045 |             500 | [Energieportal Brandenburg](https://energieportal-brandenburg.de/cms/inhalte/ausbaustand/statistiken/wasserkraftanlagen)                                                                                                                                                            | Annahme: Keine Änderung                                        |
+| Bioenergie      | 2023 |            6000 | [Energieportal Brandenburg](https://energieportal-brandenburg.de/cms/inhalte/ausbaustand/statistiken/photovoltaikanlagen), [ISE](https://www.ise.fraunhofer.de/content/dam/ise/de/documents/publications/studies/DE2018_ISE_Studie_Stromgestehungskosten_Erneuerbare_Energien.pdf)  | Bioenergie-Stromerzeugung (ohne<br/>biogenen Teil des Abfalls) |
+|                 |      |                 |                                                                                                                                                                                                                                                                                     |                                                                |
 
 Datei: `technology_data.json` --> `full_load_hours`
 
@@ -2252,6 +2252,8 @@ nächstgelegene Wetterstation.
 ------------------------------
 ## Agri-PV-Potenzialflächen
 
+Potenzialflächen für Agri-Photovoltaik des Öko-Institut.
+
 ### GIS-Info
 
 Die drei TIFF-Dateien enthalten Informationen darüber, wie viel Potenzialfläche
@@ -2263,15 +2265,18 @@ erfasst und dann zu 1 Hektar großen Flächen zusammengefasst.
 
 ### Positivgebiete
 
-- **Raster_gesamt**:
+- **Realisierbares Gesamtpotenzial**:
   - Preidl_Landuse (Landnutzungsklassifikation)
     - Klassen: 1 - 19
-- **Raster_besonders_geeignete_Kulturen**
+- **Erschließbares Potenzial an Synergieeffekten auf Dauerkulturen**
   - Preidl_Landuse
     - Klassen: 9 (legumes) ,11 (leeks), 14 (berries), 15 (stonefruits)
-- **Raster_geringe_mittlere_Bodengüte**
+- **Erschließbares Potenzial an geringer Nutzungskonkurrenz auf Gebieten mit geringer und mittlerer Bodengüte**
   - SQR_Germany:
     - Werte: 50-70
+
+Update: Aus diesem Datensatz werden aufgrund der Datengüte keine Dauerkulturen
+("Raster_besonders_geeignete_Kulturen") verwendet.
 
 ### Ausschlusskritieren
 
@@ -2322,7 +2327,7 @@ Datenherkunft:
 
 ### Quelle
 
-TODO: INSERT ÖI ZENODO SOURCE
+Öko-Institut: [Potenzialflächen für Agri-Photovoltaik](https://zenodo.org/records/10878761)
 
 **Dataset: `raw/oei_agri_pv`**
 
@@ -3239,6 +3244,21 @@ Wohnungszählung 2011 (Zensus 2011).
     ```
 
 ------------------------------
+## Bevölkerungsprognose Deutschland
+
+Vorausberechneter Bevölkerungsstand: Bundesländer, Stichtag, Varianten der
+Bevölkerungsvorausberechnung.
+
+Bevölkerung 2022-2070 basierend auf der
+[15. koordinierten Bevölkerungsvorausberechnung](https://www.destatis.de/DE/Themen/Gesellschaft-Umwelt/Bevoelkerung/Bevoelkerungsvorausberechnung/begleitheft.html?nn=238640)
+des Statistischen Bundesamtes.
+
+Quelle: Genesis Online [12421-0003-DLAND](https://www-genesis.destatis.de/genesis//online?operation=table&code=12421-0003).
+
+**Dataset: `raw/destatis_pop_prog`**
+
+
+------------------------------
 ## Geodaten PV- und Windflächenrechner
 
 Geodaten aus dem [PV- und Windflächenrechner](https://www.agora-energiewende.de/service/pv-und-windflaechenrechner/).
@@ -3702,17 +3722,16 @@ abgelegt wurde. Die Daten wurden folgendermaßen erstellt:
 from open_mastr import Mastr
 db = Mastr()
 db.download("bulk")
-db.to_csv(None)  # (None for all data)
+db.to_csv()
 ```
 
-Die abgelegten CSV-Dateien (alle Tabellen) wurden um einen benutzerdefinierten
-Export von Speichereinheiten mit
-`sqlite3 -header -csv -separator "," open-mastr.db "select * from storage_units;" > bnetza_mastr_storage_unit_raw.csv`
-erweitert. Anschließend wurden alle Dateien komprimiert.
+Anschließend wurden die Dateien komprimiert.
 
 Das Marktstammdatenregister (MaStR) ist ein deutsches Register, welches von der
 Bundesnetzagentur (BNetza) bereitgestellt wird und alle in Deutschland
 befindlichen Strom- und Gasanlagen erfasst.
+
+Datenstand: 27.11.2024
 
 **Dataset: `raw/bnetza_mastr`**
 
@@ -4363,6 +4382,24 @@ x=temporal.disagg_temporal_industry(
     ```
 
 ------------------------------
+## Flurstücke Brandenburg
+
+- Daten: https://geoportal.brandenburg.de/detailansichtdienst/render?url=https://geoportal.brandenburg.de/gs-json/xml?fileid=8b24b1c3-a337-4027-a689-7c5e63b507e0
+- Skript: `download_wfs_brb_field_parcels.sh`
+  - WFS-Dienst erlaubt nur 100.000 Features pro Request, Gebiet wird geteilt in 100 Zellen
+  - Umwandlung MultiSurface in MultiPolygon
+- Entfernen von Duplikaten mittels Python
+```
+import geopandas as gpd
+data = gpd.read_file("lgb_bb_field_parcels_with_duplicates.gpkg")
+data.drop_duplicates().to_file("lgb_bb_field_parcels.gpkg")
+```
+Download:
+https://data.geobasis-bb.de/geobasis/daten/alkis/Vektordaten/shape/
+**Dataset: `raw/lgb_bb_real_estate_cadastre`**
+
+
+------------------------------
 ## OpenStreetMap
 
 OpenStreetMap Datenauszug Deutschland.
@@ -4489,12 +4526,49 @@ Ist nicht Teil des Eingangsdaten-Packages - manueller Download erforderlich.
     ```
 
 ------------------------------
+## Digitales Feldblock-Kataster (MLUK)
+
+Digitales Feldblock-Kataster des Ministerium für Landwirtschaft, Umwelt und
+Klimaschutz des Landes Brandenburg.
+
+Stand: 23.10.2023
+
+Quellen:
+
+- [Website](https://geobroker.geobasis-bb.de/gbss.php?MODE=GetProductInformation&PRODUCTID=9e95f21f-4ecf-4682-9a44-e5f7609f6fa0)
+- [Daten](https://data.geobasis-bb.de/geofachdaten/Landwirtschaft/dfbk.zip)
+
+> Das Digitale Feldblockkataster (DFBK) ist ein landwirtschaftliches
+> Flächenkataster. Es enthält alle landwirtschaftlich genutzten und förderfähigen
+> Flächen der Länder Brandenburg und Berlin mit ihrer Lage, Größe und weiteren
+> Informationen. Das DFBK dient als Referenzsystem zur Kontrolle von
+> flächenbezogenen Agrarförderanträgen und besteht aus Feldblöcken und
+> Landschaftselementen. Ein Feldblock (FB) kann von einem oder mehreren
+> landwirtschaftlichen Betrieben genutzt werden und bildet eine von dauerhaften
+> Grenzen umgebene zusammenhängende landwirtschaftliche Fläche mit überwiegend
+> einheitlicher Hauptbodennutzung ab. Landschaftselemente (LE) sind
+> Landschaftsmerkmale wie z.B. Hecken, Baumreihen, Feldgehölze, Lesesteinhaufen,
+> die sich im oder am Feldblock befinden. Enthält ein Feldblock Flächen, die nicht
+> landwirtschaftlich nutzbar und kein förderfähiges Landschaftselement sind, so
+> werden diese als nicht-beihilfefähige-Flächen (NBF) gekennzeichnet. Die
+> Digitalisierung der Feldblöcke, Landschaftselemente und NBF-Flächen erfolgt auf
+> der Grundlage von Luftbildern (Digitalen Orthophotos) in den Ämtern für
+> Landwirtschaft der Kreise und kreisfreien Städte im Rahmen des
+> EU-InVeKoS-Verfahrens (Integriertes Verwaltungs- und Kontrollsystem). Die hier
+> in Form der FB und LE bereitgestellten Daten enthalten zusätzlich numerische
+> Angaben zu Flächenanteilen in förderrelevanten Gebietskulissen (z.B.
+> Naturschutzgebiete, NATURA2000-Gebiete und andere).
+
+**Dataset: `raw/mluk_bb_field_block_cadastre`**
+
+
+------------------------------
 ## Regionalplan Oderland-Spree
 
 Geodatensätze aus Regionalplan 2018 und Vorentwurf 2024 der Regionalen
 Planungsgemeinschaft Oderland-Spree.
 
-### Sachlicher Teilregionalplan "Windenergienutzung" 2018 (unwirksam)
+### Sachlicher Teilregionalplan "Windenergienutzung" 2018
 
 Geodaten aus
 [Sachlichen Teilplan Wind 2018](https://www.planungsregion-abw.de/regionalplanung/teilplan-windenergie/teilplan-2018/).
@@ -4502,7 +4576,7 @@ Geodaten aus
 - Eignungsgebiete: `Windeignungsgebiete_Satzung_2018_OLS.gpkg`
   (Quelle: Regionale Planungsgemeinschaft OLS)
 
-### Sachlicher Teilregionalplan "Erneuerbare Energien" 2024 (in Aufstellung)
+### 1. Entwurf Sachlicher Teilregionalplan "Erneuerbare Energien" 2024 (in Aufstellung)
 
 Geodaten aus Planentwurf des
 [Sachlichen Teilregionalplan EE 2024](https://www.rpg-oderland-spree.de/regionalplaene/sachlicher-teilregionalplan-erneuerbare-energien).
@@ -4510,15 +4584,26 @@ Geodaten aus Planentwurf des
 - Vorranggebiete: `VR_Windenergienutzung_2024_RPG_OLS.gpkg`, Quelle:
   [Regionale Planungsgemeinschaft OLS](https://www.rpg-oderland-spree.de/regionalplaene/sachlicher-teilregionalplan-erneuerbare-energien)
 
+**Hinweis:** Der 1. Entwurf wird derzeit überarbeitet, die im Tool verwendeten
+Vorranggebiete unterliegen Änderungen.
+
 ### Freiflächen-Photovoltaikanlagen
 
-- PV-Anlagen in OLS in verschiedenen Genehmigungstatus.:
-  `PV_FFA_OLS_Stand_Sommer2023.gpkg` (Stand: Sommer 2023), Quelle: Regionale
-  Planungsgemeinschaft OLS)
+- PV-Anlagen in OLS in verschiedenen Genehmigungsstatus:
+  `PV_FFA_OLS_10_2024.gpkg` (Stand: Oktober 2024), Quelle: Regionale
+  Planungsgemeinschaft OLS
 - Negativkriterien Freiflächen-PV aus
   [Kriteriengerüst Photovoltaik-Freiflächenanlagen](https://www.rpg-oderland-spree.de/regionalplaene/sachlicher-teilregionalplan-erneuerbare-energien):
   `Negativkriterien_PV_RPG_OLS_07032024.gpkg` (Stand: März 2024), Quelle:
   Regionale Planungsgemeinschaft OLS
+
+### Windenergieanlagen
+
+- Windenergieanlagen in OLS in verschiedenen Genehmigungstatus (Stand:
+  08.10.2024), Quelle: Regionale Planungsgemeinschaft OLS
+  - `Windenergieanlagen_vor_Inbetriebnahme_OLS.gpkg`
+  - `Windenergieanlagen_im_Verfahren_OLS.gpkg`
+  - `Windenergieanlagen_in_Betrieb_OLS.gpkg`
 
 **Dataset: `raw/rpg_ols_regional_plan`**
 

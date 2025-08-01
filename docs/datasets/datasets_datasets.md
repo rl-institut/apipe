@@ -38,6 +38,31 @@ identifiziert.
 
 
 ------------------------------
+## eMobilität: Motorisierter Individualverkehr
+
+Ladezeitreihen und Fahrzeuge je Gemeinde für Zieljahre 2035 und 2050.
+
+Hochlaufzahlen
+- Gesamtanzahl Deutschland 2035 aus NEP C 2035: 15.1 Mio
+- Gesamtanzahl Deutschland 2050: 25.1 Mio
+
+Referenzen
+- [eGon-data docs](https://egon-data.readthedocs.io/en/latest/data.html#motorized-individual-travel)
+- [Abschlussbericht eGo^n](https://ego-n.org/papers/Endbericht_egon_v2.pdf)
+- [Paper "Influence of flexibility options on the German transmission grid - A sector-coupled mid-term scenario"](https://ego-n.org/papers/Buettner_2024_Influence_of_flexibility_options_on_the_German_transmission_grid-A_sector-coupled_mid-term_scenario.pdf)
+
+Dateien
+- Ladezeitreihen je Gemeinde in MW (unflexibles Laden):
+  `emobility_mit_noflex_2035_load_ts.csv`
+- Fahrzeuge je Gemeinde in`emobility_mit_noflex_2035_vehicles.csv` nach
+  - Technologie: vollelektrisch (BEV), Plugin-Hybride (PHEV) und
+  - Klasse: mini, medium, luxury
+  - Gesamtanzahl in `ev_total_mun`
+
+**Dataset: `datasets/demand_emobility_region`**
+
+
+------------------------------
 ## Speicheranlagen
 
 Speicheranlagen in der Region aus MaStR-Registerdaten als Geopackage.
@@ -102,7 +127,7 @@ Zeitreihe normiert auf Summe=1 für
 
 
 ------------------------------
-## Geodaten PV- und Windflächenrechner
+## Schutzgebiete
 
 Schutzgebiete des Bundesamts für Naturschutz, zu LAEA Europe (EPSG:3035)
 umprojiziert und auf die Regionsgrenzen zugeschnitten.
@@ -126,9 +151,18 @@ oder gut geeignet sind (Klassifikation s.
 Der Grenzwert `roof_suitability_threshold` ist in [config.yml](../../apipe/store/datasets/potentialarea_pv_roof_region2/config.yml)
 änderbar.
 
-Es werden Statistiken je Gemeinde erstellt, hierfür werden die Gebäudezentroide
-mit den Gemeindegrenzen verschnitten und den Gemeinden zugeordnet.
-Ergebnisdaten: `potentialarea_pv_roof_area_stats_muns.csv`
+### Ergebnisse
+
+#### Geodaten
+
+- `potentialarea_pv_roof_region.gpkg`
+
+#### Statistische Auswertung
+
+Die Gebäudezentroide werden mit den Gemeindegrenzen verschnitten und den
+Gemeinden zugeordnet. Je Gemeinde und obigem Flächentyp/Datei wird eine
+Flächensumme (in km²) berechnet und in
+`potentialarea_pv_roof_area_stats_muns.csv` geschrieben.
 
 Des Weiteren wird je Gemeinde der relative Anteil der bereits installierten
 Anlagenleistung an der theoretisch installierbaren Leistung (bei
@@ -139,25 +173,45 @@ Die Gemeinden werden über den Schlüssel `municipality_id` (vgl.
 [bkg_vg250_muns_region](../../apipe/store/datasets/bkg_vg250_muns_region/dataset.md))
 identifiziert.
 
-### Ausbauziele
+#### Regionalisierte Ausbauziele
 
-Es werden PV-Ausbauziele für die Region berechnet, indem die Bundesziele aus den
+Es werden anhand überregionaler Ziele und Szenarien PV-Ausbauziele für die
+Region berechnet:
+
+File: `potentialarea_pv_roof_regionalized_targets.json`
+
+Da in den Ausbauzielen nicht zwischen Freiflächen- und Aufdach-PV unterschieden
+wird, wird folgende Aufteilung angenommen (Parameter`pv_roof_share` in
+[config.yml](../../apipe/store/datasets/potentialarea_pv_roof_region2/config.yml)), basierend auf dem
+[Projektionsbericht 2024](https://todo):
+
+TODO: Update ÖI Link Projektionsbericht 2024
+
+- Aufdach-PV: 52 %
+- Freiflächen-PV (niedrig aufgeständert): 44 %, vgl.
+  [potentialarea_pv_ground_region2](../../apipe/store/datasets/potentialarea_pv_ground_region2/dataset.md)
+- Agri-PV (hoch aufgeständert und vertikal bifazial): 4 %
+
+#### Aus BMWK Langfristszenarien
+
+Bundesziele aus den
 [BMWK Langfristszenarien](../../apipe/store/preprocessed/bmwk_long_term_scenarios/dataset.md)
 i.H.v. 428 GW
 ([§4 EEG 2023](https://www.gesetze-im-internet.de/eeg_2014/__4.html): 400 GW)
-anhand der Gebäudegrundflächen disaggregiert werden. Hierzu wird der Anteil der
+werden anhand der Gebäudegrundflächen disaggregiert. Hierzu wird der Anteil der
 Gebäudegrundflächen in der Region an der bundesweiten Gebäudegrundflächen
 berechnet (s. Datensatz [osm_buildings](../../apipe/store/datasets/osm_buildings/dataset.md)) und die
-Ziele linear skaliert. Da in den o.g. Ausbauzielen nicht zwischen Freiflächen-
-und Aufdach-PV unterschieden wird, wird folgende Aufteilung angenommen
-(Parameter`pv_roof_share`, änderbar in [config.yml](../../apipe/store/datasets/potentialarea_pv_roof_region2/config.yml)):
+Ziele linear skaliert.
 
-- Aufdach-PV: 52 % (221 GW)
-- Freiflächen-PV (niedrig aufgeständert): 44 % (190 GW), vgl.
-  [potentialarea_pv_ground_region2](../../apipe/store/datasets/potentialarea_pv_ground_region2/dataset.md)
-- Agri-PV (hoch aufgeständert und vertikal bifazial): 4 % (17 GW)
+Key: `bmwk_de`
 
-File: `potentialarea_pv_roof_regionalized_targets.json`
+#### Aus Energiestrategie Brandenburg 2040
+
+Die Brandenburger Ziele für 2030 und 2040 (vgl. Datensatz
+[mwae_bb_energy_strategy_region](../../apipe/store/datasets/mwae_bb_energy_strategy_region/dataset.md))
+werden anhand der Regionsfläche (15,48 %) linear skaliert.
+
+Key: `mwae_bb`
 
 **Dataset: `datasets/potentialarea_pv_roof_region2`**
 
@@ -244,10 +298,13 @@ landesweiter Prognosen aus den
 - Jährlicher Strombedarf je Gemeinde in MWh. Hierfür stehen 2 Datensätze zur
   Verfügung - welcher verwendet wird, kann in der [Konfiguration](../../apipe/store/datasets/demand_electricity_region/config.yml)
   via `ind_electricity_demand_source` eingestellt werden:
-    - [DemandRegio](../../apipe/store/preprocessed/demandregio/dataset.md): Werte für alle
-    Landkreise in Deutschland.
-    - [STALA ST](../../apipe/store/preprocessed/stala_st_energy/dataset.md) (Standard):
-    Genauere Werte, jedoch nur für Sachsen-Anhalt verfügbar.
+    - [DemandRegio](../../apipe/store/preprocessed/demandregio/dataset.md) (Standard):
+      Werte für alle Landkreise in Deutschland.
+    - [STALA ST](../../apipe/store/preprocessed/stala_st_energy/dataset.md): Aktuellere
+      Werte, jedoch nur für Sachsen-Anhalt verfügbar.
+    - [Regiostat](../../apipe/store/preprocessed/regiostat/dataset.md) (derzeit noch nicht
+      implementiert): Aktuellere Werte für Landkreise in Deutschland, jedoch
+      für einige LK nicht verfügbar.
 - Die Desaggregation von Landkreis- auf Gemeindeebene erfolgt anhand der
   Beschäftigten im verarbeitenden Gewerbe im Jahr 2022
   ([Regionalstatistik](../../apipe/store/preprocessed/regiostat/dataset.md)).
@@ -334,17 +391,20 @@ Dauerkulturen für die Integration von Agri-PV-Systemen.
 
 Datengrundlage:
 
-- SQR-Daten (Soil Quality Rating), s. Datensatz
+- SQR-Daten (Soil Quality Rating), Datensatz
   [bgr_sqr](../../apipe/store/raw/bgr_sqr/dataset.md).
   - **(I)** SQR Originaldaten
-- Potenzialflächen Agri-PV , s. Datensatz
+- Potenzialflächen Agri-PV, Datensatz
   [oei_agri_pv](../../apipe/store/raw/oei_agri_pv/dataset.md)
   - **(II)** SQR Gesamtpotenzial (`Agri-PV-Potenziale_Gesamt_100x100_EPSG3035`)
   - **(III)** SQR 50-70
-    (`Agri-PV-Potenziale_SQR_50-70_NOT_Dauerkulturen_100x100_EPSG3035`)
-  - **(IV)** Dauerkulturen (`Agri-PV-Potenziale_Dauerkulturen_100x100_EPSG3035`)
+    (`Agri-PV-Potenziale_SQR_50-70_100x100_EPSG3035`)
+- Feldblockkataster Brandenburg, Datensatz
+  [mluk_bb_field_block_cadastre](../../apipe/store/preprocessed/mluk_bb_field_block_cadastre/dataset.md)
+  - **(IV)** Dauerkulturen (`DFBK_FB.tif`)
 
-(III) und (IV) sind hierbei disjunkt.
+(II) und (IV) sowie (III) und (IV) sind nicht disjunkt, für die Erstellung von
+**(A)** und **(B)** erfolgt eine Differenzbildung, s.u.
 
 Es werden folgende Flächen verwendet, auf welchen jeweils eine andere
 technologische Umsetzung als Grundlage angenommen wird:
@@ -353,13 +413,12 @@ technologische Umsetzung als Grundlage angenommen wird:
   (SQR 0..50): Klassische, niedrig aufgeständerte FF-PV.
 - **(B)** Auf Acker- und Grünlandflächen mit geringer..mittlerer Bodengüte (SQR
   50..70): Agri-PV - bifaziale, vertikal aufgeständerte PV
-- **(C)** Dauerkulturen (Kernobst, Wein, Gemüse und Beeren): Agri-PV - hoch
-   aufgeständerte PV-Systeme
+- **(C)** Dauerkulturen: Agri-PV - hoch aufgeständerte PV-Systeme
 
 Berechnung/Verschneidung
 
-- **(A)** = **(II)**-(**(I)**) mit Wert>50)-(**(IV)**) mit Wert>0)
-- **(B)** = **(III)**
+- **(A)** = **(II)**-(**(I)** mit Wert>50)-(**(IV)** mit Wert>0)
+- **(B)** = **(III)**-(**(IV)** mit Wert>0)
 - **(C)** = **(IV)**
 
 ### Ergebnisdaten
@@ -582,6 +641,15 @@ EinwohnerInnen je Gemeinde: Historische Daten und Prognosen
 
 Statistisches Bundesamt (Raw dataset:
 [destatis_gv](../../apipe/store/raw/destatis_gv/dataset.md))
+
+### Bevölkerungsprognose
+
+Das neueste Jahr der historischen Daten wird als Basis für die lineare
+Skalierung anhand der Prognosedaten herangezogen. Zieljahre bis 2070 können in
+der `config.yml` eingestellt werden.
+
+Statistisches Bundesamt (Raw dataset:
+[destatis_pop_prog](../../apipe/store/raw/destatis_pop_prog/dataset.md))
 
 **Dataset: `datasets/population_region`**
 
@@ -970,25 +1038,25 @@ Regionsfläche (für die Parametrierung der Regler) berechnet und nach
 
 #### Regionalisierte Ausbauziele
 
-Es werden regionalisierte PV-Ausbauziele für die Region berechnet, indem die
-Bundesziele aus den
-[BMWK Langfristszenarien](../../apipe/store/preprocessed/bmwk_long_term_scenarios/dataset.md)
-i.H.v. 428 GW
-([§4 EEG 2023](https://www.gesetze-im-internet.de/eeg_2014/__4.html): 400 GW)
-anhand der regional verfügbaren Potenzialflächen disaggregiert werden. Hierzu
-wird der Anteil der Flächensumme der drei o.g. Flächentypen an den bundesweit
-verfügbaren Flächen (Datensatz [oei_agri_pv](../../apipe/store/raw/oei_agri_pv/dataset.md))
-berechnet. Da in den o.g. Ausbauzielen nicht zwischen Freiflächen- und
-Aufdach-PV unterschieden wird, wird folgende Aufteilung angenommen (änderbar in
-[config.yml](../../apipe/store/datasets/potentialarea_pv_ground_region2/config.yml)), basierend auf dem
-[Projektionsbericht 2024]():
+Es werden anhand überregionaler Ziele und Szenarien PV-Ausbauziele für die
+Region berechnet:
+
+File: `potentialarea_pv_ground_regionalized_targets.json`
+
+- Leistungsziele: `target_power_*` (Einheit: MW)
+- Flächenziele: `target_area_*` (Einheit: km²)
+
+Da in den Ausbauzielen nicht zwischen Freiflächen- und Aufdach-PV unterschieden
+wird, wird folgende Aufteilung angenommen, änderbar in [config.yml](../../apipe/store/datasets/potentialarea_pv_ground_region2/config.yml),
+basierend auf dem
+[Projektionsbericht 2024](https://todo):
 
 TODO: Update ÖI Link Projektionsbericht 2024
 
-- Aufdach-PV: 52 % (221 GW), vgl.
-  [potentialarea_pv_roof_region](../../apipe/store/datasets/potentialarea_pv_roof_region/dataset.md)
-- Freiflächen-PV (niedrig aufgeständert): 44 % (190 GW)
-- Agri-PV (hoch aufgeständert und vertikal bifazial): 4 % (17 GW),
+- Aufdach-PV: 52 %
+- Freiflächen-PV (niedrig aufgeständert): 44 %, vgl.
+  [potentialarea_pv_roof_region2](../../apipe/store/datasets/potentialarea_pv_roof_region2/dataset.md)
+- Agri-PV (hoch aufgeständert und vertikal bifazial): 4 %
   Die Aufteilung zwischen hoch aufgeständert und vertikal bifazial erfolgt
   flächengewichtet, d.h. ein Flächenverhältnis von 1:9 führt zu 9-facher
   Nutzung von Flächen, auf denen vertikale Anlagen angenommen werden. Durch die
@@ -996,10 +1064,26 @@ TODO: Update ÖI Link Projektionsbericht 2024
   [technology_data](../../apipe/store/raw/technology_data/dataset.md)) können sich andere
   Leistungspotenzial-Verhältnisse ergeben.
 
-Ergebnisfile: `potentialarea_pv_ground_regionalized_targets.json`
+#### Aus BMWK Langfristszenarien
 
-- Leistungsziele: `target_power_*` (Einheit: MW)
-- Flächenziele: `target_area_*` (Einheit: km²)
+Bundesziele aus den
+[BMWK Langfristszenarien](../../apipe/store/preprocessed/bmwk_long_term_scenarios/dataset.md)
+i.H.v. 428 GW
+([§4 EEG 2023](https://www.gesetze-im-internet.de/eeg_2014/__4.html): 400 GW)
+werden anhand der regional verfügbaren Potenzialflächen disaggregiert. Hierzu
+wird der Anteil der Flächensumme der drei o.g. Flächentypen an den bundesweit
+verfügbaren Flächen (Datensatz [oei_agri_pv](../../apipe/store/raw/oei_agri_pv/dataset.md))
+berechnet und die Ziele linear skaliert.
+
+Key: `bmwk_de`
+
+#### Aus Energiestrategie Brandenburg 2040
+
+Die Brandenburger Ziele für 2030 und 2040 (vgl. Datensatz
+[mwae_bb_energy_strategy_region](../../apipe/store/datasets/mwae_bb_energy_strategy_region/dataset.md))
+werden anhand der Regionsfläche (15,48 %) linear skaliert.
+
+Key: `mwae_bb`
 
 ### Verwandte Datensätze
 
@@ -1036,6 +1120,19 @@ Region aus Geodaten der Landkreise zusammengeführt.
 Vorverarbeitete Datensätze aus Teilplänen Wind der Regionalen
 Planungsgemeinschaft Oderland-Spree aus
 [rpg_ols_regional_plan](../../apipe/store/raw/rpg_ols_regional_plan/dataset.md).
+
+Zusätzlich wird ein kombinierter Layer der Negativkriterien für Freiflächen-PV
+erstellt. Folgende Datensätze werden hierfür verwendet:
+
+- Negativkriterien FF-PV:
+  [rpg_ols_regional_plan](../../apipe/store/raw/rpg_ols_regional_plan/dataset.md)
+- Schutzgebiete des BfN:
+  [bfn_protected_areas_region](../../apipe/store/raw/bfn_protected_areas_region/dataset.md)
+- Geodaten aus dem PV- und Windflächenrechner:
+  [rli_pv_wfr](../../apipe/store/raw/rli_pv_wfr/dataset.md)
+
+Zugunsten der Darstellungsgeschwindigkeit werden hierbei Flächen < 1000 m²
+vernachlässigt und Geometrien vereinfacht (Lagegenauigkeit 10 m).
 
 **Dataset: `datasets/rpg_ols_regional_plan`**
 

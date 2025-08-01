@@ -53,6 +53,11 @@ Verwendet: [dwd_temperature](../../apipe/store/raw/dwd_temperature/dataset.md)
 
 
 ------------------------------
+## Agri-PV-Potenzialflächen
+
+Potenzialflächen für Agri-Photovoltaik des Öko-Institut, konvertiert.
+
+Raw dataset: [oei_agri_pv](../../apipe/store/raw/oei_agri_pv/dataset.md)
 
 **Dataset: `preprocessed/oei_agri_pv`**
 
@@ -105,6 +110,11 @@ Speicherplatz und kann viel Zeit in Anspruch nehmen.
 
 
 ------------------------------
+
+**Dataset: `preprocessed/egon_ev`**
+
+
+------------------------------
 ## Sozialversicherungspflichtig Beschäftigte und Betriebe
 
 Gemeindedaten der sozialversicherungspflichtig Beschäftigten am 30.06.2023 nach
@@ -151,6 +161,18 @@ verarbeitendem Gewerbe.
 - Bundesland-, Kreis und Gemeindewerte extrahiert
 
 **Dataset: `preprocessed/regiostat`**
+
+
+------------------------------
+## Bevölkerungsprognose Deutschland
+
+Bevölkerungsprognose für Bundesländer, Variante und Zieljahre einstellbar in
+`config.yml`.
+
+Raw dataset:
+[destatis_pop_prog](../../apipe/store/raw/destatis_pop_prog/dataset.md)
+
+**Dataset: `preprocessed/destatis_pop_prog`**
 
 
 ------------------------------
@@ -224,6 +246,23 @@ Handel, Dienstleistungen (GHD) und Industrie für mehrere Zieljahre.
 
 
 ------------------------------
+## Digitales Feldblock-Kataster (MLUK)
+
+Digitales Feldblock-Kataster des Ministerium für Landwirtschaft, Umwelt und
+Klimaschutz des Landes Brandenburg, extrahiert und gefiltert nach Dauerkulturen.
+
+Dateien
+
+- Vektor: `DFBK_FB.gpkg`
+- Gerastert: `DFBK_FB.tif`
+
+Raw dataset:
+[mluk_bb_field_block_cadastre](../../apipe/store/raw/mluk_bb_field_block_cadastre/dataset.md)
+
+**Dataset: `preprocessed/mluk_bb_field_block_cadastre`**
+
+
+------------------------------
 ## Regionalplan Oderland-Spree
 
 Vorverarbeitete Datensätze aus Teilplänen Wind der Regionalen
@@ -231,6 +270,9 @@ Planungsgemeinschaft Oderland-Spree aus
 [rpg_ols_regional_plan](../../apipe/store/raw/rpg_ols_regional_plan/dataset.md).
 
 In der [config.yml](../../apipe/store/preprocessed/rpg_ols_regional_plan/config.yml) können Einstellungen vorgenommen werden.
+
+Zugunsten der Darstellungsgeschwindigkeit werden heirbei Flächen < 100 m²
+vernachlässigt und Geometrien vereinfacht (Lagegenauigkeit 5 m).
 
 **Dataset: `preprocessed/rpg_ols_regional_plan`**
 

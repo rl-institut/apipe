@@ -3,6 +3,14 @@
 The energy system in apipe is created using
 [oemof-B3](https://github.com/rl-institut/oemof-B3).
 
+## Download and copy the data
+
+In order to parameterize the energy system model, you'll need to download the corresponding 
+datasets from the OEP and copy them to `apipe/store/raw` and `apipe/store/datasets`, respectivley. 
+
+Once this is done, you can parameterize and solve your energy system model by following the 
+next steps. 
+
 ## Build the energy system
 
 To test if everything works, you can run the test scenario with
@@ -11,17 +19,6 @@ To test if everything works, you can run the test scenario with
 snakemake -j1 make_esys_appdata
 ```
 
-For this you have to provide the corresponding input data in the store:
-
-- raw/technology_data/data
-- raw/renewables.ninja_feedin/data
-- raw/demandregio/data
-- raw/bkg_vg250/data
-- raw/dwd_temperature/data.
-
-Then, assumptions on constant parameters such as plant costs, lifetime and
-efficiencies are mapped and set as values of the corresponding variables in the
-scalars.
 
 Empty scalars and time series can be created from the energy model setup with
 

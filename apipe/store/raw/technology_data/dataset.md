@@ -13,15 +13,11 @@ folgende Jahresvolllaststunden angenommen:
 |                 | 2045 |             960 | [PV- und Windflächenrechner](https://zenodo.org/record/6794558), [Ariadne Szenarienreport](https://ariadneprojekt.de/media/2022/02/Ariadne_Szenarienreport_Oktober2021_corr0222_lowres.pdf)                                                                                         |                                                                |
 | Aufdach-PV      | 2023 |             750 | [Energieportal Brandenburg](https://energieportal-brandenburg.de/cms/inhalte/ausbaustand/statistiken/photovoltaikanlagen), [ISE](https://www.ise.fraunhofer.de/content/dam/ise/de/documents/publications/studies/aktuelle-fakten-zur-photovoltaik-in-deutschland.pdf)               |                                                                |
 |                 | 2045 |             910 | [Ariadne Szenarienreport](https://ariadneprojekt.de/media/2022/02/Ariadne_Szenarienreport_Oktober2021_corr0222_lowres.pdf)                                                                                                                                                          |                                                                |
-| Laufwasserkraft | 2022 |             500 | [Energieportal Brandenburg](https://energieportal-brandenburg.de/cms/inhalte/ausbaustand/statistiken/wasserkraftanlagen)                                                                                                                                                            |                                                                |
-|                 | 2045 |             500 | [Energieportal Brandenburg](https://energieportal-brandenburg.de/cms/inhalte/ausbaustand/statistiken/wasserkraftanlagen)                                                                                                                                                            | Annahme: Keine Änderung                                        |
 | Bioenergie      | 2023 |            6000 | [Energieportal Brandenburg](https://energieportal-brandenburg.de/cms/inhalte/ausbaustand/statistiken/photovoltaikanlagen), [ISE](https://www.ise.fraunhofer.de/content/dam/ise/de/documents/publications/studies/DE2018_ISE_Studie_Stromgestehungskosten_Erneuerbare_Energien.pdf)  | Bioenergie-Stromerzeugung (ohne<br/>biogenen Teil des Abfalls) |
 |                 |      |                 |                                                                                                                                                                                                                                                                                     |                                                                |
 
 Datei: `technology_data.json` --> `full_load_hours`
 
-TBD: Generalisieren - automatische Generierung anhand von Global Wind Atlas /
-Global Solar Atlas.
 
 ## Leistungsdichte
 
@@ -105,13 +101,7 @@ f_(infl) = 1,005 * 1,005 * 1.015 * 1,018 * 1,014 = 1,0582
 
 Werte für 2045 werden durch lineare Extrapolation ermittelt.
 
-#### biogas_upgrading plant
-
-Quelle: [4] "82 Biogas, upgrading"
-
-Aufbereitung von Biogas zu Bio-SNG
-
-#### biogas bpchp_central
+#### biomass_gas-bpchp_central
 
 Quelle: [1](https://ens.dk/en/our-services/projections-and-models/technology-data/technology-data-generation-electricity-and)
 "06 Gas engines, biogas"
@@ -122,7 +112,7 @@ thermal effiency = electrical_effiency / (c_b+c_v)  (
 laut [1](https://ens.dk/en/our-services/projections-and-models/technology-data/technology-data-generation-electricity-and)
 S. 390)
 
-#### biogas bpchp_decentral
+#### biomass_gas-bpchp_decentral
 
 Quelle: [1](https://ens.dk/en/our-services/projections-and-models/technology-data/technology-data-generation-electricity-and)
 "06 Gas engines, biogas"
@@ -130,99 +120,8 @@ Quelle: [1](https://ens.dk/en/our-services/projections-and-models/technology-dat
 Identische Werte zu biogas bpchp_central. Split fürs Energiesystem, aber
 eingesetzte Technologie identisch.
 
-#### biogas_plant
 
-Quelle [4](https://ens.dk/en/our-services/projections-and-models/technology-data/technology-data-renewable-fuels):
-"81 Biogas Plant, Basic conf."
-
-Stellt Biogas bereit, welches in KWK (biogas bpchp_central, biogas
-bpchp_decentral) genutzt werden kann
-
-#### boiler_central
-
-Quelle [1](https://ens.dk/en/our-services/projections-and-models/technology-data/technology-data-generation-electricity-and):
-"44 Natural Gas DH Only"
-
-#### boiler_decentral
-
-Quelle [2](https://ens.dk/en/our-services/projections-and-models/technology-data/technology-data-individual-heating-plants):
-"202 Gas boiler, ex single", "202 Gas boiler, ex apart", "202 Gas boiler, new
-single",
-"202 Gas boiler, new apart"
-
-Es werden für jedes Szenario jeder Wert aus 4 Komponenten zusammengesetzt.
-
-Diese sind die Kombinationen aus:
-
-- Altbau-Neubau
-- Einfamilienhaus-Mehrfamilienhaus
-
-Diese Kompnonten werden durch Faktoren gewichtet zusammengefasst.
-
-Für 2020:
-
-- Verhältnis von Altbau-Neubau
-  aus [7](https://de.statista.com/statistik/daten/studie/202207/umfrage/struktur-des-wohnungsbaus-nach-art-der-bauleistung-in-deutschland/)
-- Verhätnis von Einfamilienhaus-Mehrfamilienhaus im Neubau
-  aus [6](https://genesis.sachsen-anhalt.de/genesis//online?operation=table&code=31121-0006&bypass=true&levelindex=0&levelid=1682324189765#abreadcrumb),
-  verbaute Gasheizungen aggregiert
-- Verhätnis von Einfamilienhaus-Mehrfamilienhaus im Altbau wird als 0.7 / 0.3
-  angenommen
-
-Für 2045:
-
-- Verhältnis von Altbau-Neubau
-  aus [7](https://de.statista.com/statistik/daten/studie/202207/umfrage/struktur-des-wohnungsbaus-nach-art-der-bauleistung-in-deutschland/)
-- Verhätnis von Einfamilienhaus-Mehrfamilienhaus im Neubau
-  aus [6](https://genesis.sachsen-anhalt.de/genesis//online?operation=table&code=31121-0006&bypass=true&levelindex=0&levelid=1682324189765#abreadcrumb),
-  verbaute Gasheizungen in 2020
-- Verhätnis von Einfamilienhaus-Mehrfamilienhaus im Altbau wird als 0.7 / 0.3
-  angenommen
-
-volle Berechnungen siehe "boiler_small_script.py" im Code Anhang
-
-#### ch4 bpchp_central
-
-Quelle: [1](https://ens.dk/en/our-services/projections-and-models/technology-data/technology-data-generation-electricity-and)
-"06 Gas engines, natural gas"
-
-Backpressure Combined heat and power (bpchp) modelliert BHKWs
-
-thermal effiency = electrical_effiency / (c_b+c_v)  (
-laut [1](https://ens.dk/en/our-services/projections-and-models/technology-data/technology-data-generation-electricity-and)
-S. 390)
-
-#### ch4 bpchp_decentral
-
-Quelle: [1](https://ens.dk/en/our-services/projections-and-models/technology-data/technology-data-generation-electricity-and
-"06 Gas engines, natural gas"
-
-Identische Werte zu ch4 bpchp_central. Split fürs Energiesystem, aber
-eingesetzte Technologie identisch.
-
-#### ch4 extchp_central
-
-Quellen: [1](https://ens.dk/en/our-services/projections-and-models/technology-data/technology-data-generation-electricity-and
-"05 Gas turb. CC, steam extract., Large", [14] S. 20-21
-
-#### ch4 extchp_decentral
-
-Quelle: [1](https://ens.dk/en/our-services/projections-and-models/technology-data/technology-data-generation-electricity-and
-"05 Gas turb. CC, steam extract., Large"
-
-[14] S. 20-21
-
-Identisch wie ch4 extchp_central
-
-#### gt
-
-Quelle: [1](https://ens.dk/en/our-services/projections-and-models/technology-data/technology-data-generation-electricity-and
-"
-04 Gas turb. simple cycle, L"
-
-gas turbine, offener Prozess
-
-#### heatpump_central
+#### heat_low_heatpump_central
 
 Quelle: [1](https://ens.dk/en/our-services/projections-and-models/technology-data/technology-data-generation-electricity-and
 "
@@ -230,7 +129,7 @@ Quelle: [1](https://ens.dk/en/our-services/projections-and-models/technology-dat
 
 Wärmepumpentechnologie (Luft-Wasser-WP) aus Langfristigkeitsszenarien
 
-#### heatpump_decentral
+#### heat_low_heatpump_decentral
 
 Quellen: [2](https://ens.dk/en/our-services/projections-and-models/technology-data/technology-data-individual-heating-plants
 "
@@ -285,6 +184,12 @@ Die Faktoren in 2045 sind daher:
 
 Berechnung siehe "heatpump_small_script.py" im Code Anhang
 
+#### heat_high_heatpump
+
+Quelle: [1](https://ens.dk/en/our-services/projections-and-models/technology-data/technology-data-generation-electricity-and
+"
+40 Comp. hp, airsource 10 MW" TODO: ergänzen
+
 #### large_scale_battery
 
 Quellen: [1](https://ens.dk/en/our-services/projections-and-models/technology-data/technology-data-generation-electricity-and
@@ -297,27 +202,6 @@ Berechnung gefunden zu haben.
 storage_fixom_cost = 0,005 * storage_capacity_cost_overnight
 
 Große Differenzen zwischen Windnode und UMAS, UMAS Methodik übernommen
-
-#### pth_central
-
-Quellen: [1](https://ens.dk/en/our-services/projections-and-models/technology-data/technology-data-generation-electricity-and
-"
-41 Electric Boilers, small", "41 Electric Boilers, large"
-
-Es wurde ein Mittelwert aus den Electric Biolers small und large gebildet, um
-relevante Größen in ABW abzubilden.
-
-#### pth_decentral
-
-Quellen: [2](https://ens.dk/en/our-services/projections-and-models/technology-data/technology-data-individual-heating-plants): "
-216 Electric heating,new single", "216 Electric heating,new apart"
-
-Annahmen zu Gebäudebestand siehe heatpump_decentral, nur ohne Kombination mit
-Altbau, da power to heat in Altbauten
-vernachlässigbar selten (und wenn in anderen Technologien wie
-Nachtspeicherheizungen) vorkommt.
-
-Berechnungen siehe "pth_decentral_script" im Code Anhang
 
 #### small_scale_battery
 
@@ -354,47 +238,6 @@ Quellen: [16]
 - fixom_cost: S. 78
 - capacity_cost_overnight: S.75
 - lifetime: S. 72
-
-#### lignite oven
-
-Quellen: [1](https://ens.dk/en/our-services/projections-and-models/technology-data/technology-data-generation-electricity-and)  "
-206 Wood stove, single, ex tank"
-
-Der Kohleofen ist eine Komponente, die für die Abbildung des Ist-Zusandes
-relevant ist.
-Die Kohleheizung wird durch gesetzliche Regulierung nicht mehr neu verbaut
-werden können, wodurch die Komponente für die
-Optimierung nicht relevant ist.
-Auch die Datenlage für die Kohleheizung sehr schlecht ist, die Daten werden
-daher approximiert.
-
-Keine direkten Werte vorhanden, daher Modellierung anhand der wood stove Werte
-
-efficiency:
-
-Differenz der Energie zwischen Holz und Kohle liegt im Heizwert des Brennstoffs.
-Daher wird die Effizienz der wood stove
-mit Faktor des Verhältnisses der Heizwerte multipliziert.
-Daten für Heizwerte von
-BMWK [11](https://www.bmwk.de/Redaktion/DE/Artikel/Energie/energiedaten-gesamtausgabe.html)
-und [12](https://books.google.de/books?id=n0fVYjrHAlwC&pg=PA58#v=onepage&q&f=false)
-ergibt einen Faktor von 4/3
-
-fixom_cost:
-
-Bestehen großteils aus Brennstoffkosten. Änderung zu wood stove besteht aus
-Heizwert (gewonnene Energie pro kg) und
-Preisdiff pro Kilogramm
-
-Preise aus brikett-rekord.com [13]
-
-lifetime:
-
-identisch wie wood stove
-
-marginal-cost: identisch wie wood stove
-
-Aus den Annahmen folgt, dass die Investkosten ignoriert werden können.
 
 #### pv_ground
 
@@ -445,13 +288,7 @@ Kosten
 aus [1](https://ens.dk/en/our-services/projections-and-models/technology-data/technology-data-generation-electricity-and)
 im Bereich von [10]
 
-#### thermalcollector_central
-
-Quelle: [1](https://ens.dk/en/our-services/projections-and-models/technology-data/technology-data-generation-electricity-and
-"
-46 Solar District Heating"
-
-#### thermalcollector_decentral
+#### solarthermal_decentral
 
 Quelle: [2](https://ens.dk/en/our-services/projections-and-models/technology-data/technology-data-individual-heating-plants
 "
@@ -493,31 +330,6 @@ Frauenhofer [10](https://www.ise.fraunhofer.de/de/veroeffentlichungen/studien/st
 wir wählen DEA als Quelle für die Vergleichbarkeit, da Vergleichbarkeit in der
 Optimierung der Modellierung Vorrang hat
 
-#### wood extchp_central
-
-Quelle: [1](https://ens.dk/en/our-services/projections-and-models/technology-data/technology-data-generation-electricity-and)  "
-09a Wood Chips, Medium"
-
-[14] S. 20-21
-
-#### wood extchp_decentral
-
-Quelle: [1](https://ens.dk/en/our-services/projections-and-models/technology-data/technology-data-generation-electricity-and)  "
-09a Wood Chips, Medium"
-
-[14] S. 20-21
-
-identisch zu wood extchp_central
-
-#### wood oven
-
-Quelle: [2](https://ens.dk/en/our-services/projections-and-models/technology-data/technology-data-individual-heating-plants), "
-204 Biomass auto,ex single", "204 Biomass auto,new single", "204 Biomass auto,ex
-apart", "204 Biomass auto,new apart"
-
-Annahmen zu Gebäudebestand siehe heatpump_decentral.
-
-Berechnungen siehe "wood_oven_script" im Code Anhang
 
 #### Quellen
 

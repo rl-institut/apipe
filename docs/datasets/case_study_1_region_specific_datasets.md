@@ -145,7 +145,7 @@ basiert auf AGEB-Anwendungsbilanzen, durchschnittlicher Anteil für Prozesswärm
 
 | Name                                                | Raw-Datensatz | Dataset | Kommentar                   |
 |-----------------------------------------------------|---------------|---------|-----------------------------|
-| _electricity-heatpump_central-capacity_potential_   | technology_data            | technology_data      | Annahme: keine Ausbaugrenze | 
+| _electricity-heatpump_central-capacity_potential_   | technology_data            | technology_data  [doc](https://github.com/rl-institut/apipe/blob/sle-features/case-study-1/apipe/store/datasets/technology_data/dataset.md)    | Annahme: keine Ausbaugrenze | 
 | _electricity-heatpump_decentral-capacity_potential_ | technology_data            | technology_data      | Annahme: keine Ausbaugrenze | 
 | _electricity-heatpump_heat_high-capacity_potential_ | technology_data            | technology_data      | Annahme: keine Ausbaugrenze | 
 

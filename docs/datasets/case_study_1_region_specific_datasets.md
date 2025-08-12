@@ -84,7 +84,7 @@ TODO: Quelle zu Anschlussleistung genehmigt Wasserstoffkernnetz
 ### Wärmebedarf Prozesswärme (>80 °C)
 Annahmen:
 - Temperaturniveau: >100°C (high)
-- Anwendungsgebiet: Industrieöfen und Hochtemperaturverfahren, Prozessdampf- und Warmwasser für Industrieprozesse [Quelle:Langfristszenarien]
+- Anwendungsgebiet: Industrieöfen und Hochtemperaturverfahren, Prozessdampf- und Warmwasser für Industrieprozesse [Quelle: BMWK_Langfristszenarien](https://github.com/rl-institut/apipe/blob/sle-features/case-study-1/apipe/store/raw/bmwk_long_term_scenarios/dataset.md)
 
 #### Gesamtwärmebedarf Prozesswärme (2045) in MWh
  - in `region_specific_dataset.csv`: value as `var_name:amount`

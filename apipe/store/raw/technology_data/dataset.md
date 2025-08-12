@@ -231,14 +231,6 @@ storage_capacity_cost_overnight, storage_fixom_cost einen Wert hat
 
 Große Differenzen zwischen UMAS und Windnode, UMAS Methodik übernommen
 
-#### hydro ror
-
-Quellen: [16]
-
-- fixom_cost: S. 78
-- capacity_cost_overnight: S.75
-- lifetime: S. 72
-
 #### pv_ground
 
 Quelle [1](https://ens.dk/en/our-services/projections-and-models/technology-data/technology-data-generation-electricity-and): "

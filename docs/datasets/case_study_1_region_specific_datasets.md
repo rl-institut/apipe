@@ -24,7 +24,7 @@ TODO: Quelle zu Anschlussleistung genehmigt Wasserstoffkernnetz
 
 | Name                     | Raw-Datensatz | Dataset                   | Kommentar |
 |--------------------------|---------------|---------------------------|-----------|
-| *electricity-demand_hh*  | demandregio [[doc]](https://github.com/rl-institut/apipe/blob/sle-features/case-study-1/apipe/store/raw/demandregio/dataset.md)   | demand_electricity_region [[doc]](https://github.com/rl-institut/apipe/blob/dev/apipe/store/datasets/demand_electricity_region/dataset.md) |       |
+| *electricity-demand_hh*  | demandregio [[doc]](https://github.com/rl-institut/apipe/blob/sle-features/case-study-1/apipe/store/raw/demandregio/dataset.md)   | demand_electricity_region [[doc]](https://github.com/rl-institut/apipe/blob/sle-features/case-study-1/apipe/store/datasets/demand_electricity_region/dataset.md) |       |
 | *electricity-demand_cts* | demandregio   | demand_electricity_region |    |
 | *electricity-demand_ind* | demandregio   | demand_electricity_region |    |
 | *electricity-demand_mob* | egon_ev       | demand_emobility_region   |   |

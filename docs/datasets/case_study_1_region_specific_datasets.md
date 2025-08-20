@@ -35,12 +35,12 @@ TODO: Quelle zu Anschlussleistung genehmigt Wasserstoffkernnetz
 - in `region_specific_dataset.csv`: Name as `var_name:profile`
 - in `apipe/store/datasets`: Dataset 
 
-| Name                             | Raw-Datensatz | Dataset                   | Kommentar |
-|----------------------------------|---------------|---------------------------|-----------|
-| *electricity-demand_hh_profile*  | demandregio   | demand_electricity_region |           |
-| *electricity-demand_cts_profile* | demandregio   | demand_electricity_region |           |
-| *electricity-demand_ind_profile* | demandregio   | demand_electricity_region |           |
-| *electricity-demand_mob_profile* | TODO              |                           |           |
+| Name                             | Raw-Datensatz | Dataset                    | Kommentar |
+|----------------------------------|---------------|----------------------------|-----------|
+| *electricity-demand_hh_profile*  | demandregio [[doc]](https://github.com/rl-institut/apipe/blob/sle-features/case-study-1/apipe/store/raw/demandregio/dataset.md)  | demand_electricity_region [[doc]](https://github.com/rl-institut/apipe/blob/sle-features/case-study-1/apipe/store/datasets/demand_electricity_region/dataset.md) |           |
+| *electricity-demand_cts_profile* | demandregio   | demand_electricity_region  |           |
+| *electricity-demand_ind_profile* | demandregio   | demand_electricity_region  |           |
+| *electricity-demand_mob_profile* | TODO          |                            |           |
 
 
 ------------------------------------------------------------------------------------------------------------------------
@@ -70,13 +70,13 @@ TODO: Quelle zu Anschlussleistung genehmigt Wasserstoffkernnetz
 - in `region_specific_dataset.csv`: Name as `var_name:profile`
 - in `apipe/store/datasets`: Dataset
   
-| Name                                  | Raw-Datensatz | Dataset            | Kommentar |
-|---------------------------------------|---------------|--------------------|-----------|
-| *heat_low_central-demand_hh_profile*  | demandregio   | demand_heat_region |           |
-| *heat_low_central-demand_cts_profile* | demandregio   | demand_heat_region |           |
-| *heat_low_central-demand_ind_profile* | demandregio   | demand_heat_region |           |
-| *heat_low_decentral-demand_hh_profile*  | demandregio   | demand_heat_region |           |
-| *heat_low_decentral-demand_cts_profile* | demandregio   | demand_heat_region |           |
+| Name                                  | Raw-Datensatz | Dataset                      | Kommentar |
+|---------------------------------------|---------------|------------------------------|-----------|
+| *heat_low_central-demand_hh_profile*  | demandregio [[doc]](https://github.com/rl-institut/apipe/blob/sle-features/case-study-1/apipe/store/raw/demandregio/dataset.md)  | demand_heat_region [[doc]](https://github.com/rl-institut/apipe/blob/sle-features/case-study-1/apipe/store/datasets/demand_heat_region/dataset.md) |           |
+| *heat_low_central-demand_cts_profile* | demandregio   | demand_heat_region           |           |
+| *heat_low_central-demand_ind_profile* | demandregio   | demand_heat_region           |           |
+| *heat_low_decentral-demand_hh_profile*  | demandregio   | demand_heat_region           |           |
+| *heat_low_decentral-demand_cts_profile* | demandregio   | demand_heat_region           |           |
 
 
  
@@ -89,9 +89,9 @@ Annahmen:
 #### Gesamtwärmebedarf Prozesswärme (2045) in MWh
  - in `region_specific_dataset.csv`: value as `var_name:amount`
 
-| Name                   | Raw-Datensatz | Dataset                                                       | Kommentar       |
-|------------------------|---------------|---------------------------------------------------------------|-----------------|
-| *heat_high-demand_ind* |  technology_data             |        technology_data                                                       |                 |
+| Name                   | Raw-Datensatz             | Dataset                                                       | Kommentar       |
+|------------------------|---------------------------|---------------------------------------------------------------|-----------------|
+| *heat_high-demand_ind* | technology_data [[doc]](https://github.com/rl-institut/apipe/blob/sle-features/case-study-1/apipe/store/raw/technology_data/dataset.md) |        technology_data [[doc]](https://github.com/rl-institut/apipe/blob/sle-features/case-study-1/apipe/store/datasets/technology_data/dataset.md)                                                      |                 |
 
 -Quelle: https://github.com/asandhaa/ElectricalAndHeatProfiles/blob/main/IAEE%20Conference%20Paper%20Anna%20Sandhaas.pdf
 basiert auf AGEB-Anwendungsbilanzen, durchschnittlicher Anteil für Prozesswärme 0.8 und Raumwärme und Warmwasser 0.2 über alle Industriezweige
@@ -100,9 +100,9 @@ basiert auf AGEB-Anwendungsbilanzen, durchschnittlicher Anteil für Prozesswärm
 - in `region_specific_dataset.csv`: Name as `var_name:profile`
 - in `apipe/store/datasets`: Dataset
 - 
-| Name                           | Raw-Datensatz | Dataset                   | Kommentar                                                                |
-|--------------------------------|---------------|---------------------------|--------------------------------------------------------------------------|
-| *heat_high-demand_ind_profile* |  industry_heat_profiles              | demand_heat_high_ind  | Annahme: Profile von WZ08 Zement,Glas und Keramik, da durchschnittliches Profil und großes Zementwer in der Region | 
+| Name                           | Raw-Datensatz                                                                                                                                         | Dataset                        | Kommentar                                                                |
+|--------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------|--------------------------------------------------------------------------|
+| *heat_high-demand_ind_profile* | industry_heat_profiles [[doc]](https://github.com/rl-institut/apipe/blob/sle-features/case-study-1/apipe/store/raw/industry_heat_profiles/dataset.md) | demand_heat_high_ind [[doc]](https://github.com/rl-institut/apipe/blob/sle-features/case-study-1/apipe/store/datasets/demand_heat_high_ind/dataset.md) | Annahme: Profile von WZ08 Zement,Glas und Keramik, da durchschnittliches Profil und großes Zementwer in der Region | 
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------
 ### EE-Technologien
@@ -111,14 +111,14 @@ basiert auf AGEB-Anwendungsbilanzen, durchschnittlicher Anteil für Prozesswärm
 - in `region_specific_dataset.csv`: Name as `var_name:profile`
 - in `apipe/store/datasets`: Dataset
 
-| Name                                            | Raw-Datensatz | Dataset | Kommentar |
-|-------------------------------------------------|---------------|---------|-----------|
-| _electricity-wind-profile_                      |               |   renewable_feedin      |           | 
-| _electricity-pv_ground-profile_                 |               |   renewable_feedin      |           | 
-| _electricity-pv_agri_vertical-profile_          |               |   renewable_feedin      |           | 
-| _electricity-pv_agri_horizontal-profile_        |               |   renewable_feedin      |           |
-| _electricity-pv_rooftop-profile_                |               |   renewable_feedin      |           | 
-| _heat_low_decentral-solarthermal_plant-profile_ |               |   renewable_feedin      |           |
+| Name                                            | Raw-Datensatz | Dataset                                                                                                                                        | Kommentar |
+|-------------------------------------------------|---------------|------------------------------------------------------------------------------------------------------------------------------------------------|-----------|
+| _electricity-wind-profile_                      |               | renewable_feedin [[doc]](https://github.com/rl-institut/apipe/blob/sle-features/case-study-1/apipe/store/datasets/renewable_feedin/dataset.md) |           | 
+| _electricity-pv_ground-profile_                 |               | renewable_feedin                                                                                                                               |           | 
+| _electricity-pv_agri_vertical-profile_          |               | renewable_feedin                                                                                                                               |           | 
+| _electricity-pv_agri_horizontal-profile_        |               | renewable_feedin                                                                                                                               |           |
+| _electricity-pv_rooftop-profile_                |               | renewable_feedin                                                                                                                               |           | 
+| _heat_low_decentral-solarthermal_plant-profile_ |               | renewable_feedin                                                                                                                               |           |
 
 
 #### Ausbaupotentiale EE-Technologie in MW
@@ -129,14 +129,14 @@ basiert auf AGEB-Anwendungsbilanzen, durchschnittlicher Anteil für Prozesswärm
 - Spalte `stp_2024_vr` gibt Flächenpotenziale in km², Umrechnung in MW mittels
   24 MW/km² (s. `technology_data.json`)
 
-| Name                                                       | Raw-Datensatz          | Dataset                         | Kommentar                                                      |
-|------------------------------------------------------------|------------------------|---------------------------------|----------------------------------------------------------------|
-| _electricity-wind-capacity_potential_                      | rpg_ols_regional_plan  | potentialarea_wind_region       | Keine Windpotenzialflächen nach Regionalplan 2024 (1. Entwurf) |
-| _electricity-pv_ground-capacity_potential_                 | oei_agri_pv            | potentialarea_pv_ground_region2 | Bezeichnung in Daten: *soil_quality_low*                       |
-| _electricity-pv_agri_vertical-capacity_potential_          | oei_agri_pv            | potentialarea_pv_ground_region2 | Bezeichnung in Daten: *soil_quality_medium*                    |
-| _electricity-pv_agri_horizontal-capacity_potential_        | oei_agri_pv            | potentialarea_pv_ground_region2 | Bezeichnung in Daten: *permanent_crops*                        |
-| _electricity-pv_rooftop-capacity_potential_                | wfbb_pv_roof_potential | potentialarea_pv_roof_region2   | Annahme: 78 % von potentialarea_pv_roof_region2                |
-| _heat_low_decentral-solarthermal_plant-capacity_potential_ |    technology_data                    |       technology_data                          | Annahme: 22 % von potentialarea_pv_roof_region2                |
+| Name                                                       | Raw-Datensatz                                                                                                                                         | Dataset                                                                                                                                                                      | Kommentar                                                      |
+|------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------|
+| _electricity-wind-capacity_potential_                      | rpg_ols_regional_plan [[doc]](https://github.com/rl-institut/apipe/blob/sle-features/case-study-1/apipe/store/raw/rpg_ols_regional_plan/dataset.md)   | potentialarea_wind_region [[doc]](https://github.com/rl-institut/apipe/blob/sle-features/case-study-1/apipe/store/datasets/potentialarea_wind_region/dataset.md)             | Keine Windpotenzialflächen nach Regionalplan 2024 (1. Entwurf) |
+| _electricity-pv_ground-capacity_potential_                 | oei_agri_pv [[doc]](https://github.com/rl-institut/apipe/blob/sle-features/case-study-1/apipe/store/raw/oei_agri_pv/dataset.md)                       | potentialarea_pv_ground_region2 [[doc]](https://github.com/rl-institut/apipe/blob/sle-features/case-study-1/apipe/store/datasets/potentialarea_pv_ground_region2/dataset.md) | Bezeichnung in Daten: *soil_quality_low*                       |
+| _electricity-pv_agri_vertical-capacity_potential_          | oei_agri_pv                                                                                                                                           | potentialarea_pv_ground_region2                                                                                                                                              | Bezeichnung in Daten: *soil_quality_medium*                    |
+| _electricity-pv_agri_horizontal-capacity_potential_        | oei_agri_pv                                                                                                                                           | potentialarea_pv_ground_region2                                                                                                                                              | Bezeichnung in Daten: *permanent_crops*                        |
+| _electricity-pv_rooftop-capacity_potential_                | wfbb_pv_roof_potential [[doc]](https://github.com/rl-institut/apipe/blob/sle-features/case-study-1/apipe/store/raw/wfbb_pv_roof_potential/dataset.md) | potentialarea_pv_roof_region2 [[doc]](https://github.com/rl-institut/apipe/blob/sle-features/case-study-1/apipe/store/datasets/potentialarea_pv_roof_region2/dataset.md)     | Annahme: 78 % von potentialarea_pv_roof_region2                |
+| _heat_low_decentral-solarthermal_plant-capacity_potential_ | technology_data [[doc]](https://github.com/rl-institut/apipe/blob/sle-features/case-study-1/apipe/store/raw/technology_data/dataset.md                                                                                                                                      | technology_data                                                                                                                                                              | Annahme: 22 % von potentialarea_pv_roof_region2                |
 
 ----------------------------------------------------------------------------------------------------------------------
 ### Wärmepumpen 
@@ -145,7 +145,7 @@ basiert auf AGEB-Anwendungsbilanzen, durchschnittlicher Anteil für Prozesswärm
 
 | Name                                                | Raw-Datensatz | Dataset | Kommentar                   |
 |-----------------------------------------------------|---------------|---------|-----------------------------|
-| _electricity-heatpump_central-capacity_potential_   | technology_data [[doc]](https://github.com/rl-institut/apipe/blob/sle-features/case-study-1/apipe/store/raw/technology_data/dataset.md)           | technology_data  [[doc]](https://github.com/rl-institut/apipe/blob/sle-features/case-study-1/apipe/store/datasets/technology_data/dataset.md)    | Annahme: keine Ausbaugrenze | 
+| _electricity-heatpump_central-capacity_potential_   | technology_data [[doc]](https://github.com/rl-institut/apipe/blob/sle-features/case-study-1/apipe/store/raw/technology_data/dataset.md)           | technology_data [[doc]](https://github.com/rl-institut/apipe/blob/sle-features/case-study-1/apipe/store/datasets/technology_data/dataset.md)    | Annahme: keine Ausbaugrenze | 
 | _electricity-heatpump_decentral-capacity_potential_ | technology_data            | technology_data      | Annahme: keine Ausbaugrenze | 
 | _electricity-heatpump_heat_high-capacity_potential_ | technology_data            | technology_data      | Annahme: keine Ausbaugrenze | 
 
@@ -155,11 +155,11 @@ basiert auf AGEB-Anwendungsbilanzen, durchschnittlicher Anteil für Prozesswärm
 - in `region_specific_dataset.csv`: Name as `var_name:profile`
 - in `apipe/store/datasets`: Dataset
 
-| Name                                     | Raw-Datensatz          | Dataset                          | Kommentar                                                                 |
-|------------------------------------------|------------------------|----------------------------------|---------------------------------------------------------------------------|
-| _electricity-heatpump_central-profile_   |                        | heatpump_cop      | Zeitreihe wird auch für electricity-heatpump_decentral-profile angenommen | 
-| _electricity-heatpump_decentral-profile_ |                        |heatpump_cop         |                                                                           | 
-| _electricity-heatpump_heat_high-profile_ | heatpump_cop_heat_high |heatpump_cop_heat_high | Hochtemperaturwärmepumpe                                                  |
+| Name                                     | Raw-Datensatz                                                                                                                                         | Dataset                                                                                                                                                    | Kommentar                                                                 |
+|------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------|
+| _electricity-heatpump_central-profile_   |                                                                                                                                                       | heatpump_cop [[doc]](https://github.com/rl-institut/apipe/blob/sle-features/case-study-1/apipe/store/datasets/heatpump_cop/dataset.md)                     | Zeitreihe wird auch für electricity-heatpump_decentral-profile angenommen | 
+| _electricity-heatpump_decentral-profile_ |                                                                                                                                                       | heatpump_cop                                                                                                                                               |                                                                           | 
+| _electricity-heatpump_heat_high-profile_ | heatpump_cop_heat_high [[doc]](https://github.com/rl-institut/apipe/blob/sle-features/case-study-1/apipe/store/raw/heatpump_cop_heat_high/dataset.md) | heatpump_cop_heat_high [[doc]](https://github.com/rl-institut/apipe/blob/sle-features/case-study-1/apipe/store/datasets/heatpump_cop_heat_high/dataset.md) | Hochtemperaturwärmepumpe                                                  |
 
 ----------------------------------------------------------------------------------------------------------------------
 ## Kraft-Wärme-Kopplung
@@ -170,7 +170,7 @@ basiert auf AGEB-Anwendungsbilanzen, durchschnittlicher Anteil für Prozesswärm
   
 | Name                                                | Raw-Datensatz | Dataset | Kommentar |
 |-----------------------------------------------------|---------------|---------|-----------|
-| _biomass_solid-bpchp_heat_low_decentral-capacity_potential_   |   technology_data            |  technology_data        |           | 
+| _biomass_solid-bpchp_heat_low_decentral-capacity_potential_   |   technology_data [[doc]](https://github.com/rl-institut/apipe/blob/sle-features/case-study-1/apipe/store/raw/technology_data/dataset.md)           |  technology_data [[doc]](https://github.com/rl-institut/apipe/blob/sle-features/case-study-1/apipe/store/datasets/technology_data/dataset.md)       |           | 
 | _biomass_solid-bpchp_heat_low_central-capacity_potential_ |   technology_data            |  technology_data        |          | 
 | _biomass_gas-bpchp_heat_low_decentral-capacity_potential_  |   technology_data            |  technology_data        |           | 
 | _biomass_gas-bpchp_heat_low_central-capacity_potential_  |   technology_data            |  technology_data        |           | 
@@ -184,7 +184,7 @@ basiert auf AGEB-Anwendungsbilanzen, durchschnittlicher Anteil für Prozesswärm
    
 | Name                                                | Raw-Datensatz | Dataset | Kommentar |
 |-----------------------------------------------------|---------------|---------|-----------|
-| _residual_waste-bpchp_heat_high-capacity_  |   technology_data            |  technology_data        |          | 
+| _residual_waste-bpchp_heat_high-capacity_  |   technology_data [[doc]](https://github.com/rl-institut/apipe/blob/sle-features/case-study-1/apipe/store/raw/technology_data/dataset.md)           |  technology_data [[doc]](https://github.com/rl-institut/apipe/blob/sle-features/case-study-1/apipe/store/datasets/technology_data/dataset.md)       |          | 
 | _residual_waste-bpchp_heat_low_central-capacity_  |   technology_data            |  technology_data        |           | 
 
 ----------------------------------------------------------------------------------------------------------------------
@@ -195,7 +195,7 @@ basiert auf AGEB-Anwendungsbilanzen, durchschnittlicher Anteil für Prozesswärm
    
 | Name                                               | Raw-Datensatz | Dataset | Kommentar                   |
 |----------------------------------------------------|---------------|---------|-----------------------------|
-| _biomass_solid-boiler_heat_high-capacity_potential_         |   technology_data            |  technology_data        |  Annahme: keine Ausbaugrenze                          | 
+| _biomass_solid-boiler_heat_high-capacity_potential_         |   technology_data [[doc]](https://github.com/rl-institut/apipe/blob/sle-features/case-study-1/apipe/store/raw/technology_data/dataset.md)           |  technology_data [[doc]](https://github.com/rl-institut/apipe/blob/sle-features/case-study-1/apipe/store/datasets/technology_data/dataset.md)       |  Annahme: keine Ausbaugrenze                          | 
 | _electricity-boiler_heat_high-capacity_potential_           |   technology_data            |  technology_data        | Annahme: keine Ausbaugrenze                          | 
 | _h2-boiler_heat_high-capacity_potential_                    |   technology_data            |  technology_data        |  Annahme: keine Ausbaugrenze                          | 
 
@@ -208,7 +208,7 @@ basiert auf AGEB-Anwendungsbilanzen, durchschnittlicher Anteil für Prozesswärm
    
 | Name                                                   | Raw-Datensatz | Dataset | Kommentar |
 |--------------------------------------------------------|---------------|---------|-----------|
-| _electricity-large_battery_storage-capacity_potential_ |   technology_data            |  technology_data        |   Annahme: keine Ausbaugrenze        |
+| _electricity-large_battery_storage-capacity_potential_ |   technology_data [[doc]](https://github.com/rl-institut/apipe/blob/sle-features/case-study-1/apipe/store/raw/technology_data/dataset.md)           |  technology_data [[doc]](https://github.com/rl-institut/apipe/blob/sle-features/case-study-1/apipe/store/datasets/technology_data/dataset.md)       |   Annahme: keine Ausbaugrenze        |
 | _heat_low_central-storage-capacity_potential_          |   technology_data            |  technology_data        ||   Annahme: keine Ausbaugrenze        | 
 | _heat_low_decentral-storage-capacity_potential_  |   technology_data            |  technology_data        |   Annahme: keine Ausbaugrenze                                         |
 
@@ -217,7 +217,7 @@ basiert auf AGEB-Anwendungsbilanzen, durchschnittlicher Anteil für Prozesswärm
 
 | Name                                   | Raw-Datensatz | Dataset | Kommentar                                  |
 |----------------------------------------|---------------|---------|--------------------------------------------|
-| _electricity-small_battery_storage-capacity_ |   technology_data            |  technology_data        | Annahme: storage_capacity=pv_roof_capacity |
+| _electricity-small_battery_storage-capacity_ |   technology_data [[doc]](https://github.com/rl-institut/apipe/blob/sle-features/case-study-1/apipe/store/raw/technology_data/dataset.md)           |  technology_data [[doc]](https://github.com/rl-institut/apipe/blob/sle-features/case-study-1/apipe/store/datasets/technology_data/dataset.md)       | Annahme: storage_capacity=pv_roof_capacity |
 
 ----------------------------------------------------------------------------------------------------------------------
 ## Elektrolyseur
@@ -226,7 +226,7 @@ basiert auf AGEB-Anwendungsbilanzen, durchschnittlicher Anteil für Prozesswärm
 
 | Name                                          | Raw-Datensatz | Dataset | Kommentar                   |
 |-----------------------------------------------|---------------|---------|-----------------------------|
-| _electricity-electrolyzer-capacity_potential_ |   technology_data            |  technology_data        | Annahme: keine Ausbaugrenze | 
+| _electricity-electrolyzer-capacity_potential_ |   technology_data [[doc]](https://github.com/rl-institut/apipe/blob/sle-features/case-study-1/apipe/store/raw/technology_data/dataset.md)           |  technology_data [[doc]](https://github.com/rl-institut/apipe/blob/sle-features/case-study-1/apipe/store/datasets/technology_data/dataset.md)       | Annahme: keine Ausbaugrenze | 
 
 
 ----------------------------------------------------------------------------------------------------------------------
@@ -236,7 +236,7 @@ basiert auf AGEB-Anwendungsbilanzen, durchschnittlicher Anteil für Prozesswärm
 
 | Name                          | Raw-Datensatz | Dataset | Kommentar |
 |-------------------------------|---------------|---------|-----------|
-| _h2-export-capacity_          |   technology_data            |  technology_data        | Annahme: unbegrenzt      |
+| _h2-export-capacity_          |   technology_data [[doc]](https://github.com/rl-institut/apipe/blob/sle-features/case-study-1/apipe/store/raw/technology_data/dataset.md)           |  technology_data [[doc]](https://github.com/rl-institut/apipe/blob/sle-features/case-study-1/apipe/store/datasets/technology_data/dataset.md)       | Annahme: unbegrenzt      |
 | _electricity-export-capacity_ |   technology_data            |  technology_data        | Annahme: unbegrenzt      |
 
 ----------------------------------------------------------------------------------------------------------------------
@@ -247,7 +247,7 @@ basiert auf AGEB-Anwendungsbilanzen, durchschnittlicher Anteil für Prozesswärm
 
 | Name                              | Raw-Datensatz | Dataset                                                                                                                                                      | Kommentar                                                                                                                                                                                                            |
 |-----------------------------------|---------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| _biomass_gas-commodity-capacity_  |  technology_data             |     technology_data                                                                                                                                                         | 3% des Gesamtenergiebedarfs in https://www.agora-energiewende.de/fileadmin/Projekte/2023/2023-30_DE_KNDE_Update/A-EW_344_Klimaneutrales_Deutschland_WEB.pdf; summed_energy_demand*3%/0.5(Wirkungsgrad bpchp average) |
+| _biomass_gas-commodity-capacity_  |  technology_data [[doc]](https://github.com/rl-institut/apipe/blob/sle-features/case-study-1/apipe/store/raw/technology_data/dataset.md)            |     technology_data [[doc]](https://github.com/rl-institut/apipe/blob/sle-features/case-study-1/apipe/store/datasets/technology_data/dataset.md)                                                                                                                                                        | 3% des Gesamtenergiebedarfs in https://www.agora-energiewende.de/fileadmin/Projekte/2023/2023-30_DE_KNDE_Update/A-EW_344_Klimaneutrales_Deutschland_WEB.pdf; summed_energy_demand*3%/0.5(Wirkungsgrad bpchp average) |
 | _biomass_solid-commodity-capacity_ | technology_data              | technology_data | 13% des Gesamtenergiebedarfs in https://www.agora-energiewende.de/fileadmin/Projekte/2023/2023-30_DE_KNDE_Update/A-EW_344_Klimaneutrales_Deutschland_WEB.pdf;summed_energy_demand*3%/0.5(Wirkungsgrad bpchp average) |
 | _h2-commodity-capacity_ | technology_data              |    technology_data                                                                                                                                                          | Rüdersdorf: 550 MW genehmigte Anschlussleistung an Wasserstoffkernnetz                                                                                                                                               |
 | _residual_waste-commodity-capacity_ |  technology_data             |     technology_data                                                                                                                                                         | Rüdersdorf:  132MW;  installierte Leistung elektrisch der Müllverbrennungsanalge, die 2025 in Betrieb ist in  MW / Wirkungsgrad Müllverbrennungsanlage                                                               |

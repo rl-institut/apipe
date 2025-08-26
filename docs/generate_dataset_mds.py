@@ -52,7 +52,7 @@ def generate_dataset_mds():
                                 )
                                 line = re.sub(
                                     r"\(\.\./([a-zA-Z])",
-                                    fr"(../../apipe/store/{category}/\1",
+                                    rf"(../../apipe/store/{category}/\1",
                                     line,
                                 )
                                 line = re.sub(

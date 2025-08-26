@@ -55,7 +55,7 @@ def update_foreign_keys_hp():
     updates_dict = {
         "data/elements/electricity-heatpump_central.csv": "electricity-heatpump_central_profile",
         "data/elements/electricity-heatpump_decentral.csv": "electricity-heatpump_decentral_profile",
-        "data/elements/electricity-heatpump_heat_high.csv":"electricity-heatpump_heat_high_profile"
+        "data/elements/electricity-heatpump_heat_high.csv": "electricity-heatpump_heat_high_profile",
     }
 
     target_field = "efficiency"

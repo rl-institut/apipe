@@ -99,7 +99,6 @@ def update_output_parameters():
         "r120670201201-biomass_solid-commodity": '{"full_load_time_max":1}',
     }
 
-
     # Regions from model structure
     valid_regions = model_structures["model_structure_full"]["regions"]
 

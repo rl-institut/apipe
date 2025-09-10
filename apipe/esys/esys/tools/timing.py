@@ -1,6 +1,7 @@
 r"""
 A Timer class, adapted from https://github.com/realpython/codetiming
 """
+
 import datetime
 import time
 

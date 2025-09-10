@@ -81,10 +81,16 @@ def process() -> None:
     )
 
     # Round and dump
-    pd.Series(cops_ashp, name="cop_ashp",).round(
+    pd.Series(
+        cops_ashp,
+        name="cop_ashp",
+    ).round(
         3
     ).to_csv(snakemake.output.cop_ashp)
-    pd.Series(cops_gshp, name="cop_gshp",).round(
+    pd.Series(
+        cops_gshp,
+        name="cop_gshp",
+    ).round(
         3
     ).to_csv(snakemake.output.cop_gshp)
 

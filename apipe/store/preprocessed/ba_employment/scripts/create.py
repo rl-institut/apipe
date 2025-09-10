@@ -9,7 +9,7 @@ def process() -> None:
     data = pd.read_excel(
         snakemake.input[0],
         **excel_cfg,
-        #engine="pyxlsb",
+        # engine="pyxlsb",
     )
 
     # Drop footer

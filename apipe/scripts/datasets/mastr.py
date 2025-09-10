@@ -63,9 +63,9 @@ def apply_manual_corrections(
             units_correction_site_df = units_correction_df.copy().loc[
                 units_correction_df.wrong_attr == "site_type"
             ][["correction"]]
-            units_df.loc[
-                units_correction_site_df.index, "Lage"
-            ] = units_correction_site_df["correction"]
+            units_df.loc[units_correction_site_df.index, "Lage"] = (
+                units_correction_site_df["correction"]
+            )
             print(
                 f"Applied {len(units_correction_site_df)} "
                 f"corrections for column: {attr}"

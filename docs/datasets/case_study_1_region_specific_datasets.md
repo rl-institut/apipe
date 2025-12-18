@@ -8,12 +8,6 @@ spezifisch für die Gemeinden:
 - Erkner (r120670124124), 
 - Grünheide (r120670201201).
 
-TODO: Links zur Doku einfügen
-
-TODO: heatpump_cop_heat_high Doku ergänzen 
-
-TODO: Quelle zu Anschlussleistung genehmigt Wasserstoffkernnetz
-
 ## Daten für die Energiesystemmodellierung
 
 ### Strombedarf
@@ -27,7 +21,7 @@ TODO: Quelle zu Anschlussleistung genehmigt Wasserstoffkernnetz
 | *electricity-demand_hh*  | demandregio [[doc]](https://github.com/rl-institut/apipe/blob/sle-features/case-study-1/apipe/store/raw/demandregio/dataset.md)   | demand_electricity_region [[doc]](https://github.com/rl-institut/apipe/blob/sle-features/case-study-1/apipe/store/datasets/demand_electricity_region/dataset.md) |       |
 | *electricity-demand_cts* | demandregio   | demand_electricity_region |    |
 | *electricity-demand_ind* | demandregio   | demand_electricity_region |    |
-| *electricity-demand_mob* | egon_ev       | demand_emobility_region   |   |
+| *electricity-demand_mob* | egon_ev [[doc]](https://egon-data.readthedocs.io/en/latest/data.html#motorized-individual-travel)      | demand_emobility_region   |   |
  
 
 
@@ -40,7 +34,7 @@ TODO: Quelle zu Anschlussleistung genehmigt Wasserstoffkernnetz
 | *electricity-demand_hh_profile*  | demandregio [[doc]](https://github.com/rl-institut/apipe/blob/sle-features/case-study-1/apipe/store/raw/demandregio/dataset.md)  | demand_electricity_region [[doc]](https://github.com/rl-institut/apipe/blob/sle-features/case-study-1/apipe/store/datasets/demand_electricity_region/dataset.md) |           |
 | *electricity-demand_cts_profile* | demandregio   | demand_electricity_region  |           |
 | *electricity-demand_ind_profile* | demandregio   | demand_electricity_region  |           |
-| *electricity-demand_mob_profile* | TODO          |                            |           |
+| *electricity-demand_mob_profile* | egon_ev [[doc]](https://egon-data.readthedocs.io/en/latest/data.html#motorized-individual-travel)          |     demand_emobility_region                       |           |
 
 
 ------------------------------------------------------------------------------------------------------------------------
